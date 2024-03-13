@@ -4,40 +4,44 @@ export default function Header() {
     return (
         <header>
             <div>
-                <span>관리자 페이지로 전환</span>
+                <span>관리자 페이지 전환</span>
                 <span>로그인/로그아웃</span>
             </div>
             <div>
                 <span>로고</span>
                 <span>체육시설</span>
-                <span>고객센터
-                    <ul >
-                        <li className='dropdown'>문의게시판</li>
-                        <li className='dropdown'>공지사항</li>
-                        <li className='dropdown'>자주하는질문</li>
+                <span>고객센터</span>
+                <span>정보마당</span>
+                <span>이용신청</span>
+                <span>마이페이지</span>
+            </div>
+            <div className='Header_mainMenu'>
+                <div>
+                    <div></div>
+                    <ul>
+                        <li></li>
                     </ul>
-                </span>
-                <span>정보마당
-                    <ul >
-                        <li className='dropdown'>이벤트</li>
-                        <li className='dropdown'>수업 일정표</li>
+                    <ul>
+                        <li>공지사항</li>
+                        <li>자주하는 질문</li>
+                        <li>문의 게시판</li>
                     </ul>
-                </span>
-                <span>이용신청
-                    <ul >
-                        <li className='dropdown'>수강신청</li>
-                        <li className='dropdown'>대관신청</li>
-                        <li className='dropdown'>주차신청</li>
+                    <ul>
+                        <li>이벤트</li>
+                        <li>수업 일정표</li>
                     </ul>
-                </span>
-                <span>마이페이지
-                    <ul >
-                        <li className='dropdown'>신청내역</li>
-                        <li className='dropdown'>QR코드</li>
-                        <li className='dropdown'>회원정보 변경</li>
-                        <li className='dropdown'>비밀번호 변경</li>
+                    <ul>
+                        <li>수강 신청</li>
+                        <li>대관 신청</li>
+                        <li>주차 신청</li>
                     </ul>
-                </span>
+                    <ul>
+                        <li>신청내역</li>
+                        <li>QR코드</li>
+                        <li>비밀번호 변경</li>
+                        <li>비밀번호 수정</li>
+                    </ul>
+                </div>
             </div>
         </header>
     );
