@@ -80,9 +80,9 @@ header>:last-child>div>ul>li{
 
 @media(max-width: 1200px){
 
-  header{
+  /* header{
     width: 100%;
-  }
+  } */
 
   header>:first-child{
     display:none;
