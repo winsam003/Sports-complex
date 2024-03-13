@@ -1,0 +1,27 @@
+header>:first-child{
+  width: 100vh;
+  height: 5vh;
+
+  display: flex;
+  justify-content: flex-end;
+
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  background-color: blanchedalmond;
+}
+
+header>:first-child>span {
+  margin-right: 15px;
+}
+
+header>:last-child{
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  height: 8vh;
+
+  background-color: blueviolet
+}
