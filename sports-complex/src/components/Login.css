@@ -1,0 +1,15 @@
+.loginPage {
+    background-color: hotpink;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    /* text-align: center; */
+    justify-content: center;
+}
+
+#id, #password {
+    height: 50px;
+}
+
+
+
