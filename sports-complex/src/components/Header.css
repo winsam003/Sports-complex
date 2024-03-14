@@ -1,9 +1,5 @@
-header{
-  width: 1200px;
-}
-
 /* 관리자 페이지 전환, 로그아웃 */
-header>:first-child{
+header>:first-child {
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -14,7 +10,7 @@ header>:first-child{
   background-color: azure;
 }
 
-header>:first-child>span{
+header>:first-child>span {
   margin-right: 0.8rem;
 }
 
@@ -22,7 +18,7 @@ header>:first-child>span{
 
 
 /* 메인 해더 (로고, 각 게시판) */
-header>:nth-child(2){
+header>:nth-child(2) {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -31,29 +27,34 @@ header>:nth-child(2){
 
   background-color: bisque;
 }
-header>:nth-child(2)>:first-child{
+
+header>:nth-child(2)>:first-child {
   width: 10rem;
 }
-header>:nth-child(2)>:nth-child(n+2):nth-child(-n+6){
+
+header>:nth-child(2)>:nth-child(n+2):nth-child(-n+6) {
 
   width: 6.4rem;
   text-align: center;
 
   background-color: aqua;
 }
-header>:nth-child(2):hover + .Header_mainMenu{
+
+header>:nth-child(2):hover+.Header_mainMenu {
   display: block;
 }
+
 header>:last-child:hover {
   display: block;
 }
 
 /* 호버 시 반응 */
 
-header>:last-child{
+header>:last-child {
   display: none;
 }
-header>:last-child>div{
+
+header>:last-child>div {
   display: flex;
   justify-content: space-around;
 
@@ -61,31 +62,34 @@ header>:last-child>div{
 
   background-color: blueviolet;
 }
+
 header>:last-child>div>:first-child {
   width: 10rem;
 }
-header>:last-child>div>ul{
+
+header>:last-child>div>ul {
   list-style-type: none;
 
   width: 6.4rem;
   padding: 0px;
   display: inline-block;
 }
-header>:last-child>div>ul>li{
+
+header>:last-child>div>ul>li {
   text-align: center;
 
   margin-top: 5px;
 }
 
 
-@media(max-width: 1200px){
+@media(max-width: 1200px) {
 
   /* header{
     width: 100%;
   } */
 
-  header>:first-child{
-    display:none;
+  header>:first-child {
+    display: none;
   }
 
   header>:nth-child(2)>:first-child {
