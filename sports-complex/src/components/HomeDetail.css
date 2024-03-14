@@ -1,0 +1,16 @@
+.homeDetail_container{
+    position: relative;
+    display: flex;
+
+    height: 25rem;
+
+
+    background-color: chartreuse;
+
+}
+
+.homeDetail_container>:first-child{
+    
+}
+.homeDetail_container>:last-child{
+}
