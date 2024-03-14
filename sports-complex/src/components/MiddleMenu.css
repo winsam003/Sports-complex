@@ -1,12 +1,12 @@
 .middlemenu {
-    /* display: grid; */
-    flex: 0 0 auto;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
     background-color: brown;
     height: 200px;
-    /* align-items: center;
-    justify-content: center; */
-    text-align: center;
-    line-height: 200px;
+    align-items: center;
+    justify-content: center;
+    /* text-align: center;
+    line-height: 200px; */
 }
 
 .middlemenu>span{
@@ -15,7 +15,27 @@
     width: 10rem;
     height: 10rem;
     text-align: center;
-    line-height: 150px;
+    line-height: 10rem;
     border-radius: 30%;
-    margin: 0 15px;
+    /* margin: 0 15px; */
+    margin: auto;
+}
+
+@media(max-width : 1200px) {
+    .middlemenu{
+        background-color: lightgoldenrodyellow;
+        height: 300px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        align-items: center;
+        justify-content: center;
+    }
+
+    .middlemenu>span {
+        width: 8rem;
+        height: 8rem;
+        line-height: 8rem;
+    }
+
+    
 }
