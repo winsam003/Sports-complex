@@ -17,22 +17,26 @@ export default function Footer() {
             </div>
 
             <div className='footer_company_info'>
-                <img src='img/Arcana3.gif' className='footer_logo' />
+                <div className='footer_logo_div'>
+                    <img src='img/Arcana3.gif' className='footer_logo' />
+                </div>
                 <p>
-                    사업자등록번호 : 999 &#45; 99 &#45; 99999
-                </p>
-                <p>
-                    우&#41; 99999 서울특별시 강남구 역삼로4길 승승장구빌딩 &#40;역삼동&#41; &#124; Tel &#58; 02 &#45; 999 &#45; 9999
-                </p>
-                <p>
+                    사업자등록번호 : 999&#45;99&#45;99999<br></br>
+                    우&#41; 99999 서울특별시 강남구 역삼로4길 승승장구빌딩 &#40;역삼동&#41; &#124; Tel&#58;02&#45;999&#45; 9999<br></br>
                     Copyright&#169; 2024 칭찬해조엔지니어링 All Rights Reserved&#46;
                 </p>
-            </div>
+            </div >
 
             <div className='consulting_telNum'>
-                <p>ㅇ</p>
+                <p>고객상담실</p>
+                <p>수강신청 02&#45;999&#45;9991&#126;2&#40;ARS 0번&#41; </p>
+                <p>대관신청 02&#45;999&#45;9993&#126;4&#40;ARS 1번&#41; </p>
+                <p>주차신청 02&#45;999&#45;9995&#126;6 </p>
+                <p>시설관리 02&#45;999&#45;9997 </p>
+                <p>회원문의 02&#45;999&#45;9998 </p>
+                <p>기타문의 02&#45;999&#45;9999 </p>
             </div>
 
-        </footer>
+        </footer >
     );
 };
