@@ -1,9 +1,17 @@
 footer {
     margin: 0px;
     padding: 0px;
+    width: 1200px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer_list {
+    display: grid;
 }
 
 .footer_ul {
+    background-color: green;
     margin: 0;
     padding: 0;
     text-align: center;
@@ -30,9 +38,9 @@ footer {
     padding-right: 10px;
 }
 
-
 @media (max-width : 1200px) {
     .footer_ul {
+        background-color: green;
 
         .footer_ol:nth-child(1) {
             display: block;
@@ -47,4 +55,21 @@ footer {
             padding: 0px 10px;
         }
     }
+}
+
+.company_info {
+    display: grid;
+    grid-template-columns: 1fr 1fr 4fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    background-color: aqua;
+    width: 1200px;
+    text-align: center;
+    height: 200px;
+    line-height: 200px;
+}
+
+.footer_logo {
+    width: 100px;
+    height: 100px;
+    vertical-align: middle;
 }
