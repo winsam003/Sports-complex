@@ -95,4 +95,16 @@ header>:last-child>div>ul>li {
   header>:nth-child(2)>:first-child {
     display: none;
   }
+
+  header>:last-child>div>ul {
+    list-style-type: none;
+  
+    width: 6.4rem;
+    padding: 0px;
+    display: inline-block;
+  }
+
+  header>:last-child>div>:first-child {
+    display: none;
+  }
 }

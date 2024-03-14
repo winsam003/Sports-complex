@@ -1,0 +1,21 @@
+.middlemenu {
+    /* display: grid; */
+    flex: 0 0 auto;
+    background-color: brown;
+    height: 200px;
+    /* align-items: center;
+    justify-content: center; */
+    text-align: center;
+    line-height: 200px;
+}
+
+.middlemenu>span{
+    background-color: #ffa07a;
+    display: inline-block;
+    width: 10rem;
+    height: 10rem;
+    text-align: center;
+    line-height: 150px;
+    border-radius: 30%;
+    margin: 0 15px;
+}
