@@ -16,12 +16,21 @@ export default function Footer() {
                 </ul>
             </div>
 
-            <div className='company_info'>
+            <div className='footer_company_info'>
                 <img src='img/Arcana3.gif' className='footer_logo' />
+                <p>
+                    사업자등록번호 : 999 &#45; 99 &#45; 99999
+                </p>
+                <p>
+                    우&#41; 99999 서울특별시 강남구 역삼로4길 승승장구빌딩 &#40;역삼동&#41; &#124; Tel &#58; 02 &#45; 999 &#45; 9999
+                </p>
+                <p>
+                    Copyright&#169; 2024 칭찬해조엔지니어링 All Rights Reserved&#46;
+                </p>
             </div>
 
             <div className='consulting_telNum'>
-
+                <p>ㅇ</p>
             </div>
 
         </footer>
