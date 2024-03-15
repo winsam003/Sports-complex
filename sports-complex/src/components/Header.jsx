@@ -5,10 +5,11 @@ export default function Header() {
         <header>
             <div>
                 <span>관리자 페이지 전환</span>
-                <span>로그인/로그아웃</span>
+                <a href='/Login'>로그인/로그아웃</a>
+                <a href='/Login'>회원가입</a>
             </div>
             <div>
-                <span>로고</span>
+                <div className='Header_logo'><a href="/">홈으로</a></div>
                 <span>체육시설</span>
                 <span>고객센터</span>
                 <span>정보마당</span>
