@@ -5,13 +5,13 @@ import Footer from './components/Footer';
 import MiddleMenu from './components/MiddleMenu';
 import Login from './components/Login';
 import FindPassword from './components/FindPassword';
-
+import JoinMember from './components/JoinMember';
 
 function App() {
   return (
     <div>
       <Header />
-      <FindPassword />
+      <JoinMember />
       <Footer />
     </div>
 

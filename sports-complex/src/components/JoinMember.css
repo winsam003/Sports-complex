@@ -1,0 +1,22 @@
+.JoinMember_joinbox {
+    height: 500px;
+    background-color: lightpink;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+}
+.JoinMember_sdf{
+    background-color: rgba(5, 138, 247, 0.445);
+    width: 80%;
+    height: 100%;
+    text-align: center;
+}
+.JoinMember_title{
+    font-size: 2rem;
+    padding-top: 40px;
+}
+
+
+
+
+
