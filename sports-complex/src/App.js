@@ -1,22 +1,19 @@
 import './App.css';
-import Header from './components/Header';
-import Banner from './components/PageBanner';
-import Footer from './components/Footer';
-import MiddleMenu from './components/MiddleMenu';
-import HomeDetail from './components/HomeDetail';
-import Login from './components/Login';
+import HomePage from './components/Pages/HomePage';
+import LoginPage from './components/Pages/LoginPage';
+import FindIDPage from './components/Pages/FindIDPage';
+import { Route, Routes } from 'react-router-dom';
+import React from 'react';
 
 function App() {
   return (
     <div>
-      <Header />
-      <Banner />
-      {/* <Login /> */}
-      {/* <HomeDetail /> */}
-      {/* <MiddleMenu /> */}
-      <Footer />
+      <Routes>
+        <Route path='/' element={<HomePage />} />
+        <Route path='/login' element={<LoginPage />} />
+        <Route path='/FindIDPage' element={<FindIDPage />} />
+      </Routes>
     </div>
-
   );
 }
 
