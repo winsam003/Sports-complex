@@ -1,7 +1,7 @@
 // 회원가입 이용약관
 import './TermsAndConditions.css'
 import RegistrationFlow from './RegistrationFlow'
-import Scrollbox from './Scrollbox'
+import BoxScroll from './BoxScroll'
 
 export default function TermsAndConditions() {
     return (
@@ -12,21 +12,21 @@ export default function TermsAndConditions() {
             </div>
             <div className='TermsAndConditions_div'>
                 <span className='TermsAndConditions_subtitle'>체육시설 약관동의</span>
-                <Scrollbox />
+                <BoxScroll />
                 <label>
                     {/* <input id='ckbox1' type='checkbox'>"&#40;필수&#41; 약관에 동의합니다"</input> */}
                 </label>
             </div>
             <div className='TermsAndConditions_div'>
                 <span className='TermsAndConditions_subtitle'>개인정보 수집 및 이용에 대한 안내</span>
-                <Scrollbox />
+                <BoxScroll />
                 <label>
                     {/* <input id='ckbox1' type='checkbox'>"&#40;필수&#41; 개인정보 수집 및 이용안내를 숙지하였습니다"</input> */}
                 </label>
             </div>
             <div className='TermsAndConditions_div'>
                 <span className='TermsAndConditions_subtitle'>개인정보 제3자 제공에 대한 안내</span>
-                <Scrollbox />
+                <BoxScroll />
                 <label>
                     {/* <input id='ckbox1' type='checkbox'>"&#40;필수&#41; 개인정보 제3자 제공에 동의합니다"</input> */}
                 </label>

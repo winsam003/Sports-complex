@@ -1,7 +1,7 @@
 // 회원가입 이용약관
-import './Scrollbox.css'
+import './BoxScroll.css'
 
-export default function Scrollbox() {
+export default function BoxScroll() {
     return (
         <div>
             <div className='TermsAndConditions_div'>
