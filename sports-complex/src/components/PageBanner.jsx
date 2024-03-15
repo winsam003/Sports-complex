@@ -1,13 +1,17 @@
+import './PageBanner.css'
+
 export default function PageBanner() {
     return (
         <div className='pagebanner'>
-            <div className='pagebanner_div'>
-                {/* <img src='img/RohJeongeui.jpg' className='pagebanner_img' /> */}
+            <div className='pagebanner_img_div'>
+                <img src='img/Arcana3.gif' className='pagebanner_img' />
             </div>
-            <p>
-                오늘의 나는 패배했다<br></br>
-                안타까운거지뭐
-            </p>
+            <span>
+                현재페이지위치<br></br>
+            </span>
+            <span>
+                간단한페이지설명
+            </span>
         </div >
     );
 };
