@@ -5,17 +5,23 @@
 
     height: 7rem;
 
-    background-color: darkcyan;
+    background-color: aqua;
 }
 
 .UserTypeAgree_button{
     width: 12rem;
     height: 4rem;
 
-    border: none;
+    display: inline;
+    text-align: center;
+    line-height: 4rem;
 }
 
 .UserTypeAgree_Agree{
     margin-right: 100px;
     background-color: blue;
+}
+.UserTypeAgree_Disagree{
+    /* margin-right: 100px; */
+    background-color: azure;
 }
