@@ -3,23 +3,18 @@ import PageBanner from '../PageBanner';
 import Footer from '../Footer';
 import TermsAndConditions from '../TermsAndConditions';
 import UserTypeAgree from '../UserTypeAgree';
-import { useParams } from 'react-router-dom';
 
 
 export default function JoinPage1(){
 
-    const { id } = useParams();
-
-    const nextPage = () => {
-        
-    }
+    const nextPage = window.location.pathname.replace("/", "");
 
     return (
         <div>
             <Header />
             <PageBanner />
             <TermsAndConditions />
-            <UserTypeAgree id={id}/>
+            <UserTypeAgree nextPage={nextPage}/>
             <Footer />
         </div>
     )

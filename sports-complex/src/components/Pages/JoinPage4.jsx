@@ -1,19 +1,18 @@
 import Header from '../Header';
 import PageBanner from '../PageBanner';
 import Footer from '../Footer';
-import TermsAndConditions from '../TermsAndConditions';
+import JoinMember from '../JoinMember';
 import UserTypeAgree from '../UserTypeAgree';
-import { useParams } from 'react-router-dom';
 
 export default function JoinPage4() {
-    const { id } = useParams();
-    console.log(`id=${id}`);
+    
+    const nextPage = window.location.pathname.replace("/", "");
     return (
         <div>
             <Header />
             <PageBanner />
-            {/* <TermsAndConditions /> */}
-            <UserTypeAgree />
+            <JoinMember />
+            <UserTypeAgree nextPage={nextPage} />
             <Footer />
         </div>
     )

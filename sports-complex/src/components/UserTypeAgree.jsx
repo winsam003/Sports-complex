@@ -2,10 +2,10 @@ import './UserTypeAgree.css';
 import {Link, Routes, Route} from 'react-router-dom';
 
 
-export default function UserTypeAgree({id}){
+export default function UserTypeAgree({ nextPage }){
 
     const pageRouter = () => {
-        switch (id){
+        switch (nextPage){
             case 'JoinPage1':
                 return '/JoinPage2';
             case 'JoinPage2':

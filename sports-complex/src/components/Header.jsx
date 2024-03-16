@@ -2,6 +2,7 @@ import './Header.css';
 import {Link} from 'react-router-dom';
 
 import JoinPage1 from './Pages/JoinPage1';
+import FacilityInformationPage from './Pages/FacilityInformationPage';
 
 export default function Header() {
     return (
@@ -13,7 +14,7 @@ export default function Header() {
             </div>
             <div>
                 <div className='Header_logo'><Link to="/">홈으로</Link></div>
-                <span>체육시설</span>
+                <Link to='FacilityInformationPage'>체육시설</Link>
                 <span>고객센터</span>
                 <span>정보마당</span>
                 <span>이용신청</span>
