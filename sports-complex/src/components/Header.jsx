@@ -1,16 +1,20 @@
 import './Header.css';
+import {Link} from 'react-router-dom';
+
+import JoinPage1 from './Pages/JoinPage1';
+import FacilityInformationPage from './Pages/FacilityInformationPage';
 
 export default function Header() {
     return (
         <header>
             <div>
                 <span>관리자 페이지 전환</span>
-                <a href='/Login'>로그인/로그아웃</a>
-                <a href='/Login'>회원가입</a>
+                <Link to='/LoginPage'>로그인/로그아웃</Link>
+                <Link to='/JoinPage1'>회원가입</Link>
             </div>
             <div>
-                <div className='Header_logo'><a href="/">홈으로</a></div>
-                <span>체육시설</span>
+                <div className='Header_logo'><Link to="/">홈으로</Link></div>
+                <Link to='FacilityInformationPage'>체육시설</Link>
                 <span>고객센터</span>
                 <span>정보마당</span>
                 <span>이용신청</span>

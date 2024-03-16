@@ -1,5 +1,5 @@
 import "./Login.css"
-
+import {Link} from 'react-router-dom';
 
 export default function Login() {
     return (
@@ -25,9 +25,9 @@ export default function Login() {
                         <label htmlFor="rememberMe">아이디 저장</label>
                     </div>
                     <div className="login_joinandfind">
-                        <a href="/">회원가입</a>
-                        <a href="/FindIDPage">아이디 찾기</a>
-                        <a href="/">비밀번호 찾기</a>
+                        <Link to="/">회원가입</Link>
+                        <Link to="/FindIDPage">아이디 찾기</Link>
+                        <Link to="/FindPasswordPage">비밀번호 찾기</Link>
                     </div>
                 </div>
 

@@ -1,9 +1,20 @@
 import './HomeDetail.css';
 import Slider from 'react-slick';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 export default function HomeDetail(){
+
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000,
+    };
+
     return (
         <div className='homeDetail_container'>
             <div className='homeDetail_items1'>
@@ -29,7 +40,38 @@ export default function HomeDetail(){
                             <div>12</div>
                         </div>
                     </div>
-                    <div>이벤트 광고</div>
+                    <Slider {...settings}>
+                        <div>
+                            <h3 className='slide'>Slide 1</h3>
+                        </div>
+                        <div>
+                            <h3 className='slide'>Slide 2</h3>
+                        </div>
+                        <div>
+                            <h3 className='slide'>Slide 3</h3>
+                        </div>
+                        <div>
+                            <h3 className='slide'>Slide 4</h3>
+                        </div>
+                        <div>
+                            <h3 className='slide'>Slide 5</h3>
+                        </div>
+                        <div>
+                            <h3 className='slide'>Slide 6</h3>
+                        </div>
+                        <div>
+                            <h3 className='slide'>Slide 7</h3>
+                        </div>
+                        <div>
+                            <h3 className='slide'>Slide 8</h3>
+                        </div>
+                        <div>
+                            <h3 className='slide'>Slide 9</h3>
+                        </div>
+                        <div>
+                            <h3 className='slide'>Slide 10</h3>
+                        </div>
+                    </Slider>
                 </div>
                     
                     

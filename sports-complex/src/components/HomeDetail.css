@@ -53,6 +53,11 @@
 .homeDetail_items1>:last-child>:last-child{
     flex: 3;
     background-color: dodgerblue;
+    width: 50px;
+}
+
+.slick-prev{
+    right: 100px;
 }
 
 /* 디테일 메뉴 로그인/로그아웃 */
@@ -96,7 +101,6 @@
 
     background-color: aquamarine;
 }
-
 
 @media(max-width: 1200px){
     /* 디테일 메뉴 컨테이너 */
