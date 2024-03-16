@@ -1,0 +1,22 @@
+.UserType_container{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 25rem;
+
+    background-color: crimson;
+}
+
+.UserType_button{
+    width: 12rem;
+    height: 12rem;
+}
+
+.UserType_kid{
+    margin-right: 10px;
+}
+.UserType_foreigner{
+    margin-left: 10px;
+}

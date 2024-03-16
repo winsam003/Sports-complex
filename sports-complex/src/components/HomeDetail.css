@@ -1,0 +1,120 @@
+/* 디테일 메뉴 컨테이너 */
+.homeDetail_container{
+    /* position: relative; */
+    display: flex;
+    height: 25rem;
+
+    background-color: chartreuse;
+}
+
+
+/* 디테일 메뉴 왼쪽 div (검색/월간일정/이벤트 광고)*/
+.homeDetail_items1{
+    flex: 4;
+
+    margin: 0.8rem;
+    background-color: coral;
+}
+
+/* 디테일 메뉴 오른쪽 div (로그인/로그아웃) */
+.homeDetail_items2{
+    flex: 2;
+
+    background-color: darkblue;
+}
+
+
+/* input 부모 div */
+.homeDetail_items1>:first-child{
+    height: 3.6rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: crimson;
+}
+
+/* input (검색) 태그 */
+.homeDetail_items1>:first-child>:first-child{
+    width: 80%;
+}
+
+
+/* 월간일정 / 이벤트광고 */
+.homeDetail_items1>:last-child{
+    display: flex;
+    height: calc(100% - 3.6rem);
+}
+.homeDetail_items1>:last-child>:first-child{
+    flex: 2;
+    background-color: cornsilk;
+}
+.homeDetail_items1>:last-child>:last-child{
+    flex: 3;
+    background-color: dodgerblue;
+}
+
+/* 디테일 메뉴 로그인/로그아웃 */
+.homeDetail_items2>:first-child{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: calc(100% - 1.6rem);
+    width: calc(100% - 1.6rem);
+    transform: translate(0.8rem, 0.8rem);
+
+    background-color: azure;
+}
+
+/* 디테일 메뉴 로그인/로그아웃 (input태그 form) */
+.homeDetail_items2>:first-child>:first-child{
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+}
+
+/* 월간일정 타이틀 */
+.homeDetail_CalendarCaption{
+    height: 3.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 월간일정 달력 */
+.homeDetail_Calendar{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 10px;
+
+    width: 100%;
+    height: calc(100% - 3.2rem);
+
+    background-color: aquamarine;
+}
+
+
+@media(max-width: 1200px){
+    /* 디테일 메뉴 컨테이너 */
+    .homeDetail_container{
+        display: block;
+    }
+
+    /* 디테일 메뉴 왼쪽 div (검색/월간일정/이벤트 광고)*/
+    .homeDetail_items1 {
+        height: 70%;
+        
+        background-color: coral;
+    }
+    
+    /* 디테일 메뉴 오른쪽 div (로그인/로그아웃) */
+    .homeDetail_items2 {
+        height: 30%;
+    
+        background-color: darkblue;
+    }
+}

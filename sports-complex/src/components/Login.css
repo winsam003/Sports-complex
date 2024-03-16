@@ -1,0 +1,41 @@
+
+.login_Page {
+    background-color: hotpink;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.login_Title {
+    height: 60px;
+    font-size: 1.3rem;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.login_Box div {
+    height: 60px;
+}
+.login_Box div input{
+    height: 50px;
+    vertical-align: middle;
+    
+}
+.login_submitAndReset {
+    display: flex;
+}
+.login_submitAndReset input:nth-child(1) {
+    flex: 8;
+}
+.login_submitAndReset input:nth-child(2) {
+    flex: 2;
+}
+.login_joinandfind a {
+    display: inline-block;
+    text-align: center;
+    width: 30%;
+}
+.login_joinandfind a:nth-child(2), 
+.login_joinandfind a:nth-child(3) {
+    width: 35%;
+}
+

@@ -1,14 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap');
+
+*{
+  font-family: "IBM Plex Sans KR", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 /* body 전체  */
-body{
-  display: flex;
-  justify-content: center;
-  
+body {
   height: 100vh;
 
   min-width: 500px;
-  max-width: 1200px;
-  width: 80%;
+  width: 1200px;
   margin: 0 auto;
 
-  background-color: aqua;
+  background-color: rgb(6, 46, 92);
+}
+
+@media (max-width : 1200px) {
+  body {
+    margin: 0 auto;
+    height: 100vh;
+    width: 80vw;
+  }
 }
