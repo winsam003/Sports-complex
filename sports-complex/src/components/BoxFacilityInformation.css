@@ -1,0 +1,47 @@
+.BoxFacilityInformation_div {
+    display: grid;
+    grid-template-columns: repeat(3, 125px) repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    align-items: center;
+}
+
+.BoxFacilityInformation_div {
+    border: 1px black solid;
+}
+
+.BoxFacilityInformation_img_div {
+    display: grid;
+    grid-column: 1/4;
+    grid-row: 1/6;
+}
+
+.BoxFacilityInformation_img {
+    display: block;
+    height: 300px;
+    width: 100%;
+}
+
+.BoxFacilityInformation_div span:nth-child(2n) {
+    display: grid;
+    grid-column: 4/5;
+    grid-row: 2n-1/2n;
+    padding-left: 15px;
+}
+
+.BoxFacilityInformation_div span:nth-child(2n+1) {
+    display: grid;
+    grid-column: 5/8;
+    grid-row: 2n-1/2n;
+
+}
+
+@media (max-width : 1200px) {
+    .BoxFacilityInformation_div {
+        grid-template-columns: repeat(3, 100px) repeat(4, 1fr);
+        overflow-x: auto;
+    }
+
+    .BoxFacilityInformation_div span:nth-child(2n) {
+        min-width: 95px;
+    }
+}

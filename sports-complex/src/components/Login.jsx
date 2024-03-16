@@ -26,7 +26,7 @@ export default function Login() {
                     </div>
                     <div className="login_joinandfind">
                         <a href="/">회원가입</a>
-                        <a href="/">아이디 찾기</a>
+                        <a href="/FindIDPage">아이디 찾기</a>
                         <a href="/">비밀번호 찾기</a>
                     </div>
                 </div>

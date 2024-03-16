@@ -1,0 +1,14 @@
+.TermsAndConditions_title_div {
+    text-align: center;
+    margin: 40px 0;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.TermsAndConditions_subtitle {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 550;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
