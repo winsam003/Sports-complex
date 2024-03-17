@@ -1,16 +1,12 @@
 import Header from '../Header';
-import Submenu from '../Submenu';
-import BoardSearchBox from '../BoardSearchBox'
-import BoardSearchList from '../BoardSearchList'
+import Board from '../Board'
 import Footer from '../Footer';
 
 export default function FindIDPage() {
     return (
         <div>
             <Header />
-            <Submenu />
-            {/* <BoardSearchBox /> */}
-            {/* <BoardSearchList /> */}
+            <Board />
             <Footer />
         </div>
     )

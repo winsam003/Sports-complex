@@ -1,0 +1,12 @@
+.BoardSearchBox_div {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+@media (max-width : 1200px) {
+    .BoardSearchBox_div {
+        position: relative;
+        left: calc(100% - 326px);
+    }
+}
