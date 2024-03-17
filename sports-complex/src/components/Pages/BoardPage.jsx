@@ -1,10 +1,10 @@
 import Header from '../Header';
-import PageBanner from '../PageBanner';
-import Board from '../Board'
+import Board from '../Board';
 import Footer from '../Footer';
+import PageBanner from '../PageBanner';
 
-export default function FindIDPage() {
-    return (
+export default function Boardpage(){
+    return(
         <div>
             <Header />
             <PageBanner />
@@ -12,4 +12,5 @@ export default function FindIDPage() {
             <Footer />
         </div>
     )
+
 }

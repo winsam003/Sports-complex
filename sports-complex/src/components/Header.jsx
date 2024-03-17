@@ -1,8 +1,9 @@
 import './Header.css';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import JoinPage1 from './Pages/JoinPage1';
 import FacilityInformationPage from './Pages/FacilityInformationPage';
+import BoardPage from './Pages/BoardPage';
 
 export default function Header() {
     return (
@@ -14,7 +15,7 @@ export default function Header() {
             </div>
             <div>
                 <div className='Header_logo'><Link to="/">홈으로</Link></div>
-                <Link to='FacilityInformationPage'>체육시설</Link>
+                <Link to='/FacilityInformationPage'>체육시설</Link>
                 <span>고객센터</span>
                 <span>정보마당</span>
                 <span>이용신청</span>
@@ -27,7 +28,7 @@ export default function Header() {
                         <li></li>
                     </ul>
                     <ul>
-                        <li>공지사항</li>
+                        <li><Link to='/BoardPage'>공지사항</Link></li>
                         <li>자주하는 질문</li>
                         <li>문의 게시판</li>
                     </ul>

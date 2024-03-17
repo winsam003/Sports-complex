@@ -2,12 +2,18 @@
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     background-color: brown;
-    height: 200px;
+    height: 15rem;
     align-items: center;
-    justify-content: center;
 }
 
-.middlemenu>span{
+.middlemenu>a{
+    width: 10rem;
+    height: 10rem;
+
+    margin-left: 1.3rem;
+}
+
+.middlemenu>a>span{
     background-color: #ffa07a;
     display: inline-block;
     width: 10rem;
@@ -18,20 +24,31 @@
     margin: auto;
 }
 
+.middlemenu>a>span:hover{
+    transform: scale(1.05);
+}
+
 @media(max-width : 1200px) {
     .middlemenu{
         background-color: brown;
-        height: 300px;
+        height: 20rem;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         align-items: center;
         justify-content: center;
     }
 
-    .middlemenu>span {
+    .middlemenu>a>span {
         width: 8rem;
         height: 8rem;
         line-height: 8rem;
+    }
+
+    .middlemenu>a {
+        width: 8rem;
+        height: 8rem;
+
+        /* margin-left: rem; */
     }
 
 

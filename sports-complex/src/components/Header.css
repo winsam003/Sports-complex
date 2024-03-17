@@ -34,11 +34,10 @@ header>:nth-child(2) {
   
 }
 
-/* .Header_mainMenu{
-  position: absolute;
-  right: 600px;
-  z-index: 1;
-} */
+a{
+  /* text-decoration: none;   페이지 구현한거랑 아닌거랑 헷갈리니까 일단 주석처리 나중에 주석풀게요 */
+  color: black;
+}
 
 header>:nth-child(2)>:first-child {
   width: 10rem;
