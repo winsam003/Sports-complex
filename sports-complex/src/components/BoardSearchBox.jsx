@@ -1,0 +1,1 @@
+import './BoardSearchBox.css'

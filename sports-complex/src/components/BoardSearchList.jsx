@@ -1,0 +1,1 @@
+import './BoardSearchList.css'
