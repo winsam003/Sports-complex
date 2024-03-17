@@ -25,7 +25,7 @@ export default function Login() {
                         <label htmlFor="rememberMe">아이디 저장</label>
                     </div>
                     <div className="login_joinandfind">
-                        <Link to="/">회원가입</Link>
+                        <Link to="/JoinPage1">회원가입</Link>
                         <Link to="/FindIDPage">아이디 찾기</Link>
                         <Link to="/FindPasswordPage">비밀번호 찾기</Link>
                     </div>

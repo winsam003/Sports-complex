@@ -6,13 +6,15 @@ import 'slick-carousel/slick/slick-theme.css';
 export default function HomeDetail(){
 
     const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 2000,
+        dots: false,            // 하단 페이지 위치 점 표시
+        infinite: true,         // 끝에 도달하면 슬라이드 무한루프
+        speed: 500,             // 슬라이드 전환 속도
+        slidesToShow: 1,        // 한번에 보여지는 슬라이드 수
+        slidesToScroll: 1,      // 한번에 스크롤되는 슬라이드 수
+        autoplay: true,         // 자동 재생 기능
+        autoplaySpeed: 2000,    // 자동 재생 시 다음 슬라이드 전환 속도
+        arrows: true           // 페이지전환 화살표 숨기기
+        
     };
 
     return (
@@ -42,6 +44,7 @@ export default function HomeDetail(){
                     </div>
                     <Slider {...settings}>
                         <div>
+                            {/* <img className='sliderImg1' src='' /> */}
                             <h3 className='slide'>Slide 1</h3>
                         </div>
                         <div>
