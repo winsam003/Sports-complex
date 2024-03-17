@@ -1,0 +1,33 @@
+.BoardSearchList_div {
+    background-color: brown;
+    position: absolute;
+    top: 30px;
+    right: 0;
+    width: 880px;
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr 1fr;
+    text-align: center;
+}
+
+.BoardSearchList_content {
+    background-color: brown;
+    position: absolute;
+    top: 55px;
+    right: 0;
+    width: 880px;
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr 1fr;
+    text-align: center;
+}
+
+@media (max-width : 1200px) {
+    .BoardSearchList_div {
+        position: initial;
+        width: 100%;
+    }
+
+    .BoardSearchList_content {
+        position: initial;
+        width: 100%;
+    }
+}
