@@ -17,7 +17,8 @@ export default function Header() {
                 <Link to='FacilityInformationPage'>체육시설</Link>
                 <span>고객센터</span>
                 <span>정보마당</span>
-                <span>이용신청</span>
+                {/* <span>이용신청</span> */}
+                <Link to='Inquiry'>이용신청</Link>
                 <span>마이페이지</span>
             </div>
             <div className='Header_mainMenu'>
