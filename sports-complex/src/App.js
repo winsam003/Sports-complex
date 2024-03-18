@@ -12,6 +12,8 @@ import BoardPage from './components/Pages/BoardPage';
 import FacilityInformationPage from './components/Pages/FacilityInformationPage';
 import Inquiry from './components/Pages/Inquiry';
 import FrequentlyAskedPage from './components/Pages/FrequentlyAskedPage';
+import EventBoardPage from './components/Pages/EventBoardPage';
+import EventDetailPage from './components/Pages/EventDetailPage';
 
 function App() {
 
@@ -30,6 +32,8 @@ function App() {
         <Route path='/FindPasswordPage' element={<FindPasswordPage />} />
         <Route path='/FindIDPage' element={<FindIDPage />} />
         <Route path='/Inquiry' element={<Inquiry />} />
+        <Route path='/EventBoardPage' element={<EventBoardPage />} />
+        <Route path='/EventDetailPage' element={<EventDetailPage />} />
         
       </Routes>
     </div>

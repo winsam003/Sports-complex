@@ -18,7 +18,7 @@ export default function Header() {
                 <div className='Header_logo'><Link to="/">홈으로</Link></div>
                 <Link to='/FacilityInformationPage'>체육시설</Link>
                 <Link to='/BoardPage'>고객센터</Link>
-                <span>정보마당</span>
+                <Link to='/EventBoardPage'>정보마당</Link>
                 <Link to='/Inquiry'>이용신청</Link>
                 <span>마이페이지</span>
             </div>
@@ -34,7 +34,7 @@ export default function Header() {
                         <li>문의 게시판</li>
                     </ul>
                     <ul>
-                        <li>이벤트</li>
+                        <li><Link to='/EventBoardPage'>이벤트</Link></li>
                         <li>수업 일정표</li>
                     </ul>
                     <ul>
