@@ -1,0 +1,33 @@
+.SugangSearchList_div {
+    background-color: brown;
+    position: absolute;
+    top: 400px;
+    right: 0;
+    width: 980px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) 3fr 3fr repeat(5, 1fr);
+    text-align: center;
+}
+
+.SugangSearchList_content {
+    background-color: brown;
+    position: absolute;
+    top: 425px;
+    right: 0;
+    width: 980px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) 3fr 3fr repeat(5, 1fr);
+    text-align: center;
+}
+
+@media (max-width : 1200px) {
+    .SugangSearchList_div {
+        position: initial;
+        width: 100%;
+    }
+
+    .SugangSearchList_content {
+        position: initial;
+        width: 100%;
+    }
+}

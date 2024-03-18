@@ -28,7 +28,8 @@ function App() {
         <Route path='/FindPasswordPage' element={<FindPasswordPage />} />
         <Route path='/FindIDPage' element={<FindIDPage />} />
         <Route path='/Inquiry' element={<Inquiry />} />
-        
+
+
       </Routes>
     </div>
   );
