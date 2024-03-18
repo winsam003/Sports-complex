@@ -1,0 +1,15 @@
+.EventDetailContainor{
+    background-color: bisque;
+
+    position: absolute;
+
+    width: calc(100% - 200px);
+    height: 800px;
+}
+
+@media(max-width: 1200px) {
+    .EventDetailContainor {
+        width: 100%;
+        height: 100vh;
+    }
+}
