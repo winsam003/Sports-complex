@@ -10,6 +10,7 @@ import JoinPage3 from './components/Pages/JoinPage3';
 import JoinPage4 from './components/Pages/JoinPage4';
 import BoardPage from './components/Pages/BoardPage';
 import FacilityInformationPage from './components/Pages/FacilityInformationPage';
+import Inquiry from './components/Pages/Inquiry';
 
 function App() {
 
@@ -26,6 +27,8 @@ function App() {
         <Route path='/LoginPage' element={<LoginPage />} />
         <Route path='/FindPasswordPage' element={<FindPasswordPage />} />
         <Route path='/FindIDPage' element={<FindIDPage />} />
+        <Route path='/Inquiry' element={<Inquiry />} />
+        
       </Routes>
     </div>
   );

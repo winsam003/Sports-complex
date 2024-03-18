@@ -1,0 +1,26 @@
+.InquiryRegistration_box{
+    background-color: rgb(165, 69, 69);
+}
+.InquiryRegistration_box>div {
+    padding: 20px;
+}
+.InquiryRegistration_check{
+    text-align: right;
+}
+.InquiryRegistration_haveto{
+    color: darkblue;
+}
+.InquiryRegistration_haveto p:nth-child(1){
+    font-weight: bold;
+}
+.InquiryRegistration_haveto a{
+    display: inline-block;
+    background-color: darkblue;
+    color: white;
+    text-decoration: none;
+    width: 50px;
+    margin-left: 10px;
+    height: 30px;
+    text-align: center;
+    vertical-align: middle;
+}
