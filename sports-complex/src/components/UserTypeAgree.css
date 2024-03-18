@@ -1,0 +1,29 @@
+.UserTypeAgree_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 7rem;
+
+    background-color: aqua;
+}
+
+.UserTypeAgree_button{
+    width: 12rem;
+    height: 4rem;
+
+    display: inline;
+    text-align: center;
+    line-height: 4rem;
+    
+    text-decoration: none;
+}
+
+.UserTypeAgree_Agree{
+    margin-right: 100px;
+    background-color: blue;
+}
+.UserTypeAgree_Disagree{
+    /* margin-right: 100px; */
+    background-color: azure;
+}

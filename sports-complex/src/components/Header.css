@@ -13,6 +13,10 @@ header>:first-child {
 header>:first-child>span {
   margin-right: 0.8rem;
 }
+header>:first-child>a {
+  margin-right: 0.8rem;
+  text-decoration: none;
+}
 
 
 
@@ -24,19 +28,30 @@ header>:nth-child(2) {
   align-items: center;
   position: relative;
 
-  height: 5.6rem;
+  height: 8.6rem;
 
   background-color: bisque;
+  
 }
 
-/* .Header_mainMenu{
-  position: absolute;
-  right: 600px;
-  z-index: 1;
-} */
+a{
+  /* text-decoration: none;   페이지 구현한거랑 아닌거랑 헷갈리니까 일단 주석처리 나중에 주석풀게요 */
+  color: black;
+}
 
 header>:nth-child(2)>:first-child {
   width: 10rem;
+}
+header>:nth-child(2)>:nth-child(2) {
+  text-decoration: none;
+}
+header>:nth-child(2)>:first-child>a {
+  width: 100%;
+  height: 100%;
+  display: block;
+  text-decoration: none;
+
+  text-indent: -9999px;
 }
 
 header>:nth-child(2)>:nth-child(n+2):nth-child(-n+6) {
@@ -61,6 +76,7 @@ header>:last-child:hover{
 header>:last-child {
   display: none;
 
+  margin-top: 10px;
   width: 100%;
   position: absolute;
   left: 0;
@@ -121,4 +137,13 @@ header>:last-child>div>ul>li {
   header>:last-child>div>:first-child {
     display: none;
   }
+}
+
+.Header_logo{
+  width: 100%;
+  height: 100%;
+
+  background-image: url('../../public/img/logo.png');
+  background-size: cover;
+  background-position: center;
 }
