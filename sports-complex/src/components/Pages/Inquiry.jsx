@@ -1,14 +1,15 @@
 import Header from '../Header';
 import PageBanner from '../PageBanner';
-import Board from '../Board'
 import Footer from '../Footer';
+import InquiryRegistration from '../InquiryRegistration';
 
-export default function FindIDPage() {
+export default function Inquiry() {
     return (
         <div>
             <Header />
-            <PageBanner />
-            <Board />
+            {/* <PageBanner /> */}
+            <InquiryRegistration />
+
             <Footer />
         </div>
     )

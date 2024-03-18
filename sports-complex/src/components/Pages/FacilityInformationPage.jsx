@@ -1,15 +1,15 @@
+import FacilityInformation from '../FacilityInformation';
 import Header from '../Header';
 import PageBanner from '../PageBanner';
-import Board from '../Board'
 import Footer from '../Footer';
 
-export default function FindIDPage() {
+export default function FacilityInformationPage(){
     return (
         <div>
             <Header />
             <PageBanner />
-            <Board />
+            <FacilityInformation />
             <Footer />
         </div>
-    )
-}
+    );
+};

@@ -18,7 +18,7 @@ export default function Footer() {
 
             <div className='footer_company_info'>
                 <div className='footer_logo_div'>
-                    <img src='img/Arcana3.gif' className='footer_logo' />
+                    <img src='img/logo.png' className='footer_logo' />
                 </div>
                 <p>
                     사업자등록번호 : 999&#45;99&#45;99999<br></br>

@@ -1,14 +1,14 @@
 import Header from '../Header';
-import PageBanner from '../PageBanner';
-import Board from '../Board'
 import Footer from '../Footer';
+import FindPassword from '../FindPassword';
+import PageBanner from '../PageBanner';
 
-export default function FindIDPage() {
+export default function FindPasswordPage() {
     return (
         <div>
             <Header />
             <PageBanner />
-            <Board />
+            <FindPassword />
             <Footer />
         </div>
     )
