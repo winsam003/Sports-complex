@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import JoinPage1 from './Pages/JoinPage1';
 import FacilityInformationPage from './Pages/FacilityInformationPage';
 import BoardPage from './Pages/BoardPage';
+import FrequentlyAskedPage from './Pages/FrequentlyAskedPage';
 
 export default function Header() {
     return (
@@ -16,10 +17,9 @@ export default function Header() {
             <div>
                 <div className='Header_logo'><Link to="/">홈으로</Link></div>
                 <Link to='/FacilityInformationPage'>체육시설</Link>
-                <span>고객센터</span>
+                <Link to='/BoardPage'>고객센터</Link>
                 <span>정보마당</span>
-                {/* <span>이용신청</span> */}
-                <Link to='Inquiry'>이용신청</Link>
+                <Link to='/Inquiry'>이용신청</Link>
                 <span>마이페이지</span>
             </div>
             <div className='Header_mainMenu'>
@@ -30,7 +30,7 @@ export default function Header() {
                     </ul>
                     <ul>
                         <li><Link to='/BoardPage'>공지사항</Link></li>
-                        <li>자주하는 질문</li>
+                        <li><Link to='/FrequentlyAskedPage'>자주하는 질문</Link></li>
                         <li>문의 게시판</li>
                     </ul>
                     <ul>

@@ -53,6 +53,11 @@ export default function PageBanner() {
         "Page": "공지사항",
         "title": "고객의 소리에 귀 기울여 발전하겠습니다."
     },
+    {
+        "parameter": "FrequentlyAskedPage",
+        "Page": "자주하는 질문",
+        "title": "고객의 소리에 귀 기울여 발전하겠습니다."
+    },
     ]
 
     
