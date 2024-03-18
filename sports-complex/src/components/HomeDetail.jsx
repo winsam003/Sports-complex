@@ -1,7 +1,7 @@
-import './HomeDetail.css';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import './HomeDetail.css';
 
 export default function HomeDetail(){
 
@@ -43,9 +43,7 @@ export default function HomeDetail(){
                         </div>
                     </div>
                     <Slider {...settings}>
-                        <div>
-                            {/* <img className='sliderImg1' src='' /> */}
-                            <h3 className='slide'>Slide 1</h3>
+                        <div className='slide1'>
                         </div>
                         <div>
                             <h3 className='slide'>Slide 2</h3>

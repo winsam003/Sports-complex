@@ -1,11 +1,10 @@
 import Header from '../Header';
-import PageBanner from '../PageBanner';
-import Board from '../Board'
+import Board from '../Board';
 import Footer from '../Footer';
+import PageBanner from '../PageBanner';
 
-// 공지사항
-export default function NotificationPage() {
-    return (
+export default function Boardpage(){
+    return(
         <div>
             <Header />
             <PageBanner />
@@ -13,4 +12,5 @@ export default function NotificationPage() {
             <Footer />
         </div>
     )
+
 }

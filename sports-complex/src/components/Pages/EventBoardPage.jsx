@@ -1,16 +1,16 @@
 import Header from '../Header';
-import PageBanner from '../PageBanner';
-import Board from '../Board'
 import Footer from '../Footer';
+import PageBanner from '../PageBanner';
+import EventBoard from '../EventBoard';
 
-// 공지사항
-export default function NotificationPage() {
+export default function EventBoardPage() {
     return (
         <div>
             <Header />
             <PageBanner />
-            <Board />
+            <EventBoard />
             <Footer />
         </div>
     )
+
 }
