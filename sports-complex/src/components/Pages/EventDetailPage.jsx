@@ -1,16 +1,14 @@
 import Header from '../Header';
 import PageBanner from '../PageBanner';
+import EventBoardDetail from '../EventBoardDetail';
 import Footer from '../Footer';
-import InquiryRegistration from '../InquiryRegistration';
-import Submenu from '../Submenu';
 
-export default function Inquiry() {
-    return (
+export default function EventDetailPage(){
+    return(
         <div>
             <Header />
             <PageBanner />
-            <InquiryRegistration />
-
+            <EventBoardDetail />
             <Footer />
         </div>
     )

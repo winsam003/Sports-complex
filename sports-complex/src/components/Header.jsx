@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 import JoinPage1 from './Pages/JoinPage1';
 import FacilityInformationPage from './Pages/FacilityInformationPage';
 import BoardPage from './Pages/BoardPage';
+import FrequentlyAskedPage from './Pages/FrequentlyAskedPage';
+import Qna from './Pages/Qna';
+import Faq from './Pages/Faq';
+import Sugang from './Pages/Sugang';
 
 export default function Header() {
     return (
@@ -16,10 +20,9 @@ export default function Header() {
             <div>
                 <div className='Header_logo'><Link to="/">홈으로</Link></div>
                 <Link to='/FacilityInformationPage'>체육시설</Link>
-                <span>고객센터</span>
-                <span>정보마당</span>
-                {/* <span>이용신청</span> */}
-                <Link to='Inquiry'>이용신청</Link>
+                <Link to='/BoardPage'>고객센터</Link>
+                <Link to='/EventBoardPage'>정보마당</Link>
+                <Link to='/Inquiry'>이용신청</Link>
                 <span>마이페이지</span>
             </div>
             <div className='Header_mainMenu'>
@@ -30,15 +33,15 @@ export default function Header() {
                     </ul>
                     <ul>
                         <li><Link to='/BoardPage'>공지사항</Link></li>
-                        <li>자주하는 질문</li>
-                        <li>문의 게시판</li>
+                        <li><Link to='/Faq'>자주하는 질문</Link></li>
+                        <li><Link to='/Qna'>문의 게시판</Link> </li>
                     </ul>
                     <ul>
-                        <li>이벤트</li>
+                        <li><Link to='/EventBoardPage'>이벤트</Link></li>
                         <li>수업 일정표</li>
                     </ul>
                     <ul>
-                        <li>수강 신청</li>
+                        <li><Link to='/Sugang'>수강 신청</Link></li>
                         <li>대관 신청</li>
                         <li>주차 신청</li>
                     </ul>

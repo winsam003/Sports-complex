@@ -11,6 +11,12 @@ import JoinPage4 from './components/Pages/JoinPage4';
 import BoardPage from './components/Pages/BoardPage';
 import FacilityInformationPage from './components/Pages/FacilityInformationPage';
 import Inquiry from './components/Pages/Inquiry';
+import FrequentlyAskedPage from './components/Pages/FrequentlyAskedPage';
+import EventBoardPage from './components/Pages/EventBoardPage';
+import EventDetailPage from './components/Pages/EventDetailPage';
+import Faq from './components/Pages/Faq';
+import Qna from './components/Pages/Qna';
+import Sugang from './components/Pages/Sugang';
 
 function App() {
 
@@ -24,12 +30,17 @@ function App() {
         <Route path='/JoinPage4' element={<JoinPage4 />} />
         <Route path='/BoardPage' element={<BoardPage />} />
         <Route path='/FacilityInformationPage' element={<FacilityInformationPage />} />
+        <Route path='/FrequentlyAskedPage' element={<FrequentlyAskedPage />} />
         <Route path='/LoginPage' element={<LoginPage />} />
         <Route path='/FindPasswordPage' element={<FindPasswordPage />} />
         <Route path='/FindIDPage' element={<FindIDPage />} />
         <Route path='/Inquiry' element={<Inquiry />} />
-
-
+        <Route path='/EventBoardPage' element={<EventBoardPage />} />
+        <Route path='/EventDetailPage' element={<EventDetailPage />} />
+        <Route path='/Faq' element={<Faq />} />
+        <Route path='/Qna' element={<Qna />} />
+        <Route path='/Sugang' element={<Sugang />} />
+        
       </Routes>
     </div>
   );
