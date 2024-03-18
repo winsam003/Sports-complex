@@ -1,11 +1,12 @@
 .submenu_div {
-    width: 300px;
+    width: 200px;
     height: 800px;
     background-color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    /* position: fixed; */
 }
 
 @media (max-width : 1200px) {

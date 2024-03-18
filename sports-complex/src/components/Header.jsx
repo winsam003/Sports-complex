@@ -19,7 +19,7 @@ export default function Header() {
                 <span>고객센터</span>
                 <span>정보마당</span>
                 {/* <span>이용신청</span> */}
-                <Link to='Inquiry'>이용신청</Link>
+                <Link to='/'>이용신청</Link>
                 <span>마이페이지</span>
             </div>
             <div className='Header_mainMenu'>
@@ -31,7 +31,7 @@ export default function Header() {
                     <ul>
                         <li><Link to='/BoardPage'>공지사항</Link></li>
                         <li>자주하는 질문</li>
-                        <li>문의 게시판</li>
+                        <li><Link to='/Inquiry'>문의 게시판</Link> </li>
                     </ul>
                     <ul>
                         <li>이벤트</li>
