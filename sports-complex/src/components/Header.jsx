@@ -31,7 +31,7 @@ export default function Header() {
                     <ul>
                         <li><Link to='/BoardPage'>공지사항</Link></li>
                         <li><Link to='/FrequentlyAskedPage'>자주하는 질문</Link></li>
-                        <li>문의 게시판</li>
+                        <li><Link to='/Inquiry'>문의 게시판</Link> </li>
                     </ul>
                     <ul>
                         <li><Link to='/EventBoardPage'>이벤트</Link></li>
