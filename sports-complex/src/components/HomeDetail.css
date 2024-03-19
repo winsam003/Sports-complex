@@ -51,12 +51,7 @@
     flex: 2;
     background-color: cornsilk;
 }
-.homeDetail_items1>:last-child>:last-child{
-    display: block;
-    flex: 3;
-    background-color: dodgerblue;
-    width: 50px;
-}
+
 
 /* 디테일 메뉴 로그인/로그아웃 */
 .homeDetail_items2>:first-child{
@@ -100,6 +95,33 @@
     background-color: aquamarine;
 }
 
+/* 슬릭부분 부모 */
+.homeDetail_items1>:last-child>:last-child {
+    display: block;
+    flex: 3;
+    background-color: dodgerblue;
+    height: 320px;
+    width: 400px;
+}
+
+.slideBox{
+    height: 320px;
+    width: 100%;
+}
+
+.slick-slide img {
+    width: 100%;
+      /* 이미지의 너비를 100%로 설정하여 고정된 크기 지정 */
+    height: 320px;
+      /* 이미지의 높이를 고정된 값으로 설정 */
+    object-fit: contain;
+      /* 이미지를 부모 요소의 크기에 맞게 커버되도록 설정 */
+}
+
+.slick-slide img:hover{
+    transform: scale(1.05);
+}
+
 @media(max-width: 1200px){
     /* 디테일 메뉴 컨테이너 */
     .homeDetail_container{
@@ -118,5 +140,23 @@
         height: 30%;
     
         background-color: darkblue;
+    }
+
+    .slideBox {
+        height: 222px;
+        width: 100%;
+     }
+    
+    .slick-slide img {
+        width: 100%;
+        /* 이미지의 너비를 100%로 설정하여 고정된 크기 지정 */
+        height: 222px;
+        /* 이미지의 높이를 고정된 값으로 설정 */
+        object-fit: contain;
+        /* 이미지를 부모 요소의 크기에 맞게 커버되도록 설정 */
+    }
+
+    .homeDetail_items1>:last-child>:last-child{
+        height: 222px;
     }
 }
