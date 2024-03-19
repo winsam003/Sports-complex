@@ -1,8 +1,8 @@
 import './ApplicationDetails.css'
 import Submenu from './Submenu'
-import D1 from './D1'
-import D2 from './D2'
-import D3 from './D3'
+import HistoryClass from './HistoryClass'
+import HistoryPark from './HistoryPark'
+import HistoryRental from './HistoryRental'
 import {useState} from 'react';
 
 export default function ApplicationDetails() {
@@ -10,7 +10,7 @@ export default function ApplicationDetails() {
     // const tabList = document.querySelectorAll('.ApplicationDetails_list li');
     
 
-    const [currentPage, setCurrentPage] = useState('d1');
+    const [currentPage, setCurrentPage] = useState('HistoryClass');
 
     const pageHandler = (page) => {
         setCurrentPage(page);
@@ -36,23 +36,24 @@ export default function ApplicationDetails() {
                 <div className='ApplicationDetails_Menubox'>
                     <div className='ApplicationDetails_tabMenu'>
                         <ul className='ApplicationDetails_list'>
-                            <li className='ApplicationDetails_ison'>
-                                <div onClick={() => pageHandler('d1')} className='ApplicationDetails_tabBtn'>수강 내역</div>
+                            <li className={currentPage === 'HistoryClass' ? 'ApplicationDetails_ison' : ''}>
+                                <div onClick={() => pageHandler('HistoryClass')} className='ApplicationDetails_tabBtn'>수강 내역</div>
                             </li>
-                            <li>
-                                <div onClick={() => pageHandler('d2')} className='ApplicationDetails_tabBtn'>주차 내역</div>
+                            <li className={currentPage === 'HistoryPark' ? 'ApplicationDetails_ison' : ''}>
+                                <div onClick={() => pageHandler('HistoryPark')} className='ApplicationDetails_tabBtn'>주차 내역</div>
                             </li>
-                            <li>
-                                <div onClick={() => pageHandler('d3')} className='ApplicationDetails_tabBtn'>대관 내역</div>
+                            <li className={currentPage === 'HistoryRental' ? 'ApplicationDetails_ison' : ''}>
+                                <div onClick={() => pageHandler('HistoryRental')} className='ApplicationDetails_tabBtn'>대관 내역</div>
                             </li>
                         </ul>
 
 
-                        <div>
-                            {currentPage === 'd1' && <D1 />}
-                            {currentPage === 'd2' && <D2 />}
-                            {currentPage === 'd3' && <D3 />}
+                        <div className='ApplicationDetails_showHistory'>
+                            {currentPage === 'HistoryClass' && <HistoryClass /> }
+                            {currentPage === 'HistoryPark' && <HistoryPark />}
+                            {currentPage === 'HistoryRental' && <HistoryRental />}
                         </div>
+
                         {/* <div className='ApplicationDetails_showHistory'>
                             <div id='ApplicationDetails_classHis' className='ApplicationDetails_history' >
                                 <p>수강어쩌구</p>

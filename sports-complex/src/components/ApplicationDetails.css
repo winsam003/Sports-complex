@@ -21,6 +21,7 @@
 /* 탭 효과 */
 .ApplicationDetails_tabMenu ul{
     list-style: none;
+    /* background-color: antiquewhite; */
 }
 .ApplicationDetails_tabMenu a{
     text-decoration: none;
@@ -39,22 +40,26 @@
     float: left;
     margin-right: 30px;
 }
+.ApplicationDetails_tabBtn{
+    background-color: lightblue;
+    width: 100px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+
+}
 li.ApplicationDetails_ison .ApplicationDetails_tabBtn{
     font-weight: bold;
-    color: blue;
-}
-.ApplicationDetails_showHistory{
-    margin-top: 40px;
-}
-#ApplicationDetails_classHis{
-    display: block;
-}
-.ApplicationDetails_history{
-    display: none;
-    background-color: antiquewhite;
-    width: 100%;
+    color: rgb(255, 255, 255);
+    background-color: rgb(141, 158, 158);
 }
 
+
+/* 아래 박스 */
+.ApplicationDetails_showHistory{
+    margin-top: 40px;
+    background-color: lightgreen;
+}
 
 
 
