@@ -274,6 +274,7 @@ header>:last-child>div>ul>li {
   header>:last-child>div>:first-child {
     display: none;
   }
+}
 
 .Header_logo {
   width: 100%;
