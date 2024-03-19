@@ -3,7 +3,8 @@ import Header from '../Header';
 import PageBanner from '../PageBanner';
 import Footer from '../Footer';
 
-export default function FacilityInformationPage(){
+// 체육 시설 안내
+export default function FacilityInformationPage() {
     return (
         <div>
             <Header />
