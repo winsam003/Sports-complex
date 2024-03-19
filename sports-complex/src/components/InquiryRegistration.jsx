@@ -63,6 +63,7 @@ export default function InquiryRegistration() {
                 <div className='InquiryRegistration_haveto'>
                     <p>※ 글 등록이 안 되시는 분은, 우측의 '보기' 버튼을 클릭하시기 바랍니다. 
                         <a href="/" >보기</a>
+                        {/* 보기 버튼 누르면 새로운 창 띄워야 됨. */}
                     </p>
                     <p>(<span className='star'>*</span>)는 반드시 작성해야 할 필수 항목입니다.</p>
                 </div>
