@@ -64,7 +64,6 @@ export const PageBannerData = [
         "Page": "이벤트게시판",
         "title": "고객의 소리에 귀 기울여 발전하겠습니다."
     },
-    { "parameter": '9', "Page": '문의 게시판', "title": '고객의 소리에 귀 기울여 발전하겠습니다' },
     { "parameter": '10', "Page": '수강신청', "title": '원하시는 강좌를 수강신청하실 수 있습니다' },
     { "parameter": '11', "Page": '정기 주차신청', "title": '원하시는 장소에 주차신청하실 수 있습니다' },
     { "parameter": '12', "Page": '대관신청', "title": '원하시는 시설을 대관신청하실 수 있습니다' },
@@ -82,7 +81,6 @@ export const PageBannerData = [
     { "parameter": '27', "Page": '수업 신청 관리', "title": '수업 신청 현황을 관리할 수 있습니다 ' },
     { "parameter": '28', "Page": '주차 신청 관리', "title": '주차 신청 현황을 관리할 수 있습니다 ' },
     { "parameter": '29', "Page": '대관 신청 관리', "title": '대관 신청 현황을 관리할 수 있습니다 ' },
-    { "parameter": '30', "Page": '대관 신청 관리', "title": '대관 신청 현황을 관리할 수 있습니다 ' },
     { "parameter": '31', "Page": '대관 시설 관리', "title": '대관 시설을 관리할 수 있습니다 ' },
     { "parameter": '32', "Page": '대관 시설 등록', "title": '신규 대관 시설을 등록할 수 있습니다 ' },
     { "parameter": '33', "Page": '이벤트 게시판 관리', "title": '이벤트 게시판을 관리할 수 있습니다 ' },
