@@ -79,6 +79,32 @@ export const PageBannerData = [
         "Page": '대관신청',
         "title": '원하시는 시설을 대관신청하실 수 있습니다'
     },
+    {
+        "parameter": 'ClassSchedulePage',
+        "Page": '수업일정표',
+        "title": '시민과 함께하는 건강하고 행복한 삶'
+    },
+    {
+        "parameter": 'ApplicationDetailsPage',
+        "Page": '신청내역',
+        "title": '더 다양한 서비스를 이용하실 수 있습니다.'
+    },
+    {
+        "parameter": 'QRCodePage',
+        "Page": 'QR코드',
+        "title": '더 다양한 서비스를 이용하실 수 있습니다.'
+    },
+    {
+        "parameter": 'ModifyMemberPage',
+        "Page": '내 정보 수정',
+        "title": '더 다양한 서비스를 이용하실 수 있습니다.'
+    },
+    {
+        "parameter": 'PasswordChangePage',
+        "Page": '비밀번호 수정',
+        "title": '더 다양한 서비스를 이용하실 수 있습니다.'
+    },
+
     { "parameter": '11', "Page": '정기 주차신청', "title": '원하시는 장소에 주차신청하실 수 있습니다' },
     { "parameter": '13', "Page": 'QR 코드', "title": '이웃과 함께하는 건강하고 행복한 삶' },
     { "parameter": '14', "Page": '나의 수강내역', "title": '수강하고있는 강좌의 목록을 볼 수 있습니다' },
