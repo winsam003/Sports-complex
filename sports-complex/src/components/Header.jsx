@@ -5,6 +5,9 @@ import JoinPage1 from './Pages/JoinPage1';
 import FacilityInformationPage from './Pages/FacilityInformationPage';
 import BoardPage from './Pages/BoardPage';
 import FrequentlyAskedPage from './Pages/FrequentlyAskedPage';
+import Qna from './Pages/Qna';
+import Faq from './Pages/Faq';
+import Sugang from './Pages/Sugang';
 
 export default function Header() {
     return (
@@ -31,23 +34,23 @@ export default function Header() {
                     </ul>
                     <ul>
                         <li><Link to='/BoardPage'>공지사항</Link></li>
-                        <li><Link to='/FrequentlyAskedPage'>자주하는 질문</Link></li>
-                        <li><Link to='/Inquiry'>문의 게시판</Link></li>
+                        <li><Link to='/Faq'>자주하는 질문</Link></li>
+                        <li><Link to='/Qna'>문의 게시판</Link> </li>
                     </ul>
                     <ul>
                         <li><Link to='/EventBoardPage'>이벤트</Link></li>
-                        <li>수업 일정표</li>
+                        <li><Link to='/ClassSchedulePage'>수업 일정표</Link></li>
                     </ul>
                     <ul>
-                        <li>수강 신청</li>
-                        <li>대관 신청</li>
+                        <li><Link to='/Sugang'>수강 신청</Link></li>
+                        <li><Link to='/PlaceRentalInfo'>대관 신청</Link></li>
                         <li>주차 신청</li>
                     </ul>
                     <ul>
-                        <li><Link to='/MyPage'>신청내역</Link></li>
-                        <li>QR코드</li>
-                        <li>비밀번호 변경</li>
-                        <li>비밀번호 수정</li>
+                        <li>신청내역</li>
+                        <li><Link to='/QRCodePage'>QR코드</Link></li>
+                        <li><Link to='/ModifyMemberPage'>내 정보 수정</Link></li>
+                        <li><Link to='/PasswordChangePage'>비밀번호 수정</Link></li>
                     </ul>
                 </div>
             </div>

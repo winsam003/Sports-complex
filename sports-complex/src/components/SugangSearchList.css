@@ -1,4 +1,4 @@
-.SugangSearchList_div {
+.SugangSearchList_index {
     background-color: brown;
     position: absolute;
     top: 400px;
@@ -22,12 +22,16 @@
 
 @media (max-width : 1200px) {
     .SugangSearchList_div {
-        position: initial;
+        overflow: auto;
+        white-space: nowrap;
         width: 100%;
+    }
+
+    .SugangSearchList_index {
+        position: initial;
     }
 
     .SugangSearchList_content {
         position: initial;
-        width: 100%;
     }
 }

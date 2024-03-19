@@ -14,7 +14,16 @@ import Inquiry from './components/Pages/Inquiry';
 import FrequentlyAskedPage from './components/Pages/FrequentlyAskedPage';
 import EventBoardPage from './components/Pages/EventBoardPage';
 import EventDetailPage from './components/Pages/EventDetailPage';
-import MyPage from './components/Pages/MyPage';
+import Faq from './components/Pages/Faq';
+import Qna from './components/Pages/Qna';
+import Sugang from './components/Pages/Sugang';
+import ClassSchedulePage from './components/Pages/ClassSchedulePage';
+import PasswordChangePage from './components/Pages/PasswordChangePage';
+import PasswordChangePage2 from './components/Pages/PasswordChangePage2';
+import ModifyMemberPage from './components/Pages/ModifyMemberPage';
+import QRCodePage from './components/Pages/QRCodePage';
+import PlaceRentalInfo from './components/Pages/PlaceRentalInfo';
+import PlaceRental from './components/Pages/PlaceRental';
 
 function App() {
 
@@ -35,8 +44,17 @@ function App() {
         <Route path='/Inquiry' element={<Inquiry />} />
         <Route path='/EventBoardPage' element={<EventBoardPage />} />
         <Route path='/EventDetailPage' element={<EventDetailPage />} />
-        <Route path='/MyPage' element={<MyPage />} />
-        
+        <Route path='/Faq' element={<Faq />} />
+        <Route path='/Qna' element={<Qna />} />
+        <Route path='/Sugang' element={<Sugang />} />
+        <Route path='/ClassSchedulePage' element={<ClassSchedulePage />} />
+        <Route path='/PasswordChangePage' element={<PasswordChangePage />} />
+        <Route path='/PasswordChangePage2' element={<PasswordChangePage2 />} />
+        <Route path='/ModifyMemberPage' element={<ModifyMemberPage />} />
+        <Route path='/QRCodePage' element={<QRCodePage />} />
+        <Route path='/PlaceRentalInfo' element={<PlaceRentalInfo />} />
+        <Route path='/PlaceRental' element={<PlaceRental />} />
+
       </Routes>
     </div>
   );

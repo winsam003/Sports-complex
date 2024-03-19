@@ -1,0 +1,70 @@
+/* 서브타이틀 */
+.RentalInfoSearchButton_title {
+    font-size: 19px;
+    font-weight: 500;
+}
+
+/* 사용허가절차 & 신청 */
+.RentalInfoSearchButton_OK_div {
+    position: absolute;
+    left: 220px;
+    top: 0px;
+}
+
+/* 조례 및 조건사항 */
+.RentalInfoSearchButton_Conditions_div {
+    position: absolute;
+    left: 220px;
+    top: 300px;
+}
+
+/* 스크롤 박스 */
+.RentalInfoSearchButton_scrollbox {
+    background-color: #fff;
+    width: 920px;
+    height: 180px;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+/* 우선순위 */
+.RentalInfoSearchButton_ul {
+    border: 1px black solid;
+    list-style: none;
+    margin-bottom: 16px;
+    padding: 0;
+}
+
+.RentalInfoSearchButton_ul li {
+    width: 225px;
+    height: 70px;
+    font-size: 19px;
+    font-weight: 600;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #ffffff;
+}
+
+.RentalInfoSearchButton_ul li span {
+    display: block;
+}
+
+/* 사용허가절차, 조례 내용 */
+.RentalInfoSearchButton_pre {
+    margin: 0;
+}
+
+/* 신청서다운로드 허가신청 버튼 */
+.RentalInfoSearchButton {
+    position: absolute;
+    bottom: 70px;
+    left: 220px;
+    margin-left: 260px;
+}
+
+.RentalInfoSearchButton button {
+    margin: 0 20px;
+    width: 200px;
+    height: 75px;
+}

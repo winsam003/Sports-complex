@@ -1,17 +1,15 @@
 import Header from '../Header';
 import PageBanner from '../PageBanner';
+import PlaceRentalInfoContent from '../PlaceRentalInfoContent';
 import Footer from '../Footer';
-import JoinMember from '../JoinMember';
-import UserTypeAgree from '../UserTypeAgree';
 
-export default function JoinPage4() {
-    
-    const nextPage = window.location.pathname.replace("/", "");
+// 수강 신청
+export default function PlaceRental() {
     return (
         <div>
             <Header />
             <PageBanner />
-            <JoinMember />
+            <PlaceRentalInfoContent />
             <Footer />
         </div>
     )
