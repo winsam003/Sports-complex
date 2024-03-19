@@ -1,3 +1,4 @@
+/* 조회, 초기화 버튼  */
 .RentalSearchButton {
     position: absolute;
     top: 95px;
@@ -10,9 +11,78 @@
     margin-right: 30px;
 }
 
+/* form */
+.PlaceRentalContent_form {
+    position: absolute;
+    left: 220px;
+    top: 500px;
+}
+
+.PlaceRentalContent_form table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.PlaceRentalContent_form th {
+    border: 1px solid lightslategray;
+    width: 30%;
+    height: 30px;
+    font-weight: bold;
+    background-color: aliceblue;
+}
+
+.PlaceRentalContent_form td {
+    border: 1px solid lightslategray;
+    padding: 5px;
+    height: 100%;
+    width: max-content;
+}
+
+.PlaceRentalContent_form td * {
+    vertical-align: middle;
+}
+
+.PlaceRentalContent_form input {
+    height: 30px;
+
+}
+
+.PlaceRentalContent_form #name {
+    width: 95%;
+}
+
+.PlaceRentalContent_form input[type="text"] {
+    width: 95%;
+}
+
+/* 글쓰기 버튼 */
+.RentalWriteButton {
+    position: absolute;
+    bottom: 0;
+    left: 220px;
+}
+
+.RentalWriteButton button {
+    width: 100px;
+    height: 50px;
+    margin-right: 30px;
+}
+
 @media (max-width : 1200px) {
     .RentalSearchButton {
         position: initial;
         margin: 5px 0;
+    }
+
+    .PlaceRentalContent_form {
+        position: inherit;
+        top: 5px;
+        left: 0;
+    }
+
+    .RentalWriteButton {
+        position: inherit;
+        top: 10px;
+        left: 0;
     }
 }
