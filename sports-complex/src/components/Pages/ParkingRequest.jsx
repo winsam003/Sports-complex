@@ -1,17 +1,16 @@
 import Header from '../Header';
-import Board from '../Board';
-import Footer from '../Footer';
 import PageBanner from '../PageBanner';
+import Footer from '../Footer';
+import ParkingRequestContent from '../ParkingRequestContent';
 
-// 공지사항
-export default function Boardpage() {
+// 주차 신청
+export default function ParkingRequest() {
     return (
         <div>
             <Header />
             <PageBanner />
-            <Board />
+            <ParkingRequestContent />
             <Footer />
         </div>
     )
-
 }

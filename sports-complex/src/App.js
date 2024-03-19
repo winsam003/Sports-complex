@@ -24,6 +24,7 @@ import ModifyMemberPage from './components/Pages/ModifyMemberPage';
 import QRCodePage from './components/Pages/QRCodePage';
 import PlaceRentalInfo from './components/Pages/PlaceRentalInfo';
 import PlaceRental from './components/Pages/PlaceRental';
+import ParkingRequest from './components/Pages/ParkingRequest';
 
 function App() {
 
@@ -54,6 +55,7 @@ function App() {
         <Route path='/QRCodePage' element={<QRCodePage />} />
         <Route path='/PlaceRentalInfo' element={<PlaceRentalInfo />} />
         <Route path='/PlaceRental' element={<PlaceRental />} />
+        <Route path='/ParkingRequest' element={<ParkingRequest />} />
 
       </Routes>
     </div>

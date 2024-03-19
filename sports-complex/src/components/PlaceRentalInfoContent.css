@@ -68,3 +68,28 @@
     width: 200px;
     height: 75px;
 }
+
+@media (max-width : 1200px) {
+
+    /* 내용 박스 */
+    .RentalInfoSearchButton_OK_div {
+        position: inherit;
+        left: 0;
+        overflow: auto;
+    }
+
+    .RentalInfoSearchButton_Conditions_div {
+        position: inherit;
+        top: 0;
+        left: 0;
+        overflow: auto;
+    }
+
+    /* 신청서 다운, 사용허가신청 버튼 */
+    .RentalInfoSearchButton {
+        position: inherit;
+        top: 5px;
+        left: 0;
+        margin-left: 0;
+    }
+}
