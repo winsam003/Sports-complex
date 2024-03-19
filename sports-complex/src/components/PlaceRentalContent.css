@@ -1,17 +1,17 @@
-.SearchButton {
+.RentalSearchButton {
     position: absolute;
-    top: 340px;
+    top: 95px;
     left: 220px;
 }
 
-.SearchButton button {
+.RentalSearchButton button {
     width: 100px;
     height: 50px;
     margin-right: 30px;
 }
 
 @media (max-width : 1200px) {
-    .SearchButton {
+    .RentalSearchButton {
         position: initial;
         margin: 5px 0;
     }

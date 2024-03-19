@@ -43,7 +43,7 @@ export default function Header() {
                     </ul>
                     <ul>
                         <li><Link to='/Sugang'>수강 신청</Link></li>
-                        <li>대관 신청</li>
+                        <li><Link to='/PlaceRentalInfo'>대관 신청</Link></li>
                         <li>주차 신청</li>
                     </ul>
                     <ul>
