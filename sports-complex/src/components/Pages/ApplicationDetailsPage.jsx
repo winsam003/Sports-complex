@@ -1,16 +1,16 @@
 import Header from '../Header';
+import ApplicationDetails from '../ApplicationDetails';
 import Footer from '../Footer';
-import PasswordChange from '../PasswordChange';
 import PageBanner from '../PageBanner';
 
-
-export default function PasswordChangePage(){
-    return(
+export default function ApplicationDetailsPage() {
+    return (
         <div>
             <Header />
             <PageBanner />
-            <PasswordChange />
+            <ApplicationDetails />
             <Footer />
         </div>
     )
+
 }

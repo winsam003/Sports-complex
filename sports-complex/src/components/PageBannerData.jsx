@@ -80,30 +80,36 @@ export const PageBannerData = [
         "title": '원하시는 시설을 대관신청하실 수 있습니다'
     },
     {
-        "parameter": 'ParkingRequest',
-        "Page": '정기 주차신청',
-        "title": '원하시는 장소에 주차신청하실 수 있습니다'
+        "parameter": 'ClassSchedulePage',
+        "Page": '수업일정표',
+        "title": '시민과 함께하는 건강하고 행복한 삶'
+    },
+    {
+        "parameter": 'ApplicationDetailsPage',
+        "Page": '신청내역',
+        "title": '더 다양한 서비스를 이용하실 수 있습니다.'
     },
     {
         "parameter": 'QRCodePage',
-        "Page": 'QR 코드',
-        "title": '이웃과 함께하는 건강하고 행복한 삶'
-    },
-    {
-        "parameter": 'ApplicationDetails',
-        "Page": '나의 수강내역',
-        "title": '수강하고있는 강좌의 목록을 볼 수 있습니다'
+        "Page": 'QR코드',
+        "title": '더 다양한 서비스를 이용하실 수 있습니다.'
     },
     {
         "parameter": 'ModifyMemberPage',
-        "Page": '회원정보 변경',
-        "title": '소중한 내정보를 최신으로 관리하세요'
+        "Page": '내 정보 수정',
+        "title": '더 다양한 서비스를 이용하실 수 있습니다.'
     },
     {
         "parameter": 'PasswordChangePage',
-        "Page": '비밀번호 변경',
-        "title": '비밀번호 변경을 위해 기존 비밀번호를 확인해주세요'
+        "Page": '비밀번호 수정',
+        "title": '더 다양한 서비스를 이용하실 수 있습니다.'
     },
+
+    { "parameter": '11', "Page": '정기 주차신청', "title": '원하시는 장소에 주차신청하실 수 있습니다' },
+    { "parameter": '13', "Page": 'QR 코드', "title": '이웃과 함께하는 건강하고 행복한 삶' },
+    { "parameter": '14', "Page": '나의 수강내역', "title": '수강하고있는 강좌의 목록을 볼 수 있습니다' },
+    { "parameter": '15', "Page": '회원정보 변경', "title": '소중한 내정보를 최신으로 관리하세요' },
+    { "parameter": '16', "Page": '비밀번호 변경', "title": '비밀번호 변경을 위해 기존 비밀번호를 확인해주세요' },
     // 관리자
     {
         "parameter": '21',

@@ -35,9 +35,8 @@ header>:nth-child(2) {
 
 }
 
-a {
-  /* 페이지 구현한거랑 아닌거랑 헷갈리니까 일단 주석처리 나중에 주석풀게요 */
-  text-decoration: none;
+a{
+  text-decoration: none;   
 
   color: black;
 }
@@ -59,7 +58,6 @@ header>:nth-child(2)>:nth-child(n+2):nth-child(-n+6) {
   width: 6.4rem;
   text-align: center;
 
-  background-color: aqua;
 }
 
 header>:nth-child(2):hover+.Header_mainMenu {
@@ -113,14 +111,151 @@ header>:last-child>div>ul>li {
   margin-top: 5px;
 }
 
+.Header_logo{
+  width: 100%;
+  height: 100%;
+
+  background-image: url('../../public/img/logo.png');
+  background-size: cover;
+  background-position: center;
+}
+
+ .goHome {
+  display: none;
+ }
+.Header_mainHeader{
+    font-size: large;
+    font-weight: bold;
+    border-radius: 15px;
+}
+.Header_Header1:hover{
+  background-color: deepskyblue;
+  color: white;
+}
+.Header_Header2:hover{
+  background-color: deepskyblue;
+  color: white;
+}
+.Header_Header3:hover{
+  background-color: deepskyblue;
+  color: white;
+}
+.Header_Header4:hover{
+  background-color: deepskyblue;
+  color: white;
+}
+.Header_Header5:hover{
+  background-color: deepskyblue;
+  color: white;
+}
+
+.Header_subMenu>a{
+  font-size: large;
+}
+
+.Header_Menutitle1:hover{
+  background-color: DodgerBlue;
+}
+.Header_Menutitle1>a:hover{
+  color: white;
+}
+.Header_Menutitle2:hover{
+  background-color: DodgerBlue;
+}
+.Header_Menutitle2>a:hover{
+  color: white;
+}
+.Header_Menutitle3:hover{
+  background-color: DodgerBlue;
+}
+.Header_Menutitle3>a:hover{
+  color: white;
+}
+.Header_Menutitle4:hover{
+  background-color: DodgerBlue;
+}
+.Header_Menutitle4>a:hover{
+  color: white;
+}
+.Header_Menutitle5:hover{
+  background-color: DodgerBlue;
+}
+.Header_Menutitle5>a:hover{
+  color: white;
+}
+.Header_Menutitle6:hover{
+  background-color: DodgerBlue;
+}
+.Header_Menutitle6>a:hover{
+  color: white;
+}
+.Header_Menutitle7:hover{
+  background-color: DodgerBlue;
+}
+.Header_Menutitle7>a:hover{
+  color: white;
+}
+.Header_Menutitle8:hover{
+  background-color: DodgerBlue;
+}
+.Header_Menutitle8>a:hover{
+  color: white;
+}
+.Header_Menutitle9:hover{
+  background-color: DodgerBlue;
+}
+.Header_Menutitle9>a:hover{
+  color: white;
+}
+.Header_Menutitle10:hover{
+  background-color: DodgerBlue;
+}
+.Header_Menutitle10>a:hover{
+  color: white;
+}
+.Header_Menutitle11:hover{
+  background-color: DodgerBlue;
+}
+.Header_Menutitle11>a:hover{
+  color: white;
+}
+.Header_Menutitle12:hover{
+  background-color: DodgerBlue;
+}
+.Header_Menutitle12>a:hover{
+  color: white;
+}
+
+
+
 
 @media(max-width: 1200px) {
+  
+  .goHome{
+    display: block;
+    background-image: url('../../public/img/logo.png');
+    background-size: cover;
+    background-position: center;
 
-  /* header{
-    width: 100%;
-  } */
+    width: 5rem;
+    height: 5rem;
+    
+  }
+  .goHome>a{
+    width: 5rem;
+    height: 5rem;
+    display: block;
+  }
 
-  header>:first-child {
+  Header>:first-child{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
+    height: 5rem;
+  }
+
+  .noneHeader {
     display: none;
   }
 
@@ -139,7 +274,6 @@ header>:last-child>div>ul>li {
   header>:last-child>div>:first-child {
     display: none;
   }
-}
 
 .Header_logo {
   width: 100%;
