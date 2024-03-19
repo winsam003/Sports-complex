@@ -3,10 +3,9 @@
     grid-template-columns: repeat(3, 125px) repeat(4, 1fr);
     grid-template-rows: repeat(5, 1fr);
     align-items: center;
-}
-
-.BoxFacilityInformation_div {
-    border: 1px black solid;
+    border-top: 1px black solid;
+    border-bottom: 1px black solid;
+    border-left: 1px black solid;
 }
 
 .BoxFacilityInformation_img_div {
@@ -21,18 +20,28 @@
     width: 100%;
 }
 
-.BoxFacilityInformation_div span:nth-child(2n) {
+.BoxFacilityInformation_div p:nth-child(2n) {
     display: grid;
     grid-column: 4/5;
     grid-row: 2n-1/2n;
     padding-left: 15px;
+    border-left: 1px black solid;
+    height: 60px;
+    margin: 0;
 }
 
-.BoxFacilityInformation_div span:nth-child(2n+1) {
+.BoxFacilityInformation_div p:nth-child(2n+1) {
     display: grid;
     grid-column: 5/8;
     grid-row: 2n-1/2n;
+    border-left: 1px black solid;
+    border-right: 1px black solid;
+    height: 60px;
+    margin: 0;
+}
 
+.BoxFacilityInformation_top_p {
+    border-top: 1px black solid;
 }
 
 @media (max-width : 1200px) {
@@ -41,7 +50,7 @@
         overflow-x: auto;
     }
 
-    .BoxFacilityInformation_div span:nth-child(2n) {
+    .BoxFacilityInformation_div p:nth-child(2n) {
         min-width: 95px;
     }
 }

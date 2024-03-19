@@ -7,8 +7,8 @@ export default function Board() {
     return (
         <div>
             <div className='board_div'>
-                <BoardSearchBox />
                 <Submenu />
+                <BoardSearchBox />
                 <BoardSearchList />
             </div>
         </div>
