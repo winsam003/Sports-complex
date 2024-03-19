@@ -1,0 +1,74 @@
+.ClassSchedule_Containor{
+    width: 100%;
+    height: 80rem;
+
+    background-color: aqua;
+}
+
+.ClassSchedule_Search{
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    height: 30%;
+
+
+}
+
+.ClassSchedule_Calendar{
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 3rem;
+}
+
+.ClassSchedule_Calendar>div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 5rem;
+    height: 3rem;
+
+    border: solid;
+}
+
+.ClassSchedule_List{
+    width: 100%;
+    height: calc(70% - 4rem);
+
+
+    background-color: darkorange;
+}
+
+.ClassSchedule_List>:first-child{
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+
+    text-align: center;
+
+    padding-top: 3rem;
+
+   
+}
+
+.ClassSchedule_List>:first-child>span{
+    font-weight: bold;
+}
+
+.ClassSchedule_CheckBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3rem;
+    height: 1rem;
+}
+
+.ClassSchedule_CheckBox>label{
+    margin-left: 3rem;
+}
+
+.ClassSchedule_Containor>:last-child>:first-child{
+    margin-bottom: 1rem;
+}

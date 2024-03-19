@@ -1,10 +1,71 @@
+/* .EventDetailContainor1{
+    width: calc(100% - 200px);
+} */
+
 .EventDetailContainor{
     background-color: bisque;
 
     position: absolute;
+    right: 0;
+    top: 0;
 
     width: calc(100% - 200px);
     height: 800px;
+
+    display: block;
+    align-items: center;
+}
+
+.EventDetail_Box{
+    margin-top: 10rem;
+    margin-left: 10rem;
+}
+
+.EventDetail_menu{
+    display: flex;
+    margin-top: 2rem;
+}
+
+.EventDetail_menu>:first-child{
+    flex: 1;
+    font-weight: bold;
+}
+
+.EventDetail_menu>:last-child {
+    flex: 3;
+}
+
+
+/* .EventDetail_title{
+    display: block;
+    text-align: center;
+
+    background-color: aquamarine;
+    width: 5rem;
+    height: 5rem;
+
+    margin-left: 10rem;
+} */
+.EventDetail_title>:first-child{
+    height: 100%;
+    font-weight: bold;
+
+    /* display: block; */
+
+}
+
+/* .EventDetail_detail{
+    display: flex;
+
+    width: 100vh;
+
+    margin-left: 5rem;
+} */
+
+.EventDetail_goBack{
+    display: flex;
+    justify-content: center;
+    margin-top: 5rem;
 }
 
 @media(max-width: 1200px) {
