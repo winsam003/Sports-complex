@@ -17,6 +17,8 @@ import EventDetailPage from './components/Pages/EventDetailPage';
 import Faq from './components/Pages/Faq';
 import Qna from './components/Pages/Qna';
 import Sugang from './components/Pages/Sugang';
+import PlaceRentalInfo from './components/Pages/PlaceRentalInfo';
+import PlaceRental from './components/Pages/PlaceRental';
 
 function App() {
 
@@ -40,7 +42,9 @@ function App() {
         <Route path='/Faq' element={<Faq />} />
         <Route path='/Qna' element={<Qna />} />
         <Route path='/Sugang' element={<Sugang />} />
-        
+        <Route path='/PlaceRentalInfo' element={<PlaceRentalInfo />} />
+        <Route path='/PlaceRental' element={<PlaceRental />} />
+
       </Routes>
     </div>
   );

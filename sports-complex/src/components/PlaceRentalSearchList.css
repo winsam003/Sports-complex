@@ -1,37 +1,39 @@
-.SugangSearchList_index {
+.PlaceRentalSearchList_index {
     background-color: brown;
     position: absolute;
-    top: 400px;
+    top: 160px;
     right: 0;
     width: 980px;
     display: grid;
-    grid-template-columns: repeat(2, 1fr) 3fr 3fr repeat(5, 1fr);
+    grid-template-columns: 3fr repeat(4, 1fr);
     text-align: center;
 }
 
-.SugangSearchList_content {
+.PlaceRentalSearchList_content {
     background-color: brown;
     position: absolute;
-    top: 425px;
+    top: 185px;
     right: 0;
     width: 980px;
     display: grid;
-    grid-template-columns: repeat(2, 1fr) 3fr 3fr repeat(5, 1fr);
+    grid-template-columns: 3fr repeat(4, 1fr);
     text-align: center;
 }
 
 @media (max-width : 1200px) {
-    .SugangSearchList_div {
+    .PlaceRentalSearchList_div {
         overflow: auto;
         white-space: nowrap;
         width: 100%;
     }
 
-    .SugangSearchList_index {
+    .PlaceRentalSearchList_index {
         position: initial;
+        width: 100%;
     }
 
-    .SugangSearchList_content {
+    .PlaceRentalSearchList_content {
         position: initial;
+        width: 100%;
     }
 }

@@ -2,7 +2,7 @@ import './InquiryRegistration.css'
 import Submenu from './Submenu'
 
 export default function InquiryRegistration() {
-    return(
+    return (
         <div className='InquiryRegistration_box' >
             <Submenu />
             <div className='InquiryRegistration_InquiryInfo'>
@@ -35,7 +35,7 @@ export default function InquiryRegistration() {
                     </ul>
                 </div>
                 <div className='InquiryRegistration_check'>
-                    <input type="checkbox" name='AgreePersonal' id='AgreePersonal' /> 
+                    <input type="checkbox" name='AgreePersonal' id='AgreePersonal' />
                     <span><label htmlFor="AgreePersonal">위의 개인정보 수집이용에 동의합니다.</label></span>
                 </div>
 
@@ -48,7 +48,7 @@ export default function InquiryRegistration() {
                     </ul>
                 </div>
                 <div className='InquiryRegistration_check'>
-                    <input type="checkbox" name='AgreeInfo' id='AgreeInfo' /> 
+                    <input type="checkbox" name='AgreeInfo' id='AgreeInfo' />
                     <span><label htmlFor="AgreeInfo">정보통신망법에 동의합니다.</label></span>
                 </div>
 
@@ -57,11 +57,11 @@ export default function InquiryRegistration() {
                     <p>동의를 거부할 수 있으며, 거부에 따른 불이익은 없습니다.</p>
                 </div>
                 <div className='InquiryRegistration_check'>
-                    <input type="checkbox" name='AgreeShare' id='AgreeShare' /> 
+                    <input type="checkbox" name='AgreeShare' id='AgreeShare' />
                     <span><label htmlFor="AgreeShare">귀하의 민원신청 내용을 공유하는 것에 동의하십니까?</label></span>
                 </div>
                 <div className='InquiryRegistration_haveto'>
-                    <p>※ 글 등록이 안 되시는 분은, 우측의 '보기' 버튼을 클릭하시기 바랍니다. 
+                    <p>※ 글 등록이 안 되시는 분은, 우측의 '보기' 버튼을 클릭하시기 바랍니다.
                         <a href="/" >보기</a>
                     </p>
                     <p>(<span className='star'>*</span>)는 반드시 작성해야 할 필수 항목입니다.</p>
@@ -85,13 +85,13 @@ export default function InquiryRegistration() {
                             <tr>
                                 <th>연락처 <span className='star'>*</span></th>
                                 <td>
-                                    <input type="text" name='phoneNum' id='phoneNum'/>
+                                    <input type="text" name='phoneNum' id='phoneNum' />
                                 </td>
                             </tr>
                             <tr>
                                 <th>이메일</th>
                                 <td>
-                                    <input type="text" name='email' id='email'/>
+                                    <input type="text" name='email' id='email' />
                                 </td>
                             </tr>
                             <tr>
@@ -159,7 +159,7 @@ export default function InquiryRegistration() {
 
         </div>
 
-        
+
     )
 }
 

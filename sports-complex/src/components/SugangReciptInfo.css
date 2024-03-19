@@ -35,3 +35,12 @@
     text-align: center;
     border: 1px black solid;
 }
+
+@media (max-width : 1200px) {
+    .SugangReciptInfo {
+        position: initial;
+        width: 100%;
+        overflow: auto;
+        white-space: nowrap;
+    }
+}
