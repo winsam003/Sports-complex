@@ -14,6 +14,7 @@ import Inquiry from './components/Pages/Inquiry';
 import FrequentlyAskedPage from './components/Pages/FrequentlyAskedPage';
 import EventBoardPage from './components/Pages/EventBoardPage';
 import EventDetailPage from './components/Pages/EventDetailPage';
+import MyPage from './components/Pages/MyPage';
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
         <Route path='/Inquiry' element={<Inquiry />} />
         <Route path='/EventBoardPage' element={<EventBoardPage />} />
         <Route path='/EventDetailPage' element={<EventDetailPage />} />
+        <Route path='/MyPage' element={<MyPage />} />
         
       </Routes>
     </div>
