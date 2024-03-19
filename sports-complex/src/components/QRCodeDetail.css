@@ -1,0 +1,22 @@
+.QRCodeDetail_Box{
+    background-color: darkslateblue;
+
+    width: 100%;
+    height: 800px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.QRCodeDetail_QRCode{
+    background-color: aqua;
+
+    width: 500px;
+    height: 500px;
+}
+
+.QRCodeDetail_QRCode>img{
+    width: 100%;
+    height: 100%;   
+}

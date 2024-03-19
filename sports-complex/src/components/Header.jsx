@@ -47,7 +47,7 @@ export default function Header() {
                         <li>주차 신청</li>
                     </ul>
                     <ul>
-                        <li>신청내역</li>
+                        <li><Link to='/ApplicationDetailsPage'>신청내역</Link></li>
                         <li><Link to='/QRCodePage'>QR코드</Link></li>
                         <li><Link to='/ModifyMemberPage'>내 정보 수정</Link></li>
                         <li><Link to='/PasswordChangePage'>비밀번호 수정</Link></li>

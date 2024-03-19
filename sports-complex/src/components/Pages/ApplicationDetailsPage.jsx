@@ -1,15 +1,16 @@
 import Header from '../Header';
-import PageBanner from '../PageBanner';
-import QRCode from '../QRCode';
+import ApplicationDetails from '../ApplicationDetails';
 import Footer from '../Footer';
+import PageBanner from '../PageBanner';
 
-export default function QRCodePage(){
+export default function ApplicationDetailsPage() {
     return (
         <div>
             <Header />
             <PageBanner />
-            <QRCode />
+            <ApplicationDetails />
             <Footer />
         </div>
     )
+
 }
