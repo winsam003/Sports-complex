@@ -1,4 +1,5 @@
 import './EventBoardList.css'
+import {Link} from 'react-router-dom'
 
 export default function EventBoardList() {
     return (
@@ -10,13 +11,13 @@ export default function EventBoardList() {
                 <span>시간</span>
                 <span>구분</span>
             </div>
-            <div className='EventSearchList_content'>
+            <Link to='/EventDetailPage' className='EventSearchList_content'>
                 <span>FitNext</span>
                 <span>2024 고교야구 주말리그 전반기</span>
                 <span>3.16 ~ 3.17</span>
                 <span>08:00 ~ 09:00</span>
                 <span>스포츠경기</span>
-            </div>
+            </Link>
         </div>
     )
 }

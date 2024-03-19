@@ -22,7 +22,8 @@ export default function Header() {
                 <Link to='/FacilityInformationPage'>체육시설</Link>
                 <Link to='/BoardPage'>고객센터</Link>
                 <Link to='/EventBoardPage'>정보마당</Link>
-                <Link to='/Inquiry'>이용신청</Link>
+                
+                <span>이용신청</span>
                 <span>마이페이지</span>
             </div>
             <div className='Header_mainMenu'>
@@ -38,7 +39,7 @@ export default function Header() {
                     </ul>
                     <ul>
                         <li><Link to='/EventBoardPage'>이벤트</Link></li>
-                        <li>수업 일정표</li>
+                        <li><Link to='/ClassSchedulePage'>수업 일정표</Link></li>
                     </ul>
                     <ul>
                         <li><Link to='/Sugang'>수강 신청</Link></li>
@@ -47,9 +48,9 @@ export default function Header() {
                     </ul>
                     <ul>
                         <li>신청내역</li>
-                        <li>QR코드</li>
-                        <li>비밀번호 변경</li>
-                        <li>비밀번호 수정</li>
+                        <li><Link to='/QRCodePage'>QR코드</Link></li>
+                        <li><Link to='/ModifyMemberPage'>내 정보 수정</Link></li>
+                        <li><Link to='/PasswordChangePage'>비밀번호 수정</Link></li>
                     </ul>
                 </div>
             </div>
