@@ -44,7 +44,7 @@ export default function Header() {
                     <ul>
                         <li className='Header_subMenu Header_Menutitle6'><Link to='/Sugang' >수강 신청</Link></li>
                         <li className='Header_subMenu Header_Menutitle7'><Link to='/PlaceRentalInfo' >대관 신청</Link></li>
-                        <li className='Header_subMenu Header_Menutitle8'>주차 신청</li>
+                        <li className='Header_subMenu Header_Menutitle8'><Link to='/ParkingRequest'>주차 신청</Link></li>
                     </ul>
                     <ul>
                         <li className='Header_subMenu Header_Menutitle9'><Link to='/ApplicationDetailsPage' >신청내역</Link></li>
