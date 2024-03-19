@@ -5,7 +5,9 @@
 }
 .InquiryRegistration_box>div {
     padding: 20px;
-    
+}
+.InquiryRegistration_box>div:nth-child(1){
+    padding-right: 0;
 }
 .InquiryRegistration_check{
     text-align: right;
@@ -77,7 +79,7 @@
 }
 .InquiryRegistration_form th{
     border: 1px solid lightslategray;
-    width: 200px;
+    width: 25%;
     height: 50px;
     font-weight: bold;
     background-color: aliceblue;
@@ -86,6 +88,7 @@
     border: 1px solid lightslategray;
     padding: 5px;
     height: 100%;
+    width: max-content;
 }
 .InquiryRegistration_form td * {
     vertical-align: middle;
@@ -95,7 +98,7 @@
     
 }
 .InquiryRegistration_form #name{
-    width: 200px;
+    width: 50%;
 }
 .InquiryRegistration_form #content{
     height: 300px;
@@ -105,7 +108,7 @@
 }
 .InquiryRegistration_form input[type="text"],
 .InquiryRegistration_form input[type="password"] {
-    width: 600px;
+    width: 95%;
 }
 .InquiryRegistration_upload{
     align-items: center;
@@ -119,3 +122,11 @@
     height: 50px;
 }
 
+/* width : 500-1200 */
+@media (max-width: 1200px) {
+    .InquiryRegistration_box>div:nth-child(2){
+        padding-left: 0;
+    }
+    
+    
+}
