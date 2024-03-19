@@ -22,6 +22,8 @@ import PasswordChangePage from './components/Pages/PasswordChangePage';
 import PasswordChangePage2 from './components/Pages/PasswordChangePage2';
 import ModifyMemberPage from './components/Pages/ModifyMemberPage';
 import QRCodePage from './components/Pages/QRCodePage';
+import PlaceRentalInfo from './components/Pages/PlaceRentalInfo';
+import PlaceRental from './components/Pages/PlaceRental';
 
 function App() {
 
@@ -50,7 +52,9 @@ function App() {
         <Route path='/PasswordChangePage2' element={<PasswordChangePage2 />} />
         <Route path='/ModifyMemberPage' element={<ModifyMemberPage />} />
         <Route path='/QRCodePage' element={<QRCodePage />} />
-        
+        <Route path='/PlaceRentalInfo' element={<PlaceRentalInfo />} />
+        <Route path='/PlaceRental' element={<PlaceRental />} />
+
       </Routes>
     </div>
   );

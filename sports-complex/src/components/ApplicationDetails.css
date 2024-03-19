@@ -1,0 +1,74 @@
+
+.ApplicationDetails_box {
+    display: flex;
+    background-color: lightgreen;
+}
+.ApplicationDetails_Content {
+    background-color: lightcoral;
+    width: 100%;
+    padding: 20px;
+}
+.ApplicationDetails_info>p{
+    margin: 0;
+}
+
+/* 내역 관련 */
+#ApplicationDetails_classHistory{
+    display: block;
+}
+
+
+/* 탭 효과 */
+.ApplicationDetails_tabMenu ul{
+    list-style: none;
+}
+.ApplicationDetails_tabMenu a{
+    text-decoration: none;
+}
+.ApplicationDetails_Menubox {
+    padding: 15px;
+    /* letter-spacing: -0.5px; */
+}
+.ApplicationDetails_tabMenu{
+    position: relative;
+}
+.ApplicationDetails_tabMenu .ApplicationDetails_list{
+    overflow: hidden;
+}
+.ApplicationDetails_list li{
+    float: left;
+    margin-right: 30px;
+}
+li.ApplicationDetails_ison .ApplicationDetails_tabBtn{
+    font-weight: bold;
+    color: blue;
+}
+.ApplicationDetails_showHistory{
+    margin-top: 40px;
+}
+#ApplicationDetails_classHis{
+    display: block;
+}
+.ApplicationDetails_history{
+    display: none;
+    background-color: antiquewhite;
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

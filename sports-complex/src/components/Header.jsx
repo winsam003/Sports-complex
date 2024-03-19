@@ -22,7 +22,8 @@ export default function Header() {
                 <Link to='/FacilityInformationPage'>체육시설</Link>
                 <Link to='/BoardPage'>고객센터</Link>
                 <Link to='/EventBoardPage'>정보마당</Link>
-                <Link to='/Inquiry'>이용신청</Link>
+                
+                <span>이용신청</span>
                 <span>마이페이지</span>
             </div>
             <div className='Header_mainMenu'>
@@ -42,7 +43,7 @@ export default function Header() {
                     </ul>
                     <ul>
                         <li><Link to='/Sugang'>수강 신청</Link></li>
-                        <li>대관 신청</li>
+                        <li><Link to='/PlaceRentalInfo'>대관 신청</Link></li>
                         <li>주차 신청</li>
                     </ul>
                     <ul>

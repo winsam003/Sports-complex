@@ -50,12 +50,12 @@ export const PageBannerData = [
         "title": "고객의 소리에 귀 기울여 발전하겠습니다."
     },
     {
-        "parameter": "FrequentlyAskedPage",
+        "parameter": "Faq",
         "Page": "자주하는 질문",
         "title": "고객의 소리에 귀 기울여 발전하겠습니다."
     },
     {
-        "parameter": "Inquiry",
+        "parameter": "Qna",
         "Page": "문의게시판",
         "title": "고객의 소리에 귀 기울여 발전하겠습니다."
     },
@@ -64,9 +64,22 @@ export const PageBannerData = [
         "Page": "이벤트게시판",
         "title": "고객의 소리에 귀 기울여 발전하겠습니다."
     },
-    { "parameter": '10', "Page": '수강신청', "title": '원하시는 강좌를 수강신청하실 수 있습니다' },
+    {
+        "parameter": 'Sugang',
+        "Page": '수강신청',
+        "title": '원하시는 강좌를 수강신청하실 수 있습니다'
+    },
+    {
+        "parameter": 'PlaceRentalInfo',
+        "Page": '대관신청',
+        "title": '원하시는 시설을 대관신청하실 수 있습니다'
+    },
+    {
+        "parameter": 'PlaceRental',
+        "Page": '대관신청',
+        "title": '원하시는 시설을 대관신청하실 수 있습니다'
+    },
     { "parameter": '11', "Page": '정기 주차신청', "title": '원하시는 장소에 주차신청하실 수 있습니다' },
-    { "parameter": '12', "Page": '대관신청', "title": '원하시는 시설을 대관신청하실 수 있습니다' },
     { "parameter": '13', "Page": 'QR 코드', "title": '이웃과 함께하는 건강하고 행복한 삶' },
     { "parameter": '14', "Page": '나의 수강내역', "title": '수강하고있는 강좌의 목록을 볼 수 있습니다' },
     { "parameter": '15', "Page": '회원정보 변경', "title": '소중한 내정보를 최신으로 관리하세요' },

@@ -17,26 +17,12 @@
 }
 
 .RegistrationFlow_ul li::before {
-    /* width: 240px;
-    font-size: 19px;
-    font-weight: 600;
-    display: inline-block;
-    text-align: center;
-    vertical-align: middle; */
     background-color: rgb(34, 133, 255);
 }
 
 .RegistrationFlow_ul li::after {
-    /* width: 240px;
-    font-size: 19px;
-    font-weight: 600;
-    display: inline-block;
-    text-align: center;
-    vertical-align: middle; */
     background-color: #ffffff;
 }
-
-
 
 .RegistrationFlow_ul li span {
     display: block;
