@@ -1,8 +1,7 @@
 import Header from '../Header';
 import PageBanner from '../PageBanner';
 import Footer from '../Footer';
-import JoinMember from '../JoinMember';
-import UserTypeAgree from '../UserTypeAgree';
+import ModifyMember from '../ModifyMember';
 
 export default function JoinPage4() {
     
@@ -11,7 +10,7 @@ export default function JoinPage4() {
         <div>
             <Header />
             <PageBanner />
-            <JoinMember />
+            <ModifyMember />
             <Footer />
         </div>
     )

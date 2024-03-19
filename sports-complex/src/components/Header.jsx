@@ -38,7 +38,7 @@ export default function Header() {
                     </ul>
                     <ul>
                         <li><Link to='/EventBoardPage'>이벤트</Link></li>
-                        <li>수업 일정표</li>
+                        <li><Link to='/ClassSchedulePage'>수업 일정표</Link></li>
                     </ul>
                     <ul>
                         <li><Link to='/Sugang'>수강 신청</Link></li>
@@ -47,9 +47,9 @@ export default function Header() {
                     </ul>
                     <ul>
                         <li>신청내역</li>
-                        <li>QR코드</li>
-                        <li>비밀번호 변경</li>
-                        <li>비밀번호 수정</li>
+                        <li><Link to='/QRCodePage'>QR코드</Link></li>
+                        <li><Link to='/ModifyMemberPage'>내 정보 수정</Link></li>
+                        <li><Link to='/PasswordChangePage'>비밀번호 수정</Link></li>
                     </ul>
                 </div>
             </div>
