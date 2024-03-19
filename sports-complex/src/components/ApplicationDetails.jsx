@@ -1,10 +1,20 @@
 import './ApplicationDetails.css'
 import Submenu from './Submenu'
+import D1 from './D1'
+import D2 from './D2'
+import D3 from './D3'
+import {useState} from 'react';
 
 export default function ApplicationDetails() {
 
-    const tabList = document.querySelectorAll('.ApplicationDetails_list li');
+    // const tabList = document.querySelectorAll('.ApplicationDetails_list li');
     
+
+    const [currentPage, setCurrentPage] = useState('d1');
+
+    const pageHandler = (page) => {
+        setCurrentPage(page);
+    }
 
     return(
         <div className='ApplicationDetails_box'>
@@ -27,17 +37,23 @@ export default function ApplicationDetails() {
                     <div className='ApplicationDetails_tabMenu'>
                         <ul className='ApplicationDetails_list'>
                             <li className='ApplicationDetails_ison'>
-                                <a href="#ApplicationDetails_classHis" className='ApplicationDetails_tabBtn'>수강 내역</a>
+                                <div onClick={() => pageHandler('d1')} className='ApplicationDetails_tabBtn'>수강 내역</div>
                             </li>
                             <li>
-                                <a href="#ApplicationDetails_parkHis" className='ApplicationDetails_tabBtn'>주차 내역</a>
+                                <div onClick={() => pageHandler('d2')} className='ApplicationDetails_tabBtn'>주차 내역</div>
                             </li>
                             <li>
-                                <a href="#ApplicationDetails_placeHis" className='ApplicationDetails_tabBtn'>대관 내역</a>
+                                <div onClick={() => pageHandler('d3')} className='ApplicationDetails_tabBtn'>대관 내역</div>
                             </li>
                         </ul>
 
-                        <div className='ApplicationDetails_showHistory'>
+
+                        <div>
+                            {currentPage === 'd1' && <D1 />}
+                            {currentPage === 'd2' && <D2 />}
+                            {currentPage === 'd3' && <D3 />}
+                        </div>
+                        {/* <div className='ApplicationDetails_showHistory'>
                             <div id='ApplicationDetails_classHis' className='ApplicationDetails_history' >
                                 <p>수강어쩌구</p>
                             </div>
@@ -47,7 +63,7 @@ export default function ApplicationDetails() {
                             <div id='ApplicationDetails_placeHis' className='ApplicationDetails_history'>
                                 <p>대관어쩌구</p>
                             </div>
-                        </div>
+                        </div> */}
 
                     </div>
                 </div>
