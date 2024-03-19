@@ -3,8 +3,8 @@ import PageBanner from '../PageBanner';
 import Board from '../Board'
 import Footer from '../Footer';
 
-// 공지사항
-export default function NotificationPage() {
+// 자주하는 질문
+export default function Faq() {
     return (
         <div>
             <Header />

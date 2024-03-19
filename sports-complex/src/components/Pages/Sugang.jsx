@@ -1,15 +1,15 @@
 import Header from '../Header';
 import PageBanner from '../PageBanner';
-import Board from '../Board'
+import SugangContent from '../SugangContent';
 import Footer from '../Footer';
 
-// 공지사항
-export default function NotificationPage() {
+// 수강 신청
+export default function Sugang() {
     return (
         <div>
             <Header />
             <PageBanner />
-            <Board />
+            <SugangContent />
             <Footer />
         </div>
     )
