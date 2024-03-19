@@ -36,6 +36,7 @@
         grid-template-columns: repeat(3, 1fr);
         align-items: center;
         justify-content: center;
+        padding: auto;
     }
 
     .middlemenu>a>span {
@@ -47,8 +48,8 @@
     .middlemenu>a {
         width: 8rem;
         height: 8rem;
+        margin: 0 auto;
 
-        /* margin-left: rem; */
     }
 
 
