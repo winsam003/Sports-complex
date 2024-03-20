@@ -18,9 +18,7 @@ export default function Submenu() {
     return (
         <div>
             <div className='submenu_div'>
-                {/* <div className='submenu_fixed_div'> */}
-                    {findCurrentPageAll.map((it) => (<Subtitle parameter={it.parameter} page={it.page} />))}
-                {/* </div> */}
+                {findCurrentPageAll.map((it) => (<Subtitle parameter={it.parameter} page={it.page} />))}
             </div>
         </div>
     )
