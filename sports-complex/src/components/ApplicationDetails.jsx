@@ -3,7 +3,7 @@ import Submenu from './Submenu'
 import HistoryClass from './HistoryClass'
 import HistoryPark from './HistoryPark'
 import HistoryRental from './HistoryRental'
-import {useState} from 'react';
+import { useState, useMemo } from 'react';
 
 export default function ApplicationDetails() {
 
@@ -15,6 +15,17 @@ export default function ApplicationDetails() {
     const pageHandler = (page) => {
         setCurrentPage(page);
     }
+
+    const selectedPage = useMemo(() => {
+        switch (currentPage) {
+            case 'HistoryClass':
+                return <HistoryClass />
+            case 'HistoryPark':
+                return <HistoryPark />
+            case 'HistoryRental':
+                return <HistoryRental />
+        }
+    }, [currentPage]);
 
     return(
         <div className='ApplicationDetails_box'>
@@ -49,9 +60,7 @@ export default function ApplicationDetails() {
 
 
                         <div className='ApplicationDetails_showHistory'>
-                            {currentPage === 'HistoryClass' && <HistoryClass /> }
-                            {currentPage === 'HistoryPark' && <HistoryPark />}
-                            {currentPage === 'HistoryRental' && <HistoryRental />}
+                            {selectedPage}
                         </div>
                     </div>
                 </div>
