@@ -35,8 +35,8 @@ header>:nth-child(2) {
 
 }
 
-a{
-  text-decoration: none;   
+a {
+  text-decoration: none;
 
   color: black;
 }
@@ -111,7 +111,7 @@ header>:last-child>div>ul>li {
   margin-top: 5px;
 }
 
-.Header_logo{
+.Header_logo {
   width: 100%;
   height: 100%;
 
@@ -120,109 +120,138 @@ header>:last-child>div>ul>li {
   background-position: center;
 }
 
- .goHome {
+.goHome {
   display: none;
- }
-.Header_mainHeader{
-    font-size: large;
-    font-weight: bold;
-    border-radius: 15px;
 }
-.Header_Header1:hover{
-  background-color: deepskyblue;
-  color: white;
+
+.Header_mainHeader {
+  font-size: large;
+  font-weight: bold;
+  border-radius: 15px;
 }
-.Header_Header2:hover{
-  background-color: deepskyblue;
-  color: white;
-}
-.Header_Header3:hover{
-  background-color: deepskyblue;
-  color: white;
-}
-.Header_Header4:hover{
-  background-color: deepskyblue;
-  color: white;
-}
-.Header_Header5:hover{
+
+.Header_Header1:hover {
   background-color: deepskyblue;
   color: white;
 }
 
-.Header_subMenu>a{
+.Header_Header2:hover {
+  background-color: deepskyblue;
+  color: white;
+}
+
+.Header_Header3:hover {
+  background-color: deepskyblue;
+  color: white;
+}
+
+.Header_Header4:hover {
+  background-color: deepskyblue;
+  color: white;
+}
+
+.Header_Header5:hover {
+  background-color: deepskyblue;
+  color: white;
+}
+
+.Header_subMenu>a {
   font-size: large;
 }
 
-.Header_Menutitle1:hover{
+.Header_Menutitle1:hover {
   background-color: DodgerBlue;
 }
-.Header_Menutitle1>a:hover{
+
+.Header_Menutitle1>a:hover {
   color: white;
 }
-.Header_Menutitle2:hover{
+
+.Header_Menutitle2:hover {
   background-color: DodgerBlue;
 }
-.Header_Menutitle2>a:hover{
+
+.Header_Menutitle2>a:hover {
   color: white;
 }
-.Header_Menutitle3:hover{
+
+.Header_Menutitle3:hover {
   background-color: DodgerBlue;
 }
-.Header_Menutitle3>a:hover{
+
+.Header_Menutitle3>a:hover {
   color: white;
 }
-.Header_Menutitle4:hover{
+
+.Header_Menutitle4:hover {
   background-color: DodgerBlue;
 }
-.Header_Menutitle4>a:hover{
+
+.Header_Menutitle4>a:hover {
   color: white;
 }
-.Header_Menutitle5:hover{
+
+.Header_Menutitle5:hover {
   background-color: DodgerBlue;
 }
-.Header_Menutitle5>a:hover{
+
+.Header_Menutitle5>a:hover {
   color: white;
 }
-.Header_Menutitle6:hover{
+
+.Header_Menutitle6:hover {
   background-color: DodgerBlue;
 }
-.Header_Menutitle6>a:hover{
+
+.Header_Menutitle6>a:hover {
   color: white;
 }
-.Header_Menutitle7:hover{
+
+.Header_Menutitle7:hover {
   background-color: DodgerBlue;
 }
-.Header_Menutitle7>a:hover{
+
+.Header_Menutitle7>a:hover {
   color: white;
 }
-.Header_Menutitle8:hover{
+
+.Header_Menutitle8:hover {
   background-color: DodgerBlue;
 }
-.Header_Menutitle8>a:hover{
+
+.Header_Menutitle8>a:hover {
   color: white;
 }
-.Header_Menutitle9:hover{
+
+.Header_Menutitle9:hover {
   background-color: DodgerBlue;
 }
-.Header_Menutitle9>a:hover{
+
+.Header_Menutitle9>a:hover {
   color: white;
 }
-.Header_Menutitle10:hover{
+
+.Header_Menutitle10:hover {
   background-color: DodgerBlue;
 }
-.Header_Menutitle10>a:hover{
+
+.Header_Menutitle10>a:hover {
   color: white;
 }
-.Header_Menutitle11:hover{
+
+.Header_Menutitle11:hover {
   background-color: DodgerBlue;
 }
-.Header_Menutitle11>a:hover{
+
+.Header_Menutitle11>a:hover {
   color: white;
 }
-.Header_Menutitle12:hover{
+
+.Header_Menutitle12:hover {
   background-color: DodgerBlue;
 }
-.Header_Menutitle12>a:hover{
+
+.Header_Menutitle12>a:hover {
   color: white;
 }
 
@@ -230,8 +259,8 @@ header>:last-child>div>ul>li {
 
 
 @media(max-width: 1200px) {
-  
-  .goHome{
+
+  .goHome {
     display: block;
     background-image: url('../../public/img/logo.png');
     background-size: cover;
@@ -239,15 +268,16 @@ header>:last-child>div>ul>li {
 
     width: 5rem;
     height: 5rem;
-    
+
   }
-  .goHome>a{
+
+  .goHome>a {
     width: 5rem;
     height: 5rem;
     display: block;
   }
 
-  Header>:first-child{
+  Header>:first-child {
     display: flex;
     justify-content: center;
     align-content: center;
