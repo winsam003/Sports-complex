@@ -26,6 +26,7 @@ import PlaceRentalInfo from './components/Pages/PlaceRentalInfo';
 import PlaceRental from './components/Pages/PlaceRental';
 import ParkingRequest from './components/Pages/ParkingRequest';
 import ApplicationDetailsPage from './components/Pages/ApplicationDetailsPage';
+import NotFoundPage from './components/Pages/NotFoundPage';
 
 function App() {
 
@@ -58,7 +59,7 @@ function App() {
         <Route path='/PlaceRental' element={<PlaceRental />} />
         <Route path='/ParkingRequest' element={<ParkingRequest />} />
         <Route path='/ApplicationDetailsPage' element={<ApplicationDetailsPage />} />
-
+        <Route path='*' element={<NotFoundPage />} />
       </Routes>
     </div>
   );

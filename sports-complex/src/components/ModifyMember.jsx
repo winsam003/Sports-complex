@@ -60,7 +60,7 @@ export default function ModifyMember() {
                             <th>이메일</th>
                             <td className='email'>
                                 <input type="email" name='email' id='email' />
-                                <input type="text" name='emailAdd' id='emailAdd' placeholder='@email.com'/>
+                                <input type="text" name='emailAdd' id='emailAdd' placeholder='@email.com' />
                                 <select name="emailAddSelect" id="emailAddSelect">
                                     <option value="">직접입력</option>
                                     <option value="gmail.com">gmail.com</option>
@@ -71,7 +71,7 @@ export default function ModifyMember() {
                                     <option value="yahoo.com">yahoo.com</option>
                                     <option value="dreamwiz.com">dreamwiz.com</option>
                                 </select> <br />
-                                <input type="checkbox" name='receiveMail' id='receiveMail' /> 
+                                <input type="checkbox" name='receiveMail' id='receiveMail' />
                                 <span><label htmlFor="receiveMail">뉴스레터나 공지이메일을 수신 받겠습니다.</label></span>
                             </td>
                         </tr>
@@ -90,7 +90,7 @@ export default function ModifyMember() {
                                 <span>-</span>
                                 <input type="text" name='lastPhoneNum' id='lastPhoneNum' />
                                 <br />
-                                <input type="checkbox" name='receiveMessage' id='receiveMessage' /> 
+                                <input type="checkbox" name='receiveMessage' id='receiveMessage' />
                                 <span><label htmlFor="receiveMessage">알림문자를 받겠습니다.</label></span>
                             </td>
                         </tr>
