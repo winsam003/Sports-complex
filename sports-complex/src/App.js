@@ -26,6 +26,10 @@ import PlaceRentalInfo from './components/Pages/PlaceRentalInfo';
 import PlaceRental from './components/Pages/PlaceRental';
 import ParkingRequest from './components/Pages/ParkingRequest';
 import ApplicationDetailsPage from './components/Pages/ApplicationDetailsPage';
+import InfoHandlingPolicy from './components/Pages/InfoHandlingPolicy';
+import VideoHandle from './components/Pages/VideoHandle';
+import EmailCollectAgree from './components/Pages/EmailCollectAgree';
+import VisitWay from './components/Pages/VisitWay';
 import NotFoundPage from './components/Pages/NotFoundPage';
 
 function App() {
@@ -59,6 +63,10 @@ function App() {
         <Route path='/PlaceRental' element={<PlaceRental />} />
         <Route path='/ParkingRequest' element={<ParkingRequest />} />
         <Route path='/ApplicationDetailsPage' element={<ApplicationDetailsPage />} />
+        <Route path='/InfoHandlingPolicy' element={<InfoHandlingPolicy />} />
+        <Route path='/VideoHandle' element={<VideoHandle />} />
+        <Route path='/EmailCollectAgree' element={<EmailCollectAgree />} />
+        <Route path='/VisitWay' element={<VisitWay />} />
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
     </div>

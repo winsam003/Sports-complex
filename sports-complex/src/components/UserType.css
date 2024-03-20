@@ -6,12 +6,23 @@
 
     height: 25rem;
 
-    background-color: crimson;
+    background-color: Azure;
 }
 
 .UserType_button{
     width: 12rem;
     height: 12rem;
+    background-color: ivory;
+    border: 1px solid;
+
+    font-weight: bold;
+    font-size: large;
+
+    cursor: pointer;
+}
+
+.UserType_button:hover{
+    transform: scale(1.05);
 }
 
 .UserType_kid{

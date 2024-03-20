@@ -5,7 +5,7 @@
 
     height: 7rem;
 
-    background-color: aqua;
+    /* background-color: #F0FFFF; */
 }
 
 .UserTypeAgree_button{
@@ -21,9 +21,9 @@
 
 .UserTypeAgree_Agree{
     margin-right: 100px;
-    background-color: blue;
+    background-color: lightblue;
 }
 .UserTypeAgree_Disagree{
     /* margin-right: 100px; */
-    background-color: azure;
+    background-color: lightgray;
 }

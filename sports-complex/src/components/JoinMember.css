@@ -1,12 +1,11 @@
 .JoinMember_joinbox {
     height: auto;
-    background-color: lightpink;
+    background-color: ivory;
     display: flex;
     /* align-items: center; */
     justify-content: center;
 }
 .JoinMember_midbox{
-    background-color: rgba(5, 138, 247, 0.445);
     width: 80%;
     height: 100%;
 }
@@ -23,8 +22,8 @@
     width: 100%;
 }
 .JoinMember_midbox th{
-    background-color: lightgray;
-    border: 2px solid rgb(121, 66, 121);
+    background-color: lightcyan;
+    border: 2px solid lightskyblue;
     width: 200px;
     text-align: left;
     padding-left: 20px;
@@ -32,7 +31,7 @@
     vertical-align: middle;
 }
 .JoinMember_midbox td{
-    border: 2px solid rgb(121, 66, 121);
+    border: 2px solid lightskyblue;
 }
 .JoinMember_midbox input, select {
     margin: 10px;

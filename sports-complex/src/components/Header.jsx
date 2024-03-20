@@ -8,6 +8,7 @@ import FrequentlyAskedPage from './Pages/FrequentlyAskedPage';
 import Qna from './Pages/Qna';
 import Faq from './Pages/Faq';
 import Sugang from './Pages/Sugang';
+import ClassSchedule from './ClassSchedule';
 
 export default function Header() {
     return (
