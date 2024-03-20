@@ -4,11 +4,11 @@ footer {
 
 /* footer guide list */
 
-footer{
+footer {
     margin-bottom: 100px;
 }
 
-.footer_list{
+.footer_list {
     width: 100vw;
     margin-left: calc((100% - 100vw) / 2);
 
@@ -25,14 +25,11 @@ footer{
 }
 
 .footer_ol {
-    margin: 0;
+    margin: 0 15px;
     padding: 0;
     display: inline-block;
 }
 
-.footer_ol:nth-child(1) {
-    padding-right: 10px;
-}
 
 .footer_li {
     display: inline-block;
@@ -40,7 +37,7 @@ footer{
 }
 
 .footer_li:nth-child(1) {
-    padding-right: 10px;
+    padding-right: 30px;
 }
 
 /* footer company_info */
@@ -81,7 +78,7 @@ footer{
     grid-template-rows: 4fr;
     align-items: center;
     text-align: center;
-    
+
 }
 
 .consulting_telNum p {
@@ -105,17 +102,14 @@ footer{
 @media (max-width : 1200px) {
 
     /* footer guide list */
-    .footer_ul {
+    .footer_ol:nth-child(1) {
+        display: block;
+        padding-left: 2.6em;
+    }
 
-        .footer_ol:nth-child(1) {
-            display: block;
-            padding-left: 3.6em;
-        }
-
-        .footer_li {
-            line-height: 30px;
-            padding: 0px 10px;
-        }
+    .footer_li {
+        line-height: 30px;
+        padding: 0px 10px;
     }
 
     /* footer company_info */
