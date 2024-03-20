@@ -3,8 +3,10 @@
     position: absolute;
     top: 0;
     right: 0;
+    margin-top: 30px;
     width: 980px;
-    background-color: antiquewhite;
+    border-top: 3px solid #C9EDFA;
+    background-color: aliceblue;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(2, 1fr);
@@ -14,16 +16,19 @@
 .PlaceRentalSearch_div div span {
     display: inline-block;
     width: 70px;
+    padding-left: 10px;
 }
 
 /* 대분류 select */
 .PlaceRentalSearch_MainCategory_select {
     width: 120px;
+    margin-left: 0;
 }
 
 /* 소분류, 교육대상 select */
 .PlaceRentalSearch_SubCategory_select {
     width: 160px;
+    margin-left: 0;
 }
 
 /* 대분류 grid */
@@ -46,9 +51,15 @@
     align-items: center;
 }
 
+.PlaceRentalSearch_MainCategory span,
+.PlaceRentalSearch_SubCategory span,
+.PlaceRentalSearch_Sugangtitle span {
+    font-weight: bold;
+}
+
 .PlaceRentalSearch_Sugangtitle input {
-    margin-left: 10px;
     width: 65.62%;
+    margin-left: 0;
 }
 
 @media (max-width : 1200px) {
@@ -58,7 +69,6 @@
     }
 
     .PlaceRentalSearch_Sugangtitle input {
-        margin-left: 10px;
         width: 400px;
     }
 }
