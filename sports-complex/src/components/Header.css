@@ -7,7 +7,7 @@ header>:first-child {
   height: 3.2rem;
 
   margin-top: 0.8rem;
-  background-color: azure;
+  /* background-color: azure; */
 }
 
 header>:first-child>span {
@@ -31,7 +31,7 @@ header>:nth-child(2) {
 
   height: 8.6rem;
 
-  background-color: bisque;
+  /* background-color: bisque; */
 
 }
 
@@ -287,6 +287,7 @@ header>:last-child>div>ul>li {
 
   .noneHeader {
     display: none;
+    
   }
 
   header>:nth-child(2)>:first-child {

@@ -1,7 +1,7 @@
 .middlemenu {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    background-color: brown;
+    /* background-color: #d5f1f5; */
     height: 15rem;
     align-items: center;
 }
@@ -14,7 +14,7 @@
 }
 
 .middlemenu>a>span{
-    background-color: #ffa07a;
+    background-color: #90e8ed;
     display: inline-block;
     width: 10rem;
     height: 10rem;
@@ -22,15 +22,19 @@
     line-height: 10rem;
     border-radius: 30%;
     margin: auto;
+    font-size: large;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
 }
 
 .middlemenu>a>span:hover{
     transform: scale(1.05);
+    color: white;
 }
 
 @media(max-width : 1200px) {
     .middlemenu{
-        background-color: brown;
+        margin-top: 5%;
+        /* background-color: brown; */
         height: 20rem;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
