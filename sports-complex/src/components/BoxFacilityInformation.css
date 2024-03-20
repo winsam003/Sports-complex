@@ -20,6 +20,7 @@
     width: 100%;
 }
 
+/* 대표항목 */
 .BoxFacilityInformation_div p:nth-child(2n) {
     display: grid;
     grid-column: 4/5;
@@ -31,8 +32,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #ceeff250;
 }
 
+/* 내용 */
 .BoxFacilityInformation_div p:nth-child(2n+1) {
     display: grid;
     grid-column: 5/8;
