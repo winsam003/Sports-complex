@@ -1,15 +1,14 @@
 import Header from '../Header';
 import PageBanner from '../PageBanner';
+import MiddleMenu from '../MiddleMenu';
 import Footer from '../Footer';
-import ModifyMemberAndSubMenu from '../ModifyMemberAndSubMenu';
 
-export default function JoinPage4() {
-    
+export default function NotFoundPage() {
     return (
         <div>
             <Header />
             <PageBanner />
-            <ModifyMemberAndSubMenu />
+            <MiddleMenu />
             <Footer />
         </div>
     )

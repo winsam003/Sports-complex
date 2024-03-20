@@ -6,7 +6,7 @@ export default function PageBanner() {
     
     const currentPage = window.location.pathname.replace("/", "");
     let selectedPage = {
-        Page: 'NotFound',
+        page: 'NotFound',
         title: '해당 페이지를 찾을 수 없습니다.'
     }
 
@@ -19,7 +19,7 @@ export default function PageBanner() {
                 <div className='pagebanner_img' />
             </div>
             <span>
-                {selectedPage.Page}<br></br>
+                {selectedPage.page}<br></br>
             </span>
             <span>
                 {selectedPage.title}

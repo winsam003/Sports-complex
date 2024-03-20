@@ -1,0 +1,5 @@
+.HistoryPark_box>div{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) 2fr repeat(2, 1fr);
+}
+

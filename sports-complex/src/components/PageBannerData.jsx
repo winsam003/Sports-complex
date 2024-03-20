@@ -1,107 +1,134 @@
 export const PageBannerData = [
     {
+        "id":"1",
         "parameter": "",
-        "Page": "",
+        "page": "",
         "title": ""
     },
     {
+        "id": "1",
         "parameter": "JoinPage1",
-        "Page": "회원가입",
+        "page": "회원가입",
         "title": "더 다양한 서비스를 이용하실 수 있습니다."
     },
     {
+        "id": "1",
         "parameter": "JoinPage2",
-        "Page": "회원가입",
+        "page": "회원가입",
         "title": "더 다양한 서비스를 이용하실 수 있습니다."
     },
     {
+        "id": "1",
         "parameter": "JoinPage3",
-        "Page": "회원가입",
+        "page": "회원가입",
         "title": "더 다양한 서비스를 이용하실 수 있습니다."
     },
     {
+        "id": "1",
         "parameter": "JoinPage4",
-        "Page": "회원가입",
+        "page": "회원가입",
         "title": "더 다양한 서비스를 이용하실 수 있습니다."
     },
     {
+        "id": "1",
         "parameter": "LoginPage",
-        "Page": "로그인",
+        "page": "로그인",
         "title": "더 다양한 서비스를 이용하실 수 있습니다."
     },
     {
+        "id": "1",
         "parameter": "FindPasswordPage",
-        "Page": "비밀번호 찾기",
+        "page": "비밀번호 찾기",
         "title": "더 다양한 서비스를 이용하실 수 있습니다."
     },
     {
+        "id": "1",
         "parameter": "FindIDPage",
-        "Page": "아이디 찾기",
+        "page": "아이디 찾기",
         "title": "더 다양한 서비스를 이용하실 수 있습니다."
     },
     {
+        "id": "2",
         "parameter": "FacilityInformationPage",
-        "Page": "시설안내",
+        "page": "시설안내",
         "title": "시민과 함께하는 건강하고 행복한 삶"
     },
     {
+        "id": "3",
         "parameter": "BoardPage",
-        "Page": "공지사항",
+        "page": "공지사항",
         "title": "고객의 소리에 귀 기울여 발전하겠습니다."
     },
     {
+        "id": "3",
         "parameter": "Faq",
-        "Page": "자주하는 질문",
+        "page": "자주하는 질문",
         "title": "고객의 소리에 귀 기울여 발전하겠습니다."
     },
     {
+        "id": "3",
         "parameter": "Qna",
-        "Page": "문의게시판",
+        "page": "문의게시판",
         "title": "고객의 소리에 귀 기울여 발전하겠습니다."
     },
     {
+        "id": "4",
         "parameter": "EventBoardPage",
-        "Page": "이벤트게시판",
+        "page": "이벤트게시판",
         "title": "고객의 소리에 귀 기울여 발전하겠습니다."
     },
     {
-        "parameter": 'Sugang',
-        "Page": '수강신청',
-        "title": '원하시는 강좌를 수강신청하실 수 있습니다'
+        "id": "4",
+        "parameter": "EventDetailPage",
+        "page": "이벤트게시판",
+        "title": "고객의 소리에 귀 기울여 발전하겠습니다."
     },
     {
-        "parameter": 'PlaceRentalInfo',
-        "Page": '대관신청',
-        "title": '원하시는 시설을 대관신청하실 수 있습니다'
-    },
-    {
-        "parameter": 'PlaceRental',
-        "Page": '대관신청',
-        "title": '원하시는 시설을 대관신청하실 수 있습니다'
-    },
-    {
+        "id": "4",
         "parameter": 'ClassSchedulePage',
-        "Page": '수업일정표',
+        "page": '수업일정표',
         "title": '시민과 함께하는 건강하고 행복한 삶'
     },
     {
+        "id": "5",
+        "parameter": 'Sugang',
+        "page": '수강신청',
+        "title": '원하시는 강좌를 수강신청하실 수 있습니다'
+    },
+    {
+        "id": "5",
+        "parameter": 'PlaceRentalInfo',
+        "page": '대관신청',
+        "title": '원하시는 시설을 대관신청하실 수 있습니다'
+    },
+    {
+        "id": "5",
+        "parameter": 'ParkingRequest',
+        "page": '주차신청',
+        "title": '주차신청을 하실 수 있습니다'
+    },
+    {
+        "id": "6",
         "parameter": 'ApplicationDetailsPage',
-        "Page": '신청내역',
+        "page": '신청내역',
         "title": '더 다양한 서비스를 이용하실 수 있습니다.'
     },
     {
+        "id": "6",
         "parameter": 'QRCodePage',
-        "Page": 'QR코드',
+        "page": 'QR코드',
         "title": '더 다양한 서비스를 이용하실 수 있습니다.'
     },
     {
+        "id": "6",
         "parameter": 'ModifyMemberPage',
-        "Page": '내 정보 수정',
+        "page": '내 정보 수정',
         "title": '더 다양한 서비스를 이용하실 수 있습니다.'
     },
     {
+        "id": "6",
         "parameter": 'PasswordChangePage',
-        "Page": '비밀번호 수정',
+        "page": '비밀번호 수정',
         "title": '더 다양한 서비스를 이용하실 수 있습니다.'
     },
 
