@@ -1,15 +1,13 @@
-
 .subtitle_p {
     display: block;
-    margin-bottom: 3.6rem;
-
+    margin-bottom: 1.8rem;
     color: black;
     font-weight: bold;
     font-size: large;
     text-decoration: none;
 }
 
-.subtitle_p:hover{
+.subtitle_p:hover {
     color: white;
     background-color: deepskyblue;
 }

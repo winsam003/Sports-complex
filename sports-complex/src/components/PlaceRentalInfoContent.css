@@ -1,6 +1,6 @@
 /* 서브타이틀 */
 .RentalInfoSearchButton_title {
-    font-size: 19px;
+    font-size: 20px;
     font-weight: 500;
 }
 
@@ -9,6 +9,7 @@
     position: absolute;
     left: 220px;
     top: 0px;
+    margin-top: 10px;
 }
 
 /* 조례 및 조건사항 */
@@ -16,15 +17,25 @@
     position: absolute;
     left: 220px;
     top: 300px;
+    margin-top: 40px;
+
 }
 
 /* 스크롤 박스 */
 .RentalInfoSearchButton_scrollbox {
-    background-color: #fff;
-    width: 920px;
+    background-color: #F6F6F6;
+    width: 890px;
     height: 180px;
     padding: 30px;
+    margin: 0 15px;
     overflow-y: auto;
+    border: black solid 1px;
+}
+
+.TermsAndConditions_subtitle {
+    margin: 15px;
+    font-size: 25px;
+    font-weight: 700;
 }
 
 /* 우선순위 */
@@ -36,7 +47,7 @@
 }
 
 .RentalInfoSearchButton_ul li {
-    width: 225px;
+    width: 217.5px;
     height: 70px;
     font-size: 19px;
     font-weight: 600;
