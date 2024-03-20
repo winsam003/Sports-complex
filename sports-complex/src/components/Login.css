@@ -1,6 +1,6 @@
 
 .login_Page {
-    background-color: hotpink;
+    background-color: #C9EDFA;;
     height: 500px;
     display: flex;
     align-items: center;
@@ -11,6 +11,7 @@
     font-size: 1.3rem;
     text-align: center;
     margin-bottom: 30px;
+    font-weight: bold;
 }
 .login_Box div {
     height: 60px;

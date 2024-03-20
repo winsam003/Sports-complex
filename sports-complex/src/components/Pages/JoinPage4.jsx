@@ -3,6 +3,7 @@ import PageBanner from '../PageBanner';
 import Footer from '../Footer';
 import JoinMember from '../JoinMember';
 import UserTypeAgree from '../UserTypeAgree';
+import RegistrationFlow from '../RegistrationFlow';
 
 export default function JoinPage4() {
     
@@ -11,6 +12,7 @@ export default function JoinPage4() {
         <div>
             <Header />
             <PageBanner />
+            <RegistrationFlow />
             <JoinMember />
             <Footer />
         </div>

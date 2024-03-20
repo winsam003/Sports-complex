@@ -3,6 +3,7 @@ import PageBanner from '../PageBanner';
 import Footer from '../Footer';
 import FindPassword from '../FindPassword';
 import UserTypeAgree from '../UserTypeAgree';
+import RegistrationFlow from './../RegistrationFlow';
 
 export default function JoinPage3() {
     
@@ -12,6 +13,7 @@ export default function JoinPage3() {
         <div>
             <Header />
             <PageBanner />
+            <RegistrationFlow />
             <FindPassword />
             <UserTypeAgree nextPage={nextPage} />
             <Footer />

@@ -1,11 +1,17 @@
+.RegistrationFlow_ul>span{
+    font-size: larger;
+}
+
+
 .RegistrationFlow_ul {
     list-style: none;
     margin: 40px 0 0 0;
     padding: 0;
+
 }
 
 .RegistrationFlow_ul li {
-    width: 240px;
+    width: 220px;
     height: 70px;
     padding-top: 10px;
     font-size: 19px;
@@ -27,4 +33,8 @@
 .RegistrationFlow_ul li span {
     display: block;
     height: 30;
+}
+
+.textBold{
+    font-weight: bold;
 }
