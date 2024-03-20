@@ -63,8 +63,8 @@ function App() {
         <Route path='/PlaceRental' element={<PlaceRental />} />
         <Route path='/ParkingRequest' element={<ParkingRequest />} />
         <Route path='/ApplicationDetailsPage' element={<ApplicationDetailsPage />} />
-        <Route path='/InfoHandlingPolicy' element={<InfoHandlingPolicyPage />} />
-        <Route path='/VideoHandle' element={<VideoHandlePage />} />
+        <Route path='/InfoHandlingPolicyPage' element={<InfoHandlingPolicyPage />} />
+        <Route path='/VideoHandlePage' element={<VideoHandlePage />} />
         <Route path='/EmailCollectRefusal' element={<EmailCollectRefusal />} />
         <Route path='/VisitWayPage' element={<VisitWayPage />} />
         <Route path='*' element={<NotFoundPage />} />
