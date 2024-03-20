@@ -29,7 +29,11 @@ header>:first-child {
 .Header_join{
   margin-right: 25rem;
 }
-
+.Header_Icon{
+    font-size: 1.2rem;
+    vertical-align: middle;
+    padding-left: 5px;
+}
 
 
 
