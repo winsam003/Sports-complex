@@ -24,7 +24,7 @@ export default function HomeDetail(){
                     <input type="submit" value='검색'/>
                 </div>
                 <div>
-                    <div>
+                    <div  className='homeDetail_Calenderbox'>
                         <div className='homeDetail_CalendarCaption'>월간일정</div>
                         <div className='homeDetail_Calendar'>
                             <div>1</div>
@@ -62,13 +62,13 @@ export default function HomeDetail(){
                                 <img className='slide1' src='img/jumuk.jpg' />
                             </div>
                             <div>
-                                <h3 className='slide'>Slide 8</h3>
+                                <img className='slide1' src='img/moon.jpg' />
                             </div>
                             <div>
-                                <h3 className='slide'>Slide 9</h3>
+                                <img className='slide1' src='img/zzanggu.jpg' />
                             </div>
                             <div>
-                                <h3 className='slide'>Slide 10</h3>
+                                <img className='slide1' src='img/snoopy.jpg' />
                             </div>
                         </Slider>
                     </div>
