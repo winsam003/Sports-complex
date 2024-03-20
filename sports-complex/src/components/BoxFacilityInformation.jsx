@@ -4,7 +4,7 @@ export default function BoxFacilityInformation() {
     return (
         <div className='BoxFacilityInformation_div'>
             <div className='BoxFacilityInformation_img_div'>
-                <img src='img/RohJeongeui.jpg' className='BoxFacilityInformation_img'></img>
+                <img src='' className='BoxFacilityInformation_img'></img>
             </div>
             <p>시설명</p>
             <p>kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</p>

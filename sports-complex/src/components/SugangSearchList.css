@@ -1,5 +1,5 @@
 .SugangSearchList_index {
-    background-color: brown;
+    background-color: #E8E3F1;
     position: absolute;
     top: 400px;
     right: 0;
@@ -10,7 +10,6 @@
 }
 
 .SugangSearchList_content {
-    background-color: brown;
     position: absolute;
     top: 425px;
     right: 0;

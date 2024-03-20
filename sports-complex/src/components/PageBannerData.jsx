@@ -1,6 +1,6 @@
 export const PageBannerData = [
     {
-        "id":"1",
+        "id": "1",
         "parameter": "",
         "page": "",
         "title": ""
@@ -98,6 +98,12 @@ export const PageBannerData = [
     {
         "id": "5",
         "parameter": 'PlaceRentalInfo',
+        "page": '대관신청',
+        "title": '원하시는 시설을 대관신청하실 수 있습니다'
+    },
+    {
+        "id": "5",
+        "parameter": 'PlaceRental',
         "page": '대관신청',
         "title": '원하시는 시설을 대관신청하실 수 있습니다'
     },
