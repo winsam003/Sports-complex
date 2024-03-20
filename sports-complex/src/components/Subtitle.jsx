@@ -1,9 +1,11 @@
 import './Subtitle.css'
+import {Link} from 'react-router-dom';
 
-export default function Subtitle() {
+
+export default function Subtitle({parameter, page}) {
     return (
         <div>
-            <p className='subtitle_p'>dd</p>
+            <Link to={`/${parameter}`} className='subtitle_p'>{page}</Link>
         </div>
     )
 }

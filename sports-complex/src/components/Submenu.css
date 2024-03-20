@@ -1,11 +1,13 @@
 .submenu_div {
+    padding-top: 10rem;
     width: 200px;
     height: 800px;
     background-color: #fff;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+
     /* position: fixed; */
 }
 

@@ -1,11 +1,15 @@
-
-.HistoryClass_index{
+.HistoryClass_box>div{
     display: grid;
-    grid-template-columns: repeat(2, 2fr) 3fr 2fr 4fr 1fr 1.5fr 2fr ;
-    width: 100%;
-    text-align: center;
-
+    grid-template-columns: repeat(2, 2fr) 3fr 2fr 4fr 2fr 1.5fr 2fr ;
 }
-.HistoryClass_index span{
-    border: 1px solid black;
+
+@media (max-width : 1200px) {
+    .HistoryClass_box>div{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(auto, 1fr));
+        /* grid-template-rows: repeat(2, minmax(100%, auto)); */
+        /* min-width: 890px; */
+        overflow: auto;
+        /* white-space: nowrap; */
+    }
 }
