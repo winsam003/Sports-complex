@@ -1,4 +1,4 @@
-.JoinMember_joinbox {
+.ModifyMember_joinbox {
     height: auto;
     background-color: lightpink;
     display: flex;
@@ -9,24 +9,24 @@
     right: 0px;
     width: 83.5%;
 }
-.JoinMember_midbox{
+.ModifyMember_midbox{
     background-color: rgba(5, 138, 247, 0.445);
     width: 80%;
     height: 100%;
 }
-.JoinMember_midbox > div, 
-.JoinMember_midbox > p {
+.ModifyMember_midbox > div, 
+.ModifyMember_midbox > p {
     text-align: center;
 } 
-.JoinMember_title{
+.ModifyMember_title{
     font-size: 2rem;
     padding-top: 40px;
 }
-.JoinMember_midbox table {
+.ModifyMember_midbox table {
     border-collapse: collapse;
     width: 100%;
 }
-.JoinMember_midbox th{
+.ModifyMember_midbox th{
     background-color: lightgray;
     border: 2px solid rgb(121, 66, 121);
     width: 200px;
@@ -35,47 +35,47 @@
     font-weight: bold;
     vertical-align: middle;
 }
-.JoinMember_midbox td{
+.ModifyMember_midbox td{
     border: 2px solid rgb(121, 66, 121);
 }
-.JoinMember_midbox input, select {
+.ModifyMember_midbox input, select {
     margin: 10px;
 }
-.JoinMember_midbox input[type="text"],
-.JoinMember_midbox input[type="password"],
-.JoinMember_midbox input[type="number"],
-.JoinMember_midbox input[type="email"] {
+.ModifyMember_midbox input[type="text"],
+.ModifyMember_midbox input[type="password"],
+.ModifyMember_midbox input[type="number"],
+.ModifyMember_midbox input[type="email"] {
     height: 50px;
     border: 1px solid gray;
 }
-.JoinMember_midbox #name, 
-.JoinMember_midbox #birth, 
-.JoinMember_midbox #id, 
-.JoinMember_midbox #password, 
-.JoinMember_midbox #password2, 
-.JoinMember_midbox #address1, 
-.JoinMember_midbox #address2, 
-.JoinMember_midbox #carNum {
+.ModifyMember_midbox #name, 
+.ModifyMember_midbox #birth, 
+.ModifyMember_midbox #id, 
+.ModifyMember_midbox #password, 
+.ModifyMember_midbox #password2, 
+.ModifyMember_midbox #address1, 
+.ModifyMember_midbox #address2, 
+.ModifyMember_midbox #carNum {
     width: 440px;
 }
-.JoinMember_midbox #email, 
-.JoinMember_midbox #emailAdd, 
-.JoinMember_midbox #emailAddSelect {
+.ModifyMember_midbox #email, 
+.ModifyMember_midbox #emailAdd, 
+.ModifyMember_midbox #emailAddSelect {
     height: 50px;
     width: 200PX;
 }
-.JoinMember_midbox #firstPhoneNum, 
-.JoinMember_midbox #secondPhoneNum, 
-.JoinMember_midbox #lastPhoneNum {
+.ModifyMember_midbox #firstPhoneNum, 
+.ModifyMember_midbox #secondPhoneNum, 
+.ModifyMember_midbox #lastPhoneNum {
     height: 50px;
     width: 100px;
 }
-.JoinMember_submitBox {
+.ModifyMember_submitBox {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.JoinMember_submitBox *{
+.ModifyMember_submitBox *{
     width: 200px;
     height: 50px;
     background-color: rgb(88, 143, 175);
@@ -84,16 +84,16 @@
     border: none;
     margin: 30px;
 }
-.JoinMember_star{
+.ModifyMember_star{
     color: red;
 }
-.JoinMember_midbox>span{
+.ModifyMember_midbox>span{
     display: inline-block;
     font-weight: bold;
     font-size: large;
     margin-bottom: 10px;
 }
-.JoinMember_midbox td>a {
+.ModifyMember_midbox td>a {
     display: inline-block;
     background-color: gray;
     height: 50px;
@@ -106,7 +106,7 @@
     text-align: center;
     font-size: large;
 }
-.JoinMember_midbox td>p{
+.ModifyMember_midbox td>p{
     margin: 10px;
 }
 

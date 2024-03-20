@@ -1,5 +1,5 @@
 .PlaceRentalSearchList_index {
-    background-color: brown;
+    background-color: #f3f3f1;
     position: absolute;
     top: 160px;
     right: 0;
@@ -10,7 +10,6 @@
 }
 
 .PlaceRentalSearchList_content {
-    background-color: brown;
     position: absolute;
     top: 185px;
     right: 0;
