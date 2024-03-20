@@ -9,18 +9,18 @@ export default function Submenu() {
         "id": "",
         "parameter": '',
         "page": '',
-        "title": ''
+        "title": '',
+        "checkMenu": ''
     }
 
     const findCurrentPage = PageInfo.filter((page) => page.parameter === currentPage);
     findCurrentPageAll = PageInfo.filter((page) => page.id === findCurrentPage[0].id);
+    findCurrentPageAll = findCurrentPageAll.filter((page) => page.checkMenu === 'Y');
 
     return (
         <div>
             <div className='submenu_div'>
-                {/* <div className='submenu_fixed_div'> */}
-                    {findCurrentPageAll.map((it) => (<Subtitle parameter={it.parameter} page={it.page} />))}
-                {/* </div> */}
+                {findCurrentPageAll.map((it) => (<Subtitle parameter={it.parameter} page={it.page} />))}
             </div>
         </div>
     )

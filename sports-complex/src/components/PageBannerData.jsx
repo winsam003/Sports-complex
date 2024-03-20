@@ -3,139 +3,162 @@ export const PageBannerData = [
         "id": "1",
         "parameter": "",
         "page": "",
-        "title": ""
+        "title": "",
+        "checkMenu": "Y"
     },
     {
         "id": "1",
         "parameter": "JoinPage1",
         "page": "회원가입",
-        "title": "더 다양한 서비스를 이용하실 수 있습니다."
+        "title": "더 다양한 서비스를 이용하실 수 있습니다.",
+        "checkMenu": "Y"
     },
     {
         "id": "1",
         "parameter": "JoinPage2",
         "page": "회원가입",
-        "title": "더 다양한 서비스를 이용하실 수 있습니다."
+        "title": "더 다양한 서비스를 이용하실 수 있습니다.",
+        "checkMenu": "Y"
     },
     {
         "id": "1",
         "parameter": "JoinPage3",
         "page": "회원가입",
-        "title": "더 다양한 서비스를 이용하실 수 있습니다."
+        "title": "더 다양한 서비스를 이용하실 수 있습니다.",
+        "checkMenu": "Y"
     },
     {
         "id": "1",
         "parameter": "JoinPage4",
         "page": "회원가입",
-        "title": "더 다양한 서비스를 이용하실 수 있습니다."
+        "title": "더 다양한 서비스를 이용하실 수 있습니다.",
+        "checkMenu": "Y"
     },
     {
         "id": "1",
         "parameter": "LoginPage",
         "page": "로그인",
-        "title": "더 다양한 서비스를 이용하실 수 있습니다."
+        "title": "더 다양한 서비스를 이용하실 수 있습니다.",
+        "checkMenu": "Y"
     },
     {
         "id": "1",
         "parameter": "FindPasswordPage",
         "page": "비밀번호 찾기",
-        "title": "더 다양한 서비스를 이용하실 수 있습니다."
+        "title": "더 다양한 서비스를 이용하실 수 있습니다.",
+        "checkMenu": "Y"
     },
     {
         "id": "1",
         "parameter": "FindIDPage",
         "page": "아이디 찾기",
-        "title": "더 다양한 서비스를 이용하실 수 있습니다."
+        "title": "더 다양한 서비스를 이용하실 수 있습니다.",
+        "checkMenu": "Y"
     },
     {
         "id": "2",
         "parameter": "FacilityInformationPage",
         "page": "시설안내",
-        "title": "시민과 함께하는 건강하고 행복한 삶"
+        "title": "시민과 함께하는 건강하고 행복한 삶",
+        "checkMenu": "Y"
     },
     {
         "id": "3",
         "parameter": "BoardPage",
         "page": "공지사항",
-        "title": "고객의 소리에 귀 기울여 발전하겠습니다."
+        "title": "고객의 소리에 귀 기울여 발전하겠습니다.",
+        "checkMenu": "Y"
     },
     {
         "id": "3",
         "parameter": "Faq",
         "page": "자주하는 질문",
-        "title": "고객의 소리에 귀 기울여 발전하겠습니다."
+        "title": "고객의 소리에 귀 기울여 발전하겠습니다.",
+        "checkMenu": "Y"
     },
     {
         "id": "3",
         "parameter": "Qna",
         "page": "문의게시판",
-        "title": "고객의 소리에 귀 기울여 발전하겠습니다."
+        "title": "고객의 소리에 귀 기울여 발전하겠습니다.",
+        "checkMenu": "Y"
     },
     {
         "id": "4",
         "parameter": "EventBoardPage",
         "page": "이벤트게시판",
-        "title": "고객의 소리에 귀 기울여 발전하겠습니다."
+        "title": "고객의 소리에 귀 기울여 발전하겠습니다.",
+        "checkMenu": "Y"
     },
     {
         "id": "4",
         "parameter": "EventDetailPage",
         "page": "이벤트게시판",
-        "title": "고객의 소리에 귀 기울여 발전하겠습니다."
+        "title": "고객의 소리에 귀 기울여 발전하겠습니다.",
+        "checkMenu": "N"
     },
     {
         "id": "4",
         "parameter": 'ClassSchedulePage',
         "page": '수업일정표',
-        "title": '시민과 함께하는 건강하고 행복한 삶'
+        "title": '시민과 함께하는 건강하고 행복한 삶',
+        "checkMenu": "Y"
     },
     {
         "id": "5",
         "parameter": 'Sugang',
         "page": '수강신청',
-        "title": '원하시는 강좌를 수강신청하실 수 있습니다'
+        "title": '원하시는 강좌를 수강신청하실 수 있습니다',
+        "checkMenu": "Y"
     },
     {
         "id": "5",
         "parameter": 'PlaceRentalInfo',
         "page": '대관신청',
-        "title": '원하시는 시설을 대관신청하실 수 있습니다'
+        "title": '원하시는 시설을 대관신청하실 수 있습니다',
+        "checkMenu": "N"
     },
     {
         "id": "5",
         "parameter": 'PlaceRental',
         "page": '대관신청',
-        "title": '원하시는 시설을 대관신청하실 수 있습니다'
+        "title": '원하시는 시설을 대관신청하실 수 있습니다',
+        "checkMenu": "Y",
     },
     {
         "id": "5",
         "parameter": 'ParkingRequest',
         "page": '주차신청',
-        "title": '주차신청을 하실 수 있습니다'
+        "title": '주차신청을 하실 수 있습니다',
+        "checkMenu": "Y"
     },
     {
         "id": "6",
         "parameter": 'ApplicationDetailsPage',
         "page": '신청내역',
-        "title": '더 다양한 서비스를 이용하실 수 있습니다.'
+        "title": '더 다양한 서비스를 이용하실 수 있습니다.',
+        "checkMenu": "Y"
     },
     {
         "id": "6",
         "parameter": 'QRCodePage',
         "page": 'QR코드',
-        "title": '더 다양한 서비스를 이용하실 수 있습니다.'
+        "title": '더 다양한 서비스를 이용하실 수 있습니다.',
+        "checkMenu": "Y"
     },
     {
         "id": "6",
         "parameter": 'ModifyMemberPage',
         "page": '내 정보 수정',
-        "title": '더 다양한 서비스를 이용하실 수 있습니다.'
+        "title": '더 다양한 서비스를 이용하실 수 있습니다.',
+        "checkMenu": "Y"
     },
     {
         "id": "6",
         "parameter": 'PasswordChangePage',
         "page": '비밀번호 수정',
-        "title": '더 다양한 서비스를 이용하실 수 있습니다.'
+        "title": '더 다양한 서비스를 이용하실 수 있습니다.',
+        "checkMenu": "Y"
     },
 
     { "parameter": '11', "Page": '정기 주차신청', "title": '원하시는 장소에 주차신청하실 수 있습니다' },

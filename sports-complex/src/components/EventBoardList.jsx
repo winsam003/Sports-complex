@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 
 export default function EventBoardList() {
     return (
-        <div>
+        <div className='EventSearchList_Box'>
             <div className='EventSearchList_div'>
                 <span>작성자</span>
                 <span>제목</span>
