@@ -1,7 +1,9 @@
+/* 대표항목 */
 .SugangSearchList_index {
-    background-color: #E8E3F1;
+    border-top: 3px solid #C9EDFA;
+    background-color: #ceeff250;
     position: absolute;
-    top: 400px;
+    top: 440px;
     right: 0;
     width: 980px;
     display: grid;
@@ -9,9 +11,14 @@
     text-align: center;
 }
 
+.SugangSearchList_index span {
+    font-weight: bold;
+}
+
+/* 내용 */
 .SugangSearchList_content {
     position: absolute;
-    top: 425px;
+    top: 470px;
     right: 0;
     width: 980px;
     display: grid;
@@ -24,6 +31,7 @@
         overflow: auto;
         white-space: nowrap;
         width: 100%;
+        margin-top: 30px;
     }
 
     .SugangSearchList_index {

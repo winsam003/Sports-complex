@@ -3,11 +3,13 @@
     grid-template-columns: repeat(3, 125px) repeat(4, 1fr);
     grid-template-rows: repeat(5, 1fr);
     align-items: center;
-    border-top: 1px black solid;
-    border-bottom: 1px black solid;
-    border-left: 1px black solid;
+    border-top: 3px solid #C9EDFA;
+    border-bottom: rgba(28, 28, 28, 0.199) 1px solid;
+    border-right: rgba(28, 28, 28, 0.199) 1px solid;
+    margin-bottom: 15px;
 }
 
+/* 이미지박스 */
 .BoxFacilityInformation_img_div {
     display: grid;
     grid-column: 1/4;
@@ -25,7 +27,7 @@
     display: grid;
     grid-column: 4/5;
     grid-row: 2n-1/2n;
-    border-left: 1px black solid;
+    border-left: rgba(28, 28, 28, 0.199) 1px solid;
     height: 60px;
     margin: 0;
     font-weight: bold;
@@ -40,8 +42,8 @@
     display: grid;
     grid-column: 5/8;
     grid-row: 2n-1/2n;
-    border-left: 1px black solid;
-    border-right: 1px black solid;
+    border-left: rgba(28, 28, 28, 0.199) 1px solid;
+    border-right: rgba(28, 28, 28, 0.199) 1px solid;
     height: 60px;
     margin: 0;
     padding-left: 10px;
@@ -51,7 +53,7 @@
 }
 
 .BoxFacilityInformation_top_p {
-    border-top: 1px black solid;
+    border-top: rgba(28, 28, 28, 0.199) 1px solid;
 }
 
 @media (max-width : 1200px) {
@@ -60,7 +62,13 @@
         overflow-x: auto;
     }
 
+    /* 대표항목 */
     .BoxFacilityInformation_div p:nth-child(2n) {
         min-width: 95px;
+    }
+
+    /* 세부 항목 */
+    .BoxFacilityInformation_div p:nth-child(2n+1) {
+        min-width: 350px;
     }
 }
