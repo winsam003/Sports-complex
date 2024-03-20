@@ -4,6 +4,8 @@
   font-family: "IBM Plex Sans KR", sans-serif;
   font-weight: 400;
   font-style: normal;
+
+  
 }
 
 /* body 전체  */
@@ -14,7 +16,7 @@ body {
   width: 1200px;
   margin: 0 auto;
 
-  background-color: #9ecbfc;
+  /* background-color: #9ecbfc; */
 
 }
 

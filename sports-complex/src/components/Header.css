@@ -4,19 +4,26 @@ header>:first-child {
   justify-content: flex-end;
   align-items: center;
 
+  width: 100vw;
+  margin-left: calc((100% - 100vw) / 2);
   height: 3.2rem;
 
   margin-top: 0.8rem;
   background-color: azure;
+
+  border-bottom: 1px solid #ccc;
 }
 
-header>:first-child>span {
-  margin-right: 0.8rem;
-}
 
-header>:first-child>a {
+/* 관리자페이지전환 로그인/로그아웃 마진 */
+.noneHeader{
   margin-right: 0.8rem;
   text-decoration: none;
+}
+
+/* 회원가입 마진 */
+.Header_join{
+  margin-right: 25rem;
 }
 
 
@@ -28,23 +35,26 @@ header>:nth-child(2) {
   justify-content: space-around;
   align-items: center;
   position: relative;
-
+  
   height: 8.6rem;
-
-  background-color: bisque;
-
+  
+  
 }
 
+/* 해더의 모든 Link 색상, 언더라인 제거 */
 a {
   text-decoration: none;
-
+  
   color: black;
 }
 
+/* 해더 로고 체육시설... 부분 크기 조정 */
 header>:nth-child(2)>:first-child {
   width: 10rem;
 }
 
+
+/* 로고 */
 header>:nth-child(2)>:first-child>a {
   width: 100%;
   height: 100%;
@@ -53,6 +63,8 @@ header>:nth-child(2)>:first-child>a {
   text-indent: -9999px;
 }
 
+
+/* 로고제외한 부분 크기조정 가운데정렬 */
 header>:nth-child(2)>:nth-child(n+2):nth-child(-n+6) {
 
   width: 6.4rem;
@@ -60,46 +72,61 @@ header>:nth-child(2)>:nth-child(n+2):nth-child(-n+6) {
 
 }
 
+
+
+/* 호버 시 다운드랍 메뉴 생성 */
 header>:nth-child(2):hover+.Header_mainMenu {
-  display: block;
+  visibility: visible;
+  opacity: 1;
 }
 
 header {
   position: relative;
 }
 
+/* 호버시 다운드랍 메뉴 호버 고정 */
 header>:last-child:hover {
-  display: block;
+  visibility: visible;
+  opacity: 1;
 }
 
-/* 호버 시 반응 */
+/* 호버 전 드랍다운 메뉴 */
 header>:last-child {
-  display: none;
-
+  
   margin-top: 10px;
-  width: 100%;
+  width: 100vw;
+  margin-left: calc((100% - 100vw) / 2);
   position: absolute;
   left: 0;
   z-index: 1;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease;
 }
+
 
 header>:last-child>div {
   display: flex;
-  justify-content: space-around;
+  /* justify-content: space-around; */
 
 
-  margin-top: -15px;
+  margin-top: -10px;
 
-  background-color: darkcyan;
+  background-color: azure;
+  
 }
 
 header>:last-child>div>:first-child {
   width: 10rem;
+  background-color: aliceblue;
+
+  margin-left: 25rem
 }
 
 header>:last-child>div>ul {
   list-style-type: none;
 
+  margin-left: 5.5rem;
   width: 6.4rem;
   padding: 0px;
   display: inline-block;
@@ -107,8 +134,9 @@ header>:last-child>div>ul {
 
 header>:last-child>div>ul>li {
   text-align: center;
+  margin-top: 0.99rem;
 
-  margin-top: 5px;
+  /* margin-top: 5px; */
 }
 
 .Header_logo {
@@ -161,6 +189,7 @@ header>:last-child>div>ul>li {
 
 .Header_Menutitle1:hover {
   background-color: DodgerBlue;
+  border-radius: 15px;
 }
 
 .Header_Menutitle1>a:hover {
@@ -169,6 +198,7 @@ header>:last-child>div>ul>li {
 
 .Header_Menutitle2:hover {
   background-color: DodgerBlue;
+  border-radius: 15px;
 }
 
 .Header_Menutitle2>a:hover {
@@ -177,6 +207,7 @@ header>:last-child>div>ul>li {
 
 .Header_Menutitle3:hover {
   background-color: DodgerBlue;
+  border-radius: 15px;
 }
 
 .Header_Menutitle3>a:hover {
@@ -185,6 +216,7 @@ header>:last-child>div>ul>li {
 
 .Header_Menutitle4:hover {
   background-color: DodgerBlue;
+  border-radius: 15px;
 }
 
 .Header_Menutitle4>a:hover {
@@ -193,6 +225,7 @@ header>:last-child>div>ul>li {
 
 .Header_Menutitle5:hover {
   background-color: DodgerBlue;
+  border-radius: 15px;
 }
 
 .Header_Menutitle5>a:hover {
@@ -201,6 +234,7 @@ header>:last-child>div>ul>li {
 
 .Header_Menutitle6:hover {
   background-color: DodgerBlue;
+  border-radius: 15px;
 }
 
 .Header_Menutitle6>a:hover {
@@ -209,6 +243,7 @@ header>:last-child>div>ul>li {
 
 .Header_Menutitle7:hover {
   background-color: DodgerBlue;
+  border-radius: 15px;
 }
 
 .Header_Menutitle7>a:hover {
@@ -217,6 +252,7 @@ header>:last-child>div>ul>li {
 
 .Header_Menutitle8:hover {
   background-color: DodgerBlue;
+  border-radius: 15px;
 }
 
 .Header_Menutitle8>a:hover {
@@ -225,6 +261,7 @@ header>:last-child>div>ul>li {
 
 .Header_Menutitle9:hover {
   background-color: DodgerBlue;
+  border-radius: 15px;
 }
 
 .Header_Menutitle9>a:hover {
@@ -233,6 +270,7 @@ header>:last-child>div>ul>li {
 
 .Header_Menutitle10:hover {
   background-color: DodgerBlue;
+  border-radius: 15px;
 }
 
 .Header_Menutitle10>a:hover {
@@ -241,6 +279,7 @@ header>:last-child>div>ul>li {
 
 .Header_Menutitle11:hover {
   background-color: DodgerBlue;
+  border-radius: 15px;
 }
 
 .Header_Menutitle11>a:hover {
@@ -249,6 +288,7 @@ header>:last-child>div>ul>li {
 
 .Header_Menutitle12:hover {
   background-color: DodgerBlue;
+  border-radius: 15px;
 }
 
 .Header_Menutitle12>a:hover {
@@ -258,7 +298,14 @@ header>:last-child>div>ul>li {
 
 
 
+
+
+/* 반응형 */
 @media(max-width: 1200px) {
+
+  .Header_join{
+    display: none;
+  }
 
   .goHome {
     display: block;

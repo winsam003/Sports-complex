@@ -2,19 +2,19 @@ import './ModifyMember.css'
 
 export default function ModifyMember() {
     return (
-        <div className='JoinMember_joinbox'>
-            <div className='JoinMember_midbox'>
-                <div className='JoinMember_title'>회원정보 수정</div>
-                <span className='JoinMember_star'>※ * 는 필수입력사항입니다.</span>
+        <div className='ModifyMember_joinbox'>
+            <div className='ModifyMember_midbox'>
+                <div className='ModifyMember_title'>회원정보 수정</div>
+                <span className='ModifyMember_star'>※ * 는 필수입력사항입니다.</span>
 
                 <form action="/" method='post'>
                     <table>
                         <tr>
-                            <th>이름 (실명) <span className='JoinMember_star'>*</span></th>
+                            <th>이름 (실명) <span className='ModifyMember_star'>*</span></th>
                             <td><input type="text" name='name' id='name' readOnly /></td>
                         </tr>
                         <tr>
-                            <th>생년월일<span className='JoinMember_star'>*</span></th>
+                            <th>생년월일<span className='ModifyMember_star'>*</span></th>
                             <td>
                                 <input type="number" name='birth' id='birth' readOnly />
                                 <input type="radio" id='solar' name='birthChoice' value={'solar'} />
@@ -24,7 +24,7 @@ export default function ModifyMember() {
                             </td>
                         </tr>
                         <tr>
-                            <th>성별<span className='JoinMember_star'>*</span></th>
+                            <th>성별<span className='ModifyMember_star'>*</span></th>
                             <td>
                                 <input type="radio" id='men' name='gender' value={'men'} />
                                 <label htmlFor="men">남자</label>
@@ -33,7 +33,7 @@ export default function ModifyMember() {
                             </td>
                         </tr>
                         <tr>
-                            <th>아이디<span className='JoinMember_star'>*</span></th>
+                            <th>아이디<span className='ModifyMember_star'>*</span></th>
                             <td>
                                 <input type="text" name='id' id='id' />
                                 <a href="./" className='button'>중복확인</a>
@@ -96,7 +96,7 @@ export default function ModifyMember() {
                         </tr>
 
                     </table>
-                    <div className='JoinMember_submitBox' >
+                    <div className='ModifyMember_submitBox' >
                         <input type="submit" name='submit' id='submit' value={"회원정보 수정"} />
                     </div>
                 </form>
