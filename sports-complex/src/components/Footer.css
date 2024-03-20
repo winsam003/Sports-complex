@@ -1,4 +1,23 @@
+footer {
+    margin-top: 30px
+}
+
 /* footer guide list */
+
+footer{
+    margin-bottom: 100px;
+}
+
+.footer_list{
+    width: 100vw;
+    margin-left: calc((100% - 100vw) / 2);
+
+    background-color: azure;
+
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+}
+
 .footer_ul {
     margin: 5px 0 0 0;
     padding: 0;
@@ -62,6 +81,7 @@
     grid-template-rows: 4fr;
     align-items: center;
     text-align: center;
+    
 }
 
 .consulting_telNum p {

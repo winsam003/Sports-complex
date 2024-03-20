@@ -18,7 +18,7 @@ export default function PageBanner() {
             <div className='pagebanner_img_div'>
                 <div className='pagebanner_img' />
             </div>
-            <span>
+            <span className='PageBanner_page'>
                 {selectedPage.page}<br></br>
             </span>
             <span>

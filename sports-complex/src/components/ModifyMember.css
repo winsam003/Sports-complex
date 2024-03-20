@@ -1,6 +1,6 @@
 .ModifyMember_joinbox {
     height: auto;
-    background-color: lightpink;
+    background-color: wight;
     display: flex;
     /* align-items: center; */
     justify-content: center;
@@ -10,7 +10,7 @@
     width: 83.5%;
 }
 .ModifyMember_midbox{
-    background-color: rgba(5, 138, 247, 0.445);
+    background-color: #F6F6F6;
     width: 80%;
     height: 100%;
 }
@@ -27,8 +27,8 @@
     width: 100%;
 }
 .ModifyMember_midbox th{
-    background-color: lightgray;
-    border: 2px solid rgb(121, 66, 121);
+    background-color: FloralWhite;
+    border: 1px solid #ccc;
     width: 200px;
     text-align: left;
     padding-left: 20px;
@@ -36,7 +36,7 @@
     vertical-align: middle;
 }
 .ModifyMember_midbox td{
-    border: 2px solid rgb(121, 66, 121);
+    border: 2px solid #ccc;
 }
 .ModifyMember_midbox input, select {
     margin: 10px;
@@ -74,6 +74,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: white;
 }
 .ModifyMember_submitBox *{
     width: 200px;

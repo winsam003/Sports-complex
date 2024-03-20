@@ -8,7 +8,7 @@ header>:first-child {
   margin-left: calc((100% - 100vw) / 2);
   height: 3.2rem;
 
-  margin-top: 0.8rem;
+  /* margin-top: 0.8rem; */
   background-color: azure;
 
   border-bottom: 1px solid #ccc;
@@ -94,8 +94,8 @@ header>:last-child:hover {
 header>:last-child {
   
   margin-top: 10px;
-  width: 100vw;
-  margin-left: calc((100% - 100vw) / 2);
+  width: 100%;
+  /* margin-left: calc((100% - 100vw) / 2); */
   position: absolute;
   left: 0;
   z-index: 1;
@@ -107,7 +107,7 @@ header>:last-child {
 
 header>:last-child>div {
   display: flex;
-  /* justify-content: space-around; */
+  justify-content: space-around;
 
 
   margin-top: -10px;
@@ -118,15 +118,14 @@ header>:last-child>div {
 
 header>:last-child>div>:first-child {
   width: 10rem;
-  background-color: aliceblue;
 
-  margin-left: 25rem
+  /* margin-left: 25rem */
 }
 
 header>:last-child>div>ul {
   list-style-type: none;
 
-  margin-left: 5.5rem;
+  /* margin-left: 5.5rem; */
   width: 6.4rem;
   padding: 0px;
   display: inline-block;

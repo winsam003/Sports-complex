@@ -41,7 +41,7 @@ export default function PlaceRentalContent() {
                         <tr>
                             <th>가격 <span className='star'></span></th>
                             <td>
-                                <input type="text" name='phoneNum' id='phoneNum' />
+                                <input type="text" name='phoneNum' id='phoneNum' placeholder='선택한 시설에서 가져오기' />
                             </td>
                         </tr>
                     </table>
