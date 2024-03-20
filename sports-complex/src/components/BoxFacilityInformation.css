@@ -20,16 +20,22 @@
     width: 100%;
 }
 
+/* 대표항목 */
 .BoxFacilityInformation_div p:nth-child(2n) {
     display: grid;
     grid-column: 4/5;
     grid-row: 2n-1/2n;
-    padding-left: 15px;
     border-left: 1px black solid;
     height: 60px;
     margin: 0;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ceeff250;
 }
 
+/* 내용 */
 .BoxFacilityInformation_div p:nth-child(2n+1) {
     display: grid;
     grid-column: 5/8;
@@ -38,6 +44,10 @@
     border-right: 1px black solid;
     height: 60px;
     margin: 0;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    word-break: break-all;
 }
 
 .BoxFacilityInformation_top_p {

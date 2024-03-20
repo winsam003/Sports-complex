@@ -334,6 +334,7 @@ header>:last-child>div>ul>li {
 
   .noneHeader {
     display: none;
+    
   }
 
   header>:nth-child(2)>:first-child {

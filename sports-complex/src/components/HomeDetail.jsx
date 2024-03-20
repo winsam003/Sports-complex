@@ -20,7 +20,7 @@ export default function HomeDetail(){
         <div className='homeDetail_container'>
             <div className='homeDetail_items1'>
                 <div>
-                    <input type="text" />
+                    <input type="text" placeholder='검색어를 입력해주세요.' />
                     <input type="submit" value='검색'/>
                 </div>
                 <div>
@@ -56,10 +56,10 @@ export default function HomeDetail(){
                                 <img className='slide1' src='img/농구.jpg' />
                             </div>
                             <div>
-                                <h3 className='slide'>Slide 6</h3>
+                                <img className='slide1' src='img/mainPic1.jpg' />
                             </div>
                             <div>
-                                <h3 className='slide'>Slide 7</h3>
+                                <img className='slide1' src='img/jumuk.jpg' />
                             </div>
                             <div>
                                 <h3 className='slide'>Slide 8</h3>
@@ -90,7 +90,7 @@ export default function HomeDetail(){
                             </tr>
                             <tr className="homeDetail_login">
                                 <td></td>
-                                <td><input type="submit" value="로그인" /></td>
+                                <td><input type="submit" value="로그인" id='homeDetail_loginbtn' /></td>
                             </tr>
                         </table>
                     </form>
