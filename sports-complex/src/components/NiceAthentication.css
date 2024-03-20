@@ -1,13 +1,7 @@
 .NiceAthentication_box {
-    background-color: plum;
+    /* background-color: plum; */
     padding-top: 20px;
     border: 2px solid lightgray;
-}
-.NiceAthentication_box button{
-    background-color: lightskyblue;
-    font-weight: bolder;
-    width: 150px;
-    height: 50px;
 }
 .NiceAthentication_title {
     font-size: 1.5rem;

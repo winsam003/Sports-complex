@@ -14,7 +14,7 @@
 }
 
 .middlemenu>a>span{
-    background-color: #90e8ed;
+    background-color: #c7f3fa;
     display: inline-block;
     width: 10rem;
     height: 10rem;
@@ -23,7 +23,8 @@
     border-radius: 30%;
     margin: auto;
     font-size: large;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+    /* border: 1px solid grey; */
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
 }
 
 .middlemenu>a>span:hover{
