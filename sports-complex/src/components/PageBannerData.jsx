@@ -79,6 +79,12 @@ export const PageBannerData = [
     },
     {
         "id": "4",
+        "parameter": "EventDetailPage",
+        "page": "이벤트게시판",
+        "title": "고객의 소리에 귀 기울여 발전하겠습니다."
+    },
+    {
+        "id": "4",
         "parameter": 'ClassSchedulePage',
         "page": '수업일정표',
         "title": '시민과 함께하는 건강하고 행복한 삶'

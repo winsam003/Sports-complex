@@ -60,7 +60,6 @@ function App() {
         <Route path='/ParkingRequest' element={<ParkingRequest />} />
         <Route path='/ApplicationDetailsPage' element={<ApplicationDetailsPage />} />
         <Route path='*' element={<NotFoundPage />} />
-
       </Routes>
     </div>
   );
