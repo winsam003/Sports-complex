@@ -3,7 +3,7 @@ import "./NiceAthentication.css"
 export default function NiceAthentication() {
     return (
         <div className="NiceAthentication_box">
-            <img src="img/roopy.PNG" alt=""
+            <img src="img/niceMark.jpg" alt=""
                 style={{ width: "200px", height: "200px" }} />
             <div className="NiceAthentication_title">나이스 아이핀(I-PIN) 인증</div>
             <button>인증하기</button>

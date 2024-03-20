@@ -1,23 +1,15 @@
 .submenu_div {
     padding-top: 10rem;
     width: 200px;
-    height: 700px;
+    height: 800px;
     /* background-color: #3080e234; */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    /* position: fixed; */
 }
 
-/* fixed를 위한 div */
-/* .submenu_fixed_div {
-    position: fixed;
-    top: 30rem;
-    transition: top 0.3s;
-} */
-
-
-/* subtitle을 위한 div */
 .submenu_div div {
     margin-bottom: 1.8em;
     border-bottom: rgba(0, 0, 0, 0.096) solid;

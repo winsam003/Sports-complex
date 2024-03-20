@@ -76,9 +76,11 @@
     transform: translate(0.8rem, 0.8rem);
 
     border: 1px solid #27979d;
-    /* background-color: #d5f1f5; */
     border-radius: 1em;
-    /* box-shadow: inset 0px 0px 10px 5px rgba(255, 255, 255, 0.5); */
+    background-image: url('../../public/img/logoRe.jpg');
+    background-repeat: no-repeat;
+    background-size: 30%;
+    background-position: top;
 }
 
 #homeDetail_loginbtn {
@@ -126,6 +128,7 @@
     background-color: #c7f3fa;
     border-bottom-left-radius: 1em;
     border-bottom-right-radius: 1em;
+
 }
 .homeDetail_Calendar>div{
     justify-content: center;
@@ -134,6 +137,13 @@
     display: flex;
     height: 100%;
 }
+.homeDetail_Calendar div:not(:nth-child(4n)) {
+    border-right: 1px solid #8edde1;
+}
+.homeDetail_Calendar div:nth-child(-n+8){
+    border-bottom: 1px solid #8edde1;
+}
+
 
 .homeDetail_Calendar>div:hover{
     background-color: #e7f8fb;

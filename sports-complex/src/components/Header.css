@@ -15,6 +15,7 @@ header>:first-child {
   background-color: azure;
 
   border-bottom: 1px solid #ccc;
+
 }
 
 
@@ -41,7 +42,8 @@ header>:nth-child(2) {
   
   height: 8.6rem;
   
-  
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 /* 해더의 모든 Link 색상, 언더라인 제거 */
