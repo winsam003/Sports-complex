@@ -3,6 +3,27 @@
     grid-template-columns: repeat(10, 1fr);
 
     text-align: center;
+    
 
-    background-color: cornflowerblue;
+    /* background-color: cornflowerblue; */
+
+    /* 꾸며보겠다.  */
+}
+.ClassScheduleDetail_Box button{
+    background-color: #90969a;
+    color: white;
+    border: none;
+    border-radius: 0.7rem;
+    
+}
+
+.ClassScheduleDetail_Box span{
+    padding: 0.5rem;
+    border-right: 1px solid rgb(253, 236, 255);
+    border-bottom: 1px solid rgb(214, 214, 214);
+    
+
+}
+.ClassScheduleDetail_Box:hover{
+    background-color: #f4f4f4;
 }

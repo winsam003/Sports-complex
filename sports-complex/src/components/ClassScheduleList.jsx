@@ -4,6 +4,7 @@ import ClassScheduleDetail from './ClassScheduleDetail';
 export default function ClassSchedule(){
     return(
         <div className="ClassSchedule_Containor">
+            <p className='ClassSchedule_title'> 월 별 선택</p>
             <div className='ClassSchedule_Search'>
                 <div className='ClassSchedule_Calendar'>
                     <div>1</div>
@@ -21,16 +22,16 @@ export default function ClassSchedule(){
                 </div>
             </div>
             <div className='ClassSchedule_CheckBox'>
-                <label>구기종목</label>
-                <input type="checkbox"/>
-                <label>수상종목</label>
-                <input type="checkbox"/>
-                <label>댄스</label>
-                <input type="checkbox"/>
-                <label>라켓종목</label>
-                <input type="checkbox"/>
-                <label>웨이트</label>
-                <input type="checkbox"/>
+                <label htmlFor='withBall'>구기종목</label>
+                <input type="checkbox" id='withBall' name='classType' value={'withBall'}/>
+                <label htmlFor='water'>수상종목</label>
+                <input type="checkbox" id='water' name='classType' value={'water'}/>
+                <label htmlFor='dance'>댄스</label>
+                <input type="checkbox" id='dance' name='classType' value={'dance'}/>
+                <label htmlFor='racket'>라켓종목</label>
+                <input type="checkbox" id='racket' name='classType' value={'racket'}/>
+                <label htmlFor='weight'>웨이트</label>
+                <input type="checkbox" id='weight' name='classType' value={'weight'}/>
             </div>
             <div className='ClassSchedule_List'>
                 <div>
