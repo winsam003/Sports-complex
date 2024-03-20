@@ -19,7 +19,9 @@ footer{
 }
 
 .footer_ul {
-    margin: 5px 0 0 0;
+    /* margin: 5px 0 0 0; */
+    margin-top: 0;
+    margin-bottom: 0;
     padding: 0;
     text-align: center;
 }
@@ -29,6 +31,9 @@ footer{
     padding: 0;
     display: inline-block;
 }
+.footer_ul .footer_ol:nth-child(1){
+    padding: 0;
+}
 
 .footer_ol:nth-child(1) {
     padding-right: 10px;
@@ -37,10 +42,12 @@ footer{
 .footer_li {
     display: inline-block;
     line-height: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .footer_li:nth-child(1) {
-    padding-right: 10px;
+    /* padding-right: 10px; */
 }
 
 /* footer company_info */
