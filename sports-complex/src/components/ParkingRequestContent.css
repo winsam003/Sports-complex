@@ -1,7 +1,7 @@
 /* 주차신청 */
 .ParkingRequestInfo {
     position: absolute;
-    top: 20px;
+    top: 0;
     left: 220px;
     width: 980px;
     display: grid;
@@ -10,6 +10,7 @@
     text-align: center;
     border-top: 3px solid #C9EDFA;
     border-left: rgba(28, 28, 28, 0.199) 1px solid;
+    margin-top: 30px
 }
 
 /* 주차장위치 */
@@ -123,8 +124,10 @@
     opacity: 0.3;
 }
 
+/* 신청 초기화 버튼 */
 .ParkingRequestButton {
     position: absolute;
+    margin-top: 10px;
     top: 150px;
     left: 595px;
 }
@@ -145,6 +148,6 @@
 
     .ParkingRequestButton {
         position: initial;
-        margin-top: 30px;
+        margin-top: 10px;
     }
 }

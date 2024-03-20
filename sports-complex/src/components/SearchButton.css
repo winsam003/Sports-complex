@@ -1,6 +1,6 @@
 .SearchButton {
     position: absolute;
-    top: 340px;
+    top: 360px;
     left: 220px;
 }
 
@@ -13,6 +13,6 @@
 @media (max-width : 1200px) {
     .SearchButton {
         position: initial;
-        margin: 5px 0;
+        margin-top: 10px;
     }
 }
