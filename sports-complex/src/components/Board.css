@@ -8,6 +8,13 @@
     bottom: 30px;
     width: 100px;
     height: 50px;
+
+    background-color: rgb(88, 143, 175);
+    font-size: large;
+    border: none;
+}
+.board_writebutton *{
+    color: white;
 }
 
 @media (max-width :1200px) {
