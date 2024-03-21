@@ -1,14 +1,15 @@
 import './Header.css';
 import { Link } from 'react-router-dom';
 
-import JoinPage1 from './Pages/JoinPage1';
-import FacilityInformationPage from './Pages/FacilityInformationPage';
-import BoardPage from './Pages/BoardPage';
-import FrequentlyAskedPage from './Pages/FrequentlyAskedPage';
-import Qna from './Pages/Qna';
-import Faq from './Pages/Faq';
-import Sugang from './Pages/Sugang';
-import ClassSchedule from './ClassSchedule';
+// import JoinPage1 from './Pages/JoinPage1';
+// import FacilityInformationPage from './Pages/FacilityInformationPage';
+// import BoardPage from './Pages/BoardPage';
+// import FrequentlyAskedPage from './Pages/FrequentlyAskedPage';
+// import Qna from './Pages/Qna';
+// import Faq from './Pages/Faq';
+// import Sugang from './Pages/Sugang';
+// import ClassSchedule from './ClassSchedule';
+// import ManagementPage from './ManagementPage';
 
 import { TbUserPlus } from "react-icons/tb";
 
@@ -17,7 +18,7 @@ export default function Header() {
         <header>
             <div>
                 <div className='goHome'><Link to='/'></Link></div>
-                <Link to='' className='noneHeader'>관리자 페이지 전환</Link>
+                <Link to='/ManagementPage' className='noneHeader'>관리자 페이지 전환</Link>
                 <Link to='/LoginPage' className='noneHeader'>로그인/로그아웃</Link>
                 <Link to='/JoinPage1' className='Header_join'>회원가입<TbUserPlus className='Header_Icon' /></Link>
             </div>
