@@ -4,10 +4,10 @@ import PageBanner from '../PageBanner';
 import Submenu from '../Submenu';
 import XBoardControllContent from '../XBoardSearchBox';
 import XBoardSearchResult from '../XBoardSearchResult';
-import XBoardButton from '../XBoardButton';
+import XResetDeleteBtn from '../XBtnResetDelete';
 
-// 공지사항 관리
-export default function XBoardControllPage() {
+// 문의게시판 관리
+export default function XQnaBoardControllPage() {
     return (
         <div>
             <Header />
@@ -15,7 +15,7 @@ export default function XBoardControllPage() {
             <Submenu />
             <XBoardControllContent />
             <XBoardSearchResult />
-            <XBoardButton />
+            <XResetDeleteBtn />
             <Footer />
         </div>
     )
