@@ -198,6 +198,13 @@ export const PageBannerData = [
         "title": '홈 관리',
         "checkMenu": "N"
     },
+    {
+        "id": "8",
+        "parameter": 'UserInfoPage',
+        "page": '관리자 페이지',
+        "title": '인적 관리',
+        "checkMenu": "Y"
+    },
 
     { "parameter": '11', "Page": '정기 주차신청', "title": '원하시는 장소에 주차신청하실 수 있습니다' },
     { "parameter": '13', "Page": 'QR 코드', "title": '이웃과 함께하는 건강하고 행복한 삶' },

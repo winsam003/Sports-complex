@@ -31,7 +31,8 @@ import VideoHandlePage from './components/Pages/VideoHandlePage';
 import EmailCollectRefusal from './components/Pages/EmailCollectRefusal';
 import VisitWayPage from './components/Pages/VisitWayPage';
 import NotFoundPage from './components/Pages/NotFoundPage';
-import ManagementPage from './components/Pages/ManagementPage';
+import ManagementPage from './components/Pages/XmanagementPage';
+import UserInfoPage from './components/Pages/XuserInfoPage';
 
 function App() {
 
@@ -70,6 +71,7 @@ function App() {
         <Route path='/VisitWayPage' element={<VisitWayPage />} />
 
         <Route path='/ManagementPage' element={<ManagementPage />} />
+        <Route path='/UserInfoPage' element={<UserInfoPage />} />
 
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
