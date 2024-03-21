@@ -3,7 +3,7 @@
 } */
 
 .EventDetailContainor{
-    background-color: bisque;
+    background-color: #F6F6F6;
 
     position: absolute;
     right: 0;
@@ -29,10 +29,29 @@
 .EventDetail_menu>:first-child{
     flex: 1;
     font-weight: bold;
+
+    border-right: 1px solid #ccc;
 }
 
 .EventDetail_menu>:last-child {
-    flex: 3;
+    flex: 8;
+
+    margin-left: 3rem;
+}
+
+.EventDetail_buttonBox{
+    display: flex;
+
+    justify-content: center;
+
+    margin-top: 7rem;
+}
+
+.EventDetail_button{
+    width: 100px;
+    height: 50px;
+
+    background-color: #808080;
 }
 
 

@@ -9,11 +9,13 @@ export default function Submenu() {
         "id": "",
         "parameter": '',
         "page": '',
-        "title": ''
+        "title": '',
+        "checkMenu": ''
     }
 
     const findCurrentPage = PageInfo.filter((page) => page.parameter === currentPage);
     findCurrentPageAll = PageInfo.filter((page) => page.id === findCurrentPage[0].id);
+    findCurrentPageAll = findCurrentPageAll.filter((page) => page.checkMenu === 'Y');
 
     return (
         <div>

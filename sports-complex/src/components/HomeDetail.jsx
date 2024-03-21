@@ -3,6 +3,10 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './HomeDetail.css';
 
+import { TbUser } from "react-icons/tb";
+import { TbLock } from "react-icons/tb";
+import { Link } from 'react-router-dom';
+
 export default function HomeDetail(){
 
     const settings = {
@@ -27,18 +31,18 @@ export default function HomeDetail(){
                     <div  className='homeDetail_Calenderbox'>
                         <div className='homeDetail_CalendarCaption'>월간일정</div>
                         <div className='homeDetail_Calendar'>
-                            <div>1</div>
-                            <div>2</div>
-                            <div>3</div>
-                            <div>4</div>
-                            <div>5</div>
-                            <div>6</div>
-                            <div>7</div>
-                            <div>8</div>
-                            <div>9</div>
-                            <div>10</div>
-                            <div>11</div>
-                            <div>12</div>
+                            <div>1월</div>
+                            <div>2월</div>
+                            <div>3월</div>
+                            <div>4월</div>
+                            <div>5월</div>
+                            <div>6월</div>
+                            <div>7월</div>
+                            <div>8월</div>
+                            <div>9월</div>
+                            <div>10월</div>
+                            <div>11월</div>
+                            <div>12월</div>
                         </div>
                     </div>
                     <div className='slideBox'>
@@ -79,14 +83,16 @@ export default function HomeDetail(){
             <div className='homeDetail_items2'>
                 <div>
                     <form action="/" method="post">
-                        <table>
+                        <table className='homeDetail_loginbox'>
                             <tr>
-                                <th>I D</th>
-                                <td><input type="text" /></td>
+                                <th><TbUser className='homeDetail_Icon' /></th>
+                                {/* <th><IoMdPerson id='homeDetail_personIcon' />I D</th> */}
+                                <td><input type="text" placeholder='아이디를 입력하세요.' /></td>
                             </tr>
                             <tr>
-                                <th>Password</th>
-                                <td><input type="password" /></td>
+                                <th><TbLock className='homeDetail_Icon'  /></th>
+                                {/* <th><TbLock />Password</th> */}
+                                <td><input type="password" placeholder='비밀번호를 입력하세요.' /></td>
                             </tr>
                             <tr className="homeDetail_login">
                                 <td></td>
@@ -94,6 +100,11 @@ export default function HomeDetail(){
                             </tr>
                         </table>
                     </form>
+                    <div className='homeDetail_helpLogin'>
+                        <a href="/">아이디찾기</a>
+                        <a href="/">비밀번호찾기</a>
+                        <a href="/">회원가입</a>
+                    </div>
                 </div>
             </div>
         </div>

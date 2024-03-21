@@ -56,7 +56,7 @@
 .ModifyMember_midbox #address1, 
 .ModifyMember_midbox #address2, 
 .ModifyMember_midbox #carNum {
-    width: 440px;
+    width: 400px;
 }
 .ModifyMember_midbox #email, 
 .ModifyMember_midbox #emailAdd, 

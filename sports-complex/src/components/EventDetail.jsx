@@ -38,6 +38,9 @@ export default function EventDetail() {
                     <span>08:00~09:00</span>
                 </div>
             </div>
+            <div className='EventDetail_buttonBox'>
+                <button className='EventDetail_button'>뒤로가기</button>
+            </div>
         </div>
     )
 }

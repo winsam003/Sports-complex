@@ -1,3 +1,6 @@
+
+
+
 /* 관리자 페이지 전환, 로그아웃 */
 header>:first-child {
   display: flex;
@@ -12,6 +15,7 @@ header>:first-child {
   background-color: azure;
 
   border-bottom: 1px solid #ccc;
+
 }
 
 
@@ -25,7 +29,11 @@ header>:first-child {
 .Header_join{
   margin-right: 25rem;
 }
-
+.Header_Icon{
+    font-size: 1.2rem;
+    vertical-align: middle;
+    padding-left: 5px;
+}
 
 
 
@@ -38,7 +46,8 @@ header>:nth-child(2) {
   
   height: 8.6rem;
   
-  
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 /* 해더의 모든 Link 색상, 언더라인 제거 */
