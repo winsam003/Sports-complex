@@ -261,6 +261,11 @@ export const PageBannerData = [
         "Page": '대관 시설 관리',
         "title": '대관 시설을 관리할 수 있습니다 '
     },
+     {
+        "parameter": 'XReantalPlaceDetailPage',
+        "Page": '대관 시설 관리',
+        "title": '대관 시설을 관리할 수 있습니다 '
+    },
     {
         "parameter": 'XReantalPlaceNewonePage',
         "Page": '대관 시설 등록 및 변경',
