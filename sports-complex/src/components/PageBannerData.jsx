@@ -108,6 +108,13 @@ export const PageBannerData = [
         "checkMenu": "Y"
     },
     {
+        "id": "3",
+        "parameter": "Inquiry",
+        "page": "문의게시판",
+        "title": "고객의 소리에 귀 기울여 발전하겠습니다.",
+        "checkMenu": "N"
+    },
+    {
         "id": "4",
         "parameter": "EventBoardPage",
         "page": "이벤트게시판",

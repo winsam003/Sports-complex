@@ -10,4 +10,10 @@
 .subtitle_p:hover {
     color: white;
     background-color: deepskyblue;
+    border-radius: 15px;
+}
+
+.subtitle_color{
+    background-color: deepskyblue;
+    border-radius: 15px;
 }
