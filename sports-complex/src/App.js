@@ -32,6 +32,7 @@ import EmailCollectRefusal from './components/Pages/EmailCollectRefusal';
 import VisitWayPage from './components/Pages/VisitWayPage';
 import NotFoundPage from './components/Pages/NotFoundPage';
 import ManagementPage from './components/Pages/ManagementPage';
+import XmainEvent from './components/XmainEvent';
 
 function App() {
 
@@ -70,6 +71,7 @@ function App() {
         <Route path='/VisitWayPage' element={<VisitWayPage />} />
 
         <Route path='/ManagementPage' element={<ManagementPage />} />
+        <Route path='/XmainEvent' element={<XmainEvent />} />
 
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
