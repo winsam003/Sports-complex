@@ -8,8 +8,9 @@ export default function XmainEvent() {
 
     const[checkboxValue, setCheckboxValue] = useState(false);
 
-    const checkboxChange = (value) => {
-        setCheckboxValue(value);
+    const checkboxChange = (newValue) => {
+        console.log(newValue);
+        setCheckboxValue(newValue);
     }
 
     return(
@@ -20,7 +21,7 @@ export default function XmainEvent() {
                 <div className='XmainEvent_upload'>
                     <form action="post">
                         <input type="file" />
-                        <input type="submit" value={'제출'} onClick={''} />
+                        <input type="submit" value={'제출'} onClick={'checkboxChange'} />
                     </form>
                 </div>
             </div>

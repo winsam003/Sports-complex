@@ -1,13 +1,14 @@
 import './Xboard.css'
 import React, {useState}  from 'react';
 
-export default function Xboard() {
+export default function Xboard({onCheckboxChange}) {
 
     const [isChecked, setIsChecked] = useState(false);
 
     const checkedevent = (event) => {
-        // console.log(event.target.checked);
-        setIsChecked(event.target.checked);
+        const newValue = event.target.checked;
+        // console.log(newValue);
+        setIsChecked(newValue);
     }
 
     return(
@@ -22,7 +23,7 @@ export default function Xboard() {
                     <span>첨부파일</span>
                 </div>
                 <div className='Xboard_content'>
-                    {/* <span><input type="checkbox" value={eventCode} checked={isChecked} onChange={checkedevent} /></span> */}
+                    <span><input type="checkbox" checked={isChecked} onChange={checkedevent} /></span>
                     <span>00000001</span>
                     <span>공지사항 제목 확인용 글입니다</span>
                     <span>김수한무두루미</span>
