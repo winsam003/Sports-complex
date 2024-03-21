@@ -262,9 +262,9 @@ export const PageBannerData = [
         "title": '대관 시설을 관리할 수 있습니다 '
     },
     {
-        "parameter": '32',
-        "Page": '대관 시설 등록',
-        "title": '신규 대관 시설을 등록할 수 있습니다 '
+        "parameter": 'XReantalPlaceNewonePage',
+        "Page": '대관 시설 등록 및 변경',
+        "title": '대관 시설을 관리할 수 있습니다 '
     },
     {
         "parameter": 'XEventBoardControllPage',
