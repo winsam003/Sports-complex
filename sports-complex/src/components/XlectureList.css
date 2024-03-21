@@ -1,14 +1,14 @@
 
 
 /* 회원 정보 관리 전체 박스 */
-.XuserInfoList_Box{
+.XlectureInfoList_Box{
     background-color: #F0FFFF;
     width: 100%;
     
 }
 
 /* 회원 정보 검색 박스 */
-.XuserInfoList_userSearchBox{
+.XlectureInfoList_userSearchBox{
     display: flex;
     justify-content: center;
     
@@ -18,12 +18,12 @@
 }
 
 /* 회원 정보 검색 input */
-.XuserInfoList_userSearchBox>:first-child{
+.XlectureInfoList_userSearchBox>:first-child{
     width: 40rem;
 }
 
 /* 검색 박스 */
-.XuserInfoList_userSearchBox+div{
+.XlectureInfoList_userSearchBox+div{
     display: flex;
     justify-content: flex-end;
 
@@ -34,7 +34,7 @@
 }
 
 /* 유저 아이디 검색 글자 div박스 */
-.XuserInfoList_searchTitle{
+.XlectureInfoList_searchTitle{
     display: flex;
     justify-content: center;
     margin-top: 4rem;
@@ -44,7 +44,7 @@
 }
 
 /* 초기화 조회 버튼 */
-.XuserInfoList_userSearchBox+div>button{
+.XlectureInfoList_userSearchBox+div>button{
     margin-top: 1rem;
     margin-right: 1rem;
     height: 3rem;
@@ -59,7 +59,7 @@
 }
 
 
-.XuserInfoList_SearchedUser{
+.XlectureInfoList_SearchedUser{
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     margin-top: 3rem;
@@ -67,7 +67,7 @@
     
 }
 
-.XuserInfoList_SearchedUser>span{
+.XlectureInfoList_SearchedUser>span{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -79,7 +79,7 @@
 }
 
 /* 초기화 조회 버튼 */
-.XuserInfoList_UserButton {
+.XlectureInfoList_UserButton {
     display: flex;
     justify-content: flex-end;
     
@@ -90,7 +90,7 @@
     border-bottom: 1px solid #ccc;
 }
 
-.XuserInfoList_UserButton>button{
+.XlectureInfoList_UserButton>button{
     margin-top: 1rem;
     margin-right: 1rem;
     height: 3rem;
@@ -106,7 +106,7 @@
 }
 
 
-.XuserInfoList_textMessage{
+.XlectureInfoList_textMessage{
     display: flex;
     justify-content: center;
         
@@ -115,6 +115,6 @@
     height: 20rem;
 }
 
-.XuserInfoList_textMessage>input{
+.XlectureInfoList_textMessage>input{
     width: 50rem;
 }

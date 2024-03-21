@@ -40,6 +40,8 @@ import XQnaBoardAnswerPage from './components/Pages/XQnaBoardAnswerPage';
 import UserInfoPage from './components/Pages/XuserInfoPage';
 import XmainEvent from './components/XmainEvent';
 import XBoardControllPage from './components/Pages/XBoardControllPage';
+import XlecturePage from './components/Pages/XlecturePage';
+import XlectureRegisterPage from './components/Pages/XlectureRegisterPage';
 
 function App() {
 
@@ -85,6 +87,8 @@ function App() {
         <Route path='/UserInfoPage' element={<UserInfoPage />} />
         <Route path='/XmainEvent' element={<XmainEvent />} />
         <Route path='/XBoardControllPage' element={<XBoardControllPage />} />
+        <Route path='/XlecturePage' element={<XlecturePage />} />
+        <Route path='/XlectureRegisterPage' element={<XlectureRegisterPage />} />
 
         <Route path='*' element={<NotFoundPage />} />
       </Routes>

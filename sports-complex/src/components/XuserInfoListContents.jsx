@@ -17,7 +17,7 @@ export default function XuserInfoListContents({ userID, userName, userBirth, use
                 <span>{userPhone}</span>
                 <span>{userAddress}</span>
                 <span>{`${userCarNum === "" ? "차랑미등록" : userCarNum}`}</span>
-                <span>{lectureCheck === 'true' ? "강사" : <button>강사등록</button>}</span>
+                {/* <span>{lectureCheck === 'true' ? "강사" : <button>강사등록</button>}</span> */}
             </div>
         </div>
     )
