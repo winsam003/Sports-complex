@@ -3,7 +3,7 @@ import Footer from '../Footer';
 import PageBanner from '../PageBanner';
 import XQnaBoardAnswerContent from '../XQnaBoardAnswerContent';
 
-// 공지사항
+// 문의게시판 답글등록
 export default function XQnaBoardAnswerPage() {
     return (
         <div>

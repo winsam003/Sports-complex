@@ -277,7 +277,7 @@ export const PageBannerData = [
         "title": '이벤트 게시글을 등록할 수 있습니다 '
     },
     {
-        "parameter": '35',
+        "parameter": 'XBoardControllPage',
         "Page": '공지사항 관리',
         "title": '공지사항을 관리할 수 있습니다 '
     },

@@ -1,15 +1,15 @@
 import Header from '../Header';
 import Footer from '../Footer';
 import PageBanner from '../PageBanner';
-import XEventBoardWriteContent from '../XEventBoardWriteContent';
+import XBoardControllContent from '../XBoardControllContent';
 
-// 이벤트 게시글 등록
-export default function XEventBoardWritePage() {
+// 공지사항 관리
+export default function XBoardControllPage() {
     return (
         <div>
             <Header />
             <PageBanner />
-            <XEventBoardWriteContent />
+            <XBoardControllContent />
             <Footer />
         </div>
     )
