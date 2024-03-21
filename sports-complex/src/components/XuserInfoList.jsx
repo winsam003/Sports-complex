@@ -48,8 +48,6 @@ export default function XuserInfoList(){
         }
     };
 
-    console.log(checkedUsers[0]);
-
     
 
     return(
