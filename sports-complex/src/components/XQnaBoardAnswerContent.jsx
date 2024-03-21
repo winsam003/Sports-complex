@@ -10,6 +10,7 @@ export default function XQnaBoardAnswerContent() {
             <Submenu />
             {/* <Submenu /> */}
             <BoardDetail />
+            <p className='XQnaBoardAnswerContent_answer'>답변하기</p>
             <div className='XQnaBoardAnswerContent_haveto'>
                 <p>(<span className='star'>*</span>)는 반드시 작성해야 할 필수 항목입니다.</p>
             </div>
