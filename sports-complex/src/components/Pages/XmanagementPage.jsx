@@ -10,7 +10,6 @@ export default function ManagementPage() {
             <Xheader />
             <PageBanner />
             <XmainEvent />
-            <Submenu />
             <Footer />
         </div>
     )

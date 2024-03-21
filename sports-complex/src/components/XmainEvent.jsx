@@ -3,6 +3,7 @@ import './XmainEvent.css'
 import Submenu from './Submenu'
 import XeventList from './XeventList'
 import { useState } from 'react'
+import XhomeBannerEventList from './XhomeBannerEventList'
 
 export default function XmainEvent() {
 
@@ -31,7 +32,7 @@ export default function XmainEvent() {
                         />
                     </form>
                 </div>
-                <XeventList />
+                <XhomeBannerEventList />
                 <div className='XmainEvent_delete' >
                     <button >삭제</button>
                 </div>
