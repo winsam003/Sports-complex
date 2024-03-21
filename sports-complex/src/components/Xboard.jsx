@@ -22,7 +22,7 @@ export default function Xboard() {
                     <span>첨부파일</span>
                 </div>
                 <div className='Xboard_content'>
-                    <span><input type="checkbox" value={eventCode} checked={isChecked} onChange={checkedevent} /></span>
+                    {/* <span><input type="checkbox" value={eventCode} checked={isChecked} onChange={checkedevent} /></span> */}
                     <span>00000001</span>
                     <span>공지사항 제목 확인용 글입니다</span>
                     <span>김수한무두루미</span>
