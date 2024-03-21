@@ -179,6 +179,12 @@
 .homeDetail_Calendar div:nth-child(-n+8){
     border-bottom: 1px solid #8edde1;
 }
+.homeDetail_Calendar div:nth-child(9){
+    border-bottom-left-radius: 1em;
+}
+.homeDetail_Calendar div:nth-child(12){
+    border-bottom-right-radius: 1em;
+}
 
 
 .homeDetail_Calendar>div:hover{
