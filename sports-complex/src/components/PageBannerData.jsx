@@ -198,6 +198,13 @@ export const PageBannerData = [
         "title": '홈 관리',
         "checkMenu": "N"
     },
+    {
+        "id": "8",
+        "parameter": 'UserInfoPage',
+        "page": '관리자 페이지',
+        "title": '인적 관리',
+        "checkMenu": "Y"
+    },
 
     { "parameter": '11', "Page": '정기 주차신청', "title": '원하시는 장소에 주차신청하실 수 있습니다' },
     { "parameter": '13', "Page": 'QR 코드', "title": '이웃과 함께하는 건강하고 행복한 삶' },
@@ -265,17 +272,17 @@ export const PageBannerData = [
         "title": '이벤트 게시판을 관리할 수 있습니다 '
     },
     {
-        "parameter": '34',
+        "parameter": 'XEventBoardWritePage',
         "Page": '이벤트 게시글 등록',
         "title": '이벤트 게시글을 등록할 수 있습니다 '
     },
     {
-        "parameter": '35',
+        "parameter": 'XBoardControllPage',
         "Page": '공지사항 관리',
         "title": '공지사항을 관리할 수 있습니다 '
     },
     {
-        "parameter": '36',
+        "parameter": 'XBoardWritePage',
         "Page": '공지사항 등록',
         "title": '공지사항을 등록할 수 있습니다 '
     },
@@ -285,7 +292,7 @@ export const PageBannerData = [
         "title": '자주하는 질문을 관리할 수 있습니다 '
     },
     {
-        "parameter": '38',
+        "parameter": 'XFaqBoardWritePage',
         "Page": '자주하는 질문 등록',
         "title": '자주하는 질문을 등록할 수 있습니다 '
     },
@@ -295,7 +302,7 @@ export const PageBannerData = [
         "title": '문의 게시판을 관리할 수 있습니다 '
     },
     {
-        "parameter": '40',
+        "parameter": 'XQnaBoardAnswerPage',
         "Page": '문의 게시글 답변 등록',
         "title": '문의 게시글에 답변을 등록할 수 있습니다 '
     }

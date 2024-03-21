@@ -1,14 +1,14 @@
-import Header from '../Header';
+import Xheader from '../Xheader';
 import Submenu from '../Submenu';
 import Footer from '../Footer';
-import XmainEvent from '../XmainEvent';
+import PageBanner from '../PageBanner';
 
 export default function ManagementPage() {
     return (
         <div>
-            <Header />
-            
-            <XmainEvent />
+            <Xheader />
+            <PageBanner />
+            <Submenu />
             <Footer />
         </div>
     )

@@ -1,15 +1,15 @@
 import Header from '../Header';
 import Footer from '../Footer';
-import PasswordChange2 from '../PasswordChange2';
 import PageBanner from '../PageBanner';
+import XFaqBoardWriteContent from '../XFaqBoardWriteContent';
 
-
-export default function PasswordChangePage() {
+// 자주하는질문 등록
+export default function XFaqBoardWritePage() {
     return (
         <div>
             <Header />
             <PageBanner />
-            <PasswordChange2 />
+            <XFaqBoardWriteContent />
             <Footer />
         </div>
     )

@@ -1,15 +1,15 @@
 import Header from '../Header';
 import Footer from '../Footer';
-import PasswordChange2 from '../PasswordChange2';
 import PageBanner from '../PageBanner';
+import XBoardWriteContent from '../XBoardWriteContent';
 
-
-export default function PasswordChangePage() {
+// 공지사항 등록
+export default function XBoardWritePage() {
     return (
         <div>
             <Header />
             <PageBanner />
-            <PasswordChange2 />
+            <XBoardWriteContent />
             <Footer />
         </div>
     )

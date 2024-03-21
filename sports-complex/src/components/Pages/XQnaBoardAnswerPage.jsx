@@ -1,15 +1,15 @@
 import Header from '../Header';
 import Footer from '../Footer';
-import PasswordChange2 from '../PasswordChange2';
 import PageBanner from '../PageBanner';
+import XQnaBoardAnswerContent from '../XQnaBoardAnswerContent';
 
-
-export default function PasswordChangePage() {
+// 문의게시판 답글등록
+export default function XQnaBoardAnswerPage() {
     return (
         <div>
             <Header />
             <PageBanner />
-            <PasswordChange2 />
+            <XQnaBoardAnswerContent />
             <Footer />
         </div>
     )

@@ -1,15 +1,15 @@
 import Header from '../Header';
 import Footer from '../Footer';
-import PasswordChange2 from '../PasswordChange2';
 import PageBanner from '../PageBanner';
+import XEventBoardWriteContent from '../XEventBoardWriteContent';
 
-
-export default function PasswordChangePage() {
+// 이벤트 게시글 등록
+export default function XEventBoardWritePage() {
     return (
         <div>
             <Header />
             <PageBanner />
-            <PasswordChange2 />
+            <XEventBoardWriteContent />
             <Footer />
         </div>
     )
