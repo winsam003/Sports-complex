@@ -272,17 +272,17 @@ export const PageBannerData = [
         "title": '이벤트 게시판을 관리할 수 있습니다 '
     },
     {
-        "parameter": '34',
+        "parameter": 'XEventBoardWritePage',
         "Page": '이벤트 게시글 등록',
         "title": '이벤트 게시글을 등록할 수 있습니다 '
     },
     {
-        "parameter": '35',
+        "parameter": 'XBoardControllPage',
         "Page": '공지사항 관리',
         "title": '공지사항을 관리할 수 있습니다 '
     },
     {
-        "parameter": '36',
+        "parameter": 'XBoardWritePage',
         "Page": '공지사항 등록',
         "title": '공지사항을 등록할 수 있습니다 '
     },
@@ -292,7 +292,7 @@ export const PageBannerData = [
         "title": '자주하는 질문을 관리할 수 있습니다 '
     },
     {
-        "parameter": '38',
+        "parameter": 'XFaqBoardWritePage',
         "Page": '자주하는 질문 등록',
         "title": '자주하는 질문을 등록할 수 있습니다 '
     },
@@ -302,7 +302,7 @@ export const PageBannerData = [
         "title": '문의 게시판을 관리할 수 있습니다 '
     },
     {
-        "parameter": '40',
+        "parameter": 'XQnaBoardAnswerPage',
         "Page": '문의 게시글 답변 등록',
         "title": '문의 게시글에 답변을 등록할 수 있습니다 '
     }

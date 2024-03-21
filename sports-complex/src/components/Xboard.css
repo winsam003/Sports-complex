@@ -1,0 +1,25 @@
+.Xboard>div{
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 0.5fr 1fr 4fr 1fr 1fr 1fr;
+    text-align: center;
+
+}
+.Xboard{
+    background-color: lightcyan;
+    margin: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    height: auto;
+}
+.Xboard_div{
+    padding-bottom: 1rem;
+    border-bottom: 1px solid gray;
+}
+.Xboard_div>span{
+    font-weight: bold;
+}
+.Xboard_content{
+    padding-top: 0.5rem;
+}

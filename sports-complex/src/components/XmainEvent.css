@@ -1,0 +1,15 @@
+.XmainEvent_box {
+    display: flex;
+}
+.XmainEvent_main {
+    width: 100%;
+    background-color: lightskyblue;
+}
+.XmainEvent_upload>form {
+    background-color: wheat;
+    text-align: right;
+    padding: 1rem;
+}
+.XmainEvent_upload>form>input {
+    
+}
