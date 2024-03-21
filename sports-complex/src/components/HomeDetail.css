@@ -52,6 +52,9 @@
     border-radius: 0.5em;
     border: none;
 }
+.homeDetail_loginbox tr{
+    padding-bottom: 40%;
+}
 
 
 /* 월간일정 / 이벤트광고 */
@@ -68,6 +71,7 @@
 /* 디테일 메뉴 로그인/로그아웃 */
 .homeDetail_items2>:first-child{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
@@ -77,10 +81,7 @@
 
     border: 1px solid #27979d;
     border-radius: 1em;
-    background-image: url('../../public/img/logoRe.jpg');
-    background-repeat: no-repeat;
-    background-size: 30%;
-    background-position: top;
+
 }
 
 #homeDetail_loginbtn {
@@ -91,13 +92,42 @@
     border-radius: 1em;
     color: white;
     font-size: 110%;
+
+    cursor: pointer;
 }
+.homeDetail_Icon{
+    font-size: 1.5rem;
+    vertical-align: middle;
+    padding-right: 1rem;
+}
+
+
+/* 로그인창 input 태그 */
+.homeDetail_loginbox input:nth-child(1), 
+.homeDetail_loginbox input:nth-child(2) {
+    height: 25px;
+    /* border-radius: 0.5rem; */
+}
+/* 로그인 밑에 있는 .  */
+.homeDetail_helpLogin {
+    display: inline-block;
+    padding-top: 10%;
+}
+.homeDetail_helpLogin>a{
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+}
+.homeDetail_helpLogin a:not(:nth-child(3)) {
+    border-right: 1px solid lightslategray;
+}
+
+
 
 /* 디테일 메뉴 로그인/로그아웃 (input태그 form) */
 .homeDetail_items2>:first-child>:first-child{
     width: 100%;
-
     display: flex;
+
     justify-content: center;
 }
 
@@ -136,6 +166,8 @@
     text-align: center;
     display: flex;
     height: 100%;
+
+    cursor: pointer;
 }
 .homeDetail_Calendar div:not(:nth-child(4n)) {
     border-right: 1px solid #8edde1;

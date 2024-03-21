@@ -3,6 +3,10 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './HomeDetail.css';
 
+import { TbUser } from "react-icons/tb";
+import { TbLock } from "react-icons/tb";
+import { Link } from 'react-router-dom';
+
 export default function HomeDetail(){
 
     const settings = {
@@ -79,14 +83,16 @@ export default function HomeDetail(){
             <div className='homeDetail_items2'>
                 <div>
                     <form action="/" method="post">
-                        <table>
+                        <table className='homeDetail_loginbox'>
                             <tr>
-                                <th>I D</th>
-                                <td><input type="text" /></td>
+                                <th><TbUser className='homeDetail_Icon' /></th>
+                                {/* <th><IoMdPerson id='homeDetail_personIcon' />I D</th> */}
+                                <td><input type="text" placeholder='아이디를 입력하세요.' /></td>
                             </tr>
                             <tr>
-                                <th>Password</th>
-                                <td><input type="password" /></td>
+                                <th><TbLock className='homeDetail_Icon'  /></th>
+                                {/* <th><TbLock />Password</th> */}
+                                <td><input type="password" placeholder='비밀번호를 입력하세요.' /></td>
                             </tr>
                             <tr className="homeDetail_login">
                                 <td></td>
@@ -94,6 +100,11 @@ export default function HomeDetail(){
                             </tr>
                         </table>
                     </form>
+                    <div className='homeDetail_helpLogin'>
+                        <a href="/">아이디찾기</a>
+                        <a href="/">비밀번호찾기</a>
+                        <a href="/">회원가입</a>
+                    </div>
                 </div>
             </div>
         </div>
