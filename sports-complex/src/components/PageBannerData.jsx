@@ -257,7 +257,7 @@ export const PageBannerData = [
         "title": '대관 신청 현황을 관리할 수 있습니다 '
     },
     {
-        "parameter": '31',
+        "parameter": 'XRentalPlaceControllPage',
         "Page": '대관 시설 관리',
         "title": '대관 시설을 관리할 수 있습니다 '
     },

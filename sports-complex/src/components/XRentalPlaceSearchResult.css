@@ -1,0 +1,40 @@
+/* 조회결과 index */
+.XRentalPlaceSearchResult_SearchResult_index {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 5fr 2fr;
+    border-top: 3px solid #C9EDFA;
+    background-color: #ceeff250;
+}
+
+.XRentalPlaceSearchResult_SearchResult_index p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+/* 조회결과 */
+.XRentalPlaceSearchResult_SearchResult {
+    display: grid;
+    grid-template-columns: 1fr 1fr 5fr 2fr;
+}
+
+.XRentalPlaceSearchResult_SearchResult p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+@media (max-width : 1200px) {
+
+    .XRentalPlaceSearchResult_SearchResult_index p {
+        min-width: 100px;
+    }
+
+    .XRentalPlaceSearchResult_SearchResult p {
+        min-width: 100px;
+        word-break: keep-all;
+    }
+}
