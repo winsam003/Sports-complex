@@ -1,0 +1,33 @@
+.XlectureRegisterDetail_Box{
+    background-color: #F0FFFF;
+    width: 100%;
+    height: 960px;
+}
+
+.JoinLecture_star {
+    color: red;
+}
+
+.XlectureRegisterDetail_Container{
+    height: 100%;
+}
+
+.XlectureRegisterDetail_Container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.XlectureRegisterDetail_Caption{
+    font-weight: bold;
+    font-size: 30px;
+
+    margin-bottom: 3rem;
+}
+
+table>tr{
+    height: 5rem;
+}
+
+tr>input{
+}

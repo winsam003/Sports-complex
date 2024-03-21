@@ -6,8 +6,8 @@ import XBoardControllContent from '../XBoardSearchBox';
 import XBoardSearchResult from '../XBoardSearchResult';
 import XBoardButton from '../XBoardButton';
 
-// 공지사항 관리
-export default function XBoardControllPage() {
+// 이벤트 게시글 관리
+export default function XEventBoardControllPage() {
     return (
         <div>
             <Header />

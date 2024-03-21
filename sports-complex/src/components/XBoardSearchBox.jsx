@@ -1,10 +1,12 @@
-import './XBoardControllContent.css'
+import './XBoardSearchBox.css'
 
-export default function XBoardControllContent() {
+export default function XBoardSearchBox() {
     return (
         <div>
-            <div className='XBoardControllContent_SearchBox_div'>
+            {/* 검색 */}
+            <div className='XBoardSearchBox_div'>
                 <select>
+                    <option value="">전체</option>
                     <option value="">공지사항 종류</option>
                     <option value="">제목</option>
                     <option value="">작성자</option>
@@ -13,6 +15,7 @@ export default function XBoardControllContent() {
                 <input type='text'></input>
                 <button>검색</button>
             </div>
+
         </div>
     )
 }

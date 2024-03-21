@@ -40,6 +40,14 @@ import XQnaBoardAnswerPage from './components/Pages/XQnaBoardAnswerPage';
 import UserInfoPage from './components/Pages/XuserInfoPage';
 import XmainEvent from './components/XmainEvent';
 import XBoardControllPage from './components/Pages/XBoardControllPage';
+import XEventBoardControllPage from './components/Pages/XEventBoardControllPage';
+import XFaqBoardControllPage from './components/Pages/XFaqBoardControllPage';
+import XQnaBoardControllPage from './components/Pages/XQnaBoardControllPage';
+import XRentalPlaceControllPage from './components/Pages/XRentalPlaceControllPage';
+import XReantalPlaceNewonePage from './components/Pages/XReantalPlaceNewonePage';
+import XReantalPlaceDetailPage from './components/Pages/XReantalPlaceDetailPage';
+import XlecturePage from './components/Pages/XlecturePage';
+import XlectureRegisterPage from './components/Pages/XlectureRegisterPage';
 
 function App() {
 
@@ -85,6 +93,14 @@ function App() {
         <Route path='/UserInfoPage' element={<UserInfoPage />} />
         <Route path='/XmainEvent' element={<XmainEvent />} />
         <Route path='/XBoardControllPage' element={<XBoardControllPage />} />
+        <Route path='/XEventBoardControllPage' element={<XEventBoardControllPage />} />
+        <Route path='/XFaqBoardControllPage' element={<XFaqBoardControllPage />} />
+        <Route path='/XQnaBoardControllPage' element={<XQnaBoardControllPage />} />
+        <Route path='/XRentalPlaceControllPage' element={<XRentalPlaceControllPage />} />
+        <Route path='/XReantalPlaceNewonePage' element={<XReantalPlaceNewonePage />} />
+        <Route path='/XReantalPlaceDetailPage' element={<XReantalPlaceDetailPage />} />
+        <Route path='/XlecturePage' element={<XlecturePage />} />
+        <Route path='/XlectureRegisterPage' element={<XlectureRegisterPage />} />
 
         <Route path='*' element={<NotFoundPage />} />
       </Routes>

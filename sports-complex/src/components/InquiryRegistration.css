@@ -102,7 +102,6 @@
 .InquiryRegistration_form #content{
     height: 300px;
     line-height: 300px;
-    vertical-align: top;
     /* 엔터키 가능하게 하려면 자바스크립트로 해야됨. 언젠간 해라.  */
 }
 .InquiryRegistration_form input[type="text"],
