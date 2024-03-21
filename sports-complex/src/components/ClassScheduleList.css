@@ -7,43 +7,73 @@
 
 .ClassSchedule_Search{
     display: flex;
+    flex-direction: column;
 
     justify-content: center;
     align-items: center;
 
     height: 30%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 
 
+}
+.ClassSchedule_CalendarCaption {
+    /* height: 3.2rem; */
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #a6e9ed;
+    border-top-right-radius: 1em;
+    border-top-left-radius: 1em;
+    
+    /* font-weight: bold; */
+    font-size: 2.5rem;
 }
 
 .ClassSchedule_Calendar{
     display: grid;
-
+    
     grid-template-columns: repeat(4, 1fr);
-    grid-gap: 3rem;
-
-    border: 2px solid gray;
-    border-radius: 2rem;
-    background-color: lightblue;
-    padding: 30px 3%;
+    grid-template-rows: repeat(3, 1fr);
+    
+    width: 70%;
+    height: calc(100% - 3.2rem);
+    
+    background-color: #c7f3fa;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
 }
 
 .ClassSchedule_Calendar>div{
-    display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    display: flex;
+    height: 100%;
 
-    width: 5rem;
-    height: 3rem;
-
-    border: 1px solid gray;
-    border-radius: 0.5rem;
-    background-color: aliceblue;
     cursor: pointer;
 }
 .ClassSchedule_Calendar>div:hover{
     background-color: rgb(76, 141, 161);
 }
+.ClassSchedule_Calendar div:not(:nth-child(4n)) {
+    border-right: 1px solid #8edde1;
+}
+.ClassSchedule_Calendar div:nth-child(-n+8){
+    border-bottom: 1px solid #8edde1;
+}
+.ClassSchedule_Calendar div:nth-child(9){
+    border-bottom-left-radius: 1em;
+}
+.ClassSchedule_Calendar div:nth-child(12){
+    border-bottom-right-radius: 1em;
+}
+.ClassSchedule_Icon {
+    padding-left: 8px;
+}
+
 
 .ClassSchedule_List{
     width: 100%;
@@ -72,6 +102,13 @@
     font-size: 2rem;
     text-align: center;
     margin-bottom: 0;
+
+    justify-content: center;
+    align-items: center;
+    background-color: #a6e9ed;
+    border-top-right-radius: 1em;
+    border-top-left-radius: 1em;
+    font-weight: bold;
 }
 .ClassSchedule_title::before{
     content: "\1F4CC"; 
