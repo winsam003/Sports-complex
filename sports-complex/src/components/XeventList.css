@@ -1,4 +1,4 @@
-.Xboard>div{
+.XeventList>div:nth-child(1){
     width: 100%;
 
     display: grid;
@@ -6,20 +6,20 @@
     text-align: center;
 
 }
-.Xboard{
+.XeventList{
     background-color: lightcyan;
     margin: 1rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
     height: auto;
 }
-.Xboard_div{
+.XeventList_div{
     padding-bottom: 1rem;
     border-bottom: 1px solid gray;
 }
-.Xboard_div>span{
+.XeventList_div>span{
     font-weight: bold;
 }
-.Xboard_content{
+.XeventList_content{
     padding-top: 0.5rem;
 }
