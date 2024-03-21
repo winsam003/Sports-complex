@@ -45,3 +45,14 @@
 .textBold {
     background-color: #ceeff27c;
 }
+
+@media (max-width : 1200px) {
+    .RegistrationFlow_ul {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    .RegistrationFlow_ul li {
+        width: 100%;
+    }
+}
