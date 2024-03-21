@@ -7,12 +7,12 @@ export default function Footer() {
             <div className='footer_list'>
                 <ul className='footer_ul'>
                     <ol className='footer_ol'>
-                        <li className='footer_li'><Link to='InfoHandlingPolicy'>개인정보처리방침</Link></li>
-                        <li className='footer_li'><Link to='VideoHandle'>영상정보처리운영방침</Link></li>
+                        <li className='footer_li'><Link to='/InfoHandlingPolicyPage'>개인정보처리방침</Link></li>
+                        <li className='footer_li'><Link to='/VideoHandlePage'>영상정보처리운영방침</Link></li>
                     </ol>
                     <ol className='footer_ol'>
-                        <li className='footer_li'><Link to='EmailCollectAgree'>이메일수집거부</Link></li>
-                        <li className='footer_li'><Link to='VisitWay'>찾아오시는길</Link></li>
+                        <li className='footer_li'><Link to='/EmailCollectRefusal'>이메일수집거부</Link></li>
+                        <li className='footer_li'><Link to='/VisitWayPage'>찾아오시는길</Link></li>
                     </ol>
                 </ul>
             </div>
