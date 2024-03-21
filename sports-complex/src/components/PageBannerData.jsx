@@ -295,7 +295,7 @@ export const PageBannerData = [
         "title": '문의 게시판을 관리할 수 있습니다 '
     },
     {
-        "parameter": '40',
+        "parameter": 'XQnaBoardAnswerPage',
         "Page": '문의 게시글 답변 등록',
         "title": '문의 게시글에 답변을 등록할 수 있습니다 '
     }
