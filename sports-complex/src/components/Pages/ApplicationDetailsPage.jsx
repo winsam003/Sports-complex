@@ -4,6 +4,10 @@ import Footer from '../Footer';
 import PageBanner from '../PageBanner';
 
 export default function ApplicationDetailsPage() {
+
+
+    
+
     return (
         <div>
             <Header />

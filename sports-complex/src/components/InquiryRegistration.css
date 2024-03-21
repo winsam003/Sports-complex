@@ -1,5 +1,4 @@
 .InquiryRegistration_box{
-    background-color: rgb(165, 69, 69);
     /* background-color: white; */
     display: flex;
 }
@@ -17,7 +16,7 @@
 }
 
 .InquiryRegistration_infoBox{
-    background-color: lightblue;
+    background-color: ivory;
     padding: 20px;
 }
 
@@ -41,7 +40,7 @@
 }
 
 .InquiryRegistration_form {
-    background-color: lightpink;
+    background-color: #F6F6F6
 }
 
 .InquiryRegistration_haveto{
