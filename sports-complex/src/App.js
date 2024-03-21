@@ -32,11 +32,12 @@ import EmailCollectRefusal from './components/Pages/EmailCollectRefusal';
 import VisitWayPage from './components/Pages/VisitWayPage';
 import NotFoundPage from './components/Pages/NotFoundPage';
 
-import ManagementPage from './components/Pages/ManagementPage';
+import ManagementPage from './components/Pages/XmanagementPage';
 import XBoardWritePage from './components/Pages/XBoardWritePage';
 import XEventBoardWritePage from './components/Pages/XEventBoardWritePage';
 import XFaqBoardWritePage from './components/Pages/XFaqBoardWritePage';
 import XQnaBoardAnswerPage from './components/Pages/XQnaBoardAnswerPage';
+import UserInfoPage from './components/Pages/XuserInfoPage';
 
 function App() {
 
@@ -79,6 +80,7 @@ function App() {
         <Route path='/XEventBoardWritePage' element={<XEventBoardWritePage />} />
         <Route path='/XFaqBoardWritePage' element={<XFaqBoardWritePage />} />
         <Route path='/XQnaBoardAnswerPage' element={<XQnaBoardAnswerPage />} />
+        <Route path='/UserInfoPage' element={<UserInfoPage />} />
 
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
