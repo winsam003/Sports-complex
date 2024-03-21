@@ -37,6 +37,7 @@ import XBoardWritePage from './components/Pages/XBoardWritePage';
 import XEventBoardWritePage from './components/Pages/XEventBoardWritePage';
 import XFaqBoardWritePage from './components/Pages/XFaqBoardWritePage';
 import XQnaBoardAnswerPage from './components/Pages/XQnaBoardAnswerPage';
+import XBoardControllPage from './components/Pages/XBoardControllPage';
 
 function App() {
 
@@ -79,6 +80,7 @@ function App() {
         <Route path='/XEventBoardWritePage' element={<XEventBoardWritePage />} />
         <Route path='/XFaqBoardWritePage' element={<XFaqBoardWritePage />} />
         <Route path='/XQnaBoardAnswerPage' element={<XQnaBoardAnswerPage />} />
+        <Route path='/XBoardControllPage' element={<XBoardControllPage />} />
 
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
