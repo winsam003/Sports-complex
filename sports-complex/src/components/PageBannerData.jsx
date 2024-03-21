@@ -267,7 +267,7 @@ export const PageBannerData = [
         "title": '신규 대관 시설을 등록할 수 있습니다 '
     },
     {
-        "parameter": '33',
+        "parameter": 'XEventBoardControllPage',
         "Page": '이벤트 게시판 관리',
         "title": '이벤트 게시판을 관리할 수 있습니다 '
     },
@@ -287,7 +287,7 @@ export const PageBannerData = [
         "title": '공지사항을 등록할 수 있습니다 '
     },
     {
-        "parameter": '37',
+        "parameter": 'XFaqBoardControllPage',
         "Page": '자주하는 질문 관리',
         "title": '자주하는 질문을 관리할 수 있습니다 '
     },
@@ -297,7 +297,7 @@ export const PageBannerData = [
         "title": '자주하는 질문을 등록할 수 있습니다 '
     },
     {
-        "parameter": '39',
+        "parameter": 'XQnaBoardControllPage',
         "Page": '문의 게시판 관리',
         "title": '문의 게시판을 관리할 수 있습니다 '
     },

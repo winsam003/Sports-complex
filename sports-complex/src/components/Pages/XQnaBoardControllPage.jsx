@@ -3,17 +3,17 @@ import Footer from '../Footer';
 import PageBanner from '../PageBanner';
 import XBoardControllContent from '../XBoardSearchBox';
 import XBoardSearchResult from '../XBoardSearchResult';
-import XBoardButton from '../XBoardButton';
+import XResetDeleteBtn from '../XResetDeleteBtn';
 
-// 공지사항 관리
-export default function XBoardControllPage() {
+// 문의게시판 관리
+export default function XQnaBoardControllPage() {
     return (
         <div>
             <Header />
             <PageBanner />
             <XBoardControllContent />
             <XBoardSearchResult />
-            <XBoardButton />
+            <XResetDeleteBtn />
             <Footer />
         </div>
     )

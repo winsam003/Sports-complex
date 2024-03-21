@@ -1,0 +1,49 @@
+/* 조회결과 index */
+.XBoardControllContent_SearchResult_index {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 5fr 2fr 1fr 1fr;
+    border-top: 3px solid #C9EDFA;
+    background-color: #ceeff250;
+}
+
+.XBoardControllContent_SearchResult_index p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+/* 조회결과 */
+.XBoardControllContent_SearchResult {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 5fr 2fr 1fr 1fr;
+}
+
+/* 체크박스 크기 조절 */
+.XBoardControllContent_SearchResult input {
+    margin-left: calc(50% - 10px);
+    width: 20px;
+}
+
+.XBoardControllContent_SearchResult p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+@media (max-width : 1000px) {
+
+    /* 조회결과 스크롤박스만들기 */
+    .XBoardControllContent_SearchResult_div {
+        overflow: auto;
+    }
+
+    .XBoardControllContent_SearchResult_index {
+        width: 1000px;
+    }
+
+    .XBoardControllContent_SearchResult {
+        width: 1000px;
+    }
+}
