@@ -1,20 +1,16 @@
 import Header from '../Header';
-import ApplicationDetails from '../ApplicationDetails';
-import Footer from '../Footer';
 import PageBanner from '../PageBanner';
+import EmailCollectAgree from '../EmailCollectAgree';
+import Footer from '../Footer';
 
-export default function ApplicationDetailsPage() {
-
-
-    
-
+// 이메일수집거부
+export default function EmailCollectAgreePage() {
     return (
         <div>
             <Header />
             <PageBanner />
-            <ApplicationDetails />
+            <EmailCollectAgree />
             <Footer />
         </div>
     )
-
 }
