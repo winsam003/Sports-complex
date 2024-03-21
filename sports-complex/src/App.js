@@ -46,6 +46,8 @@ import XQnaBoardControllPage from './components/Pages/XQnaBoardControllPage';
 import XRentalPlaceControllPage from './components/Pages/XRentalPlaceControllPage';
 import XReantalPlaceNewonePage from './components/Pages/XReantalPlaceNewonePage';
 import XReantalPlaceDetailPage from './components/Pages/XReantalPlaceDetailPage';
+import XlecturePage from './components/Pages/XlecturePage';
+import XlectureRegisterPage from './components/Pages/XlectureRegisterPage';
 
 function App() {
 
@@ -97,6 +99,8 @@ function App() {
         <Route path='/XRentalPlaceControllPage' element={<XRentalPlaceControllPage />} />
         <Route path='/XReantalPlaceNewonePage' element={<XReantalPlaceNewonePage />} />
         <Route path='/XReantalPlaceDetailPage' element={<XReantalPlaceDetailPage />} />
+        <Route path='/XlecturePage' element={<XlecturePage />} />
+        <Route path='/XlectureRegisterPage' element={<XlectureRegisterPage />} />
 
         <Route path='*' element={<NotFoundPage />} />
       </Routes>

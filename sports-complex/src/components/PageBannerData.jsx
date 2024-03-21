@@ -201,7 +201,21 @@ export const PageBannerData = [
     {
         "id": "8",
         "parameter": 'UserInfoPage',
-        "page": '관리자 페이지',
+        "page": '회원정보 관리',
+        "title": '인적 관리',
+        "checkMenu": "Y"
+    },
+    {
+        "id": "8",
+        "parameter": 'XlecturePage',
+        "page": '강사정보 관리',
+        "title": '인적 관리',
+        "checkMenu": "Y"
+    },
+    {
+        "id": "8",
+        "parameter": 'XlectureRegisterPage',
+        "page": '강사등록',
         "title": '인적 관리',
         "checkMenu": "Y"
     },
