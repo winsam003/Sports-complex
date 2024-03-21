@@ -6,6 +6,7 @@ import './HomeDetail.css';
 import { TbUser } from "react-icons/tb";
 import { TbLock } from "react-icons/tb";
 import { Link } from 'react-router-dom';
+import { TbCalendar } from "react-icons/tb";
 
 export default function HomeDetail(){
 
@@ -29,7 +30,7 @@ export default function HomeDetail(){
                 </div>
                 <div>
                     <div  className='homeDetail_Calenderbox'>
-                        <div className='homeDetail_CalendarCaption'>월간일정</div>
+                        <div className='homeDetail_CalendarCaption'>월간일정<TbCalendar className='homeDetail_Icon' /></div>
                         <div className='homeDetail_Calendar'>
                             <div>1월</div>
                             <div>2월</div>
