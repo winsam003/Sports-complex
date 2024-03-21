@@ -57,26 +57,26 @@ export const PageBannerData = [
     },
     {
         "id": "1",
-        "parameter": "InfoHandlingPolicy",
-        "page": "개인정보처리방침",
+        "parameter": "InfoHandlingPolicyPage",
+        "page": "개인정보 처리방침",
         "title": "시민과 함께하는 건강하고 행복한 삶."
     },
     {
         "id": "1",
-        "parameter": "VideoHandle",
-        "page": "영상정보처리기기운영방침",
+        "parameter": "VideoHandlePage",
+        "page": "영상정보처리기기 운영방침",
         "title": "시민과 함께하는 건강하고 행복한 삶."
     },
     {
         "id": "1",
-        "parameter": "EmailCollectAgree",
-        "page": "이메일수집거부",
+        "parameter": "EmailCollectRefusal",
+        "page": "이메일 수집거부",
         "title": "시민과 함께하는 건강하고 행복한 삶."
     },
     {
         "id": "1",
-        "parameter": "VisitWay",
-        "page": "찾아오시는길",
+        "parameter": "VisitWayPage",
+        "page": "찾아오시는 길",
         "title": "시민과 함께하는 건강하고 행복한 삶."
     },
     {

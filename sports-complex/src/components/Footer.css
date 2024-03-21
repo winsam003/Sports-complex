@@ -4,39 +4,28 @@ footer {
 
 /* footer guide list */
 
-footer{
+footer {
     margin-bottom: 100px;
 }
 
-.footer_list{
+.footer_list {
     width: 100vw;
     margin-left: calc((100% - 100vw) / 2);
-
-    background-color: azure;
 
     border-bottom: 1px solid #ccc;
     border-top: 1px solid #ccc;
 }
 
 .footer_ul {
-    /* margin: 5px 0 0 0; */
-    margin-top: 0;
-    margin-bottom: 0;
+    margin: 10px 0;
     padding: 0;
     text-align: center;
 }
 
 .footer_ol {
-    margin: 0;
+    margin: 0 15px;
     padding: 0;
     display: inline-block;
-}
-.footer_ul .footer_ol:nth-child(1){
-    padding: 0;
-}
-
-.footer_ol:nth-child(1) {
-    padding-right: 10px;
 }
 
 .footer_li {
@@ -46,8 +35,16 @@ footer{
     padding-right: 20px;
 }
 
+.footer_li a {
+    font-weight: bold;
+}
+
+.footer_li a {
+    font-weight: bold;
+}
+
 .footer_li:nth-child(1) {
-    /* padding-right: 10px; */
+    padding-right: 30px;
 }
 
 /* footer company_info */
@@ -88,7 +85,7 @@ footer{
     grid-template-rows: 4fr;
     align-items: center;
     text-align: center;
-    
+
 }
 
 .consulting_telNum p {
@@ -112,17 +109,14 @@ footer{
 @media (max-width : 1200px) {
 
     /* footer guide list */
-    .footer_ul {
+    .footer_ol:nth-child(1) {
+        display: block;
+        padding-left: 2.6em;
+    }
 
-        .footer_ol:nth-child(1) {
-            display: block;
-            padding-left: 3.6em;
-        }
-
-        .footer_li {
-            line-height: 30px;
-            padding: 0px 10px;
-        }
+    .footer_li {
+        line-height: 30px;
+        padding: 0px 10px;
     }
 
     /* footer company_info */

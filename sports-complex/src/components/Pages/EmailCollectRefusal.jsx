@@ -1,14 +1,14 @@
 import Header from '../Header';
 import PageBanner from '../PageBanner';
+import EmailCollectRefusal_Content from '../EmailCollectRefusal_Content';
 import Footer from '../Footer';
 
-// 이메일수집거부
-export default function EmailCollectAgree() {
+export default function EmailCollectRefusal() {
     return (
         <div>
             <Header />
             <PageBanner />
-            <EmailCollectAgree />
+            <EmailCollectRefusal_Content />
             <Footer />
         </div>
     )
