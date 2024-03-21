@@ -1,24 +1,27 @@
 import './ClassScheduleList.css';
 import ClassScheduleDetail from './ClassScheduleDetail';
 
+import { TbCalendar } from "react-icons/tb";
+
 export default function ClassSchedule(){
     return(
         <div className="ClassSchedule_Containor">
-            <p className='ClassSchedule_title'> 월 별 선택</p>
+            {/* <p className='ClassSchedule_title'> 월 별 선택</p> */}
             <div className='ClassSchedule_Search'>
+                <div className='ClassSchedule_CalendarCaption'>월간일정 <TbCalendar className='ClassSchedule_Icon' /></div>
                 <div className='ClassSchedule_Calendar'>
-                    <div>1</div>
-                    <div>2</div>
-                    <div>3</div>
-                    <div>4</div>
-                    <div>5</div>
-                    <div>6</div>
-                    <div>7</div>
-                    <div>8</div>
-                    <div>9</div>
-                    <div>10</div>
-                    <div>11</div>
-                    <div>12</div>
+                        <div>1월</div>
+                        <div>2월</div>
+                        <div>3월</div>
+                        <div>4월</div>
+                        <div>5월</div>
+                        <div>6월</div>
+                        <div>7월</div>
+                        <div>8월</div>
+                        <div>9월</div>
+                        <div>10월</div>
+                        <div>11월</div>
+                        <div>12월</div>
                 </div>
             </div>
             <div className='ClassSchedule_CheckBox'>
