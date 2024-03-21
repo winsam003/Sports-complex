@@ -38,7 +38,15 @@ export default function XuserInfoList(){
     },
     ]
 
-    // const []
+    const [checkedUsers, setCheckedUsers] = useState([]);
+
+    const userDelete = (userID, checked) => {
+        if(checked){
+            setCheckedUsers([...checkedUsers, userID]);
+        }else{
+            setCheckedUsers(checkedUsers.filter(id => id !== userID));
+        }
+    };
 
     
 
@@ -68,7 +76,7 @@ export default function XuserInfoList(){
                     </div>
                     <div>
                         {data.map((it, index) => (
-                            <XuserInfoListContents key={index} {...it} />
+                            <XuserInfoListContents key={index} {...it} userDelete={userDelete} />
                         ))}
                     </div>
                     <div className='XuserInfoList_UserButton'>
