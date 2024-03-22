@@ -273,13 +273,13 @@ export const PageBannerData = [
         "title": '대관 시설을 관리할 수 있습니다 ',
         "checkMenu": "N"
     },
-    {
-        "id": "11",
-        "parameter": 'XReantalPlaceNewonePage',
-        "page": '대관 시설 변경',
-        "title": '대관 시설을 변경할 수 있습니다 ',
-        "checkMenu": "N"
-    },
+    // {
+    //     "id": "11",
+    //     "parameter": 'XReantalPlaceNewonePage',
+    //     "page": '대관 시설 변경',
+    //     "title": '대관 시설을 변경할 수 있습니다 ',
+    //     "checkMenu": "N"
+    // },
     {
         "id": "11",
         "parameter": 'XReantalPlaceNewonePage',

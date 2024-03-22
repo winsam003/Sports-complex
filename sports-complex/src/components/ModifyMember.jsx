@@ -17,10 +17,12 @@ export default function ModifyMember() {
                             <th>생년월일<span className='ModifyMember_star'>*</span></th>
                             <td>
                                 <input type="number" name='birth' id='birth' readOnly />
-                                <input type="radio" id='solar' name='birthChoice' value={'solar'} />
-                                <label htmlFor="solar">양력</label>
-                                <input type="radio" id='lunar' name='birthChoice' value={'lunar'} />
-                                <label htmlFor="lunar">음력</label>
+                                <div>
+                                    <input type="radio" id='solar' name='birthChoice' value={'solar'} />
+                                    <label htmlFor="solar">양력</label>
+                                    <input type="radio" id='lunar' name='birthChoice' value={'lunar'} />
+                                    <label htmlFor="lunar">음력</label>
+                                </div>
                             </td>
                         </tr>
                         <tr>

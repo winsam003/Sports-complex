@@ -9,7 +9,7 @@ export default function FindID() {
                 <form action='findID' method='post'>
                     <div className='FindID_Detail'>
                         <div>
-                            <input className = "FindID_data" type="text" placeholder="이름(실명)을 입력해주세요." />
+                            <input className = "FindID_data FindID_name" type="text" placeholder="이름(실명)을 입력해주세요." />
                         </div>
                         <div>
                             <input className="FindID_data" type="text" placeholder="휴대전화번호를 입력해주세요." />
