@@ -47,7 +47,8 @@ import XRentalPlaceControllPage from './components/Pages/XRentalPlaceControllPag
 import XReantalPlaceNewonePage from './components/Pages/XReantalPlaceNewonePage';
 import XReantalPlaceDetailPage from './components/Pages/XReantalPlaceDetailPage';
 import XlecturePage from './components/Pages/XlecturePage';
-import XlectureRegisterPage from './components/Pages/XlectureRegisterPage';
+import XlecturerRegisterPage from './components/Pages/XlecturerRegisterPage';
+import XlectureInfoPage from './components/Pages/XlectureInfoPage';
 
 function App() {
 
@@ -100,7 +101,8 @@ function App() {
         <Route path='/XReantalPlaceNewonePage' element={<XReantalPlaceNewonePage />} />
         <Route path='/XReantalPlaceDetailPage' element={<XReantalPlaceDetailPage />} />
         <Route path='/XlecturePage' element={<XlecturePage />} />
-        <Route path='/XlectureRegisterPage' element={<XlectureRegisterPage />} />
+        <Route path='/XlecturerRegisterPage' element={<XlecturerRegisterPage />} />
+        <Route path='/XlectureInfoPage' element={<XlectureInfoPage />} />
 
         <Route path='*' element={<NotFoundPage />} />
       </Routes>

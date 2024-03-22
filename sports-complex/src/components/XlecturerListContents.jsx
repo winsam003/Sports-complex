@@ -1,4 +1,4 @@
-import './XlectureListContents.css';
+import './XlecturerListContents.css';
 
 export default function XlectureListContents({ lectureNum, lectureName, lectureBirth, lecturePhone, lectureAddress, license, lectureDelete }){
 
