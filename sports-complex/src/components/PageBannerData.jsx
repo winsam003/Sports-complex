@@ -231,6 +231,13 @@ export const PageBannerData = [
     },
     // 이용신청관리 이용신청관리 이용신청관리 이용신청관리 이용신청관리 이용신청관리 
     {
+        "id": "9",
+        "parameter": 'XNewClassUploadPage',
+        "page": '신규 수업 등록',
+        "title": '신규 수업을 등록해주세요. ',
+        "checkMenu": "Y"
+    },
+    {
         "id": "10",
         "parameter": 'XSugangRequestPage',
         "page": '수강신청 관리',
