@@ -36,6 +36,7 @@ export default function XRentalPlaceRequestControll() {
                         <p>선택</p>
                         <p>대관신청번호</p>
                         <p>대관시설이름</p>
+                        <p>대관이용날짜</p>
                         <p>회원번호</p>
                         <p>이름</p>
                         <p>연락처</p>
@@ -46,6 +47,7 @@ export default function XRentalPlaceRequestControll() {
                         <input type='checkbox'></input>
                         <p>999999</p>
                         <p>기초생활수영장</p>
+                        <p>24.03.26</p>
                         <p>888888</p>
                         <p>생존풋살</p>
                         <p>010-4444-4444</p>
