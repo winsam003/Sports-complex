@@ -34,7 +34,7 @@ export default function Xheader() {
                     </ul>
                     <ul>
                         <li className='Header_subMenu Header_Menutitle4'><Link to='/XlectureInfoPage' >강의정보 관리</Link></li>
-                        <li className='Header_subMenu Header_Menutitle5'><Link to='/' >신규강의 등록</Link></li>
+                        <li className='Header_subMenu Header_Menutitle5'><Link to='/XNewClassUploadPage' >신규강의 등록</Link></li>
                     </ul>
                     <ul>
                         <li className='Header_subMenu Header_Menutitle6'><Link to='/' >수강신청 관리</Link></li>

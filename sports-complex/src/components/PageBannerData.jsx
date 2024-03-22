@@ -252,6 +252,13 @@ export const PageBannerData = [
         "checkMenu": "Y"
     },
     {
+        "id": "9",
+        "parameter": 'XNewClassUploadPage',
+        "page": '신규 수업 등록',
+        "title": '신규 수업을 등록해주세요. ',
+        "checkMenu": "Y"
+    },
+    {
         "id": "10",
         "parameter": 'XRentalPlaceControllPage',
         "page": '대관 시설 관리',
