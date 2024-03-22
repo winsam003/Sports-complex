@@ -43,8 +43,8 @@
     grid-row: 1/2;
 }
 
-/* 강좌명 grid */
-.PlaceRentalSearch_Sugangtitle {
+/* 시설명 grid */
+.PlaceRentalSearch_PlaceName {
     grid-column: 1/5;
     grid-row: 2/3;
     display: flex;
@@ -53,11 +53,11 @@
 
 .PlaceRentalSearch_MainCategory span,
 .PlaceRentalSearch_SubCategory span,
-.PlaceRentalSearch_Sugangtitle span {
+.PlaceRentalSearch_PlaceName span {
     font-weight: bold;
 }
 
-.PlaceRentalSearch_Sugangtitle input {
+.PlaceRentalSearch_PlaceName input {
     width: 65.62%;
     margin-left: 0;
 }
@@ -68,7 +68,7 @@
         width: 100%;
     }
 
-    .PlaceRentalSearch_Sugangtitle input {
+    .PlaceRentalSearch_PlaceName input {
         width: 400px;
     }
 }

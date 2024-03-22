@@ -38,7 +38,7 @@ export default function Xheader() {
                     </ul>
                     <ul>
                         <li className='Header_subMenu Header_Menutitle6'><Link to='/XSugangRequestPage' >수강신청 관리</Link></li>
-                        <li className='Header_subMenu Header_Menutitle7'><Link to='/' >대관신청 관리</Link></li>
+                        <li className='Header_subMenu Header_Menutitle7'><Link to='/XRentalPlaceRequestControllPage' >대관신청 관리</Link></li>
                         <li className='Header_subMenu Header_Menutitle8'><Link to='/XParkingControllPage'>주차신청 관리</Link></li>
                     </ul>
                     <ul>
