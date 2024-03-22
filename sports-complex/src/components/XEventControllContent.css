@@ -1,0 +1,7 @@
+.XEventControllContent_div {
+    display: flex;
+}
+
+.XEventControllContent_div_div {
+    flex-grow: 1;
+}

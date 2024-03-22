@@ -1,13 +1,13 @@
 import './Board.css'
 import Submenu from './Submenu';
-import BoardSearchBox from './BoardSearchBox';
+import XEventSearch from './XEventSearch';
 import EventBoardList from './EventBoardList';
 
-export default function FindIDPage() {
+export default function EventBoardPage() {
     return (
         <div>
             <div className='board_div'>
-                <BoardSearchBox />
+                <XEventSearch />
                 <Submenu />
                 <EventBoardList />
             </div>
