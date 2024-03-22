@@ -6,11 +6,11 @@
 
     height: 18rem;
 
-    background-color: darkgoldenrod;
+    background-color: azure;
 }
 
 .FindID_data{
-    height: 1.6rem;
+    height: 3.2rem;
     width: 20rem;
 }
 
@@ -19,6 +19,14 @@
     height: 3.2rem;
 
     margin-top: 5px;
+
+    height: 50px;
+    font-size: large;
+    background-color: #059da5;
+    color: white;
+    border-radius: 0.5em;
+    border: none;
+    cursor: pointer;
 }
 
 .FindID_text>:first-child{
@@ -28,4 +36,8 @@
 
 .FindID_text>:nth-child(2){
     font-weight: bold;
+}
+
+.FindID_name{
+    margin-bottom: 5px;
 }

@@ -1,5 +1,8 @@
 .ModifyMemberAndSubMenu_Box{
-    position: relative;
+   display: flex;
+    height: 100%;
+}
 
-    height: 1300px;
+.ModifyMemberAndSubMenu_Box2{
+    width: 100%;
 }

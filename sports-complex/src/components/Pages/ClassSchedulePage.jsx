@@ -1,6 +1,5 @@
 import Header from '../Header';
 import PageBanner from '../PageBanner';
-import Footer from '../Footer';
 import ClassSchedule from '../ClassSchedule';
 
 export default function ClassSchedulePage(){
@@ -9,7 +8,6 @@ export default function ClassSchedulePage(){
             <Header />
             <PageBanner />
             <ClassSchedule />
-            <Footer />
         </div>
     )
 }
