@@ -1,3 +1,9 @@
-.XlectureInfo{
+
+.XlectureInfo_Box{
     display: flex;
+
+}
+
+.XlecturerListButton_box{
+    /* position: relative; */
 }
