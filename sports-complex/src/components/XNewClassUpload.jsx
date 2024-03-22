@@ -72,7 +72,7 @@ export default function XNewClassUpload(){
                     </table>
                 </form>
 
-                {/* <XlecturerList /> */}
+                <XlecturerList />
             </div>
         </div>
     )

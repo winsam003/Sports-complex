@@ -313,7 +313,7 @@ header>:last-child>div>ul>li {
 @media(max-width: 1200px) {
 
   .Header_join{
-    display: none;
+    /* display: none; */
   }
 
   .goHome {
@@ -342,7 +342,7 @@ header>:last-child>div>ul>li {
   }
 
   .noneHeader {
-    display: none;
+    /* display: none; */
     
   }
 
