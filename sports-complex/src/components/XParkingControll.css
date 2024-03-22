@@ -46,6 +46,7 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr) 2fr 1fr 2fr;
     text-align: center;
+    padding: 10px 0;
 }
 
 .XParkingControllSearchResult_index span {
@@ -58,7 +59,7 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr) 2fr 1fr 2fr;
     text-align: center;
-    padding: 5px 0;
+    padding: 10px 0;
 }
 
 .XParkingControllSearchResult_content span {
