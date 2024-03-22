@@ -1,0 +1,77 @@
+
+/* 전체박스 */
+.XclassSearchBox_box{
+    width: 100%;
+}
+
+/* 강의정보 글자 */
+.XclassSearchBox_title{
+    font-size: larger;
+    font-weight: bold;
+
+    text-align: center;
+
+    margin-bottom: 3rem;
+}
+
+/* 대분류 세부종목 박스  */
+.XclassSearchBox_division{
+    display: flex;
+
+    justify-content: space-evenly;
+    align-items: center;
+
+    margin-bottom: 3rem;
+}
+
+/* 대분류 세부종목 글자 */
+.XclassSearchBox_division>span{
+    font-size: large;
+}
+
+/* 대분류 세부종목 select */
+.XclassSearchBox_division>span>select{
+    margin-left: 10px;
+
+    width: 5rem;
+}
+
+
+/* 검색 컨테이너 박스 */
+.XclassSearchBox_inputBox {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    height: 2rem;
+    width: 100%;
+}
+
+/* input 태그 */
+.XclassSearchBox_input{
+    height: 2rem;
+    width: 80%;
+
+    margin-right: 10px;
+}
+
+
+
+/* 검색 요일, 대상(성인, 아동) */
+.XclassSearchBox_target {
+    display: flex;
+
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.XclassSearchBox_target>span>select{
+    margin-left: 10px;
+        
+    width: 5rem;
+}
+
+
+

@@ -1,0 +1,83 @@
+.XParkingControll_div {
+    display: flex;
+}
+
+.XParkingControll_div_div {
+    flex-grow: 1;
+}
+
+/* 검색창 */
+.XParkingControllSearchBox_div {
+    display: flex;
+    margin-top: 40px;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 20px;
+}
+
+.XParkingControllSearchBox_div select {
+    height: 26px;
+}
+
+.XParkingControllSearchBox_div input {
+    padding: 0;
+    height: 22px;
+}
+
+.XParkingControllSearchBox_div button {
+    margin-left: 10px;
+    height: 26px;
+    width: 50px;
+    background-color: #059da5;
+    color: white;
+    border-radius: 5%;
+    border: none;
+}
+
+/* 조회결과 */
+.XParkingControllSearchResult_div {
+    margin-top: 10px;
+}
+
+/* 대표항목 */
+.XParkingControllSearchResult_index {
+    border-top: 3px solid #C9EDFA;
+    background-color: #ceeff250;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr) 2fr 1fr 2fr;
+    text-align: center;
+}
+
+.XParkingControllSearchResult_index span {
+    font-weight: bold;
+    word-break: keep-all;
+}
+
+/* 내용 */
+.XParkingControllSearchResult_content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr) 2fr 1fr 2fr;
+    text-align: center;
+}
+
+.XParkingControllSearchResult_content span {
+    word-break: keep-all;
+}
+
+@media (max-width :980px) {
+
+    /* 최상위 div flex를 풀어 스크롤박스 */
+    .XParkingControll_div {
+        display: inherit;
+    }
+
+    .XParkingControllSearchResult_div {
+        overflow: auto;
+    }
+
+    /* 조회결과 */
+    .XParkingControllSearchResult_index,
+    .XParkingControllSearchResult_content {
+        width: 800px;
+    }
+}

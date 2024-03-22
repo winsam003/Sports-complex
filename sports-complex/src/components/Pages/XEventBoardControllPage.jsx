@@ -1,21 +1,15 @@
-import Header from '../Header';
+import Xheader from '../Xheader';
 import Footer from '../Footer';
 import PageBanner from '../PageBanner';
-import Submenu from '../Submenu';
-import XBoardControllContent from '../XBoardSearchBox';
-import XBoardSearchResult from '../XBoardSearchResult';
-import XBoardButton from '../XBoardButton';
+import XBoardControllContent from '../XBoardControllContent';
 
 // 이벤트 게시글 관리
 export default function XEventBoardControllPage() {
     return (
         <div>
-            <Header />
+            <Xheader />
             <PageBanner />
-            <Submenu />
             <XBoardControllContent />
-            <XBoardSearchResult />
-            <XBoardButton />
             <Footer />
         </div>
     )

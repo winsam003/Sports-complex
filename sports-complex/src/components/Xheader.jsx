@@ -16,10 +16,10 @@ export default function Xheader() {
                 <div className='Header_logo'><Link to="/">홈으로</Link></div>
                 <Link to='/ManagementPage' className='Header_mainHeader Header_Header1'>홈 화면 관리</Link>
                 <Link to='/UserInfoPage' className='Header_mainHeader Header_Header2'>인적 관리</Link>
-                <Link to='/' className='Header_mainHeader Header_Header3'>강의 관리</Link>
+                <Link to='/XlectureInfoPage' className='Header_mainHeader Header_Header3'>강의 관리</Link>
                 <Link to='/' className='Header_mainHeader Header_Header4'>이용신청 관리</Link>
-                <Link to='/' className='Header_mainHeader Header_Header4'>이용신청 관리</Link>
-                <Link to='/' className='Header_mainHeader Header_Header5'>게시판 관리</Link>
+                <Link to='/XRentalPlaceControllPage' className='Header_mainHeader Header_Header4'>시설 관리</Link>
+                <Link to='/XBoardControllPage' className='Header_mainHeader Header_Header5'>게시판 관리</Link>
             </div>
             <div className='Header_mainMenu'>
                 <div>
@@ -30,26 +30,26 @@ export default function Xheader() {
                     <ul>
                         <li className='Header_subMenu Header_Menutitle1'><Link to='/UserInfoPage' >회원정보 관리</Link></li>
                         <li className='Header_subMenu Header_Menutitle2'><Link to='/XlecturePage' >강사정보 관리</Link></li>
-                        <li className='Header_subMenu Header_Menutitle3'><Link to='/XlectureRegisterPage' >강사 등록</Link> </li>
+                        <li className='Header_subMenu Header_Menutitle3'><Link to='/XlecturerRegisterPage' >강사 등록</Link> </li>
                     </ul>
                     <ul>
-                        <li className='Header_subMenu Header_Menutitle4'><Link to='/' >강의정보 관리</Link></li>
+                        <li className='Header_subMenu Header_Menutitle4'><Link to='/XlectureInfoPage' >강의정보 관리</Link></li>
                         <li className='Header_subMenu Header_Menutitle5'><Link to='/' >신규강의 등록</Link></li>
                     </ul>
                     <ul>
                         <li className='Header_subMenu Header_Menutitle6'><Link to='/' >수강신청 관리</Link></li>
                         <li className='Header_subMenu Header_Menutitle7'><Link to='/' >대관신청 관리</Link></li>
-                        <li className='Header_subMenu Header_Menutitle8'><Link to='/'>주차신청 관리</Link></li>
+                        <li className='Header_subMenu Header_Menutitle8'><Link to='/XParkingControllPage'>주차신청 관리</Link></li>
                     </ul>
                     <ul>
-                        <li className='Header_subMenu Header_Menutitle6'><Link to='/' >시설 관리</Link></li>
-                        <li className='Header_subMenu Header_Menutitle7'><Link to='/' >신규시설 등록</Link></li>
+                        <li className='Header_subMenu Header_Menutitle6'><Link to='/XRentalPlaceControllPage' >시설 관리</Link></li>
+                        <li className='Header_subMenu Header_Menutitle7'><Link to='/XReantalPlaceNewonePage' >신규시설 등록</Link></li>
                     </ul>
                     <ul>
-                        <li className='Header_subMenu Header_Menutitle9'><Link to='/' >공지사항 관리</Link></li>
-                        <li className='Header_subMenu Header_Menutitle10'><Link to='/' >이벤트게시판 관리</Link></li>
-                        <li className='Header_subMenu Header_Menutitle11'><Link to='/' >자주하는질문 관리</Link></li>
-                        <li className='Header_subMenu Header_Menutitle12'><Link to='/' >문의게시판 &nbsp;관리</Link></li>
+                        <li className='Header_subMenu Header_Menutitle9'><Link to='/XBoardControllPage' >공지사항 관리</Link></li>
+                        <li className='Header_subMenu Header_Menutitle10'><Link to='/XEventBoardControllPage' >이벤트게시판 관리</Link></li>
+                        <li className='Header_subMenu Header_Menutitle11'><Link to='/XFaqBoardControllPage' >자주하는질문 관리</Link></li>
+                        <li className='Header_subMenu Header_Menutitle12'><Link to='/XQnaBoardControllPage' >문의게시판 &nbsp;관리</Link></li>
                     </ul>
                 </div>
             </div>

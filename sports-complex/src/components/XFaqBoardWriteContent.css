@@ -1,3 +1,11 @@
+.XFaqBoardWirteContent_div {
+    display: flex;
+}
+
+.XFaqBoardWirteContent_div_div {
+    flex-grow: 1;
+}
+
 /* 필수항목 */
 .XFaqBoardWirteContent_haveto * {
     margin-top: 40px;

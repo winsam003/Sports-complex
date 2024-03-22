@@ -1,19 +1,15 @@
-import Header from '../Header';
+import Xheader from '../Xheader';
 import PageBanner from '../PageBanner';
-import Submenu from '../Submenu';
-import XReantalPlaceNewone from '../XReantalPlaceNewone';
-import XBtnUpdatePrev from '../XBtnUpdatePrev';
+import XReantalPlaceDetail from '../XReantalPlaceDetail';
 import Footer from '../Footer';
 
 // 대관 시설 등록 및 변경
 export default function XReantalPlaceDetailPage() {
     return (
         <div>
-            <Header />
+            <Xheader />
             <PageBanner />
-            <Submenu />
-            <XReantalPlaceNewone />
-            <XBtnUpdatePrev />
+            <XReantalPlaceDetail />
             <Footer />
         </div>
     )

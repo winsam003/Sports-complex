@@ -1,16 +1,16 @@
+
 import Xheader from '../Xheader';
 import PageBanner from '../PageBanner';
-import XRentalPlaceControll from '../XRentalPlaceControll';
 import Footer from '../Footer';
+import Xclass from '../Xclass';
 
-// 대관 신청 관리
-export default function XRentalPlaceControllPage() {
-    return (
+export default function XlectureInfoPage(){
+    return(
         <div>
             <Xheader />
             <PageBanner />
-            <XRentalPlaceControll />
+            <Xclass />
             <Footer />
         </div>
-    )
+    )    
 }

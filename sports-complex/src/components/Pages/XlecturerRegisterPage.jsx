@@ -1,14 +1,14 @@
 import Xheader from "../Xheader";
 import Footer from '../Footer';
 import PageBanner from "../PageBanner";
-import XlectureRegister from "../XlectureRegister";
+import XlecturerRegister from "../XlecturerRegister";
 
-export default function XlectureRegisterPage(){
+export default function XlecturerRegisterPage(){
     return(
         <div>
             <Xheader />
             <PageBanner />
-            <XlectureRegister />
+            <XlecturerRegister />
             <Footer />
         </div>
     )
