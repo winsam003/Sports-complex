@@ -1,0 +1,48 @@
+.XNewClassUpload {
+    display: flex;
+}
+.XNewClassUpload_div{
+    width: 100%;
+}
+/*  타이틀 */
+.XNewClassUpload_Title {
+    margin: 1rem;
+    margin-bottom: 0;
+    font-size: 2rem;
+    padding: 1rem;
+}
+/* 테이블 */
+.XNewClassUpload_table {
+    width: 100%;
+    /* background-color: antiquewhite; */
+    border-top: 2px solid #27979d;
+    border-bottom: 2px solid #27979d;
+    border-collapse: collapse;
+}
+.XNewClassUpload_table th {
+    background-color: #a6e9ed;
+}
+.XNewClassUpload_table th,
+.XNewClassUpload_table td{
+    border-bottom: 1px solid black;
+}
+.XNewClassUpload_table tr{
+    height: 3rem;
+}
+.XNewClassUpload_table input{
+    margin: 10px;
+}
+/* 신청 날짜  */
+.XNewClassUpload_classAppDate {
+    background-color: rgb(231, 226, 159);
+}
+
+/* 시작과 끝 */
+.XNewClassUpload_startEnd {
+    background-color: rgb(214, 184, 138);
+}
+
+.XNewClassUpload_table tr:hover {
+    background-color: #d5d8d8;
+    /* opacity: 0.5; */
+}
