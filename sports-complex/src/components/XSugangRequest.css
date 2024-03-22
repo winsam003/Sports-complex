@@ -1,0 +1,7 @@
+.XSugangRequest_div {
+    display: flex;
+}
+
+.XSugangRequest_div_div {
+    flex-grow: 1;
+}
