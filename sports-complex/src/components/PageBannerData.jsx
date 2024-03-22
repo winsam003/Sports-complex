@@ -219,6 +219,62 @@ export const PageBannerData = [
         "title": '인적 관리',
         "checkMenu": "Y"
     },
+    {
+        "id": "10",
+        "parameter": 'XRentalPlaceControllPage',
+        "Page": '대관 시설 관리',
+        "title": '대관 시설을 관리할 수 있습니다 '
+    },
+    {
+        "parameter": 'XReantalPlaceDetailPage',
+        "Page": '대관 시설 관리',
+        "title": '대관 시설을 관리할 수 있습니다 '
+    },
+    {
+        "parameter": 'XReantalPlaceNewonePage',
+        "Page": '대관 시설 등록 및 변경',
+        "title": '대관 시설을 관리할 수 있습니다 '
+    },
+    {
+        "parameter": 'XEventBoardControllPage',
+        "Page": '이벤트 게시판 관리',
+        "title": '이벤트 게시판을 관리할 수 있습니다 '
+    },
+    {
+        "parameter": 'XEventBoardWritePage',
+        "Page": '이벤트 게시글 등록',
+        "title": '이벤트 게시글을 등록할 수 있습니다 '
+    },
+    {
+        "parameter": 'XBoardControllPage',
+        "Page": '공지사항 관리',
+        "title": '공지사항을 관리할 수 있습니다 '
+    },
+    {
+        "parameter": 'XBoardWritePage',
+        "Page": '공지사항 등록',
+        "title": '공지사항을 등록할 수 있습니다 '
+    },
+    {
+        "parameter": 'XFaqBoardControllPage',
+        "Page": '자주하는 질문 관리',
+        "title": '자주하는 질문을 관리할 수 있습니다 '
+    },
+    {
+        "parameter": 'XFaqBoardWritePage',
+        "Page": '자주하는 질문 등록',
+        "title": '자주하는 질문을 등록할 수 있습니다 '
+    },
+    {
+        "parameter": 'XQnaBoardControllPage',
+        "Page": '문의 게시판 관리',
+        "title": '문의 게시판을 관리할 수 있습니다 '
+    },
+    {
+        "parameter": 'XQnaBoardAnswerPage',
+        "Page": '문의 게시글 답변 등록',
+        "title": '문의 게시글에 답변을 등록할 수 있습니다 '
+    },
 
     { "parameter": '11', "Page": '정기 주차신청', "title": '원하시는 장소에 주차신청하실 수 있습니다' },
     { "parameter": '13', "Page": 'QR 코드', "title": '이웃과 함께하는 건강하고 행복한 삶' },
@@ -269,60 +325,5 @@ export const PageBannerData = [
         "parameter": '29',
         "Page": '대관 신청 관리',
         "title": '대관 신청 현황을 관리할 수 있습니다 '
-    },
-    {
-        "parameter": 'XRentalPlaceControllPage',
-        "Page": '대관 시설 관리',
-        "title": '대관 시설을 관리할 수 있습니다 '
-    },
-     {
-        "parameter": 'XReantalPlaceDetailPage',
-        "Page": '대관 시설 관리',
-        "title": '대관 시설을 관리할 수 있습니다 '
-    },
-    {
-        "parameter": 'XReantalPlaceNewonePage',
-        "Page": '대관 시설 등록 및 변경',
-        "title": '대관 시설을 관리할 수 있습니다 '
-    },
-    {
-        "parameter": 'XEventBoardControllPage',
-        "Page": '이벤트 게시판 관리',
-        "title": '이벤트 게시판을 관리할 수 있습니다 '
-    },
-    {
-        "parameter": 'XEventBoardWritePage',
-        "Page": '이벤트 게시글 등록',
-        "title": '이벤트 게시글을 등록할 수 있습니다 '
-    },
-    {
-        "parameter": 'XBoardControllPage',
-        "Page": '공지사항 관리',
-        "title": '공지사항을 관리할 수 있습니다 '
-    },
-    {
-        "parameter": 'XBoardWritePage',
-        "Page": '공지사항 등록',
-        "title": '공지사항을 등록할 수 있습니다 '
-    },
-    {
-        "parameter": 'XFaqBoardControllPage',
-        "Page": '자주하는 질문 관리',
-        "title": '자주하는 질문을 관리할 수 있습니다 '
-    },
-    {
-        "parameter": 'XFaqBoardWritePage',
-        "Page": '자주하는 질문 등록',
-        "title": '자주하는 질문을 등록할 수 있습니다 '
-    },
-    {
-        "parameter": 'XQnaBoardControllPage',
-        "Page": '문의 게시판 관리',
-        "title": '문의 게시판을 관리할 수 있습니다 '
-    },
-    {
-        "parameter": 'XQnaBoardAnswerPage',
-        "Page": '문의 게시글 답변 등록',
-        "title": '문의 게시글에 답변을 등록할 수 있습니다 '
     }
 ]
