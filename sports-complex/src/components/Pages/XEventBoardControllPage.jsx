@@ -1,5 +1,4 @@
 import Xheader from '../Xheader';
-import Footer from '../Footer';
 import PageBanner from '../PageBanner';
 import XEventControllContent from '../XEventControllContent';
 
@@ -10,7 +9,6 @@ export default function XEventBoardControllPage() {
             <Xheader />
             <PageBanner />
             <XEventControllContent />
-            <Footer />
         </div>
     )
 }

@@ -1,7 +1,6 @@
 import Header from '../Header';
 import PageBanner from '../PageBanner';
 import EventBoardDetail from '../EventBoardDetail';
-import Footer from '../Footer';
 
 export default function EventDetailPage(){
     return(
@@ -9,7 +8,6 @@ export default function EventDetailPage(){
             <Header />
             <PageBanner />
             <EventBoardDetail />
-            <Footer />
         </div>
     )
 }

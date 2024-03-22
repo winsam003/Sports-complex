@@ -1,7 +1,6 @@
 import Header from '../Header';
-import Footer from '../Footer';
 import PasswordChange2 from '../PasswordChange2';
-import PageBanner from '../PageBanner';
+import PageBanner from './../PageBanner';
 
 
 export default function PasswordChangePage() {
@@ -10,7 +9,6 @@ export default function PasswordChangePage() {
             <Header />
             <PageBanner />
             <PasswordChange2 />
-            <Footer />
         </div>
     )
 }

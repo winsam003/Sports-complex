@@ -1,5 +1,4 @@
 import Xheader from '../Xheader';
-import Footer from '../Footer';
 import PageBanner from '../PageBanner';
 import XFaqControllContent from '../XFaqControllContent';
 
@@ -10,7 +9,6 @@ export default function XFaqBoardControllPage() {
             <Xheader />
             <PageBanner />
             <XFaqControllContent />
-            <Footer />
         </div>
     )
 }

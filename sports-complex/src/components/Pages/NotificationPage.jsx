@@ -1,7 +1,6 @@
 import Header from '../Header';
 import PageBanner from '../PageBanner';
 import Board from '../Board'
-import Footer from '../Footer';
 
 // 공지사항
 export default function NotificationPage() {
@@ -10,7 +9,6 @@ export default function NotificationPage() {
             <Header />
             <PageBanner />
             <Board />
-            <Footer />
         </div>
     )
 }
