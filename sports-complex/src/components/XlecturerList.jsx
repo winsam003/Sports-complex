@@ -1,5 +1,6 @@
 import './XlecturerList.css';
 import XlecturerListContents from './XlecturerListContents';
+import XlecturerListButton from './XlecturerListButton';
 import { useState } from 'react';
 
 export default function XlecturerList() {
@@ -70,10 +71,7 @@ export default function XlecturerList() {
                         <XlecturerListContents key={index} {...it} lectureDelete={lectureDelete} />
                     ))}
                 </div>
-                <div className='XlectureInfoList_UserButton'>
-                    <button>초기화</button>
-                    <button>삭제</button>
-                </div>
+                <XlecturerListButton />
             </div>
         </div>
     )
