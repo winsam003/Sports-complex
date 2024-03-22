@@ -17,8 +17,10 @@ export default function JoinMember() {
                         <tr>
                             <th>생년월일<span className='JoinMember_star'>*</span></th>
                             <td>
+                                
                                 <input type="number" name='birth' id='birth' placeholder='본인인증에서 가져오기' readOnly />
-                                <input type="radio" id='solar' name='birthChoice' value={'solar'} />
+                                
+                                <input type="radio" id='solar' name='birthChoice' value={'solar'} /> 
                                 <label htmlFor="solar">양력</label>
                                 <input type="radio" id='lunar' name='birthChoice' value={'lunar'} />
                                 <label htmlFor="lunar">음력</label>

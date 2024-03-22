@@ -72,7 +72,7 @@
 /* 대표항목 */
 .XRentalPlaceRequestControll_index {
     display: grid;
-    grid-template-columns: 50px 1fr 2fr repeat(2, 1fr) 2fr 2fr 1fr;
+    grid-template-columns: 50px 1fr 2fr repeat(3, 1fr) 2fr 2fr 1fr;
     margin-top: 30px;
     border-top: 3px solid #C9EDFA;
     background-color: #ceeff250;
@@ -91,7 +91,7 @@
 /* 내용 */
 .XRentalPlaceRequestControll_content {
     display: grid;
-    grid-template-columns: 50px 1fr 2fr repeat(2, 1fr) 2fr 2fr 1fr;
+    grid-template-columns: 50px 1fr 2fr repeat(3, 1fr) 2fr 2fr 1fr;
 }
 
 /* 선택 체크박스 */

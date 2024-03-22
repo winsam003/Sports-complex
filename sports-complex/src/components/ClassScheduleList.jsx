@@ -37,21 +37,9 @@ export default function ClassSchedule(){
                 <input type="checkbox" id='weight' name='classType' value={'weight'}/>
             </div>
             <div className='ClassSchedule_List'>
-                <div>
-                    <span>구분</span>
-                    <span>강좌명</span>
-                    <span>강좌신청시작</span>
-                    <span>강좌신청마감</span>
-                    <span>대상</span>
-                    <span>정원</span>
-                    <span>신청현황</span>
-                    <span>대기</span>
-                    <span>금액</span>
-                    <span>신청</span>
-                </div>
-                <div>
-                    <ClassScheduleDetail />
-                </div>
+
+                <ClassScheduleDetail />
+                
             </div>
         </div>
     )
