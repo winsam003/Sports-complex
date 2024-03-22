@@ -310,6 +310,10 @@ header>:last-child>div>ul>li {
 
 /* 반응형 */
 @media(max-width: 1200px) {
+  .Header_clickMenu a,
+  .Header_mainMenu a{
+    word-break: keep-all;
+  }
 
 
   .Header_join{

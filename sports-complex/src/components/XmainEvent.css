@@ -110,7 +110,16 @@
 }
 
 @media(max-width: 1200px){
-    .XmainEvent_adPics img{
+    .XmainEvent_adPics div{
         width: 30%;
-    }   
+    }
+    .XmainEvent_adPics>div{
+    border-right: 1px solid #ccc;
+    }
+    .XmainEvent_adPics>div:nth-child(3),
+    .XmainEvent_adPics>div:nth-child(6),
+    .XmainEvent_adPics>div:nth-child(9),
+    .XmainEvent_adPics>div:nth-child(10){
+        border: none;
+    }
 }

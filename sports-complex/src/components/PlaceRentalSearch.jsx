@@ -20,8 +20,8 @@ export default function PlaceRentalSearch() {
                         <option value="">세부종목3</option>
                     </select>
                 </div>
-                <div className='PlaceRentalSearch_Sugangtitle'>
-                    <span>강좌명</span>
+                <div className='PlaceRentalSearch_PlaceName'>
+                    <span>시설명</span>
                     <input type='text'>
                     </input>
                 </div>

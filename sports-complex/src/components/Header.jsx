@@ -24,7 +24,7 @@ export default function Header() {
                 <Link to='/LoginPage' className='noneHeader'>로그인/로그아웃</Link>
                 <Link to='/JoinPage1' className='Header_join'>회원가입<TbUserPlus className='Header_Icon' /></Link>
             </div>
-            <div>
+            <div className='Header_clickMenu'>
                 <div className='Header_logo'><Link to="/">홈으로</Link></div>
                 <Link to='/FacilityInformationPage' className='Header_mainHeader Header_Header1'>체육시설</Link>
                 <Link to='/BoardPage' className='Header_mainHeader Header_Header2'>고객센터</Link>
