@@ -1,6 +1,6 @@
 import './XBtnPrev.css'
 
-// 목록 / 이전으로 버튼
+// 이전으로 버튼
 export default function XBtnPrev() {
     return (
         <div>
