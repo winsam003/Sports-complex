@@ -18,6 +18,10 @@ export default function XNewClassUpload(){
                             <th>강좌명</th>
                             <td><input type="text" /></td>
                         </tr>
+                        <tr>
+                            <th>강사명</th>
+                            <td><input type="text" placeholder='아래에서 강사 검색 후 등록버튼을 눌러 등록해주세요.' size={'50'} readOnly /></td>
+                        </tr>
                         <tr className='XNewClassUpload_classAppDate'>
                             <th>강좌 신청 시작날</th>
                             <td><input type="date" /></td>
@@ -70,9 +74,12 @@ export default function XNewClassUpload(){
                             </td>
                         </tr>
                     </table>
+                    <div className="XNewClassUpload_submitBtn">
+                        <input type="submit" value={'강사 등록'} />
+                    </div>
                 </form>
 
-                <XlecturerList />
+                <XlecturerList className="XNewClassUpload_findT" />
             </div>
         </div>
     )
