@@ -1,5 +1,5 @@
 import './XclassSearchBox.css';
-import {useState} from 'react';
+import { useState } from 'react';
 import XclassSearchButton from './XclassSearchButton';
 
 export default function XclassSearchBox() {
@@ -48,7 +48,7 @@ export default function XclassSearchBox() {
                     )}
                     {selectedOption === '라켓' && (
                         <select name="XclassSearchBox_SubCategory" id="XclassSearchBox_SubCategory">
-                            <option value="탁구">k-pop</option>
+                            <option value="탁구">탁구</option>
                             <option value="배드민턴">배드민턴</option>
                             <option value="테니스">테니스</option>
                             <option value="스쿼시">스쿼시</option>
@@ -61,11 +61,12 @@ export default function XclassSearchBox() {
                             <option value="필라테스">필라테스</option>
                         </select>
                     )}
-                    
+
                 </span>
             </div>
             <div className='XclassSearchBox_inputBox'>
-                <input className='XclassSearchBox_input' type="text" placeholder='검색할 강의를 입력해주세요'/>
+                <span>강좌명 </span>
+                <input className='XclassSearchBox_input' type="text" placeholder='검색할 강의를 입력해주세요' />
             </div>
             <div className='XclassSearchBox_target'>
                 <span>요일선택

@@ -44,7 +44,7 @@
     border-top: 3px solid #C9EDFA;
     background-color: #ceeff250;
     display: grid;
-    grid-template-columns: repeat(4, 1fr) 2fr 1fr 2fr;
+    grid-template-columns: repeat(5, 1fr) 2fr 1fr 2fr;
     text-align: center;
 }
 
@@ -56,8 +56,9 @@
 /* 내용 */
 .XParkingControllSearchResult_content {
     display: grid;
-    grid-template-columns: repeat(4, 1fr) 2fr 1fr 2fr;
+    grid-template-columns: repeat(5, 1fr) 2fr 1fr 2fr;
     text-align: center;
+    padding: 5px 0;
 }
 
 .XParkingControllSearchResult_content span {

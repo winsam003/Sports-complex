@@ -17,7 +17,7 @@ export default function Xheader() {
                 <Link to='/ManagementPage' className='Header_mainHeader Header_Header1'>홈 화면 관리</Link>
                 <Link to='/UserInfoPage' className='Header_mainHeader Header_Header2'>인적 관리</Link>
                 <Link to='/XlectureInfoPage' className='Header_mainHeader Header_Header3'>강의 관리</Link>
-                <Link to='/' className='Header_mainHeader Header_Header4'>이용신청 관리</Link>
+                <Link to='/XSugangRequestPage' className='Header_mainHeader Header_Header4'>이용신청 관리</Link>
                 <Link to='/XRentalPlaceControllPage' className='Header_mainHeader Header_Header4'>시설 관리</Link>
                 <Link to='/XBoardControllPage' className='Header_mainHeader Header_Header5'>게시판 관리</Link>
             </div>
@@ -37,7 +37,7 @@ export default function Xheader() {
                         <li className='Header_subMenu Header_Menutitle5'><Link to='/XNewClassUploadPage' >신규강의 등록</Link></li>
                     </ul>
                     <ul>
-                        <li className='Header_subMenu Header_Menutitle6'><Link to='/' >수강신청 관리</Link></li>
+                        <li className='Header_subMenu Header_Menutitle6'><Link to='/XSugangRequestPage' >수강신청 관리</Link></li>
                         <li className='Header_subMenu Header_Menutitle7'><Link to='/' >대관신청 관리</Link></li>
                         <li className='Header_subMenu Header_Menutitle8'><Link to='/XParkingControllPage'>주차신청 관리</Link></li>
                     </ul>
