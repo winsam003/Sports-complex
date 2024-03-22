@@ -1,3 +1,11 @@
+.XEventBoardWriteContent_div {
+    display: flex;
+}
+
+.XEventBoardWriteContent_div_div {
+    flex-grow: 1;
+}
+
 /* 필수항목 */
 .XEventBoardContent_haveto * {
     margin-top: 40px;
