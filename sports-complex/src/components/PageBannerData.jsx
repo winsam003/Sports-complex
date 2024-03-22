@@ -244,13 +244,13 @@ export const PageBannerData = [
         "title": '수강신청을 관리할 수 있습니다',
         "checkMenu": "Y"
     },
-    // {
-    //     "id": "10",
-    //     "parameter": 'XParkingControllPage',
-    //     "page": '대관신청 관리',
-    //     "title": '대관신청을 관리할 수 있습니다',
-    //     "checkMenu": "Y"
-    // },
+    {
+        "id": "10",
+        "parameter": 'XRentalPlaceRequestControllPage',
+        "page": '대관신청 관리',
+        "title": '대관신청을 관리할 수 있습니다',
+        "checkMenu": "Y"
+    },
     {
         "id": "10",
         "parameter": 'XParkingControllPage',

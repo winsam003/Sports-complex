@@ -315,6 +315,7 @@ header>:last-child>div>ul>li {
     word-break: keep-all;
   }
 
+
   .Header_join{
     display: none;
   }
@@ -345,8 +346,7 @@ header>:last-child>div>ul>li {
   }
 
   .noneHeader {
-    display: none;
-    
+    /* display: none; */
   }
 
   header>:nth-child(2)>:first-child {

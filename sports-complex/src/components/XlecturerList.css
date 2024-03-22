@@ -4,7 +4,7 @@
 .XlectureInfoList_Box{
     background-color: #F0FFFF;
     width: 100%;
-    
+    height: auto;
 }
 
 /* 회원 정보 검색 박스 */

@@ -9,9 +9,9 @@ export default function XParkingControll() {
             <div className='XParkingControll_div_div'>
                 <div className='XParkingControllSearchBox_div'>
                     <select>
-                        <option value="">공지사항 종류1</option>
-                        <option value="">공지사항 종류2</option>
-                        <option value="">공지사항 종류3</option>
+                        <option value="">주차장 위치</option>
+                        <option value="">이름</option>
+                        <option value="">차챵번호</option>
                     </select>
                     <input type='text'></input>
                     <button>검색</button>

@@ -317,7 +317,7 @@ header>:last-child>div>ul>li {
   }
 
   .Header_join{
-    display: none;
+    /* display: none; */
   }
 
   .goHome {
@@ -346,7 +346,7 @@ header>:last-child>div>ul>li {
   }
 
   .noneHeader {
-    display: none;
+    /* display: none; */
     
   }
 
