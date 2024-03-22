@@ -87,21 +87,6 @@
     /* background-color: darkorange; */
 }
 
-.ClassSchedule_List>:first-child{
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    
-    text-align: center;
-    justify-content: center;
-    
-    /* padding-top: 2rem; */
-    border-top: 1px solid gray;
-    border-bottom: 1px solid gray;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    background-color: ghostwhite;
-   
-}
 .ClassSchedule_title{
     font-size: 2rem;
     text-align: center;
@@ -118,10 +103,6 @@
     content: "\1F4CC"; 
 }
 
-.ClassSchedule_List>:first-child>span{
-    font-weight: bold;
-}
-
 .ClassSchedule_CheckBox{
     display: flex;
     justify-content: center;
@@ -132,3 +113,6 @@
 .ClassSchedule_CheckBox>span{
     margin-right: 3rem;
 }
+
+
+

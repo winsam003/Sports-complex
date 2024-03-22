@@ -1,6 +1,6 @@
 import Header from '../Header';
 import PageBanner from '../PageBanner';
-import Board from '../Board'
+import QnaBoard from '../QnaBoard'
 
 // 문의게시판
 export default function Qna() {
@@ -8,7 +8,7 @@ export default function Qna() {
         <div>
             <Header />
             <PageBanner />
-            <Board />
+            <QnaBoard />
         </div>
     )
 }
