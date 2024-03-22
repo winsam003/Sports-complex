@@ -6,6 +6,7 @@ export default function XRentalPlaceSearchResult() {
             <div className='XRentalPlaceSearchResult_SearchResult_div'>
                 {/* 조회결과 index */}
                 <div className='XRentalPlaceSearchResult_SearchResult_index'>
+                    <p>선택</p>
                     <p>시설 번호</p>
                     <p>시설 종류</p>
                     <p>시설 이름</p>
@@ -13,6 +14,9 @@ export default function XRentalPlaceSearchResult() {
                 </div>
                 {/* 조회결과 */}
                 <div className='XRentalPlaceSearchResult_SearchResult'>
+                    <div className='XRentalPlaceSearchResult_SearchResult_input'>
+                        <input type="checkbox" />
+                    </div>
                     <p>999999</p>
                     <p>농구</p>
                     <p>승승장구 스포츠센터 제1농구장</p>

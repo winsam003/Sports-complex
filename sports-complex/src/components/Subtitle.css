@@ -5,6 +5,7 @@
     font-weight: bold;
     font-size: large;
     text-decoration: none;
+    word-break: keep-all;
 }
 
 .subtitle_p:hover {
@@ -13,7 +14,7 @@
     border-radius: 15px;
 }
 
-.subtitle_color{
+.subtitle_color {
     background-color: deepskyblue;
     border-radius: 15px;
 }

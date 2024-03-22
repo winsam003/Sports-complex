@@ -48,6 +48,7 @@ import XReantalPlaceNewonePage from './components/Pages/XReantalPlaceNewonePage'
 import XReantalPlaceDetailPage from './components/Pages/XReantalPlaceDetailPage';
 import XlecturePage from './components/Pages/XlecturePage';
 import XlecturerRegisterPage from './components/Pages/XlecturerRegisterPage';
+import XParkingControllPage from './components/Pages/XParkingControllPage';
 import XlectureInfoPage from './components/Pages/XlectureInfoPage';
 
 function App() {
@@ -102,6 +103,7 @@ function App() {
         <Route path='/XReantalPlaceDetailPage' element={<XReantalPlaceDetailPage />} />
         <Route path='/XlecturePage' element={<XlecturePage />} />
         <Route path='/XlecturerRegisterPage' element={<XlecturerRegisterPage />} />
+        <Route path='/XParkingControllPage' element={<XParkingControllPage />} />
         <Route path='/XlectureInfoPage' element={<XlectureInfoPage />} />
 
         <Route path='*' element={<NotFoundPage />} />

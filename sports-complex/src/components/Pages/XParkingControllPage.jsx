@@ -1,14 +1,15 @@
 import Xheader from '../Xheader';
-import Footer from '../Footer';
 import PageBanner from '../PageBanner';
-import XmainEvent from '../XmainEvent';
+import XParkingControll from '../XParkingControll';
+import Footer from '../Footer';
 
-export default function ManagementPage() {
+// 문의게시판 답글등록
+export default function XParkingControllPage() {
     return (
         <div>
             <Xheader />
             <PageBanner />
-            <XmainEvent />
+            <XParkingControll />
             <Footer />
         </div>
     )
