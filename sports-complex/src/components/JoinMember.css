@@ -106,3 +106,16 @@
 }
 
 
+@media(max-width: 1200px){
+.JoinMember_midbox #name, 
+.JoinMember_midbox #birth, 
+.JoinMember_midbox #id, 
+.JoinMember_midbox #password, 
+.JoinMember_midbox #password2, 
+.JoinMember_midbox #address1, 
+.JoinMember_midbox #address2, 
+.JoinMember_midbox #carNum {
+    width: 80%;
+}
+}
+
