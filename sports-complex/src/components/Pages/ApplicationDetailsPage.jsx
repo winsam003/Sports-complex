@@ -1,6 +1,5 @@
 import Header from '../Header';
 import ApplicationDetails from '../ApplicationDetails';
-import Footer from '../Footer';
 import PageBanner from '../PageBanner';
 
 export default function ApplicationDetailsPage() {
@@ -13,7 +12,6 @@ export default function ApplicationDetailsPage() {
             <Header />
             <PageBanner />
             <ApplicationDetails />
-            <Footer />
         </div>
     )
 

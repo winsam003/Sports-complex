@@ -1,6 +1,5 @@
 import Header from '../Header';
 import Board from '../Board';
-import Footer from '../Footer';
 import PageBanner from '../PageBanner';
 
 export default function Boardpage(){
@@ -9,7 +8,6 @@ export default function Boardpage(){
             <Header />
             <PageBanner />
             <Board />
-            <Footer />
         </div>
     )
 
