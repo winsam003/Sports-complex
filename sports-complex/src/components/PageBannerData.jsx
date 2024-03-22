@@ -221,6 +221,28 @@ export const PageBannerData = [
         "title": '인적 관리',
         "checkMenu": "Y"
     },
+    // 이용신청관리 이용신청관리 이용신청관리 이용신청관리 이용신청관리 이용신청관리 
+    // {
+    //     "id": "9",
+    //     "parameter": 'XParkingControllPage',
+    //     "page": '수강신정 관리',
+    //     "title": '수강신청을 관리할 수 있습니다',
+    //     "checkMenu": "Y"
+    // },
+    // {
+    //     "id": "9",
+    //     "parameter": 'XParkingControllPage',
+    //     "page": '대관신정 관리',
+    //     "title": '대관신청을 관리할 수 있습니다',
+    //     "checkMenu": "Y"
+    // },
+    {
+        "id": "9",
+        "parameter": 'XParkingControllPage',
+        "page": '주차신정 관리',
+        "title": '주차신청을 관리할 수 있습니다',
+        "checkMenu": "Y"
+    },
     // 시설관리 시설관리 시설관리 시설관리 시설관리 시설관리 시설관리 시설관리 
     {
         "id": "10",
@@ -253,20 +275,6 @@ export const PageBannerData = [
     // 게시판관리 게시판관리 게시판관리 게시판관리 게시판관리 게시판관리 게시판관리 
     {
         "id": "11",
-        "parameter": 'XEventBoardControllPage',
-        "page": '이벤트 게시판 관리',
-        "title": '이벤트 게시판을 관리할 수 있습니다 ',
-        "checkMenu": "Y"
-    },
-    {
-        "id": "11",
-        "parameter": 'XEventBoardWritePage',
-        "page": '이벤트 게시글 등록',
-        "title": '이벤트 게시글을 등록할 수 있습니다 ',
-        "checkMenu": "N"
-    },
-    {
-        "id": "11",
         "parameter": 'XBoardControllPage',
         "page": '공지사항 관리',
         "title": '공지사항을 관리할 수 있습니다 ',
@@ -277,6 +285,20 @@ export const PageBannerData = [
         "parameter": 'XBoardWritePage',
         "page": '공지사항 등록',
         "title": '공지사항을 등록할 수 있습니다 ',
+        "checkMenu": "N"
+    },
+    {
+        "id": "11",
+        "parameter": 'XEventBoardControllPage',
+        "page": '이벤트 게시판 관리',
+        "title": '이벤트 게시판을 관리할 수 있습니다 ',
+        "checkMenu": "Y"
+    },
+    {
+        "id": "11",
+        "parameter": 'XEventBoardWritePage',
+        "page": '이벤트 게시글 등록',
+        "title": '이벤트 게시글을 등록할 수 있습니다 ',
         "checkMenu": "N"
     },
     {
