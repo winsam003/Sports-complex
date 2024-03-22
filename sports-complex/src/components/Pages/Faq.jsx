@@ -1,6 +1,6 @@
 import Header from '../Header';
 import PageBanner from '../PageBanner';
-import Board from '../Board'
+import FaqBoard from '../FaqBoard'
 import Footer from '../Footer';
 
 // 자주하는 질문
@@ -9,7 +9,7 @@ export default function Faq() {
         <div>
             <Header />
             <PageBanner />
-            <Board />
+            <FaqBoard />
             <Footer />
         </div>
     )

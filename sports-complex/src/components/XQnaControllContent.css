@@ -1,0 +1,7 @@
+.XQnaControllContent_div {
+    display: flex;
+}
+
+.XQnaControllContent_div_div {
+    flex-grow: 1;
+}

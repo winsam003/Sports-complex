@@ -1,7 +1,7 @@
 import Xheader from '../Xheader';
 import Footer from '../Footer';
 import PageBanner from '../PageBanner';
-import XBoardControllContent from '../XBoardControllContent';
+import XQnaControllContent from '../XQnaControllContent';
 
 // 문의게시판 관리
 export default function XQnaBoardControllPage() {
@@ -9,7 +9,7 @@ export default function XQnaBoardControllPage() {
         <div>
             <Xheader />
             <PageBanner />
-            <XBoardControllContent />
+            <XQnaControllContent />
             <Footer />
         </div>
     )
