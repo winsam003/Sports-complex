@@ -1,15 +1,16 @@
-import Xheader from '../Xheader';
-import Footer from '../Footer';
-import PageBanner from '../PageBanner';
-import XmainEvent from '../XmainEvent';
 
-export default function ManagementPage() {
-    return (
+import Xheader from '../Xheader';
+import PageBanner from '../PageBanner';
+import Footer from '../Footer';
+import Xclass from '../Xclass';
+
+export default function XlectureInfoPage(){
+    return(
         <div>
             <Xheader />
             <PageBanner />
-            <XmainEvent />
+            <Xclass />
             <Footer />
         </div>
-    )
+    )    
 }

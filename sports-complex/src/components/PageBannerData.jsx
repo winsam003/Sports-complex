@@ -216,7 +216,7 @@ export const PageBannerData = [
     },
     {
         "id": "8",
-        "parameter": 'XlectureRegisterPage',
+        "parameter": 'XlecturerRegisterPage',
         "page": '강사등록',
         "title": '인적 관리',
         "checkMenu": "Y"
@@ -244,6 +244,13 @@ export const PageBannerData = [
         "checkMenu": "Y"
     },
     // 시설관리 시설관리 시설관리 시설관리 시설관리 시설관리 시설관리 시설관리 
+    {
+        "id": "9",
+        "parameter": 'XlectureInfoPage',
+        "page": '강의정보 관리',
+        "title": '강의 관리',
+        "checkMenu": "Y"
+    },
     {
         "id": "10",
         "parameter": 'XRentalPlaceControllPage',

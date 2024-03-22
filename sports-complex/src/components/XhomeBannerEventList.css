@@ -5,12 +5,13 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr) 4fr 1fr;;
     text-align: center;
-
+    padding-top: 1rem;
+    background-color: aliceblue;
+    border-top: 3px solid #C9EDFA;
+    border-bottom: rgba(28, 28, 28, 0.199) 1px solid;
 }
 .XhomeBannerEventList{
-    background-color: rgb(135, 175, 147);
     margin: 1rem;
-    padding-top: 1rem;
     padding-bottom: 1rem;
     height: auto;
 }
@@ -20,7 +21,4 @@
 }
 .XhomeBannerEventList_div>span{
     font-weight: bold;
-}
-.XhomeBannerEventList_content{
-    padding-top: 0.5rem;
 }
