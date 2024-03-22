@@ -53,6 +53,7 @@ import XlectureInfoPage from './components/Pages/XlectureInfoPage';
 import XNewClassUploadPage from './components/Pages/XNewClassUploadPage';
 import XSugangRequestPage from './components/Pages/XSugangRequestPage';
 import XRentalPlaceRequestControllPage from './components/Pages/XRentalPlaceRequestControllPage';
+import Footer from './components/Footer';
 
 function App() {
 
@@ -114,6 +115,7 @@ function App() {
 
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
+      <Footer />
     </div>
   );
 }

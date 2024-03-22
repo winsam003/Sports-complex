@@ -1,7 +1,6 @@
 import Header from '../Header';
 import PageBanner from '../PageBanner';
 import QRCode from '../QRCode';
-import Footer from '../Footer';
 
 export default function QRCodePage(){
     return (
@@ -9,7 +8,6 @@ export default function QRCodePage(){
             <Header />
             <PageBanner />
             <QRCode />
-            <Footer />
         </div>
     )
 }

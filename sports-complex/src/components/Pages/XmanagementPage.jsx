@@ -1,5 +1,4 @@
 import Xheader from '../Xheader';
-import Footer from '../Footer';
 import PageBanner from '../PageBanner';
 import XmainEvent from '../XmainEvent';
 
@@ -9,7 +8,6 @@ export default function ManagementPage() {
             <Xheader />
             <PageBanner />
             <XmainEvent />
-            <Footer />
         </div>
     )
 }

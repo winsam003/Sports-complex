@@ -138,8 +138,12 @@
     justify-content: center;
     align-items: center;
     background-color: #a6e9ed;
-    border-top-right-radius: 1em;
-    border-top-left-radius: 1em;
+    /* border-top-right-radius: 1em;
+    border-top-left-radius: 1em; */
+
+    border-radius: 1rem;
+    margin-bottom: 10px;
+
     font-weight: bold;
 }
 .homeDetail_CalendarCaption .homeDetail_Icon {
@@ -160,8 +164,9 @@
     height: calc(100% - 3.2rem);
     
     background-color: #c7f3fa;
-    border-bottom-left-radius: 1em;
-    border-bottom-right-radius: 1em;
+    /* border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em; */
+    border-radius: 1rem;
 
 }
 .homeDetail_Calendar>div{
@@ -174,10 +179,10 @@
     cursor: pointer;
 }
 .homeDetail_Calendar div:not(:nth-child(4n)) {
-    border-right: 1px solid #8edde1;
+    border-right: 1px solid white;
 }
 .homeDetail_Calendar div:nth-child(-n+8){
-    border-bottom: 1px solid #8edde1;
+    border-bottom: 1px solid white;
 }
 .homeDetail_Calendar div:nth-child(9){
     border-bottom-left-radius: 1em;

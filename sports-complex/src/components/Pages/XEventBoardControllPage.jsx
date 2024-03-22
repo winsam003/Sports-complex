@@ -1,7 +1,6 @@
 import Xheader from '../Xheader';
-import Footer from '../Footer';
 import PageBanner from '../PageBanner';
-import XBoardControllContent from '../XBoardControllContent';
+import XEventControllContent from '../XEventControllContent';
 
 // 이벤트 게시글 관리
 export default function XEventBoardControllPage() {
@@ -9,8 +8,7 @@ export default function XEventBoardControllPage() {
         <div>
             <Xheader />
             <PageBanner />
-            <XBoardControllContent />
-            <Footer />
+            <XEventControllContent />
         </div>
     )
 }
