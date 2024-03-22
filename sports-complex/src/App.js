@@ -50,6 +50,8 @@ import XlecturePage from './components/Pages/XlecturePage';
 import XlecturerRegisterPage from './components/Pages/XlecturerRegisterPage';
 import XParkingControllPage from './components/Pages/XParkingControllPage';
 import XlectureInfoPage from './components/Pages/XlectureInfoPage';
+import XNewClassUploadPage from './components/Pages/XNewClassUploadPage';
+import XSugangRequestPage from './components/Pages/XSugangRequestPage';
 
 function App() {
 
@@ -105,6 +107,8 @@ function App() {
         <Route path='/XlecturerRegisterPage' element={<XlecturerRegisterPage />} />
         <Route path='/XParkingControllPage' element={<XParkingControllPage />} />
         <Route path='/XlectureInfoPage' element={<XlectureInfoPage />} />
+        <Route path='XNewClassUploadPage' element={<XNewClassUploadPage />}/>
+        <Route path='/XSugangRequestPage' element={<XSugangRequestPage />} />
 
         <Route path='*' element={<NotFoundPage />} />
       </Routes>

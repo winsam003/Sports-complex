@@ -221,29 +221,7 @@ export const PageBannerData = [
         "title": '인적 관리',
         "checkMenu": "Y"
     },
-    // 이용신청관리 이용신청관리 이용신청관리 이용신청관리 이용신청관리 이용신청관리 
-    // {
-    //     "id": "9",
-    //     "parameter": 'XParkingControllPage',
-    //     "page": '수강신정 관리',
-    //     "title": '수강신청을 관리할 수 있습니다',
-    //     "checkMenu": "Y"
-    // },
-    // {
-    //     "id": "9",
-    //     "parameter": 'XParkingControllPage',
-    //     "page": '대관신정 관리',
-    //     "title": '대관신청을 관리할 수 있습니다',
-    //     "checkMenu": "Y"
-    // },
-    {
-        "id": "9",
-        "parameter": 'XParkingControllPage',
-        "page": '주차신정 관리',
-        "title": '주차신청을 관리할 수 있습니다',
-        "checkMenu": "Y"
-    },
-    // 시설관리 시설관리 시설관리 시설관리 시설관리 시설관리 시설관리 시설관리 
+    // 강의관리 강의관리 강의관리 강의관리 강의관리 강의관리 강의관리 강의관리 
     {
         "id": "9",
         "parameter": 'XlectureInfoPage',
@@ -251,29 +229,59 @@ export const PageBannerData = [
         "title": '강의 관리',
         "checkMenu": "Y"
     },
+    // 이용신청관리 이용신청관리 이용신청관리 이용신청관리 이용신청관리 이용신청관리 
+    {
+        "id": "9",
+        "parameter": 'XNewClassUploadPage',
+        "page": '신규 수업 등록',
+        "title": '신규 수업을 등록해주세요. ',
+        "checkMenu": "Y"
+    },
     {
         "id": "10",
+        "parameter": 'XSugangRequestPage',
+        "page": '수강신청 관리',
+        "title": '수강신청을 관리할 수 있습니다',
+        "checkMenu": "Y"
+    },
+    // {
+    //     "id": "10",
+    //     "parameter": 'XParkingControllPage',
+    //     "page": '대관신청 관리',
+    //     "title": '대관신청을 관리할 수 있습니다',
+    //     "checkMenu": "Y"
+    // },
+    {
+        "id": "10",
+        "parameter": 'XParkingControllPage',
+        "page": '주차신청 관리',
+        "title": '주차신청을 관리할 수 있습니다',
+        "checkMenu": "Y"
+    },
+    // 시설관리 시설관리 시설관리 시설관리 시설관리 시설관리 시설관리 시설관리 
+    {
+        "id": "11",
         "parameter": 'XRentalPlaceControllPage',
         "page": '대관 시설 관리',
         "title": '대관 시설을 관리할 수 있습니다 ',
         "checkMenu": "Y"
     },
     {
-        "id": "10",
+        "id": "11",
         "parameter": 'XReantalPlaceDetailPage',
         "page": '대관 시설 관리',
         "title": '대관 시설을 관리할 수 있습니다 ',
         "checkMenu": "N"
     },
     {
-        "id": "10",
+        "id": "11",
         "parameter": 'XReantalPlaceNewonePage',
         "page": '대관 시설 변경',
         "title": '대관 시설을 변경할 수 있습니다 ',
         "checkMenu": "N"
     },
     {
-        "id": "10",
+        "id": "11",
         "parameter": 'XReantalPlaceNewonePage',
         "page": '대관 시설 등록',
         "title": '대관 시설을 등록할 수 있습니다 ',
@@ -281,109 +289,59 @@ export const PageBannerData = [
     },
     // 게시판관리 게시판관리 게시판관리 게시판관리 게시판관리 게시판관리 게시판관리 
     {
-        "id": "11",
+        "id": "12",
         "parameter": 'XBoardControllPage',
         "page": '공지사항 관리',
         "title": '공지사항을 관리할 수 있습니다 ',
         "checkMenu": "Y"
     },
     {
-        "id": "11",
+        "id": "12",
         "parameter": 'XBoardWritePage',
         "page": '공지사항 등록',
         "title": '공지사항을 등록할 수 있습니다 ',
         "checkMenu": "N"
     },
     {
-        "id": "11",
+        "id": "12",
         "parameter": 'XEventBoardControllPage',
         "page": '이벤트 게시판 관리',
         "title": '이벤트 게시판을 관리할 수 있습니다 ',
         "checkMenu": "Y"
     },
     {
-        "id": "11",
+        "id": "12",
         "parameter": 'XEventBoardWritePage',
         "page": '이벤트 게시글 등록',
         "title": '이벤트 게시글을 등록할 수 있습니다 ',
         "checkMenu": "N"
     },
     {
-        "id": "11",
+        "id": "12",
         "parameter": 'XFaqBoardControllPage',
         "page": '자주하는 질문 관리',
         "title": '자주하는 질문을 관리할 수 있습니다 ',
         "checkMenu": "Y"
     },
     {
-        "id": "11",
+        "id": "12",
         "parameter": 'XFaqBoardWritePage',
         "page": '자주하는 질문 등록',
         "title": '자주하는 질문을 등록할 수 있습니다 ',
         "checkMenu": "N"
     },
     {
-        "id": "11",
+        "id": "12",
         "parameter": 'XQnaBoardControllPage',
         "page": '문의 게시판 관리',
         "title": '문의 게시판을 관리할 수 있습니다 ',
         "checkMenu": "Y"
     },
     {
-        "id": "11",
+        "id": "12",
         "parameter": 'XQnaBoardAnswerPage',
         "page": '문의 게시글 답변 등록',
         "title": '문의 게시글에 답변을 등록할 수 있습니다 ',
         "checkMenu": "N"
-    },
-
-    { "parameter": '11', "Page": '정기 주차신청', "title": '원하시는 장소에 주차신청하실 수 있습니다' },
-    { "parameter": '13', "Page": 'QR 코드', "title": '이웃과 함께하는 건강하고 행복한 삶' },
-    { "parameter": '14', "Page": '나의 수강내역', "title": '수강하고있는 강좌의 목록을 볼 수 있습니다' },
-    { "parameter": '15', "Page": '회원정보 변경', "title": '소중한 내정보를 최신으로 관리하세요' },
-    { "parameter": '16', "Page": '비밀번호 변경', "title": '비밀번호 변경을 위해 기존 비밀번호를 확인해주세요' },
-    {
-        "parameter": '21',
-        "Page": '이벤트 광고 관리',
-        "title": '홈 화면의 이벤트 광고를 관리할 수 있습니다 '
-    },
-    {
-        "parameter": '22',
-        "Page": '회원 정보 관리',
-        "title": '회원 정보를 관리할 수 있습니다 '
-    },
-    {
-        "parameter": '23', "Page": '강사 정보 관리',
-        "title": '강사 정보를 관리할 수 있습니다 '
-    },
-    {
-        "parameter": '24',
-        "Page": '강사 등록',
-        "title": '신규 강사를 등록할 수 있습니다 '
-    },
-    {
-        "parameter": '25',
-        "Page": '수업 정보 관리',
-        "title": '수업 정보를 관리할 수 있습니다 '
-    },
-    {
-        "parameter": '26',
-        "Page": '수업 등록',
-        "title": '신규 수업을 등록할 수 있습니다 '
-    },
-    {
-        "parameter": '27',
-        "Page": '수업 신청 관리',
-        "title": '수업 신청 현황을 관리할 수 있습니다 '
-    },
-    {
-        "parameter": '28',
-        "Page": '주차 신청 관리',
-        "title": '주차 신청 현황을 관리할 수 있습니다 '
-    },
-    {
-        "parameter": '29',
-        "Page": '대관 신청 관리',
-        "title": '대관 신청 현황을 관리할 수 있습니다 '
     }
 ]

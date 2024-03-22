@@ -1,0 +1,62 @@
+/* 대표항목 */
+.XSugangRequestSearchResult_index {
+    display: grid;
+    grid-template-columns: 50px 1fr 2fr repeat(3, 1fr) 2fr 1fr;
+    margin-top: 30px;
+    border-top: 3px solid #C9EDFA;
+    background-color: #ceeff250;
+    text-align: center;
+}
+
+.XSugangRequestSearchResult_index p {
+    justify-content: center;
+    align-items: center;
+    word-break: keep-all;
+    margin: 0;
+    padding: 10px 0;
+    font-weight: bold;
+}
+
+/* 내용 */
+.XSugangRequestSearchResult_content {
+    display: grid;
+    grid-template-columns: 50px 1fr 2fr repeat(3, 1fr) 2fr 1fr;
+}
+
+/* 선택 체크박스 */
+.XSugangRequestSearchResult_content input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 20px;
+    margin-left: calc(50% - 10px);
+}
+
+.XSugangRequestSearchResult_content p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    word-break: keep-all;
+    text-align: center;
+    margin: 0;
+    padding: 10px 0;
+}
+
+@media (max-width : 1010px) {
+
+    /* 스크롤박스 */
+    .XSugangRequestSearchResult {
+        overflow: auto;
+    }
+
+    /* 대표항목 */
+    .XSugangRequestSearchResult_index {
+        width: 820px;
+    }
+
+    /* 내용 */
+    .XSugangRequestSearchResult_content {
+        width: 820px;
+    }
+}
