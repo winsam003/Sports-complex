@@ -1,5 +1,6 @@
 import './XParkingControll.css'
 import Submenu from './Submenu'
+import XBtnResetDelete from './XBtnResetDelete'
 
 export default function XParkingControll() {
     return (
@@ -17,6 +18,7 @@ export default function XParkingControll() {
                 </div>
                 <div className='XParkingControllSearchResult_div'>
                     <div className='XParkingControllSearchResult_index'>
+                        <span>선택</span>
                         <span>주차신청번호</span>
                         <span>주차장위치</span>
                         <span>회원번호</span>
@@ -26,6 +28,7 @@ export default function XParkingControll() {
                         <span>신청일</span>
                     </div>
                     <div className='XParkingControllSearchResult_content'>
+                        <input type='checkbox'></input>
                         <span>999999</span>
                         <span>지하3층</span>
                         <span>999999</span>
@@ -35,6 +38,7 @@ export default function XParkingControll() {
                         <span>2024.03.22 11:58:59</span>
                     </div>
                 </div>
+                <XBtnResetDelete />
             </div>
         </div>
     )
