@@ -79,7 +79,7 @@
     grid-template-columns: repeat(5, 1fr); */
 }
 .XmainEvent_adPics>div:not(:nth-child(5n)){
-    border-right: 1px solid gray;
+    border-right: 1px solid #ccc;
 }
 .XmainEvent_adPics>div>p{
     /* display: inline-block; */

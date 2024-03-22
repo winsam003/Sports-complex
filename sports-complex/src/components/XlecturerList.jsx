@@ -3,7 +3,8 @@ import XlecturerListContents from './XlecturerListContents';
 import XlecturerListButton from './XlecturerListButton';
 import { useState } from 'react';
 
-export default function XlecturerList() {
+export default function 
+XlecturerList() {
 
     // 테스트용 객체입니다 테이블 연결 후 테이블 데이터로 교체할 예정입니다.
     const data = [

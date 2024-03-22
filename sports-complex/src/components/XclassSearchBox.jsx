@@ -48,7 +48,7 @@ export default function XclassSearchBox() {
                     )}
                     {selectedOption === '라켓' && (
                         <select name="XclassSearchBox_SubCategory" id="XclassSearchBox_SubCategory">
-                            <option value="탁구">k-pop</option>
+                            <option value="탁구">탁구</option>
                             <option value="배드민턴">배드민턴</option>
                             <option value="테니스">테니스</option>
                             <option value="스쿼시">스쿼시</option>
