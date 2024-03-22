@@ -1,8 +1,8 @@
+
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './HomeDetail.css';
-
 import { TbUser } from "react-icons/tb";
 import { TbLock } from "react-icons/tb";
 import { Link } from 'react-router-dom';
@@ -85,20 +85,24 @@ export default function HomeDetail(){
                 <div>
                     <form action="/" method="post">
                         <table className='homeDetail_loginbox'>
-                            <tr>
-                                <th><TbUser className='homeDetail_Icon' /></th>
-                                {/* <th><IoMdPerson id='homeDetail_personIcon' />I D</th> */}
-                                <td><input type="text" placeholder='아이디를 입력하세요.' /></td>
-                            </tr>
-                            <tr>
-                                <th><TbLock className='homeDetail_Icon'  /></th>
-                                {/* <th><TbLock />Password</th> */}
-                                <td><input type="password" placeholder='비밀번호를 입력하세요.' /></td>
-                            </tr>
-                            <tr className="homeDetail_login">
-                                <td></td>
-                                <td><input type="submit" value="로그인" id='homeDetail_loginbtn' /></td>
-                            </tr>
+                            <tbody>
+                                <tr>
+                                    <th><TbUser className='homeDetail_Icon' /></th>
+                                    {/* <th><IoMdPerson id='homeDetail_personIcon' />I D</th> */}
+                                    <td><input type="text" placeholder='아이디를 입력하세요.' /></td>
+                                </tr>
+                                <tr>
+                                    <th><TbLock className='homeDetail_Icon' /></th>
+                                    {/* <th><TbLock />Password</th> */}
+                                    <td><input type="password" placeholder='비밀번호를 입력하세요.' /></td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr className="homeDetail_login">
+                                    <td></td>
+                                    <td><input type="submit" value="로그인" id='homeDetail_loginbtn' /></td>
+                                </tr>
+                            </tfoot>
                         </table>
                     </form>
                     <div className='homeDetail_helpLogin'>

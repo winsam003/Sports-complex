@@ -8,12 +8,12 @@ export default function Xheader() {
         <header>
             <div>
                 <div className='goHome'><Link to='/'></Link></div>
-                <Link to='/ManagementPage' className='noneHeader'>관리자 페이지 전환</Link>
+                <Link to='/' className='noneHeader'>사용자 페이지 전환</Link>
                 <Link to='/LoginPage' className='noneHeader'>로그인/로그아웃</Link>
                 <Link to='/JoinPage1' className='Header_join'>회원가입<TbUserPlus className='Header_Icon' /></Link>
             </div>
-            <div>
-                <div className='Header_logo'><Link to="/">홈으로</Link></div>
+            <div className='Header_clickMenu'>
+                <div className='Header_logo'><Link to="/ManagementPage">홈으로</Link></div>
                 <Link to='/ManagementPage' className='Header_mainHeader Header_Header1'>홈 화면 관리</Link>
                 <Link to='/UserInfoPage' className='Header_mainHeader Header_Header2'>인적 관리</Link>
                 <Link to='/XlectureInfoPage' className='Header_mainHeader Header_Header3'>강의 관리</Link>
