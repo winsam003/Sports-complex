@@ -9,7 +9,7 @@ export default function XeventContentList({eventCode, eventName, cpCode, eventUp
     return(
         <div className="XeventContentList_Box">
             <div className="XeventContentList_contents">
-                <input type="checkbox" onChange={handlePic} />
+                <span><input type="checkbox" onChange={handlePic} /></span>
                 <span>{eventCode}</span>
                 <span>{eventName}</span>
                 <span>{cpCode}</span>
