@@ -86,7 +86,6 @@ export default function XclassSearchBox() {
                     </select>
                 </span>
             </div>
-            <XclassSearchButton />
         </div>
     )
 }
