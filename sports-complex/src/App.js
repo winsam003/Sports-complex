@@ -57,12 +57,10 @@ import XRentalPlaceRequestControllPage from './components/Pages/XRentalPlaceRequ
 import Footer from './components/Footer';
 import Xheader from './components/Xheader';
 import Header from './components/Header';
+import PageBanner from './components/PageBanner';
 
 
 function App() {
-
-  // const location = useLocation();
-  // const isAdminPage = location.pathname.startsWith('/admin');
 
   const [isAdminPage, setIsAdminPage] = useState(false);
 
@@ -77,7 +75,6 @@ function App() {
 
 
       {isAdminPage ? <Xheader checkAdminPage={checkAdminPage} /> : <Header checkAdminPage={checkAdminPage} />}
-      
       
       <Routes>
         <Route path='/' element={<HomePage />} />
