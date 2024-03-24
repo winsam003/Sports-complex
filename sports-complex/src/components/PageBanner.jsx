@@ -3,7 +3,6 @@ import {PageBannerData as PageInfo} from './PageBannerData';
 
 export default function PageBanner() {
 
-    
     const currentPage = window.location.pathname.replace("/", "");
     let selectedPage = {
         page: '404 NotFound',
