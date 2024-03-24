@@ -1,4 +1,3 @@
-import Xheader from '../Xheader';
 import PageBanner from '../PageBanner';
 import XParkingControll from '../XParkingControll';
 
@@ -6,7 +5,6 @@ import XParkingControll from '../XParkingControll';
 export default function XParkingControllPage() {
     return (
         <div>
-            <Xheader />
             <PageBanner />
             <XParkingControll />
         </div>

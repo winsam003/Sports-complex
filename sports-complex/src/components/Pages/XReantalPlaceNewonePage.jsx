@@ -1,4 +1,3 @@
-import Xheader from '../Xheader';
 import PageBanner from '../PageBanner';
 import XReantalPlaceNew from '../XReantalPlaceNew';
 
@@ -6,7 +5,6 @@ import XReantalPlaceNew from '../XReantalPlaceNew';
 export default function XReantalPlaceNewonePage() {
     return (
         <div>
-            <Xheader />
             <PageBanner />
             <XReantalPlaceNew />
         </div>

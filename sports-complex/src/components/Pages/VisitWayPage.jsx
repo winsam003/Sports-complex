@@ -1,4 +1,3 @@
-import Header from '../Header';
 import PageBanner from '../PageBanner';
 import VisitWayContent from '../VisitWayContent';
 
@@ -6,7 +5,6 @@ import VisitWayContent from '../VisitWayContent';
 export default function VisitWayPage() {
     return (
         <div>
-            <Header />
             <PageBanner />
             <VisitWayContent />
         </div>

@@ -13,14 +13,15 @@ import { Link } from 'react-router-dom';
 
 import { TbUserPlus } from "react-icons/tb";
 
-export default function Header() {
+export default function Header({checkAdminPage}) {
+
 
     return (
+
         <header>
             <div>
                 <div className='goHome'><Link to='/'></Link></div>
-                {}
-                <Link to='/ManagementPage' className='noneHeader'>관리자 페이지 전환</Link>
+                <Link to='/admin/XmanagementPage' className='noneHeader' onClick={checkAdminPage}>관리자 페이지 전환</Link>
                 <Link to='/LoginPage' className='noneHeader'>로그인/로그아웃</Link>
                 <Link to='/JoinPage1' className='Header_join'>회원가입<TbUserPlus className='Header_Icon' /></Link>
             </div>

@@ -1,4 +1,3 @@
-import Xheader from '../Xheader';
 import PageBanner from '../PageBanner';
 import XQnaControllContent from '../XQnaControllContent';
 
@@ -6,7 +5,6 @@ import XQnaControllContent from '../XQnaControllContent';
 export default function XQnaBoardControllPage() {
     return (
         <div>
-            <Xheader />
             <PageBanner />
             <XQnaControllContent />
         </div>
