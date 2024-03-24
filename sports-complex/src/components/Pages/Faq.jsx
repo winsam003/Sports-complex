@@ -1,4 +1,3 @@
-import Header from '../Header';
 import PageBanner from '../PageBanner';
 import FaqBoard from '../FaqBoard'
 
@@ -6,7 +5,6 @@ import FaqBoard from '../FaqBoard'
 export default function Faq() {
     return (
         <div>
-            <Header />
             <PageBanner />
             <FaqBoard />
         </div>

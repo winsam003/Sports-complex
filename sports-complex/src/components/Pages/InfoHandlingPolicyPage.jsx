@@ -1,4 +1,3 @@
-import Header from '../Header';
 import PageBanner from '../PageBanner';
 import InfoHandlingPolicy from '../InfoHandlingPolicy';
 
@@ -6,7 +5,6 @@ import InfoHandlingPolicy from '../InfoHandlingPolicy';
 export default function InfoHandlingPolicyPage() {
     return (
         <div>
-            <Header />
             <PageBanner />
             <InfoHandlingPolicy />
         </div>

@@ -3,18 +3,20 @@ import { Link } from 'react-router-dom';
 
 import { TbUserPlus } from "react-icons/tb";
 
-export default function Xheader() {
+export default function Xheader({checkAdminPage}) {
+
+
     return (
         <header>
             <div>
                 <div className='goHome'><Link to='/'></Link></div>
-                <Link to='/' className='noneHeader'>사용자 페이지 전환</Link>
+                <Link to='/' className='noneHeader' onClick={checkAdminPage}>사용자 페이지 전환</Link>
                 <Link to='/LoginPage' className='noneHeader'>로그인/로그아웃</Link>
                 <Link to='/JoinPage1' className='Header_join'>회원가입<TbUserPlus className='Header_Icon' /></Link>
             </div>
             <div className='Header_clickMenu'>
-                <div className='Header_logo'><Link to="/ManagementPage">홈으로</Link></div>
-                <Link to='/ManagementPage' className='Header_mainHeader Header_Header1'>홈 화면 관리</Link>
+                <div className='Header_logo'><Link to="/XmanagementPage">홈으로</Link></div>
+                <Link to='/XmanagementPage' className='Header_mainHeader Header_Header1'>홈 화면 관리</Link>
                 <Link to='/UserInfoPage' className='Header_mainHeader Header_Header2'>인적 관리</Link>
                 <Link to='/XlectureInfoPage' className='Header_mainHeader Header_Header3'>강의 관리</Link>
                 <Link to='/XSugangRequestPage' className='Header_mainHeader Header_Header4'>이용신청 관리</Link>
