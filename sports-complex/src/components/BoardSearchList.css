@@ -19,28 +19,30 @@
 
 
     .BoardSearchList_div {
-        position: initial;
         width: 100%;
     }
 
     .BoardSearchList_content {
-        position: initial;
         width: 100%;
     }
 }
 
 @media (max-width : 850px) {
 
+    .board_div {
+        display: inherit;
+    }
+
     .BoardSearchList {
         overflow: auto;
     }
 
     .BoardSearchList_div {
-        position: initial;
         grid-template-columns: 100px 400px 120px 120px;
         width: 740px;
     }
 
+    /* 내용 */
     .BoardSearchList_content {
         position: initial;
         grid-template-columns: 100px 400px 120px 120px;
