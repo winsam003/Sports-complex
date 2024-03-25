@@ -7,9 +7,11 @@ export default function EventBoardPage() {
     return (
         <div>
             <div className='board_div'>
-                <XEventSearch />
                 <Submenu />
-                <EventBoardList />
+                <div className='board_div_div'>
+                    <XEventSearch />
+                    <EventBoardList />
+                </div>
             </div>
         </div>
     )

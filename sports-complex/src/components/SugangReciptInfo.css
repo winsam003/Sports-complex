@@ -1,9 +1,6 @@
 /* 접수일정 전체 div */
 .SugangReciptInfo {
-    position: absolute;
-    top: 30px;
-    right: 0;
-    width: 980px;
+    margin-top: 30px;
     height: 170px;
 }
 
@@ -59,7 +56,6 @@
 
 @media (max-width : 1200px) {
     .SugangReciptInfo {
-        position: initial;
         width: 100%;
         overflow: auto;
         white-space: nowrap;

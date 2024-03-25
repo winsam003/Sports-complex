@@ -28,7 +28,9 @@ export default function XParkingControll() {
                         <span>신청일</span>
                     </div>
                     <div className='XParkingControllSearchResult_content'>
-                        <input type='checkbox'></input>
+                        <div>
+                            <input type='checkbox'></input>
+                        </div>
                         <span>999999</span>
                         <span>지하3층</span>
                         <span>999999</span>

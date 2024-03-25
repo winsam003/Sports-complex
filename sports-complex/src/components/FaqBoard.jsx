@@ -8,8 +8,10 @@ export default function FaqBoard() {
         <div>
             <div className='board_div'>
                 <Submenu />
-                <XFaqSearchBox />
-                <BoardSearchList />
+                <div className='board_div_div'>
+                    <XFaqSearchBox />
+                    <BoardSearchList />
+                </div>
             </div>
         </div>
     )

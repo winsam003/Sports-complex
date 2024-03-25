@@ -9,9 +9,11 @@ export default function QnaBoard() {
         <div>
             <div className='board_div'>
                 <Submenu />
-                <XQnaSearchBox />
-                <BoardSearchList />
-                <button className='board_writebutton'><Link to="/Inquiry">글쓰기</Link></button>
+                <div className='board_div_div'>
+                    <XQnaSearchBox />
+                    <BoardSearchList />
+                    <button className='board_writebutton'><Link to="/Inquiry">글쓰기</Link></button>
+                </div>
             </div>
         </div>
     )

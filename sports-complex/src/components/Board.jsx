@@ -9,9 +9,10 @@ export default function Board() {
         <div>
             <div className='board_div'>
                 <Submenu />
-                <XBoardSearchBox />
-                <BoardSearchList />
-                <button className='board_writebutton'><Link to="/Inquiry">글쓰기</Link></button>
+                <div className='board_div_div'>
+                    <XBoardSearchBox />
+                    <BoardSearchList />
+                </div>
             </div>
         </div>
     )
