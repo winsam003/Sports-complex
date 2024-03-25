@@ -1,4 +1,3 @@
-import Header from '../Header';
 import PageBanner from '../PageBanner';
 import Board from '../Board'
 
@@ -6,7 +5,6 @@ import Board from '../Board'
 export default function NotificationPage() {
     return (
         <div>
-            <Header />
             <PageBanner />
             <Board />
         </div>

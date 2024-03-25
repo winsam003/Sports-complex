@@ -1,4 +1,3 @@
-import Header from '../Header';
 import PageBanner from '../PageBanner';
 import VideoHandle from '../VideoHandle';
 
@@ -6,7 +5,6 @@ import VideoHandle from '../VideoHandle';
 export default function VideoHandlePage() {
     return (
         <div>
-            <Header />
             <PageBanner />
             <VideoHandle />
         </div>

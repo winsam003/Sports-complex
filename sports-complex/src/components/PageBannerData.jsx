@@ -194,7 +194,7 @@ export const PageBannerData = [
     // 관리자 관리자 관리자 관리자 관리자 관리자 관리자 관리자 관리자 관리자
     {
         "id": "7",
-        "parameter": 'ManagementPage',
+        "parameter": 'XmanagementPage',
         "page": '관리자 페이지',
         "title": '홈 관리',
         "checkMenu": "N"
