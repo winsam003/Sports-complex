@@ -1,7 +1,7 @@
 import './SugangReciptInfo.css'
 import Submenu from './Submenu';
 import SugangReciptInfo from './SugangReciptInfo';
-import SugangSearchBox from './SugangSearchBox';
+import XclassSearchBox from './XclassSearchBox';
 import SearchButton from './SearchButton'
 import SugangSearchList from './SugangSearchList';
 
@@ -10,10 +10,12 @@ export default function SugangContent() {
         <div>
             <div className='board_div'>
                 <Submenu />
-                <SugangReciptInfo />
-                <SugangSearchBox />
-                <SearchButton />
-                <SugangSearchList />
+                <div className='board_div_div'>
+                    <SugangReciptInfo />
+                    <XclassSearchBox />
+                    <SearchButton />
+                    <SugangSearchList />
+                </div>
             </div>
         </div>
     )

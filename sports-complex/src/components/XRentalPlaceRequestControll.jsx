@@ -1,5 +1,6 @@
 import './XRentalPlaceRequestControll.css'
 import Submenu from './Submenu';
+import PlaceRentalSearch from './PlaceRentalSearch';
 import XBtnResetSearch from './XBtnResetSearch';
 import XBtnResetDelete from './XBtnResetDelete';
 
@@ -8,28 +9,7 @@ export default function XRentalPlaceRequestControll() {
         <div className='XRentalPlaceRequestControll_div'>
             <Submenu />
             <div className='XRentalPlaceRequestControll_div_div'>
-                <div className='XRentalPlaceRequestControll'>
-                    <div className='XRentalPlaceRequestControll_MainCategory'>
-                        <span>대분류</span>
-                        <select className='XRentalPlaceRequestControll_MainCategory_select'>
-                            <option value="">종목1</option>
-                            <option value="">종목2</option>
-                            <option value="">종목3</option>
-                        </select>
-                    </div>
-                    <div className='XRentalPlaceRequestControll_SubCategory'>
-                        <span>소분류</span>
-                        <select className='XRentalPlaceRequestControll_SubCategory_select'>
-                            <option value="">세부종목1</option>
-                            <option value="">세부종목2</option>
-                            <option value="">세부종목3</option>
-                        </select>
-                    </div>
-                    <div className='XRentalPlaceRequestControll_PlaceName'>
-                        <span>시설명</span>
-                        <input type='text'></input>
-                    </div>
-                </div>
+                <PlaceRentalSearch />
                 <XBtnResetSearch />
                 <div className='XRentalPlaceRequestControll_SearchList'>
                     <div className='XRentalPlaceRequestControll_index'>
