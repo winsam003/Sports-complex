@@ -49,16 +49,16 @@ export default function HomeDetail(){
                     <div className='slideBox'>
                         <Slider {...settings}>
                             <div>
-                                <img className='slide1' src='img/성남fc.jpg' />
+                                <img className='slide1' src='img/seungnamFC.jpg' />
                             </div>
                             <div>
-                                <img className='slide1' src='img/흠뻑쇼.jpg' />
+                                <img className='slide1' src='img/show.jpg' />
                             </div>
                             <div>
                                 <img className='slide1' src='img/IU.jpg' />
                             </div>
                             <div>
-                                <img className='slide1' src='img/농구.jpg' />
+                                <img className='slide1' src='img/ballleague.jpg' />
                             </div>
                             <div>
                                 <img className='slide1' src='img/mainPic1.jpg' />

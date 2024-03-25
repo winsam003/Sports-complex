@@ -1,6 +1,6 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import HomePage from './components/Pages/HomePage';
 import LoginPage from './components/Pages/LoginPage';
 import FindIDPage from './components/Pages/FindIDPage';
@@ -57,8 +57,8 @@ import XRentalPlaceRequestControllPage from './components/Pages/XRentalPlaceRequ
 import Footer from './components/Footer';
 import Xheader from './components/Xheader';
 import Header from './components/Header';
-import PageBanner from './components/PageBanner';
 
+import axios from "axios";
 
 function App() {
 
@@ -68,14 +68,32 @@ function App() {
     setIsAdminPage(!isAdminPage);
   }
 
-  console.log(`isAdminPage: ${isAdminPage}`);
+
+  const [message, setMessage] = useState("");
+
+  // useEffect(() => {
+  //   fetch('/test/hello')
+  //     .then(response => response.text())
+  //     .then(message => {
+  //       setMessage(message);
+  //     });
+  // }, []);
+
+  useEffect(() => {
+    axios.get('/test/hello')
+      .then((res) => {
+        setMessage(res.data);
+      })
+  }, []);
+
+  console.log(`백엔드 message: ${message}`);
 
   return (
     <div>
 
 
       {isAdminPage ? <Xheader checkAdminPage={checkAdminPage} /> : <Header checkAdminPage={checkAdminPage} />}
-      
+
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/JoinPage1' element={<JoinPage1 />} />
