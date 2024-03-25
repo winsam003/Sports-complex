@@ -13,7 +13,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "Classes")
+@Table(name = "classes")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,21 +23,21 @@ public class Classes {
 	@Id
 //	Auto_Increment
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String classCode;
+	private String classcode;
 //	강좌명 길이, not null
 	@Column(length = 10, nullable = false)
-	private String clName;
-	private String clTime;
-	private String clEndTime;
-	private String clStartDate;
-	private String clEndDate;
+	private String clname;
+	private String cltime;
+	private String clendtime;
+	private String clstartdate;
+	private String clenddate;
 //	강좌대상
 	@Column(length = 10, nullable = false)
-	private String clFor;
-	private Integer clCount;
-	private Integer clWating;
-	private Integer clPrice;
+	private String clfor;
+	private Integer clcount;
+	private Integer clwating;
+	private Integer clprice;
 //	신청현황
 	@Column(length = 10, nullable = false)
-	private String Type;
+	private String cltype;
 }

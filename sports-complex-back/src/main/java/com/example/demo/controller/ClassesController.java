@@ -1,11 +1,14 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.entity.Classes;
 import com.example.demo.service.ClassesService;
 
 import lombok.AllArgsConstructor;
@@ -14,14 +17,14 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @AllArgsConstructor
 @RestController
-@RequestMapping(value = "Classes")
+@RequestMapping("/classes")
 public class ClassesController {
 	ClassesService service;
 
 //	List
-	@GetMapping("/classes/classesList")
-	public void classesList(Model model) {
-		model.addAttribute("qna", service.selectList());
+	@GetMapping("/classesList")
+	public List<Classes> classesList() {
+		return service.selectList();
 	}
 
 //	Insert
