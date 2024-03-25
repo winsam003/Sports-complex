@@ -1,4 +1,3 @@
-import Header from '../Header';
 import PageBanner from '../PageBanner';
 import QnaBoard from '../QnaBoard'
 
@@ -6,7 +5,6 @@ import QnaBoard from '../QnaBoard'
 export default function Qna() {
     return (
         <div>
-            <Header />
             <PageBanner />
             <QnaBoard />
         </div>

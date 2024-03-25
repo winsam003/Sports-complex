@@ -1,4 +1,3 @@
-import Xheader from '../Xheader';
 import PageBanner from '../PageBanner';
 import XBoardControllContent from '../XBoardControllContent';
 
@@ -6,7 +5,6 @@ import XBoardControllContent from '../XBoardControllContent';
 export default function XBoardControllPage() {
     return (
         <div>
-            <Xheader />
             <PageBanner />
             <XBoardControllContent />
         </div>

@@ -1,4 +1,3 @@
-import Header from '../Header';
 import PageBanner from '../PageBanner';
 import EmailCollectAgree from '../EmailCollectAgree';
 
@@ -6,7 +5,6 @@ import EmailCollectAgree from '../EmailCollectAgree';
 export default function EmailCollectAgreePage() {
     return (
         <div>
-            <Header />
             <PageBanner />
             <EmailCollectAgree />
         </div>

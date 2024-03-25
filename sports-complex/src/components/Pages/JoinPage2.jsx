@@ -1,4 +1,3 @@
-import Header from '../Header';
 import PageBanner from '../PageBanner';
 import UserType from '../UserType';
 import UserTypeAgree from '../UserTypeAgree';
@@ -10,7 +9,6 @@ export default function JoinPage2() {
 
     return (
         <div>
-            <Header />
             <PageBanner />
             <RegistrationFlow />
             <UserType />

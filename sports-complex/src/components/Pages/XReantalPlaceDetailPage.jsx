@@ -1,4 +1,3 @@
-import Xheader from '../Xheader';
 import PageBanner from '../PageBanner';
 import XReantalPlaceDetail from '../XReantalPlaceDetail';
 
@@ -6,7 +5,6 @@ import XReantalPlaceDetail from '../XReantalPlaceDetail';
 export default function XReantalPlaceDetailPage() {
     return (
         <div>
-            <Xheader />
             <PageBanner />
             <XReantalPlaceDetail />
         </div>
