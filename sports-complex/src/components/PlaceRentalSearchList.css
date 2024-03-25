@@ -20,10 +20,18 @@
     margin-bottom: 20px;
 }
 
-@media (max-width : 1200px) {
+@media (max-width : 750px) {
     .PlaceRentalSearchList_div {
         overflow: auto;
         white-space: nowrap;
         margin-top: 30px;
+    }
+
+    .PlaceRentalSearchList_index {
+        width: 620px;
+    }
+
+    .PlaceRentalSearchList_content {
+        width: 620px;
     }
 }
