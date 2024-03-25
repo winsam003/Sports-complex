@@ -1,4 +1,3 @@
-import Xheader from '../Xheader';
 import PageBanner from '../PageBanner';
 import XQnaBoardAnswerContent from '../XQnaBoardAnswerContent';
 
@@ -6,7 +5,6 @@ import XQnaBoardAnswerContent from '../XQnaBoardAnswerContent';
 export default function XQnaBoardAnswerPage() {
     return (
         <div>
-            <Xheader />
             <PageBanner />
             <XQnaBoardAnswerContent />
         </div>

@@ -1,4 +1,3 @@
-import Xheader from '../Xheader';
 import PageBanner from '../PageBanner';
 import XFaqBoardWriteContent from '../XFaqBoardWriteContent';
 
@@ -6,7 +5,6 @@ import XFaqBoardWriteContent from '../XFaqBoardWriteContent';
 export default function XFaqBoardWritePage() {
     return (
         <div>
-            <Xheader />
             <PageBanner />
             <XFaqBoardWriteContent />
         </div>

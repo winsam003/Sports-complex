@@ -1,4 +1,3 @@
-import Xheader from '../Xheader';
 import PageBanner from '../PageBanner';
 import XEventBoardWriteContent from '../XEventBoardWriteContent';
 
@@ -6,7 +5,6 @@ import XEventBoardWriteContent from '../XEventBoardWriteContent';
 export default function XEventBoardWritePage() {
     return (
         <div>
-            <Xheader />
             <PageBanner />
             <XEventBoardWriteContent />
         </div>

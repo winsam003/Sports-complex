@@ -1,4 +1,3 @@
-import Xheader from '../Xheader';
 import PageBanner from '../PageBanner';
 import XRentalPlaceRequestControll from '../XRentalPlaceRequestControll';
 
@@ -6,7 +5,6 @@ import XRentalPlaceRequestControll from '../XRentalPlaceRequestControll';
 export default function XRentalPlaceRequestControllPage() {
     return (
         <div>
-            <Xheader />
             <PageBanner />
             <XRentalPlaceRequestControll />
         </div>

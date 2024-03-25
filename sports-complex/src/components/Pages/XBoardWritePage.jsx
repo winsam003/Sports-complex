@@ -1,4 +1,3 @@
-import Xheader from '../Xheader';
 import PageBanner from '../PageBanner';
 import XBoardWriteContent from '../XBoardWriteContent';
 
@@ -6,7 +5,6 @@ import XBoardWriteContent from '../XBoardWriteContent';
 export default function XBoardWritePage() {
     return (
         <div>
-            <Xheader />
             <PageBanner />
             <XBoardWriteContent />
         </div>

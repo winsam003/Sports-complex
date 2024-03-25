@@ -1,5 +1,6 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
+import { useState } from 'react';
 import HomePage from './components/Pages/HomePage';
 import LoginPage from './components/Pages/LoginPage';
 import FindIDPage from './components/Pages/FindIDPage';
@@ -32,7 +33,7 @@ import EmailCollectRefusal from './components/Pages/EmailCollectRefusal';
 import VisitWayPage from './components/Pages/VisitWayPage';
 import NotFoundPage from './components/Pages/NotFoundPage';
 
-import ManagementPage from './components/Pages/XmanagementPage';
+import XmanagementPage from './components/Pages/XmanagementPage';
 import XBoardWritePage from './components/Pages/XBoardWritePage';
 import XEventBoardWritePage from './components/Pages/XEventBoardWritePage';
 import XFaqBoardWritePage from './components/Pages/XFaqBoardWritePage';
@@ -54,11 +55,27 @@ import XNewClassUploadPage from './components/Pages/XNewClassUploadPage';
 import XSugangRequestPage from './components/Pages/XSugangRequestPage';
 import XRentalPlaceRequestControllPage from './components/Pages/XRentalPlaceRequestControllPage';
 import Footer from './components/Footer';
+import Xheader from './components/Xheader';
+import Header from './components/Header';
+import PageBanner from './components/PageBanner';
+
 
 function App() {
 
+  const [isAdminPage, setIsAdminPage] = useState(false);
+
+  const checkAdminPage = () => {
+    setIsAdminPage(!isAdminPage);
+  }
+
+  console.log(`isAdminPage: ${isAdminPage}`);
+
   return (
     <div>
+
+
+      {isAdminPage ? <Xheader checkAdminPage={checkAdminPage} /> : <Header checkAdminPage={checkAdminPage} />}
+      
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/JoinPage1' element={<JoinPage1 />} />
@@ -91,7 +108,7 @@ function App() {
         <Route path='/EmailCollectRefusal' element={<EmailCollectRefusal />} />
         <Route path='/VisitWayPage' element={<VisitWayPage />} />
 
-        <Route path='/ManagementPage' element={<ManagementPage />} />
+        <Route path='/XmanagementPage' element={<XmanagementPage />} />
         <Route path='/XBoardWritePage' element={<XBoardWritePage />} />
         <Route path='/XEventBoardWritePage' element={<XEventBoardWritePage />} />
         <Route path='/XFaqBoardWritePage' element={<XFaqBoardWritePage />} />

@@ -3,10 +3,9 @@ import {PageBannerData as PageInfo} from './PageBannerData';
 
 export default function PageBanner() {
 
-    
     const currentPage = window.location.pathname.replace("/", "");
     let selectedPage = {
-        page: 'NotFound',
+        page: '404 NotFound',
         title: '해당 페이지를 찾을 수 없습니다.'
     }
 
