@@ -21,7 +21,7 @@
 
 /* 체크박스 크기 조절 */
 .XBoardControllContent_SearchResult input {
-    margin-left: calc(50% - 10px);
+    display: inline-block;
     width: 20px;
 }
 
@@ -33,6 +33,9 @@
 }
 
 @media (max-width : 1000px) {
+    .XBoardControllContent_div{
+        display: inherit;
+    }
 
     /* 조회결과 스크롤박스만들기 */
     .XBoardControllContent_SearchResult_div {
