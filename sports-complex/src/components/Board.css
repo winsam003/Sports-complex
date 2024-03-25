@@ -1,19 +1,21 @@
 .board_div {
-    position: relative;
+    display: flex;
+}
+
+.board_div_div {
+    flex-grow: 1;
 }
 
 .board_writebutton {
-    position: absolute;
-    right: 40px;
-    bottom: 30px;
+    justify-content: flex-end;
     width: 100px;
     height: 50px;
-
     background-color: rgb(88, 143, 175);
     font-size: large;
     border: none;
 }
-.board_writebutton *{
+
+.board_writebutton * {
     color: white;
 }
 

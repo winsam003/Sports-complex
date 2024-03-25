@@ -1,9 +1,5 @@
 /* 검색창  */
 .SugangSearchBox_div {
-    position: absolute;
-    top: 200px;
-    right: 0;
-    width: 980px;
     border-top: 3px solid #C9EDFA;
     background-color: #ceeff250;
     display: grid;
@@ -75,7 +71,6 @@
 
 @media (max-width : 1200px) {
     .SugangSearchBox_div {
-        position: initial;
         width: 100%;
     }
 

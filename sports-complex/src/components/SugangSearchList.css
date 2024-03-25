@@ -2,10 +2,6 @@
 .SugangSearchList_index {
     border-top: 3px solid #C9EDFA;
     background-color: #ceeff250;
-    position: absolute;
-    top: 440px;
-    right: 0;
-    width: 980px;
     display: grid;
     grid-template-columns: repeat(2, 1fr) 3fr 3fr repeat(5, 1fr);
     text-align: center;
@@ -17,28 +13,23 @@
 
 /* 내용 */
 .SugangSearchList_content {
-    position: absolute;
-    top: 470px;
-    right: 0;
-    width: 980px;
     display: grid;
     grid-template-columns: repeat(2, 1fr) 3fr 3fr repeat(5, 1fr);
     text-align: center;
 }
 
-@media (max-width : 1200px) {
+@media (max-width : 1050px) {
     .SugangSearchList_div {
         overflow: auto;
         white-space: nowrap;
-        width: 100%;
         margin-top: 30px;
     }
 
     .SugangSearchList_index {
-        position: initial;
+        width: 860px;
     }
 
     .SugangSearchList_content {
-        position: initial;
+        width: 860px;
     }
 }
