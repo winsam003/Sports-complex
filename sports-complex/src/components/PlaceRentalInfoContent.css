@@ -17,7 +17,6 @@
 /* 스크롤 박스 */
 .RentalInfoSearchButton_scrollbox {
     background-color: #F6F6F6;
-    width: 890px;
     height: 180px;
     padding: 30px;
     margin: 0 15px;
@@ -37,16 +36,16 @@
     list-style: none;
     margin-bottom: 16px;
     padding: 0;
+    display: flex;
 }
 
 .RentalInfoSearchButton_ul li {
-    width: 217.5px;
+    width: 25%;
     height: 70px;
     font-size: 19px;
     font-weight: 600;
     display: inline-block;
     text-align: center;
-    vertical-align: middle;
     background-color: #ffffff;
 }
 
@@ -82,12 +81,15 @@
 }
 
 @media (max-width : 1200px) {
+    .board_div {
+        display: inherit;
+    }
 
-    /* 내용 박스 */
-    .RentalInfoSearchButton_OK_div {}
+    .RentalInfoSearchButton_scrollbox {
+        overflow: auto;
+    }
 
-    .RentalInfoSearchButton_Conditions_div {}
-
-    /* 신청서 다운, 사용허가신청 버튼 */
-    .RentalInfoSearchButton {}
+    .RentalInfoSearchButton_ul {
+        min-width: 520px;
+    }
 }
