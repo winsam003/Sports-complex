@@ -1,6 +1,21 @@
+import { useState, useEffect } from 'react';
 import './SugangSearchList.css'
+import axios from 'axios';
 
 export default function SugangSearchList() {
+    const [classesList, setClassesList] = useState("");
+
+    useEffect(() => {
+        axios.get('/classes/classesList')
+            .then((classes) => {
+                setClassesList(classes.data);
+            }).catch((error) => {
+                console.error(" 강좌 목록 불러오기 실패 ", error);
+            });
+    }, [])
+
+    console.log(` classesList = ${classesList}`);
+
     return (
         <div>
             <div className='SugangSearchList_div'>
