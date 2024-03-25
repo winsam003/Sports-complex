@@ -4,7 +4,7 @@ export default function BoxFacilityInformation() {
     return (
         <div className='BoxFacilityInformation_div'>
             <div className='BoxFacilityInformation_img_div'>
-                <img src='img/시설안내.jpg' className='BoxFacilityInformation_img'></img>
+                <img src='img/info.jpg' className='BoxFacilityInformation_img'></img>
             </div>
             <p>시설명</p>
             <p>FitNest 종합운동장</p>
