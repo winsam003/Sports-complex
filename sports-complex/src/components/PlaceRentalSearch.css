@@ -1,8 +1,5 @@
 /* 검색창  */
 .PlaceRentalSearch_div {
-    position: absolute;
-    top: 0;
-    right: 0;
     margin-top: 30px;
     width: 980px;
     border-top: 3px solid #C9EDFA;
@@ -64,7 +61,6 @@
 
 @media (max-width : 1200px) {
     .PlaceRentalSearch_div {
-        position: initial;
         width: 100%;
     }
 

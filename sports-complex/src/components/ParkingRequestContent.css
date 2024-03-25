@@ -1,9 +1,5 @@
 /* 주차신청 */
 .ParkingRequestInfo {
-    position: absolute;
-    top: 0;
-    left: 220px;
-    width: 980px;
     display: grid;
     grid-template-columns: 2fr 3fr 2fr 3fr;
     grid-template-rows: repeat(2, 1fr);
@@ -126,10 +122,7 @@
 
 /* 신청 초기화 버튼 */
 .ParkingRequestButton {
-    position: absolute;
     margin-top: 10px;
-    top: 150px;
-    left: 595px;
 }
 
 .ParkingRequestButton button {
@@ -146,13 +139,10 @@
 
 @media (max-width : 1200px) {
     .ParkingRequestInfo {
-        position: inherit;
-        left: 0;
         width: 100%;
     }
 
     .ParkingRequestButton {
-        position: initial;
         margin-top: 10px;
     }
 }
