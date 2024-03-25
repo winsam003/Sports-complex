@@ -1,11 +1,9 @@
-import Xheader from '../Xheader';
 import PageBanner from '../PageBanner';
 import XmainEvent from '../XmainEvent';
 
-export default function ManagementPage() {
+export default function XmanagementPage() {
     return (
         <div>
-            <Xheader />
             <PageBanner />
             <XmainEvent />
         </div>

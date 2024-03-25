@@ -1,4 +1,3 @@
-import Header from '../Header';
 import PageBanner from '../PageBanner';
 import SugangContent from '../SugangContent';
 
@@ -6,7 +5,6 @@ import SugangContent from '../SugangContent';
 export default function Sugang() {
     return (
         <div>
-            <Header />
             <PageBanner />
             <SugangContent />
         </div>

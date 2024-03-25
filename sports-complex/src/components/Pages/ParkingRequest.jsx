@@ -1,4 +1,3 @@
-import Header from '../Header';
 import PageBanner from '../PageBanner';
 import ParkingRequestContent from '../ParkingRequestContent';
 
@@ -6,7 +5,6 @@ import ParkingRequestContent from '../ParkingRequestContent';
 export default function ParkingRequest() {
     return (
         <div>
-            <Header />
             <PageBanner />
             <ParkingRequestContent />
         </div>

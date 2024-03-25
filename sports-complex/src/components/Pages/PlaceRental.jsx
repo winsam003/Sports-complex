@@ -1,4 +1,3 @@
-import Header from '../Header';
 import PageBanner from '../PageBanner';
 import PlaceRentalContent from '../PlaceRentalContent';
 
@@ -6,7 +5,6 @@ import PlaceRentalContent from '../PlaceRentalContent';
 export default function PlaceRental() {
     return (
         <div>
-            <Header />
             <PageBanner />
             <PlaceRentalContent />
         </div>
