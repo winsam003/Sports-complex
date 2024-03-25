@@ -20,20 +20,20 @@ import lombok.NoArgsConstructor;
 @Table(name="member")
 public class Member {
 	@Id
-	private String id;
+	private String ID;
 	private String name;
 	@Column
 	private String password;
 	private String birth;
-	private String phoneNum;
-	private String homeNum;
+	private String phonenum;
+	private String homenum;
 	private String address;
 	private String address1;
 	private String address2;
 	private String email;
-	private boolean snsAgr;
-	private boolean emailAgr;
-	private String carNum;
-	private Date parkUse;
+	private boolean snsagr;
+	private boolean emailagr;
+	private String carnum;
+	private Date parkuse;
 	
 }

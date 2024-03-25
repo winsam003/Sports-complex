@@ -5,6 +5,8 @@
 //import org.springframework.stereotype.Service;
 //
 //import com.example.demo.entity.Member;
+import com.example.demo.repository.MemberRepository;
+import com.example.demo.repository.MemberRepositoryImpl;
 //
 //import lombok.RequiredArgsConstructor;
 //import lombok.extern.log4j.Log4j2;
@@ -14,11 +16,12 @@
 //@Service
 //public class MemberServiceImpl implements MemberService{
 //	
-//	private final Repository repository;
+//	private final MemberRepositoryImpl repository;
 //	
 //	@Override
 //		public List<Member> MemberListAll() {
 //			// TODO Auto-generated method stub
-//			return MemberListAll();
+		log.info("service테스트");
+//			return repository.MemberListAll();
 //		}
 //}
