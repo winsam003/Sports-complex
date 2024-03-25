@@ -15,7 +15,7 @@ import { TbUserPlus } from "react-icons/tb";
 
 export default function Header({checkAdminPage}) {
 
-
+    console.log("렌더링test");
     return (
 
         <header>

@@ -184,6 +184,12 @@
 .homeDetail_Calendar div:nth-child(-n+8){
     border-bottom: 1px solid white;
 }
+.homeDetail_Calendar div:nth-child(1){
+    border-top-left-radius: 1em;
+}
+.homeDetail_Calendar div:nth-child(4){
+    border-top-right-radius: 1em;
+}
 .homeDetail_Calendar div:nth-child(9){
     border-bottom-left-radius: 1em;
 }

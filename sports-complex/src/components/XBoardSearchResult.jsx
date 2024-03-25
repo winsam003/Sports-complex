@@ -15,7 +15,7 @@ export default function XBoardSearchResult() {
             </div>
             {/* 조회결과 */}
             <div className='XBoardControllContent_SearchResult'>
-                <input type='checkbox'></input>
+                <p><input type='checkbox'></input></p>
                 <p>999999</p>
                 <p>자물쇠</p>
                 <p>공지사항 관리 페이지에서 확인하는 공지글입니다</p>

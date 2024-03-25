@@ -12,7 +12,6 @@ export default function Board() {
                 <div className='board_div_div'>
                     <XBoardSearchBox />
                     <BoardSearchList />
-                    <button className='board_writebutton'><Link to="/Inquiry">글쓰기</Link></button>
                 </div>
             </div>
         </div>
