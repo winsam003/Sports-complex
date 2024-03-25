@@ -1,6 +1,8 @@
+import axios from 'axios';
 import './XuserInfoList.css';
 import XuserInfoListContents from './XuserInfoListContents';
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 export default function XuserInfoList() {
 
@@ -38,6 +40,37 @@ export default function XuserInfoList() {
         },
     ]
 
+    const [userInfoList, setUserInfoList] = useState([]);
+    useEffect(() => {
+        axios.get('/member/memberList', {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then((userList) => {
+                setUserInfoList(userList.data);
+            }).catch((error) => {
+                console.error("Error fetching member list:", error);
+            });
+    }, [])
+
+    console.log(JSON.stringify(userInfoList));
+
+    // useEffect(() => {
+    //     axios.get('/member/memberList')
+    //     .then((userList) => {
+    //         setUserInfoList(userList.data);
+    //     }).catch((error) => {
+    //         console.error("Error fetching member list:", error);
+    //     });
+    // }, [])
+
+
+    // console.log(`userList= ${userInfoList}`);
+
+
+
+
     const [checkedUsers, setCheckedUsers] = useState([]);
 
     const userDelete = (userID, checked) => {
@@ -72,7 +105,7 @@ export default function XuserInfoList() {
                     {/* <span>강사등록</span> */}
                 </div>
                 <div>
-                    {data.map((it, index) => (
+                    {userInfoList.map((it, index) => (
                         <XuserInfoListContents key={index} {...it} userDelete={userDelete} />
                     ))}
                 </div>
