@@ -71,14 +71,6 @@ function App() {
 
   const [message, setMessage] = useState("");
 
-  // useEffect(() => {
-  //   fetch('/test/hello')
-  //     .then(response => response.text())
-  //     .then(message => {
-  //       setMessage(message);
-  //     });
-  // }, []);
-
   useEffect(() => {
     axios.get('/test/hello')
       .then((res) => {
@@ -150,6 +142,9 @@ function App() {
 
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
+
+
+
       <Footer />
     </div>
   );
