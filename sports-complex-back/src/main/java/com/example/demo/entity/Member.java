@@ -2,7 +2,9 @@ package com.example.demo.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -17,8 +19,10 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name="member")
 public class Member {
+	@Id
 	private String id;
 	private String name;
+	@Column
 	private String password;
 	private String birth;
 	private String phoneNum;
