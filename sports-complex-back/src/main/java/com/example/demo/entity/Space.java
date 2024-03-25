@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
-import javax.persistence.Entity;  
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,13 +13,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "Space")
+@Table(name="space")
 public class Space {
-	public String spaceCode;
-	public String spaceName;
-	public boolean spacePos;
-	public int spacePrice;
-	public int parkSpace;
+	@Id
+	public String spacecode;
+	public String spacename;
+	public boolean spacepos;
+	public int spaceprice;
+	public int parkspace;
 	public int parking;
 	
 }
