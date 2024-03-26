@@ -1,0 +1,32 @@
+
+// 공지사항, 자주하는게시판 엔티티
+CREATE TABLE noticeList (
+    notNum INT AUTO_INCREMENT PRIMARY KEY,
+    cpCode VARCHAR(20) NOT NULL,
+    notTitle VARCHAR(20) NOT NULL,
+    quesT VARCHAR(5) NOT NULL DEFAULT 'false',
+    notDate DATE NOT NULL,
+    notUploadfile VARCHAR(100) DEFAULT NULL,
+    notCount INT(3) NOT NULL,
+    notDetail VARCHAR(1000) NOT NULL,
+    notType TINYINT(1) NOT NULL
+);
+
+
+// 회원정보 엔티티
+CREATE TABLE Member (
+    ID varchar(15) NOT NULL,
+    name varchar(10) NOT NULL,
+    password varchar(100) NOT NULL,
+    birth varchar(8) NOT NULL,
+    phoneNum varchar(11) NOT NULL,
+    homeNum varchar(11) NULL,
+    address varchar(100) NOT NULL,
+    address1 varchar(100) NOT NULL,
+    address2 varchar(30) NULL,
+    email varchar(50) NOT NULL,
+    snsAgr TINYINT(1) NOT NULL DEFAULT 1,
+    emailAgr TINYINT(1) NOT NULL DEFAULT 1,
+    carNum varchar(10) NULL,
+    parkUse date NULL
+);
