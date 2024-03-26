@@ -1,8 +1,8 @@
 import './UserType.css';
 import UserTypeAgree from './UserTypeAgree';
 
-export default function UserType(){
-    return(
+export default function UserType() {
+    return (
         <div>
             <div className='UserType_container'>
                 <button className='UserType_button UserType_kid'>아동</button>
