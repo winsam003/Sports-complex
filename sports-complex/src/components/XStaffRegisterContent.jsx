@@ -20,6 +20,10 @@ export default function XStaffRegisterContent() {
         });
     });
 
+    const handleSubmit = () => {
+        
+    }
+
     return (
         <form action="/" method='post'>
             <table className='XStaffRegisterContent_talbe'>
