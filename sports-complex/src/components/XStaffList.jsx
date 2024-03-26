@@ -10,9 +10,9 @@ export default function XStaffList() {
 
     useEffect(() => {
         axios.get('/staff/staffList')
-            .then((staff) => {
-                console.log(`staff=${staff}`);
-                setstaff(staff.data);
+            .then((response) => {
+                console.log(`staff=${response.data}`);
+                setstaff(response.data);
             }).catch((error) => {
                 console.error(" 스태프 목록 불러오기 실패 ", error);
             });
@@ -20,13 +20,13 @@ export default function XStaffList() {
 
     console.log(`staff =${staff}`);
 
-    const staffdelete = (staffnum, checked) => {
-        if (checked) {
-            setstaff([...staff, staffnum]);
-        } else {
-            setstaff(staff.filter(num => num !== staffnum));
-        }
-    };
+    const staffdelete = ((staffId) => {
+        axios.get('/staff/staffDelete')
+            .then(() => {
+                setstaff(prevStaff => prevStaff.filter(item => item.stfid !== staffId));
+            }).catch((error) =>
+                console.error(" 직원 삭제 실패 ", error))
+    });
 
     return (
         <div className='XStaffList_Box'>
