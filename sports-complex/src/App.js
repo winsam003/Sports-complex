@@ -69,16 +69,7 @@ function App() {
   }
 
 
-  const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    axios.get('/test/hello')
-      .then((res) => {
-        setMessage(res.data);
-      })
-  }, []);
-
-  console.log(`백엔드 message: ${message}`);
+  
 
   return (
     <div>
