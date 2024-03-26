@@ -24,4 +24,15 @@ public class StaffController {
 		return service.StaffList();
 	}
 
+	@GetMapping("/staffDelete")
+	public String staffDelete(Long gno) {
+		try {
+			service.delete(gno);
+			System.out.println(" 삭제 성공 => " + gno);
+		} catch (Exception e) {
+			System.out.println(" Delete Excpetion => " + e.toString());
+		}
+		return "redirect:staff";
+	}
+
 }
