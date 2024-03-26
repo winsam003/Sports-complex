@@ -1,11 +1,17 @@
 import './UserTypeAgree.css';
-import {Link, Routes, Route} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 
-export default function UserTypeAgree({ nextPage }){
+export default function UserTypeAgree({ nextPage }) {
+    // const navigate = useNavigate();
+
+    // const handlePage = () => {
+    //     navigate('/JoinPage2');
+    // }
 
     const pageRouter = () => {
-        switch (nextPage){
+        switch (nextPage) {
             case 'JoinPage1':
                 return '/JoinPage2';
             case 'JoinPage2':

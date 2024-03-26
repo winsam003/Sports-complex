@@ -54,14 +54,16 @@ import XlectureInfoPage from './components/Pages/XlectureInfoPage';
 import XNewClassUploadPage from './components/Pages/XNewClassUploadPage';
 import XSugangRequestPage from './components/Pages/XSugangRequestPage';
 import XRentalPlaceRequestControllPage from './components/Pages/XRentalPlaceRequestControllPage';
+import XStaffInfoPage from './components/Pages/XStaffInfoPage';
+import XStaffRegisterPage from './components/Pages/XStaffRegisterPage';
 import Footer from './components/Footer';
 import Xheader from './components/Xheader';
 import Header from './components/Header';
-
-import axios from "axios";
+import JoinPage from './components/Pages/JoinPage';
 
 function App() {
 
+  // admin 모드, 사용자 모드를 확인하고 header를 바꿔주기 위한 hook
   const [isAdminPage, setIsAdminPage] = useState(false);
 
   const checkAdminPage = () => {
@@ -79,6 +81,7 @@ function App() {
 
       <Routes>
         <Route path='/' element={<HomePage />} />
+        <Route path='/JoinPage1' element={<JoinPage1 />} />
         <Route path='/JoinPage1' element={<JoinPage1 />} />
         <Route path='/JoinPage2' element={<JoinPage2 />} />
         <Route path='/JoinPage3' element={<JoinPage3 />} />
@@ -130,6 +133,8 @@ function App() {
         <Route path='XNewClassUploadPage' element={<XNewClassUploadPage />} />
         <Route path='/XSugangRequestPage' element={<XSugangRequestPage />} />
         <Route path='/XRentalPlaceRequestControllPage' element={<XRentalPlaceRequestControllPage />} />
+        <Route path='/XStaffInfoPage' element={<XStaffInfoPage />} />
+        <Route path='/XStaffRegisterPage' element={<XStaffRegisterPage />} />
 
         <Route path='*' element={<NotFoundPage />} />
       </Routes>

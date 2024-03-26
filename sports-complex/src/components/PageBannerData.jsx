@@ -209,6 +209,20 @@ export const PageBannerData = [
     },
     {
         "id": "8",
+        "parameter": 'XStaffInfoPage',
+        "page": '직원정보 관리',
+        "title": '인적 관리',
+        "checkMenu": "Y"
+    },
+    {
+        "id": "8",
+        "parameter": 'XStaffRegisterPage',
+        "page": '직원정보 등록',
+        "title": '인적 관리',
+        "checkMenu": "Y"
+    },
+    {
+        "id": "8",
         "parameter": 'XlecturePage',
         "page": '강사정보 관리',
         "title": '인적 관리',

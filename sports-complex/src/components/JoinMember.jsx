@@ -8,17 +8,17 @@ export default function JoinMember() {
                 <p>회원가입을 위해 아래의 양식에 내용을 입력해주세요.</p>
                 <span className='JoinMember_star'>※ * 는 필수입력사항입니다.</span>
 
-                <form action="/" method='post'>
+                <form action="/member/mjoin" method='post'>
                     <table>
                         <tr>
                             <th>이름 (실명) <span className='JoinMember_star'>*</span></th>
-                            <td><input type="text" name='name' id='name' placeholder='본인인증에서 가져오기' readOnly /></td>
+                            <td><input type="text" name='name' id='name' placeholder='본인인증에서 가져오기를 해야하지만 일단 readonly를 빼고 입력 하겠음' /></td>
                         </tr>
                         <tr>
                             <th>생년월일<span className='JoinMember_star'>*</span></th>
                             <td>
                                 
-                                <input type="number" name='birth' id='birth' placeholder='본인인증에서 가져오기' readOnly />
+                                <input type="number" name='birth' id='birth' placeholder='본인인증에서 가져오기를 해야하지만 일단 readonly를 빼고 입력 하겠음' />
                                 
                                 <input type="radio" id='solar' name='birthChoice' value={'solar'} /> 
                                 <label htmlFor="solar">양력</label>
@@ -69,7 +69,7 @@ export default function JoinMember() {
                         <tr>
                             <th>차량번호</th>
                             <td>
-                                <input type="text" name='carNum' id='carNum' />
+                                <input type="text" name='carnum' id='carnum' />
                                 <p>예) 45가1234 와 같이 전체 차량번호를 띄어쓰기 없이 입력 하여 주시기 바랍니다.</p>
                             </td>
                         </tr>
@@ -88,7 +88,7 @@ export default function JoinMember() {
                                     <option value="yahoo.com">yahoo.com</option>
                                     <option value="dreamwiz.com">dreamwiz.com</option>
                                 </select> <br />
-                                <input type="checkbox" name='receiveMail' id='receiveMail' />
+                                <input type="checkbox" name='emailagr' id='emailagr' />
                                 <span><label htmlFor="receiveMail">뉴스레터나 공지이메일을 수신 받겠습니다.</label></span>
                             </td>
                         </tr>
@@ -107,7 +107,7 @@ export default function JoinMember() {
                                 <span>-</span>
                                 <input type="text" name='lastPhoneNum' id='lastPhoneNum' />
                                 <br />
-                                <input type="checkbox" name='receiveMessage' id='receiveMessage' />
+                                <input type="checkbox" name='snsagr' id='snsagr' />
                                 <span><label htmlFor="receiveMessage">알림문자를 받겠습니다.</label></span>
                             </td>
                         </tr>
