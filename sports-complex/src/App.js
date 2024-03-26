@@ -69,21 +69,10 @@ function App() {
   const checkAdminPage = () => {
     setIsAdminPage(!isAdminPage);
   }
-  // 
-
-  // join 시 해당 페이지의 데이터를 다음 페이지로 넘겨주기 위한 코드
-  const [userData, setUserData] = useState(["ME"]);
-
-  const handleNext = (code) => {
-    setUserData({ code });
-  };
-  //
-
-
-
 
 
   
+
   return (
     <div>
 

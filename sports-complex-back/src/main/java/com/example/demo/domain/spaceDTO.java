@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 public class spaceDTO {
 	public String spaceCode;
 	public String spaceName;
-	public boolean spacePos;
 	public int spacePrice;
 	public int parkSpace;
 	public int parking;

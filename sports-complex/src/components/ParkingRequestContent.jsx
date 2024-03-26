@@ -1,13 +1,48 @@
 import './ParkingRequestContent.css'
 import Submenu from './Submenu'
 import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import axios from 'axios';
 
 export default function ParkingRequestContent() {
+
+    const [spacelist, setSpaceList] = useState([]);
+
+    useEffect(() => {
+        axios.get('/space/spacelist')
+        .then((list) => {
+            setSpaceList(list.data);
+            console.log(`list.data: ${list.data}`);
+        }).catch((error) => {
+            console.log("Error: ",error);
+        })
+    },[])
+
+
     return (
         <div>
             <div className='board_div'>
                 <Submenu />
                 <div className='board_div_div'>
+                    <table className='parknotice'>
+                        <thead>
+                            <tr>
+                                <td></td>
+                                <td>잔여 자리 수 </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {spacelist
+                                .filter(({spacecode}) => spacecode.substring(2, 4) === 'PA')
+                                .map(({spacename, parkspace, parking}, index) => (
+                                    <tr key={index}>
+                                        <td>{spacename}</td>
+                                        <td>{parkspace-parking}</td>
+                                    </tr>
+                                ))
+                            }
+                        </tbody>
+                    </table>
                     <div className='ParkingRequestInfo'>
                         <div className='ParkingRequest_p1'>
                             <p>주차장 위치</p>
@@ -17,7 +52,6 @@ export default function ParkingRequestContent() {
                                 <option value="" key="">지하1층</option>
                                 <option value="" key="">지하2층</option>
                                 <option value="" key="">지하3층</option>
-                                <option value="" key="">지하4층</option>
                             </select>
                         </div>
                         <div className='ParkingRequest_p2'>
