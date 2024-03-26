@@ -20,7 +20,8 @@ import lombok.NoArgsConstructor;
 @Table(name="member")
 public class Member {
 	@Id
-	private String ID;
+	private String id;
+	private String membercode;
 	private String name;
 	@Column
 	private String password;
