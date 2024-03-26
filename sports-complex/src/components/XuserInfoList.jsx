@@ -1,44 +1,13 @@
 import axios from 'axios';
 import './XuserInfoList.css';
 import XuserInfoListContents from './XuserInfoListContents';
+import SearchSelect from './SearchSelect';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
+
 export default function XuserInfoList() {
 
-    // 테스트용 객체입니다 테이블 연결 후 테이블 데이터로 교체할 예정입니다.
-    const data = [
-        {
-
-            "userID": "bamboo7",
-            "userName": "최승삼",
-            "userBirth": "1994.10.22",
-            "userPhone": "01058021809",
-            "userAddress": "경기도 성남시 중원구 자혜로 8번길 7-1",
-            "userCarNum": "117머 8941",
-            "lectureCheck": "false",
-        },
-        {
-
-            "userID": "qwert1234",
-            "userName": "장근정",
-            "userBirth": "1999.5.12",
-            "userPhone": "01012345361",
-            "userAddress": "경기도 용인시 처인구 행복구 행복동 2번길 7-1",
-            "userCarNum": "",
-            "lectureCheck": "false",
-        },
-        {
-
-            "userID": "backk5673",
-            "userName": "백승현",
-            "userBirth": "1994.2.16",
-            "userPhone": "01012345612",
-            "userAddress": "경기도 성남시 중원구 자혜로 5번길 7-1",
-            "userCarNum": "162가 4512",
-            "lectureCheck": "true",
-        },
-    ]
 
     const [userInfoList, setUserInfoList] = useState([]);
     useEffect(() => {
@@ -53,22 +22,6 @@ export default function XuserInfoList() {
                 console.error("Error fetching member list:", error);
             });
     }, [])
-
-    console.log(JSON.stringify(userInfoList));
-
-    // useEffect(() => {
-    //     axios.get('/member/memberList')
-    //     .then((userList) => {
-    //         setUserInfoList(userList.data);
-    //     }).catch((error) => {
-    //         console.error("Error fetching member list:", error);
-    //     });
-    // }, [])
-
-
-    // console.log(`userList= ${userInfoList}`);
-
-
 
 
     const [checkedUsers, setCheckedUsers] = useState([]);
@@ -117,7 +70,7 @@ export default function XuserInfoList() {
             <div className='XuserInfoList_searchTitle'>문자메세지 발송</div>
             <div className='XuserInfoList_textMessage'>
                 <input type='text' name='textMessage' id='textMessage' placeholder='문자 내용 입력' />
-                </div>
+            </div>
             <div className='XuserInfoList_UserButton'>
                 <button>초기화</button>
                 <button>발송</button>
