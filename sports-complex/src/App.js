@@ -54,6 +54,8 @@ import XlectureInfoPage from './components/Pages/XlectureInfoPage';
 import XNewClassUploadPage from './components/Pages/XNewClassUploadPage';
 import XSugangRequestPage from './components/Pages/XSugangRequestPage';
 import XRentalPlaceRequestControllPage from './components/Pages/XRentalPlaceRequestControllPage';
+import XStaffInfoPage from './components/Pages/XStaffInfoPage';
+import XStaffRegisterPage from './components/Pages/XStaffRegisterPage';
 import Footer from './components/Footer';
 import Xheader from './components/Xheader';
 import Header from './components/Header';
@@ -67,6 +69,7 @@ function App() {
   const checkAdminPage = () => {
     setIsAdminPage(!isAdminPage);
   }
+
   
   return (
     <div>
@@ -127,6 +130,8 @@ function App() {
         <Route path='XNewClassUploadPage' element={<XNewClassUploadPage />} />
         <Route path='/XSugangRequestPage' element={<XSugangRequestPage />} />
         <Route path='/XRentalPlaceRequestControllPage' element={<XRentalPlaceRequestControllPage />} />
+        <Route path='/XStaffInfoPage' element={<XStaffInfoPage />} />
+        <Route path='/XStaffRegisterPage' element={<XStaffRegisterPage />} />
 
         <Route path='*' element={<NotFoundPage />} />
       </Routes>

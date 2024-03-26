@@ -1,0 +1,83 @@
+.XStaffRegisterContent_talbe {
+    margin-top: 40px;
+}
+
+.JoinLecture_star {
+    color: red;
+}
+
+/* 직원등록 */
+.XStaffRegisterContent_Caption {
+    font-weight: bold;
+    font-size: 30px;
+    border-bottom: 1px solid #ccc;
+}
+
+table>tr {
+    height: 5rem;
+}
+
+.XStaffRegisterContent_input {
+    height: 1.5rem;
+    width: 10rem;
+}
+
+.XlectureRegisterDetail_address {
+    margin-bottom: 5px;
+}
+
+.JoinLecture_submitBox {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.JoinLecture_submitInput {
+    margin-top: 1rem;
+    margin-right: 1rem;
+    height: 3rem;
+    width: 6rem;
+
+    background-color: #059da5;
+    color: white;
+    border-radius: 0.5em;
+    border: none;
+
+    cursor: pointer;
+}
+
+/* 소제목 */
+.JoinStaff_title {
+    font-size: large;
+    font-weight: bold;
+
+}
+
+.JoinStaff_title::after {
+    content: "";
+    border-right: 1px solid #ccc;
+
+    padding-right: 10px;
+    margin-right: 10px;
+
+}
+
+/* 직원 등록 버튼 */
+.JoinStaff_submitBox {
+    display: flex;
+    justify-content: right;
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+    padding-right: 10px;
+}
+
+.JoinStaff_submitInput {
+    width: 100px;
+    height: 50px;
+    margin-right: 30px;
+    font-size: large;
+    background-color: #059da5;
+    color: white;
+    border-radius: 0.5em;
+    border: none;
+    cursor: pointer;
+}
