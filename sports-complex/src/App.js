@@ -67,19 +67,7 @@ function App() {
   const checkAdminPage = () => {
     setIsAdminPage(!isAdminPage);
   }
-
-
-  const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    axios.get('/test/hello')
-      .then((res) => {
-        setMessage(res.data);
-      })
-  }, []);
-
-  console.log(`백엔드 message: ${message}`);
-
+  
   return (
     <div>
 

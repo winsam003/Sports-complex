@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Builder;
@@ -13,5 +14,6 @@ import lombok.Data;
 //@NoArgsConstructor
 @Builder
 public class Qna {
-	
+	@Id
+	private Long test;
 }
