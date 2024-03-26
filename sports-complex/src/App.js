@@ -59,16 +59,29 @@ import XStaffRegisterPage from './components/Pages/XStaffRegisterPage';
 import Footer from './components/Footer';
 import Xheader from './components/Xheader';
 import Header from './components/Header';
-
-import axios from "axios";
+import JoinPage from './components/Pages/JoinPage';
 
 function App() {
 
+  // admin 모드, 사용자 모드를 확인하고 header를 바꿔주기 위한 hook
   const [isAdminPage, setIsAdminPage] = useState(false);
 
   const checkAdminPage = () => {
     setIsAdminPage(!isAdminPage);
   }
+  // 
+
+  // join 시 해당 페이지의 데이터를 다음 페이지로 넘겨주기 위한 코드
+  const [userData, setUserData] = useState(["ME"]);
+
+  const handleNext = (code) => {
+    setUserData({ code });
+  };
+  //
+
+
+
+
 
   
   return (
@@ -79,6 +92,7 @@ function App() {
 
       <Routes>
         <Route path='/' element={<HomePage />} />
+        <Route path='/JoinPage1' element={<JoinPage1 />} />
         <Route path='/JoinPage1' element={<JoinPage1 />} />
         <Route path='/JoinPage2' element={<JoinPage2 />} />
         <Route path='/JoinPage3' element={<JoinPage3 />} />

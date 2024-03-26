@@ -7,9 +7,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.domain.MemberDTO;
 import com.example.demo.entity.Member;
 import com.example.demo.service.MemberService;
 import com.example.demo.service.MemberServiceImpl;
@@ -38,6 +40,14 @@ public class MemberContoller {
 		}else {
 			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("출력 할 회원정보가 없습니다.");			
 		}
+	}
+	
+	@PostMapping(value="/mjoin")
+	public ResponseEntity<?> mJoin(MemberDTO dto){
+		
+		log.info(dto);
+		
+		return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("출력 할 회원정보가 없습니다.");
 	}
 	
 }
