@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { TbUserPlus } from "react-icons/tb";
 
-export default function Xheader({checkAdminPage}) {
+export default function Xheader({ checkAdminPage }) {
 
 
     return (
@@ -31,27 +31,29 @@ export default function Xheader({checkAdminPage}) {
                     </ul>
                     <ul>
                         <li className='Header_subMenu Header_Menutitle1'><Link to='/UserInfoPage' >회원정보 관리</Link></li>
-                        <li className='Header_subMenu Header_Menutitle2'><Link to='/XlecturePage' >강사정보 관리</Link></li>
-                        <li className='Header_subMenu Header_Menutitle3'><Link to='/XlecturerRegisterPage' >강사 등록</Link> </li>
+                        <li className='Header_subMenu Header_Menutitle2'><Link to='/XStaffUpdatePage' >직원정보 관리</Link></li>
+                        <li className='Header_subMenu Header_Menutitle3'><Link to='/XStaffRegister' >직원 등록</Link></li>
+                        <li className='Header_subMenu Header_Menutitle4'><Link to='/XlecturePage' >강사정보 관리</Link></li>
+                        <li className='Header_subMenu Header_Menutitle5'><Link to='/XlecturerRegisterPage' >강사 등록</Link> </li>
                     </ul>
                     <ul>
-                        <li className='Header_subMenu Header_Menutitle4'><Link to='/XlectureInfoPage' >강의정보 관리</Link></li>
-                        <li className='Header_subMenu Header_Menutitle5'><Link to='/XNewClassUploadPage' >신규강의 등록</Link></li>
+                        <li className='Header_subMenu Header_Menutitle6'><Link to='/XlectureInfoPage' >강의정보 관리</Link></li>
+                        <li className='Header_subMenu Header_Menutitle7'><Link to='/XNewClassUploadPage' >신규강의 등록</Link></li>
                     </ul>
                     <ul>
-                        <li className='Header_subMenu Header_Menutitle6'><Link to='/XSugangRequestPage' >수강신청 관리</Link></li>
-                        <li className='Header_subMenu Header_Menutitle7'><Link to='/XRentalPlaceRequestControllPage' >대관신청 관리</Link></li>
-                        <li className='Header_subMenu Header_Menutitle8'><Link to='/XParkingControllPage'>주차신청 관리</Link></li>
+                        <li className='Header_subMenu Header_Menutitle8'><Link to='/XSugangRequestPage' >수강신청 관리</Link></li>
+                        <li className='Header_subMenu Header_Menutitle9'><Link to='/XRentalPlaceRequestControllPage' >대관신청 관리</Link></li>
+                        <li className='Header_subMenu Header_Menutitle10'><Link to='/XParkingControllPage'>주차신청 관리</Link></li>
                     </ul>
                     <ul>
-                        <li className='Header_subMenu Header_Menutitle6'><Link to='/XRentalPlaceControllPage' >시설 관리</Link></li>
-                        <li className='Header_subMenu Header_Menutitle7'><Link to='/XReantalPlaceNewonePage' >신규시설 등록</Link></li>
+                        <li className='Header_subMenu Header_Menutitle11'><Link to='/XRentalPlaceControllPage' >시설 관리</Link></li>
+                        <li className='Header_subMenu Header_Menutitle12'><Link to='/XReantalPlaceNewonePage' >신규시설 등록</Link></li>
                     </ul>
                     <ul>
-                        <li className='Header_subMenu Header_Menutitle9'><Link to='/XBoardControllPage' >공지사항 관리</Link></li>
-                        <li className='Header_subMenu Header_Menutitle10'><Link to='/XEventBoardControllPage' >이벤트게시판 관리</Link></li>
-                        <li className='Header_subMenu Header_Menutitle11'><Link to='/XFaqBoardControllPage' >자주하는질문 관리</Link></li>
-                        <li className='Header_subMenu Header_Menutitle12'><Link to='/XQnaBoardControllPage' >문의게시판 &nbsp;관리</Link></li>
+                        <li className='Header_subMenu Header_Menutitle13'><Link to='/XBoardControllPage' >공지사항 관리</Link></li>
+                        <li className='Header_subMenu Header_Menutitle14'><Link to='/XEventBoardControllPage' >이벤트게시판 관리</Link></li>
+                        <li className='Header_subMenu Header_Menutitle15'><Link to='/XFaqBoardControllPage' >자주하는질문 관리</Link></li>
+                        <li className='Header_subMenu Header_Menutitle16'><Link to='/XQnaBoardControllPage' >문의게시판 &nbsp;관리</Link></li>
                     </ul>
                 </div>
             </div>
