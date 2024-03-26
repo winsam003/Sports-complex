@@ -2,7 +2,7 @@ import "./FindPassword.css"
 import NiceAthentication from "./NiceAthentication"
 import PhoneAthentication from "./PhoneAthentication"
 
-export default function FindPassword() {
+export default function FindPassword({ memberType }) {
     return (
         <div className="FindPassword_Page">
             <div>본인확인 </div>
@@ -12,8 +12,8 @@ export default function FindPassword() {
                 * 본인인증 관련 장애 발생 시 반드시 브라우저의 '팝업 차단'을 해제해 주시기 바랍니다. 
             </p>
             <div className="FindPassword_Authentication">
-                <NiceAthentication />
-                <PhoneAthentication />
+                <NiceAthentication memberType={memberType} />
+                <PhoneAthentication memberType={memberType} />
             </div>
             <p>
                 * 아동(만 14세 미만)은 부모님(법정대리인) 동의가 필요합니다. <br />
