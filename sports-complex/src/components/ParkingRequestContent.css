@@ -1,3 +1,23 @@
+/* 주차 잔여자리 알려주기 */
+.parknotice{
+    border: 3px solid #9fdef5;
+    margin: auto;
+    margin-top: 1rem;
+    border-collapse: collapse;
+}
+.parknotice * {
+    padding: 0.5rem 1rem;
+    border: 1px solid #d3dee2;
+    
+}
+.parknotice td {
+    text-align: right;
+}
+.parknotice>thead>tr>:nth-child(2),
+.parknotice>tbody>tr>:nth-child(1) {
+    background-color: #edf2f3;
+}
+
 /* 주차신청 */
 .ParkingRequestInfo {
     display: grid;
