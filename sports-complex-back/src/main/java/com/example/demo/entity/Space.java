@@ -18,7 +18,6 @@ public class Space {
 	@Id
 	public String spacecode;
 	public String spacename;
-	public boolean spacepos;
 	public int spaceprice;
 	public int parkspace;
 	public int parking;

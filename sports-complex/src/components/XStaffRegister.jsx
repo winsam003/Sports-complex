@@ -6,7 +6,7 @@ export default function XStaffRegister() {
     return (
         <div className='XStaffRegister_div'>
             <Submenu />
-            <div className='XStaffRegister_div'>
+            <div className='XStaffRegister_div_div'>
                 <XStaffRegisterContent />
             </div>
         </div>

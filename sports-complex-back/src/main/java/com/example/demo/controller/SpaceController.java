@@ -24,9 +24,9 @@ public class SpaceController {
 	
 	@GetMapping("/spacelist")
 	public List<Space> sList() {
+		log.info(service.SpaceList());
 		return service.SpaceList();
 //		model.addAttribute("rentSpace", service.SpaceList());
-//		log.info(service.SpaceList());
 	}
 	
 //	@GetMapping("/parklist")

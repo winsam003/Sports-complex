@@ -103,3 +103,50 @@ VALUES
 ("bamboo81", "MEINKI", "강동원", "password81", "19870921", "01012345678", "02265432107", "서울특별시 강서구", "강서로 901번길 23", "아파트 8181호", "example81@example.com", 1, 1, "234마7890", null),
 ("bamboo82", "MEINAD", "조인성", "password82", "19920902", "01023456789", "02254321076", "서울특별시 강북구", "강북로 901번길 23", "아파트 8282호", "example82@example.com", 1, 1, "345사9012", null),
 ("bamboo83", "MEINOL", "신민아", "password83", "19961113", "01034567890", "02243210765", "서울특별시 강남구", "강남대로 901번길 23", "아파트 8383호", "example83@example.com", 1, 1, "456아0123", null);
+
+
+직원 테이블
+** 직원 테이블 생성 ** 
+CREATE TABLE staff (
+    stfID varchar(15) COMMENT 'Primary Key', stfPassword varchar(100) NOT NULL, stfDmp varchar(20) NOT NULL, stfLevel varchar(10) NOT NULL, stfPNum int NOT NULL, stfName varchar(10) NOT NULL, stfCode varchar(20) NOT NULL, primary key (stfID)
+);
+
+** 직원 생성 **
+INSERT INTO staff (stfID, stfPassword, stfDmp, stfLevel, stfPNum, stfName, stfCode)
+VALUES 
+('jgj', 'rmswjd', '강좌', '팀장', '0100821700', '장근정', 'STCLBJ'),
+('minsam', 'tmdtka', '시설', '팀장', '01000070000', '최승삼', 'STSPBJ'),
+('sh', 'tmdgus', '일반', '직원', '01015441544', '백승현', 'STGESF'),
+('jgj1', 'rmswjd', '강좌', '팀장', '0100821700', '장근정', 'STCLBJ'),
+('minsam1', 'tmdtka', '시설', '팀장', '01000070000', '최승삼', 'STSPBJ'),
+('sh1', 'tmdgus', '일반', '직원', '01015441544', '백승현', 'STGESF'),
+('jgj2', 'rmswjd', '강좌', '팀장', '0100821700', '장근정', 'STCLBJ'),
+('minsam2', 'tmdtka', '시설', '팀장', '01000070000', '최승삼', 'STSPBJ'),
+('sh2', 'tmdgus', '일반', '직원', '01015441544', '백승현', 'STGESF'),
+('jgj3', 'rmswjd', '강좌', '팀장', '0100821700', '장근정', 'STCLBJ'),
+('minsam3', 'tmdtka', '시설', '팀장', '01000070000', '최승삼', 'STSPBJ'),
+('sh3', 'tmdgus', '일반', '직원', '01015441544', '백승현', 'STGESF'),
+('jgj4', 'rmswjd', '강좌', '팀장', '0100821700', '장근정', 'STCLBJ'),
+('minsam4', 'tmdtka', '시설', '팀장', '01000070000', '최승삼', 'STSPBJ'),
+('sh4', 'tmdgus', '일반', '직원', '01015441544', '백승현', 'STGESF'),
+('jgj5', 'rmswjd', '강좌', '팀장', '0100821700', '장근정', 'STCLBJ'),
+('minsam6', 'tmdtka', '시설', '팀장', '01000070000', '최승삼', 'STSPBJ'),
+('sh7', 'tmdgus', '일반', '직원', '01015441544', '백승현', 'STGESF'),
+('jgj8', 'rmswjd', '강좌', '팀장', '0100821700', '장근정', 'STCLBJ'),
+('minsam9', 'tmdtka', '시설', '팀장', '01000070000', '최승삼', 'STSPBJ'),
+('sh11', 'tmdgus', '일반', '직원', '01015441544', '백승현', 'STGESF'),
+('jgj12', 'rmswjd', '강좌', '팀장', '0100821700', '장근정', 'STCLBJ'),
+('minsam13', 'tmdtka', '시설', '팀장', '01000070000', '최승삼', 'STSPBJ'),
+('sh14', 'tmdgus', '일반', '직원', '01015441544', '백승현', 'STGESF'),
+('jgj15', 'rmswjd', '강좌', '팀장', '0100821700', '장근정', 'STCLBJ'),
+('minsam16', 'tmdtka', '시설', '팀장', '01000070000', '최승삼', 'STSPBJ'),
+('sh17', 'tmdgus', '일반', '직원', '01015441544', '백승현', 'STGESF'),
+('jgj18', 'rmswjd', '강좌', '팀장', '0100821700', '장근정', 'STCLBJ'),
+('minsam29', 'tmdtka', '시설', '팀장', '01000070000', '최승삼', 'STSPBJ'),
+('sh22', 'tmdgus', '일반', '직원', '01015441544', '백승현', 'STGESF'),
+('jgj23', 'rmswjd', '강좌', '팀장', '0100821700', '장근정', 'STCLBJ'),
+('minsam25', 'tmdtka', '시설', '팀장', '01000070000', '최승삼', 'STSPBJ'),
+('sh24', 'tmdgus', '일반', '직원', '01015441544', '백승현', 'STGESF'),
+('jgj26', 'rmswjd', '강좌', '팀장', '0100821700', '장근정', 'STCLBJ'),
+('minsam31', 'tmdtka', '시설', '팀장', '01000070000', '최승삼', 'STSPBJ'),
+('sh333', 'tmdgus', '일반', '직원', '01015441544', '백승현', 'STGESF');

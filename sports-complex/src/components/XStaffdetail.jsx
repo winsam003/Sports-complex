@@ -3,7 +3,7 @@ import './XStaffdetail.css';
 export default function XStaffdetail({ stfid, stfpassword, stfdmp, stflevel, stfpnum, stfname, staffdelete }) {
 
     const handleDelete = (e) => {
-        staffdelete(stfid, e.target.checked);
+        staffdelete(stfid);
     }
 
     return (
