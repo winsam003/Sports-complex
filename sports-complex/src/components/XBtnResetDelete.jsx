@@ -11,12 +11,7 @@ export default function XResetDeleteBtn({checkList}) {
 
         const formattedCheckList =
         {
-            spaceCode: checkList,
-                spaceName: "",   // 필요에 따라 다른 필드 초기화
-                spacePrice: 0,
-                parkSpace: 0,
-                parking: 0
-        
+            spaceCode: checkList
         }
 
         console.log(formattedCheckList);
