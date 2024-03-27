@@ -1,6 +1,29 @@
+import { useCallback, useEffect, useState } from 'react';
 import './JoinMember.css'
 
-export default function JoinMember() {
+export default function JoinMember({ memberType }) {
+
+
+    const [firstPhoneNum, setFirstPhoneNum] = useState("010");
+    const [secondPhoneNum, setSecondPhoneNum] = useState("");
+    const [lastPhoneNum, setLastPhoneNum] = useState("");
+    const [fullPhoneNumber, setFullPhoneNumber] = useState("");
+
+    const firstNum = (e) => {
+        setFirstPhoneNum(e);
+    }
+    const secondNum = (e) => {
+        setSecondPhoneNum(e);
+    }
+    const lastNum = (e) => {
+        setLastPhoneNum(e);
+    }
+
+    useEffect(() => {
+        const fullNumber = `${firstPhoneNum+secondPhoneNum+lastPhoneNum}`;
+        setFullPhoneNumber(fullNumber);
+    }, [firstPhoneNum, secondPhoneNum, lastPhoneNum]);
+
     return (
         <div className='JoinMember_joinbox'>
             <div className='JoinMember_midbox'>
@@ -10,6 +33,10 @@ export default function JoinMember() {
 
                 <form action="/member/mjoin" method='post'>
                     <table>
+                        <tr className='JoinMember_code'>
+                            <th>회원코드</th>
+                            <td><input type="text" name='membercode' id='membercode' value={memberType} /></td>
+                        </tr>
                         <tr>
                             <th>이름 (실명) <span className='JoinMember_star'>*</span></th>
                             <td><input type="text" name='name' id='name' placeholder='본인인증에서 가져오기를 해야하지만 일단 readonly를 빼고 입력 하겠음' /></td>
@@ -17,16 +44,11 @@ export default function JoinMember() {
                         <tr>
                             <th>생년월일<span className='JoinMember_star'>*</span></th>
                             <td>
-                                
+
                                 <input type="number" name='birth' id='birth' placeholder='본인인증에서 가져오기를 해야하지만 일단 readonly를 빼고 입력 하겠음' />
-                                
-                                <input type="radio" id='solar' name='birthChoice' value={'solar'} /> 
-                                <label htmlFor="solar">양력</label>
-                                <input type="radio" id='lunar' name='birthChoice' value={'lunar'} />
-                                <label htmlFor="lunar">음력</label>
                             </td>
                         </tr>
-                        <tr>
+                        {/* <tr>
                             <th>성별<span className='JoinMember_star'>*</span></th>
                             <td>
                                 <input type="radio" id='men' name='gender' value={'men'} />
@@ -34,7 +56,7 @@ export default function JoinMember() {
                                 <input type="radio" id='women' name='gender' value={'women'} />
                                 <label htmlFor="women">여자</label>
                             </td>
-                        </tr>
+                        </tr> */}
                         <tr>
                             <th>아이디<span className='JoinMember_star'>*</span></th>
                             <td>
@@ -62,6 +84,7 @@ export default function JoinMember() {
                             <th>주소</th>
                             <td>
                                 <a href="./" className='button'>우편번호 찾기</a> <br />
+                                <input type="text" name='address' id='address' /> <br />
                                 <input type="text" name='address1' id='address1' /> <br />
                                 <input type="text" name='address2' id='address2' placeholder='상세주소' />
                             </td>
@@ -76,17 +99,17 @@ export default function JoinMember() {
                         <tr>
                             <th>이메일</th>
                             <td className='email'>
-                                <input type="email" name='email' id='email' />
+                                <input type="text" name='email' id='email' />
                                 <input type="text" name='emailAdd' id='emailAdd' placeholder='@email.com' />
                                 <select name="emailAddSelect" id="emailAddSelect">
                                     <option value="">직접입력</option>
-                                    <option value="gmail.com">gmail.com</option>
-                                    <option value="daum.net">daum.net</option>
-                                    <option value="hotmail.com">hotmail.com</option>
-                                    <option value="naver.com">naver.com</option>
-                                    <option value="nate.com">nate.com</option>
-                                    <option value="yahoo.com">yahoo.com</option>
-                                    <option value="dreamwiz.com">dreamwiz.com</option>
+                                    <option value="@gmail.com">gmail.com</option>
+                                    <option value="@daum.net">daum.net</option>
+                                    <option value="@hotmail.com">hotmail.com</option>
+                                    <option value="@naver.com">naver.com</option>
+                                    <option value="@nate.com">nate.com</option>
+                                    <option value="@yahoo.com">yahoo.com</option>
+                                    <option value="@dreamwiz.com">dreamwiz.com</option>
                                 </select> <br />
                                 <input type="checkbox" name='emailagr' id='emailagr' />
                                 <span><label htmlFor="receiveMail">뉴스레터나 공지이메일을 수신 받겠습니다.</label></span>
@@ -95,7 +118,7 @@ export default function JoinMember() {
                         <tr>
                             <th>휴대전화<span className='JoinMember_star'>*</span></th>
                             <td>
-                                <select name="firstPhoneNum" id="firstPhoneNum">
+                                <select name="firstPhoneNum" id="firstPhoneNum" value={firstPhoneNum} onChange={(e) => { firstNum(e.target.value) }}>
                                     <option value="010">010</option>
                                     <option value="011">011</option>
                                     <option value="016">016</option>
@@ -103,9 +126,10 @@ export default function JoinMember() {
                                     <option value="019">019</option>
                                 </select>
                                 <span>-</span>
-                                <input type="text" name='secondPhoneNum' id='secondPhoneNum' />
+                                <input type="text" name='secondPhoneNum' id='secondPhoneNum' onChange={(e) => { secondNum(e.target.value) }} />
                                 <span>-</span>
-                                <input type="text" name='lastPhoneNum' id='lastPhoneNum' />
+                                <input type="text" name='lastPhoneNum' id='lastPhoneNum' onChange={(e) => { lastNum(e.target.value) }} />
+                                <input className='fullPhoneNumber' type="text" name='phonenum' id='phonenum' value={ fullPhoneNumber }  />
                                 <br />
                                 <input type="checkbox" name='snsagr' id='snsagr' />
                                 <span><label htmlFor="receiveMessage">알림문자를 받겠습니다.</label></span>
