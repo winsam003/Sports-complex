@@ -1,12 +1,12 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useState } from 'react';
 import './JoinMember.css'
 import axios from 'axios';
+import { useNavigate } from 'react-router';
 
 export default function JoinMember({ memberType }) {
 
 
     // ==========================전화번호 병합 시작============================//
-
     const [firstPhoneNum, setFirstPhoneNum] = useState("010");
     const [secondPhoneNum, setSecondPhoneNum] = useState("");
     const [lastPhoneNum, setLastPhoneNum] = useState("");
@@ -14,36 +14,33 @@ export default function JoinMember({ memberType }) {
     const firstNum = (e) => {
         setFirstPhoneNum(e);
         const fullNumber = e + secondPhoneNum + lastPhoneNum;
-        setFormData({ 
+        setFormData({
             ...formData,
-            fullPhoneNumber: fullNumber
+            phonenum: fullNumber
         });
     }
     const secondNum = (e) => {
         setSecondPhoneNum(e);
         const fullNumber = firstPhoneNum + e + lastPhoneNum;
-        setFormData({ 
+        setFormData({
             ...formData,
-            fullPhoneNumber: fullNumber
+            phonenum: fullNumber
         });
     }
     const lastNum = (e) => {
         setLastPhoneNum(e);
         const fullNumber = firstPhoneNum + secondPhoneNum + e;
-        setFormData({ 
+        setFormData({
             ...formData,
-            fullPhoneNumber: fullNumber
-         });
+            phonenum: fullNumber
+        });
     }
-    
     // ==========================전화번호 병합 끝============================//
 
 
 
 
     // ==========================이메일 병합 시작============================//
-
-
     const [firstMemberEmail, setFirstMemberEmail] = useState("");
     const firstEmail = (e) => {
         setFirstMemberEmail(e);
@@ -63,8 +60,37 @@ export default function JoinMember({ memberType }) {
             email: fullEmail
         });
     }
-
     // ==========================이메일 병합 끝============================//
+
+
+
+
+
+
+
+
+    // ==========================체크박스 true/false 지정 시작============================//
+    const [isSnsChecked, setIsChecked] = useState(false);
+    const snsChecking = (e) => {
+        setIsChecked(!isSnsChecked);
+        setFormData({
+            ...formData,
+            [e.target.name]: !isSnsChecked,
+        });
+    }
+
+
+    const [isEmailChecked, setIsEmailChecked] = useState(false);
+    const emailChecking = (e) => {
+        setIsEmailChecked(!isEmailChecked);
+        setFormData({
+            ...formData,
+            [e.target.name]: !isEmailChecked,
+        });
+    }
+    // ==========================체크박스 true/false 지정 끝============================//
+
+
 
 
 
@@ -87,19 +113,23 @@ export default function JoinMember({ memberType }) {
 
     const handleChange = (e) => {
         setFormData({
-            ...formData, [e.target.name]: e.target.value });
+            ...formData, [e.target.name]: e.target.value
+        });
     };
-
-
     // ==========================서버 송신용 form 정보 병합 끝============================//
-    console.log(formData);
-    // ==========================서버 송신 시작============================//
 
+
+
+
+
+    // ==========================서버 송신 시작============================//
     const [mJoin, setMjoin] = useState();
+    const navigate = useNavigate();
     const memberInsert = () => {
         axios.post("/member/mjoin", formData
         ).then((response) => {
-            setMjoin(response.data);
+            alert(response.data);
+            navigate('/LoginPage');
         }).catch((error) => {
             console.error("Error fetching member list:", error);
         })
@@ -186,7 +216,7 @@ export default function JoinMember({ memberType }) {
                         <tr>
                             <th>이메일</th>
                             <td className='email'>
-                                <input type="text" name='firstEmail' id='firstEmail' onChange={(e) => {firstEmail(e.target.value)}} />
+                                <input type="text" name='firstEmail' id='firstEmail' onChange={(e) => { firstEmail(e.target.value) }} />
                                 <input type="text" name='emailAdd' id='emailAdd' placeholder='@email.com' value={lastMemberEmail} onChange={(e) => { lastEmail(e.target.value) }} />
                                 <select name="emailAddSelect" id="emailAddSelect" onChange={(e) => { lastEmail(e.target.value) }} >
                                     <option value="">직접입력</option>
@@ -199,7 +229,7 @@ export default function JoinMember({ memberType }) {
                                     <option value="@dreamwiz.com">dreamwiz.com</option>
                                 </select> <br />
                                 {/* <input type="text" name='email' id='email' value={fullMemberEmail} className='femail' /> */}
-                                <input type="checkbox" name='emailagr' id='emailagr' onChange={handleChange} />
+                                <input type="checkbox" name='emailagr' id='emailagr' onChange={emailChecking} />
                                 <span><label htmlFor="receiveMail">뉴스레터나 공지이메일을 수신 받겠습니다.</label></span>
                             </td>
                         </tr>
@@ -219,7 +249,7 @@ export default function JoinMember({ memberType }) {
                                 <input type="text" name='lastPhoneNum' id='lastPhoneNum' onChange={(e) => { lastNum(e.target.value) }} />
                                 {/* <input className='fullPhoneNumber' type="text" name='phonenum' id='phonenum' value={fullPhoneNumber} onChange={handleChange}  /> */}
                                 <br />
-                                <input type="checkbox" name='snsagr' id='snsagr' onChange={handleChange} />
+                                <input type="checkbox" name='snsagr' id='snsagr' onChange={snsChecking} />
                                 <span><label htmlFor="receiveMessage">알림문자를 받겠습니다.</label></span>
                             </td>
                         </tr>
