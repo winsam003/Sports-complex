@@ -5,23 +5,28 @@
     /* align-items: center; */
     justify-content: center;
 }
-.JoinMember_midbox{
+
+.JoinMember_midbox {
     width: 80%;
     height: 100%;
 }
-.JoinMember_midbox > div, 
-.JoinMember_midbox > p {
+
+.JoinMember_midbox>div,
+.JoinMember_midbox>p {
     text-align: center;
-} 
-.JoinMember_title{
+}
+
+.JoinMember_title {
     font-size: 2rem;
     padding-top: 40px;
 }
+
 .JoinMember_midbox table {
     border-collapse: collapse;
     width: 100%;
 }
-.JoinMember_midbox th{
+
+.JoinMember_midbox th {
     background-color: lightcyan;
     border: 2px solid lightskyblue;
     width: 200px;
@@ -30,12 +35,16 @@
     font-weight: bold;
     vertical-align: middle;
 }
-.JoinMember_midbox td{
+
+.JoinMember_midbox td {
     border: 2px solid lightskyblue;
 }
-.JoinMember_midbox input, select {
+
+.JoinMember_midbox input,
+select {
     margin: 10px;
 }
+
 .JoinMember_midbox input[type="text"],
 .JoinMember_midbox input[type="password"],
 .JoinMember_midbox input[type="number"],
@@ -43,34 +52,39 @@
     height: 50px;
     border: 1px solid gray;
 }
-.JoinMember_midbox #name, 
-.JoinMember_midbox #birth, 
-.JoinMember_midbox #id, 
-.JoinMember_midbox #password, 
-.JoinMember_midbox #password2, 
-.JoinMember_midbox #address1, 
-.JoinMember_midbox #address2, 
+
+.JoinMember_midbox #name,
+.JoinMember_midbox #birth,
+.JoinMember_midbox #id,
+.JoinMember_midbox #password,
+.JoinMember_midbox #password2,
+.JoinMember_midbox #address1,
+.JoinMember_midbox #address2,
 .JoinMember_midbox #carNum {
     width: 440px;
 }
-.JoinMember_midbox #email, 
-.JoinMember_midbox #emailAdd, 
+
+.JoinMember_midbox #email,
+.JoinMember_midbox #emailAdd,
 .JoinMember_midbox #emailAddSelect {
     height: 50px;
     width: 200PX;
 }
-.JoinMember_midbox #firstPhoneNum, 
-.JoinMember_midbox #secondPhoneNum, 
+
+.JoinMember_midbox #firstPhoneNum,
+.JoinMember_midbox #secondPhoneNum,
 .JoinMember_midbox #lastPhoneNum {
     height: 50px;
     width: 100px;
 }
+
 .JoinMember_submitBox {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.JoinMember_submitBox *{
+
+.JoinMember_submitBox * {
     width: 200px;
     height: 50px;
     background-color: rgb(88, 143, 175);
@@ -79,15 +93,18 @@
     border: none;
     margin: 30px;
 }
-.JoinMember_star{
+
+.JoinMember_star {
     color: red;
 }
-.JoinMember_midbox>span{
+
+.JoinMember_midbox>span {
     display: inline-block;
     font-weight: bold;
     font-size: large;
     margin-bottom: 10px;
 }
+
 .JoinMember_midbox td>a {
     display: inline-block;
     background-color: gray;
@@ -101,31 +118,37 @@
     text-align: center;
     font-size: large;
 }
-.JoinMember_midbox td>p{
+
+.JoinMember_midbox td>p {
     margin: 10px;
 }
 
 
 /* 멤버코드 display: none */
-.JoinMember_code{
-    display: none;
+.JoinMember_code {
+    /* display: none; */
 }
 
 /* 전화번호 합친 input display: none */
-.fullPhoneNumber{
-    display: none;
+.fullPhoneNumber {
+    /* display: none; */
 }
 
-@media(max-width: 1200px){
-.JoinMember_midbox #name, 
-.JoinMember_midbox #birth, 
-.JoinMember_midbox #id, 
-.JoinMember_midbox #password, 
-.JoinMember_midbox #password2, 
-.JoinMember_midbox #address1, 
-.JoinMember_midbox #address2, 
-.JoinMember_midbox #carNum {
-    width: 80%;
-}
+/* email 합친 input display: none */
+.femail {
+    /* display: none; */
 }
 
+@media(max-width: 1200px) {
+
+    .JoinMember_midbox #name,
+    .JoinMember_midbox #birth,
+    .JoinMember_midbox #id,
+    .JoinMember_midbox #password,
+    .JoinMember_midbox #password2,
+    .JoinMember_midbox #address1,
+    .JoinMember_midbox #address2,
+    .JoinMember_midbox #carNum {
+        width: 80%;
+    }
+}

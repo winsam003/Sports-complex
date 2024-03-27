@@ -60,6 +60,8 @@ import Footer from './components/Footer';
 import Xheader from './components/Xheader';
 import Header from './components/Header';
 
+import axios from "axios";
+
 function App() {
 
   // admin 모드, 사용자 모드를 확인하고 header를 바꿔주기 위한 hook
@@ -70,7 +72,6 @@ function App() {
   }
 
 
-  
 
   return (
     <div>
