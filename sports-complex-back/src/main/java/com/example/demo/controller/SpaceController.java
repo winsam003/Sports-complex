@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,16 +41,12 @@ public class SpaceController {
 	}
 	
 	// 삭제
-	@GetMapping(value="/spacedelete", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> sDelete(@RequestParam("sCode") spaceDTO spacecode) {
-		log.info("deleteTEST");
-		
-//		try {
-//			for(String sCode : spacecode) {
-//				
-//			}
-//		}
-		
+	// 1번 여러개의 삭제가 안됨
+	// 2번 post방식을 쓰기싫다면 delete 방식을 공부해서 시도해보는것도 좋을듯
+	@PostMapping(value="/spacedelete", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> sDelete(@RequestBody spaceDTO spacecode) {
+		log.info("deleteTEST");		
+		log.info(spacecode);		
 		
 		
 		int result = service.SpaceDelete(spacecode);

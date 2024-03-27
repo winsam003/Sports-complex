@@ -32,7 +32,7 @@ public class SpaceRepositoryImpl implements SpaceRepository {
 	public int SpaceDelete(spaceDTO spacecode) {
 		log.info("SpaceDelete Repository 성공");
 		
-		String jpql = "DELETE FROM Space where spacecode = :spacecode";
+		String jpql = "DELETE FROM Space where spaceCode = :spacecode";
 		
 		return em.createNativeQuery(jpql, Space.class)
 				 .setParameter("spacecode", spacecode.getSpaceCode())
