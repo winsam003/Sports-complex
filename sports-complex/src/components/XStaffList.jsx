@@ -9,6 +9,8 @@ export default function XStaffList() {
     const [staff, setstaff] = useState([]);
     // 선택된 직원 정보 상태변화 감지
     const [selectedStaffIds, setselectedStaffIds] = useState([]);
+    // 직원 검색창 상태변화 감지
+    const [searchInput, setSearchInput] = useState('');
 
     // 전직원 불러오기, 최초에만
     useEffect(() => {
@@ -25,6 +27,11 @@ export default function XStaffList() {
                 console.error(" 스태프 목록 불러오기 실패 ", error);
             });
     });
+
+    // 직원 검색창 초기화하기
+    const handleResetSearchInput = () => {
+        setSearchInput('');
+    };
 
     // console.log(`staff =${staff}`);
 
@@ -77,7 +84,10 @@ export default function XStaffList() {
             <div className='XStaffList_SearchBox'>
                 <input type='text' name='XStaffListSearch' id='XStaffListSearch' placeholder='직원 검색' />
             </div>
-            <XBtnResetSearch />
+            <div className='XBtnResetSearch'>
+                <button onClick={handleResetSearchInput}>초기화</button>
+                <button>조회</button>
+            </div>
             <div>
                 <div className='XStaffList_Searchstaff'>
                     <span>체크</span>
