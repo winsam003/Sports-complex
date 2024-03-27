@@ -5,28 +5,71 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export default function XStaffList() {
-
+    // 전직원 정보 상태변화 감지
     const [staff, setstaff] = useState([]);
+    // 선택된 직원 정보 상태변화 감지
+    const [selectedStaffIds, setselectedStaffIds] = useState([]);
 
+    // 전직원 불러오기, 최초에만
     useEffect(() => {
+        loadStaffList();
+    }, []);
+
+    // 전직원 불러오기
+    const loadStaffList = (() => {
         axios.get('/staff/staffList')
             .then((response) => {
-                console.log(`staff=${response.data}`);
+                // console.log(`staff=${response.data}`);
                 setstaff(response.data);
             }).catch((error) => {
                 console.error(" 스태프 목록 불러오기 실패 ", error);
             });
-    }, [])
-
-    console.log(`staff =${staff}`);
-
-    const staffdelete = ((staffId) => {
-        axios.get('/staff/staffDelete')
-            .then(() => {
-                setstaff(prevStaff => prevStaff.filter(item => item.stfid !== staffId));
-            }).catch((error) =>
-                console.error(" 직원 삭제 실패 ", error))
     });
+
+    // console.log(`staff =${staff}`);
+
+    // 직원 선택하기
+    const handleToggleCheckbox = ((staffId) => {
+        setselectedStaffIds((prevState) => {
+            if (prevState.includes(staffId)) {
+                return prevState.filter(id => id !== staffId);
+            } else {
+                return [...prevState, staffId];
+            }
+        })
+    })
+
+    // console.log(` 선택된 staffid = ${selectedStaffIds}`);
+
+    // 선택된 직원정보 axios 요청 보내고 삭제하기
+    const handleDeleteSelectedStaff = (() => {
+        if (selectedStaffIds.length === 0) {
+            console.log(" 선택된 직원이 없습니다 ");
+            return;
+        }
+
+        console.log("삭제할 직원 ID 목록:", selectedStaffIds);
+
+        axios.get('/staff/staffDelete', {
+            params: {
+                // 값이 전달됐을 때 []표시를 제거하기위해 join으로 , 구분자 이용
+                stfid: selectedStaffIds.join(','),
+            }
+        }).then((response) => {
+            console.log("직원 삭제 성공", response.data);
+            // 삭제 후 전직원 목록 불러오기
+            loadStaffList();
+            // 삭제 후 선택된 목록 배열 초기화
+            setselectedStaffIds([]);
+        }).catch((error) => {
+            console.error(`직원 삭제 실패 `, error);
+        });
+    });
+
+    // 선택된 직원 초기화
+    const handleResetSelection = () => {
+        setselectedStaffIds([]);
+    };
 
     return (
         <div className='XStaffList_Box'>
@@ -47,8 +90,14 @@ export default function XStaffList() {
                 </div>
                 <div>
                     {staff.map((item, index) => (
-                        <XStaffdetail key={index} {...item} staffdelete={staffdelete} />
+                        <XStaffdetail key={index} {...item} onToggleCheckbox={handleToggleCheckbox}
+                            isChecked={selectedStaffIds.includes(item.stfid)} />
                     ))}
+                </div>
+
+                <div className='XResetDeleteBtn'>
+                    <button onClick={handleResetSelection}>초기화</button>
+                    <button onClick={handleDeleteSelectedStaff}>삭제</button>
                 </div>
             </div>
         </div>
