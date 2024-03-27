@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,11 +39,13 @@ public class MemberContoller {
 		}else {
 			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("출력 할 회원정보가 없습니다.");			
 		}
-	}
+	} // mList
 	
-	@PostMapping(value="/mjoin")
-	public ResponseEntity<?> mJoin(MemberDTO dto){
-		
+	
+	
+	@PostMapping(value="/mjoin", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> mJoin(@RequestBody MemberDTO dto){
+		log.info(dto);
 		if(service.MemberJoin(dto) > 0) {
 			return ResponseEntity.status(HttpStatus.OK).body("회원가입에 성공하였습니다. 로그인 창으로 이동합니다.");
 		}else {
@@ -50,6 +53,6 @@ public class MemberContoller {
 		}
 		
 		
-	}
+	} // mJoin
 	
 }
