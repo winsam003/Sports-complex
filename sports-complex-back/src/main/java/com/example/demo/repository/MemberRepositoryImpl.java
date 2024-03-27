@@ -33,6 +33,7 @@ public class MemberRepositoryImpl implements MemberRepository{
 	@Override
 	public int MemberJoin(MemberDTO dto) {
 	    log.info("MemberJoin Repository 성공");
+	    log.info(dto);
 
 	    // INSERT 쿼리 작성
 	    String jpql = "INSERT INTO Member (id, membercode, name, password, birth, phonenum, homenum, address, address1, address2, email, snsagr, emailagr, carnum, parkuse) " +
