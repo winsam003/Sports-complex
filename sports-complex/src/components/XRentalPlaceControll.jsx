@@ -11,14 +11,29 @@ import axios from 'axios';
 export default function XRentalPlaceControll() {
 
     // 삭제하기 위한 checkbox
-    const [checkList, setCheckList] = useState('');
+    const [checkList, setCheckList] = useState([]);
 
     const handleCheckList = (value) => {
-        setCheckList(value);
+        setCheckList([...checkList, ...value]);
     }
 
+    // checkList 배열로 담아줌. 
+    console.log(checkList);
+    
+    const [test, setTest] = useState();
 
-    console.log(`테스트${checkList}`);
+    
+    const del = () => {
+        console.log("나오나 이거: ");
+        axios.post('/space/spacedelete', checkList)
+            .then((ss) => {
+                setTest(ss.data);
+                console.log(`ss.data: ${ss.data}`);
+            }).catch((error) => {
+                console.log("Error: ",error);
+            })
+    }
+
     
     // useEffect(() => {
     //     axios.get('/space/spacedelete')
@@ -36,8 +51,8 @@ export default function XRentalPlaceControll() {
             <div className='XRentalPlaceControll_div_div'>
                 <XRentalPlaceSearchBox />
                 <XBtnResetSearch />
-                <XRentalPlaceSearchResult setCheckList={setCheckList} />
-                <XBtnResetDelete checkList={checkList} />
+                <XRentalPlaceSearchResult setCheckList={setCheckList} checkList={checkList} />
+                <XBtnResetDelete del={del} />
             </div>
         </div>
     )

@@ -25,9 +25,9 @@ public class SpaceServiceImpl implements SpaceService{
 	}
 
 	@Override
-	public int SpaceDelete(spaceDTO spacecode) {
+	public int SpaceDelete(String spaceCode) {
 		
-		return repository.SpaceDelete(spacecode);
+		return repository.SpaceDelete(spaceCode);
 	}
 	
 	
