@@ -1,15 +1,19 @@
 import PageBanner from '../PageBanner';
 import JoinMember from '../JoinMember';
 import RegistrationFlow from '../RegistrationFlow';
+import { useLocation } from 'react-router';
 
 export default function JoinPage4() {
-    
-    const nextPage = window.location.pathname.replace("/", "");
+    const location = useLocation();
+
+    const { memberType } = location.state;
+    console.log(memberType);
+
     return (
         <div>
             <PageBanner />
             <RegistrationFlow />
-            <JoinMember />
+            <JoinMember memberType={memberType} />
         </div>
     )
 }

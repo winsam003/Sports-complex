@@ -27,7 +27,7 @@ public class StaffController {
 	@GetMapping("/staffDelete")
 	public String staffDelete(Long gno) {
 		try {
-			service.delete(gno);
+//			service.delete(gno);
 			System.out.println(" 삭제 성공 => " + gno);
 		} catch (Exception e) {
 			System.out.println(" Delete Excpetion => " + e.toString());
