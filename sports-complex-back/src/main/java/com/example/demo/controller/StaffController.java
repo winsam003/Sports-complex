@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.Staff;
@@ -15,6 +17,7 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @AllArgsConstructor
 @RestController
+@ResponseBody
 @RequestMapping(value = "/staff")
 public class StaffController {
 	StaffService service;
@@ -25,10 +28,13 @@ public class StaffController {
 	}
 
 	@GetMapping("/staffDelete")
-	public String staffDelete(Long gno) {
+	public String staffDelete(@RequestParam("stfid") List<String> stfidList) {
 		try {
-//			service.delete(gno);
-			System.out.println(" 삭제 성공 => " + gno);
+			for (String stfid : stfidList) {
+				System.out.println(stfid);
+				service.staffdelete(stfid);
+				System.out.println(" 삭제 성공 => " + stfid);
+			}
 		} catch (Exception e) {
 			System.out.println(" Delete Excpetion => " + e.toString());
 		}

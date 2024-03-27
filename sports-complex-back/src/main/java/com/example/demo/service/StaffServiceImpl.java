@@ -15,10 +15,16 @@ public class StaffServiceImpl implements StaffService {
 
 	private final StaffRepositoryImpl repository;
 
-//	직원 전체 조회
+//	전직원 조회
 	@Override
 	public List<Staff> StaffList() {
 		return repository.stafflist();
+	}
+
+//	직원 삭제
+	@Override
+	public void staffdelete(String stfid) {
+		repository.staffdelete(stfid);
 	}
 
 }

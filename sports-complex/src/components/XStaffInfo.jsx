@@ -1,7 +1,6 @@
 import './XStaffInfo.css'
 import Submenu from './Submenu';
 import XStaffList from './XStaffList';
-import XBtnResetDelete from './XBtnResetDelete';
 
 export default function XStaffInfo() {
     return (
@@ -9,7 +8,6 @@ export default function XStaffInfo() {
             <Submenu />
             <div className='XStaffInfo_div_div'>
                 <XStaffList />
-                <XBtnResetDelete />
             </div>
         </div>
     )
