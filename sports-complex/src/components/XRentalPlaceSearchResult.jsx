@@ -2,7 +2,7 @@ import './XRentalPlaceSearchResult.css'
 import axios from 'axios';
 import { useEffect, useState } from 'react'
 
-export default function XRentalPlaceSearchResult({checkList, setCheckList}) {
+export default function XRentalPlaceSearchResult({checkList, setCheckList, refreshList, setRefreshList}) {
 
     // 리스트 출력
     const [spacelist, setSpaceList] = useState([]);
@@ -15,7 +15,7 @@ export default function XRentalPlaceSearchResult({checkList, setCheckList}) {
         }).catch((error) => {
             console.log("Error: ",error);
         })
-    },[])
+    },[refreshList])
 
     // 체크한거에 spacecode 가져가기. 
     const handleDeletePlace = (event)=> {

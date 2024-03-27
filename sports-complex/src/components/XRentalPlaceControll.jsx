@@ -21,29 +21,26 @@ export default function XRentalPlaceControll() {
     console.log(checkList);
     
     const [test, setTest] = useState();
+    // 리스트 다시 새로고침 위해서 상태 알려주기. 
+    const [refreshList, setRefreshList] = useState(false);
 
     
     const del = () => {
         console.log("나오나 이거: ");
         axios.post('/space/spacedelete', checkList)
-            .then((ss) => {
-                setTest(ss.data);
-                console.log(`ss.data: ${ss.data}`);
-            }).catch((error) => {
-                console.log("Error: ",error);
-            })
-    }
+        .then((ss) => {
+            setTest(ss.data);
+            console.log(`ss.data: ${ss.data}`);
 
-    
-    // useEffect(() => {
-    //     axios.get('/space/spacedelete')
-    //     .then((ss) => {
-    //         setCheckList(ss.data);
-    //         console.log(`ss.data: ${ss.data}`);
-    //     }).catch((error) => {
-    //         console.log("Error: ",error);
-    //     })
-    // }, []);
+            // 삭제하면 checkList 배열 비워줘야됨. 
+            setCheckList([]);
+
+            // 삭제하고 상태 보내야됨. 
+            setRefreshList(prev => !prev);
+        }).catch((error) => {
+            console.log("Error: ",error);
+        })
+    }
 
     return (
         <div className='XRentalPlaceControll_div'>
@@ -51,7 +48,11 @@ export default function XRentalPlaceControll() {
             <div className='XRentalPlaceControll_div_div'>
                 <XRentalPlaceSearchBox />
                 <XBtnResetSearch />
-                <XRentalPlaceSearchResult setCheckList={setCheckList} checkList={checkList} />
+                <XRentalPlaceSearchResult 
+                                    setCheckList={setCheckList} 
+                                    checkList={checkList}
+                                    refreshList={refreshList}
+                                    setRefreshList={setRefreshList} />
                 <XBtnResetDelete del={del} />
             </div>
         </div>
