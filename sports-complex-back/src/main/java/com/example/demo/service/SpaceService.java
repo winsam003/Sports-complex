@@ -11,6 +11,6 @@ public interface SpaceService {
 	List<Space> SpaceList();
 	
 //	SpaceDelete
-	int SpaceDelete(spaceDTO spacecode);
+	int SpaceDelete(String spacecode);
 	
 }
