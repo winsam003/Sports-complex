@@ -1,14 +1,14 @@
 import './XStaffdetail.css';
 
-export default function XStaffdetail({ stfid, stfpassword, stfdmp, stflevel, stfpnum, stfname, staffdelete }) {
+export default function XStaffdetail({ stfid, stfpassword, stfdmp, stflevel, stfpnum, stfname, onToggleCheckbox, isChecked }) {
 
-    const handleDelete = (e) => {
-        staffdelete(stfid);
-    }
+    const handleCheckboxChange = () => {
+        onToggleCheckbox(stfid);
+    };
 
     return (
         <div className='XStaffdetail_contents'>
-            <input type="checkbox" onChange={handleDelete} />
+            <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} />
             <span>{stfid}</span>
             <span>{stfpassword}</span>
             <span>{stfdmp}</span>
