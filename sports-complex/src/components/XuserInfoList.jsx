@@ -11,11 +11,7 @@ export default function XuserInfoList() {
 
     const [userInfoList, setUserInfoList] = useState([]);
     useEffect(() => {
-        axios.get('/member/memberList', {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
+        axios.get('/member/memberList')
             .then((userList) => {
                 setUserInfoList(userList.data);
             }).catch((error) => {

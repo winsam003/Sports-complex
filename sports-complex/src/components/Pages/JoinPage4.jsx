@@ -7,7 +7,6 @@ export default function JoinPage4() {
     const location = useLocation();
 
     const { memberType } = location.state;
-    console.log(memberType);
 
     return (
         <div>
