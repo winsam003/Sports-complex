@@ -17,7 +17,9 @@ export default function XRentalPlaceControll() {
         setCheckList(value);
     }
 
+
     console.log(`테스트${checkList}`);
+    
     // useEffect(() => {
     //     axios.get('/space/spacedelete')
     //     .then((ss) => {
