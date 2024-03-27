@@ -15,7 +15,7 @@ export default function JoinMember({ memberType }) {
         setFirstPhoneNum(e);
         const fullNumber = e + secondPhoneNum + lastPhoneNum;
         setFormData({ 
-            FirstPhoneNum: e,
+            ...formData,
             fullPhoneNumber: fullNumber
         });
     }
@@ -23,7 +23,7 @@ export default function JoinMember({ memberType }) {
         setSecondPhoneNum(e);
         const fullNumber = firstPhoneNum + e + lastPhoneNum;
         setFormData({ 
-            SecondPhoneNum: e, 
+            ...formData,
             fullPhoneNumber: fullNumber
         });
     }
@@ -31,7 +31,7 @@ export default function JoinMember({ memberType }) {
         setLastPhoneNum(e);
         const fullNumber = firstPhoneNum + secondPhoneNum + e;
         setFormData({ 
-            LastPhoneNum: e,
+            ...formData,
             fullPhoneNumber: fullNumber
          });
     }
@@ -47,22 +47,21 @@ export default function JoinMember({ memberType }) {
     const [firstMemberEmail, setFirstMemberEmail] = useState("");
     const firstEmail = (e) => {
         setFirstMemberEmail(e);
+        const fullEmail = e + lastMemberEmail;
+        setFormData({
+            ...formData,
+            email: fullEmail
+        });
     }
 
     const [lastMemberEmail, setLastMemberEmail] = useState("");
     const lastEmail = (e) => {
         setLastMemberEmail(e);
-    }
-
-    const [fullMemberEmail, setFullMemberEmail] = useState("");
-
-    useEffect(() => {
-        const fullEmail = `${firstMemberEmail + lastMemberEmail}`;
-        setFullMemberEmail(fullEmail);
-    }, [firstMemberEmail, lastMemberEmail]);
-
-    const emailAddSelect = (e) => {
-        setLastMemberEmail(e.target.value);
+        const fullEmail = firstMemberEmail + e;
+        setFormData({
+            ...formData,
+            email: fullEmail
+        });
     }
 
     // ==========================이메일 병합 끝============================//
@@ -83,14 +82,12 @@ export default function JoinMember({ memberType }) {
         address2: '',
         carnum: '',
         email: '',
-        FirstPhoneNum: '',
-        SecondPhoneNum: '',
-        LastPhoneNum: '',
         phonenum: '',
     })
 
     const handleChange = (e) => {
-        setFormData({[e.target.name]: e.target.value });
+        setFormData({
+            ...formData, [e.target.name]: e.target.value });
     };
 
 
@@ -191,7 +188,7 @@ export default function JoinMember({ memberType }) {
                             <td className='email'>
                                 <input type="text" name='firstEmail' id='firstEmail' onChange={(e) => {firstEmail(e.target.value)}} />
                                 <input type="text" name='emailAdd' id='emailAdd' placeholder='@email.com' value={lastMemberEmail} onChange={(e) => { lastEmail(e.target.value) }} />
-                                <select name="emailAddSelect" id="emailAddSelect" onChange={emailAddSelect} >
+                                <select name="emailAddSelect" id="emailAddSelect" onChange={(e) => { lastEmail(e.target.value) }} >
                                     <option value="">직접입력</option>
                                     <option value="@gmail.com">gmail.com</option>
                                     <option value="@daum.net">daum.net</option>
@@ -201,7 +198,7 @@ export default function JoinMember({ memberType }) {
                                     <option value="@yahoo.com">yahoo.com</option>
                                     <option value="@dreamwiz.com">dreamwiz.com</option>
                                 </select> <br />
-                                <input type="text" name='email' id='email' value={fullMemberEmail} className='femail' />
+                                {/* <input type="text" name='email' id='email' value={fullMemberEmail} className='femail' /> */}
                                 <input type="checkbox" name='emailagr' id='emailagr' onChange={handleChange} />
                                 <span><label htmlFor="receiveMail">뉴스레터나 공지이메일을 수신 받겠습니다.</label></span>
                             </td>
