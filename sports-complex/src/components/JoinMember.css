@@ -106,6 +106,16 @@
 }
 
 
+/* 멤버코드 display: none */
+.JoinMember_code{
+    display: none;
+}
+
+/* 전화번호 합친 input display: none */
+.fullPhoneNumber{
+    display: none;
+}
+
 @media(max-width: 1200px){
 .JoinMember_midbox #name, 
 .JoinMember_midbox #birth, 

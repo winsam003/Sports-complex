@@ -59,7 +59,6 @@ import XStaffRegisterPage from './components/Pages/XStaffRegisterPage';
 import Footer from './components/Footer';
 import Xheader from './components/Xheader';
 import Header from './components/Header';
-import JoinPage from './components/Pages/JoinPage';
 
 function App() {
 
