@@ -31,8 +31,8 @@ export default function Xheader({ checkAdminPage }) {
                     </ul>
                     <ul>
                         <li className='Header_subMenu Header_Menutitle1'><Link to='/UserInfoPage' >회원정보 관리</Link></li>
-                        <li className='Header_subMenu Header_Menutitle2'><Link to='/XStaffUpdatePage' >직원정보 관리</Link></li>
-                        <li className='Header_subMenu Header_Menutitle3'><Link to='/XStaffRegister' >직원 등록</Link></li>
+                        <li className='Header_subMenu Header_Menutitle2'><Link to='/XStaffInfoPage' >직원정보 관리</Link></li>
+                        <li className='Header_subMenu Header_Menutitle3'><Link to='/XStaffRegisterPage' >직원 등록</Link></li>
                         <li className='Header_subMenu Header_Menutitle4'><Link to='/XlecturePage' >강사정보 관리</Link></li>
                         <li className='Header_subMenu Header_Menutitle5'><Link to='/XlecturerRegisterPage' >강사 등록</Link> </li>
                     </ul>

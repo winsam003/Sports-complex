@@ -32,4 +32,10 @@ public class MemberServiceImpl implements MemberService{
 		return repository.MemberJoin(dto);
 		
 	}
+	
+	@Override
+	public int MemberDelete(String[] deleteId) {
+		// TODO Auto-generated method stub
+		return repository.MemberDelete(deleteId);
+	}
 }

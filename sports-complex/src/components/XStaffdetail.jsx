@@ -1,6 +1,6 @@
 import './XStaffdetail.css';
 
-export default function XStaffdetail({ stfid, stfpassword, stfdmp, stflevel, stfpnum, stfname, onToggleCheckbox, isChecked }) {
+export default function XStaffdetail({ stfid, stfpassword, stfdmp, stflevel, stfpnum, stfname, stfcode, onToggleCheckbox, isChecked }) {
 
     console.log('XStaffdetail rendered');
 
@@ -19,6 +19,7 @@ export default function XStaffdetail({ stfid, stfpassword, stfdmp, stflevel, stf
             <span>{stflevel}</span>
             <span>{stfpnum}</span>
             <span>{stfname}</span>
+            <span>{stfcode}</span>
         </div>
     )
 }
