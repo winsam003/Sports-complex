@@ -65,7 +65,11 @@ export default function XRentalPlaceControll() {
 
     //====================================================================리스트
     
-    const [searchPlace, setSearchPlace] = useState([]);
+    const [searchPlace, setSearchPlace] = useState({
+        mainCategory: '전체',
+        subCategory: '전체',
+        searchValue: ''
+    });
     
     const handleSearch = (onSearch) => {
         console.log(onSearch);
