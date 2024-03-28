@@ -17,6 +17,9 @@ export default function XRentalPlaceControll() {
         setCheckList([...checkList, ...value]);
     }
 
+
+
+
     // checkList 배열로 담아줌. 
     console.log(checkList);
 
@@ -49,9 +52,10 @@ export default function XRentalPlaceControll() {
     const handleReset = () => {
         // // 체크박스 없애주고
         console.log('inputReset'+inputReset);
+        setCheckList([]);
+        console.log("checkList="+checkList);
         setInputReset(!inputReset);
         // // 삭제하면 checkList 배열 비워줘야됨. 
-        setCheckList([]);
     }
 
     return (
