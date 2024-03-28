@@ -11,3 +11,7 @@
     font-size: large;
     font-weight: 600;
 }
+
+.PhoneAthentication_button{
+    cursor: pointer;
+}

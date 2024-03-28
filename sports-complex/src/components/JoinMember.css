@@ -139,6 +139,28 @@ select {
     /* display: none; */
 }
 
+.duplication{
+    width: 100px;
+    margin: 10px 10px;
+    height: 50px;
+    background-color: #059da5;
+    color: white;
+    border-radius: 0.5em;
+    border: none;
+    cursor: pointer;
+}
+
+.JoinMember_findAddress{
+    width: 100px;
+    margin: 10px 10px;
+    height: 50px;
+    background-color: #059da5;
+    color: white;
+    border-radius: 0.5em;
+    border: none;
+    cursor: pointer;
+}
+
 @media(max-width: 1200px) {
 
     .JoinMember_midbox #name,
