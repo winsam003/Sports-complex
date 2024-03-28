@@ -115,6 +115,7 @@ export default function XStaffList() {
                     <span>직위</span>
                     <span>전화번호</span>
                     <span>이름</span>
+                    <span>직원코드</span>
                 </div>
                 <div>
                     {staff.filter(e => (

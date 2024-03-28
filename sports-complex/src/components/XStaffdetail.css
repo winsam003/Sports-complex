@@ -1,6 +1,6 @@
 .XStaffdetail_contents {
     display: grid;
-    grid-template-columns: 50px repeat(6, 1fr);
+    grid-template-columns: 50px repeat(7, 1fr);
     align-items: center;
     text-align: center;
 }
