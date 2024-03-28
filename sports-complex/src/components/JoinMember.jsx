@@ -107,15 +107,15 @@ export default function JoinMember({ memberType }) {
             console.log(`response.data check: ${formData.id}`);
             const memberlist = response.data;
 
-            // 2. 입력한 아이디와 memberList의 아이디들과 비교해서 같은 것을 찾는다.
+    // 2. 입력한 아이디와 memberList의 아이디들과 비교해서 같은 것을 찾는다.
             const duplicationCheck = memberlist.filter((list) => list.id === formData.id);
             console.log(duplicationCheck.length);
 
             if (duplicationCheck.length > 0) {
-                // 3. 중복이 있다면 재 입력 유도
+    // 3. 중복이 있다면 재 입력 유도
                 alert("중복된 ID입니다. 다시 입력해주세요.")
             } else {
-                // 4. 중복이 없다면 중복확인 완료 alert창 + readOnly + 배경화면 회색 + 리렌더링
+    // 4. 중복이 없다면 중복확인 완료 alert창 + readOnly + 배경화면 회색 + 리렌더링
                 alert("사용가능한 ID 입니다.");
                 setIsDuplication(!isDuplication);
             }
@@ -183,15 +183,75 @@ export default function JoinMember({ memberType }) {
         email: '',
         phonenum: '',
     })
+    // id 무결성검사
+    const [idMessage, setIdMessage] = useState('* 4글자 이상 12글자 이하로 입력해주세요.');
+    const [idcheck, setIdcheck] = useState();
+    const idSpecial = /[a-z.0-9]/gi;
 
+    // password 무경설검사
+    const [pwMessage, setPwMessage] = useState('* 9자리 이상으로 입력해주세요. ');
+    const [pwcheck, setPwcheck] = useState();
+    const pwSpecial1 = /[a-z.0-9]/gi;
+    const pwSpecial2 = /[!-*.@]/gi;
+
+    // password2 무경설검사
+    const [pw2Message, setPw2Message] = useState('* 동일한 비밀번호를 입력해주시기 바랍니다. ');
+    const [pw2check, setPw2check] = useState();
+
+    
+    
     const handleChange = (e) => {
+        const tagName = e.target.name;
+        const tagValue = e.target.value;
+        
+
+        if (tagName == 'id' ) {
+            if (tagValue.length < 4 || tagValue.length > 12){
+                setIdMessage('* 4글자 이상 12글자 이하로 입력해주세요.');
+                setIdcheck(false);
+            } else if (tagName == 'id' && tagValue.replace(idSpecial, '').length > 0) {
+                setIdMessage('* 숫자와 영문만 사용가능합니다.');
+                setIdcheck(false);
+            } else {
+                setIdMessage('');
+                setIdcheck(true);
+            }
+        }
+        
+
+        if (tagName == 'password'){
+            if (tagValue.length < 9){
+                setPwMessage('* 9자리 이상으로 입력해주세요.');
+                setPwcheck(false);
+            }else if (tagValue.replace(pwSpecial2, '').length == tagValue.length){
+                setPwMessage('* password는 특수문자를 포함해야 합니다.');
+                setPwcheck(false);
+            }else{
+                setPwMessage('');
+                setPwcheck(true);
+            }
+        }
+
+
+        if (tagName == 'password2'){
+            if (tagValue != formData.password){
+                console.log("test")
+                setPw2Message('* 동일한 비밀번호를 입력해주시기 바랍니다.');
+                setPw2check(false);
+            }else{
+                setPw2Message('');
+                setPw2check(true);
+            }
+        }
+
+
         setFormData({
             ...formData, [e.target.name]: e.target.value
         });
     };
     // ==========================insert 서버 송신용 form 정보 병합 끝============================//
 
-    console.log(formData);
+    // console.log(formData);   // 테스트용
 
 
 
@@ -199,13 +259,17 @@ export default function JoinMember({ memberType }) {
     const [mJoin, setMjoin] = useState();
     const navigate = useNavigate();
     const memberInsert = () => {
-        axios.post("/member/mjoin", formData
-        ).then((response) => {
-            alert(response.data);
-            navigate('/LoginPage');
-        }).catch((error) => {
-            console.error("Error fetching member list:", error);
-        })
+        if (idcheck){
+            axios.post("/member/mjoin", formData
+            ).then((response) => {
+                alert(response.data);
+                navigate('/LoginPage');
+            }).catch((error) => {
+                console.error("Error fetching member list:", error);
+            })
+        }else{
+            alert("입력정보를 확인해주세요.");
+        }
     }
     // ==========================insert 서버 송신 끝============================//
 
@@ -252,21 +316,21 @@ export default function JoinMember({ memberType }) {
                             <input type="text" name="id" id="id" onChange={handleChange} readOnly={isDuplication ? true : false} style={isDuplication ? { backgroundColor: 'lightgray' } : {}} />
                             <button className='duplication' onClick={() => { duplication() }}>중복확인</button>
                             {/* <button type='button' id='idDup' >중복확인</button> */}
-                            <p>4 ~ 12 자의 영문(소문자)과 숫자만 사용할 수 있습니다. </p>
+                            <div className='Message'>{idMessage}</div>
                         </td>
                     </tr>
                     <tr>
                         <th>비밀번호<span className='JoinMember_star'>*</span></th>
                         <td>
                             <input type="password" name='password' id='password' placeholder='문자, 숫자, 특수문자(@$!%^*#?&)를 포함한 9자리 이상 입력해주십시오.' onChange={handleChange} />
-                            <p>9~20자의 영문+숫자+특수문자를 조합하여 사용할 수 있습니다.</p>
+                            <div className='Message'>{pwMessage}</div>
                         </td>
                     </tr>
                     <tr>
                         <th>비밀번호 확인<span className='JoinMember_star'>*</span></th>
                         <td>
-                            <input type="password" />
-                            <p>비밀번호를 한번 더 입력하세요. 비밀번호는 잊지 않도록 주의하시기 바랍니다.</p>
+                            <input type="password" name='password2' id='password2' placeholder='동일한 비밀번호를 입력해주시기 바랍니다.' onChange={handleChange} />
+                            <div className='Message'>{pw2Message}</div>
                         </td>
                     </tr>
                     <tr>
@@ -282,7 +346,7 @@ export default function JoinMember({ memberType }) {
                                 </div>
                             ))}
                             <input type="text" name='address' id='address' value={zodecode} placeholder='우편주소' readOnly /> <br />
-                            <input type="text" name='address1' id='address1' value={address} placeholder='도로명/지번 주소'  readOnly /> <br />
+                            <input type="text" name='address1' id='address1' value={address} placeholder='도로명/지번 주소' readOnly /> <br />
                             <input type="text" name='address2' id='address2' placeholder='상세주소' onChange={handleChange} />
                         </td>
                     </tr>
