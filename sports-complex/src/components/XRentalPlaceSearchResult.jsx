@@ -2,7 +2,7 @@ import './XRentalPlaceSearchResult.css'
 import axios from 'axios';
 import { useEffect, useState } from 'react'
 
-export default function XRentalPlaceSearchResult({ checkList, setCheckList, refreshList, inputReset, setInputReset }) {
+export default function XRentalPlaceSearchResult({checkList, setCheckList, refreshList, inputReset, setInputReset, handleReset}) {
 
     // 리스트 출력
     const [spacelist, setSpaceList] = useState([]);
@@ -18,15 +18,7 @@ export default function XRentalPlaceSearchResult({ checkList, setCheckList, refr
     }, [refreshList])
 
 
-    useEffect(() => {
-        if (inputReset) {
-            // inputReset 상태가 변경되면 모든 checkbox의 체크 상태를 해제
-            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-            checkboxes.forEach(checkbox => {
-                checkbox.checked = false;
-            });
-        }
-    }, [inputReset]);
+
 
 
 
