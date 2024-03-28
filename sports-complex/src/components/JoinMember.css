@@ -161,6 +161,12 @@ select {
     cursor: pointer;
 }
 
+.Message{
+    margin-left: 1rem;
+    color: red;
+    font-size: smaller;
+}
+
 @media(max-width: 1200px) {
 
     .JoinMember_midbox #name,
