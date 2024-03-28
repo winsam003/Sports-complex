@@ -60,6 +60,14 @@ export default function XRentalPlaceControll() {
         setCheckList([]);
     }
 
+    //====================================================================리스트
+    
+    
+    
+    
+    
+    //====================================================================검색
+
     return (
         <div className='XRentalPlaceControll_div'>
             <Submenu />
