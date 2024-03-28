@@ -2,25 +2,26 @@ import './XRentalPlaceSearchResult.css'
 import axios from 'axios';
 import { useEffect, useState } from 'react'
 
-export default function XRentalPlaceSearchResult({checkList, setCheckList, refreshList, inputReset, setInputReset, handleReset}) {
+export default function XRentalPlaceSearchResult({checkList, setCheckList, refreshList, inputReset, setInputReset, handleReset, searchPlace}) {
 
     // 리스트 출력
     const [spacelist, setSpaceList] = useState([]);
 
     useEffect(() => {
+        fetchSpaceList();
+    }, [refreshList]);
+    
+    const fetchSpaceList = () =>{
         axios.get('/space/spacelist')
             .then((list) => {
+
                 setSpaceList(list.data);
-                console.log(`list.data: ${list.data}`);
+                console.log(`list.data: ${list.data}`);    
+    
             }).catch((error) => {
                 console.log("Error: ", error);
             })
-    }, [refreshList])
-
-
-
-
-
+    }
 
     // 체크한거에 spacecode 가져가기. 
     const handleDeletePlace = (event) => {
@@ -34,7 +35,7 @@ export default function XRentalPlaceSearchResult({checkList, setCheckList, refre
         const space = spacelist.find(item => item.spacecode === spacecode);
         if (isChecked && space) {
             // 배열에 넣어주기
-            updatedCheckList.push(space.spacecode);
+            updatedCheckList.push(spacecode);
         } else {
             updatedCheckList = updatedCheckList.filter(code => code !== spacecode);
         }
@@ -45,6 +46,13 @@ export default function XRentalPlaceSearchResult({checkList, setCheckList, refre
     const handleSelectedChange = (selectedList) => {
         setCheckList(selectedList);
     }
+    
+
+    //======================================================================================================================
+    // const searchtypeAndword = (searchData) => {
+    //     console.log(searchData);
+        
+    // }
 
 
     return (
@@ -60,9 +68,20 @@ export default function XRentalPlaceSearchResult({checkList, setCheckList, refre
                     <p>시설 이름</p>
                     <p>현재 운영 정보</p>
                 </div>
+                <button onClick={()=>test()}>sdsdsdsdsd</button>
                 {/* 조회결과 */}
 
-                {spacelist.map(({ spacecode, spacename, spaceprice, parkspace, parking }, index) => (
+                {spacelist
+                    .filter(space => {
+                        return ((
+                            (searchPlace.mainCategory === (space.spacecode.substring(2, 4) === 'PA' ? '주차장' : '경기장')) || searchPlace.mainCategory === '전체'
+                        ) && (
+                            searchPlace.subCategory === '전체' || space.spaceName.includes(searchPlace.subCategory) 
+                        ) && (
+                            searchPlace.searchValue ==='' || space.spaceName.includes(searchPlace.searchValue) 
+                        ))
+                    })
+                    .map(({ spacecode, spacename, spaceprice, parkspace, parking }, index) => (
                     <div className='XRentalPlaceSearchResult_SearchResult'>
                         <div className='XRentalPlaceSearchResult_SearchResult_input'>
                             <input type="checkbox"
