@@ -38,7 +38,7 @@ export default function UserType() {
                     <div className='UserType_container'>
                         <button className='UserType_button UserType_kid' value='KI' onClick={plusMemberCode}>아동</button>
                         <button className='UserType_button UserType_adult' value='AD' onClick={plusMemberCode}>성인</button>
-                        <button className='UserType_button UserType_foreigner' value='OL' onClick={plusMemberCode}>노인</button>
+                        <button className='UserType_button UserType_foreigner' value='OL' onClick={plusMemberCode}>65세 이상</button>
                     </div>
                 )}
                 

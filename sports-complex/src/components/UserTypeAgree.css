@@ -17,6 +17,8 @@
     line-height: 4rem;
     
     text-decoration: none;
+
+    cursor: pointer;
 }
 
 .UserTypeAgree_Agree{
