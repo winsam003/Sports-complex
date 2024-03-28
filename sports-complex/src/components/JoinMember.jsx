@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './JoinMember.css'
 import axios from 'axios';
 import { useNavigate } from 'react-router';
+import DaumPostcode from 'react-daum-postcode';
 
 export default function JoinMember({ memberType }) {
 
@@ -95,8 +96,80 @@ export default function JoinMember({ memberType }) {
 
 
 
+    // ==========================아이디 중복확인 시작============================//
 
-    // ==========================서버 송신용 form 정보 병합 시작============================//
+    const [isDuplication, setIsDuplication] = useState(false);
+
+    // 1. 서버에서 memberList를 받는다.
+    const duplication = () => {
+        axios.get('/member/memberList'
+        ).then((response) => {
+            console.log(`response.data check: ${formData.id}`);
+            const memberlist = response.data;
+
+            // 2. 입력한 아이디와 memberList의 아이디들과 비교해서 같은 것을 찾는다.
+            const duplicationCheck = memberlist.filter((list) => list.id === formData.id);
+            console.log(duplicationCheck.length);
+
+            if (duplicationCheck.length > 0) {
+                // 3. 중복이 있다면 재 입력 유도
+                alert("중복된 ID입니다. 다시 입력해주세요.")
+            } else {
+                // 4. 중복이 없다면 중복확인 완료 alert창 + readOnly + 배경화면 회색 + 리렌더링
+                alert("사용가능한 ID 입니다.");
+                setIsDuplication(!isDuplication);
+            }
+
+        }).catch((error) => {
+            console.log(`error check: ${error}`);
+        })
+    }
+    // ==========================아이디 중복확인 끝============================//
+
+
+
+
+    // ==========================다음 주소찾기 API 시작============================//
+    const [isOpen, setIsOpen] = useState('false');
+    const [zodecode, setZonecode] = useState('');
+    const [address, setAddress] = useState('');
+
+
+    const toggleHandler = () => {
+        setIsOpen((prevOpenState) => !prevOpenState);
+    };
+
+
+
+
+    const completeHandler = (data) => {
+        const { address, zonecode } = data;
+        setZonecode(zonecode);
+        setAddress(address);
+        setFormData({
+            ...formData,
+            address: zonecode,
+            address1: address
+        });
+    };
+
+    const closeHandler = (state) => {
+        if (state === 'FORCE_CLOSE') {
+            setIsOpen(false);
+        } else if (state === 'COMPLETE_CLOSE') {
+            setIsOpen(false);
+        }
+    };
+
+    // ==========================다음 주소찾기 API 끝============================//
+
+
+
+
+
+
+
+    // ==========================insert 서버 송신용 form 정보 병합 시작============================//
     const [formData, setFormData] = useState({
         membercode: memberType,
         name: '',
@@ -116,13 +189,13 @@ export default function JoinMember({ memberType }) {
             ...formData, [e.target.name]: e.target.value
         });
     };
-    // ==========================서버 송신용 form 정보 병합 끝============================//
+    // ==========================insert 서버 송신용 form 정보 병합 끝============================//
+
+    console.log(formData);
 
 
 
-
-
-    // ==========================서버 송신 시작============================//
+    // ==========================insert 서버 송신 시작============================//
     const [mJoin, setMjoin] = useState();
     const navigate = useNavigate();
     const memberInsert = () => {
@@ -134,7 +207,7 @@ export default function JoinMember({ memberType }) {
             console.error("Error fetching member list:", error);
         })
     }
-    // ==========================서버 송신 끝============================//
+    // ==========================insert 서버 송신 끝============================//
 
 
 
@@ -148,24 +221,23 @@ export default function JoinMember({ memberType }) {
                 <p>회원가입을 위해 아래의 양식에 내용을 입력해주세요.</p>
                 <span className='JoinMember_star'>※ * 는 필수입력사항입니다.</span>
 
-                <form onSubmit={memberInsert}>
-                    <table>
-                        <tr className='JoinMember_code'>
-                            <th>회원코드</th>
-                            <td><input type="text" name='membercode' id='membercode' value={memberType} /></td>
-                        </tr>
-                        <tr>
-                            <th>이름 (실명) <span className='JoinMember_star'>*</span></th>
-                            <td><input type="text" name='name' id='name' placeholder='본인인증에서 가져오기를 해야하지만 일단 readonly를 빼고 입력 하겠음' onChange={handleChange} /></td>
-                        </tr>
-                        <tr>
-                            <th>생년월일<span className='JoinMember_star'>*</span></th>
-                            <td>
+                <table>
+                    <tr className='JoinMember_code'>
+                        <th>회원코드</th>
+                        <td><input type="text" name='membercode' id='membercode' value={memberType} /></td>
+                    </tr>
+                    <tr>
+                        <th>이름 (실명) <span className='JoinMember_star'>*</span></th>
+                        <td><input type="text" name='name' id='name' placeholder='본인인증에서 가져오기를 해야하지만 일단 readonly를 빼고 입력 하겠음' onChange={handleChange} /></td>
+                    </tr>
+                    <tr>
+                        <th>생년월일<span className='JoinMember_star'>*</span></th>
+                        <td>
 
-                                <input type="text" name='birth' id='birth' placeholder='본인인증에서 가져오기를 해야하지만 일단 readonly를 빼고 입력 하겠음' onChange={handleChange} />
-                            </td>
-                        </tr>
-                        {/* <tr>
+                            <input type="text" name='birth' id='birth' placeholder='본인인증에서 가져오기를 해야하지만 일단 readonly를 빼고 입력 하겠음' onChange={handleChange} />
+                        </td>
+                    </tr>
+                    {/* <tr>
                             <th>성별<span className='JoinMember_star'>*</span></th>
                             <td>
                                 <input type="radio" id='men' name='gender' value={'men'} />
@@ -174,90 +246,97 @@ export default function JoinMember({ memberType }) {
                                 <label htmlFor="women">여자</label>
                             </td>
                         </tr> */}
-                        <tr>
-                            <th>아이디<span className='JoinMember_star'>*</span></th>
-                            <td>
-                                <input type="text" name='id' id='id' onChange={handleChange} />
-                                <a href="./" className='button'>중복확인</a>
-                                {/* <button type='button' id='idDup' >중복확인</button> */}
-                                <p>4 ~ 12 자의 영문(소문자)과 숫자만 사용할 수 있습니다. </p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>비밀번호<span className='JoinMember_star'>*</span></th>
-                            <td>
-                                <input type="password" name='password' id='password' placeholder='문자, 숫자, 특수문자(@$!%^*#?&)를 포함한 9자리 이상 입력해주십시오.' onChange={handleChange} />
-                                <p>9~20자의 영문+숫자+특수문자를 조합하여 사용할 수 있습니다.</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>비밀번호 확인<span className='JoinMember_star'>*</span></th>
-                            <td>
-                                <input type="password" />
-                                <p>비밀번호를 한번 더 입력하세요. 비밀번호는 잊지 않도록 주의하시기 바랍니다.</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>주소</th>
-                            <td>
-                                <a href="./" className='button'>우편번호 찾기</a> <br />
-                                <input type="text" name='address' id='address' onChange={handleChange} /> <br />
-                                <input type="text" name='address1' id='address1' onChange={handleChange} /> <br />
-                                <input type="text" name='address2' id='address2' placeholder='상세주소' onChange={handleChange} />
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>차량번호</th>
-                            <td>
-                                <input type="text" name='carnum' id='carnum' onChange={handleChange} />
-                                <p>예) 45가1234 와 같이 전체 차량번호를 띄어쓰기 없이 입력 하여 주시기 바랍니다.</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>이메일</th>
-                            <td className='email'>
-                                <input type="text" name='firstEmail' id='firstEmail' onChange={(e) => { firstEmail(e.target.value) }} />
-                                <input type="text" name='emailAdd' id='emailAdd' placeholder='@email.com' value={lastMemberEmail} onChange={(e) => { lastEmail(e.target.value) }} />
-                                <select name="emailAddSelect" id="emailAddSelect" onChange={(e) => { lastEmail(e.target.value) }} >
-                                    <option value="">직접입력</option>
-                                    <option value="@gmail.com">gmail.com</option>
-                                    <option value="@daum.net">daum.net</option>
-                                    <option value="@hotmail.com">hotmail.com</option>
-                                    <option value="@naver.com">naver.com</option>
-                                    <option value="@nate.com">nate.com</option>
-                                    <option value="@yahoo.com">yahoo.com</option>
-                                    <option value="@dreamwiz.com">dreamwiz.com</option>
-                                </select> <br />
-                                {/* <input type="text" name='email' id='email' value={fullMemberEmail} className='femail' /> */}
-                                <input type="checkbox" name='emailagr' id='emailagr' onChange={emailChecking} />
-                                <span><label htmlFor="receiveMail">뉴스레터나 공지이메일을 수신 받겠습니다.</label></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>휴대전화<span className='JoinMember_star'>*</span></th>
-                            <td>
-                                <select name="firstPhoneNum" id="firstPhoneNum" value={firstPhoneNum} onChange={(e) => { firstNum(e.target.value) }}>
-                                    <option value="010">010</option>
-                                    <option value="011">011</option>
-                                    <option value="016">016</option>
-                                    <option value="017">017</option>
-                                    <option value="019">019</option>
-                                </select>
-                                <span>-</span>
-                                <input type="text" name='secondPhoneNum' id='secondPhoneNum' onChange={(e) => { secondNum(e.target.value) }} />
-                                <span>-</span>
-                                <input type="text" name='lastPhoneNum' id='lastPhoneNum' onChange={(e) => { lastNum(e.target.value) }} />
-                                {/* <input className='fullPhoneNumber' type="text" name='phonenum' id='phonenum' value={fullPhoneNumber} onChange={handleChange}  /> */}
-                                <br />
-                                <input type="checkbox" name='snsagr' id='snsagr' onChange={snsChecking} />
-                                <span><label htmlFor="receiveMessage">알림문자를 받겠습니다.</label></span>
-                            </td>
-                        </tr>
-                    </table>
-                    <div className='JoinMember_submitBox' >
-                        <input type="submit" name='submit' id='submit' value={"회원가입"} />
-                    </div>
-                </form>
+                    <tr>
+                        <th>아이디<span className='JoinMember_star'>*</span></th>
+                        <td>
+                            <input type="text" name="id" id="id" onChange={handleChange} readOnly={isDuplication ? true : false} style={isDuplication ? { backgroundColor: 'lightgray' } : {}} />
+                            <button className='duplication' onClick={() => { duplication() }}>중복확인</button>
+                            {/* <button type='button' id='idDup' >중복확인</button> */}
+                            <p>4 ~ 12 자의 영문(소문자)과 숫자만 사용할 수 있습니다. </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>비밀번호<span className='JoinMember_star'>*</span></th>
+                        <td>
+                            <input type="password" name='password' id='password' placeholder='문자, 숫자, 특수문자(@$!%^*#?&)를 포함한 9자리 이상 입력해주십시오.' onChange={handleChange} />
+                            <p>9~20자의 영문+숫자+특수문자를 조합하여 사용할 수 있습니다.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>비밀번호 확인<span className='JoinMember_star'>*</span></th>
+                        <td>
+                            <input type="password" />
+                            <p>비밀번호를 한번 더 입력하세요. 비밀번호는 잊지 않도록 주의하시기 바랍니다.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>주소</th>
+                        <td>
+                            <button className='JoinMember_findAddress' onClick={toggleHandler}>우편번호 찾기</button> <br />
+                            {isOpen ? ('') : ((
+                                <div>
+                                    <DaumPostcode
+                                        onComplete={completeHandler}
+                                        onClose={closeHandler}
+                                    />
+                                </div>
+                            ))}
+                            <input type="text" name='address' id='address' value={zodecode} placeholder='우편주소' readOnly /> <br />
+                            <input type="text" name='address1' id='address1' value={address} placeholder='도로명/지번 주소'  readOnly /> <br />
+                            <input type="text" name='address2' id='address2' placeholder='상세주소' onChange={handleChange} />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>차량번호</th>
+                        <td>
+                            <input type="text" name='carnum' id='carnum' onChange={handleChange} />
+                            <p>예) 45가1234 와 같이 전체 차량번호를 띄어쓰기 없이 입력 하여 주시기 바랍니다.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>이메일</th>
+                        <td className='email'>
+                            <input type="text" name='firstEmail' id='firstEmail' onChange={(e) => { firstEmail(e.target.value) }} />
+                            <input type="text" name='emailAdd' id='emailAdd' placeholder='@email.com' value={lastMemberEmail} onChange={(e) => { lastEmail(e.target.value) }} />
+                            <select name="emailAddSelect" id="emailAddSelect" onChange={(e) => { lastEmail(e.target.value) }} >
+                                <option value="">직접입력</option>
+                                <option value="@gmail.com">gmail.com</option>
+                                <option value="@daum.net">daum.net</option>
+                                <option value="@hotmail.com">hotmail.com</option>
+                                <option value="@naver.com">naver.com</option>
+                                <option value="@nate.com">nate.com</option>
+                                <option value="@yahoo.com">yahoo.com</option>
+                                <option value="@dreamwiz.com">dreamwiz.com</option>
+                            </select> <br />
+                            {/* <input type="text" name='email' id='email' value={fullMemberEmail} className='femail' /> */}
+                            <input type="checkbox" name='emailagr' id='emailagr' onChange={emailChecking} />
+                            <span><label htmlFor="receiveMail">뉴스레터나 공지이메일을 수신 받겠습니다.</label></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>휴대전화<span className='JoinMember_star'>*</span></th>
+                        <td>
+                            <select name="firstPhoneNum" id="firstPhoneNum" value={firstPhoneNum} onChange={(e) => { firstNum(e.target.value) }}>
+                                <option value="010">010</option>
+                                <option value="011">011</option>
+                                <option value="016">016</option>
+                                <option value="017">017</option>
+                                <option value="019">019</option>
+                            </select>
+                            <span>-</span>
+                            <input type="text" name='secondPhoneNum' id='secondPhoneNum' onChange={(e) => { secondNum(e.target.value) }} />
+                            <span>-</span>
+                            <input type="text" name='lastPhoneNum' id='lastPhoneNum' onChange={(e) => { lastNum(e.target.value) }} />
+                            {/* <input className='fullPhoneNumber' type="text" name='phonenum' id='phonenum' value={fullPhoneNumber} onChange={handleChange}  /> */}
+                            <br />
+                            <input type="checkbox" name='snsagr' id='snsagr' onChange={snsChecking} />
+                            <span><label htmlFor="receiveMessage">알림문자를 받겠습니다.</label></span>
+                        </td>
+                    </tr>
+                </table>
+                <div className='JoinMember_submitBox' >
+                    <input type="submit" name='submit' id='submit' value={"회원가입"} onClick={memberInsert} />
+                </div>
 
             </div>
         </div>

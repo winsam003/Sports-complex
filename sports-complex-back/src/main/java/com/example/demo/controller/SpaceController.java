@@ -44,18 +44,24 @@ public class SpaceController {
 	// 1번 여러개의 삭제가 안됨
 	// 2번 post방식을 쓰기싫다면 delete 방식을 공부해서 시도해보는것도 좋을듯
 	@PostMapping(value="/spacedelete", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> sDelete(@RequestBody spaceDTO spacecode) {
-		log.info("deleteTEST");		
-		log.info(spacecode);		
+	public ResponseEntity<?> sDelete(@RequestBody List<String> spaceCodes) {
+		log.info("deleteTEST");	
+		log.info(spaceCodes);
 		
-		
-		int result = service.SpaceDelete(spacecode);
-		
-		if(result > 0) {
-			return ResponseEntity.status(HttpStatus.OK).body(result);
-		}else {
-			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("삭제할 이용시설이 없습니다.");			
+		int deleteCount = 0;
+		for( String spaceCode : spaceCodes) {
+			int result = service.SpaceDelete(spaceCode);
+			if(result > 0) {
+				deleteCount++;
+			}
 		}
+		
+		if(deleteCount > 0) {
+			return ResponseEntity.status(HttpStatus.OK).body(deleteCount + "개 항목 삭제");
+		} else {
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("삭제할 이용시설이 없습니다.");
+		}
+		
 	
 	}
 	

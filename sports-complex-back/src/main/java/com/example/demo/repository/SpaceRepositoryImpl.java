@@ -29,13 +29,13 @@ public class SpaceRepositoryImpl implements SpaceRepository {
 	}
 
 	@Override
-	public int SpaceDelete(spaceDTO spacecode) {
+	public int SpaceDelete(String spaceCode) {
 		log.info("SpaceDelete Repository 성공");
 		
 		String jpql = "DELETE FROM Space where spaceCode = :spacecode";
 		
 		return em.createNativeQuery(jpql, Space.class)
-				 .setParameter("spacecode", spacecode.getSpaceCode())
+				 .setParameter("spacecode", spaceCode)
 				 .executeUpdate();
 	}
 

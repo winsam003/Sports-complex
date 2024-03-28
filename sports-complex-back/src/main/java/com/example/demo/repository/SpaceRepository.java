@@ -9,6 +9,6 @@ public interface SpaceRepository{
 	
 	public List<Space> SpaceList();
 	
-	public int SpaceDelete(spaceDTO spacecode);
+	public int SpaceDelete(String spacecode);
 	
 }
