@@ -72,15 +72,25 @@ export default function XRentalPlaceSearchResult({checkList, setCheckList, refre
                 {/* 조회결과 */}
 
                 {spacelist
-                    .filter(space => {
-                        return ((
-                            (searchPlace.mainCategory === (space.spacecode.substring(2, 4) === 'PA' ? '주차장' : '경기장')) || searchPlace.mainCategory === '전체'
-                        ) && (
-                            searchPlace.subCategory === '전체' || space.spaceName.includes(searchPlace.subCategory) 
-                        ) && (
-                            searchPlace.searchValue ==='' || space.spaceName.includes(searchPlace.searchValue) 
-                        ))
-                    })
+                .filter(space => {
+        if (searchPlace.mainCategory === '전체' || (searchPlace.mainCategory === (space.spacecode.substring(2, 4) === 'PA' ? '주차장' : '경기장'))) {
+            if (searchPlace.subCategory === '전체' || space.spaceName.includes(searchPlace.subCategory)) {
+                if (searchPlace.searchValue === '' || space.spaceName.includes(searchPlace.searchValue)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    })
+                    // .filter(space => {
+                    //     return ((
+                    //         (searchPlace.mainCategory === (space.spacecode.substring(2, 4) === 'PA' ? '주차장' : '경기장')) || searchPlace.mainCategory === '전체'
+                    //     ) && (
+                    //         searchPlace.subCategory === '전체' || space.spaceName.includes(searchPlace.subCategory) 
+                    //     ) && (
+                    //         searchPlace.searchValue ==='' || space.spaceName.includes(searchPlace.searchValue) 
+                    //     ))
+                    // })
                     .map(({ spacecode, spacename, spaceprice, parkspace, parking }, index) => (
                     <div className='XRentalPlaceSearchResult_SearchResult'>
                         <div className='XRentalPlaceSearchResult_SearchResult_input'>
