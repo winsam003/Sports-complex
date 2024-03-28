@@ -9,4 +9,6 @@ public interface MemberService {
 	List<Member> MemberListAll();
 	
 	int MemberJoin(MemberDTO dto);
+	
+	int MemberDelete(String[] deleteId);
 }
