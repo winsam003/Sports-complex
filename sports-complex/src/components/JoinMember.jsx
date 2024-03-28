@@ -143,7 +143,6 @@ export default function JoinMember({ memberType }) {
 
             // 2. 입력한 아이디와 memberList의 아이디들과 비교해서 같은 것을 찾는다.
             const duplicationCheck = memberlist.filter((list) => list.id === formData.id);
-            console.log(duplicationCheck.length);
 
             if (duplicationCheck.length > 0) {
                 // 3. 중복이 있다면 재 입력 유도
@@ -151,7 +150,7 @@ export default function JoinMember({ memberType }) {
             } else {
                 // 4. 중복이 없다면 중복확인 완료 alert창 + readOnly + 배경화면 회색 + 리렌더링
                 alert("사용가능한 ID 입니다.");
-                setIsDuplication(!isDuplication);
+                setIsDuplication(true);
             }
 
         }).catch((error) => {
@@ -178,9 +177,9 @@ export default function JoinMember({ memberType }) {
 
     const completeHandler = (data) => {
         const { address, zonecode } = data;
-        setZonecode(zonecode);
-        setAddress(address);
-        setFormData({
+        setZonecode(zonecode);      // 우편주소 값 저장
+        setAddress(address);        // 상세주소 값 저장
+        setFormData({               // 서버 전송 데이터 저장
             ...formData,
             address: zonecode,
             address1: address
@@ -188,9 +187,9 @@ export default function JoinMember({ memberType }) {
     };
 
     const closeHandler = (state) => {
-        if (state === 'FORCE_CLOSE') {
+        if (state === 'FORCE_CLOSE') {                  // 사용자가 브라우저 닫기 버튼을 누름
             setIsOpen(false);
-        } else if (state === 'COMPLETE_CLOSE') {
+        } else if (state === 'COMPLETE_CLOSE') {        // 사용자가 검색결과를 선택하여 팝업창을 닫게 함
             setIsOpen(false);
         }
     };

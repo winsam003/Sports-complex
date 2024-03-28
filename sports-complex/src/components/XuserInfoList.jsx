@@ -44,9 +44,9 @@ export default function XuserInfoList() {
 
 
 
-    const [rememberList, setRememberList] = useState([]);
     //******************************* UserList 불러오기 요청 시작 *********************************//
-    const [userInfoList, setUserInfoList] = useState([]);
+    const [rememberList, setRememberList] = useState([]);       // 최초 요청시 리스트 저장
+    const [userInfoList, setUserInfoList] = useState([]);       // 출력할 리스트 저장
     useEffect(() => {
         axios.get('/member/memberList')
         .then((userList) => {
@@ -101,17 +101,16 @@ export default function XuserInfoList() {
     // rememberList 는 최초 불러온 데이터 값이다. (54행)
     const searchMember = () => {
 
-        const searchRequirement = InOrFo + memberAge;
-        let searchRequirementList = rememberList.filter((list) => list.membercode.includes(searchRequirement));
+        const searchRequirement = InOrFo + memberAge;                                                               // 유저코드 조합
+        let searchRequirementList = rememberList.filter((list) => list.membercode.includes(searchRequirement));     // 유저코드가 포함된 리스트 필터링
 
         console.log(searchRequirement);
 
-        if (InOrFo === '' && memberAge === '' && keyword === ''){
-            console.log(rememberList.length);
+        if (InOrFo === '' && memberAge === '' && keyword === ''){           // 전체, 전체, 키워드 없는경우 미리 저장한 최초 리스트 값을 출력
             setUserInfoList(rememberList);
-        }else if (keyword === ''){
+        }else if (keyword === ''){                                          // 키워드가 없을 시 조합된 유저코드를 필터 한 값을 출력
             setUserInfoList(searchRequirementList);
-        }else{
+        }else{                                                              // 키워드가 있을 시 유저코드 필터 값에서 키워드를 한번 더 필터링해서 출력
             searchRequirementList = searchRequirementList.filter((list) => list.name.includes(keyword));
             setUserInfoList(searchRequirementList);
         }
