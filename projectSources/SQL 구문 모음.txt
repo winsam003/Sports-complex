@@ -149,7 +149,17 @@ VALUES
 ('sh24', 'tmdgus', '일반', '직원', '01015441544', '백승현', 'STGESF'),
 ('jgj26', 'rmswjd', '강좌', '팀장', '0100821700', '장근정', 'STCLBJ'),
 ('minsam31', 'tmdtka', '시설', '팀장', '01000070000', '최승삼', 'STSPBJ'),
-('sh333', 'tmdgus', '일반', '직원', '01015441544', '백승현', 'STGESF');
+('sh333', 'tmdgus', '일반', '직원', '01015441544', '백승현', 'STGESF'),
+('siuuuuuuun1', 'tldns', '일반', '팀장', '1000000000', '임시운', 'STGEBJ'),
+('suuuuuuuok2', 'tndhr', '일반', '팀장', '1000000000', '김수옥', 'STGEBJ'),
+('yyyyyyyewon3', 'dPdnjs', '시설', '팀장', '1000000000', '전예원', 'STSPBJ'),
+('siuuuuuuun4', 'tldns', '일반', '팀장', '1000000000', '임시운', 'STGEBJ'),
+('suuuuuuuok5', 'tndhr', '일반', '팀장', '1000000000', '김수옥', 'STGEBJ'),
+('yyyyyyyewon6', 'dPdnjs', '시설', '팀장', '1000000000', '전예원', 'STSPBJ'),
+('siuuuuuuun7', 'tldns', '일반', '팀장', '1000000000', '임시운', 'STGEBJ'),
+('suuuuuuuok8', 'tndhr', '일반', '팀장', '1000000000', '김수옥', 'STGEBJ'),
+('yyyyyyyewon9', 'dPdnjs', '시설', '팀장', '1000000000', '전예원', 'STSPBJ');
+
 
 
 ** space
