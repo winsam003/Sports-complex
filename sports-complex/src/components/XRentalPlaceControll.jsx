@@ -28,7 +28,7 @@ export default function XRentalPlaceControll() {
     // 리스트 다시 새로고침 위해서 상태 알려주기. <refreshList>
     const [refreshList, setRefreshList] = useState(false);
     // reset 버튼 누르면 체크리스트 초기화. 
-    const [inputReset, setInputReset] = useState(false);
+    const [inputReset, setInputReset] = useState('unchecked');
     
     
     const del = () => {
@@ -47,16 +47,29 @@ export default function XRentalPlaceControll() {
             console.log("Error: ",error);
         })
     }
-
     // input select 초기화
     const handleReset = () => {
-        // // 체크박스 없애주고
-        console.log('inputReset'+inputReset);
+        // 체크박스 없애주고
+        setInputReset(prevInputReset => 'unchecked');
+        
+        if (inputReset) {
+            // inputReset 상태가 변경되면 모든 checkbox의 체크 상태를 해제
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = false;
+            });
+        }
+        // 삭제하면 checkList 배열 비워줘야됨. 
         setCheckList([]);
-        console.log("checkList="+checkList);
-        setInputReset(!inputReset);
-        // // 삭제하면 checkList 배열 비워줘야됨. 
     }
+
+    //====================================================================리스트
+    
+    
+    
+    
+    
+    //====================================================================검색
 
     return (
         <div className='XRentalPlaceControll_div'>
@@ -69,7 +82,8 @@ export default function XRentalPlaceControll() {
                                     checkList={checkList}
                                     refreshList={refreshList}
                                     inputReset={inputReset} 
-                                    setInputReset={setInputReset}/>
+                                    setInputReset={setInputReset}
+                                    handleReset={handleReset}/>
                 <XBtnResetDelete del={del} handleReset={handleReset} />
             </div>
         </div>
