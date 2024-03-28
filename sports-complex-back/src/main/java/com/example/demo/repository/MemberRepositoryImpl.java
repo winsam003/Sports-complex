@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import java.util.Arrays;
 import java.util.List; 
 
 import javax.persistence.EntityManager;
@@ -61,5 +62,18 @@ public class MemberRepositoryImpl implements MemberRepository{
 	    
 	    // 쿼리 실행 및 결과 반환
 	    return query.executeUpdate();
+	}
+	
+	
+	@Override
+	public int MemberDelete(String[] deleteId) {
+		// TODO Auto-generated method stub
+		log.info("MemberDelete Repository 접촉 성공");
+		
+		String query = "delete from Member where id IN (:ids)";
+		
+		int deleteCount = em.createQuery(query).setParameter("ids", Arrays.asList(deleteId)).executeUpdate();
+		
+		return deleteCount;
 	}
 }

@@ -65,9 +65,15 @@ export default function XRentalPlaceControll() {
 
     //====================================================================리스트
     
+    const [searchPlace, setSearchPlace] = useState([]);
     
+    const handleSearch = (onSearch) => {
+        console.log(onSearch);
+        setSearchPlace(onSearch);
+        
+    }
     
-    
+    console.log(searchPlace);
     
     //====================================================================검색
 
@@ -75,15 +81,17 @@ export default function XRentalPlaceControll() {
         <div className='XRentalPlaceControll_div'>
             <Submenu />
             <div className='XRentalPlaceControll_div_div'>
-                <XRentalPlaceSearchBox />
-                <XBtnResetSearch />
+                <XRentalPlaceSearchBox onSearch={handleSearch}/>
+                {/* <XBtnResetSearch /> */}
                 <XRentalPlaceSearchResult 
                                     setCheckList={setCheckList} 
                                     checkList={checkList}
                                     refreshList={refreshList}
                                     inputReset={inputReset} 
                                     setInputReset={setInputReset}
-                                    handleReset={handleReset}/>
+                                    handleReset={handleReset}
+                                    searchPlace={searchPlace}
+                                    />
                 <XBtnResetDelete del={del} handleReset={handleReset} />
             </div>
         </div>
