@@ -2,9 +2,13 @@ import './XStaffdetail.css';
 
 export default function XStaffdetail({ stfid, stfpassword, stfdmp, stflevel, stfpnum, stfname, onToggleCheckbox, isChecked }) {
 
+    console.log('XStaffdetail rendered');
+
     const handleCheckboxChange = () => {
         onToggleCheckbox(stfid);
     };
+
+    console.log(stfdmp);
 
     return (
         <div className='XStaffdetail_contents'>
