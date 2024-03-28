@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,6 +28,7 @@ import lombok.extern.log4j.Log4j2;
 @AllArgsConstructor
 public class MemberContoller {
 	MemberServiceImpl service;
+	PasswordEncoder passwordEncoder;
 	
 	
 	// ** Member List
@@ -45,7 +46,9 @@ public class MemberContoller {
 	
 	@PostMapping(value="/mjoin", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> mJoin(@RequestBody MemberDTO dto){
-		log.info(dto);
+		
+		dto.setPassword(passwordEncoder.encode(dto.getPassword()));
+		
 		if(service.MemberJoin(dto) > 0) {
 			return ResponseEntity.status(HttpStatus.OK).body("회원가입에 성공하였습니다. 로그인 창으로 이동합니다.");
 		}else {
@@ -54,5 +57,15 @@ public class MemberContoller {
 		
 		
 	} // mJoin
+	
+	@PostMapping(value="mdelete", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> mdelete(@RequestBody String[] deleteId){
+		
+		if(service.MemberDelete(deleteId)>0) {
+			return ResponseEntity.status(HttpStatus.OK).body("해당 유저를 삭제하였습니다.");
+		}else {
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("삭제에 실패하였습니다.");			
+		}		
+	}
 	
 }

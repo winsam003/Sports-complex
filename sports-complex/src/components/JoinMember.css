@@ -92,6 +92,8 @@ select {
     font-size: large;
     border: none;
     margin: 30px;
+
+    cursor: pointer;
 }
 
 .JoinMember_star {

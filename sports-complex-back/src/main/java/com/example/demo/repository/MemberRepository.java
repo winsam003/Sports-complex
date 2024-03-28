@@ -10,5 +10,7 @@ public interface MemberRepository {
 	public List<Member> MemberListAll();
 	
 	public int MemberJoin(MemberDTO dto);
+	
+	public int MemberDelete(String[] deleteId);
 
 }
