@@ -115,15 +115,19 @@ export default function XStaffList() {
                     <span>직위</span>
                     <span>전화번호</span>
                     <span>이름</span>
+                    <span>직원코드</span>
                 </div>
                 <div>
-                    {staff.filter(e => e.stfdmp == '전체' ? '전체' : e.stfdmp == department)
-                        .filter(e => e.stflevel == '전체' ? '전체' : e.stflevel == position)
-                        // .filter(e=> e.stfname == '백승현')
-                        .map((item, index) => (
-                            <XStaffdetail key={index} {...item} onToggleCheckbox={handleToggleCheckbox}
-                                isChecked={selectedStaffIds.includes(item.stfid)} />
-                        ))}
+                    {staff.filter(e => (
+                        // 부서와 직급 모두 고려하여 필터링
+                        (department === '전체' || e.stfdmp === department) &&
+                        (position === '전체' || e.stflevel === position) &&
+                        // 검색어를 이용하여 직원의 이름에 대해 필터링
+                        (searchInput.trim() === '' || e.stfname.toLowerCase().includes(searchInput.toLowerCase()))
+                    )).map((item, index) => (
+                        <XStaffdetail key={index} {...item} onToggleCheckbox={handleToggleCheckbox}
+                            isChecked={selectedStaffIds.includes(item.stfid)} />
+                    ))}
                 </div>
 
 

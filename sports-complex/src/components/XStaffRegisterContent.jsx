@@ -1,45 +1,78 @@
 import './XStaffRegisterContent.css';
-import axios from 'axios';
 import { useState } from 'react';
+import axios from 'axios';
 
 export default function XStaffRegisterContent() {
     const [staffData, setstaffData] = useState({
-        stfId: '',
+        stfid: '',
         stfpassword: '',
-        stfdmp: '',
-        stflevel: '',
+        stfdmp: '시설',
+        stflevel: '팀장',
         stfname: '',
         stfpnum: '',
-        stfcode: ''
+        stfcode: 'STSPBJ'
     });
 
-    const handelChange = ((e) => {
-        setstaffData({
-            ...staffData,
-            [e.target.name]: e.target.value
-        });
-    });
+    // 직원코드조합
+    const handleChange = (e) => {
+        const { name, value } = e.target;
 
-    const handleSubmit = () => {
-        
+        if (name === 'stfdmp') {
+            let code = 'ST';
+            if (value === '시설') {
+                code += 'SP';
+            } else if (value === '강좌') {
+                code += 'CL';
+            } else if (value === '일반') {
+                code += 'GE';
+            }
+            setstaffData({ ...staffData, [name]: value, stfcode: code + staffData.stfcode.substring(4) });
+        } else if (name === 'stflevel') {
+            let code = staffData.stfcode.substring(0, 4);
+            if (value === '팀장') {
+                code += 'BJ';
+            } else if (value === '사원') {
+                code += 'SF';
+            }
+            setstaffData({ ...staffData, [name]: value, stfcode: code });
+        } else {
+            setstaffData({ ...staffData, [name]: value });
+        }
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(`joinStaff 전` + staffData);
+        joinStaff();
+        console.log(`joinStaff 후` + staffData);
     }
 
+    const joinStaff = () => {
+        axios.post('/staff/staffInsert', staffData)
+            .then(response => {
+                console.log(response);
+                console.log(staffData);
+            }).catch(error => {
+                console.error('에러:', error);
+            });
+    };
+
     return (
-        <form action="/" method='post'>
+        <form onSubmit={handleSubmit}>
             <table className='XStaffRegisterContent_talbe'>
                 <caption className='XStaffRegisterContent_Caption'>직원 등록</caption>
                 <tr>
                     <th className='JoinStaff_title'> ID <span className='JoinLecture_star'>*</span></th>
-                    <td><input className="XStaffRegisterContent_input" type="text" name='id' id='id' /></td>
+                    <td><input className="XStaffRegisterContent_input" type="text" name='stfid' onChange={handleChange} /></td>
                 </tr>
                 <tr>
                     <th className='JoinStaff_title'> 비밀번호 <span className='JoinLecture_star'>*</span></th>
-                    <td><input className="XStaffRegisterContent_input" type="text" name='password' id='password' /></td>
+                    <td><input className="XStaffRegisterContent_input" type="text" name='stfpassword' onChange={handleChange} /></td>
                 </tr>
                 <tr>
                     <th className='JoinStaff_title'>소속<span className='JoinLecture_star'>*</span></th>
                     <td>
-                        <select className='XStaffRegisterContent_select'>
+                        <select className='XStaffRegisterContent_select' name="stfdmp" value={staffData.stfdmp} onChange={handleChange}>
                             <option value="시설">시설</option>
                             <option value="강좌">강좌</option>
                             <option value="일반">일반</option>
@@ -49,7 +82,7 @@ export default function XStaffRegisterContent() {
                 <tr>
                     <th className='JoinStaff_title'>직위<span className='JoinLecture_star'>*</span></th>
                     <td>
-                        <select className='XStaffRegisterContent_select'>
+                        <select className='XStaffRegisterContent_select' name="stflevel" value={staffData.stflevel} onChange={handleChange}>
                             <option value="팀장">팀장</option>
                             <option value="사원">사원</option>
                         </select>
@@ -57,31 +90,21 @@ export default function XStaffRegisterContent() {
                 </tr>
                 <tr>
                     <th className='JoinStaff_title'> 이름 <span className='JoinLecture_star'>*</span></th>
-                    <td><input className="XStaffRegisterContent_input" type="text" name='name' id='name' /></td>
+                    <td><input className="XStaffRegisterContent_input" type="text" name='stfname' onChange={handleChange} /></td>
                 </tr>
                 <tr>
                     <th className='JoinStaff_title'>휴대전화<span className='JoinLecture_star'>*</span></th>
                     <td>
-                        <select className='XStaffRegisterContent_select' name="firstPhoneNum" id="firstPhoneNum">
-                            <option value="010">010</option>
-                            <option value="011">011</option>
-                            <option value="016">016</option>
-                            <option value="017">017</option>
-                            <option value="019">019</option>
-                        </select>
-                        <span>&nbsp;&nbsp; - &nbsp;&nbsp;</span>
-                        <input className="XStaffRegisterContent_input" type="text" name='secondPhoneNum' id='secondPhoneNum' />
-                        <span>&nbsp;&nbsp; - &nbsp;&nbsp;</span>
-                        <input className="XStaffRegisterContent_input" type="text" name='lastPhoneNum' id='lastPhoneNum' />
+                        <input className="XStaffRegisterContent_input" type="text" name="stfpnum" onChange={handleChange} />
                     </td>
                 </tr>
                 <tr>
                     <th className='JoinStaff_title'>직원코드</th>
-                    <td><input className="XStaffRegisterContent_input" type="text" name='stfcode' id='stfcode' /></td>
+                    <td><input className="XStaffRegisterContent_input" type="text" value={staffData.stfcode} readOnly /></td>
                 </tr>
             </table>
             <div className='JoinStaff_submitBox' >
-                <input className="JoinStaff_submitInput" type="submit" name='submit' id='submit' value={"직원등록"} onClick={handleSubmit} />
+                <input className="JoinStaff_submitInput" type="submit" value={"직원등록"} />
             </div>
         </form>
     )

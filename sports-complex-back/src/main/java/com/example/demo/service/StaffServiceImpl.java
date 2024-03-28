@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.example.demo.domain.StaffDTO;
 import com.example.demo.entity.Staff;
 import com.example.demo.repository.StaffRepositoryImpl;
 
@@ -19,6 +20,11 @@ public class StaffServiceImpl implements StaffService {
 	@Override
 	public List<Staff> StaffList() {
 		return repository.stafflist();
+	}
+
+//	직원 등록
+	public int staffinsert(StaffDTO dto) {
+		return repository.staffinsert(dto);
 	}
 
 //	직원 삭제
