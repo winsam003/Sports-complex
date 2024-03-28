@@ -17,16 +17,22 @@ export default function XRentalPlaceControll() {
         setCheckList([...checkList, ...value]);
     }
 
+
+
+
     // checkList 배열로 담아줌. 
     console.log(checkList);
-    
-    const [test, setTest] = useState();
-    // 리스트 다시 새로고침 위해서 상태 알려주기. 
-    const [refreshList, setRefreshList] = useState(false);
 
     
+    const [test, setTest] = useState();
+    // 리스트 다시 새로고침 위해서 상태 알려주기. <refreshList>
+    const [refreshList, setRefreshList] = useState(false);
+    // reset 버튼 누르면 체크리스트 초기화. 
+    const [inputReset, setInputReset] = useState(false);
+    
+    
     const del = () => {
-        console.log("나오나 이거: ");
+        // console.log("나오나 이거: ");
         axios.post('/space/spacedelete', checkList)
         .then((ss) => {
             setTest(ss.data);
@@ -42,6 +48,16 @@ export default function XRentalPlaceControll() {
         })
     }
 
+    // input select 초기화
+    const handleReset = () => {
+        // // 체크박스 없애주고
+        console.log('inputReset'+inputReset);
+        setCheckList([]);
+        console.log("checkList="+checkList);
+        setInputReset(!inputReset);
+        // // 삭제하면 checkList 배열 비워줘야됨. 
+    }
+
     return (
         <div className='XRentalPlaceControll_div'>
             <Submenu />
@@ -52,8 +68,9 @@ export default function XRentalPlaceControll() {
                                     setCheckList={setCheckList} 
                                     checkList={checkList}
                                     refreshList={refreshList}
-                                    setRefreshList={setRefreshList} />
-                <XBtnResetDelete del={del} />
+                                    inputReset={inputReset} 
+                                    setInputReset={setInputReset}/>
+                <XBtnResetDelete del={del} handleReset={handleReset} />
             </div>
         </div>
     )
