@@ -17,6 +17,9 @@ export default function XRentalPlaceControll() {
         setCheckList([...checkList, ...value]);
     }
 
+
+
+
     // checkList 배열로 담아줌. 
     console.log(checkList);
 
