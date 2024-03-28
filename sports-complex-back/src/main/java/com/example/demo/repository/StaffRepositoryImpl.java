@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
+import com.example.demo.domain.StaffDTO;
 import com.example.demo.entity.Staff;
 
 @Transactional
@@ -21,7 +22,19 @@ public class StaffRepositoryImpl implements StaffRepository {
 //	전직원 조회
 	@Override
 	public List<Staff> stafflist() {
-		return em.createQuery("select s from Staff s order by s.stflevel desc", Staff.class).getResultList();
+		return em.createQuery("select s from Staff s order by s.stfdmp, s.stflevel desc", Staff.class).getResultList();
+	}
+
+//	직원 등록
+	@Override
+	public int staffinsert(StaffDTO dto) {
+		return em
+				.createQuery("insert into Staff (stfid, stfpassword, stfdmp, stflevel, stfname, stfpnum, stfcode) "
+						+ "values (:stfid, :stfpassword, :stfdmp, :stflevel, :stfname, :stfpnum, :stfcode)")
+				.setParameter("stfid", dto.getStfid()).setParameter("stfpassword", dto.getStfpassword())
+				.setParameter("stfdmp", dto.getStfdmp()).setParameter("stflevel", dto.getStflevel())
+				.setParameter("stfname", dto.getStfname()).setParameter("stfpnum", dto.getStfpnum())
+				.setParameter("stfcode", dto.getStfcode()).executeUpdate();
 	}
 
 //	직원 삭제
