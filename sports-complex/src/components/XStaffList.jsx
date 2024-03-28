@@ -118,7 +118,7 @@ export default function XStaffList() {
                 </div>
                 <div>
                     {staff.filter(e => e.stfdmp == '전체' ? '전체' : e.stfdmp == department)
-                        .filter(e => e.stflevel)
+                        .filter(e => e.stflevel == '전체' ? '전체' : e.stflevel == position)
                         // .filter(e=> e.stfname == '백승현')
                         .map((item, index) => (
                             <XStaffdetail key={index} {...item} onToggleCheckbox={handleToggleCheckbox}
