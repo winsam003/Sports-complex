@@ -6,96 +6,30 @@ export default function XReantalPlaceNewone() {
 
     // =================== 카테고리 합쳐서 코드 만들기 =============================
     const [placeType, setPlaceType] = useState("");
-
-    // 개수 필요함
-    const [placeCount, setPlaceCount] = useState(0);
-
-    // useEffect(() => {
-    //     makeCodeNum();
-    // }, []);
-
     const [spacelist, setSpaceList] = useState([]);
-    // const makeCodeNum = (e) => {
-    //     try {
-    //         const response = axios.get('/space/spacelist')
-    //         .then((list) => {
-
-    //             setSpaceList(list.data);
-    //             // console.log(`list.data: ${list.data}`);    
-    
-    //         }).catch((error) => {
-    //             console.log("Error: ", error);
-    //         })
-
-    //         // spacelist = response.data;
-
-    //         const count = spacelist.filter(space => space.spacecode.substring(2, 4) === e).length;
-    //         console.log("count"+count);
-    //         setPlaceCount((e) => {
-                
-    //         });
-    //     } catch (error) {
-    //         console.error('Error fetching space list:', error);
-    //     }
-    // }
-
-    // useEffect((e) => {
-    //     axios.get('/space/spacelist')
-    //         .then((list) => {
-
-    //             setSpaceList(list.data);
-    //             // console.log(`list.data: ${list.data}`);    
-    
-    //         }).catch((error) => {
-    //             console.log("Error: ", error);
-    //         })
-
-    //     const count = spacelist.filter(space => space.spacecode.substring(2, 4) === e).length;
-    //     console.log("count"+count);
-
-    // }, [placeType]);
-
 
     // 코드 만들기
     const placeTypeCode = (e) =>{
-        // 시설코드
-        const facilityCode = 'FE';
-        
-        // 내가 고른 시설 코드 e
         setPlaceType(e);
-        console.log(e);
-        
-        // 뒤에 숫자 (이 컬럼의 2~4번째 단어가 e인 애들의 길이보다 1큰 숫자 )
-        // makeCodeNum(e);
-
         axios.get('/space/spacelist')
             .then((list) => {
-
                 setSpaceList(list.data);
-                // console.log(`list.data: ${list.data}`);    
-    
             }).catch((error) => {
                 console.log("Error: ", error);
             })
-
-        const count = spacelist.filter(space => space.spacecode.substring(2, 4) === e).length;
-        console.log("count"+count);
-        setPlaceCount(e);
-
-        console.log("placeCount="+placeCount);
-        
-        // 맨 뒤에 코드 (e가 PA 이면 F, 아니면 C)
-        let facilityLast = (e === 'PA'? 'F' : 'C');
-        
-        // 풀 코드 여섯 자리 조합 다 합치기
-        const fullCode = facilityCode + e + (placeCount+1) + facilityLast;
-        console.log("fullCode="+fullCode);
     }
-    
-    // categoryCode 안에 있으면 setPlaceType 저장 이랑 동시에 이루어지기 때문에 그 전값이 읽힘. 
-    // console.log(placeType);
-    // console.log(placeCount);
 
+    useEffect(() => {
+        const count = spacelist.filter(space => space.spacecode.substring(2, 4) === placeType).length;
+        console.log("placeType=" + placeType);
+        console.log("count=" + count);
+
+        const facilityCode = 'FE';
+        let facilityLast = (placeType === 'PA'? 'F' : 'C');
+ 
+        const fullCode = facilityCode + placeType + (count +1) + facilityLast;
+        console.log("fullCode="+fullCode);
+    }, [spacelist]);
 
     return (
         <div>
