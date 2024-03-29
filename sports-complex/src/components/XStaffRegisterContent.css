@@ -1,8 +1,3 @@
-.XStaffRegisterContent_talbe {
-    margin-top: 40px;
-    width: 100%;
-}
-
 .JoinLecture_star {
     color: red;
 }
@@ -11,23 +6,50 @@
 .XStaffRegisterContent_Caption {
     font-weight: bold;
     font-size: 30px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 3px solid hsl(196, 83%, 88%);
+    grid-column: 1/3;
+    padding-bottom: 10px;
+}
+
+/* 테이블 */
+.XStaffRegisterContent_talbe {
+    margin-top: 40px;
+    display: grid;
+}
+
+.XStaffRegisterContent_talbe tr {
+    grid-column: 1/3;
+    display: grid;
+    grid-template-columns: 140px 1fr;
+}
+
+/* index */
+.XStaffRegisterContent_talbe tr th {
+    grid-column: 1/2;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    background-color: #ceeff250;
+}
+
+/* 내용 */
+.XStaffRegisterContent_talbe tr td {
+    grid-column: 2/3;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
 }
 
 /* select 박스 */
 .XStaffRegisterContent_select {
-    width: 110px;
+    width: 177px;
     margin: 0;
     height: 26px;
 }
 
 .XStaffRegisterContent_input {
-    width: 102px;
     margin: 0;
-}
-
-.XStaffRegisterContent_talbe tr input {
-    /* display: flex; */
+    grid-column: 2/3;
 }
 
 /* 소제목 */

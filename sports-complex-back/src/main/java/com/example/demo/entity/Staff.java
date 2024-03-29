@@ -27,10 +27,10 @@ public class Staff {
 	private String stfdmp;
 	@Column(length = 10, nullable = false)
 	private String stflevel;
-	@Column(nullable = false)
-	private Integer stfpnum;
 	@Column(length = 10, nullable = false)
 	private String stfname;
+	@Column(nullable = false)
+	private Integer stfpnum;
 	@Column(length = 20, nullable = false)
 	private String stfcode;
 }

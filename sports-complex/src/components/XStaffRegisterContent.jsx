@@ -17,6 +17,7 @@ export default function XStaffRegisterContent() {
     const handleChange = (e) => {
         const { name, value } = e.target;
 
+        // 부서코드조합
         if (name === 'stfdmp') {
             let code = 'ST';
             if (value === '시설') {
@@ -28,6 +29,7 @@ export default function XStaffRegisterContent() {
             }
             setstaffData({ ...staffData, [name]: value, stfcode: code + staffData.stfcode.substring(4) });
         } else if (name === 'stflevel') {
+            // 직위코드조합
             let code = staffData.stfcode.substring(0, 4);
             if (value === '팀장') {
                 code += 'BJ';
@@ -42,11 +44,10 @@ export default function XStaffRegisterContent() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(`joinStaff 전` + staffData);
         joinStaff();
-        console.log(`joinStaff 후` + staffData);
     }
 
+    // 직원 등록 데이터 보내기
     const joinStaff = () => {
         axios.post('/staff/staffInsert', staffData)
             .then(response => {
