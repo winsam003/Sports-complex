@@ -26,15 +26,14 @@ public class MemberRepositoryImpl implements MemberRepository{
 	
 	
 	public List<Member> MemberListAll() {
-		log.info("MemberListAll Repository 성공");
+		log.info("MemberListAll Repository 접촉 성공");
 		return em.createQuery("select m from Member m", Member.class).getResultList();
 	}
 
 	
 	@Override
 	public int MemberJoin(MemberDTO dto) {
-	    log.info("MemberJoin Repository 성공");
-	    log.info(dto);
+	    log.info("MemberJoin Repository 접촉 성공");
 
 	    // INSERT 쿼리 작성
 	    String jpql = "INSERT INTO Member (id, membercode, name, password, birth, phonenum, homenum, address, address1, address2, email, snsagr, emailagr, carnum, parkuse) " +
@@ -75,5 +74,17 @@ public class MemberRepositoryImpl implements MemberRepository{
 		int deleteCount = em.createQuery(query).setParameter("ids", Arrays.asList(deleteId)).executeUpdate();
 		
 		return deleteCount;
+	}
+	
+	
+	
+	@Override
+	public Member MemberOne(String id) {
+		// TODO Auto-generated method stub
+		log.info("MemberOne Repository 접촉 성공");
+		
+		return em.createQuery("select m from Member m where id=:id", Member.class)
+				.setParameter("id", id)
+				.getSingleResult();
 	}
 }

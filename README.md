@@ -22,3 +22,4 @@
 
 #### blog
 * Sam: https://velog.io/@winsam003/posts
+* Jung: https://velog.io/@jjang9/posts

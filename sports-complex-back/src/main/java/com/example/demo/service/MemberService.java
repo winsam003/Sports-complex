@@ -11,4 +11,6 @@ public interface MemberService {
 	int MemberJoin(MemberDTO dto);
 	
 	int MemberDelete(String[] deleteId);
+	
+	Member MemberOne(String id);
 }

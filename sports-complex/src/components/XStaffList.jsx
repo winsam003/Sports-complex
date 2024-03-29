@@ -4,8 +4,6 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export default function XStaffList() {
-    console.log('XStaffList rendered');
-
     // 전직원 정보
     const [staff, setstaff] = useState([]);
     // 선택된 직원 정보
@@ -34,7 +32,6 @@ export default function XStaffList() {
 
     // 직원 검색창 초기화하기
     const handleResetSearch = () => {
-        console.log("Resetting search...");
         setDepartment('전체');
         setPosition('전체');
         setSearchInput('');
