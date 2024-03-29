@@ -217,7 +217,7 @@ export const PageBannerData = [
     {
         "id": "8",
         "parameter": 'XStaffRegisterPage',
-        "page": '직원정보 등록',
+        "page": '직원 등록',
         "title": '인적 관리',
         "checkMenu": "Y"
     },
