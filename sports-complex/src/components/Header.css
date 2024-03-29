@@ -303,7 +303,9 @@ header>:last-child>div>ul>li {
   color: white;
 }
 
-
+.logout{
+  cursor: pointer;
+}
 
 
 
