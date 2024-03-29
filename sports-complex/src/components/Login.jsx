@@ -11,23 +11,22 @@ export default function Login() {
 
     const navigate = useNavigate();
 
-    // 1. 로그인, 비밀번호 정보를 저장한다.
+        // 1. 로그인, 비밀번호 정보를 저장한다.
     const [id, setId] = useState();
     const [password, setPassword] = useState();
 
-    // 2. 로그인 버튼을 누른 순간 서버로 axios 요청을 보낸다.
+        // 2. 로그인 버튼을 누른 순간 서버로 axios 요청을 보낸다.
 
     const requestLogin = () => {
         axios.post('/member/mlogin', {id, password})
             .then((response) => {
-    // 3. 200번일 경우 로그인성공 alert창 띄우고 홈페이지로 이동
+        // 3. 200번일 경우 로그인성공 alert창 띄우고 홈페이지로 이동
                 sessionStorage.setItem('userData', JSON.stringify(response.data));
-                alert(response.data.message);      
-                console.log("test");      
-                navigate('/HomePage');
+                alert(`안녕하세요 ${response.data.userName} 님`);      
+                navigate('/');
             }).catch((error) => {
-    // 4. 그 외일 경우 alert창 띄우고 재 로그인 유도
-                alert(error);
+        // 4. 그 외일 경우 alert창 띄우고 재 로그인 유도
+                alert("로그인 정보가 없습니다. 다시 로그인 해주세요.");
                 console.log("login Error occured => "+error)            
             })
     }
@@ -52,7 +51,7 @@ export default function Login() {
                     </div>
                     <div className="login_submitAndReset">
                         <span><TbKeyframe className='login_Icon' id="login_iconnone" /></span>
-                        <input onClick={requestLogin} type="submit" value={"로그인"} /> &nbsp;&nbsp;
+                        <input onClick={requestLogin} value={"로그인"} /> &nbsp;&nbsp;
                         <input type="reset" value={"초기화"} />
                     </div>
                     <div>

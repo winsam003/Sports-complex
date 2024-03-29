@@ -46,7 +46,7 @@ public class MemberContoller {
 	
 	// ** mjoin
 	@PostMapping(value="/mjoin", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> mJoin(@RequestBody MemberDTO dto){
+	public ResponseEntity<?> mJoin(@RequestBody Member dto){
 		
 		dto.setPassword(passwordEncoder.encode(dto.getPassword()));
 		
@@ -59,7 +59,7 @@ public class MemberContoller {
 	
 	
 	// ** mdelete
-	@PostMapping(value="mdelete", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value="/mdelete", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> mdelete(@RequestBody String[] deleteId){
 		
 		if(service.MemberDelete(deleteId)>0) {
@@ -72,15 +72,13 @@ public class MemberContoller {
 	
 	
 	// ** mlogin
-	@PostMapping(value="mlogin", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value="/mlogin", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> mlogin(@RequestBody Member entity){
 		String password = entity.getPassword();
 		entity = service.MemberOne(entity.getId());
 		
 		if(entity != null && passwordEncoder.matches(password, entity.getPassword())) {
-			log.info("test");
 			Map<String, Object> response = new HashMap<>();			// 데이터를 맵 형태로 반환을 위해 선언
-			response.put("message", "로그인에 성공하였습니다.");			// 데이터를 담음
 			response.put("userID", entity.getId());
 			response.put("userName", entity.getName());
 			

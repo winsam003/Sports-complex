@@ -27,7 +27,7 @@ public class MemberServiceImpl implements MemberService{
 		}
 	
 	
-	public int MemberJoin(MemberDTO dto) {
+	public int MemberJoin(Member dto) {
 		// TODO Auto-generated method stub
 		return repository.MemberJoin(dto);
 		

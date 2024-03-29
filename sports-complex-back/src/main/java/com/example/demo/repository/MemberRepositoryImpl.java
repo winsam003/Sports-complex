@@ -8,7 +8,6 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.domain.MemberDTO;
 import com.example.demo.entity.Member;
 
 import lombok.RequiredArgsConstructor;
@@ -32,7 +31,7 @@ public class MemberRepositoryImpl implements MemberRepository{
 
 	
 	@Override
-	public int MemberJoin(MemberDTO dto) {
+	public int MemberJoin(Member dto) {
 	    log.info("MemberJoin Repository 접촉 성공");
 
 	    // INSERT 쿼리 작성
