@@ -13,4 +13,7 @@ public interface SpaceService {
 //	SpaceDelete
 	int SpaceDelete(String spacecode);
 	
+//	SpaceInsert
+	int SpaceInsert(spaceDTO dto);
+	
 }

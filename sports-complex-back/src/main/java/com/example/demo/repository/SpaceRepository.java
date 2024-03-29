@@ -11,4 +11,6 @@ public interface SpaceRepository{
 	
 	public int SpaceDelete(String spacecode);
 	
+	public int SpaceInsert(spaceDTO dto);
+	
 }
