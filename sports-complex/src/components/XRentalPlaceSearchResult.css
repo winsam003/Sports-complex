@@ -38,6 +38,11 @@
     text-align: center;
 }
 
+/* hover */
+.XRentalPlaceSearchResult_SearchResult:hover{
+    background-color: #f4f4f4;
+}
+
 @media (max-width : 1200px) {
 
     /* 대표항목 */
