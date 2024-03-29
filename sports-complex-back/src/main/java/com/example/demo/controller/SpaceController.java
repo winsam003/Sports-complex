@@ -41,8 +41,6 @@ public class SpaceController {
 	}
 	
 	// 삭제
-	// 1번 여러개의 삭제가 안됨
-	// 2번 post방식을 쓰기싫다면 delete 방식을 공부해서 시도해보는것도 좋을듯
 	@PostMapping(value="/spacedelete", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> sDelete(@RequestBody List<String> spaceCodes) {
 		log.info("deleteTEST");	
@@ -54,16 +52,23 @@ public class SpaceController {
 			if(result > 0) {
 				deleteCount++;
 			}
-		}
-		
+		}		
 		if(deleteCount > 0) {
 			return ResponseEntity.status(HttpStatus.OK).body(deleteCount + "개 항목 삭제");
 		} else {
 			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("삭제할 이용시설이 없습니다.");
-		}
-		
-	
+		}		
 	}
+	
+	// 등록
+	@PostMapping (value = "/spaceInsert", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> sInsert(@RequestBody Space dto){
+		if(service.SpaceInsert(dto) > 0) {
+			return ResponseEntity.status(HttpStatus.OK).body("대관 시설 등록 완료. 목록으로 이동.");
+		} else {
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("등록 실패. ");			
+		}
+	} //sInsert
 	
 	
 	

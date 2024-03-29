@@ -1,7 +1,8 @@
 package com.example.demo.controller;
 
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -43,9 +44,9 @@ public class MemberContoller {
 	} // mList
 	
 	
-	
+	// ** mjoin
 	@PostMapping(value="/mjoin", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> mJoin(@RequestBody MemberDTO dto){
+	public ResponseEntity<?> mJoin(@RequestBody Member dto){
 		
 		dto.setPassword(passwordEncoder.encode(dto.getPassword()));
 		
@@ -54,11 +55,11 @@ public class MemberContoller {
 		}else {
 			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("회원가입에 실패하였습니다.");			
 		}
-		
-		
 	} // mJoin
 	
-	@PostMapping(value="mdelete", consumes = MediaType.APPLICATION_JSON_VALUE)
+	
+	// ** mdelete
+	@PostMapping(value="/mdelete", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> mdelete(@RequestBody String[] deleteId){
 		
 		if(service.MemberDelete(deleteId)>0) {
@@ -66,6 +67,28 @@ public class MemberContoller {
 		}else {
 			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("삭제에 실패하였습니다.");			
 		}		
-	}
+	} // mdelete
+	
+	
+	
+	// ** mlogin
+	@PostMapping(value="/mlogin", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> mlogin(@RequestBody Member entity){
+		String password = entity.getPassword();
+		entity = service.MemberOne(entity.getId());
+		
+		if(entity != null && passwordEncoder.matches(password, entity.getPassword())) {
+			Map<String, Object> response = new HashMap<>();			// 데이터를 맵 형태로 반환을 위해 선언
+			response.put("userID", entity.getId());
+			response.put("userName", entity.getName());
+			
+			return ResponseEntity.status(HttpStatus.OK).body(response);	// 담은 데이터 반환
+		}else {
+			Map<String, Object> response = new HashMap<>();
+			response.put("message", "로그인에 실패하였습니다. 다시 로그인해주세요.");
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(response);	// 담은 데이터 반환
+		}
+		
+	} // mlogin
 	
 }

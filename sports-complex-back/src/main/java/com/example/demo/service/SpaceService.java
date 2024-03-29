@@ -1,8 +1,7 @@
 package com.example.demo.service;
 
-import java.util.List;
+import java.util.List; 
 
-import com.example.demo.domain.spaceDTO;
 import com.example.demo.entity.Space;
 
 public interface SpaceService {
@@ -12,5 +11,8 @@ public interface SpaceService {
 	
 //	SpaceDelete
 	int SpaceDelete(String spacecode);
+	
+//	SpaceInsert
+	int SpaceInsert(Space dto);
 	
 }

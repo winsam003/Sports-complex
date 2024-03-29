@@ -8,7 +8,9 @@ import com.example.demo.entity.Member;
 public interface MemberService {
 	List<Member> MemberListAll();
 	
-	int MemberJoin(MemberDTO dto);
+	int MemberJoin(Member dto);
 	
 	int MemberDelete(String[] deleteId);
+	
+	Member MemberOne(String id);
 }

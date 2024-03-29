@@ -27,7 +27,7 @@ public class MemberServiceImpl implements MemberService{
 		}
 	
 	
-	public int MemberJoin(MemberDTO dto) {
+	public int MemberJoin(Member dto) {
 		// TODO Auto-generated method stub
 		return repository.MemberJoin(dto);
 		
@@ -37,5 +37,11 @@ public class MemberServiceImpl implements MemberService{
 	public int MemberDelete(String[] deleteId) {
 		// TODO Auto-generated method stub
 		return repository.MemberDelete(deleteId);
+	}
+	
+	@Override
+	public Member MemberOne(String id) {
+		// TODO Auto-generated method stub
+		return repository.MemberOne(id);
 	}
 }

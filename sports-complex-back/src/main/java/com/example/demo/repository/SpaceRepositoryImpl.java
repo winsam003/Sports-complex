@@ -1,13 +1,12 @@
 package com.example.demo.repository;
 
-import java.util.List;
+import java.util.List; 
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.domain.spaceDTO;
 import com.example.demo.entity.Space;
 
 import lombok.extern.log4j.Log4j2;
@@ -39,7 +38,23 @@ public class SpaceRepositoryImpl implements SpaceRepository {
 				 .executeUpdate();
 	}
 
-	
+	@Override
+	public int SpaceInsert(Space dto) {
+		log.info("SpaceInsert Repository 성공");
+		log.info(dto);
+		
+		String jpql = "INSERT INTO Space (spacecode, spacename, spaceprice, parkspace)"
+					+ "VALUES (:spacecode, :spacename, :spaceprice, :parkspace)";
+		
+		Query query = em.createNativeQuery(jpql);
+		
+		query.setParameter("spacecode", dto.getSpacecode());
+		query.setParameter("spacename", dto.getSpacename());
+		query.setParameter("spaceprice", dto.getSpaceprice());
+		query.setParameter("parkspace", dto.getParkspace());
+		
+		return query.executeUpdate();
+	}
 	
 	
 	

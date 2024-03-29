@@ -28,13 +28,13 @@ export default function JoinMember({ memberType }) {
     }
     const secondNum = (e) => {
 
-        if (e.length > 4){
+        if (e.length > 4) {
             setPhoneMessage("* 전화번호는 각 자리에 4자리 이하로 작성해주세요.");
             setPhone1check(false);
-        } else if (e.replace(phoneNumSpecial, '').length > 0){
+        } else if (e.replace(phoneNumSpecial, '').length > 0) {
             setPhoneMessage("* 전화번호에는 숫자만 가능합니다.");
             setPhone1check(false);
-        }else{
+        } else {
             setPhoneMessage('');
             setPhone1check(true);
 
@@ -266,8 +266,8 @@ export default function JoinMember({ memberType }) {
                 setPwcheck(true);
             }
         }
-        
-        
+
+
         // password2 무결성 검사
         if (tagName == 'password2') {
             if (tagValue != formData.password) {
@@ -292,11 +292,11 @@ export default function JoinMember({ memberType }) {
 
 
 
-    
+
     // ==========================insert 서버 송신 시작============================//
     const navigate = useNavigate();
     const memberInsert = () => {
-        if (memberType === undefined){
+        if (memberType === undefined) {
             alert("비정상적인 접근입니다. 다시 진행해주세요.");
             navigate('/');
         } else if (idcheck && pwcheck && pw2check && phone1check && phone2check) {
