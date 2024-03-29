@@ -21,10 +21,10 @@ export default function JoinMember({ memberType }) {
     const firstNum = (e) => {
         setFirstPhoneNum(e);
         const fullNumber = e + secondPhoneNum + lastPhoneNum;
-        setFormData({
-            ...formData,
-            phonenum: fullNumber
-        });
+        // setFormData({
+        //     ...formData,
+        //     phonenum: fullNumber
+        // });
     }
     const secondNum = (e) => {
 
@@ -41,10 +41,11 @@ export default function JoinMember({ memberType }) {
 
             setSecondPhoneNum(e);
             const fullNumber = firstPhoneNum + e + lastPhoneNum;
-            setFormData({
-                ...formData,
-                phonenum: fullNumber
-            });
+            console.log()
+            // setFormData({
+            //     ...formData,
+            //     phonenum: fullNumber
+            // });
         }
 
 

@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,13 +31,11 @@ public class StaffController {
 	}
 
 	@PostMapping("/staffInsert")
-	public int staffinsert(@RequestBody StaffDTO dto) {
-		try {
-			System.out.println(" 직원 등록 성공 " + dto);
-			return service.staffinsert(dto);
-		} catch (Exception e) {
-			System.out.println(" Insert Excetpion => " + e.toString());
-			return -1;
+	public ResponseEntity<?> staffinsert(@RequestBody StaffDTO dto) {
+		if (service.staffinsert(dto) > 0) {
+			return ResponseEntity.status(HttpStatus.OK).body("직원 등록에 성공하셨습니다.");
+		} else {
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("직원 등록에 실패하였습니다.");
 		}
 	}
 

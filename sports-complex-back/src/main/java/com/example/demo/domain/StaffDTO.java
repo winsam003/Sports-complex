@@ -12,7 +12,7 @@ public class StaffDTO {
 	private String stfpassword;
 	private String stfdmp;
 	private String stflevel;
-	private Integer stfpnum;
 	private String stfname;
+	private Integer stfpnum;
 	private String stfcode;
 }
