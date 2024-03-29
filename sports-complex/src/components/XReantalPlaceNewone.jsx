@@ -8,9 +8,11 @@ export default function XReantalPlaceNewone() {
     const [placeType, setPlaceType] = useState("");
     const [spacelist, setSpaceList] = useState([]);
 
-    // 코드 만들기
+    // 시설 코드 만들기
     const placeTypeCode = (e) =>{
+        // placeType 담아주기.
         setPlaceType(e);
+        // spacelist 불러오기. filter 거를 예정.
         axios.get('/space/spacelist')
             .then((list) => {
                 setSpaceList(list.data);
@@ -20,16 +22,37 @@ export default function XReantalPlaceNewone() {
     }
 
     useEffect(() => {
+        // placeType 배열에서 찾아서 배열 길이 (갯수) count 에 담기.
         const count = spacelist.filter(space => space.spacecode.substring(2, 4) === placeType).length;
+        
         console.log("placeType=" + placeType);
         console.log("count=" + count);
 
+        // 시설 기본 코드
         const facilityCode = 'FE';
+        // 주차장이면 F 아니면 C 
         let facilityLast = (placeType === 'PA'? 'F' : 'C');
  
+        // 전체 코드 만들어주기. (기본코드 + 시설 타입 + 번호 + 코트/층)
         const fullCode = facilityCode + placeType + (count +1) + facilityLast;
         console.log("fullCode="+fullCode);
+        
     }, [spacelist]);
+
+    //===============================================================================================
+
+    // 이름, 가격 Hook
+    const [placeName, setPlaceName] = useState("");
+    const [placePrice, setPlacePrice] = useState("");
+
+    const makePlaceName = (e) => {
+        setPlaceName(e);
+    }
+    
+    
+
+
+
 
     return (
         <div>
@@ -45,12 +68,21 @@ export default function XReantalPlaceNewone() {
                     <option value="TE" >테니스장</option>
                 </select>
                 
-                <p>이름</p>
-                <input placeholder='등록이면 새로 입력 / 변경이면 기존이름 가져오기'></input>
+                <p>시설 이름</p>
+                <input type="text" name='placeName' id='placeName'  
+                                                placeholder='시설 이름을 입력하세요.'
+                                                value={placeName}
+                                                onChange={(e) => makePlaceName(e.target.value)} ></input>
 
-                <p>가격</p>
-                <input placeholder='숫자를 입력하시오.'></input>
+                <p>시설 가격</p>
+                <input type="text" name='placePrice' id='placePrice' 
+                                                placeholder='숫자를 입력하시오.'
+                                                value={placePrice} ></input>
 
+            </div>
+            <div className='XBtnInsertPrev'>
+                <button >등록</button>
+                <button>목록</button>
             </div>
         </div>
     )
