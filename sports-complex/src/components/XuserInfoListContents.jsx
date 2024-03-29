@@ -1,6 +1,6 @@
 import './XuserInfoListContents.css';
 
-export default function XuserInfoListContents({ id, name, birth, phonenum, address, address1, address2, carnum, userDelete }) {
+export default function XuserInfoListContents({ id, name, birth, phonenum, address, address1, address2, carnum, userDelete, isChecked }) {
 
     const handleDelete = (e) => {
         userDelete(id, e.target.checked);
@@ -10,7 +10,7 @@ export default function XuserInfoListContents({ id, name, birth, phonenum, addre
     return (
         <div className='XuserInfoListContents_Box'>
             <div className='XuserInfoListContents_contents'>
-                <input type="checkbox" onChange={handleDelete} />
+                <input checked={isChecked} type="checkbox" onChange={handleDelete} />
                 <span>{id}</span>
                 <span>{name}</span>
                 <span>{birth}</span>

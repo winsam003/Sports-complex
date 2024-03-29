@@ -276,7 +276,7 @@ export const PageBannerData = [
     {
         "id": "11",
         "parameter": 'XRentalPlaceControllPage',
-        "page": '대관 시설 관리',
+        "page": '시설 관리',
         "title": '대관 시설을 관리할 수 있습니다 ',
         "checkMenu": "Y"
     },
@@ -297,7 +297,7 @@ export const PageBannerData = [
     {
         "id": "11",
         "parameter": 'XReantalPlaceNewonePage',
-        "page": '대관 시설 등록',
+        "page": '신규 시설 등록',
         "title": '대관 시설을 등록할 수 있습니다 ',
         "checkMenu": "Y"
     },

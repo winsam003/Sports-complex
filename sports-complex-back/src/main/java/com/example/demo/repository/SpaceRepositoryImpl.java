@@ -39,7 +39,24 @@ public class SpaceRepositoryImpl implements SpaceRepository {
 				 .executeUpdate();
 	}
 
-	
+	@Override
+	public int SpaceInsert(spaceDTO dto) {
+		log.info("SpaceInsert Repository 성공");
+		log.info(dto);
+		
+		String jpql = "INSERT INTO Space (spacecode, spacename, spaceprice, parkspace, parking)"
+					+ "VALUES (:spacecode, :spacename, :spaceprice, :parkspace, :parking)";
+		
+		Query query = em.createNativeQuery(jpql);
+		
+		query.setParameter("spacecode", dto.getSpaceCode());
+		query.setParameter("spacename", dto.getSpaceName());
+		query.setParameter("spaceprice", dto.getSpacePrice());
+		query.setParameter("parkspace", dto.getParkSpace());
+		query.setParameter("parking", dto.getParking());
+		
+		return query.executeUpdate();
+	}
 	
 	
 	

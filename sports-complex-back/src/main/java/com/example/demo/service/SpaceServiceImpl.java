@@ -29,6 +29,13 @@ public class SpaceServiceImpl implements SpaceService{
 		
 		return repository.SpaceDelete(spaceCode);
 	}
+
+	@Override
+	public int SpaceInsert(spaceDTO dto) {
+		return repository.SpaceInsert(dto);
+	}
+	
+	
 	
 	
 
