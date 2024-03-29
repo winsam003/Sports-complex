@@ -1,5 +1,6 @@
 import './XStaffRegisterContent.css';
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
 import axios from 'axios';
 
 export default function XStaffRegisterContent() {
@@ -49,6 +50,17 @@ export default function XStaffRegisterContent() {
     const [pwcheck, setPwcheck] = useState(false);
     const pwSpecial = /[!-*.@]/gi;
 
+    // 이름 무결성 검사
+    const [nameMessage, setNameMessage] = useState('');
+    const [nameCheck, setNameCheck] = useState(false);
+    const nameKorean = /^[가-힣]+$/;
+    const nameEnglish = /^[a-zA-Z]+$/;
+
+    // 휴대전화 무결성 검사
+    const [phoneNumMessage, setPhoneNumMessage] = useState('');
+    const [phoneNumCheck, setPhoneNumCheck] = useState(false);
+    const phoneNumSpecial = /^[0-9]+$/;
+
     // 직원코드조합
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -81,6 +93,34 @@ export default function XStaffRegisterContent() {
             }
         }
 
+        // 이름 무결성 검사
+        if (name == 'stfname') {
+            if (value.length < 2 || value.length > 10) {
+                setNameMessage('올바른 이름을 입력해주세요');
+                setNameCheck(false);
+            } else if (!nameKorean.test(value) && !nameEnglish.test(value)) {
+                setNameMessage('한글 또는 영어 하나만 사용해주세요');
+                setNameCheck(false);
+            } else {
+                setNameMessage('');
+                setNameCheck(true);
+            }
+        }
+
+        // 전화번호 무결성 검사
+        if (name == 'stfpnum') {
+            if (value.length < 9 || value.length > 12) {
+                setPhoneNumMessage('올바른 번호를 입력해주세요');
+                setPhoneNumCheck(false);
+            } else if (value.replace(phoneNumSpecial, '').length == value.length) {
+                setPhoneNumMessage('숫자만 입력해주세요');
+                setPhoneNumCheck(false);
+            } else {
+                setPhoneNumMessage('');
+                setPhoneNumCheck(true);
+            }
+        }
+
         // 부서코드조합
         if (name === 'stfdmp') {
             let code = 'ST';
@@ -107,19 +147,24 @@ export default function XStaffRegisterContent() {
     };
 
     // 직원 등록 데이터 보내기
+    const navigate = useNavigate();
     const joinStaff = () => {
         if (!idDuplication) {
             alert("아이디 중복을 확인해주세요.");
+        } else if (idcheck && pwcheck && nameCheck && phoneNumCheck) {
+            if (window.confirm("직원을 등록하시겠습니까?")) {
+                axios.post('/staff/staffInsert', staffData)
+                    .then((response) => {
+                        alert("직원 등록에 성공하였습니다.");
+                        navigate('/XStaffInfoPage');
+                    }).catch(error => {
+                        console.error('staffInsert :', error);
+                    });
+            } else {
+
+            }
         } else {
-            window.confirm("직원을 등록하시겠습니까?");
-            axios.post('/staff/staffInsert', staffData)
-                .then(response => {
-                    console.log(response);
-                    console.log(staffData);
-                }).catch(error => {
-                    alert("직원 등록에 실패하였습니다.")
-                    console.error('에러:', error);
-                });
+            alert("입력정보를 확인해주세요.");
         }
     };
 
@@ -163,12 +208,14 @@ export default function XStaffRegisterContent() {
                 </tr>
                 <tr>
                     <th className='JoinStaff_title'> 이름 <span className='JoinLecture_star'>*</span></th>
-                    <td><input className="XStaffRegisterContent_input" type="text" name='stfname' onChange={handleChange} /></td>
+                    <td><input className="XStaffRegisterContent_input" type="text" name='stfname' onChange={handleChange} />
+                        <div className='Message'>{nameMessage}</div></td>
                 </tr>
                 <tr>
                     <th className='JoinStaff_title'>휴대전화<span className='JoinLecture_star'>*</span></th>
                     <td>
                         <input className="XStaffRegisterContent_input" type="text" name="stfpnum" placeholder='- 없이 입력해주세요.' onChange={handleChange} />
+                        <div className='Message'>{phoneNumMessage}</div>
                     </td>
                 </tr>
                 <tr>
@@ -177,7 +224,7 @@ export default function XStaffRegisterContent() {
                 </tr>
             </table>
             <div className='JoinStaff_submitBox' >
-                <input className="JoinStaff_submitInput" type="submit" value={"직원등록"} onClick={joinStaff} />
+                <input className="JoinStaff_submitInput" type="button" value={"직원등록"} onClick={joinStaff} />
             </div>
         </form>
     )
