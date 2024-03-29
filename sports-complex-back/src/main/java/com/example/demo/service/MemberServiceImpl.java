@@ -38,4 +38,10 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return repository.MemberDelete(deleteId);
 	}
+	
+	@Override
+	public Member MemberOne(String id) {
+		// TODO Auto-generated method stub
+		return repository.MemberOne(id);
+	}
 }

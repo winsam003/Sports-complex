@@ -243,7 +243,7 @@ export default function JoinMember({ memberType }) {
             if (tagValue.length < 4 || tagValue.length > 12) {
                 setIdMessage('* 4글자 이상 12글자 이하로 입력해주세요.');
                 setIdcheck(false);
-            } else if (tagName == 'id' && tagValue.replace(idSpecial, '').length > 0) {
+            } else if (tagValue.replace(idSpecial, '').length > 0) {
                 setIdMessage('* 숫자와 영문만 사용가능합니다.');
                 setIdcheck(false);
             } else {
@@ -305,6 +305,7 @@ export default function JoinMember({ memberType }) {
                 navigate('/LoginPage');
             }).catch((error) => {
                 console.error("Error fetching member list:", error);
+                navigate('/LoginPage');
             })
         } else {
             alert("입력정보를 확인해주세요.");

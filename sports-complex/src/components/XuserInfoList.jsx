@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 
 
 export default function XuserInfoList() {
-    
+
 
 
 
@@ -21,14 +21,14 @@ export default function XuserInfoList() {
         }
     };
     //******************************* 체크된 user 저장 끝 *********************************//
-    
-    
-    
-    
-    
+
+
+
+
+
     //******************************* 체크된 유저 삭제 시작 *********************************//
     const [deleteRequest, setDeleteRequest] = useState(false);
-    
+
     const deleteReq = () => {
         axios.post('/member/mdelete', checkedUsers
         ).then((response) => {
@@ -36,7 +36,7 @@ export default function XuserInfoList() {
             setUserInfoList([]);
             setDeleteRequest(!deleteRequest);
         }).catch((error) => {
-            console.log('deleteError => '+error)
+            console.log('deleteError => ' + error)
         })
     }
     //******************************* 체크된 유저 삭제 끝 *********************************//
@@ -49,19 +49,21 @@ export default function XuserInfoList() {
     const [userInfoList, setUserInfoList] = useState([]);       // 출력할 리스트 저장
     useEffect(() => {
         axios.get('/member/memberList')
-        .then((userList) => {
-            setUserInfoList(userList.data);
-            setRememberList(userList.data);     // 불러온 최초 값 저장
-        }).catch((error) => {
-            console.error("Error fetching member list:", error);
-        });
+            .then((userList) => {
+                setUserInfoList(userList.data);
+                setRememberList(userList.data);     // 불러온 최초 값 저장
+            }).catch((error) => {
+                console.error("Error fetching member list:", error);
+            });
     }, [deleteRequest])
     //******************************* UserList 불러오기 요청 끝 *********************************//
 
 
 
-    //******************************* 검색 filter 기능 시작 *********************************//
 
+
+
+    //******************************* 검색 filter 기능 시작 *********************************//
     // 1. 내/외국인, 이름, 검색키워드를 필터해서 다른 곳에 저장한다.
     const [InOrFo, setInOrFo] = useState('');
     const [memberAge, setMemberAge] = useState('');
@@ -69,25 +71,12 @@ export default function XuserInfoList() {
 
     // 내/외국인 저장
     const isInOrFo = (e) => {
-        let result;
-
-        if (e.target.value === '내국인'){ result = 'IN' }
-        else if (e.target.value === '외국인') { result = 'FO' }
-        else { result = '' }
-
-        setInOrFo(result);
+         setInOrFo(e.target.value);
     }
 
     // 이름 저장
     const ismemberAge = (e) => {
-        let result;
-
-        if (e.target.value === '성인') { result = 'AD' }
-        else if (e.target.value === '아동') { result = 'KI' }
-        else if (e.target.value === '65세이상') { result = 'OL' }
-        else { result = '' }
-
-        setMemberAge(result);
+          setMemberAge(e.target.value);
     }
 
     // 키워드 저장
@@ -104,20 +93,35 @@ export default function XuserInfoList() {
         const searchRequirement = InOrFo + memberAge;                                                               // 유저코드 조합
         let searchRequirementList = rememberList.filter((list) => list.membercode.includes(searchRequirement));     // 유저코드가 포함된 리스트 필터링
 
-        console.log(searchRequirement);
-
-        if (InOrFo === '' && memberAge === '' && keyword === ''){           // 전체, 전체, 키워드 없는경우 미리 저장한 최초 리스트 값을 출력
+        if (InOrFo === '' && memberAge === '' && keyword === '') {           // 전체, 전체, 키워드 없는경우 미리 저장한 최초 리스트 값을 출력
             setUserInfoList(rememberList);
-        }else if (keyword === ''){                                          // 키워드가 없을 시 조합된 유저코드를 필터 한 값을 출력
+        } else if (keyword === '') {                                          // 키워드가 없을 시 조합된 유저코드를 필터 한 값을 출력
             setUserInfoList(searchRequirementList);
-        }else{                                                              // 키워드가 있을 시 유저코드 필터 값에서 키워드를 한번 더 필터링해서 출력
+        } else {                                                              // 키워드가 있을 시 유저코드 필터 값에서 키워드를 한번 더 필터링해서 출력
             searchRequirementList = searchRequirementList.filter((list) => list.name.includes(keyword));
             setUserInfoList(searchRequirementList);
         }
     }
-    
+
     //******************************* 검색 filter 기능 끝 *********************************//
-    
+
+
+
+
+    //******************************* 회원정보조회 초기화 버튼 시작 *********************************//
+    const [isrefresh, setIsrefresh] = useState(false);
+    const searBoxRefresh = () => {
+        setInOrFo('');
+        setMemberAge('');
+        setKeyword('');
+        setIsrefresh(!isrefresh);
+    }
+    const checkBoxRefresh = () => {
+        setCheckedUsers([]);
+    }
+
+    //******************************* 회원정보조회 초기화 버튼 끝 *********************************//
+
 
 
     return (
@@ -125,23 +129,23 @@ export default function XuserInfoList() {
             <div className='XuserInfoList_searchTitle'>회원 정보 조회</div>
             <div className='XuserInfoList_SearchBox'>
                 <span>내/외국인</span>
-                <select onChange={isInOrFo}>
+                <select value={InOrFo} onChange={isInOrFo}>
                     <option value="">전체</option>
-                    <option value="내국인">내국인</option>
-                    <option value="외국인">외국인</option>
+                    <option value="IN">내국인</option>
+                    <option value="FO">외국인</option>
                 </select>
                 <span>상세분류</span>
-                <select onChange={ismemberAge}>
+                <select value={memberAge} onChange={ismemberAge}>
                     <option value="">전체</option>
-                    <option value="성인">성인</option>
-                    <option value="아동">아동</option>
-                    <option value="65세이상">65세이상</option>
+                    <option value="AD">성인</option>
+                    <option value="KI">아동</option>
+                    <option value="OL">65세이상</option>
                 </select>
                 <span>이름</span>
-                <input onChange={iskeyword} type='search' className='XuserInfoList_SearchBox_input' placeholder='이름 검색' />
+                <input value={keyword} onChange={iskeyword} type='search' className='XuserInfoList_SearchBox_input' placeholder='이름 검색' />
             </div>
             <div className='XBtnResetSearch'>
-                <button>초기화</button>
+                <button onClick={searBoxRefresh}>초기화</button>
                 <button onClick={searchMember}>조회</button>
             </div>
             <div>
@@ -157,11 +161,11 @@ export default function XuserInfoList() {
                 </div>
                 <div>
                     {userInfoList.map((it, index) => (
-                        <XuserInfoListContents key={index} {...it} userDelete={userDelete} />
+                        <XuserInfoListContents key={index} {...it} userDelete={userDelete} isChecked={checkedUsers.includes(it.id)} />
                     ))}
                 </div>
                 <div className='XuserInfoList_UserButton'>
-                    <button>초기화</button>
+                    <button onClick={checkBoxRefresh}>초기화</button>
                     <button onClick={deleteReq}>삭제</button>
                 </div>
             </div>
