@@ -44,14 +44,42 @@ export default function XReantalPlaceNewone() {
     // 이름, 가격 Hook
     const [placeName, setPlaceName] = useState("");
     const [placePrice, setPlacePrice] = useState("");
+    const [placeCount, setPlaceCount] = useState("");
 
     const makePlaceName = (e) => {
         setPlaceName(e);
     }
+    // console.log(placeName);
     
+    const makePlacePrice = (e) => {
+        setPlacePrice(e);
+    }
+    // console.log(placePrice);
+    
+    const makePlaceCount = (e) => {
+        setPlaceCount(e);
+    }
+    // console.log(placeCount);
     
 
+    // 등록 버튼. onClick
+    const spaceInsert = () => {
+        console.log(!placeType);
+        if(placeType){
+            if (placeName) {
+                if(placePrice) {
 
+                    
+                } else{
+                    alert('대관 시설 가격을 입력해주세요. ');
+                }
+            } else{
+                alert('대관 시설명을 입력해주세요. ');
+            }
+        } else {
+            alert('대관 시설 종류를 선택해주세요. ');
+        }
+    }
 
 
     return (
@@ -77,11 +105,17 @@ export default function XReantalPlaceNewone() {
                 <p>시설 가격</p>
                 <input type="text" name='placePrice' id='placePrice' 
                                                 placeholder='숫자를 입력하시오.'
-                                                value={placePrice} ></input>
+                                                value={placePrice}
+                                                onChange={(e) => makePlacePrice(e.target.value)} ></input>
+                <p>시설 자리 수</p>
+                <input type="text" name='placeCount' id='placeCount' 
+                                                placeholder='숫자를 입력하시오.'
+                                                value={placeCount}
+                                                onChange={(e) => makePlaceCount(e.target.value)} ></input>
 
             </div>
             <div className='XBtnInsertPrev'>
-                <button >등록</button>
+                <button name='submit' id='submit' onClick={spaceInsert}>등록</button>
                 <button>목록</button>
             </div>
         </div>
