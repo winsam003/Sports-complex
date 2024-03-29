@@ -12,8 +12,24 @@ import { Link } from 'react-router-dom';
 // import ManagementPage from './ManagementPage';
 
 import { TbUserPlus } from "react-icons/tb";
+import { useState } from 'react';
 
 export default function Header({ checkAdminPage }) {
+
+    const userDataString = sessionStorage.getItem('userData');
+    const userData = JSON.parse(userDataString);
+
+    // const userName = userData && userData.userName ? userData.userName : '';
+
+
+    const [userName, setUserName] = useState(sessionStorage.getItem('userName'));
+    const logout = () => {
+        sessionStorage.clear();
+        setUserName(sessionStorage.getItem('userName'));
+        alert("로그아웃 되었습니다.");
+    }
+    console.log("userName" + userName);
+    console.log("sessionStorage.getItem('userName')" + sessionStorage.getItem('userData'));
 
     return (
 
@@ -21,8 +37,17 @@ export default function Header({ checkAdminPage }) {
             <div>
                 <div className='goHome'><Link to='/'></Link></div>
                 <Link to='/XmanagementPage' className='noneHeader' onClick={checkAdminPage}>관리자 페이지 전환</Link>
-                <Link to='/LoginPage' className='noneHeader'>로그인/로그아웃</Link>
-                <Link to='/JoinPage1' className='Header_join'>회원가입<TbUserPlus className='Header_Icon' /></Link>
+                {true ? 
+                <div>
+                    <Link to='/LoginPage' className='noneHeader'>로그인</Link>
+                    <Link to='/JoinPage1' className='Header_join'>회원가입<TbUserPlus className='Header_Icon' /></Link>
+                </div>
+                :
+                <div>
+                    <span onClick={logout} className='noneHeader logout'>로그아웃</span>
+                    <Link to='/JoinPage1' className='Header_join'>나의정보<TbUserPlus className='Header_Icon' /></Link>
+                </div>
+                }
             </div>
             <div className='Header_clickMenu'>
                 <div className='Header_logo'><Link to="/">홈으로</Link></div>
