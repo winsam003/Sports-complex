@@ -65,7 +65,7 @@ export default function XReantalPlaceNewone() {
     // 이름, 가격 Hook
     const [placeName, setPlaceName] = useState("");
     const [placePrice, setPlacePrice] = useState("");
-    const [placeCount, setPlaceCount] = useState("");
+    const [placeCount, setPlaceCount] = useState();
 
     const makePlaceName = (e) => {
         setPlaceName(e);
@@ -86,11 +86,12 @@ export default function XReantalPlaceNewone() {
     // console.log(placePrice);
     
     const makePlaceCount = (e) => {
-        setPlaceCount(e);
+        // setPlaceCount(countValue);
         setFormPlace({
             ...formPlace, 
-            parkspace: e == '' ? 1 : e
+            parkspace: (e ==='') ? null : e  
         })
+        // 입력하지 않았을 때는 sql 제약조건  default 1 이 적용되었으면 좋겠다. 
         
     }
     // console.log(placeCount);
