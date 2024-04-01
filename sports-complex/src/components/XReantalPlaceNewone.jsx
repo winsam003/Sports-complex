@@ -12,7 +12,7 @@ export default function XReantalPlaceNewone() {
         spacecode: '', 
         spacename: '', 
         spaceprice: '', 
-        parkspace: '' 
+        parkspace: '1' 
     })
     console.log(formPlace);
 

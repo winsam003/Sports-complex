@@ -1,28 +1,36 @@
 import './XBoardSearchResult.css'
+import EventDetail from './EventDetail';
 
-export default function XBoardSearchResult() {
+export default function XBoardSearchResult({eventlist}) {
+
     return (
         <div className='XBoardControllContent_SearchResult_div'>
             {/* 조회결과 index */}
             <div className='XBoardControllContent_SearchResult_index'>
                 <p>선택</p>
                 <p>번호</p>
-                <p>공개여부</p>
                 <p>제목</p>
+                <p>이용시설</p>
+                <p>이용대상</p>
+                <p>이벤트 타입</p>
                 <p>작성일</p>
-                <p>답변여부</p>
                 <p>조회수</p>
             </div>
             {/* 조회결과 */}
-            <div className='XBoardControllContent_SearchResult'>
-                <p><input type='checkbox'></input></p>
-                <p>999999</p>
-                <p>자물쇠</p>
-                <p>공지사항 관리 페이지에서 확인하는 공지글입니다</p>
-                <p>2024.03.21 15:50:25</p>
-                <p>답변 대기</p>
-                <p>9999+</p>
-            </div>
+            {eventlist
+                .map(({eventcode, eventname, eventde, eventfacility, eventtime, eventfor, eventtype, eventcount, eventuploadfile, stfid, eventdate}, index) => (
+                    <div className='XBoardControllContent_SearchResult'>
+                        <p><input type='checkbox' value={eventcode}></input></p>
+                        <p>{eventcode}</p>
+                        <p>{eventname}</p>
+                        <p>{eventfacility}</p>
+                        <p>{eventfor}</p>
+                        <p>{eventtype}</p>
+                        <p>{eventdate}</p>
+                        <p>{eventcount}</p>
+                    </div>
+
+                ))}
         </div>
     )
 }
