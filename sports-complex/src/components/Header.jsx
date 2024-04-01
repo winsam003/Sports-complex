@@ -14,22 +14,14 @@ import { Link } from 'react-router-dom';
 import { TbUserPlus } from "react-icons/tb";
 import { useState } from 'react';
 
-export default function Header({ checkAdminPage }) {
+export default function Header({ checkAdminPage, logout, setUserName, userName }) {
 
-    const userDataString = sessionStorage.getItem('userData');
-    const userData = JSON.parse(userDataString);
-
-    // const userName = userData && userData.userName ? userData.userName : '';
+    
 
 
-    const [userName, setUserName] = useState(sessionStorage.getItem('userName'));
-    const logout = () => {
-        sessionStorage.clear();
-        setUserName(sessionStorage.getItem('userName'));
-        alert("로그아웃 되었습니다.");
-    }
-    console.log("userName" + userName);
-    console.log("sessionStorage.getItem('userName')" + sessionStorage.getItem('userData'));
+
+    console.log("userName="+userName);
+
 
     return (
 
@@ -37,7 +29,7 @@ export default function Header({ checkAdminPage }) {
             <div>
                 <div className='goHome'><Link to='/'></Link></div>
                 <Link to='/XmanagementPage' className='noneHeader' onClick={checkAdminPage}>관리자 페이지 전환</Link>
-                {true ? 
+                {userName==null ? 
                 <div>
                     <Link to='/LoginPage' className='noneHeader'>로그인</Link>
                     <Link to='/JoinPage1' className='Header_join'>회원가입<TbUserPlus className='Header_Icon' /></Link>

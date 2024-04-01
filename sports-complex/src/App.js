@@ -72,12 +72,36 @@ function App() {
   }
 
 
+  let getUserName;
+  let getUserID;
+
+  const [userName, setUserName] = useState(getUserName);
+
+  // 로그인 / 로그아웃
+  const logout = () => {
+    sessionStorage.clear();
+    // setUserName();
+    alert("로그아웃 되었습니다.");
+  }
+  if (sessionStorage.getItem('userData') != null) {
+    const userData = JSON.parse(sessionStorage.getItem('userData'));
+    getUserName = userData.userName;
+    getUserID = userData.userID;
+    setUserName(getUserName);
+  }
+
+  // useEffect() => {
+
+  // ,[]}
+  console.log("app.js username=" + userName);
+
+
 
   return (
     <div>
 
 
-      {isAdminPage ? <Xheader checkAdminPage={checkAdminPage} /> : <Header checkAdminPage={checkAdminPage} />}
+      {isAdminPage ? <Xheader checkAdminPage={checkAdminPage} logout={logout} userName={userName} /> : <Header checkAdminPage={checkAdminPage} />}
 
       <Routes>
         <Route path='/' element={<HomePage />} />
