@@ -35,18 +35,20 @@ export default function XRentalPlaceControll() {
         // console.log("나오나 이거: ");
         axios.post('/space/spacedelete', checkList)
         .then((ss) => {
-            setTest(ss.data);
-            console.log(`ss.data: ${ss.data}`);
-
             // 삭제하면 checkList 배열 비워줘야됨. 
             setCheckList([]);
 
+            setTest(ss.data);
+            console.log(`ss.data: ${ss.data}`);
+            
             // 삭제하고 상태 보내야됨. 
             setRefreshList(prev => !prev);
         }).catch((error) => {
             console.log("Error: ",error);
         })
     }
+
+
     // input select 초기화
     const handleReset = () => {
         // 체크박스 없애주고
