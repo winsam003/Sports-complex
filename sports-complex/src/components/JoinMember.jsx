@@ -233,6 +233,10 @@ export default function JoinMember({ memberType }) {
     const [pw2Message, setPw2Message] = useState('* 동일한 비밀번호를 입력해주시기 바랍니다. ');
     const [pw2check, setPw2check] = useState();
 
+    // carnum 무결성 검사
+    const [carnumMessage, setCarMessage] = useState('* 예) 45가1234 와 같이 전체 차량번호를 띄어쓰기 없이 입력 하여 주시기 바랍니다.');
+    const [carnumCheck, setCarnumCheck] = useState();
+
 
     // 정보 변경 시 값 전달 렌더링 (정보 입력 + 무결성 검사 용도)
     const handleChange = (e) => {
@@ -287,6 +291,26 @@ export default function JoinMember({ memberType }) {
             ...formData, [e.target.name]: e.target.value
         });
     };
+
+    // 차량번호 무결성 검사
+    const updatecarnum = (e) => {
+        const carnumSpecial = /^[0-9ㄱ-ㅎㅏ-ㅣ가-힣]+$/;
+        const carnumValue = e.target.value.trim();
+
+        if (carnumValue.replace(carnumSpecial, '').length === carnumValue.length) {
+            setCarMessage("차량 번호에 특수문자나 영문이 포함될 수 없습니다.");
+            setCarnumCheck(false);
+        } else {
+            setCarMessage("");
+            setCarnumCheck(true);
+
+            setFormData({
+                ...formData,
+                [e.target.name]: e.target.value
+            });
+        }
+
+    };
     // ==========================insert 서버 송신용 form 정보 병합 끝 + 무결성 검사 시작============================//
 
 
@@ -299,7 +323,7 @@ export default function JoinMember({ memberType }) {
         if (memberType === undefined) {
             alert("비정상적인 접근입니다. 다시 진행해주세요.");
             navigate('/');
-        } else if (idcheck && pwcheck && pw2check && phone1check && phone2check) {
+        } else if (idcheck && pwcheck && pw2check && phone1check && phone2check && carnumCheck) {
             axios.post("/member/mjoin", formData
             ).then((response) => {
                 alert(response.data);
@@ -393,8 +417,8 @@ export default function JoinMember({ memberType }) {
                     <tr>
                         <th>차량번호</th>
                         <td>
-                            <input type="text" name='carnum' id='carnum' onChange={handleChange} />
-                            <p>예) 45가1234 와 같이 전체 차량번호를 띄어쓰기 없이 입력 하여 주시기 바랍니다.</p>
+                            <input type="text" name='carnum' id='carnum' onChange={updatecarnum} />
+                            <div className='Message'>{carnumMessage}</div>
                         </td>
                     </tr>
                     <tr>

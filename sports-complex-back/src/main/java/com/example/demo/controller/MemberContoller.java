@@ -107,13 +107,26 @@ public class MemberContoller {
 	@PostMapping(value="/mDetail", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> mDetail(@RequestBody Member entity){
 		
-		log.info(entity);
 		entity = service.MemberOne(entity.getId());
-		log.info(entity);
 		if(entity != null) {
 			return ResponseEntity.status(HttpStatus.OK).body(entity);
 		}else {
 			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(entity);			
+		}
+	}
+	
+	@PostMapping(value="/pwcheck", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> pwcheck(@RequestBody Member entity){
+		
+		log.info(entity.getId());
+		log.info(entity.getPassword());
+		String password = entity.getPassword();
+		entity = service.MemberOne(entity.getId());
+		
+		if(passwordEncoder.matches(password, entity.getPassword())) {
+			return ResponseEntity.status(HttpStatus.OK).body("현재 패스워드와 일치합니다. 패스워드 수정 페이지로 이동합니다.");
+		}else {
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(null);		
 		}
 		
 	}

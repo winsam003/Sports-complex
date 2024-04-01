@@ -1,5 +1,5 @@
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import HomePage from './components/Pages/HomePage';
 import LoginPage from './components/Pages/LoginPage';
@@ -81,10 +81,12 @@ function App() {
 
   // 로그인 / 로그아웃
   const [isLogin, setIsLogin] = useState(false);
+  const navigate = useNavigate();
   const logout = () => {
     sessionStorage.clear();
     setIsLogin(!isLogin);
     alert("로그아웃 되었습니다.");
+    navigate('/');
   }
 
 
@@ -103,7 +105,7 @@ function App() {
     <div>
 
 
-      {isAdminPage ? <Xheader checkAdminPage={checkAdminPage} logout={logout} getUserName={getUserName} /> : <Header checkAdminPage={checkAdminPage} logout={logout} getUserName={getUserName}  />}
+      {isAdminPage ? <Xheader checkAdminPage={checkAdminPage} logout={logout} getUserName={getUserName} /> : <Header checkAdminPage={checkAdminPage} logout={logout} getUserName={getUserName} />}
 
       <Routes>
         <Route path='/' element={<HomePage setLogincheck={setLogincheck} loginCheck={loginCheck} logout={logout} />} />
@@ -115,7 +117,7 @@ function App() {
         <Route path='/BoardPage' element={<BoardPage />} />
         <Route path='/FacilityInformationPage' element={<FacilityInformationPage />} />
         <Route path='/FrequentlyAskedPage' element={<FrequentlyAskedPage />} />
-        <Route path='/LoginPage' element={<LoginPage setLogincheck={setLogincheck} loginCheck={loginCheck }/>} />
+        <Route path='/LoginPage' element={<LoginPage setLogincheck={setLogincheck} loginCheck={loginCheck} />} />
         <Route path='/FindPasswordPage' element={<FindPasswordPage />} />
         <Route path='/FindIDPage' element={<FindIDPage />} />
         <Route path='/Inquiry' element={<Inquiry />} />
@@ -125,7 +127,7 @@ function App() {
         <Route path='/Qna' element={<Qna />} />
         <Route path='/Sugang' element={<Sugang />} />
         <Route path='/ClassSchedulePage' element={<ClassSchedulePage />} />
-        <Route path='/PasswordChangePage' element={<PasswordChangePage />} />
+        <Route path='/PasswordChangePage' element={<PasswordChangePage getUserID={getUserID} />} />
         <Route path='/PasswordChangePage2' element={<PasswordChangePage2 />} />
         <Route path='/ModifyMemberPage' element={<ModifyMemberPage getUserID={getUserID} />} />
         <Route path='/QRCodePage' element={<QRCodePage />} />

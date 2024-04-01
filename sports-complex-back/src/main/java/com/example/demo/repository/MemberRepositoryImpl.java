@@ -92,8 +92,8 @@ public class MemberRepositoryImpl implements MemberRepository{
 	    log.info("mUpdate Repository 접촉 성공");
 
 	    // INSERT 쿼리 작성
-	    String jpql = "INSERT INTO Member (id, membercode, name, birth, phonenum, homenum, address, address1, address2, email, snsagr, emailagr, carnum) " +
-	                  "VALUES (:id, :membercode, :name, :birth, :phonenum, :homenum, :address, :address1, :address2, :email, :snsagr, :emailagr, :carnum)";
+	    String jpql = "UPDATE Member SET membercode = :membercode, name = :name, birth = :birth, phonenum = :phonenum, homenum = :homenum, address = :address, address1 = :address1, address2 = :address2, email = :email, snsagr = :snsagr, emailagr = :emailagr, carnum = :carnum WHERE id = :id";
+
 
 	    // 쿼리 객체 생성
 	    Query query = em.createNativeQuery(jpql);
