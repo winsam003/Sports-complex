@@ -13,5 +13,7 @@ public interface MemberRepository {
 	public int MemberDelete(String[] deleteId);
 	
 	public Member MemberOne(String id);
+	
+	public int mUpdate(Member entity);
 
 }

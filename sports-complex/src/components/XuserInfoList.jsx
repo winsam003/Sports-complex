@@ -71,12 +71,12 @@ export default function XuserInfoList() {
 
     // 내/외국인 저장
     const isInOrFo = (e) => {
-         setInOrFo(e.target.value);
+        setInOrFo(e.target.value);
     }
 
     // 이름 저장
     const ismemberAge = (e) => {
-          setMemberAge(e.target.value);
+        setMemberAge(e.target.value);
     }
 
     // 키워드 저장

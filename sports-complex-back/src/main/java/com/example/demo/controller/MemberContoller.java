@@ -58,6 +58,18 @@ public class MemberContoller {
 	} // mJoin
 	
 	
+	// ** mUpdate
+	@PostMapping(value="/mUpdate", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> mUpdate(@RequestBody Member dto){
+		log.info(dto);		
+		if(service.mUpdate(dto) > 0) {
+			return ResponseEntity.status(HttpStatus.OK).body("회원수정에 성공하였습니다.");
+		}else {
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("회원수정에 실패하였습니다.");			
+		}
+	} // mUpdate
+	
+	
 	// ** mdelete
 	@PostMapping(value="/mdelete", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> mdelete(@RequestBody String[] deleteId){
@@ -90,5 +102,20 @@ public class MemberContoller {
 		}
 		
 	} // mlogin
+	
+	
+	@PostMapping(value="/mDetail", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> mDetail(@RequestBody Member entity){
+		
+		log.info(entity);
+		entity = service.MemberOne(entity.getId());
+		log.info(entity);
+		if(entity != null) {
+			return ResponseEntity.status(HttpStatus.OK).body(entity);
+		}else {
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(entity);			
+		}
+		
+	}
 	
 }
