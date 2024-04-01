@@ -48,13 +48,6 @@ export default function XRentalPlaceSearchResult({checkList, setCheckList, refre
     }
     
 
-    //======================================================================================================================
-    // const searchtypeAndword = (searchData) => {
-    //     console.log(searchData);
-        
-    // }
-
-
     return (
 
 
@@ -84,9 +77,10 @@ export default function XRentalPlaceSearchResult({checkList, setCheckList, refre
                     .map(({ spacecode, spacename, parkspace, parking }, index) => (
                     <div className='XRentalPlaceSearchResult_SearchResult'>
                         <div className='XRentalPlaceSearchResult_SearchResult_input'>
-                            <input type="checkbox"
-                                value={spacecode}
-                                onChange={handleDeletePlace} 
+                            <input checked={checkList.includes(spacecode)} //체크리스트에 담겼다면 .
+                                   type="checkbox"
+                                   value={spacecode}
+                                   onChange={handleDeletePlace} 
                                 />
                         </div>
                         <p>{spacecode}</p>

@@ -12,7 +12,7 @@ export default function XReantalPlaceNewone() {
         spacecode: '', 
         spacename: '', 
         spaceprice: '', 
-        parkspace: '' 
+        parkspace: '1' 
     })
     console.log(formPlace);
 
@@ -20,6 +20,8 @@ export default function XReantalPlaceNewone() {
 
     const [placeType, setPlaceType] = useState("");
     const [spacelist, setSpaceList] = useState([]);
+    const [placeNumber, setPlaceNumber] = useState('');
+
     // 최종 코드 
     const [fullCode, setFullCode] = useState("");
 
@@ -36,20 +38,22 @@ export default function XReantalPlaceNewone() {
             })
     }
 
+    const makePlaceNumber = (e) => {
+        const number = parseInt(e, 10);
+        setPlaceNumber(number);
+    }
+
     useEffect(() => {
-        // placeType 배열에서 찾아서 배열 길이 (갯수) count 에 담기.
-        const count = spacelist.filter(space => space.spacecode.substring(2, 4) === placeType).length;
-        
         console.log("placeType=" + placeType);
-        console.log("count=" + count);
 
         // 시설 기본 코드
         const facilityCode = 'FE';
         // 주차장이면 F 아니면 C 
         let facilityLast = (placeType === 'PA'? 'F' : 'C');
- 
+        console.log(placeNumber);
+        
         // 전체 코드 만들어주기. (기본코드 + 시설 타입 + 번호 + 코트/층)
-        const fullCode = facilityCode + placeType + (count +1) + facilityLast;
+        const fullCode = facilityCode + placeType + placeNumber + facilityLast;
         console.log("fullCode="+fullCode);
         // 담아주기
         setFullCode(fullCode);
@@ -58,14 +62,15 @@ export default function XReantalPlaceNewone() {
             spacecode: fullCode
         })
         
-    }, [spacelist]);
+    }, [spacelist, placeNumber]);
     
     //===============================================================================================
 
     // 이름, 가격 Hook
     const [placeName, setPlaceName] = useState("");
     const [placePrice, setPlacePrice] = useState("");
-    const [placeCount, setPlaceCount] = useState();
+    const [placeCount, setPlaceCount] = useState('');
+
 
     const makePlaceName = (e) => {
         setPlaceName(e);
@@ -86,10 +91,10 @@ export default function XReantalPlaceNewone() {
     // console.log(placePrice);
     
     const makePlaceCount = (e) => {
-        // setPlaceCount(countValue);
+        setPlaceCount(e);
         setFormPlace({
             ...formPlace, 
-            parkspace: (e ==='') ? null : e  
+            parkspace: (e === '' )? 1 : e
         })
         // 입력하지 않았을 때는 sql 제약조건  default 1 이 적용되었으면 좋겠다. 
         
@@ -114,6 +119,10 @@ export default function XReantalPlaceNewone() {
             alert('대관 시설명을 입력해주세요. ');
             return;
         }
+        if(!placeNumber){
+            alert('대관 시설 번호를 입력해주세요. ');
+            return;
+        }
         if(!placePrice){
             alert('대관 시설 가격을 입력해주세요. ');
             return;
@@ -126,6 +135,7 @@ export default function XReantalPlaceNewone() {
             navigate('/XRentalPlaceControllPage');
             
         } ).catch((error) => {
+            alert(`${placeNumber}번 은 이미 있는 시설 번호입니다. 다른 번호를 입력해주세요.`)
             console.error("spaceInsert error : ", error);
         })
 
@@ -152,6 +162,12 @@ export default function XReantalPlaceNewone() {
                                                 placeholder='시설 이름을 입력하세요.'
                                                 value={placeName}
                                                 onChange={(e) => makePlaceName(e.target.value)} ></input>
+
+                <p>시설 번호</p>
+                <input type="number" name='spacenumber' id='spacenumber'
+                                                placeholder='숫자만 입력해주세요.'
+                                                value={placeNumber}
+                                                onChange={(e) => makePlaceNumber(e.target.value)} />
 
                 <p>시설 가격</p>
                 <input type="text" name='spaceprice' id='placePrice' 
