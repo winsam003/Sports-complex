@@ -1,14 +1,12 @@
 package com.example.demo.service;
 
-import java.util.List;
+import java.util.List; 
 
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-import com.example.demo.domain.spaceDTO;
 import com.example.demo.entity.Space;
-//import com.example.demo.repository.SpaceRepositoryImpl;
 import com.example.demo.repository.SpaceRepositoryImpl;
 
 import lombok.RequiredArgsConstructor;
@@ -31,7 +29,7 @@ public class SpaceServiceImpl implements SpaceService{
 	}
 
 	@Override
-	public int SpaceInsert(spaceDTO dto) {
+	public int SpaceInsert(Space dto) {
 		return repository.SpaceInsert(dto);
 	}
 	

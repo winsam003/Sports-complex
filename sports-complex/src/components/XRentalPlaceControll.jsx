@@ -72,12 +72,12 @@ export default function XRentalPlaceControll() {
     });
     
     const handleSearch = (onSearch) => {
-        console.log(onSearch);
+        // console.log(onSearch);
         setSearchPlace(onSearch);
         
     }
     
-    console.log(searchPlace);
+    // console.log(searchPlace);
     
     //====================================================================검색
 
