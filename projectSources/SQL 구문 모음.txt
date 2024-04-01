@@ -397,6 +397,59 @@ CREATE TABLE Event (
 	FOREIGN KEY (stfID) REFERENCES staff(stfID)
 );
 
+*********** 문의게시판
+CREATE TABLE `Qna` (
+	`qaNum` BIGINT NOT NULL COMMENT '식별 가능한 코드',
+	`ID` VARCHAR(15) NOT NULL COMMENT 'PK - 질문하는 회원 아이디 (회원테이블)',
+	`qaTitle` VARCHAR(20) NOT NULL,
+	`qaContent` VARCHAR(1000) NOT NULL COMMENT '게시글의 내용',
+	`qaType` VARCHAR(10) NOT NULL COMMENT '시설문의 , 일반문의, 수강문의',
+	`qaDate` DATE NOT NULL,
+	`qaOpen` BOOLEAN NOT NULL DEFAULT 0 COMMENT '1 - 공개 / 0- 비공개',
+	`qaPassword` INT NOT NULL COMMENT '게시글의 비밀번호',
+	`qaCount` INT NOT NULL DEFAULT 0,
+	`qaFile` VARCHAR(100) NULL COMMENT '첨부파일 명',
+	`qaAnswer` BOOLEAN NULL COMMENT '답변이 존재하면 답변완료',
+	`stfID` VARCHAR(15) NOT NULL,
+	PRIMARY KEY (`qaNum`),
+	FOREIGN KEY (`ID`) REFERENCES `Member`(`ID`),
+	FOREIGN KEY (`stfID`) REFERENCES `Staff`(`stfID`)
+);
+
+************ 문의게시판 insert
+INSERT INTO `Qna` (`ID`, `qaTitle`, `qaContent`, `qaType`, `qaDate`, `qaOpen`, `qaPassword`, `qaCount`, `qaFile`, `qaAnswer`, `stfID`)
+VALUES
+('user1', '질문 제목 1', '질문 내용 1', '시설문의', '2024-04-01', 1, 1234, 0, '첨부파일1.pdf', NULL, 'staff1'),
+('user2', '질문 제목 2', '질문 내용 2', '일반문의', '2024-04-02', 0, 5678, 0, NULL, NULL, 'staff2'),
+('user3', '질문 제목 3', '질문 내용 3', '수강문의', '2024-04-03', 1, 9012, 0, '첨부파일3.docx', NULL, 'staff3'),
+('user4', '질문 제목 4', '질문 내용 4', '시설문의', '2024-04-04', 0, 3456, 0, NULL, NULL, 'staff4'),
+('user5', '질문 제목 5', '질문 내용 5', '일반문의', '2024-04-05', 1, 7890, 0, '첨부파일5.jpg', NULL, 'staff5'),
+('user6', '질문 제목 6', '질문 내용 6', '수강문의', '2024-04-06', 0, 1234, 0, NULL, NULL, 'staff6'),
+('user7', '질문 제목 7', '질문 내용 7', '시설문의', '2024-04-07', 1, 5678, 0, '첨부파일7.png', NULL, 'staff7'),
+('user8', '질문 제목 8', '질문 내용 8', '일반문의', '2024-04-08', 0, 9012, 0, NULL, NULL, 'staff8'),
+('user9', '질문 제목 9', '질문 내용 9', '수강문의', '2024-04-09', 1, 3456, 0, '첨부파일9.doc', NULL, 'staff9'),
+('user10', '질문 제목 10', '질문 내용 10', '시설문의', '2024-04-10', 0, 7890, 0, NULL, NULL, 'staff10'),
+('user11', '질문 제목 11', '질문 내용 11', '일반문의', '2024-04-11', 1, 1234, 0, '첨부파일11.pdf', NULL, 'staff11'),
+('user12', '질문 제목 12', '질문 내용 12', '수강문의', '2024-04-12', 0, 5678, 0, NULL, NULL, 'staff12'),
+('user13', '질문 제목 13', '질문 내용 13', '시설문의', '2024-04-13', 1, 9012, 0, '첨부파일13.jpg', NULL, 'staff13'),
+('user14', '질문 제목 14', '질문 내용 14', '일반문의', '2024-04-14', 0, 3456, 0, NULL, NULL, 'staff14'),
+('user15', '질문 제목 15', '질문 내용 15', '수강문의', '2024-04-15', 1, 7890, 0, '첨부파일15.png', NULL, 'staff15'),
+('user16', '질문 제목 16', '질문 내용 16', '시설문의', '2024-04-16', 0, 1234, 0, NULL, NULL, 'staff16'),
+('user17', '질문 제목 17', '질문 내용 17', '일반문의', '2024-04-17', 1, 5678, 0, '첨부파일17.docx', NULL, 'staff17'),
+('user18', '질문 제목 18', '질문 내용 18', '수강문의', '2024-04-18', 0, 9012, 0, NULL, NULL, 'staff18'),
+('user19', '질문 제목 19', '질문 내용 19', '시설문의', '2024-04-19', 1, 3456, 0, '첨부파일19.pdf', NULL, 'staff19'),
+('user20', '질문 제목 20', '질문 내용 20', '일반문의', '2024-04-20', 0, 7890, 0, NULL, NULL, 'staff20'),
+('user21', '질문 제목 21', '질문 내용 21', '수강문의', '2024-04-21', 1, 1234, 0, '첨부파일21.jpg', NULL, 'staff21'),
+('user22', '질문 제목 22', '질문 내용 22', '시설문의', '2024-04-22', 0, 5678, 0, NULL, NULL, 'staff22'),
+('user23', '질문 제목 23', '질문 내용 23', '일반문의', '2024-04-23', 1, 9012, 0, '첨부파일23.doc', NULL, 'staff23'),
+('user24', '질문 제목 24', '질문 내용 24', '수강문의', '2024-04-24', 0, 3456, 0, NULL, NULL, 'staff24'),
+('user25', '질문 제목 25', '질문 내용 25', '시설문의', '2024-04-25', 1, 7890, 0, '첨부파일25.pdf', NULL, 'staff25'),
+('user26', '질문 제목 26', '질문 내용 26', '일반문의', '2024-04-26', 0, 1234, 0, NULL, NULL, 'staff26'),
+('user27', '질문 제목 27', '질문 내용 27', '수강문의', '2024-04-27', 1, 5678, 0, '첨부파일27.jpg', NULL, 'staff27'),
+('user28', '질문 제목 28', '질문 내용 28', '시설문의', '2024-04-28', 0, 9012, 0, NULL, NULL, 'staff28'),
+('user29', '질문 제목 29', '질문 내용 29', '일반문의', '2024-04-29', 1, 3456, 0, '첨부파일29.png', NULL, 'staff29'),
+('user30', '질문 제목 30', '질문 내용 30', '수강문의', '2024-04-30', 0, 7890, 0, NULL, NULL, 'staff30');
+
 ***insert문 고치기 (미완)
 INSERT INTO Event (eventCode, eventName, eventDetail, eventFacility, eventTime, eventFor, eventType, eventCount, eventUploadfile, stfID) VALUES
 ('EV001', '봄 축제', '즐거운 활동과 엔터테인먼트로 가득한 하루를 함께하세요.', '커뮤니티 센터', '2024-04-15 10:00 AM', '모든 연령', '축제', 200, 'spring_festival.jpg', 'STF001'),

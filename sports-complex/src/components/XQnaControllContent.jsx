@@ -5,6 +5,7 @@ import XResetDeleteBtn from './XBtnResetDelete'
 import Submenu from './Submenu';
 
 export default function XQnaControllContent() {
+
     return (
         <div className='XQnaControllContent_div'>
             <Submenu />

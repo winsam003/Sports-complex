@@ -27,15 +27,22 @@ public class Classes {
 //	강좌명 길이, not null
 	@Column(length = 10, nullable = false)
 	private String clname;
+	@Column
 	private String cltime;
+	@Column
 	private String clendtime;
+	@Column
 	private String clstartdate;
+	@Column
 	private String clenddate;
 //	강좌대상
 	@Column(length = 10, nullable = false)
 	private String clfor;
+	@Column
 	private Integer clcount;
+	@Column
 	private Integer clwating;
+	@Column
 	private Integer clprice;
 //	신청현황
 	@Column(length = 10, nullable = false)
