@@ -3,7 +3,7 @@ import Submenu from './Submenu'
 import BoardDetail from './BoardDetail'
 
 
-// 공지사항
+// 문의게시판 답변하기
 export default function XQnaBoardAnswerContent() {
     return (
         <div className='XQnaBoardAnswerContent_div'>
