@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import java.io.Console; 
+import java.io.Console;  
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.domain.spaceDTO;
 import com.example.demo.entity.Space;
 import com.example.demo.service.SpaceServiceImpl;
 

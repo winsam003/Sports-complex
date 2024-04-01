@@ -24,11 +24,10 @@ export default function XStaffList() {
             });
     });
 
+    // 전직원 불러오기
     useEffect(() => {
         loadStaffList();
     }, []);
-
-    // 전직원 불러오기
 
     // 직원 검색창 초기화하기
     const handleResetSearch = () => {
