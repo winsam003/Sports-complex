@@ -382,6 +382,36 @@ VALUES
 ('FATE7C', '테니스장 7번 코트', 5000, 1, 0);
 
 
+**이벤트 event
+CREATE TABLE Event (
+	eventCode varchar(100) PRIMARY KEY, 
+	eventName varchar(20) NOT NULL,
+	eventDetail varchar(1000) NOT NULL,
+	eventFacility varchar(20) NOT NULL,
+	eventTime varchar(20) NOT NULL,
+	eventFor varchar(5) NOT NULL,
+	eventType varchar(10) NOT NULL,
+	eventCount int NOT NULL,
+	eventUploadfile varchar(100) NULL,
+	stfID varchar(15) NOT NULL,
+	FOREIGN KEY (stfID) REFERENCES staff(stfID)
+);
+
+***insert문 고치기 (미완)
+INSERT INTO Event (eventCode, eventName, eventDetail, eventFacility, eventTime, eventFor, eventType, eventCount, eventUploadfile, stfID) VALUES
+('EV001', '봄 축제', '즐거운 활동과 엔터테인먼트로 가득한 하루를 함께하세요.', '커뮤니티 센터', '2024-04-15 10:00 AM', '모든 연령', '축제', 200, 'spring_festival.jpg', 'STF001'),
+('EV002', '여름 콘서트', '별빛 아래에서 최고의 아티스트들에 의한 라이브 음악 공연을 경험하세요.', '야외 극장', '2024-07-20 오후 7:00', '모든 연령', '콘서트', 500, 'summer_concert.mp4', 'STF002'),
+('EV003', '할로윈 파티', '코스튬 콘테스트와 저주받은 집 투어로 화려한 밤을 준비하세요.', '이벤트 홀', '2024-10-31 오후 8:00', '성인', '파티', 150, 'halloween_party.jpg', 'STF003'),
+('EV004', '어린이 미술 워크샵', '아이들의 예술적 재능을 탐구하는 창조적인 세션.', '미술 스튜디오', '2024-06-05 오후 2:00', '어린이', '워크샵', 30, NULL, 'STF004'),
+('EV005', '피트니스 부트캠프', '전문 트레이너들이 이끄는 강도 높은 운동 세션에 참여하세요.', '야외 공원', '2024-05-10 오전 6:30', '성인', '피트니스', 50, 'fitness_bootcamp.jpg', 'STF005'),
+('EV006', '요리 수업: 이탈리아 요리', '전문 셰프들과 함께 정통 이탈리아 요리를 준비하는 법을 배워보세요.', '요리 스튜디오', '2024-08-12 오후 5:00', '성인', '요리 수업', 20, NULL, 'STF002'),
+('EV007', '자선 기금 모금 갈라', '식사와 경매가 있는 우아한 저녁을 즐기면서 고귀한 목적을 지원하세요.', '그랜드 볼룸', '2024-09-28 오후 7:00', '모든 연령', '기금 모금', 300, 'fundraiser_gala.jpg', 'STF006'),
+('EV008', '기술 엑스포', '주요 기술 기업들로부터 최신 기술과 혁신을 탐험하세요.', '컨벤션 센터', '2024-11-15 오전 9:00', '모든 연령', '엑스포', 400, 'tech_expo.jpg', 'STF007'),
+('EV009', '요가 여행', '요가 전문가들이 이끄는 요가 여행에 참여하세요.', '자연 경관', '2024-06-20 오전 8:00', '성인', '요가', 100, NULL, 'STF008'),
+('EV010', '아동 놀이 시간', '아이들과 함께하는 재미있는 놀이 시간을 즐겨보세요.', '어린이 공원', '2024-07-08 오전 10:00', '아이들', '놀이', 50, NULL, 'STF004');
+
+
+
 
 
 
