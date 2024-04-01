@@ -22,7 +22,7 @@ public class QnaDTO {
 	private String qapassword;
 	private Integer qacount;
 	private String qafile;
-	private Boolean qaanswer;
+	private String qaanswer;
 
 //	join을 위해
 	private Member member;

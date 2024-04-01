@@ -56,7 +56,7 @@ public class Qna {
 	@Transient
 	private MultipartFile qafilef;
 	@Column
-	private Boolean qaanswer;
+	private String qaanswer;
 
 //	한명의 회원은 여러개의 게시글을 쓸 수 있다
 	@ManyToOne

@@ -23,7 +23,7 @@ export default function XQnaSearchResult({ qanum, qaopen, qatype, qatitle, id, q
             {/* 조회결과 */}
             <p><input type='checkbox' checked={isChecked} onChange={handleCheckboxChange} /></p>
             <p>{qanum}</p>
-            <p>{qaopen}</p>
+            <p>{qaopen == '1' ? <img src="/img/Lock.png" className='lockimg' /> : <img src="/img/Unlock.png" className='unlockimg' />}</p>
             <p className='XQnaSearchResult_SearchResult_title'>[{qatype}] {qatitle}</p>
             <p>{id.id}</p>
             <p>{formattedDate}</p>

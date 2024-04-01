@@ -13,3 +13,12 @@
 .XQnaSearchResult_SearchResult .XQnaSearchResult_SearchResult_title {
     justify-content: left;
 }
+
+/* 공개여부 이미지 크기 조절 */
+.lockimg {
+    width: 32px;
+}
+
+.unlockimg {
+    width: 15px;
+}
