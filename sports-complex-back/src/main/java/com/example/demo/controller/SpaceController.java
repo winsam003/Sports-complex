@@ -62,7 +62,7 @@ public class SpaceController {
 	
 	// 등록
 	@PostMapping (value = "/spaceInsert", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> sInsert(@RequestBody spaceDTO dto){
+	public ResponseEntity<?> sInsert(@RequestBody Space dto){
 		if(service.SpaceInsert(dto) > 0) {
 			return ResponseEntity.status(HttpStatus.OK).body("대관 시설 등록 완료. 목록으로 이동.");
 		} else {

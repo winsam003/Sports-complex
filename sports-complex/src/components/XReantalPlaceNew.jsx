@@ -10,7 +10,6 @@ export default function XReantalPlaceNew() {
             <Submenu />
             <div className='XReantalPlaceNew_div_div'>
                 <XReantalPlaceNewone />
-                <XBtnInsertPrev />
             </div>
         </div>
     )

@@ -1,8 +1,7 @@
 package com.example.demo.repository;
 
-import java.util.List;
+import java.util.List; 
 
-import com.example.demo.domain.spaceDTO;
 import com.example.demo.entity.Space;
 
 public interface SpaceRepository{
@@ -11,6 +10,6 @@ public interface SpaceRepository{
 	
 	public int SpaceDelete(String spacecode);
 	
-	public int SpaceInsert(spaceDTO dto);
+	public int SpaceInsert(Space dto);
 	
 }
