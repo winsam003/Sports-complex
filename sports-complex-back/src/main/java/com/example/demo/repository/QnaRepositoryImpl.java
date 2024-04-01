@@ -24,7 +24,7 @@ public class QnaRepositoryImpl implements QnaRepository {
 //	문의 게시글 조회
 	@Override
 	public List<Qna> qnalist() {
-		return em.createQuery("select q from QandA q order by qanum desc", Qna.class).getResultList();
+		return em.createQuery("select q from Qna q order by qanum desc", Qna.class).getResultList();
 	}
 
 //	문의 게시글 등록
@@ -38,16 +38,16 @@ public class QnaRepositoryImpl implements QnaRepository {
 						+ "values (:qatitle, :qacontent, :qatype, :qadate, :qaopen, :qapassword, :qacount, :qafile, :qaanswer, :id, :stfid)")
 				.setParameter("qatitle", dto.getQatitle()).setParameter("qacontent", dto.getQacontent())
 				.setParameter("qatype", dto.getQatype()).setParameter("qadate", dto.getQadate())
-				.setParameter("qaopen", dto.isQaopen()).setParameter("qapassword", dto.getQapassword())
+				.setParameter("qaopen", dto.getQaopen()).setParameter("qapassword", dto.getQapassword())
 				.setParameter("qacount", dto.getQacount()).setParameter("qafile", dto.getQafile())
-				.setParameter("qaanswer", dto.isQaanswer()).setParameter("id", member != null ? member.getId() : null)
+				.setParameter("qaanswer", dto.getQaanswer()).setParameter("id", member != null ? member.getId() : null)
 				.setParameter("stfId", staff != null ? staff.getStfid() : null).executeUpdate();
 	}
 
 //	문의 게시글 삭제
 	@Override
-	public void qnadelete(String qanum) {
-		em.createQuery("delete from Qanda q where q.qanum = :qanum").setParameter("qanum", qanum).executeUpdate();
+	public void qnadelete(Integer qanum) {
+		em.createQuery("delete from Qna q where q.qanum = :qanum").setParameter("qanum", qanum).executeUpdate();
 	}
 
 }

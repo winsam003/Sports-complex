@@ -31,7 +31,7 @@ public class Qna {
 //	PK, AUTO Increment
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long qanum;
+	private Integer qanum;
 	@Column(length = 20, nullable = false)
 	private String qatitle;
 	@Column(nullable = false)
@@ -45,9 +45,9 @@ public class Qna {
 	@Column(nullable = false)
 	private Timestamp qadate;
 	@Column(nullable = false)
-	private boolean qaopen;
+	private Boolean qaopen;
 	@Column(nullable = false)
-	private Integer qapassword;
+	private String qapassword;
 	@Column(nullable = false)
 	private Integer qacount;
 	@Column(length = 100)
@@ -56,7 +56,7 @@ public class Qna {
 	@Transient
 	private MultipartFile qafilef;
 	@Column
-	private boolean qaanswer;
+	private Boolean qaanswer;
 
 //	한명의 회원은 여러개의 게시글을 쓸 수 있다
 	@ManyToOne

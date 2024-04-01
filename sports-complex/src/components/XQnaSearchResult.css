@@ -1,0 +1,15 @@
+.XQnaSearchResult_SearchResult {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 5fr 1fr 2fr 1fr 1fr;
+}
+
+.XQnaSearchResult_SearchResult p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 게시글 정렬 해제 */
+.XQnaSearchResult_SearchResult .XQnaSearchResult_SearchResult_title {
+    justify-content: left;
+}

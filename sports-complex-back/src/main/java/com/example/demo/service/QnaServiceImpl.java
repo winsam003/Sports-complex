@@ -30,7 +30,7 @@ public class QnaServiceImpl implements QnaService {
 
 //	문의 게시글 삭제
 	@Override
-	public void qnadelete(String qanum) {
+	public void qnadelete(Integer qanum) {
 		repository.qnadelete(qanum);
 	}
 

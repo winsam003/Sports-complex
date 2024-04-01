@@ -13,17 +13,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class QnaDTO {
-	private long qanum;
+	private Integer qanum;
 	private String qatitle;
 	private String qacontent;
 	private String qatype;
 	private Date qadate;
-	private boolean qaopen;
-	private Integer qapassword;
+	private Boolean qaopen;
+	private String qapassword;
 	private Integer qacount;
 	private String qafile;
-	private boolean qaanswer;
+	private Boolean qaanswer;
 
+//	join을 위해
 	private Member member;
 	private Staff staff;
 }

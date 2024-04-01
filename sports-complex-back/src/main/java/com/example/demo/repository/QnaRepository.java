@@ -13,5 +13,5 @@ public interface QnaRepository {
 	int qnainsert(QnaDTO dto);
 
 //	문의 게시글 삭제
-	void qnadelete(String qanum);
+	void qnadelete(Integer qanum);
 }
