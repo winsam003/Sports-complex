@@ -3,6 +3,7 @@ import './XuserInfoList.css';
 import XuserInfoListContents from './XuserInfoListContents';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { apiCall } from '../apiService/apiService';
 
 
 export default function XuserInfoList() {
@@ -48,13 +49,19 @@ export default function XuserInfoList() {
     const [rememberList, setRememberList] = useState([]);       // 최초 요청시 리스트 저장
     const [userInfoList, setUserInfoList] = useState([]);       // 출력할 리스트 저장
     useEffect(() => {
-        axios.get('/member/memberList')
-            .then((userList) => {
-                setUserInfoList(userList.data);
-                setRememberList(userList.data);     // 불러온 최초 값 저장
-            }).catch((error) => {
-                console.error("Error fetching member list:", error);
-            });
+
+        let url = "/member/memberList";
+
+
+        console.log(apiCall(url, 'get', null, null));
+
+        apiCall(url, 'get', null, null)
+        .then((userList) => {
+            setUserInfoList(userList);
+            setRememberList(userList);     // 불러온 최초 값 저장
+        }).catch((error) => {
+            console.error("Error fetching member list:", error);
+        });
     }, [deleteRequest])
     //******************************* UserList 불러오기 요청 끝 *********************************//
 

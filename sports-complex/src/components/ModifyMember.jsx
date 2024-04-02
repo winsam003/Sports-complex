@@ -204,7 +204,7 @@ export default function ModifyMember({ getUserID }) {
     const [reset, setReset] = useState(false);
 
     const modifyData = () => {
-        if (phone1check && carnumCheck && phone2check) {
+        if (phone1check && phone2check) {
             axios.post('/member/mUpdate', {
 
                 membercode: userData.membercode,
