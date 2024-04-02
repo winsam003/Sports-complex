@@ -164,7 +164,7 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout }) {
                                 </tr>
                                 <tr className="homeDetail_login">
                                     <td></td>
-                                    <td><input onClick={requestLogin} id='homeDetail_loginbtn' /></td>
+                                    <td><button onClick={requestLogin} id='homeDetail_loginbtn'>로그인</button></td>
                                 </tr>
                             </tbody>
                             <tfoot>
