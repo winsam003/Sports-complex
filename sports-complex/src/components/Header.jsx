@@ -46,7 +46,7 @@ export default function Header({ checkAdminPage, logout, getUserName }) {
                 <Link to='/BoardPage' className='Header_mainHeader Header_Header2'>고객센터</Link>
                 <Link to='/EventBoardPage' className='Header_mainHeader Header_Header3'>정보마당</Link>
                 <Link to='/Sugang' className='Header_mainHeader Header_Header4'>이용신청</Link>
-                <Link to={getUserName == null ? '/LoginPage' : '/ApplicationDetailsPage'}onClick={getUserName == null ? cehckLogin : ''} className='Header_mainHeader Header_Header5'>마이페이지</Link>
+                <Link to={getUserName == null ? '/LoginPage' : '/ApplicationDetailsPage'} onClick={getUserName == null ? cehckLogin : ''} className='Header_mainHeader Header_Header5'>마이페이지</Link>
             </div>
             <div className='Header_mainMenu'>
                 <div>

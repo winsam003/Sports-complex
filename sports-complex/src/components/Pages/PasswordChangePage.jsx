@@ -2,11 +2,11 @@ import PasswordChange from '../PasswordChange';
 import PageBanner from './../PageBanner';
 
 
-export default function PasswordChangePage(){
+export default function PasswordChangePage({ getUserID }){
     return(
         <div>
             <PageBanner />
-            <PasswordChange />
+            <PasswordChange getUserID={getUserID} />
         </div>
     )
 }
