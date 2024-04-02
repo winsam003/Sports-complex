@@ -10,7 +10,7 @@ export default function XFaqControllContent() {
             <Submenu />
             <div className='XFaqControllContent_div_div'>
                 <XFaqSearchBox />
-                <XBoardSearchResult />
+                {/* <XBoardSearchResult /> */}
                 <XResetDeleteBtn />
             </div>
         </div>
