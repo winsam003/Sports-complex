@@ -20,7 +20,7 @@ export default function Submenu() {
     return (
         <div>
             <div className='submenu_div'>
-                {findCurrentPageAll.map((it) => (<Subtitle parameter={it.parameter} page={it.page} currentPage={findCurrentPage[0].page} />))}
+                {findCurrentPageAll.map((it) => (<Subtitle parameter={it.parameter} page={it.page} currentPage={findCurrentPage[0].page} key={it.parameter} />))}
             </div>
         </div>
     )

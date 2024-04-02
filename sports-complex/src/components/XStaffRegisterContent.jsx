@@ -172,56 +172,58 @@ export default function XStaffRegisterContent() {
         <form>
             <table className='XStaffRegisterContent_talbe'>
                 <caption className='XStaffRegisterContent_Caption'>직원 등록</caption>
-                <tr>
-                    <th className='JoinStaff_title'> ID <span className='JoinLecture_star'>*</span></th>
-                    <td>
-                        <input className="XStaffRegisterContent_input" type="text" name='stfid' placeholder='4-12글자 로 입력해주세요.' onChange={handleChange} readOnly={idDuplication ? true : false} />
-                        <button type='button' className='idCheck' onClick={() => { duplication() }}>중복확인</button>
-                        <div className='Message' style={{ color: idMessage === "사용가능한 ID입니다." ? 'black' : 'red' }}>{idMessage}</div>
-                    </td>
-                </tr>
-                <tr>
-                    <th className='JoinStaff_title'> 비밀번호 <span className='JoinLecture_star'>*</span></th>
-                    <td>
-                        <input className="XStaffRegisterContent_input" type="text" name='stfpassword' placeholder='@$!%^*#?&를 포함해 9자리 이상 입력해주세요.' onChange={handleChange} />
-                        <div className='Message'>{pwMessage}</div>
-                    </td>
-                </tr>
-                <tr>
-                    <th className='JoinStaff_title'>소속<span className='JoinLecture_star'>*</span></th>
-                    <td>
-                        <select className='XStaffRegisterContent_select' name="stfdmp" value={staffData.stfdmp} onChange={handleChange}>
-                            <option value="시설">시설</option>
-                            <option value="강좌">강좌</option>
-                            <option value="일반">일반</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <th className='JoinStaff_title'>직위<span className='JoinLecture_star'>*</span></th>
-                    <td>
-                        <select className='XStaffRegisterContent_select' name="stflevel" value={staffData.stflevel} onChange={handleChange}>
-                            <option value="팀장">팀장</option>
-                            <option value="사원">사원</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <th className='JoinStaff_title'> 이름 <span className='JoinLecture_star'>*</span></th>
-                    <td><input className="XStaffRegisterContent_input" type="text" name='stfname' onChange={handleChange} />
-                        <div className='Message'>{nameMessage}</div></td>
-                </tr>
-                <tr>
-                    <th className='JoinStaff_title'>휴대전화<span className='JoinLecture_star'>*</span></th>
-                    <td>
-                        <input className="XStaffRegisterContent_input" type="text" name="stfpnum" placeholder='- 없이 입력해주세요.' onChange={handleChange} />
-                        <div className='Message'>{phoneNumMessage}</div>
-                    </td>
-                </tr>
-                <tr>
-                    <th className='JoinStaff_title'>직원코드</th>
-                    <td><input className="XStaffRegisterContent_input" type="text" value={staffData.stfcode} readOnly /></td>
-                </tr>
+                <tbody>
+                    <tr>
+                        <th className='JoinStaff_title'> ID <span className='JoinLecture_star'>*</span></th>
+                        <td>
+                            <input className="XStaffRegisterContent_input" type="text" name='stfid' placeholder='4-12글자 로 입력해주세요.' onChange={handleChange} readOnly={idDuplication ? true : false} />
+                            <button type='button' className='idCheck' onClick={() => { duplication() }}>중복확인</button>
+                            <div className='Message' style={{ color: idMessage === "사용가능한 ID입니다." ? 'black' : 'red' }}>{idMessage}</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th className='JoinStaff_title'> 비밀번호 <span className='JoinLecture_star'>*</span></th>
+                        <td>
+                            <input className="XStaffRegisterContent_input" type="text" name='stfpassword' placeholder='@$!%^*#?&를 포함해 9자리 이상 입력해주세요.' onChange={handleChange} />
+                            <div className='Message'>{pwMessage}</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th className='JoinStaff_title'>소속<span className='JoinLecture_star'>*</span></th>
+                        <td>
+                            <select className='XStaffRegisterContent_select' name="stfdmp" value={staffData.stfdmp} onChange={handleChange}>
+                                <option value="시설">시설</option>
+                                <option value="강좌">강좌</option>
+                                <option value="일반">일반</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th className='JoinStaff_title'>직위<span className='JoinLecture_star'>*</span></th>
+                        <td>
+                            <select className='XStaffRegisterContent_select' name="stflevel" value={staffData.stflevel} onChange={handleChange}>
+                                <option value="팀장">팀장</option>
+                                <option value="사원">사원</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th className='JoinStaff_title'> 이름 <span className='JoinLecture_star'>*</span></th>
+                        <td><input className="XStaffRegisterContent_input" type="text" name='stfname' onChange={handleChange} />
+                            <div className='Message'>{nameMessage}</div></td>
+                    </tr>
+                    <tr>
+                        <th className='JoinStaff_title'>휴대전화<span className='JoinLecture_star'>*</span></th>
+                        <td>
+                            <input className="XStaffRegisterContent_input" type="text" name="stfpnum" placeholder='- 없이 입력해주세요.' onChange={handleChange} />
+                            <div className='Message'>{phoneNumMessage}</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th className='JoinStaff_title'>직원코드</th>
+                        <td><input className="XStaffRegisterContent_input" type="text" value={staffData.stfcode} readOnly /></td>
+                    </tr>
+                </tbody>
             </table>
             <div className='JoinStaff_submitBox' >
                 <input className="JoinStaff_submitInput" type="button" value={"직원등록"} onClick={joinStaff} />
