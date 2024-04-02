@@ -66,6 +66,15 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout }) {
         getUserName = userData.userName;
         getUserID = userData.userID;
     }
+
+
+    // 비밀번호에서 enter키 누르면 로그인 요청
+    const handleKeypress = (e) => {
+        if (e.key === 'Enter') {
+            requestLogin();
+        }
+    }
+
     // ********************************로그인 끝*************************************//
 
 
@@ -144,7 +153,7 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout }) {
                                 </tr>
                                 <tr>
                                     <th><TbLock className='homeDetail_Icon' /></th>
-                                    <td><input type="password" placeholder='비밀번호를 입력하세요.' onChange={(e) => setPassword(e.target.value)} /></td>
+                                    <td><input type="password" placeholder='비밀번호를 입력하세요.' onChange={(e) => setPassword(e.target.value)} onKeyPress={handleKeypress}/></td>
                                 </tr>
                                 <tr className="homeDetail_login">
                                     <td></td>

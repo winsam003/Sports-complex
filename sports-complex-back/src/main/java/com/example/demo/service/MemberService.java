@@ -15,4 +15,6 @@ public interface MemberService {
 	Member MemberOne(String id);
 	
 	int mUpdate(Member entity);
+	
+	int mPWChange(Member entity);
 }
