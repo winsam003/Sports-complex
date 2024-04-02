@@ -2,19 +2,38 @@ import './XBoardSearchResult.css'
 import './XQnaSearchResult.css'
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export default function XQnaSearchResult({ qanum, qaopen, qapassword, qatype, qatitle, id, qadate, qaanswer, qacount, onToggleCheckbox, isChecked }) {
 
+    // 모달창 팝업 상태
     const [showModal, setShowModal] = useState(false);
+    // 비밀번호 확인
     const [passwordInput, setPasswordInput] = useState('');
     const navigate = useNavigate();
 
+    // axios 데이터 요청
+    const fetchQnaData = async (qanum) => {
+        try {
+            const response = await axios.get(`/qna/qnadetail/${qanum}`); // 이 부분은 실제 API 엔드포인트에 따라 수정해야 합니다.
+            return response.data;
+        } catch (error) {
+            console.error('Error fetching QnA data:', error);
+            throw error;
+        }
+    };
+
     // 비밀글 여부 확인
-    const handleQnaResultClick = () => {
+    const handleQnaResultClick = async () => {
         if (qaopen == '1') {
             setShowModal(true);
         } else {
-            navigate(`/XQnaBoardAnswerPage/${qanum}`);
+            try {
+                const qnaData = await fetchQnaData(qanum);
+                navigate(`/XQnaBoardAnswerPage/${qanum}`, { state: { qnaData } });
+            } catch (error) {
+                console.log('Error fetching QnA data : ', error);
+            }
         }
     };
 
