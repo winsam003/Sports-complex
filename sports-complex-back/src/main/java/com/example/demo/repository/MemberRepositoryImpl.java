@@ -116,4 +116,16 @@ public class MemberRepositoryImpl implements MemberRepository{
 	    // 쿼리 실행 및 결과 반환
 	    return query.executeUpdate();
 	}
+	
+	
+	@Override
+	public int mPWChange(Member entity) {
+		log.info("mPWChange Repository 접촉 성공");
+		
+		Query query = em.createQuery("UPDATE Member SET password = :password WHERE id = :id");
+		query.setParameter("password", entity.getPassword());
+		query.setParameter("id", entity.getId());
+		
+		return query.executeUpdate();
+	}
 }

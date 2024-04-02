@@ -1,6 +1,6 @@
 import './App.css';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import HomePage from './components/Pages/HomePage';
 import LoginPage from './components/Pages/LoginPage';
 import FindIDPage from './components/Pages/FindIDPage';
@@ -60,9 +60,14 @@ import Footer from './components/Footer';
 import Xheader from './components/Xheader';
 import Header from './components/Header';
 
-import axios from "axios";
-
 function App() {
+
+
+
+  useEffect(() => {
+    navigate('/');
+  }, [])
+
 
   // admin 모드, 사용자 모드를 확인하고 header를 바꿔주기 위한 hook
   const [isAdminPage, setIsAdminPage] = useState(false);
@@ -74,10 +79,6 @@ function App() {
 
   const [loginCheck, setLogincheck] = useState(false);
 
-  const loginHandler = () => {
-    setLogincheck(!loginCheck);
-  }
-
 
   // 로그인 / 로그아웃
   const [isLogin, setIsLogin] = useState(false);
@@ -88,8 +89,6 @@ function App() {
     alert("로그아웃 되었습니다.");
     navigate('/');
   }
-
-
 
   let getUserName;
   let getUserID;
