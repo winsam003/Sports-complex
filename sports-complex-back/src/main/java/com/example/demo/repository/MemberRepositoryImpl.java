@@ -86,4 +86,34 @@ public class MemberRepositoryImpl implements MemberRepository{
 				.setParameter("id", id)
 				.getSingleResult();
 	}
+	
+	@Override
+	public int mUpdate(Member entity) {
+	    log.info("mUpdate Repository 접촉 성공");
+
+	    // INSERT 쿼리 작성
+	    String jpql = "UPDATE Member SET membercode = :membercode, name = :name, birth = :birth, phonenum = :phonenum, homenum = :homenum, address = :address, address1 = :address1, address2 = :address2, email = :email, snsagr = :snsagr, emailagr = :emailagr, carnum = :carnum WHERE id = :id";
+
+
+	    // 쿼리 객체 생성
+	    Query query = em.createNativeQuery(jpql);
+	    
+	    // 파라미터 설정
+	    query.setParameter("id", entity.getId());
+	    query.setParameter("membercode", entity.getMembercode());
+	    query.setParameter("name", entity.getName());
+	    query.setParameter("birth", entity.getBirth());
+	    query.setParameter("phonenum", entity.getPhonenum());
+	    query.setParameter("homenum", entity.getHomenum());
+	    query.setParameter("address", entity.getAddress());
+	    query.setParameter("address1", entity.getAddress1());
+	    query.setParameter("address2", entity.getAddress2());
+	    query.setParameter("email", entity.getEmail());
+	    query.setParameter("snsagr", entity.isSnsagr());
+	    query.setParameter("emailagr", entity.isEmailagr());
+	    query.setParameter("carnum", entity.getCarnum());
+	    
+	    // 쿼리 실행 및 결과 반환
+	    return query.executeUpdate();
+	}
 }

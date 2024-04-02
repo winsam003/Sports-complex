@@ -44,4 +44,10 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return repository.MemberOne(id);
 	}
+	
+	@Override
+	public int mUpdate(Member entity) {
+		// TODO Auto-generated method stub
+		return repository.mUpdate(entity);
+	}
 }

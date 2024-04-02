@@ -1,5 +1,5 @@
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import HomePage from './components/Pages/HomePage';
 import LoginPage from './components/Pages/LoginPage';
@@ -72,15 +72,43 @@ function App() {
   }
 
 
+  const [loginCheck, setLogincheck] = useState(false);
+
+  const loginHandler = () => {
+    setLogincheck(!loginCheck);
+  }
+
+
+  // 로그인 / 로그아웃
+  const [isLogin, setIsLogin] = useState(false);
+  const navigate = useNavigate();
+  const logout = () => {
+    sessionStorage.clear();
+    setIsLogin(!isLogin);
+    alert("로그아웃 되었습니다.");
+    navigate('/');
+  }
+
+
+
+  let getUserName;
+  let getUserID;
+
+
+  if (sessionStorage.getItem('userData') != null) {
+    const userData = JSON.parse(sessionStorage.getItem('userData'));
+    getUserName = userData.userName;
+    getUserID = userData.userID;
+  }
 
   return (
     <div>
 
 
-      {isAdminPage ? <Xheader checkAdminPage={checkAdminPage} /> : <Header checkAdminPage={checkAdminPage} />}
+      {isAdminPage ? <Xheader checkAdminPage={checkAdminPage} logout={logout} getUserName={getUserName} /> : <Header checkAdminPage={checkAdminPage} logout={logout} getUserName={getUserName} />}
 
       <Routes>
-        <Route path='/' element={<HomePage />} />
+        <Route path='/' element={<HomePage setLogincheck={setLogincheck} loginCheck={loginCheck} logout={logout} />} />
         <Route path='/JoinPage1' element={<JoinPage1 />} />
         <Route path='/JoinPage1' element={<JoinPage1 />} />
         <Route path='/JoinPage2' element={<JoinPage2 />} />
@@ -89,7 +117,7 @@ function App() {
         <Route path='/BoardPage' element={<BoardPage />} />
         <Route path='/FacilityInformationPage' element={<FacilityInformationPage />} />
         <Route path='/FrequentlyAskedPage' element={<FrequentlyAskedPage />} />
-        <Route path='/LoginPage' element={<LoginPage />} />
+        <Route path='/LoginPage' element={<LoginPage setLogincheck={setLogincheck} loginCheck={loginCheck} />} />
         <Route path='/FindPasswordPage' element={<FindPasswordPage />} />
         <Route path='/FindIDPage' element={<FindIDPage />} />
         <Route path='/Inquiry' element={<Inquiry />} />
@@ -99,9 +127,9 @@ function App() {
         <Route path='/Qna' element={<Qna />} />
         <Route path='/Sugang' element={<Sugang />} />
         <Route path='/ClassSchedulePage' element={<ClassSchedulePage />} />
-        <Route path='/PasswordChangePage' element={<PasswordChangePage />} />
+        <Route path='/PasswordChangePage' element={<PasswordChangePage getUserID={getUserID} />} />
         <Route path='/PasswordChangePage2' element={<PasswordChangePage2 />} />
-        <Route path='/ModifyMemberPage' element={<ModifyMemberPage />} />
+        <Route path='/ModifyMemberPage' element={<ModifyMemberPage getUserID={getUserID} />} />
         <Route path='/QRCodePage' element={<QRCodePage />} />
         <Route path='/PlaceRentalInfo' element={<PlaceRentalInfo />} />
         <Route path='/PlaceRental' element={<PlaceRental />} />

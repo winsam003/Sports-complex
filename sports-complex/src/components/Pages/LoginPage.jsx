@@ -1,11 +1,11 @@
 import Login from '../Login';
 import PageBanner from '../PageBanner';
 
-export default function LoginPage() {
+export default function LoginPage({ setLogincheck, loginCheck }) {
     return (
         <div>
             <PageBanner />
-            <Login />
+            <Login setLogincheck={setLogincheck} loginCheck={loginCheck} />
         </div>
     )
 }

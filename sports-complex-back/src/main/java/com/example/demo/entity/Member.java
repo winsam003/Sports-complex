@@ -23,7 +23,7 @@ public class Member {
 	private String id;
 	private String membercode;
 	private String name;
-	@Column
+	@Column(updatable = false)
 	private String password;
 	private String birth;
 	private String phonenum;
@@ -35,6 +35,7 @@ public class Member {
 	private boolean snsagr;
 	private boolean emailagr;
 	private String carnum;
+	@Column(updatable = false)
 	private Date parkuse;
 	
 }
