@@ -15,7 +15,7 @@ export default function XQnaSearchResult({ qanum, qaopen, qapassword, qatype, qa
     // axios 데이터 요청
     const fetchQnaData = async (qanum) => {
         try {
-            const response = await axios.get(`/qna/qnadetail/${qanum}`); // 이 부분은 실제 API 엔드포인트에 따라 수정해야 합니다.
+            const response = await axios.get(`/qna/qnadetail/${qanum}`);
             return response.data;
         } catch (error) {
             console.error('Error fetching QnA data:', error);
@@ -30,7 +30,7 @@ export default function XQnaSearchResult({ qanum, qaopen, qapassword, qatype, qa
         } else {
             try {
                 const qnaData = await fetchQnaData(qanum);
-                navigate(`/XQnaBoardAnswerPage/${qanum}`, { state: { qnaData } });
+                navigate(`/XQnaBoardAnswerPage`, { state: { qnaData } });
             } catch (error) {
                 console.log('Error fetching QnA data : ', error);
             }

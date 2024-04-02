@@ -157,7 +157,7 @@ function App() {
         <Route path='/XlecturerRegisterPage' element={<XlecturerRegisterPage />} />
         <Route path='/XParkingControllPage' element={<XParkingControllPage />} />
         <Route path='/XlectureInfoPage' element={<XlectureInfoPage />} />
-        <Route path='XNewClassUploadPage' element={<XNewClassUploadPage />} />
+        <Route path='/XNewClassUploadPage' element={<XNewClassUploadPage />} />
         <Route path='/XSugangRequestPage' element={<XSugangRequestPage />} />
         <Route path='/XRentalPlaceRequestControllPage' element={<XRentalPlaceRequestControllPage />} />
         <Route path='/XStaffInfoPage' element={<XStaffInfoPage />} />

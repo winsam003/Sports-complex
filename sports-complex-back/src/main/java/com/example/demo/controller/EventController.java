@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,6 +37,24 @@ public class EventController {
 		}
 	}
 	
+	// 이벤트 삭제
+	public ResponseEntity<?> eDelete(@RequestBody List<Integer> eventCodes ) {
+		log.info("deleteTEST");	
+		log.info(eventCodes);
+		
+		int deleteCount = 0;
+		for( Integer eventCode : eventCodes) {
+			int result = service.EventDelete(eventCode);
+			if(result > 0) {
+				deleteCount++;
+			}
+		}		
+		if(deleteCount > 0) {
+			return ResponseEntity.status(HttpStatus.OK).body(deleteCount + "개 이벤트 항목 삭제");
+		} else {
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("삭제할 이벤트 게시물이 없습니다.");
+		}		
+	}
 	
 	
 	

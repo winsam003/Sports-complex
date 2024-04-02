@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,14 +34,29 @@ public class QnaController {
 		return service.qnalist();
 	}
 
-//	문의게시글 답변등록
+//	문의게시글 상세 페이지
+	@GetMapping("/qnadetail/{qanum}")
+	public Qna qnaDetail(@PathVariable("qanum") Integer qanum) {
+		return service.qnadetail(qanum);
+	}
+
+//	문의게시글 등록
 	@PostMapping("/qnaInsert")
 	public ResponseEntity<?> qnaInsert(@RequestBody QnaDTO dto) {
-		dto.setQapassword(passwordEncoder.encode(dto.getQapassword()));
 		if (service.qnainsert(dto) > 0) {
-			return ResponseEntity.status(HttpStatus.OK).body("직원 등록에 성공하셨습니다.");
+			return ResponseEntity.status(HttpStatus.OK).body("문의게시글 등록에 성공하셨습니다.");
 		} else {
-			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("직원 등록에 실패하였습니다.");
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("문의게시글 등록에 실패하였습니다.");
+		}
+	}
+
+//	문의게시글 등록
+	@PostMapping("/qnaReplyInsert")
+	public ResponseEntity<?> qnaReplyInsert(@RequestBody QnaDTO dto) {
+		if (service.qnainsert(dto) > 0) {
+			return ResponseEntity.status(HttpStatus.OK).body("문의게시글 답변 등록에 성공하셨습니다.");
+		} else {
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("문의게시글 답변 등록에 실패하였습니다.");
 		}
 	}
 

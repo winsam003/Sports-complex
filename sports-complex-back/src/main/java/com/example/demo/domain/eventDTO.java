@@ -19,9 +19,8 @@ public class eventDTO {
 	public String eventfor;
 	public String eventtype;
 	public int eventcount;
-	public String eventuploadfile;
+	public String eventuploadfile; 
 	public String stfid;
-//	public Timestamp eventdate;
 	public Date eventdate;
 	
 	

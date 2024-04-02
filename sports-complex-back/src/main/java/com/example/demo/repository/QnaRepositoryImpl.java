@@ -3,6 +3,7 @@ package com.example.demo.repository;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
@@ -27,6 +28,17 @@ public class QnaRepositoryImpl implements QnaRepository {
 		return em.createQuery("select q from Qna q order by qanum desc", Qna.class).getResultList();
 	}
 
+//	문의 게시글 상세 페이지
+	@Override
+	public Qna qnadetail(int qanum) {
+		try {
+			return em.createQuery("select q from Qna q where q.qanum = :qanum", Qna.class).setParameter("qanum", qanum)
+					.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
+
 //	문의 게시글 등록
 	@Override
 	public int qnainsert(QnaDTO dto) {
@@ -42,6 +54,11 @@ public class QnaRepositoryImpl implements QnaRepository {
 				.setParameter("qacount", dto.getQacount()).setParameter("qafile", dto.getQafile())
 				.setParameter("qaanswer", dto.getQaanswer()).setParameter("id", member != null ? member.getId() : null)
 				.setParameter("stfId", staff != null ? staff.getStfid() : null).executeUpdate();
+	}
+
+//	문의 게시글 답변 등록
+	public int qnareplyinsert(QnaDTO dto) {
+		return 1;
 	}
 
 //	문의 게시글 삭제
