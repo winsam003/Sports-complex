@@ -32,10 +32,10 @@ export default function Login({ setLogincheck, loginCheck }) {
             })
     }
 
-    
+
 
     const handleKeypress = (e) => {
-        if(e.key === 'Enter'){
+        if (e.key === 'Enter') {
             requestLogin();
         }
     }
@@ -51,15 +51,15 @@ export default function Login({ setLogincheck, loginCheck }) {
                 <div className="login_Box">
                     <div>
                         <span><TbUser className='login_Icon' /></span>
-                        <input type="text" name="id" id="id" size={"50"} placeholder="아이디를 입력해주세요. " onChange={(e) => setId(e.target.value)} />
+                        <input type="text" name="id" id="id" size={"50"} placeholder="아이디를 입력해주세요. " value={id} onChange={(e) => setId(e.target.value)} />
                     </div>
                     <div>
                         <span><TbLock className='login_Icon' /></span>
-                        <input type="password" name="password" id="password" size={"50"} placeholder="비밀번호를 입력해주세요." onChange={(e) => setPassword(e.target.value)} onKeyPress={handleKeypress} />
+                        <input type="password" name="password" id="password" size={"50"} placeholder="비밀번호를 입력해주세요." value={password} onChange={(e) => setPassword(e.target.value)} onKeyPress={handleKeypress} />
                     </div>
                     <div className="login_submitAndReset">
                         <span><TbKeyframe className='login_Icon' id="login_iconnone" /></span>
-                        <input onClick={requestLogin} value={"로그인"} /> &nbsp;&nbsp;
+                        <input type="button" onClick={requestLogin} value={"로그인"} /> &nbsp;&nbsp;
                         <input type="reset" value={"초기화"} />
                     </div>
                     <div>
