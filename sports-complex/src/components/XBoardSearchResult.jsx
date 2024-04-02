@@ -20,10 +20,10 @@ export default function XBoardSearchResult({eventlist, searchEvent}) {
             </div>
             {/* 조회결과 */}
             {eventlist
-                .filter(event => {
-                    return (searchEvent.searchType ==='' || event[searchEvent.searchType] )
-                    && (searchEvent.searchType ==='' || event[searchEvent.searchType].includes(searchEvent.searchKeyWord)) 
-                })
+                // .filter(event => {
+                //     return (searchEvent.searchType ==='' || event[searchEvent.searchType] )
+                //     && (searchEvent.searchType ==='' || event[searchEvent.searchType].includes(searchEvent.searchKeyWord)) 
+                // })
                 .map(({eventcode, eventname, eventdetail, eventfacility, eventtime, eventfor, eventtype, eventcount, eventuploadfile, stfid, eventdate}, index) => (
                     <div className='XBoardControllContent_SearchResult'>
                         <p><input type='checkbox' value={eventcode}></input></p>

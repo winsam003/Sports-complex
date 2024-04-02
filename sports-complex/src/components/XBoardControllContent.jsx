@@ -10,7 +10,7 @@ export default function XBoardControllContent() {
             <Submenu />
             <div className='XBoardControllContent_div_div'>
                 <XBoardSearchBox />
-                <XBoardSearchResult />
+                {/* <XBoardSearchResult /> */}
                 <XResetDeleteBtn />
             </div>
         </div>
