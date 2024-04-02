@@ -70,88 +70,88 @@ export default function InquiryRegistration() {
                 <div className='InquiryRegistration_form'>
                     <form action="/" method='post'>
                         <table>
-                            <tr>
-                                <th>작성자 <span className='star'>*</span></th>
-                                <td><input type="text" name='name' id='name' placeholder='본인인증에서 가져오기' readOnly /></td>
-                            </tr>
-                            <tr>
-                                <th>공개/비공개 <span className='star'>*</span></th>
-                                <td>
-                                    <input type="radio" id='open' name='openOrPrivate' value={'open'} />
-                                    <label htmlFor="open">공개</label>
-                                    <input type="radio" id='private' name='openOrPrivate' value={'private'} />
-                                    <label htmlFor="private">비공개</label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>연락처 <span className='star'>*</span></th>
-                                <td>
-                                    <input type="text" name='phoneNum' id='phoneNum' />
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>이메일</th>
-                                <td>
-                                    <input type="text" name='email' id='email' />
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>민원종류</th>
-                                <td>
-                                    <input type="radio" id='unfriendly' name='InqueryType' value={'unfriendly'} />
-                                    <label htmlFor="unfriendly">불친절</label>
-                                    <input type="radio" id='proposal' name='InqueryType' value={'proposal'} />
-                                    <label htmlFor="proposal">진정, 건의</label>
-                                    <input type="radio" id='question' name='InqueryType' value={'question'} />
-                                    <label htmlFor="question">단순질의</label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>이용시설</th>
-                                <td>
-                                    <select name="facilityUsed" id="InquiryRegistration_facilityUsed">
-                                        {/* value 값 넣어야 됨. */}
-                                        <option value="df">선택하세요</option>
-                                        <option value="">종합운동장</option>
-                                        <option value="">수강 신청 문의</option>
-                                        <option value="">경기 신청 문의</option>
-                                        <option value="">대관 문의</option>
-                                        <option value="">주차</option>
-                                        <option value="">편의시설</option>
-                                        <option value="">기타 문의</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>비밀번호 <span className='star'>*</span></th>
-                                <td>
-                                    <input type="password" name='password' id='password' />
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>제목 <span className='star'>*</span></th>
-                                <td>
-                                    <input type="text" name='title' id='title' />
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>내용 <span className='star'>*</span></th>
-                                <td>
-                                    <input type="text" name='content' id='content' />
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>첨부파일</th>
-                                <td className='InquiryRegistration_upload'>
-                                    <input className='test' type="file" name='uploadfilef' id='uploadfilef' />
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>작성일</th>
-                                <td>자바스크립트로 실시간 날짜, 시간 넣기. </td>
-                            </tr>
-
-
+                            <tbody>
+                                <tr>
+                                    <th>작성자 <span className='star'>*</span></th>
+                                    <td><input type="text" name='name' id='name' placeholder='본인인증에서 가져오기' readOnly /></td>
+                                </tr>
+                                <tr>
+                                    <th>공개/비공개 <span className='star'>*</span></th>
+                                    <td>
+                                        <input type="radio" id='open' name='openOrPrivate' value={'open'} />
+                                        <label htmlFor="open">공개</label>
+                                        <input type="radio" id='private' name='openOrPrivate' value={'private'} />
+                                        <label htmlFor="private">비공개</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>연락처 <span className='star'>*</span></th>
+                                    <td>
+                                        <input type="text" name='phoneNum' id='phoneNum' />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>이메일</th>
+                                    <td>
+                                        <input type="text" name='email' id='email' />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>민원종류</th>
+                                    <td>
+                                        <input type="radio" id='unfriendly' name='InqueryType' value={'unfriendly'} />
+                                        <label htmlFor="unfriendly">불친절</label>
+                                        <input type="radio" id='proposal' name='InqueryType' value={'proposal'} />
+                                        <label htmlFor="proposal">진정, 건의</label>
+                                        <input type="radio" id='question' name='InqueryType' value={'question'} />
+                                        <label htmlFor="question">단순질의</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>이용시설</th>
+                                    <td>
+                                        <select name="facilityUsed" id="InquiryRegistration_facilityUsed">
+                                            {/* value 값 넣어야 됨. */}
+                                            <option value="df">선택하세요</option>
+                                            <option value="">종합운동장</option>
+                                            <option value="">수강 신청 문의</option>
+                                            <option value="">경기 신청 문의</option>
+                                            <option value="">대관 문의</option>
+                                            <option value="">주차</option>
+                                            <option value="">편의시설</option>
+                                            <option value="">기타 문의</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>비밀번호 <span className='star'>*</span></th>
+                                    <td>
+                                        <input type="password" name='password' id='password' />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>제목 <span className='star'>*</span></th>
+                                    <td>
+                                        <input type="text" name='title' id='title' />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>내용 <span className='star'>*</span></th>
+                                    <td>
+                                        <input type="text" name='content' id='content' />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>첨부파일</th>
+                                    <td className='InquiryRegistration_upload'>
+                                        <input className='test' type="file" name='uploadfilef' id='uploadfilef' />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>작성일</th>
+                                    <td>자바스크립트로 실시간 날짜, 시간 넣기. </td>
+                                </tr>
+                            </tbody>
                         </table>
                     </form>
                 </div>

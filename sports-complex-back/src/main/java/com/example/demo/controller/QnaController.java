@@ -33,6 +33,7 @@ public class QnaController {
 		return service.qnalist();
 	}
 
+//	문의게시글 답변등록
 	@PostMapping("/qnaInsert")
 	public ResponseEntity<?> qnaInsert(@RequestBody QnaDTO dto) {
 		dto.setQapassword(passwordEncoder.encode(dto.getQapassword()));
@@ -43,6 +44,7 @@ public class QnaController {
 		}
 	}
 
+//	문의게시글 삭제
 	@GetMapping("/qnaDelete")
 	public String staffDelete(@RequestParam("qanum") List<Integer> qanumList) {
 		try {
@@ -52,7 +54,7 @@ public class QnaController {
 				System.out.println(" 삭제 성공 => " + qanum);
 			}
 		} catch (Exception e) {
-			System.out.println(" Delete Excpetion => " + e.toString());
+			System.out.println(" QnA Delete Excpetion => " + e.toString());
 		}
 		return "redirect:staff";
 	}

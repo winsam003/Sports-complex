@@ -2,7 +2,7 @@ import './XRentalPlaceSearchResult.css'
 import axios from 'axios';
 import { useEffect, useState } from 'react'
 
-export default function XRentalPlaceSearchResult({checkList, setCheckList, refreshList, inputReset, setInputReset, handleReset, searchPlace}) {
+export default function XRentalPlaceSearchResult({ checkList, setCheckList, refreshList, inputReset, setInputReset, handleReset, searchPlace }) {
 
     // 리스트 출력
     const [spacelist, setSpaceList] = useState([]);
@@ -10,14 +10,14 @@ export default function XRentalPlaceSearchResult({checkList, setCheckList, refre
     useEffect(() => {
         fetchSpaceList();
     }, [refreshList]);
-    
-    const fetchSpaceList = () =>{
+
+    const fetchSpaceList = () => {
         axios.get('/space/spacelist')
             .then((list) => {
 
                 setSpaceList(list.data);
-                console.log(`list.data: ${list.data}`);    
-    
+                console.log(`list.data: ${list.data}`);
+
             }).catch((error) => {
                 console.log("Error: ", error);
             })
@@ -46,7 +46,7 @@ export default function XRentalPlaceSearchResult({checkList, setCheckList, refre
     const handleSelectedChange = (selectedList) => {
         setCheckList(selectedList);
     }
-    
+
 
     return (
 
@@ -68,27 +68,27 @@ export default function XRentalPlaceSearchResult({checkList, setCheckList, refre
                         return ((
                             (searchPlace.mainCategory === (space.spacecode.substring(2, 4) === 'PA' ? '주차장' : '경기장')) || searchPlace.mainCategory === '전체'
                         ) && (
-                            searchPlace.subCategory === '전체' || (space.spacename).includes(searchPlace.subCategory)
+                                searchPlace.subCategory === '전체' || (space.spacename).includes(searchPlace.subCategory)
 
-                        ) && (
-                            searchPlace.searchValue ==='' || space.spacename.includes(searchPlace.searchValue) 
-                        ))
+                            ) && (
+                                searchPlace.searchValue === '' || space.spacename.includes(searchPlace.searchValue)
+                            ))
                     })
                     .map(({ spacecode, spacename, parkspace, parking }, index) => (
-                    <div className='XRentalPlaceSearchResult_SearchResult'>
-                        <div className='XRentalPlaceSearchResult_SearchResult_input'>
-                            <input checked={checkList.includes(spacecode)} //체크리스트에 담겼다면 .
-                                   type="checkbox"
-                                   value={spacecode}
-                                   onChange={handleDeletePlace} 
+                        <div key={spacecode} className='XRentalPlaceSearchResult_SearchResult'>
+                            <div className='XRentalPlaceSearchResult_SearchResult_input'>
+                                <input checked={checkList.includes(spacecode)} //체크리스트에 담겼다면 .
+                                    type="checkbox"
+                                    value={spacecode}
+                                    onChange={handleDeletePlace}
                                 />
+                            </div>
+                            <p>{spacecode}</p>
+                            <p>{spacecode.substring(2, 4) === 'PA' ? '주차장' : '경기장'}</p>
+                            <p>{spacename}</p>
+                            <p>{parkspace - parking == 0 ? '대관 불가' : '가능'}</p>
                         </div>
-                        <p>{spacecode}</p>
-                        <p>{spacecode.substring(2, 4) === 'PA' ? '주차장' : '경기장'}</p>
-                        <p>{spacename}</p>
-                        <p>{parkspace - parking == 0 ? '대관 불가' : '가능'}</p>
-                    </div>
-                ))}
+                    ))}
             </div>
         </div>
     )
