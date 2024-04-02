@@ -108,22 +108,22 @@ export default function XmainEvent() {
             "eventName" : "-",
             "eventFacility" : "-"
         },
-        {
-            "bannerNum" : "-",
-            "eventCode" : "-",
-            "bannerImage" : "img/noImage.jpg",
+        // {
+        //     "bannerNum" : "-",
+        //     "eventCode" : "-",
+        //     "bannerImage" : "img/noImage.jpg",
 
-            "eventName" : "-",
-            "eventFacility" : "-"
-        },
-        {
-            "bannerNum" : "-",
-            "eventCode" : "-",
-            "bannerImage" : "img/noImage.jpg",
+        //     "eventName" : "-",
+        //     "eventFacility" : "-"
+        // },
+        // {
+        //     "bannerNum" : "-",
+        //     "eventCode" : "-",
+        //     "bannerImage" : "img/noImage.jpg",
 
-            "eventName" : "-",
-            "eventFacility" : "-"
-        },
+        //     "eventName" : "-",
+        //     "eventFacility" : "-"
+        // },
     ]
 
 
@@ -145,12 +145,10 @@ export default function XmainEvent() {
                 <div className='XmainEvent_listTitle'>이벤트 게시물 목록 </div>
                 < XeventList insertMainPic={insertMainPic} data={data} />
                 <div className='XmainEvent_upload'>
-                    <form action="post">
-                        <input type="file" />
-                        <input type="submit" value={'제출'} 
-                        // onClick={'insertMainPic'} 
-                        />
-                    </form>
+                    <input type="file" />
+                    <input type="submit" value={'제출'} 
+                    // onClick={'insertMainPic'} 
+                    />
                 </div>
                 <div className='XmainEvent_listTitle'>홈 배너 광고 리스트 </div>
                 <XhomeBannerEventList data2={data2} />
@@ -161,7 +159,7 @@ export default function XmainEvent() {
                 <div className='XmainEvent_listTitle'>광고 사진 </div>
                 <div className='XmainEvent_adPics'>
                     {data2.map((item, index) => (
-                        <div>
+                        <div key={item.bannerNum}>
                             <p>{index+1} 번</p>
                             <img src={item.bannerImage} alt="bannerImage" />
                         </div>
