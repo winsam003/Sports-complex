@@ -438,7 +438,7 @@ export default function JoinMember({ memberType }) {
                             </select> <br />
                             {/* <input type="text" name='email' id='email' value={fullMemberEmail} className='femail' /> */}
                             <input type="checkbox" name='emailagr' id='emailagr' onChange={emailChecking} />
-                            <span><label htmlFor="receiveMail">뉴스레터나 공지이메일을 수신 받겠습니다.</label></span>
+                            <span><label for="emailagr">뉴스레터나 공지이메일을 수신 받겠습니다.</label></span>
                         </td>
                     </tr>
                     <tr>
@@ -458,7 +458,7 @@ export default function JoinMember({ memberType }) {
                             <div className='Message'>{phoneMessage}</div>
                             <br />
                             <input type="checkbox" name='snsagr' id='snsagr' onChange={snsChecking} />
-                            <span><label htmlFor="receiveMessage">알림문자를 받겠습니다.</label></span>
+                            <label for="snsagr"><span>알림문자를 받겠습니다.</span></label>
                         </td>
                     </tr>
                 </table>

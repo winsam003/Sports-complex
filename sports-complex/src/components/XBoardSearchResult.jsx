@@ -1,7 +1,9 @@
 import './XBoardSearchResult.css'
 import EventDetail from './EventDetail';
 
-export default function XBoardSearchResult({eventlist}) {
+export default function XBoardSearchResult({eventlist, searchEvent}) {
+
+    console.log('XBoardSearchResult: ',searchEvent);
 
     return (
         <div className='XBoardControllContent_SearchResult_div'>
@@ -18,7 +20,11 @@ export default function XBoardSearchResult({eventlist}) {
             </div>
             {/* 조회결과 */}
             {eventlist
-                .map(({eventcode, eventname, eventde, eventfacility, eventtime, eventfor, eventtype, eventcount, eventuploadfile, stfid, eventdate}, index) => (
+                .filter(event => {
+                    return (searchEvent.searchType ==='' || event[searchEvent.searchType] )
+                    && (searchEvent.searchType ==='' || event[searchEvent.searchType].includes(searchEvent.searchKeyWord)) 
+                })
+                .map(({eventcode, eventname, eventdetail, eventfacility, eventtime, eventfor, eventtype, eventcount, eventuploadfile, stfid, eventdate}, index) => (
                     <div className='XBoardControllContent_SearchResult'>
                         <p><input type='checkbox' value={eventcode}></input></p>
                         <p>{eventcode}</p>
