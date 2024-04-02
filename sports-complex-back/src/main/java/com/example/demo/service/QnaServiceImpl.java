@@ -22,10 +22,22 @@ public class QnaServiceImpl implements QnaService {
 		return repository.qnalist();
 	}
 
+//	문의 게시글 상세 페이지
+	@Override
+	public Qna qnadetail(int qanum) {
+		return repository.qnadetail(qanum);
+	}
+
 //	문의 게시글 등록
 	@Override
 	public int qnainsert(QnaDTO dto) {
 		return repository.qnainsert(dto);
+	}
+
+//	문의 게시글 답변 등록
+	@Override
+	public int qnareplyinsert(QnaDTO dto) {
+		return repository.qnareplyinsert(dto);
 	}
 
 //	문의 게시글 삭제
