@@ -65,8 +65,8 @@ export default function ModifyMember({ getUserID }) {
 
     // phoneNumber 무경설검사
     const [phoneMessage, setPhoneMessage] = useState('');
-    const [phone1check, setPhone1check] = useState();
-    const [phone2check, setPhone2check] = useState();
+    const [phone1check, setPhone1check] = useState(true);
+    const [phone2check, setPhone2check] = useState(true);
     const phoneNumSpecial = /^\d+$/;
 
     const firstNum = (e) => {
@@ -115,7 +115,29 @@ export default function ModifyMember({ getUserID }) {
 
 
     }
-    // *********************************전화번호 무결성 검사 / 수정 정보 저장 끝************************************ //
+
+    // 차량번호 무결성 검사
+    const [carnumMessage, setCarMessage] = useState('* 예) 45가1234 와 같이 전체 차량번호를 띄어쓰기 없이 입력 하여 주시기 바랍니다.');
+    const [carnumCheck, setCarnumCheck] = useState(true);
+    const updatecarnum = (e) => {
+        const carnumSpecial = /^[0-9ㄱ-ㅎㅏ-ㅣ가-힣]+$/;
+        const carnumValue = e.target.value.trim();
+
+        if (carnumValue.replace(carnumSpecial, '').length === carnumValue.length) {
+            setCarMessage("차량 번호에 특수문자나 영문이 포함될 수 없습니다.");
+            setCarnumCheck(false);
+        } else {
+            setCarMessage("");
+            setCarnumCheck(true);
+
+            setUserData({
+                ...userData,
+                [e.target.name]: e.target.value
+            });
+        }
+
+    };
+    // *********************************전화번호, 차량번호 무결성 검사 / 수정 정보 저장 끝************************************ //
 
 
 
@@ -153,13 +175,13 @@ export default function ModifyMember({ getUserID }) {
     };
 
     // ==========================다음 주소찾기 API 끝============================//
-    
-    
-    
-    
-    
+
+
+
+
+
     // ==========================각 수정 데이터 업데이트 시작============================//
-    
+
     const updateData = (e) => {
         setUserData({
             ...userData,
@@ -172,41 +194,50 @@ export default function ModifyMember({ getUserID }) {
             [e.target.name]: e.target.checked
         });
     };
-    
-    // ==========================각 수정 데이터 업데이트 끝============================//
-    
-    
-    
-    
-    // ==========================수정 데이터 전송 요청 시작============================//
-    const modifyData = () => {
-        axios.post('/member/mUpdate', {
-            
-            membercode: userData.membercode,
-            name: userData.name,
-            birth: userData.birth,
-            id: userData.id,
-            address: userData.address,
-            address1: userData.address1,
-            address2: userData.address2,
-            carnum: userData.carnum,
-            email: userData.email+userData.email2,
-            emailagr: userData.emailagr,
-            phonenum: userData.firstPhone+userData.middlePhone+userData.lastPhone,
-            snsagr: userData.snsagr,
 
-            
-            
-        }).then((response) => {
-            console.log("test="+response.data)
-        }).catch((error) => {
-            console.log("test="+error)
-        })
+    // ==========================각 수정 데이터 업데이트 끝============================//
+
+
+
+
+    // ==========================수정 데이터 전송 요청 시작============================//
+    const [reset, setReset] = useState(false);
+
+    const modifyData = () => {
+            if (phone1check && carnumCheck && phone2check){
+            axios.post('/member/mUpdate', {
+    
+                membercode: userData.membercode,
+                name: userData.name,
+                birth: userData.birth,
+                id: userData.id,
+                address: userData.address,
+                address1: userData.address1,
+                address2: userData.address2,
+                carnum: userData.carnum,
+                email: userData.email + userData.email2,
+                emailagr: userData.emailagr,
+                phonenum: userData.firstPhone + userData.middlePhone + userData.lastPhone,
+                snsagr: userData.snsagr,
+    
+    
+    
+            }).then((response) => {
+                alert(response.data);
+                setReset(!reset);
+            }).catch((error) => {
+                alert("회원정보 변경에 실패하였습니다. 관리자에게 문의하세요");
+                console.log("modify error occured=" + error)
+            })
+        }else {
+        alert("회원 정보를 다시 한번 확인해주세요.");
     }
+}
+
     // ==========================수정 데이터 전송 요청 끝============================//
-    
-    
-    
+
+
+
 
     return (
         <div className='ModifyMember_joinbox'>
@@ -255,8 +286,8 @@ export default function ModifyMember({ getUserID }) {
                     <tr>
                         <th>차량번호</th>
                         <td>
-                            <input type="text" name='carnum' id='carnum' value={userData.carnum} onChange={updateData} />
-                            <p>예) 45가1234 와 같이 전체 차량번호를 띄어쓰기 없이 입력 하여 주시기 바랍니다.</p>
+                            <input type="text" name='carnum' id='carnum' value={userData.carnum} onChange={updatecarnum} />
+                            <p style={{ color: 'red', fontSize: 'small' }}>{carnumMessage}</p>
                         </td>
                     </tr>
                     <tr>
@@ -266,13 +297,13 @@ export default function ModifyMember({ getUserID }) {
                             <input type="text" name='email2' id='email2' value={userData.email2} onChange={updateData} placeholder='@email.com' />
                             <select name="email2" id="email2" onChange={updateData} >
                                 <option value="">직접입력</option>
-                                <option value="gmail.com">gmail.com</option>
-                                <option value="daum.net">daum.net</option>
-                                <option value="hotmail.com">hotmail.com</option>
-                                <option value="naver.com">naver.com</option>
-                                <option value="nate.com">nate.com</option>
-                                <option value="yahoo.com">yahoo.com</option>
-                                <option value="dreamwiz.com">dreamwiz.com</option>
+                                <option value="@gmail.com">gmail.com</option>
+                                <option value="@daum.net">daum.net</option>
+                                <option value="@hotmail.com">hotmail.com</option>
+                                <option value="@naver.com">naver.com</option>
+                                <option value="@nate.com">nate.com</option>
+                                <option value="@yahoo.com">yahoo.com</option>
+                                <option value="@dreamwiz.com">dreamwiz.com</option>
                             </select> <br />
                             <input type="checkbox" name='emailagr' id='emailagr' checked={userData.emailagr} onChange={updateChecked} />
                             <span><label htmlFor="emailagr">뉴스레터나 공지이메일을 수신 받겠습니다.</label></span>

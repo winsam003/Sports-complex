@@ -67,7 +67,7 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout }) {
         getUserID = userData.userID;
     }
     // ********************************로그인 끝*************************************//
-    
+
 
 
 
@@ -164,13 +164,13 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout }) {
                     <div className='homeDetail_loginDiv'>
                         <div className='homeDetail_loginUserName'>{getUserName} 님</div>
                         <div className='homeDetail_firstMenuBox'>
-                            <Link to='/ApplicationDetailsPage' className='homeDetail_firstMenuBox_s1'><CiViewList className='homeDetail_icons'/>신청내역</Link>
-                            <Link to='/QRCodePage' span className='homeDetail_firstMenuBox_s2'><BsQrCode className='homeDetail_icons'/>QR코드</Link>
-                            <Link to='/ModifyMemberPage'  className='homeDetail_firstMenuBox_s3'><GrContactInfo className='homeDetail_icons'/>내 정보 수정</Link>
-                            <Link to='/PasswordChangePage'  className='homeDetail_firstMenuBox_s4'><RiLockPasswordLine className='homeDetail_icons'/>비밀번호 수정</Link>
+                            <Link to='/ApplicationDetailsPage' className='homeDetail_firstMenuBox_s1'><CiViewList className='homeDetail_icons' />신청내역</Link>
+                            <Link to='/QRCodePage' span className='homeDetail_firstMenuBox_s2'><BsQrCode className='homeDetail_icons' />QR코드</Link>
+                            <Link to='/ModifyMemberPage' className='homeDetail_firstMenuBox_s3'><GrContactInfo className='homeDetail_icons' />내 정보 수정</Link>
+                            <Link to='/PasswordChangePage' className='homeDetail_firstMenuBox_s4'><RiLockPasswordLine className='homeDetail_icons' />비밀번호 수정</Link>
                         </div>
                         <div className='homeDetail_lastMenuBox'>
-                            <span onClick={() => { logout(); setLogincheck(!loginCheck); }}><IoIosLogOut className='homeDetail_icons'/>로그아웃</span>
+                            <span onClick={() => { logout(); setLogincheck(!loginCheck); }}><IoIosLogOut className='homeDetail_icons' />로그아웃</span>
                         </div>
                     </div>
                 }
