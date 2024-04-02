@@ -15,7 +15,7 @@ export default function XEventControllContent() {
         axios.get('/event/eventlist')
             .then((list) => {
                 seteventlist(list.data);
-                console.log(`list.data: ${list.data}`);
+                console.log(`list.data: ${JSON.stringify(list.data)}`);
             }).catch((error) => {
                 console.log("error: ", error);
             })

@@ -8,4 +8,6 @@ public interface EventService {
 	
 	List<Event> EventList();
 	
+	int EventDelete(int eventcode);
+	
 }
