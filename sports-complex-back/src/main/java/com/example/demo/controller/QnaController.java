@@ -27,6 +27,7 @@ public class QnaController {
 	QnaService service;
 	PasswordEncoder passwordEncoder;
 
+//	문의게시글 목록 조회
 	@GetMapping("/qnaList")
 	public List<Qna> qnaList() {
 		return service.qnalist();

@@ -65,8 +65,10 @@ export default function XRentalPlaceSearchBox({onSearch}) {
                             onChange={(e) => setSearchValue(e.target.value)} />
                 </div>
             </div>
-            <button className='XRentalPlaceSearchBox_botton' onClick={handleResetSearchPlace}>초기화</button>
-            <button className='XRentalPlaceSearchBox_botton' onClick={handleSearch}>조회</button>
+            <div className='XRentalPlaceSearchBox_bottondiv'>
+                <button className='XRentalPlaceSearchBox_botton' onClick={handleResetSearchPlace}>초기화</button>
+                <button className='XRentalPlaceSearchBox_botton' onClick={handleSearch}>조회</button>
+            </div>
         </div>
     )
 }
