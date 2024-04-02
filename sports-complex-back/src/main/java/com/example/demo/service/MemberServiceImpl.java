@@ -50,4 +50,10 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return repository.mUpdate(entity);
 	}
+	
+	@Override
+	public int mPWChange(Member entity) {
+		// TODO Auto-generated method stub
+		return repository.mPWChange(entity);
+	}
 }

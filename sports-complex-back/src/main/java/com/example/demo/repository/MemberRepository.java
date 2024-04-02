@@ -16,4 +16,5 @@ public interface MemberRepository {
 	
 	public int mUpdate(Member entity);
 
+	public int mPWChange(Member entity);
 }

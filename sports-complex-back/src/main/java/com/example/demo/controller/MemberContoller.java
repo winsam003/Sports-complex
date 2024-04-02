@@ -115,11 +115,11 @@ public class MemberContoller {
 		}
 	}
 	
+	
+	// pwcheck
 	@PostMapping(value="/pwcheck", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> pwcheck(@RequestBody Member entity){
 		
-		log.info(entity.getId());
-		log.info(entity.getPassword());
 		String password = entity.getPassword();
 		entity = service.MemberOne(entity.getId());
 		
@@ -128,7 +128,27 @@ public class MemberContoller {
 		}else {
 			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(null);		
 		}
+	} // pwcheck
+	
+	
+	
+	// mPWChange
+	@PostMapping(value="/mPWChange", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> mPWChange(@RequestBody Member entity){
+	
+		String password = entity.getPassword();
+//		entity = service.MemberOne(entity.getId());
 		
-	}
+//		if(passwordEncoder.matches(password, entity.getPassword())) {
+//			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("현재 패스워드와 다른 패스워드로 입력해주세요.");
+//		}
+		password = passwordEncoder.encode(password);
+		entity.setPassword(password);
+		if(service.mPWChange(entity) > 0){
+			return ResponseEntity.status(HttpStatus.OK).body("패스워드가 수정되었습니다.");			
+		}else {
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(null);						
+		}
+	} // mPWChange
 	
 }

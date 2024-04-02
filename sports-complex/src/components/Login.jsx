@@ -32,6 +32,13 @@ export default function Login({ setLogincheck, loginCheck }) {
             })
     }
 
+    
+
+    const handleKeypress = (e) => {
+        if(e.key === 'Enter'){
+            requestLogin();
+        }
+    }
 
 
     return (
@@ -48,7 +55,7 @@ export default function Login({ setLogincheck, loginCheck }) {
                     </div>
                     <div>
                         <span><TbLock className='login_Icon' /></span>
-                        <input type="password" name="password" id="password" size={"50"} placeholder="비밀번호를 입력해주세요." onChange={(e) => setPassword(e.target.value)} />
+                        <input type="password" name="password" id="password" size={"50"} placeholder="비밀번호를 입력해주세요." onChange={(e) => setPassword(e.target.value)} onKeyPress={handleKeypress} />
                     </div>
                     <div className="login_submitAndReset">
                         <span><TbKeyframe className='login_Icon' id="login_iconnone" /></span>

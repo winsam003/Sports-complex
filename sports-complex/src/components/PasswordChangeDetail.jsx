@@ -27,6 +27,13 @@ export default function PasswordChangeDetail({ getUserID }) {
             })
     }
 
+    const handleKeypress = (e) => {
+        console.log("test");
+        if (e.key === 'Enter') {
+            checkPassword();
+        }
+    }
+
 
     return (
         <div className="PasswordChangeDetail_Box">
@@ -36,7 +43,7 @@ export default function PasswordChangeDetail({ getUserID }) {
                     <span className='PasswordChangeDetail_name'>비밀번호 수정</span>
                 </div>
                 <div className='PasswordChangeDetail_PasswordChange'>현재 비밀번호를 입력해주세요</div>
-                <div className='PasswordChangeDetail_input'><TbLock className='PasswordChangeDetail_Icon' /><input type='password' placeholder='비밀번호 입력' onChange={currentPWhandler} /></div>
+                <div className='PasswordChangeDetail_input'><TbLock className='PasswordChangeDetail_Icon' /><input type='password' placeholder='비밀번호 입력' onChange={currentPWhandler} onKeyPress={handleKeypress} /></div>
                 <div className='PasswordChangeDetail_Check'><button onClick={checkPassword}>확인</button></div>
             </div>
         </div>
