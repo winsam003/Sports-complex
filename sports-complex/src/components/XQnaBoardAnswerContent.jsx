@@ -2,7 +2,6 @@ import './XQnaBoardAnswerContent.css'
 import Submenu from './Submenu'
 import BoardDetail from './BoardDetail'
 
-
 // 문의게시판 답변하기
 export default function XQnaBoardAnswerContent() {
     return (

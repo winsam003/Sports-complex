@@ -1,7 +1,40 @@
 import './XBoardSearchResult.css'
 import './XQnaSearchResult.css'
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export default function XQnaSearchResult({ qanum, qaopen, qatype, qatitle, id, qadate, qaanswer, qacount, onToggleCheckbox, isChecked }) {
+export default function XQnaSearchResult({ qanum, qaopen, qapassword, qatype, qatitle, id, qadate, qaanswer, qacount, onToggleCheckbox, isChecked }) {
+
+    const [showModal, setShowModal] = useState(false);
+    const [passwordInput, setPasswordInput] = useState('');
+    const navigate = useNavigate();
+
+    // 비밀글 여부 확인
+    const handleQnaResultClick = () => {
+        if (qaopen == '1') {
+            setShowModal(true);
+        } else {
+            navigate(`/XQnaBoardAnswerPage/${qanum}`);
+        }
+    };
+
+    // 모달창 상태관리
+    const handleModalClose = () => {
+        setShowModal(false);
+        setPasswordInput('');
+    };
+
+    // 비밀번호 확인 후 일치하면 페이지 이동
+    const handlePasswordSubmit = () => {
+        if (passwordInput === qapassword) {
+            navigate(`/XQnaBoardAnswerPage/${qanum}`);
+            handleModalClose();
+        } else {
+            alert("비밀번호가 일치하지 않습니다.");
+        }
+    };
+
+    // 체크박스
     const handleCheckboxChange = () => {
         onToggleCheckbox(qanum);
     }
@@ -19,7 +52,7 @@ export default function XQnaSearchResult({ qanum, qaopen, qatype, qatitle, id, q
 
 
     return (
-        <div className='XQnaSearchResult_SearchResult' >
+        <div className='XQnaSearchResult_SearchResult' onClick={handleQnaResultClick}>
             {/* 조회결과 */}
             <p><input type='checkbox' checked={isChecked} onChange={handleCheckboxChange} /></p>
             <p>{qanum}</p>
@@ -29,6 +62,17 @@ export default function XQnaSearchResult({ qanum, qaopen, qatype, qatitle, id, q
             <p>{formattedDate}</p>
             <p>{qaanswer == null ? "답변대기" : "답변완료"}</p>
             <p>{qacount}</p>
+            {showModal && (
+                <div className="modal-overlay">
+                    <div className="modal">
+                        <span className="close" onClick={(e) => { e.stopPropagation(); handleModalClose(); }}>&times;</span>
+                        <h2 className='modalFont'>{qanum}. {qatitle}</h2>
+                        <h2 className='modalFont'>비밀번호 입력</h2>
+                        <input className='modal_input' type="password" value={passwordInput} onChange={(e) => setPasswordInput(e.target.value)} />
+                        <button className='modal_button' onClick={handlePasswordSubmit}>확인</button>
+                    </div>
+                </div>
+            )}
         </div>
     )
 }
