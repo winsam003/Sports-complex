@@ -93,8 +93,8 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout }) {
         <div className='homeDetail_container'>
             <div className='homeDetail_items1'>
                 <div>
-                    {/* <input id='search' name='search' type="text" placeholder='검색어를 입력해주세요.' /> */}
-                    {/* <input id='search' name='search' type="submit" value='검색' /> */}
+                    <input id='search' name='search' type="text" placeholder='검색어를 입력해주세요.' />
+                    <input id='search' name='search' type="submit" value='검색' />
                 </div>
                 <div>
                     <div className='homeDetail_Calenderbox'>
@@ -160,11 +160,11 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout }) {
                                 </tr>
                                 <tr>
                                     <th><TbLock className='homeDetail_Icon' /></th>
-                                    <td><input id='password' name='password' type="password" placeholder='비밀번호를 입력하세요.' value={password} onChange={(e) => passwordHandler(e.target.value)} onKeyPress={handleKeypress}/></td>
+                                    <td><input id='password' name='password' type="password" placeholder='비밀번호를 입력하세요.' value={password} onChange={(e) => passwordHandler(e.target.value)} onKeyPress={handleKeypress} /></td>
                                 </tr>
                                 <tr className="homeDetail_login">
                                     <td></td>
-                                    <td><input onClick={requestLogin} value="로그인" id='homeDetail_loginbtn' /></td>
+                                    <td><input onClick={requestLogin} id='homeDetail_loginbtn' /></td>
                                 </tr>
                             </tbody>
                             <tfoot>
@@ -181,7 +181,7 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout }) {
                         <div className='homeDetail_loginUserName'>{getUserName} 님</div>
                         <div className='homeDetail_firstMenuBox'>
                             <Link to='/ApplicationDetailsPage' className='homeDetail_firstMenuBox_s1'><CiViewList className='homeDetail_icons' />신청내역</Link>
-                            <Link to='/QRCodePage' span className='homeDetail_firstMenuBox_s2'><BsQrCode className='homeDetail_icons' />QR코드</Link>
+                            <Link to='/QRCodePage' className='homeDetail_firstMenuBox_s2'><BsQrCode className='homeDetail_icons' />QR코드</Link>
                             <Link to='/ModifyMemberPage' className='homeDetail_firstMenuBox_s3'><GrContactInfo className='homeDetail_icons' />내 정보 수정</Link>
                             <Link to='/PasswordChangePage' className='homeDetail_firstMenuBox_s4'><RiLockPasswordLine className='homeDetail_icons' />비밀번호 수정</Link>
                         </div>
