@@ -204,9 +204,9 @@ export default function ModifyMember({ getUserID }) {
     const [reset, setReset] = useState(false);
 
     const modifyData = () => {
-            if (phone1check && carnumCheck && phone2check){
+        if (phone1check && carnumCheck && phone2check) {
             axios.post('/member/mUpdate', {
-    
+
                 membercode: userData.membercode,
                 name: userData.name,
                 birth: userData.birth,
@@ -219,9 +219,9 @@ export default function ModifyMember({ getUserID }) {
                 emailagr: userData.emailagr,
                 phonenum: userData.firstPhone + userData.middlePhone + userData.lastPhone,
                 snsagr: userData.snsagr,
-    
-    
-    
+
+
+
             }).then((response) => {
                 alert(response.data);
                 setReset(!reset);
@@ -229,10 +229,10 @@ export default function ModifyMember({ getUserID }) {
                 alert("회원정보 변경에 실패하였습니다. 관리자에게 문의하세요");
                 console.log("modify error occured=" + error)
             })
-        }else {
-        alert("회원 정보를 다시 한번 확인해주세요.");
+        } else {
+            alert("회원 정보를 다시 한번 확인해주세요.");
+        }
     }
-}
 
     // ==========================수정 데이터 전송 요청 끝============================//
 
@@ -246,6 +246,7 @@ export default function ModifyMember({ getUserID }) {
                 <span className='ModifyMember_star'>※ * 는 필수입력사항입니다.</span>
 
                 <table>
+                    <tbody>
                     <tr>
                         <th>회원코드<span className='ModifyMember_star'>*</span></th>
                         <td><input type="text" name='membercode' id='membercode' value={userData.membercode} style={{ backgroundColor: "#ccc" }} readOnly /></td>
@@ -326,15 +327,15 @@ export default function ModifyMember({ getUserID }) {
                             <div className='Message'>{phoneMessage}</div>
                             <br />
                             <div>
-                                <input type="checkbox" name='snsagr' id='snsagr' checked={userData.snsagr} onClick={updateChecked} />
+                                <input type="checkbox" name='snsagr' id='snsagr' checked={userData.snsagr} onChange={updateChecked} />
                                 <span><label htmlFor="snsagr">알림 문자를 수신하겠습니다.</label></span>
                             </div>
                         </td>
                     </tr>
-
+                    </tbody>
                 </table>
                 <div className='ModifyMember_submitBox' >
-                    <input onClick={modifyData} className='ModifyMember_submit' name='submit' id='submit' value={"회원정보 수정"} />
+                    <input type='button' onClick={modifyData} className='ModifyMember_submit' name='submit' id='submit' value={"회원정보 수정"} />
                 </div>
             </div>
         </div>
