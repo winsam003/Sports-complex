@@ -37,8 +37,11 @@ public class MemberContoller {
 	public ResponseEntity<?> mList() {
 		List<Member> result = service.MemberListAll();
 		if(result != null && result.size() >0) {
+			log.info("OK TEST");
+			log.info(result);
 			return ResponseEntity.status(HttpStatus.OK).body(result);
 		}else {
+			log.info("BAD TEST");
 			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("출력 할 회원정보가 없습니다.");			
 		}
 	} // mList
