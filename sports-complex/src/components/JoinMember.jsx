@@ -350,117 +350,119 @@ export default function JoinMember({ memberType }) {
                 <span className='JoinMember_star'>※ * 는 필수입력사항입니다.</span>
 
                 <table>
-                    <tr className='JoinMember_code'>
-                        <th>회원코드</th>
-                        <td><input type="text" name='membercode' id='membercode' value={memberType} /></td>
-                    </tr>
-                    <tr>
-                        <th>이름 (실명) <span className='JoinMember_star'>*</span></th>
-                        <td><input type="text" name='name' id='name' placeholder='본인인증에서 가져오기를 해야하지만 일단 readonly를 빼고 입력 하겠음' onChange={handleChange} /></td>
-                    </tr>
-                    <tr>
-                        <th>생년월일<span className='JoinMember_star'>*</span></th>
-                        <td>
-
-                            <input type="text" name='birth' id='birth' placeholder='본인인증에서 가져오기를 해야하지만 일단 readonly를 빼고 입력 하겠음' onChange={handleChange} />
-                        </td>
-                    </tr>
-                    {/* <tr>
-                            <th>성별<span className='JoinMember_star'>*</span></th>
+                    <tbody>
+                        <tr className='JoinMember_code'>
+                            <th>회원코드</th>
+                            <td><input type="text" name='membercode' id='membercode' defaultValue={memberType} readOnly /></td>
+                        </tr>
+                        <tr>
+                            <th>이름 (실명) <span className='JoinMember_star'>*</span></th>
+                            <td><input type="text" name='name' id='name' placeholder='본인인증에서 가져오기를 해야하지만 일단 readonly를 빼고 입력 하겠음' onChange={handleChange} /></td>
+                        </tr>
+                        <tr>
+                            <th>생년월일<span className='JoinMember_star'>*</span></th>
                             <td>
-                                <input type="radio" id='men' name='gender' value={'men'} />
-                                <label htmlFor="men">남자</label>
-                                <input type="radio" id='women' name='gender' value={'women'} />
-                                <label htmlFor="women">여자</label>
+
+                                <input type="text" name='birth' id='birth' placeholder='본인인증에서 가져오기를 해야하지만 일단 readonly를 빼고 입력 하겠음' onChange={handleChange} />
                             </td>
-                        </tr> */}
-                    <tr>
-                        <th>아이디<span className='JoinMember_star'>*</span></th>
-                        <td>
-                            <input type="text" name="id" id="id" onChange={handleChange} readOnly={isDuplication ? true : false} style={isDuplication ? { backgroundColor: 'lightgray' } : {}} />
-                            <button className='duplication' onClick={() => { duplication() }}>중복확인</button>
-                            {/* <button type='button' id='idDup' >중복확인</button> */}
-                            <div className='Message'>{idMessage}</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>비밀번호<span className='JoinMember_star'>*</span></th>
-                        <td>
-                            <input type="password" name='password' id='password' placeholder='문자, 숫자, 특수문자(@$!%^*#?&)를 포함한 9자리 이상 입력해주십시오.' onChange={handleChange} />
-                            <div className='Message'>{pwMessage}</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>비밀번호 확인<span className='JoinMember_star'>*</span></th>
-                        <td>
-                            <input type="password" name='password2' id='password2' placeholder='동일한 비밀번호를 입력해주시기 바랍니다.' onChange={handleChange} />
-                            <div className='Message'>{pw2Message}</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>주소</th>
-                        <td>
-                            <button className='JoinMember_findAddress' onClick={toggleHandler}>우편번호 찾기</button> <br />
-                            {isOpen ? ('') : ((
-                                <div>
-                                    <DaumPostcode
-                                        onComplete={completeHandler}
-                                        onClose={closeHandler}
-                                    />
-                                </div>
-                            ))}
-                            <input type="text" name='address' id='address' value={zodecode} placeholder='우편주소' readOnly /> <br />
-                            <input type="text" name='address1' id='address1' value={address} placeholder='도로명/지번 주소' readOnly /> <br />
-                            <input type="text" name='address2' id='address2' placeholder='상세주소' onChange={handleChange} />
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>차량번호</th>
-                        <td>
-                            <input type="text" name='carnum' id='carnum' onChange={updatecarnum} />
-                            <div className='Message'>{carnumMessage}</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>이메일</th>
-                        <td className='email'>
-                            <input type="text" name='firstEmail' id='firstEmail' onChange={(e) => { firstEmail(e.target.value) }} />
-                            <input type="text" name='emailAdd' id='emailAdd' placeholder='@email.com' value={lastMemberEmail} onChange={(e) => { lastEmail(e.target.value) }} />
-                            <select name="emailAddSelect" id="emailAddSelect" onChange={(e) => { lastEmail(e.target.value) }} >
-                                <option value="">직접입력</option>
-                                <option value="@gmail.com">gmail.com</option>
-                                <option value="@daum.net">daum.net</option>
-                                <option value="@hotmail.com">hotmail.com</option>
-                                <option value="@naver.com">naver.com</option>
-                                <option value="@nate.com">nate.com</option>
-                                <option value="@yahoo.com">yahoo.com</option>
-                                <option value="@dreamwiz.com">dreamwiz.com</option>
-                            </select> <br />
-                            {/* <input type="text" name='email' id='email' value={fullMemberEmail} className='femail' /> */}
-                            <input type="checkbox" name='emailagr' id='emailagr' onChange={emailChecking} />
-                            <span><label for="emailagr">뉴스레터나 공지이메일을 수신 받겠습니다.</label></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>휴대전화<span className='JoinMember_star'>*</span></th>
-                        <td>
-                            <select name="firstPhoneNum" id="firstPhoneNum" value={firstPhoneNum} onChange={(e) => { firstNum(e.target.value) }}>
-                                <option value="010">010</option>
-                                <option value="011">011</option>
-                                <option value="016">016</option>
-                                <option value="017">017</option>
-                                <option value="019">019</option>
-                            </select>
-                            <span>-</span>
-                            <input type="text" name='secondPhoneNum' id='secondPhoneNum' onChange={(e) => { secondNum(e.target.value) }} />
-                            <span>-</span>
-                            <input type="text" name='lastPhoneNum' id='lastPhoneNum' onChange={(e) => { lastNum(e.target.value) }} />
-                            <div className='Message'>{phoneMessage}</div>
-                            <br />
-                            <input type="checkbox" name='snsagr' id='snsagr' onChange={snsChecking} />
-                            <label for="snsagr"><span>알림문자를 받겠습니다.</span></label>
-                        </td>
-                    </tr>
+                        </tr>
+                        {/* <tr>
+                                <th>성별<span className='JoinMember_star'>*</span></th>
+                                <td>
+                                    <input type="radio" id='men' name='gender' value={'men'} />
+                                    <label htmlFor="men">남자</label>
+                                    <input type="radio" id='women' name='gender' value={'women'} />
+                                    <label htmlFor="women">여자</label>
+                                </td>
+                            </tr> */}
+                        <tr>
+                            <th>아이디<span className='JoinMember_star'>*</span></th>
+                            <td>
+                                <input type="text" name="id" id="id" onChange={handleChange} readOnly={isDuplication ? true : false} style={isDuplication ? { backgroundColor: 'lightgray' } : {}} />
+                                <button className='duplication' onClick={() => { duplication() }}>중복확인</button>
+                                {/* <button type='button' id='idDup' >중복확인</button> */}
+                                <div className='Message'>{idMessage}</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>비밀번호<span className='JoinMember_star'>*</span></th>
+                            <td>
+                                <input type="password" name='password' id='password' placeholder='문자, 숫자, 특수문자(@$!%^*#?&)를 포함한 9자리 이상 입력해주십시오.' onChange={handleChange} />
+                                <div className='Message'>{pwMessage}</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>비밀번호 확인<span className='JoinMember_star'>*</span></th>
+                            <td>
+                                <input type="password" name='password2' id='password2' placeholder='동일한 비밀번호를 입력해주시기 바랍니다.' onChange={handleChange} />
+                                <div className='Message'>{pw2Message}</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>주소</th>
+                            <td>
+                                <button className='JoinMember_findAddress' onClick={toggleHandler}>우편번호 찾기</button> <br />
+                                {isOpen ? ('') : ((
+                                    <div>
+                                        <DaumPostcode
+                                            onComplete={completeHandler}
+                                            onClose={closeHandler}
+                                        />
+                                    </div>
+                                ))}
+                                <input type="text" name='address' id='address' value={zodecode} placeholder='우편주소' readOnly /> <br />
+                                <input type="text" name='address1' id='address1' value={address} placeholder='도로명/지번 주소' readOnly /> <br />
+                                <input type="text" name='address2' id='address2' placeholder='상세주소' onChange={handleChange} />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>차량번호</th>
+                            <td>
+                                <input type="text" name='carnum' id='carnum' onChange={updatecarnum} />
+                                <div className='Message'>{carnumMessage}</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>이메일</th>
+                            <td className='email'>
+                                <input type="text" name='firstEmail' id='firstEmail' onChange={(e) => { firstEmail(e.target.value) }} />
+                                <input type="text" name='emailAdd' id='emailAdd' placeholder='@email.com' value={lastMemberEmail} onChange={(e) => { lastEmail(e.target.value) }} />
+                                <select name="emailAddSelect" id="emailAddSelect" onChange={(e) => { lastEmail(e.target.value) }} >
+                                    <option value="">직접입력</option>
+                                    <option value="@gmail.com">gmail.com</option>
+                                    <option value="@daum.net">daum.net</option>
+                                    <option value="@hotmail.com">hotmail.com</option>
+                                    <option value="@naver.com">naver.com</option>
+                                    <option value="@nate.com">nate.com</option>
+                                    <option value="@yahoo.com">yahoo.com</option>
+                                    <option value="@dreamwiz.com">dreamwiz.com</option>
+                                </select> <br />
+                                {/* <input type="text" name='email' id='email' value={fullMemberEmail} className='femail' /> */}
+                                <input type="checkbox" name='emailagr' id='emailagr' onChange={emailChecking} />
+                                <span><label htmlFor="emailagr">뉴스레터나 공지이메일을 수신 받겠습니다.</label></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>휴대전화<span className='JoinMember_star'>*</span></th>
+                            <td>
+                                <select name="firstPhoneNum" id="firstPhoneNum" value={firstPhoneNum} onChange={(e) => { firstNum(e.target.value) }}>
+                                    <option value="010">010</option>
+                                    <option value="011">011</option>
+                                    <option value="016">016</option>
+                                    <option value="017">017</option>
+                                    <option value="019">019</option>
+                                </select>
+                                <span>-</span>
+                                <input type="text" name='secondPhoneNum' id='secondPhoneNum' onChange={(e) => { secondNum(e.target.value) }} />
+                                <span>-</span>
+                                <input type="text" name='lastPhoneNum' id='lastPhoneNum' onChange={(e) => { lastNum(e.target.value) }} />
+                                <div className='Message'>{phoneMessage}</div>
+                                <br />
+                                <input type="checkbox" name='snsagr' id='snsagr' onChange={snsChecking} />
+                                <label htmlFor="snsagr"><span>알림문자를 받겠습니다.</span></label>
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
                 <div className='JoinMember_submitBox' >
                     <input type="submit" name='submit' id='submit' value={"회원가입"} onClick={memberInsert} />
