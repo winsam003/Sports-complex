@@ -14,34 +14,34 @@ export default function PlaceRentalContent() {
         const minDate = new Date(today);
         minDate.setDate(today.getDate() + 1); // 오늘 날짜로부터 1일 뒤
         const maxDate = new Date(today);
-        maxDate.setDate(today.getDate() + 4); 
+        maxDate.setDate(today.getDate() + 4);
 
         const rentDateInput = document.getElementById('rentDate');
-        rentDateInput.min = minDate.toISOString().split('T')[0]; 
-        rentDateInput.max = maxDate.toISOString().split('T')[0]; 
+        rentDateInput.min = minDate.toISOString().split('T')[0];
+        rentDateInput.max = maxDate.toISOString().split('T')[0];
     }, []);
 
     // 날짜 선택 값 td 안으로. 
     const [rentDate, setRentDate] = useState('');
-    
+
     const handleRentDate = (event) => {
         setRentDate(event.target.value);
     }
-    
+
     // 시간 선택 값 td 안으로. 
     const [rentTime, setRentTime] = useState('');
 
     const handleRentTime = (event) => {
         setRentTime(event.target.value);
     }
-    
+
     // 가격 가져오기
     const [rentPrice, setRentPrice] = useState('');
-    
+
     const handleRentPrice = (value) => {
         setRentPrice(value);
     }
-    
+
 
 
     return (
@@ -63,41 +63,43 @@ export default function PlaceRentalContent() {
                     </select>
                 </div>
 
-                
+
                 <PlaceRentalSearchList handleRentPrice={handleRentPrice} />
                 <div className='PlaceRentalContent_form'>
                     <form action="/" method='post'>
                         <table>
-                            <tr>
-                                <th>날짜 선택 <span className='star'></span></th>
-                                <td><input type="text" name='date' id='date' placeholder='선택해주세요' value={rentDate} readOnly /></td>
-                            </tr>
-                            <tr>
-                                <th>시간 선택 <span className='star'></span></th>
-                                <td><input type="text" name='time' id='time' placeholder='선택해주세요' value={rentTime} readOnly /></td>
-                            </tr>
-                            <tr>
-                                <th>작성자 <span className='star'></span></th>
-                                <td><input type="text" name='name' id='name' placeholder='세션에서 가져오기' readOnly /></td>
-                            </tr>
-                            <tr>
-                                <th>연락처 <span className='star'></span></th>
-                                <td>
-                                    <input type="text" name='phoneNum' id='phoneNum' />
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>이용 인원 <span className='star'></span></th>
-                                <td>
-                                    <input type="text" name='useNum' id='useNum' />
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>가격 <span className='star'></span></th>
-                                <td>
-                                    <input type="text" name='price' id='price' value={rentPrice} placeholder='선택한 시설에서 가져오기' />
-                                </td>
-                            </tr>
+                            <tbody>
+                                <tr>
+                                    <th>날짜 선택 <span className='star'></span></th>
+                                    <td><input type="text" name='date' id='date' placeholder='선택해주세요' value={rentDate} readOnly /></td>
+                                </tr>
+                                <tr>
+                                    <th>시간 선택 <span className='star'></span></th>
+                                    <td><input type="text" name='time' id='time' placeholder='선택해주세요' value={rentTime} readOnly /></td>
+                                </tr>
+                                <tr>
+                                    <th>작성자 <span className='star'></span></th>
+                                    <td><input type="text" name='name' id='name' placeholder='세션에서 가져오기' readOnly /></td>
+                                </tr>
+                                <tr>
+                                    <th>연락처 <span className='star'></span></th>
+                                    <td>
+                                        <input type="text" name='phoneNum' id='phoneNum' />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>이용 인원 <span className='star'></span></th>
+                                    <td>
+                                        <input type="text" name='useNum' id='useNum' />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>가격 <span className='star'></span></th>
+                                    <td>
+                                        <input type="text" name='price' id='price' value={rentPrice} placeholder='선택한 시설에서 가져오기' />
+                                    </td>
+                                </tr>
+                            </tbody>
                         </table>
                     </form>
                 </div>
