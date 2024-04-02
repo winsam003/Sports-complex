@@ -28,9 +28,6 @@
     align-items: center;
 }
 
-/* 작성자, 등록일시, 조회수, 첨부파일 세부항목 */
-.XQnaBoardAnswerContent_title_content p:nth-of-type(2n+1) {}
-
 /* 작성자, 등록일시, 조회수, 첨부파일 내용 */
 .XQnaBoardAnswerContent_title_content p:nth-of-type(2n) {
     text-align: center;
