@@ -38,8 +38,8 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout }) {
     const navigate = useNavigate();
 
     // 1. 로그인, 비밀번호 정보를 저장한다.
-    const [id, setId] = useState();
-    const [password, setPassword] = useState();
+    const [id, setId] = useState('');
+    const [password, setPassword] = useState('');
 
     // 2. 로그인 버튼을 누른 순간 서버로 axios 요청을 보낸다.
 
@@ -78,6 +78,13 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout }) {
     // ********************************로그인 끝*************************************//
 
 
+    const idHandler = (value) => {
+        setId(value);
+    }
+    const passwordHandler = (value) => {
+        setPassword(value);
+    }
+
 
 
 
@@ -86,8 +93,8 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout }) {
         <div className='homeDetail_container'>
             <div className='homeDetail_items1'>
                 <div>
-                    <input type="text" placeholder='검색어를 입력해주세요.' />
-                    <input type="submit" value='검색' />
+                    {/* <input id='search' name='search' type="text" placeholder='검색어를 입력해주세요.' /> */}
+                    {/* <input id='search' name='search' type="submit" value='검색' /> */}
                 </div>
                 <div>
                     <div className='homeDetail_Calenderbox'>
@@ -149,11 +156,11 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout }) {
                             <tbody>
                                 <tr>
                                     <th><TbUser className='homeDetail_Icon' /></th>
-                                    <td><input type="text" placeholder='아이디를 입력하세요.' onChange={(e) => setId(e.target.value)} /></td>
+                                    <td><input id='id' name='id' type="text" placeholder='아이디를 입력하세요.' value={id} onChange={(e) => idHandler(e.target.value)} /></td>
                                 </tr>
                                 <tr>
                                     <th><TbLock className='homeDetail_Icon' /></th>
-                                    <td><input type="password" placeholder='비밀번호를 입력하세요.' onChange={(e) => setPassword(e.target.value)} onKeyPress={handleKeypress}/></td>
+                                    <td><input id='password' name='password' type="password" placeholder='비밀번호를 입력하세요.' value={password} onChange={(e) => passwordHandler(e.target.value)} onKeyPress={handleKeypress}/></td>
                                 </tr>
                                 <tr className="homeDetail_login">
                                     <td></td>
