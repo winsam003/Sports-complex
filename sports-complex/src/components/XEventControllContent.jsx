@@ -39,6 +39,18 @@ export default function XEventControllContent() {
     // 검색버튼 눌렀을 때 나오는 것 확인.
     // console.log('searchEvent: ',searchEvent);
 
+    // 체크 ===============================================================
+    const [checkEvent, setCheckEvent] = useState([]);
+
+
+    useEffect(() => {
+        console.log('checkEvent:',[checkEvent]);
+    }, [checkEvent]);
+
+    const handleEventDelete = (deleteValue) => {
+        setCheckEvent(prevState => [...prevState, deleteValue]);
+    }
+
 
     return (
         <div className='XEventControllContent_div'>
@@ -52,7 +64,8 @@ export default function XEventControllContent() {
                         setSearchKeyWord={setSearchKeyWord} />
                 <XBoardSearchResult 
                         eventlist={eventlist}
-                        searchEvent={searchEvent} />
+                        searchEvent={searchEvent}
+                        handleEventDelete={handleEventDelete} />
                 <XResetDeleteBtn />
             </div>
         </div>

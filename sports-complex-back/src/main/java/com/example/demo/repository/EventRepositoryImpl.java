@@ -3,12 +3,10 @@ package com.example.demo.repository;
 import java.util.List;   
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.entity.Event;
-import com.example.demo.entity.Space;
 
 import lombok.extern.log4j.Log4j2;
 
