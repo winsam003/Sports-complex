@@ -46,7 +46,7 @@ export default function XQnaSearchResult({ qanum, qaopen, qapassword, qatype, qa
     // 비밀번호 확인 후 일치하면 페이지 이동
     const handlePasswordSubmit = () => {
         if (passwordInput === qapassword) {
-            navigate(`/XQnaBoardAnswerPage/${qanum}`);
+            navigate(`/XQnaBoardAnswerPage`);
             handleModalClose();
         } else {
             alert("비밀번호가 일치하지 않습니다.");
