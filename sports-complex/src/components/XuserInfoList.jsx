@@ -53,15 +53,13 @@ export default function XuserInfoList() {
         let url = "/member/memberList";
 
 
-        console.log(apiCall(url, 'get', null, null));
-
         apiCall(url, 'get', null, null)
-        .then((userList) => {
-            setUserInfoList(userList);
-            setRememberList(userList);     // 불러온 최초 값 저장
-        }).catch((error) => {
-            console.error("Error fetching member list:", error);
-        });
+            .then((userList) => {
+                setUserInfoList(userList);
+                setRememberList(userList);     // 불러온 최초 값 저장
+            }).catch((error) => {
+                console.error("Error fetching member list:", error);
+            });
     }, [deleteRequest])
     //******************************* UserList 불러오기 요청 끝 *********************************//
 
