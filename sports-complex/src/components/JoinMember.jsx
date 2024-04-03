@@ -3,6 +3,7 @@ import './JoinMember.css'
 import axios from 'axios';
 import { useNavigate } from 'react-router';
 import DaumPostcode from 'react-daum-postcode';
+import { apiCall } from '../apiService/apiService';
 
 export default function JoinMember({ memberType }) {
 
@@ -136,27 +137,30 @@ export default function JoinMember({ memberType }) {
 
     // 1. 서버에서 memberList를 받는다.
     const duplication = () => {
-        axios.get('/member/memberList'
-        ).then((response) => {
-            console.log(`response.data check: ${formData.id}`);
-            const memberlist = response.data;
+        if (idcheck) {
 
-            // 2. 입력한 아이디와 memberList의 아이디들과 비교해서 같은 것을 찾는다.
-            const duplicationCheck = memberlist.filter((list) => list.id === formData.id);
-            console.log(duplicationCheck.length);
+            let url = "/member/memberList"
+            apiCall(url, 'get', null, null
+            ).then((response) => {
+                const memberlist = response;
 
-            if (duplicationCheck.length > 0) {
-                // 3. 중복이 있다면 재 입력 유도
-                alert("중복된 ID입니다. 다시 입력해주세요.")
-            } else {
-                // 4. 중복이 없다면 중복확인 완료 alert창 + readOnly + 배경화면 회색 + 리렌더링
-                alert("사용가능한 ID 입니다.");
-                setIsDuplication(!isDuplication);
-            }
+                // 2. 입력한 아이디와 memberList의 아이디들과 비교해서 같은 것을 찾는다.
+                const duplicationCheck = memberlist.filter((list) => list.id === formData.id);
 
-        }).catch((error) => {
-            console.log(`error check: ${error}`);
-        })
+                if (duplicationCheck.length > 0) {
+                    // 3. 중복이 있다면 재 입력 유도
+                    alert("중복된 ID입니다. 다시 입력해주세요.")
+                } else {
+                    // 4. 중복이 없다면 중복확인 완료 alert창 + readOnly + 배경화면 회색 + 리렌더링
+                    alert("사용가능한 ID 입니다.");
+                    setIsDuplication(true);
+                }
+            }).catch((error) => {
+
+            })
+        } else {
+            alert("ID를 확인해주세요.");
+        }
     }
     // ==========================아이디 중복확인 끝============================//
 
@@ -323,14 +327,17 @@ export default function JoinMember({ memberType }) {
         if (memberType === undefined) {
             alert("비정상적인 접근입니다. 다시 진행해주세요.");
             navigate('/');
-        } else if (idcheck && pwcheck && pw2check && phone1check && phone2check) {
-            axios.post("/member/mjoin", formData
-            ).then((response) => {
-                alert(response.data);
-                navigate('/LoginPage');
-            }).catch((error) => {
-                console.error("Error fetching member list:", error);
-            })
+        } else if (idcheck && pwcheck && pw2check && phone1check && phone2check && isDuplication) {
+
+            let url = "/member/mjoin";
+
+            apiCall(url, 'post', formData, null)
+                .then((response) => {
+                    alert(response);
+                    navigate('/LoginPage');
+                }).catch((error) => {
+                    console.error("Error fetching member list:", error);
+                })
         } else {
             alert("입력정보를 확인해주세요.");
         }

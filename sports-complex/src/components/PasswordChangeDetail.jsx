@@ -1,9 +1,9 @@
-import axios from 'axios';
 import './PasswordChangeDetail.css';
 
 import { TbLock } from "react-icons/tb";
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import { apiCall } from '../apiService/apiService';
 
 export default function PasswordChangeDetail({ getUserID }) {
 
@@ -15,20 +15,23 @@ export default function PasswordChangeDetail({ getUserID }) {
     }
 
     const checkPassword = () => {
-        axios.post('/member/pwcheck',
-            {
-                id: getUserID,
-                password: currentPW
-            }).then((response) => {
-                alert(response.data);
+
+        let url = '/member/pwcheck';
+        let requestData = {
+            id: getUserID,
+            password: currentPW
+        }
+
+        apiCall(url, 'post', requestData, null)
+            .then((response)=>{
+                alert(response);
                 navigate('/PasswordChangePage2');
-            }).catch((error) => {
-                console.log("pwcheck response error occured = "+error)
-            })
+            }).catch((error)=>{
+                console.log("pwcheck response error occured = " + error)
+        })
     }
 
     const handleKeypress = (e) => {
-        console.log("test");
         if (e.key === 'Enter') {
             checkPassword();
         }

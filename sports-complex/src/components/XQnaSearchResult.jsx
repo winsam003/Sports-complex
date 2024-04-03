@@ -2,7 +2,7 @@ import './XBoardSearchResult.css'
 import './XQnaSearchResult.css'
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { apiCall } from '../apiService/apiService';
 
 export default function XQnaSearchResult({ qanum, qaopen, qapassword, qatype, qatitle, id, qadate, qaanswer, qacount, onToggleCheckbox, isChecked }) {
 
@@ -12,11 +12,13 @@ export default function XQnaSearchResult({ qanum, qaopen, qapassword, qatype, qa
     const [passwordInput, setPasswordInput] = useState('');
     const navigate = useNavigate();
 
-    // axios 데이터 요청
+    // apicall 데이터 요청
     const fetchQnaData = async (qanum) => {
         try {
-            const response = await axios.get(`/qna/qnadetail/${qanum}`);
-            return response.data;
+            let url = '/qna/qnadetail';
+            const response = await
+                apiCall(url + `/${qanum}`, 'get', null, null)
+            return response;
         } catch (error) {
             console.error('Error fetching QnA data:', error);
             throw error;
@@ -44,17 +46,23 @@ export default function XQnaSearchResult({ qanum, qaopen, qapassword, qatype, qa
     };
 
     // 비밀번호 확인 후 일치하면 페이지 이동
-    const handlePasswordSubmit = () => {
-        if (passwordInput === qapassword) {
-            navigate(`/XQnaBoardAnswerPage/${qanum}`);
-            handleModalClose();
-        } else {
-            alert("비밀번호가 일치하지 않습니다.");
+    const handlePasswordSubmit = async () => {
+        try {
+            if (passwordInput === qapassword) {
+                const qnaData = await fetchQnaData(qanum);
+                navigate(`/XQnaBoardAnswerPage`, { state: { qnaData } });
+                // 페이지 이동 후 모달 닫기
+                handleModalClose();
+            } else {
+                alert("비밀번호가 일치하지 않습니다.");
+            }
+        } catch (error) {
+            console.log('Error fetching QnA data : ', error);
         }
     };
 
     // 체크박스
-    const handleCheckboxChange = () => {
+    const handleCheckboxChange = (e) => {
         onToggleCheckbox(qanum);
     }
 
@@ -71,7 +79,14 @@ export default function XQnaSearchResult({ qanum, qaopen, qapassword, qatype, qa
 
 
     return (
-        <div className='XQnaSearchResult_SearchResult' onClick={handleQnaResultClick}>
+        <div className='XQnaSearchResult_SearchResult' onClick={(e) => {
+            // 페이지 이동 이벤트에서 체크박스 제외
+            if (e.target.tagName.toLowerCase() !== 'input' && e.target.tagName.toLowerCase() === 'p') {
+                if (!e.target.querySelector('input')) {
+                    handleQnaResultClick();
+                }
+            }
+        }}>
             {/* 조회결과 */}
             <p><input type='checkbox' checked={isChecked} onChange={handleCheckboxChange} /></p>
             <p>{qanum}</p>

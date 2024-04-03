@@ -41,3 +41,9 @@
 .FindID_name{
     margin-bottom: 5px;
 }
+
+.FindID_Message{
+    text-align: start;
+    color: red;
+    font-size: smaller;
+}

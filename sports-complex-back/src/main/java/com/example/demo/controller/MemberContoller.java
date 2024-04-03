@@ -37,11 +37,8 @@ public class MemberContoller {
 	public ResponseEntity<?> mList() {
 		List<Member> result = service.MemberListAll();
 		if(result != null && result.size() >0) {
-			log.info("OK TEST");
-			log.info(result);
 			return ResponseEntity.status(HttpStatus.OK).body(result);
 		}else {
-			log.info("BAD TEST");
 			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("출력 할 회원정보가 없습니다.");			
 		}
 	} // mList
@@ -50,12 +47,15 @@ public class MemberContoller {
 	// ** mjoin
 	@PostMapping(value="/mjoin", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> mJoin(@RequestBody Member dto){
-		
+		log.info("test");
 		dto.setPassword(passwordEncoder.encode(dto.getPassword()));
+		log.info("test2");
 		
 		if(service.MemberJoin(dto) > 0) {
+			log.info("test3");
 			return ResponseEntity.status(HttpStatus.OK).body("회원가입에 성공하였습니다. 로그인 창으로 이동합니다.");
 		}else {
+			log.info("test4");
 			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("회원가입에 실패하였습니다.");			
 		}
 	} // mJoin
@@ -153,5 +153,23 @@ public class MemberContoller {
 			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(null);						
 		}
 	} // mPWChange
+	
+	
+	// mfindID
+	@PostMapping(value="/mfindID", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> mfindID(@RequestBody Member entity){
+		
+		String name = entity.getName();
+		String phonenum = entity.getPhonenum();
+		log.info(name);
+		log.info(phonenum);
+		
+		entity = service.mfindID(entity);
+		if(entity != null) {
+			return ResponseEntity.status(HttpStatus.OK).body("아이디 확인: "+entity.getId());
+		}else {
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(null);	
+		}		
+	}
 	
 }

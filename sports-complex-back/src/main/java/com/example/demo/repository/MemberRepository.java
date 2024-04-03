@@ -17,4 +17,6 @@ public interface MemberRepository {
 	public int mUpdate(Member entity);
 
 	public int mPWChange(Member entity);
+	
+	public Member mfindID(Member entity);
 }
