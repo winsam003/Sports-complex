@@ -10,4 +10,6 @@ public interface EventService {
 	
 	int EventDelete(int eventcode);
 	
+	Event EventDetail(Integer eventCode);
+	
 }

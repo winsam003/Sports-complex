@@ -1,6 +1,7 @@
 import './XBoardSearchResult.css'
 import EventDetail from './EventDetail';
-import { useLocation } from 'react-router';
+import { Navigate, useLocation, useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
 
 export default function XBoardSearchResult({eventlist, searchEvent, handleEventDelete, checkEvent, setCheckEvent}) {
 
@@ -9,10 +10,22 @@ export default function XBoardSearchResult({eventlist, searchEvent, handleEventD
 
     // 사용자 입장 url일 때 
     const location = useLocation();
+    // console.log('location.pathname : ', location.pathname);
 
-    console.log('location.pathname : ', location.pathname);
+    // =============================================================================================
+    // eventname 클릭하면 디테일 페이지 로 eventcode 보내주기. 
+    const navigate = useNavigate();
 
+    const handleEventClick = (eventcode) => {
+        try{
+            navigate(`/EventDetailPage?eventcode=${eventcode}`);
+        } catch (error) {
+            console.log('Error eventDetail : ', error);
+        }
 
+    }
+
+    // =============================================================================================
     return (
         <div className='XBoardControllContent_SearchResult_div'>
             {/* 조회결과 index */}
@@ -62,7 +75,7 @@ export default function XBoardSearchResult({eventlist, searchEvent, handleEventD
 
                         <div className='listEvent XBoardControllContent_SearchResult_User' key={eventcode}>
                             <p>{eventcode}</p>
-                            <p>{eventname}</p>
+                            <p onClick={() => handleEventClick(eventcode)}>{eventname}</p>
                             <p>{eventfacility}</p>
                             <p>{eventfor}</p>
                             <p>{eventtype}</p>
@@ -96,7 +109,7 @@ export default function XBoardSearchResult({eventlist, searchEvent, handleEventD
                                     checked={checkEvent.includes(eventcode.toString())} 
                                     /></p>
                             <p>{eventcode}</p>
-                            <p>{eventname}</p>
+                            <p onClick={() => handleEventClick(eventcode)}>{eventname}</p>
                             <p>{eventfacility}</p>
                             <p>{eventfor}</p>
                             <p>{eventtype}</p>
