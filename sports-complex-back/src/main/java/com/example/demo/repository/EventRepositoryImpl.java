@@ -32,6 +32,7 @@ public class EventRepositoryImpl implements EventRepository {
 		log.info("EventDelete Repository 성공");
 		String jpql = "DELETE FROM Event where eventcode = :eventcode";
 		
+		// delete는 
 		return em.createNativeQuery(jpql, Event.class)
 				 .setParameter("eventcode", eventcode)
 				 .executeUpdate();
