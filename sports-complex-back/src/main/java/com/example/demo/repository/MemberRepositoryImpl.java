@@ -128,4 +128,17 @@ public class MemberRepositoryImpl implements MemberRepository{
 		
 		return query.executeUpdate();
 	}
+	
+	
+	@Override
+	public Member mfindID(Member entity) {
+		log.info("mfindID Repository 접촉 성공");
+		log.info(entity.getName());
+		log.info(entity.getPhonenum());
+		
+		
+		return em.createQuery("SELECT m FROM Member m WHERE m.name = :name AND m.phonenum = :phonenum", Member.class)
+				.setParameter("name", entity.getName())
+				.setParameter("phonenum", entity.getPhonenum()).getSingleResult();
+	}
 }

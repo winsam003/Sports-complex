@@ -31,14 +31,20 @@ export default function XuserInfoList() {
     const [deleteRequest, setDeleteRequest] = useState(false);
 
     const deleteReq = () => {
-        axios.post('/member/mdelete', checkedUsers
-        ).then((response) => {
-            alert(response.data);
-            setUserInfoList([]);
-            setDeleteRequest(!deleteRequest);
-        }).catch((error) => {
-            console.log('deleteError => ' + error)
-        })
+
+        let url = "/member/mdelete";
+
+        apiCall(url, 'post', checkedUsers, null)
+            .then((response) => {
+                alert(response);
+                setUserInfoList([]);
+                setDeleteRequest(!deleteRequest);
+                setInOrFo('');
+                setMemberAge('');
+                setKeyword('');
+            }).catch((error) => {
+                console.log('deleteError => ' + error)
+            })
     }
     //******************************* 체크된 유저 삭제 끝 *********************************//
 
@@ -51,7 +57,6 @@ export default function XuserInfoList() {
     useEffect(() => {
 
         let url = "/member/memberList";
-
 
         apiCall(url, 'get', null, null)
             .then((userList) => {
@@ -126,7 +131,21 @@ export default function XuserInfoList() {
     }
 
     //******************************* 회원정보조회 초기화 버튼 끝 *********************************//
+    
+    
 
+    
+    //******************************* 회원 정보 조회 엔터 키 누를 시 조회 *********************************//
+
+    const handKeyPress = (e) =>{
+        if(e.key == 'Enter'){
+            searchMember();
+        }
+    }
+
+    
+
+    //******************************* 회원 정보 조회 엔터 키 누를 시 조회 *********************************//
 
 
     return (
@@ -147,7 +166,7 @@ export default function XuserInfoList() {
                     <option value="OL">65세이상</option>
                 </select>
                 <span>이름</span>
-                <input value={keyword} onChange={iskeyword} type='search' className='XuserInfoList_SearchBox_input' placeholder='이름 검색' />
+                <input value={keyword} onChange={iskeyword} type='search' className='XuserInfoList_SearchBox_input' placeholder='이름 검색' onKeyPress={handKeyPress} />
             </div>
             <div className='XBtnResetSearch'>
                 <button onClick={searBoxRefresh}>초기화</button>
