@@ -33,9 +33,7 @@ public class Event {
 	public int eventcount;
 	public String eventuploadfile;
 	public String stfid;
-//	@CreationTimestamp
     @Column(nullable = false)
-//	public Timestamp eventdate;
     public Date eventdate;
 	
 	
