@@ -3,8 +3,8 @@ import './XEventSearch.css'
 
 export default function XEventSearch({onSearch, searchType, setSearchType, searchKeyWord, setSearchKeyWord, }) {
 
-    console.log('XEventSearch_searchType: ', searchType);
-    console.log('XEventSearch_searchKeyWord: ', searchKeyWord);
+    // console.log('XEventSearch_searchType: ', searchType);
+    // console.log('XEventSearch_searchKeyWord: ', searchKeyWord);
 
     const handleSearch = () => {
         onSearch({

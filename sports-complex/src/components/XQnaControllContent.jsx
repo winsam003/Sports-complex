@@ -2,7 +2,7 @@ import './XQnaControllContent.css'
 import XQnaSearchResult from './XQnaSearchResult'
 import Submenu from './Submenu';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { apiCall } from '../apiService/apiService';
 
 export default function XQnaControllContent() {
     const [qna, setqna] = useState([]);
@@ -15,21 +15,21 @@ export default function XQnaControllContent() {
     const [searchResult, setSearchResult] = useState([]);
 
     // 문의게시글 불러오기
-    const loadQnaList = (() => {
-        axios.get('/qna/qnaList')
-            .then((response) => {
-                setqna(response.data);
-                // 처음 접근 시 모든 데이터를 출력
-                setSearchResult(response.data);
-            }).catch((error) => {
-                console.error("QnA 목록 불러오기 실패", error);
-            });
-    });
-
-    // 최초 문의게시글 불러오기
     useEffect(() => {
+        const loadQnaList = async () => {
+            let url = '/qna/qnaList';
+
+            apiCall(url, 'get', null, null)
+                .then((response) => {
+                    setqna(response);
+                    // 처음 접근 시 모든 데이터를 출력
+                    setSearchResult(response);
+                }).catch((error) => {
+                    console.error("QnA 목록 불러오기 실패", error);
+                });
+        }
         loadQnaList();
-    }, []);
+    }, [selectedQnaBoard]);
 
     // 문의게시글 선택하기
     const handleToggleCheckbox = (qanum) => {
@@ -47,28 +47,22 @@ export default function XQnaControllContent() {
         setSelectedQnaBoard([]);
     };
 
-    // 선택된 문의게시글 axios 요청 보내고 삭제하기
+    // 선택된 문의게시글 apiCall 요청 보내고 삭제하기
     const handleDeleteSelectedQna = (() => {
         if (selectedQnaBoard.length === 0) {
             // console.log(" 선택된 목록이 없습니다 ");
             return;
         }
-        // console.log("삭제할 문의게시판 qanum 목록:", selectedQnaBoard);
 
-        axios.get('/qna/qnaDelete', {
-            params: {
-                // 값이 전달됐을 때 []표시를 제거하기위해 join으로 , 구분자 이용
-                qanum: selectedQnaBoard.join(','),
-            }
-        }).then(() => {
-            console.log("문의게시판 삭제 성공");
-            // 삭제 후 문의게시판 목록 최신화
-            loadQnaList();
-            // 삭제 후 선택된 목록 배열 초기화
-            setSelectedQnaBoard([]);
-        }).catch((error) => {
-            console.error(`문의게시판 삭제 실패 `, error);
-        });
+        let url = '/qna/qnaDelete';
+
+        apiCall(url + `?qanum=${selectedQnaBoard.join('&qanum=')}`, 'get', null, null)
+            .then(() => {
+                // 삭제 후 선택된 목록 배열 초기화
+                setSelectedQnaBoard([]);
+            }).catch((error) => {
+                console.error(`문의게시판 삭제 실패 `, error);
+            });
     });
 
     // 검색 기능
@@ -90,7 +84,7 @@ export default function XQnaControllContent() {
                 default:
                     return true; // 전체일 경우 모든 항목을 반환합니다.
             }
-        }));
+        }) || []);
     };
 
     return (
@@ -121,7 +115,7 @@ export default function XQnaControllContent() {
                         <p>조회수</p>
                     </div>
                     <div>
-                        {searchResult.map((item, index) => (
+                        {searchResult && searchResult.map((item, index) => (
                             <XQnaSearchResult key={index} {...item} onToggleCheckbox={handleToggleCheckbox} isChecked={selectedQnaBoard.includes(item.qanum)} />
                         ))}
                     </div>

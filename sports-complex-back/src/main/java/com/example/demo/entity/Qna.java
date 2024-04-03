@@ -56,7 +56,9 @@ public class Qna {
 	@Transient
 	private MultipartFile qafilef;
 	@Column
-	private String qaanswer;
+	private String qareply;
+	@CreationTimestamp
+	private Timestamp qareplytime;
 
 //	한명의 회원은 여러개의 게시글을 쓸 수 있다
 	@ManyToOne
