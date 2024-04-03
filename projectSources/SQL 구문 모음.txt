@@ -394,7 +394,8 @@ CREATE TABLE Event (
 	eventCount int NOT NULL,
 	eventUploadfile varchar(100) NULL,
 	stfID varchar(15) NOT NULL,
-	FOREIGN KEY (stfID) REFERENCES staff(stfID)
+	FOREIGN KEY (stfID) REFERENCES staff(stfID);
+    eventdate date Null
 );
 
 **이벤트 event insert

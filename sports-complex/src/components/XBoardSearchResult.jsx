@@ -1,6 +1,7 @@
 import './XBoardSearchResult.css'
 import EventDetail from './EventDetail';
 import { useLocation } from 'react-router';
+import { Link } from 'react-router-dom';
 
 export default function XBoardSearchResult({eventlist, searchEvent, handleEventDelete, checkEvent, setCheckEvent}) {
 
@@ -96,7 +97,7 @@ export default function XBoardSearchResult({eventlist, searchEvent, handleEventD
                                     checked={checkEvent.includes(eventcode.toString())} 
                                     /></p>
                             <p>{eventcode}</p>
-                            <p>{eventname}</p>
+                            <p> <Link to={/}>{eventname}</Link> </p>
                             <p>{eventfacility}</p>
                             <p>{eventfor}</p>
                             <p>{eventtype}</p>
