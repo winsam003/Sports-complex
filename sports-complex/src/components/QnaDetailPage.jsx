@@ -43,20 +43,26 @@ export default function XQnaBoardAnswerContent({ qnaData }) {
                     <p>(<span className='star'>*</span>)는 반드시 작성해야 할 필수 항목입니다.</p>
                 </div>
                 <div className='XQnaBoardAnswerContent_form'>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <th>작성자<span className='star'>*</span></th>
-                                <td><input type="text" name='name' id='name' readOnly placeholder='로그인되어있는직원id데이터가져와서사용' /></td>
-                            </tr>
-                            <tr>
-                                <th>내용 <span className='star'>*</span></th>
-                                <td>
-                                    <input type="text" name='content' id='content' />
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <form action="/" method='post'>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>작성자<span className='star'>*</span></th>
+                                    <td><input type="text" name='name' id='name' readOnly placeholder='백엔드 답변변수명변경 답변시간변수추가 로그인되어있는직원id데이터가져와서사용' /></td>
+                                </tr>
+                                <tr>
+                                    <th>내용 <span className='star'>*</span></th>
+                                    <td>
+                                        <input type="text" name='content' id='content' />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>작성일</th>
+                                    <td>자바스크립트로 실시간 날짜, 시간 넣기. 게시판을 들어온 시간을 답변시간에 넣어주고 확인 사용자에서만 작성일을 확인하고 관리자가 작성할 땐 이 칸이 필요없어보임</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
                     <div className='XQnaBoardAnswerContent_btn_div'>
                         <button>등록</button>
                         <button>목록</button>
