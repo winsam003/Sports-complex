@@ -1,6 +1,25 @@
+import { useEffect, useState } from 'react'
+import { apiCall } from '../apiService/apiService';
 import './BoardSearchList.css'
+import BoardSearchList2 from './BoardSearchlist2';
 
 export default function BoardSearchList() {
+
+    const [noticeList, setNoticeList] = useState([]);
+    useEffect(() => {
+        let url = "/notice/noticeList";
+
+        apiCall(url, 'get', null, null)
+            .then((response) => {
+                alert("test1");
+                setNoticeList(response);
+            }).catch((error) => {
+                console.log("noticeList error occred = " + error);
+                alert("test2");
+            })
+    }, [])
+
+    console.log(noticeList)
     return (
         <div>
             <div className='BoardSearchList'>
@@ -10,12 +29,10 @@ export default function BoardSearchList() {
                     <span>작성자</span>
                     <span>등록일시</span>
                 </div>
-                <div className='BoardSearchList_content'>
-                    <span>00000001</span>
-                    <span>공지사항 제목 확인용 글입니다</span>
-                    <span>김수한무두루미</span>
-                    <span>2024.12.31</span>
-                </div>
+
+                {noticeList.map((it, index) => (
+                    <BoardSearchList2 key={index} {...it} />))}
+
             </div>
         </div>
     )

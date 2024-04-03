@@ -50,9 +50,10 @@ public class QnaController {
 		}
 	}
 
-//	문의게시글 등록
+//	문의게시글 답변 등록
 	@PostMapping("/qnaReplyInsert")
 	public ResponseEntity<?> qnaReplyInsert(@RequestBody QnaDTO dto) {
+		System.out.println("dto확인중입니다 : " + dto);
 		if (service.qnareplyinsert(dto) > 0) {
 			return ResponseEntity.status(HttpStatus.OK).body("문의게시글 답변 등록에 성공하셨습니다.");
 		} else {

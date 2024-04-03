@@ -62,20 +62,20 @@ public class SecurityConfig {
 		// => authorizeRequests(): RequestMatcher를 기반으로 엑세스 제한 기능
 		// => antMatcher: 제시한 ant 패턴과 일치할 때만 호출 가능
 		// => anyRequest ~ authenticated : 어떠한 요청도 인가 받아야함.
-		
-		return http.httpBasic().disable() // token을 사용하므로 basic 인증 disable (사용안함)						// (HTTP 기본 인증 비활성화 대신 토큰 사용)
-        		//.formLogin().disable()  														
-                .csrf().disable() // csrf는 현재 사용하지 않으므로 disable										// CSRF(Cross-Site Requst Forgery) 비활성화
-                .cors().and()     																			// CORS 활성화 => 다른 도메인에서 자원 공유 허용
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS).and()				// 세션을 생성하도록 구성
-                //.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                // => session 기반이 아님을 선언
+
+		return http.httpBasic().disable() // token을 사용하므로 basic 인증 disable (사용안함) // (HTTP 기본 인증 비활성화 대신 토큰 사용)
+				// .formLogin().disable()
+				.csrf().disable() // csrf는 현재 사용하지 않으므로 disable // CSRF(Cross-Site Requst Forgery) 비활성화
+				.cors().and() // CORS 활성화 => 다른 도메인에서 자원 공유 허용
+				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS).and() // 세션을 생성하도록 구성
+				// .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+				// => session 기반이 아님을 선언
 				.authorizeRequests()
-				.antMatchers("/", "/event/**", "/member/**", "/resources/**", "/uploadImage/**").permitAll() 
+				.antMatchers("/", "/event/**", "/member/**", "/qna/**", "/notice/**").permitAll() 
 				// => "/", "/home", "/resources/**", "/uploadImage/**", "/member/**" 등의 경로는 인증 안해도 됨.
 				.anyRequest().authenticated().and() 														// 나머지 모든 요청에 대해서 인증이 필요함을 명시
 				// => 위 이외의 모든 경로는 인증해야됨.
-                .build();																					// 빌드
-    } //filterChain
+				.build(); // 빌드
+	} // filterChain
 
 } // class

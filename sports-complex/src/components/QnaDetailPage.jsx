@@ -1,6 +1,5 @@
 import './XQnaBoardAnswerContent.css'
 import Submenu from './Submenu'
-import axios from 'axios';
 import { useState, useEffect } from 'react';
 
 // 문의게시판 답변하기
@@ -18,6 +17,8 @@ export default function XQnaBoardAnswerContent({ qnaData }) {
         return `${year}-${month}-${day} ${hours}:${minutes}`;
     }
 
+    // 답변 등록하기
+
     return (
         <div className='XQnaBoardAnswerContent_div'>
             <Submenu />
@@ -26,7 +27,7 @@ export default function XQnaBoardAnswerContent({ qnaData }) {
                     <p className='XQnaBoardAnswerContent_title'>{qnaData.qatitle}</p>
                     <div className='XQnaBoardAnswerContent_title_content'>
                         <p>작성자</p>
-                        <p>{qnaData.id.id}</p>
+                        <p>{qnaData.member.id}</p>
                         <p>등록일시</p>
                         <p>{formattedDate}</p>
                         <p>조회수</p>

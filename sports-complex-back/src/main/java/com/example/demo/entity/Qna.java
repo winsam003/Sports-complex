@@ -1,6 +1,6 @@
 package com.example.demo.entity;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,25 +32,25 @@ public class Qna {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer qanum;
-	@Column(length = 20, nullable = false)
+	@Column(length = 20, nullable = false, updatable = false)
 	private String qatitle;
-	@Column(nullable = false)
+	@Column(nullable = false, updatable = false)
 //	대용량 데이터
 	@Lob
 	private String qacontent;
-	@Column(length = 10, nullable = false)
+	@Column(length = 10, nullable = false, updatable = false)
 	private String qatype;
 //	값이 입력되거나 업데이트시 자동으로 시간 입력
 	@CreationTimestamp
-	@Column(nullable = false)
-	private Timestamp qadate;
-	@Column(nullable = false)
+	@Column(nullable = false, updatable = false)
+	private Date qadate;
+	@Column(nullable = false, updatable = false)
 	private Boolean qaopen;
-	@Column(nullable = false)
+	@Column(nullable = false, updatable = false)
 	private String qapassword;
-	@Column(nullable = false)
+	@Column(nullable = false, updatable = false)
 	private Integer qacount;
-	@Column(length = 100)
+	@Column(length = 100, updatable = false)
 	private String qafile;
 //	테이블에 존재하지 않는 값, SQL 구문 처리시 예외
 	@Transient
@@ -58,15 +58,15 @@ public class Qna {
 	@Column
 	private String qareply;
 	@CreationTimestamp
-	private Timestamp qareplytime;
+	private Date qareplytime;
 
 //	한명의 회원은 여러개의 게시글을 쓸 수 있다
 	@ManyToOne
-	@JoinColumn(name = "id")
-	private Member id;
+	@JoinColumn(name = "id", updatable = false)
+	private Member member;
 
 //	답글을 단 사람이 누구인지
 	@ManyToOne
 	@JoinColumn(name = "stfid")
-	private Staff stfid;
+	private Staff staff;
 }

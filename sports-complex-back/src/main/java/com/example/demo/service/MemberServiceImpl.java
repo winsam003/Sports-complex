@@ -21,10 +21,9 @@ public class MemberServiceImpl implements MemberService{
 	private final MemberRepositoryImpl repository;
 	
 	@Override
-		public List<Member> MemberListAll() {
-			// TODO Auto-generated method stub
-			return repository.MemberListAll();
-		}
+	public List<Member> MemberListAll() {
+		return repository.MemberListAll();
+	}
 	
 	
 	public int MemberJoin(Member dto) {

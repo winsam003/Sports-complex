@@ -1,10 +1,31 @@
 import './XQnaBoardAnswerContent.css'
 import Submenu from './Submenu'
-import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { apiCall } from '../apiService/apiService';
 
 // 문의게시판 답변하기
 export default function XQnaBoardAnswerContent({ qnaData }) {
+    // 현재 시간
+    const currentTime = new Date();
+    const formattedTime = currentTime.toISOString();
+
+    // 답변작성직원ID,답변내용 상태변화
+    const [qnaReplyData, setQnaReplyData] = useState({
+        qanum: qnaData.qanum,
+        qareply: qnaData.qareply || '',
+        qareplytime: formattedTime,
+        stfid: ''
+    });
+
+    const navigate = useNavigate();
+
+    // 입력값 변경
+    const qnaReplyDataChange = (e) => {
+        setQnaReplyData({ ...qnaReplyData, [e.target.name]: e.target.value });
+    }
+
+
     const formattedDate = formatDateTime(qnaData.qadate);
 
     // 날짜 및 시간을 원하는 형식으로 변환하는 함수
@@ -18,6 +39,21 @@ export default function XQnaBoardAnswerContent({ qnaData }) {
         return `${year}-${month}-${day} ${hours}:${minutes}`;
     }
 
+    // 답변작성직원ID, 답변내용, 답변시간 추가
+    const RegisterQnaReply = async () => {
+        let url = '/qna/qnaReplyInsert';
+
+        console.log("전송 데이터 : ", qnaReplyData);
+
+        apiCall(url, 'post', qnaReplyData, null)
+            .then((response) => {
+                console.log("응답을 확인합니다 : ", response);
+                navigate('/XQnaBoardControllPage');
+            }).catch((error) => {
+                console.error("RegisterQnaReply fail", error);
+            })
+    };
+
     return (
         <div className='XQnaBoardAnswerContent_div'>
             <Submenu />
@@ -26,7 +62,7 @@ export default function XQnaBoardAnswerContent({ qnaData }) {
                     <p className='XQnaBoardAnswerContent_title'>{qnaData.qatitle}</p>
                     <div className='XQnaBoardAnswerContent_title_content'>
                         <p>작성자</p>
-                        <p>{qnaData.id.id}</p>
+                        <p>{qnaData.member.id}</p>
                         <p>등록일시</p>
                         <p>{formattedDate}</p>
                         <p>조회수</p>
@@ -47,22 +83,22 @@ export default function XQnaBoardAnswerContent({ qnaData }) {
                         <tbody>
                             <tr>
                                 <th>작성자<span className='star'>*</span></th>
-                                <td><input type="text" name='name' id='name' readOnly placeholder='로그인되어있는직원id데이터가져와서사용' /></td>
+                                <td><input type="text" name='stfid' id='stfid' value={qnaReplyData.stfid} onChange={qnaReplyDataChange} placeholder='로그인되어있는직원id데이터가져와서사용 readOnly 걸어야함' /></td>
                             </tr>
                             <tr>
                                 <th>내용 <span className='star'>*</span></th>
                                 <td>
-                                    <input type="text" name='content' id='content' />
+                                    <input type="text" name='qareply' id='qareply' value={qnaReplyData.qareply} onChange={qnaReplyDataChange} />
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                     <div className='XQnaBoardAnswerContent_btn_div'>
-                        <button>등록</button>
-                        <button>목록</button>
+                        <button onClick={RegisterQnaReply}>등록</button>
+                        <button onClick={() => window.history.back()}>목록</button>
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
