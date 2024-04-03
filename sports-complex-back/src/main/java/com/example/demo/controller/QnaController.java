@@ -53,7 +53,7 @@ public class QnaController {
 //	문의게시글 등록
 	@PostMapping("/qnaReplyInsert")
 	public ResponseEntity<?> qnaReplyInsert(@RequestBody QnaDTO dto) {
-		if (service.qnainsert(dto) > 0) {
+		if (service.qnareplyinsert(dto) > 0) {
 			return ResponseEntity.status(HttpStatus.OK).body("문의게시글 답변 등록에 성공하셨습니다.");
 		} else {
 			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("문의게시글 답변 등록에 실패하였습니다.");
@@ -72,7 +72,7 @@ public class QnaController {
 		} catch (Exception e) {
 			System.out.println(" QnA Delete Excpetion => " + e.toString());
 		}
-		return "redirect:staff";
+		return "redirect:qna";
 	}
 
 }
