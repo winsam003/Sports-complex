@@ -2,6 +2,7 @@ import axios from 'axios'
 import DaumPostcode from 'react-daum-postcode';
 import './ModifyMember.css'
 import { useEffect, useState } from 'react'
+import { apiCall } from '../apiService/apiService';
 
 export default function ModifyMember({ getUserID }) {
 
@@ -32,31 +33,37 @@ export default function ModifyMember({ getUserID }) {
 
     // 2. 내 정보 불러오기 (불러 온 후 정보를 객체에 저장)
     useEffect(() => {
-        axios.post('/member/mDetail', { id: getUserID })
-            .then((response) => {
+
+        let url = "/member/mDetail";
+        let requestDate = {
+            id: getUserID
+        }
+
+        apiCall(url, 'post', requestDate, null)
+            .then((response)=>{
                 setUserData(userData => (
                     {
                         ...userData,
-                        membercode: response.data.membercode,
-                        name: response.data.name,
-                        birth: response.data.birth,
-                        id: response.data.id,
-                        address: response.data.address,
-                        address1: response.data.address1,
-                        address2: response.data.address2,
-                        carnum: response.data.carnum,
-                        email: response.data.email.substring(0, response.data.email.indexOf('@')),
-                        email2: response.data.email.substring(response.data.email.indexOf('@')),
-                        firstPhone: response.data.phonenum.substring(0, 3),
-                        middlePhone: (response.data.phonenum.length === 11 ? response.data.phonenum.substring(3, 7) : response.data.phonenum.substring(3, 6)),
-                        lastPhone: (response.data.phonenum.length === 11 ? response.data.phonenum.substring(7) : response.data.phonenum.substring(6)),
-                        emailagr: response.data.emailagr,
-                        snsagr: response.data.snsagr,
+                        membercode: response.membercode,
+                        name: response.name,
+                        birth: response.birth,
+                        id: response.id,
+                        address: response.address,
+                        address1: response.address1,
+                        address2: response.address2,
+                        carnum: response.carnum,
+                        email: response.email.substring(0, response.email.indexOf('@')),
+                        email2: response.email.substring(response.email.indexOf('@')),
+                        firstPhone: response.phonenum.substring(0, 3),
+                        middlePhone: (response.phonenum.length === 11 ? response.phonenum.substring(3, 7) : response.phonenum.substring(3, 6)),
+                        lastPhone: (response.phonenum.length === 11 ? response.phonenum.substring(7) : response.phonenum.substring(6)),
+                        emailagr: response.emailagr,
+                        snsagr: response.snsagr,
                     }
-                ))
-            }).catch((error) => {
+                ))            
+            }).catch((error)=>{
                 console.log("error=" + error)
-            })
+        })
     }, [])
     // *********************************내정보 detail 불러오기 끝************************************ //
 
@@ -225,6 +232,7 @@ export default function ModifyMember({ getUserID }) {
             }).then((response) => {
                 alert(response.data);
                 setReset(!reset);
+                
             }).catch((error) => {
                 alert("회원정보 변경에 실패하였습니다. 관리자에게 문의하세요");
                 console.log("modify error occured=" + error)
@@ -247,91 +255,91 @@ export default function ModifyMember({ getUserID }) {
 
                 <table>
                     <tbody>
-                    <tr>
-                        <th>회원코드<span className='ModifyMember_star'>*</span></th>
-                        <td><input type="text" name='membercode' id='membercode' value={userData.membercode} style={{ backgroundColor: "#ccc" }} readOnly /></td>
-                    </tr>
-                    <tr>
-                        <th>이름 (실명) <span className='ModifyMember_star'>*</span></th>
-                        <td><input type="text" name='name' id='name' value={userData.name} style={{ backgroundColor: "#ccc" }} readOnly /></td>
-                    </tr>
-                    <tr>
-                        <th>생년월일<span className='ModifyMember_star' >*</span></th>
-                        <td>
-                            <input type="number" name='birth' id='birth' value={userData.birth} style={{ backgroundColor: "#ccc" }} readOnly />
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>아이디<span className='ModifyMember_star'>*</span></th>
-                        <td>
-                            <input type="text" name='id' id='id' value={userData.id} style={{ backgroundColor: "#ccc" }} readOnly />
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>주소</th>
-                        <td>
-                            <button onClick={toggleHandler} className='ModifyMember_button'>우편번호 찾기</button> <br />
-                            {isOpen ? ('') : ((
+                        <tr>
+                            <th>회원코드<span className='ModifyMember_star'>*</span></th>
+                            <td><input type="text" name='membercode' id='membercode' value={userData.membercode} style={{ backgroundColor: "#ccc" }} readOnly /></td>
+                        </tr>
+                        <tr>
+                            <th>이름 (실명) <span className='ModifyMember_star'>*</span></th>
+                            <td><input type="text" name='name' id='name' value={userData.name} style={{ backgroundColor: "#ccc" }} readOnly /></td>
+                        </tr>
+                        <tr>
+                            <th>생년월일<span className='ModifyMember_star' >*</span></th>
+                            <td>
+                                <input type="number" name='birth' id='birth' value={userData.birth} style={{ backgroundColor: "#ccc" }} readOnly />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>아이디<span className='ModifyMember_star'>*</span></th>
+                            <td>
+                                <input type="text" name='id' id='id' value={userData.id} style={{ backgroundColor: "#ccc" }} readOnly />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>주소</th>
+                            <td>
+                                <button onClick={toggleHandler} className='ModifyMember_button'>우편번호 찾기</button> <br />
+                                {isOpen ? ('') : ((
+                                    <div>
+                                        <DaumPostcode
+                                            onComplete={completeHandler}
+                                            onClose={closeHandler}
+                                        />
+                                    </div>
+                                ))}
+                                <input type="text" name='address' id='address' value={userData.address} readOnly /> <br />
+                                <input type="text" name='address1' id='address1' value={userData.address1} readOnly /> <br />
+                                <input type="text" name='address2' id='address2' value={userData.address2} onChange={updateData} placeholder='상세주소' />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>차량번호</th>
+                            <td>
+                                <input type="text" name='carnum' id='carnum' value={userData.carnum} onChange={updatecarnum} />
+                                <p style={{ color: 'red', fontSize: 'small' }}>{carnumMessage}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>이메일</th>
+                            <td className='email'>
+                                <input type="email" name='email' id='email' value={userData.email} onChange={updateData} />
+                                <input type="text" name='email2' id='email2' value={userData.email2} onChange={updateData} placeholder='@email.com' />
+                                <select name="email2" id="email2" onChange={updateData} >
+                                    <option value="">직접입력</option>
+                                    <option value="@gmail.com">gmail.com</option>
+                                    <option value="@daum.net">daum.net</option>
+                                    <option value="@hotmail.com">hotmail.com</option>
+                                    <option value="@naver.com">naver.com</option>
+                                    <option value="@nate.com">nate.com</option>
+                                    <option value="@yahoo.com">yahoo.com</option>
+                                    <option value="@dreamwiz.com">dreamwiz.com</option>
+                                </select> <br />
+                                <input type="checkbox" name='emailagr' id='emailagr' checked={userData.emailagr} onChange={updateChecked} />
+                                <span><label htmlFor="emailagr">뉴스레터나 공지이메일을 수신 받겠습니다.</label></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>휴대전화<span className='JoinMember_star'>*</span></th>
+                            <td>
+                                <select name="firstPhoneNum" id="firstPhoneNum" value={userData.firstPhone} onChange={(e) => { firstNum(e.target.value) }}>
+                                    <option value="010">010</option>
+                                    <option value="011">011</option>
+                                    <option value="016">016</option>
+                                    <option value="017">017</option>
+                                    <option value="019">019</option>
+                                </select>
+                                <span>-</span>
+                                <input type="text" name='secondPhoneNum' id='secondPhoneNum' value={userData.middlePhone} onChange={(e) => { secondNum(e.target.value) }} />
+                                <span>-</span>
+                                <input type="text" name='lastPhoneNum' id='lastPhoneNum' value={userData.lastPhone} onChange={(e) => { lastNum(e.target.value) }} />
+                                <div className='Message'>{phoneMessage}</div>
+                                <br />
                                 <div>
-                                    <DaumPostcode
-                                        onComplete={completeHandler}
-                                        onClose={closeHandler}
-                                    />
+                                    <input type="checkbox" name='snsagr' id='snsagr' checked={userData.snsagr} onChange={updateChecked} />
+                                    <span><label htmlFor="snsagr">알림 문자를 수신하겠습니다.</label></span>
                                 </div>
-                            ))}
-                            <input type="text" name='address' id='address' value={userData.address} readOnly /> <br />
-                            <input type="text" name='address1' id='address1' value={userData.address1} readOnly /> <br />
-                            <input type="text" name='address2' id='address2' value={userData.address2} onChange={updateData} placeholder='상세주소' />
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>차량번호</th>
-                        <td>
-                            <input type="text" name='carnum' id='carnum' value={userData.carnum} onChange={updatecarnum} />
-                            <p style={{ color: 'red', fontSize: 'small' }}>{carnumMessage}</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>이메일</th>
-                        <td className='email'>
-                            <input type="email" name='email' id='email' value={userData.email} onChange={updateData} />
-                            <input type="text" name='email2' id='email2' value={userData.email2} onChange={updateData} placeholder='@email.com' />
-                            <select name="email2" id="email2" onChange={updateData} >
-                                <option value="">직접입력</option>
-                                <option value="@gmail.com">gmail.com</option>
-                                <option value="@daum.net">daum.net</option>
-                                <option value="@hotmail.com">hotmail.com</option>
-                                <option value="@naver.com">naver.com</option>
-                                <option value="@nate.com">nate.com</option>
-                                <option value="@yahoo.com">yahoo.com</option>
-                                <option value="@dreamwiz.com">dreamwiz.com</option>
-                            </select> <br />
-                            <input type="checkbox" name='emailagr' id='emailagr' checked={userData.emailagr} onChange={updateChecked} />
-                            <span><label htmlFor="emailagr">뉴스레터나 공지이메일을 수신 받겠습니다.</label></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>휴대전화<span className='JoinMember_star'>*</span></th>
-                        <td>
-                            <select name="firstPhoneNum" id="firstPhoneNum" value={userData.firstPhone} onChange={(e) => { firstNum(e.target.value) }}>
-                                <option value="010">010</option>
-                                <option value="011">011</option>
-                                <option value="016">016</option>
-                                <option value="017">017</option>
-                                <option value="019">019</option>
-                            </select>
-                            <span>-</span>
-                            <input type="text" name='secondPhoneNum' id='secondPhoneNum' value={userData.middlePhone} onChange={(e) => { secondNum(e.target.value) }} />
-                            <span>-</span>
-                            <input type="text" name='lastPhoneNum' id='lastPhoneNum' value={userData.lastPhone} onChange={(e) => { lastNum(e.target.value) }} />
-                            <div className='Message'>{phoneMessage}</div>
-                            <br />
-                            <div>
-                                <input type="checkbox" name='snsagr' id='snsagr' checked={userData.snsagr} onChange={updateChecked} />
-                                <span><label htmlFor="snsagr">알림 문자를 수신하겠습니다.</label></span>
-                            </div>
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
                 <div className='ModifyMember_submitBox' >

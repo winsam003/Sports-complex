@@ -64,9 +64,9 @@ function App() {
 
 
 
-  useEffect(() => {
-    navigate('/');
-  }, [])
+  // useEffect(() => {
+  //   navigate('/');
+  // }, [])
 
 
   // admin 모드, 사용자 모드를 확인하고 header를 바꿔주기 위한 hook

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import PageBanner from '../PageBanner';
 import TermsAndConditions from '../TermsAndConditions';
 import UserTypeAgree from '../UserTypeAgree';
+import { useLocation } from 'react-router';
 
 
 export default function JoinPage1(){
