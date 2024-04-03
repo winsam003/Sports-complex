@@ -1,6 +1,8 @@
 import './EventDetail.css'
 
-export default function EventDetail() {
+export default function EventDetail(eventcode) {
+
+    
 
     return (
         <div className="EventDetailContainor">

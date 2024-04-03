@@ -35,7 +35,16 @@ public class EventRepositoryImpl implements EventRepository {
 		return em.createNativeQuery(jpql, Event.class)
 				 .setParameter("eventcode", eventcode)
 				 .executeUpdate();
+	}
+	
+	@Override
+	public Event EventDetail(int eventcode) {
+		log.info("EventDetail Repository 성공");
+		String jpql = "select e from Event e where eventcode = :eventcode";
 		
+		return em.createQuery(jpql, Event.class)
+				 .setParameter("eventcode", eventcode)
+				 .getSingleResult();
 	}
 	
 	
