@@ -5,21 +5,33 @@ import XResetDeleteBtn from './XBtnResetDelete'
 import Submenu from './Submenu';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { apiCall } from '../apiService/apiService';
 
 export default function XEventControllContent() {
+
+    // 체크리스트
+    const [checkEvent, setCheckEvent] = useState([]);
 
     // 리스트 ===============================================================
     const [eventlist, seteventlist] = useState([]);
 
     useEffect(() => {
-        axios.get('/event/eventlist')
-            .then((list) => {
-                seteventlist(list.data);
-                console.log(`list.data: ${JSON.stringify(list.data)}`);
-            }).catch((error) => {
-                console.log("error: ", error);
-            })
-    }, []);
+        fetchEventList();
+        // 배열로 나오는것 확인, 
+        console.log(checkEvent);
+    }, [checkEvent]);
+
+    const fetchEventList = () => {
+        let url = "/event/eventlist";
+        // console.log(apiCall(url, 'get', null, null));
+
+        apiCall(url, 'get', null, null)
+        .then((eventlist) => {
+            seteventlist(eventlist);
+        }).catch((error) => {
+            console.log("eventlist error: ", error);
+        })
+    }
 
     // 검색창 ===============================================================
     // 검색 분야 / 키워드 
@@ -40,33 +52,56 @@ export default function XEventControllContent() {
     // console.log('searchEvent: ',searchEvent);
 
     // 체크 ===============================================================
-    const [checkEvent, setCheckEvent] = useState([]);
-
-
-    useEffect(() => {
-        console.log('checkEvent:',[checkEvent]);
-    }, [checkEvent]);
 
     const handleEventDelete = (deleteValue) => {
-        setCheckEvent(prevState => [...prevState, deleteValue]);
+        const deleteValueString = deleteValue.toString();
+        if (!checkEvent.includes(deleteValueString)) {
+            setCheckEvent(prevCheckEvent => [...prevCheckEvent, deleteValueString]);
+        } else {
+            setCheckEvent(prevCheckEvent => prevCheckEvent.filter(value => value !== deleteValueString));
+        }
+    }
+
+    // 삭제 ===============================================================
+    const del = () => {
+        let url = "/event/eventdelete"
+
+        apiCall(url, 'post', checkEvent, null)
+        .then((checkEvent) => {
+            setCheckEvent([]);
+            fetchEventList();
+        }).catch((error) => {
+            console.log("delete error: ", error);
+        }) 
+    }
+
+    // 선택 초기화 ===============================================================    
+    const handleReset = () => {
+        setCheckEvent([]);
     }
 
 
+    //=============================================================== 
     return (
         <div className='XEventControllContent_div'>
             <Submenu />
             <div className='XEventControllContent_div_div'>
-                <XEventSearch 
-                        onSearch={handleSearch}
-                        searchType={searchType} 
-                        setSearchType={setSearchType}
-                        searchKeyWord={searchKeyWord} 
-                        setSearchKeyWord={setSearchKeyWord} />
+                <div className='XEventControllContent_uploadAndSearch'>
+                    <button>등록</button>
+                    <XEventSearch 
+                            onSearch={handleSearch}
+                            searchType={searchType} 
+                            setSearchType={setSearchType}
+                            searchKeyWord={searchKeyWord} 
+                            setSearchKeyWord={setSearchKeyWord} />
+                </div>
                 <XBoardSearchResult 
                         eventlist={eventlist}
                         searchEvent={searchEvent}
-                        handleEventDelete={handleEventDelete} />
-                <XResetDeleteBtn />
+                        handleEventDelete={handleEventDelete}
+                        checkEvent={checkEvent}
+                        setCheckEvent={setCheckEvent} />
+                <XResetDeleteBtn del={del} handleReset={handleReset} />
             </div>
         </div>
     )
