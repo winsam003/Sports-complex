@@ -58,7 +58,32 @@ public class EventController {
 		}		
 	}
 	
+	// 이벤트 디테일
+	@PostMapping(value = "/eventdetail", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> eDetail(@RequestBody Integer eventCode){
+
+		Event result = service.EventDetail(eventCode);
+		
+		if(result != null) {
+			return ResponseEntity.status(HttpStatus.OK).body(result + "의 디테일");
+		} else {
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("의 디테일이 없습니다.");
+		}
+		
+	}
+
+	
+	
+	
+	
+	
+	
 	
 	
 	
 }
+
+
+
+
+

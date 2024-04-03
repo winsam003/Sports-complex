@@ -8,4 +8,6 @@ public interface EventRepository{
 	public List<Event> EventList();
 	
 	public int EventDelete(int eventcode);
+	
+	public Event EventDetail(int eventcode);
 }

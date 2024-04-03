@@ -27,6 +27,10 @@ public class EventServiceImpl implements EventService{
 		return repository.EventDelete(eventcode);
 	}
 	
+	@Override
+	public Event EventDetail(Integer eventCode) {
+		return repository.EventDetail(eventCode);
+	}
 	
 }
 

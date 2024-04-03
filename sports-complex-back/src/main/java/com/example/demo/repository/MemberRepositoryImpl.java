@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.entity.Member;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
 @Repository

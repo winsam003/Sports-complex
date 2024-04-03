@@ -20,6 +20,7 @@ import com.example.demo.entity.Member;
 import com.example.demo.service.MemberServiceImpl;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
 
@@ -39,7 +40,7 @@ public class MemberContoller {
 		if(result != null && result.size() >0) {
 			return ResponseEntity.status(HttpStatus.OK).body(result);
 		}else {
-			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("출력 할 회원정보가 없습니다.");			
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(null);			
 		}
 	} // mList
 	
