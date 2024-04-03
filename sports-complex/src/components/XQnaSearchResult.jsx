@@ -2,7 +2,7 @@ import './XBoardSearchResult.css'
 import './XQnaSearchResult.css'
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { apiCall } from '../apiService/apiService';
 
 export default function XQnaSearchResult({ qanum, qaopen, qapassword, qatype, qatitle, id, qadate, qaanswer, qacount, onToggleCheckbox, isChecked }) {
 
@@ -54,7 +54,7 @@ export default function XQnaSearchResult({ qanum, qaopen, qapassword, qatype, qa
     };
 
     // 체크박스
-    const handleCheckboxChange = () => {
+    const handleCheckboxChange = (e) => {
         onToggleCheckbox(qanum);
     }
 
@@ -71,7 +71,14 @@ export default function XQnaSearchResult({ qanum, qaopen, qapassword, qatype, qa
 
 
     return (
-        <div className='XQnaSearchResult_SearchResult' onClick={handleQnaResultClick}>
+        <div className='XQnaSearchResult_SearchResult' onClick={(e) => {
+            // 페이지 이동 이벤트에서 체크박스 제외
+            if (e.target.tagName.toLowerCase() !== 'input' && e.target.tagName.toLowerCase() === 'p') {
+                if (!e.target.querySelector('input')) {
+                    handleQnaResultClick();
+                }
+            }
+        }}>
             {/* 조회결과 */}
             <p><input type='checkbox' checked={isChecked} onChange={handleCheckboxChange} /></p>
             <p>{qanum}</p>

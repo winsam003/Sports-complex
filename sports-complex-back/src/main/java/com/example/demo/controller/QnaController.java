@@ -72,7 +72,7 @@ public class QnaController {
 		} catch (Exception e) {
 			System.out.println(" QnA Delete Excpetion => " + e.toString());
 		}
-		return "redirect:staff";
+		return "redirect:qna";
 	}
 
 }
