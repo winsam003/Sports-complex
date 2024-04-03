@@ -323,7 +323,7 @@ export default function JoinMember({ memberType }) {
         if (memberType === undefined) {
             alert("비정상적인 접근입니다. 다시 진행해주세요.");
             navigate('/');
-        } else if (idcheck && pwcheck && pw2check && phone1check && phone2check && carnumCheck) {
+        } else if (idcheck && pwcheck && pw2check && phone1check && phone2check) {
             axios.post("/member/mjoin", formData
             ).then((response) => {
                 alert(response.data);
