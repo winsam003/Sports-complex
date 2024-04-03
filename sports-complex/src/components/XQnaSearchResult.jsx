@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { apiCall } from '../apiService/apiService';
 
-export default function XQnaSearchResult({ qanum, qaopen, qapassword, qatype, qatitle, id, qadate, qaanswer, qacount, onToggleCheckbox, isChecked }) {
+export default function XQnaSearchResult({ qanum, qaopen, qapassword, qatype, qatitle, member, qadate, qareply, qacount, onToggleCheckbox, isChecked }) {
 
     // 모달창 팝업 상태
     const [showModal, setShowModal] = useState(false);
@@ -77,7 +77,6 @@ export default function XQnaSearchResult({ qanum, qaopen, qapassword, qatype, qa
         hour12: false // 오전/오후 표기를 제거하기 위해
     }).replace(/\./g, '');
 
-
     return (
         <div className='XQnaSearchResult_SearchResult' onClick={(e) => {
             // 페이지 이동 이벤트에서 체크박스 제외
@@ -92,9 +91,9 @@ export default function XQnaSearchResult({ qanum, qaopen, qapassword, qatype, qa
             <p>{qanum}</p>
             <p>{qaopen == '1' ? <img src="/img/Lock.png" className='lockimg' /> : <img src="/img/Unlock.png" className='unlockimg' />}</p>
             <p className='XQnaSearchResult_SearchResult_title'>[{qatype}] {qatitle}</p>
-            <p>{id.id}</p>
+            <p>{member.id}</p>
             <p>{formattedDate}</p>
-            <p>{qaanswer == null ? "답변대기" : "답변완료"}</p>
+            <p>{qareply == null ? "답변대기" : "답변완료"}</p>
             <p>{qacount}</p>
             {showModal && (
                 <div className="modal-overlay">

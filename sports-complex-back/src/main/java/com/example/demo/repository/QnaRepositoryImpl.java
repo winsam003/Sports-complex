@@ -47,31 +47,25 @@ public class QnaRepositoryImpl implements QnaRepository {
 
 		return em.createNativeQuery(
 				"insert into Qna (qatitle, qacontent, qatype, qadate, qaopen, qapassword, qacount, qafile, qareply, qareplytime, id, stfid) "
-						+ "values (:qatitle, :qacontent, :qatype, :qadate, :qaopen, :qapassword, :qacount, :qafile, :qaanswer, :qareplytime, :id, :stfid)")
+						+ "values (:qatitle, :qacontent, :qatype, :qadate, :qaopen, :qapassword, :qacount, :qafile, :qareply, :qareplytime, :id, :stfid)")
 				.setParameter("qatitle", dto.getQatitle()).setParameter("qacontent", dto.getQacontent())
 				.setParameter("qatype", dto.getQatype()).setParameter("qadate", dto.getQadate())
 				.setParameter("qaopen", dto.getQaopen()).setParameter("qapassword", dto.getQapassword())
 				.setParameter("qacount", dto.getQacount()).setParameter("qafile", dto.getQafile())
-				.setParameter("qaanswer", dto.getQareply()).setParameter("qareplytime", dto.getQareplytime())
+				.setParameter("qareply", dto.getQareply()).setParameter("qareplytime", dto.getQareplytime())
 				.setParameter("id", member != null ? member.getId() : null)
-				.setParameter("stfId", staff != null ? staff.getStfid() : null).executeUpdate();
+				.setParameter("stfid", staff != null ? staff.getStfid() : null).executeUpdate();
 	}
 
 //	문의 게시글 답변 등록
 	public int qnareplyinsert(QnaDTO dto) {
-		Member member = dto.getMember();
 		Staff staff = dto.getStaff();
 
 		return em.createNativeQuery(
-				"insert into Qna (qatitle, qacontent, qatype, qadate, qaopen, qapassword, qacount, qafile, qareply, qareplytime, id, stfid) "
-						+ "values (:qatitle, :qacontent, :qatype, :qadate, :qaopen, :qapassword, :qacount, :qafile, :qaanswer, :qareplytime, :id, :stfid)")
-				.setParameter("qatitle", dto.getQatitle()).setParameter("qacontent", dto.getQacontent())
-				.setParameter("qatype", dto.getQatype()).setParameter("qadate", dto.getQadate())
-				.setParameter("qaopen", dto.getQaopen()).setParameter("qapassword", dto.getQapassword())
-				.setParameter("qacount", dto.getQacount()).setParameter("qafile", dto.getQafile())
-				.setParameter("qaanswer", dto.getQareply()).setParameter("qareplytime", dto.getQareplytime())
-				.setParameter("id", member != null ? member.getId() : null)
-				.setParameter("stfId", staff != null ? staff.getStfid() : null).executeUpdate();
+				"Update Qna set qareply = :qareply, qareplytime = :qareplytime, stfid = :stfid where qanum =:qanum")
+				.setParameter("qareply", dto.getQareply()).setParameter("qareplytime", dto.getQareplytime())
+				.setParameter("stfid", staff != null ? staff.getStfid() : null).setParameter("qanum", dto.getQanum())
+				.executeUpdate();
 	}
 
 //	문의 게시글 삭제

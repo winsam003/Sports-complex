@@ -154,7 +154,7 @@
 }
 
 /* 게시글 내용 작성box */
-.XQnaBoardAnswerContent_form #content {
+.XQnaBoardAnswerContent_form #qareply {
     height: 300px;
     line-height: 300px;
     vertical-align: top;
