@@ -17,4 +17,6 @@ public interface MemberService {
 	int mUpdate(Member entity);
 	
 	int mPWChange(Member entity);
+	
+	Member mfindID(Member entity);
 }

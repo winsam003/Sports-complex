@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './PasswordChangeDetail2.css';
 import { RiLockPasswordLine } from "react-icons/ri";
 import { RiLockPasswordFill } from "react-icons/ri";
-import axios from 'axios';
+import { apiCall } from '../apiService/apiService';
 import { useNavigate } from 'react-router';
 
 export default function PasswordChangeDetail2() {
@@ -32,15 +32,20 @@ export default function PasswordChangeDetail2() {
     }
 
     const requestCheckPW = () => {
-        axios.post('/member/mPWChange', {
+
+        let url = '/member/mPWChange';
+        let requestData = {
             id: JSON.parse(sessionStorage.getItem('userData')).userID,
             password: password1Save
-        }).then((Response) => {
-            alert(Response.data);
+        }
+
+        apiCall(url, 'post', requestData, null)
+        .then((response)=>{
+            alert(response);
             navigate('/');
-        }).catch((error) => {
+        }).catch((error)=>{
             console.log("passwordChange Error Occured = " + error)
-        });
+        })
     }
 
 
