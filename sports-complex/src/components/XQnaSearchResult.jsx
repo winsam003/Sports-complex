@@ -12,11 +12,13 @@ export default function XQnaSearchResult({ qanum, qaopen, qapassword, qatype, qa
     const [passwordInput, setPasswordInput] = useState('');
     const navigate = useNavigate();
 
-    // axios 데이터 요청
+    // apicall 데이터 요청
     const fetchQnaData = async (qanum) => {
         try {
-            const response = await axios.get(`/qna/qnadetail/${qanum}`);
-            return response.data;
+            let url = '/qna/qnadetail';
+            const response = await
+                apiCall(url + `/${qanum}`, 'get', null, null)
+            return response;
         } catch (error) {
             console.error('Error fetching QnA data:', error);
             throw error;
@@ -44,12 +46,18 @@ export default function XQnaSearchResult({ qanum, qaopen, qapassword, qatype, qa
     };
 
     // 비밀번호 확인 후 일치하면 페이지 이동
-    const handlePasswordSubmit = () => {
-        if (passwordInput === qapassword) {
-            navigate(`/XQnaBoardAnswerPage`);
-            handleModalClose();
-        } else {
-            alert("비밀번호가 일치하지 않습니다.");
+    const handlePasswordSubmit = async () => {
+        try {
+            if (passwordInput === qapassword) {
+                const qnaData = await fetchQnaData(qanum);
+                navigate(`/XQnaBoardAnswerPage`, { state: { qnaData } });
+                // 페이지 이동 후 모달 닫기
+                handleModalClose();
+            } else {
+                alert("비밀번호가 일치하지 않습니다.");
+            }
+        } catch (error) {
+            console.log('Error fetching QnA data : ', error);
         }
     };
 
