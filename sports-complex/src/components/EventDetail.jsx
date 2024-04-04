@@ -2,25 +2,26 @@ import { useEffect, useState } from 'react';
 import { apiCall } from '../apiService/apiService';
 import './EventDetail.css'
 
-export default function EventDetail(eventcode) {
+export default function EventDetail({eventcode}) {
 
     // 디테일 정보 가져오기 ====================================================
     const [eventDetailOne, setEventDetailOne] = useState('');
 
+    console.log(`EventDetail 에서의 eventcode : `, eventcode);
     useEffect(() => {
         let url = "/event/eventdetail";
     
         // 405 오류는 post / get 요청 때문이다. *****
-        apiCall(url, 'post', eventcode, null)
+        apiCall(url, 'get', eventcode, null)
         .then((eventDetailOne) => {
             setEventDetailOne(eventDetailOne);
         }).catch((error) => {
             console.log("eventDetail error : ", error);
         })
         // fetchEventDetail();
-        console.log(`eventDetailOne : `, eventDetailOne);
     }, []);
-
+    
+    console.log(`eventDetailOne : `, eventDetailOne);
     // const fetchEventDetail = () => {
     // }
     

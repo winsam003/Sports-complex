@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.print.attribute.standard.Media;
 
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.Event;
@@ -59,26 +61,21 @@ public class EventController {
 	}
 	
 	// 이벤트 디테일
-	@PostMapping(value = "/eventdetail", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> eDetail(@RequestBody Integer eventCode){
+	@GetMapping(value = "/eventdetail", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> eDetail(@RequestParam Integer eventCode){
 
+//		Integer eventCode = requestBody.get("eventCode");
+		log.info("컨트롤러 : " + eventCode );
 		Event result = service.EventDetail(eventCode);
 		
 		if(result != null) {
-			return ResponseEntity.status(HttpStatus.OK).body(result + "의 디테일");
+			return ResponseEntity.status(HttpStatus.OK).body(result);
 		} else {
 			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("의 디테일이 없습니다.");
 		}
 		
 	}
 
-	
-	
-	
-	
-	
-	
-	
 	
 	
 }
