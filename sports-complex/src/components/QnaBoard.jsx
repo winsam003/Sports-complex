@@ -14,6 +14,11 @@ export default function QnaBoard() {
     // 검색 기능
     const [searchResult, setSearchResult] = useState([]);
 
+    // Session storage에 있는 userData 가져오기
+    const sessionUserData = sessionStorage.getItem('userData');
+    const userData = sessionUserData ? JSON.parse(sessionUserData) : 'null';
+    const userID = userData.userID;
+
     // 문의게시글 불러오기
     useEffect(() => {
         const loadQnaList = async () => {
@@ -79,7 +84,9 @@ export default function QnaBoard() {
                                 <XQnaSearchResult key={index} {...item} />
                             ))}
                         </div>
-                        <button className='board_writebutton'><Link to="/Inquiry">글쓰기</Link></button>
+                        {userID && (
+                            <button className='board_writebutton'><Link to="/Inquiry">글쓰기</Link></button>
+                        )}
                     </div>
                 </div>
             </div>

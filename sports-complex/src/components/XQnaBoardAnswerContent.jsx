@@ -62,7 +62,7 @@ export default function XQnaBoardAnswerContent({ qnaData }) {
         apiCall(url, 'POST', qnaReplyData, null)
             .then((response) => {
                 console.log("응답을 확인합니다 : ", response);
-                navigate('/QnaDetailPage');
+                navigate('/QnaDetailPage', { state: { qnaData } });
             }).catch((error) => {
                 console.error("RegisterQnaReply fail", error);
             })
