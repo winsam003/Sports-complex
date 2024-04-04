@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 
 
 export default function XBoardControllContentList({ searchValue, noticeList, setNoticeList, userDelete, checkedUsers }) {
+
     return (
         <div className='XBoardControllContentList_div'>
             <div className='XBoardControllContentList_title'>
