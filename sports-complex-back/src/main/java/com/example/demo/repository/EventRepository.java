@@ -9,5 +9,5 @@ public interface EventRepository{
 	
 	public int EventDelete(int eventcode);
 	
-	public Event EventDetail(int eventcode);
+	public Event EventDetail(Integer eventcode);
 }
