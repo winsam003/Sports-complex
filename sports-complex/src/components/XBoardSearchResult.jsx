@@ -18,6 +18,7 @@ export default function XBoardSearchResult({ eventlist, searchEvent, handleEvent
 
     const handleEventClick = (eventcode) => {
         try {
+            
             navigate(`/EventDetailPage?eventcode=${eventcode}`);
         } catch (error) {
             console.log('Error eventDetail : ', error);
@@ -75,7 +76,8 @@ export default function XBoardSearchResult({ eventlist, searchEvent, handleEvent
 
                         <div className='listEvent XBoardControllContent_SearchResult_User' key={eventcode}>
                             <p>{eventcode}</p>
-                            <p onClick={() => handleEventClick(eventcode)}>{eventname}</p>
+                            <p onClick={() => handleEventClick(eventcode)} 
+                                className='XBoardControllContent_clickDetail' >{eventname}</p>
                             <p>{eventfacility}</p>
                             <p>{eventfor}</p>
                             <p>{eventtype}</p>
@@ -109,7 +111,8 @@ export default function XBoardSearchResult({ eventlist, searchEvent, handleEvent
                                 checked={checkEvent.includes(eventcode.toString())}
                             /></p>
                             <p>{eventcode}</p>
-                            <p onClick={() => handleEventClick(eventcode)}>{eventname}</p>
+                            <p onClick={() => handleEventClick(eventcode)}
+                                className='XBoardControllContent_clickDetail' >{eventname}</p>
                             <p>{eventfacility}</p>
                             <p>{eventfor}</p>
                             <p>{eventtype}</p>

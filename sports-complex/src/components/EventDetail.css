@@ -5,7 +5,7 @@
 
     display: block;
     align-items: center;
-    padding: 4rem;
+    padding: 3rem;
 }
 /* 타이틀 */
 .EventDetail_title{
@@ -52,10 +52,13 @@
     
 }
 
-.EventDetail_twin>div>:nth-child(2) {
-    /* width: calc((100% - 200px) / 2); */
-    /* width: auto; */
-    /* background-color: aquamarine; */
+/* 아래 내용 */
+.EventDetail_content{
+    padding: 1rem;
+}
+.EventDetail_content>:nth-child(2) {
+    text-align: center;
+    margin: 3rem;
 }
 
 
@@ -63,16 +66,21 @@
 .EventDetail_buttonBox{
     display: flex;
 
-    justify-content: center;
+    justify-content: end;
 
-    margin-top: 7rem;
+    padding-top: 5rem;
+    border-top: 1px solid rgb(194, 191, 191);
 }
 
 .EventDetail_button{
     width: 100px;
     height: 50px;
-
-    background-color: #808080;
+    margin-right: 30px;
+    font-size: large;
+    background-color: #a5a6a7;
+    border-radius: 0.5em;
+    border: none;
+    cursor: pointer;
 }
 
 
