@@ -7,4 +7,6 @@ import com.example.demo.entity.Notice;
 public interface NoticeBoardService {
 
 	public List<Notice> NBoardList();
+	
+	public int noticeDel(Integer[] delBoard);
 }

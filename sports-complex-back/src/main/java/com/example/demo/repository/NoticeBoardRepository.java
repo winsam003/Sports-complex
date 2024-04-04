@@ -6,4 +6,6 @@ import com.example.demo.entity.Notice;
 
 public interface NoticeBoardRepository {
 	public List<Notice> NBoardList();
+	
+	public int noticeDel(Integer[] delBoard);
 }
