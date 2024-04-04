@@ -6,6 +6,7 @@ import { apiCall } from '../apiService/apiService';
 
 export default function XQnaSearchResult({ qanum, qaopen, qapassword, qatype, qatitle, member, qadate, qareply, qacount, onToggleCheckbox, isChecked }) {
 
+    console.log("문의게시판 하위렌더링 확인", qanum);
     // 모달창 팝업 상태
     const [showModal, setShowModal] = useState(false);
     // 비밀번호 확인
