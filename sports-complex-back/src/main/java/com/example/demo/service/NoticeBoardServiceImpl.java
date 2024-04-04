@@ -26,4 +26,12 @@ public class NoticeBoardServiceImpl implements NoticeBoardService {
 		
 		return repository.NBoardList();
 	}
+	
+	
+	@Override
+	public int noticeDel(Integer[] delBoard) {
+		// TODO Auto-generated method stub
+		log.info("service delBoard[0]="+delBoard[0]);
+		return repository.noticeDel(delBoard);
+	}
 }

@@ -19,3 +19,18 @@
     align-items: center;
     font-weight: bold;
 }
+
+/* 문의게시판 사용자 */
+.QnaControllContent_index {
+    display: grid;
+    border-top: 3px solid #C9EDFA;
+    background-color: #ceeff250;
+    grid-template-columns: 1fr 1fr 5fr 1fr 2fr 1fr 1fr;
+}
+
+.QnaControllContent_index p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
