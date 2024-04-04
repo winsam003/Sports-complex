@@ -1,17 +1,20 @@
 import './XBoardSearchResult.css'
 import './XQnaSearchResult.css'
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { apiCall } from '../apiService/apiService';
 
 export default function XQnaSearchResult({ qanum, qaopen, qapassword, qatype, qatitle, member, qadate, qareply, qacount, onToggleCheckbox, isChecked }) {
-
-    console.log("문의게시판 하위렌더링 확인", qanum);
     // 모달창 팝업 상태
     const [showModal, setShowModal] = useState(false);
     // 비밀번호 확인
     const [passwordInput, setPasswordInput] = useState('');
+
+    // 글작성 후 상세페이지로 이동하게
     const navigate = useNavigate();
+
+    // 사용자 페이지 접근
+    const location = useLocation();
 
     // apicall 데이터 요청
     const fetchQnaData = async (qanum) => {
@@ -33,7 +36,7 @@ export default function XQnaSearchResult({ qanum, qaopen, qapassword, qatype, qa
         } else {
             try {
                 const qnaData = await fetchQnaData(qanum);
-                navigate(`/XQnaBoardAnswerPage`, { state: { qnaData } });
+                navigate(location.pathname == '/Qna' ? '/QnaDetailPage' : '/XQnaBoardAnswerPage', { state: { qnaData } });
             } catch (error) {
                 console.log('Error fetching QnA data : ', error);
             }
@@ -51,7 +54,7 @@ export default function XQnaSearchResult({ qanum, qaopen, qapassword, qatype, qa
         try {
             if (passwordInput === qapassword) {
                 const qnaData = await fetchQnaData(qanum);
-                navigate(`/XQnaBoardAnswerPage`, { state: { qnaData } });
+                navigate(location.pathname == '/Qna' ? '/QnaDetailPage' : '/XQnaBoardAnswerPage', { state: { qnaData } });
                 // 페이지 이동 후 모달 닫기
                 handleModalClose();
             } else {
@@ -76,10 +79,10 @@ export default function XQnaSearchResult({ qanum, qaopen, qapassword, qatype, qa
         hour: '2-digit',
         minute: '2-digit',
         hour12: false // 오전/오후 표기를 제거하기 위해
-    }).replace(/\./g, '');
+    });
 
     return (
-        <div className='XQnaSearchResult_SearchResult' onClick={(e) => {
+        <div className={`XQnaSearchResult_SearchResult_${location.pathname === '/Qna' ? 'user' : 'admin'}`} onClick={(e) => {
             // 페이지 이동 이벤트에서 체크박스 제외
             if (e.target.tagName.toLowerCase() !== 'input' && e.target.tagName.toLowerCase() === 'p') {
                 if (!e.target.querySelector('input')) {
@@ -87,26 +90,44 @@ export default function XQnaSearchResult({ qanum, qaopen, qapassword, qatype, qa
                 }
             }
         }}>
-            {/* 조회결과 */}
-            <p><input type='checkbox' checked={isChecked} onChange={handleCheckboxChange} /></p>
-            <p>{qanum}</p>
-            <p>{qaopen == '1' ? <img src="/img/Lock.png" className='lockimg' /> : <img src="/img/Unlock.png" className='unlockimg' />}</p>
-            <p className='XQnaSearchResult_SearchResult_title'>[{qatype}] {qatitle}</p>
-            <p>{member.id}</p>
-            <p>{formattedDate}</p>
-            <p>{qareply == null ? "답변대기" : "답변완료"}</p>
-            <p>{qacount}</p>
-            {showModal && (
-                <div className="modal-overlay">
-                    <div className="modal">
-                        <span className="close" onClick={(e) => { e.stopPropagation(); handleModalClose(); }}>&times;</span>
-                        <h2 className='modalFont'>{qanum}. {qatitle}</h2>
-                        <h2 className='modalFont'>비밀번호 입력</h2>
-                        <input className='modal_input' type="password" value={passwordInput} onChange={(e) => setPasswordInput(e.target.value)} />
-                        <button className='modal_button' onClick={handlePasswordSubmit}>확인</button>
+            {
+                location.pathname == '/Qna' ?
+                    <>
+                        {/* 사용자 조회결과 */}
+                        <p>{qanum}</p>
+                        <p>{qaopen == '1' ? <img src="/img/Lock.png" className='lockimg' /> : <img src="/img/Unlock.png" className='unlockimg' />}</p>
+                        <p className='XQnaSearchResult_SearchResult_title'>[{qatype}] {qatitle}</p>
+                        <p>{member.id}</p>
+                        <p>{formattedDate}</p>
+                        <p>{qareply == null ? "답변대기" : "답변완료"}</p>
+                        <p>{qacount}</p>
+                    </>
+                    :
+                    <>
+                        {/* 관리자 조회결과 */}
+                        <p><input type='checkbox' checked={isChecked} onChange={handleCheckboxChange} /></p>
+                        <p>{qanum}</p>
+                        <p>{qaopen == '1' ? <img src="/img/Lock.png" className='lockimg' /> : <img src="/img/Unlock.png" className='unlockimg' />}</p>
+                        <p className='XQnaSearchResult_SearchResult_title'>[{qatype}] {qatitle}</p>
+                        <p>{member.id}</p>
+                        <p>{formattedDate}</p>
+                        <p>{qareply == null ? "답변대기" : "답변완료"}</p>
+                        <p>{qacount}</p>
+                    </>
+            }
+            {
+                showModal && (
+                    <div className="modal-overlay">
+                        <div className="modal">
+                            <span className="close" onClick={(e) => { e.stopPropagation(); handleModalClose(); }}>&times;</span>
+                            <h2 className='modalFont'>{qanum}. {qatitle}</h2>
+                            <h2 className='modalFont'>비밀번호 입력</h2>
+                            <input className='modal_input' type="password" value={passwordInput} onChange={(e) => setPasswordInput(e.target.value)} />
+                            <button className='modal_button' onClick={handlePasswordSubmit}>확인</button>
+                        </div>
                     </div>
-                </div>
-            )}
-        </div>
-    )
+                )
+            }
+        </div >
+    );
 }

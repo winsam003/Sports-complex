@@ -65,7 +65,7 @@ export default function QnaBoard() {
                         setQnaSearchInput={setQnaSearchInput} />
                     <div className='XBoardControllContent_SearchResult_div'>
                         {/* 조회결과 index */}
-                        <div className='XQnaControllContent_index'>
+                        <div className='QnaControllContent_index'>
                             <p>번호</p>
                             <p>공개여부</p>
                             <p>제목</p>
