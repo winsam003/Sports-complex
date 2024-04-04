@@ -62,11 +62,11 @@ public class EventController {
 	
 	// 이벤트 디테일
 	@GetMapping(value = "/eventdetail", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> eDetail(@RequestParam Integer eventCode){
+	public ResponseEntity<?> eDetail(@RequestParam Integer eventcode){
 
 //		Integer eventCode = requestBody.get("eventCode");
-		log.info("컨트롤러 : " + eventCode );
-		Event result = service.EventDetail(eventCode);
+		log.info("컨트롤러 : " + eventcode );
+		Event result = service.EventDetail(eventcode);
 		
 		if(result != null) {
 			return ResponseEntity.status(HttpStatus.OK).body(result);
