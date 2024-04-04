@@ -10,19 +10,29 @@ export default function XQnaBoardAnswerContent({ qnaData }) {
     const currentTime = new Date();
     const formattedTime = currentTime.toISOString();
 
+    // Session storage에 있는 userData 가져오기
+    const sessionUserData = sessionStorage.getItem('userData');
+    const userData = sessionUserData ? JSON.parse(sessionUserData) : 'null';
+    const userID = userData.userID;
+
     // 답변작성직원ID,답변내용 상태변화
     const [qnaReplyData, setQnaReplyData] = useState({
-        qanum: qnaData.qanum,
-        qareply: qnaData.qareply || '',
-        qareplytime: formattedTime,
-        stfid: ''
+        'qanum': qnaData.qanum,
+        'qareply': qnaData.qareply || '',
+        'qareplytime': formattedTime,
+        'stfid': qnaData.staff ? qnaData.staff.stfid : userID
     });
 
     const navigate = useNavigate();
 
     // 입력값 변경
     const qnaReplyDataChange = (e) => {
-        setQnaReplyData({ ...qnaReplyData, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+        setQnaReplyData({
+            ...qnaReplyData, [name]: value,
+            // 답변글에 변화가 있다면 기존 답변을 작성한 직원ID를 현재 작성자로 교체
+            'stfid': value ? userID : qnaData.staff ? qnaData.sfaff.stfid : userID
+        });
     }
 
 
@@ -41,11 +51,15 @@ export default function XQnaBoardAnswerContent({ qnaData }) {
 
     // 답변작성직원ID, 답변내용, 답변시간 추가
     const RegisterQnaReply = async () => {
+        // 빈데이터 입력 방지
+        if (!qnaReplyData.qareply.trim() || !qnaReplyData.stfid.trim()) {
+            alert('모든 필수 항목을 입력해주세요.');
+            return;
+        }
+
         let url = '/qna/qnaReplyInsert';
 
-        console.log("전송 데이터 : ", qnaReplyData);
-
-        apiCall(url, 'post', qnaReplyData, null)
+        apiCall(url, 'POST', qnaReplyData, null)
             .then((response) => {
                 console.log("응답을 확인합니다 : ", response);
                 navigate('/XQnaBoardControllPage');
@@ -83,7 +97,7 @@ export default function XQnaBoardAnswerContent({ qnaData }) {
                         <tbody>
                             <tr>
                                 <th>작성자<span className='star'>*</span></th>
-                                <td><input type="text" name='stfid' id='stfid' value={qnaReplyData.stfid} onChange={qnaReplyDataChange} placeholder='로그인되어있는직원id데이터가져와서사용 readOnly 걸어야함' /></td>
+                                <td><input type="text" name='stfid' id='stfid' readOnly value={qnaReplyData.stfid} onChange={qnaReplyDataChange} /></td>
                             </tr>
                             <tr>
                                 <th>내용 <span className='star'>*</span></th>
