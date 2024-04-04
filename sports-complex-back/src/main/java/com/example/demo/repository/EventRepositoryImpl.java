@@ -32,19 +32,27 @@ public class EventRepositoryImpl implements EventRepository {
 		log.info("EventDelete Repository 성공");
 		String jpql = "DELETE FROM Event where eventcode = :eventcode";
 		
+		// delete는 
 		return em.createNativeQuery(jpql, Event.class)
 				 .setParameter("eventcode", eventcode)
 				 .executeUpdate();
 	}
 	
 	@Override
-	public Event EventDetail(int eventcode) {
+	public Event EventDetail(Integer eventcode) {
 		log.info("EventDetail Repository 성공");
 		String jpql = "select e from Event e where eventcode = :eventcode";
 		
-		return em.createQuery(jpql, Event.class)
-				 .setParameter("eventcode", eventcode)
-				 .getSingleResult();
+		log.info("eventcode : "+ eventcode);
+		
+		try {			
+			return em.createQuery(jpql, Event.class)
+					.setParameter("eventcode", eventcode)
+					.getSingleResult();
+		} catch (Exception e) {
+			return null;
+		}
+		
 	}
 	
 	

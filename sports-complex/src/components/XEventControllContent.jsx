@@ -26,24 +26,24 @@ export default function XEventControllContent() {
         // console.log(apiCall(url, 'get', null, null));
 
         apiCall(url, 'get', null, null)
-        .then((eventlist) => {
-            seteventlist(eventlist);
-        }).catch((error) => {
-            console.log("eventlist error: ", error);
-        })
+            .then((eventlist) => {
+                seteventlist(eventlist);
+            }).catch((error) => {
+                console.log("eventlist error: ", error);
+            })
     }
 
     // 검색창 ===============================================================
     // 검색 분야 / 키워드 
     const [searchType, setSearchType] = useState('');
     const [searchKeyWord, setSearchKeyWord] = useState('');
-    
+
     // 검색 
     const [searchEvent, setSearchEvent] = useState({
-        searchType: '', 
+        searchType: '',
         searchKeyWord: ''
     });
-    
+
     // 검색버튼
     const handleSearch = (onSearch) => {
         setSearchEvent(onSearch);
@@ -67,12 +67,12 @@ export default function XEventControllContent() {
         let url = "/event/eventdelete"
 
         apiCall(url, 'post', checkEvent, null)
-        .then((checkEvent) => {
-            setCheckEvent([]);
-            fetchEventList();
-        }).catch((error) => {
-            console.log("delete error: ", error);
-        }) 
+            .then((checkEvent) => {
+                setCheckEvent([]);
+                fetchEventList();
+            }).catch((error) => {
+                console.log("delete error: ", error);
+            })
     }
 
     // 선택 초기화 ===============================================================    
@@ -88,19 +88,19 @@ export default function XEventControllContent() {
             <div className='XEventControllContent_div_div'>
                 <div className='XEventControllContent_uploadAndSearch'>
                     <button>등록</button>
-                    <XEventSearch 
-                            onSearch={handleSearch}
-                            searchType={searchType} 
-                            setSearchType={setSearchType}
-                            searchKeyWord={searchKeyWord} 
-                            setSearchKeyWord={setSearchKeyWord} />
+                    <XEventSearch
+                        onSearch={handleSearch}
+                        searchType={searchType}
+                        setSearchType={setSearchType}
+                        searchKeyWord={searchKeyWord}
+                        setSearchKeyWord={setSearchKeyWord} />
                 </div>
-                <XBoardSearchResult 
-                        eventlist={eventlist}
-                        searchEvent={searchEvent}
-                        handleEventDelete={handleEventDelete}
-                        checkEvent={checkEvent}
-                        setCheckEvent={setCheckEvent} />
+                <XBoardSearchResult
+                    eventlist={eventlist}
+                    searchEvent={searchEvent}
+                    handleEventDelete={handleEventDelete}
+                    checkEvent={checkEvent}
+                    setCheckEvent={setCheckEvent} />
                 <XResetDeleteBtn del={del} handleReset={handleReset} />
             </div>
         </div>
