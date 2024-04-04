@@ -205,7 +205,7 @@ export const PageBannerData = [
         "title": '더 다양한 서비스를 이용하실 수 있습니다.',
         "checkMenu": "N"
     },
-    // 관리자 관리자 관리자 관리자 관리자 관리자 관리자 관리자 관리자 관리자
+    // 관리자 관리자 관리자 관리자 관리자 관리자 관리자 관리자 관리자 관리자 
     {
         "id": "7",
         "parameter": 'XmanagementPage',
@@ -322,6 +322,13 @@ export const PageBannerData = [
         "page": '공지사항 관리',
         "title": '공지사항을 관리할 수 있습니다 ',
         "checkMenu": "Y"
+    },
+    {
+        "id": "12",
+        "parameter": 'XBoardControllPageDetailPage',
+        "page": '공지사항 관리',
+        "title": '공지사항을 관리할 수 있습니다 ',
+        "checkMenu": "N"
     },
     {
         "id": "12",

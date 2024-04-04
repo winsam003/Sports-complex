@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router';
 import './XBoardControllContentListContents.css'
 
 
@@ -20,12 +21,31 @@ export default function XBoardControllContentListContents({ notnum, nottitle, qu
         userDelete(notnum, e.target.checked);
     }
 
+
+// detail로 정보를 가지고 이동
+    const navigate = useNavigate();
+    const boardDetail = () => {
+        navigate(`/XBoardControllPageDetailPage?notnum=${notnum}`, {
+            state: {
+                notnum: notnum, 
+                nottitle: nottitle,
+                quest: quest,
+                stfid: stfid,
+                notdate: notdate,
+                notiploadfile: notiploadfile,
+                notcount: notcount, 
+                notdetail: notdetail
+            }
+        });
+    }
+
+
     return (
         <div className='XBoardControllContentListContents_div'>
             <div className='XBoardControllContentListContents_contents'>
-                <p><input checked={isChecked} type='checkbox' onChange={handleDelete}/></p>
+                <p><input checked={isChecked} type='checkbox' onChange={handleDelete} /></p>
                 <p>{notnum}</p>
-                <p>{nottitle}</p>
+                <p onClick={boardDetail}>{nottitle}</p>
                 <p>{quest}</p>
                 <p>{formattedDate}</p>
                 <p>{stfid}</p>

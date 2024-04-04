@@ -136,6 +136,10 @@ export default function XBoardControllContent() {
     //******************************* 회원정보조회 초기화 버튼 끝 *********************************//
 
 
+
+
+
+
     return (
         <div className='XBoardControllContent_div'>
             <Submenu />

@@ -1,0 +1,87 @@
+.XBoardControllContentDateil2_div {
+    width: 100%;
+    height: 100%;
+
+}
+
+.XBoardControllContentDateil2Containor {
+    width: 100%;
+
+    display: block;
+    align-items: center;
+    padding: 4rem;
+}
+
+.XBoardControllContentDateil2_title {
+    font-size: 2.5rem;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+.XBoardControllContentDateil2_title>* {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.EventDetail_icon {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+/* 아래 정보 */
+.XBoardControllContentDateil2_menu {
+    display: flex;
+    /* margin-top: 2rem; */
+    border-bottom: 1px solid #ccc;
+
+}
+
+.XBoardControllContentDateil2_menu>* {
+    margin: 0;
+    padding: 1rem;
+    /* width: ; */
+}
+
+.XBoardControllContentDateil2_menu>:first-child {
+    width: 150px;
+    /* flex: 2; */
+    font-weight: bold;
+
+    border-right: 1px solid #ccc;
+    background-color: rgb(209, 238, 241);
+}
+
+/* 오른쪽 정보 */
+.XBoardControllContentDateil2_twin {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+}
+
+/* 버튼 */
+.XBoardControllContentDateil2_buttonBox {
+    display: flex;
+
+    justify-content: center;
+
+    margin-top: 7rem;
+}
+
+
+.XBoardControllContentDateil2_button {
+    width: 100px;
+    height: 50px;
+    margin-right: 30px;
+    font-size: large;
+    background-color: #a5a6a7;
+    border-radius: 0.5em;
+    border: none;
+    cursor: pointer;
+}
+
+@media(max-width: 1200px) {
+    .XBoardControllContentDateil2Containor {
+        width: 100%;
+        height: 100vh;
+    }
+}
