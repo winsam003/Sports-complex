@@ -23,6 +23,7 @@ export default function XQnaBoardAnswerContent({ qnaData }) {
         'stfid': qnaData.staff ? qnaData.staff.stfid : userID
     });
 
+    // 등록 후 상세페이지 이동
     const navigate = useNavigate();
 
     // 입력값 변경
@@ -61,7 +62,7 @@ export default function XQnaBoardAnswerContent({ qnaData }) {
 
         apiCall(url, 'POST', qnaReplyData, null)
             .then((response) => {
-                console.log("응답을 확인합니다 : ", response);
+                console.log("문의게시글 답변 등록 성공 : ", response);
                 navigate('/QnaDetailPage', { state: { qnaData } });
             }).catch((error) => {
                 console.error("RegisterQnaReply fail", error);
