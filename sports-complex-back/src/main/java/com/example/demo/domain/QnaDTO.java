@@ -3,7 +3,6 @@ package com.example.demo.domain;
 import java.util.Date;
 
 import com.example.demo.entity.Member;
-import com.example.demo.entity.Staff;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,6 +25,6 @@ public class QnaDTO {
 	private Date qareplytime;
 
 //	join을 위해
-	private Member member;
-	private Staff staff;
+	private Member id;
+	private String stfid;
 }
