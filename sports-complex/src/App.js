@@ -106,7 +106,10 @@ function App() {
     <div>
 
 
-      {isAdminPage ? <Xheader checkAdminPage={checkAdminPage} logout={logout} getUserName={getUserName} /> : <Header checkAdminPage={checkAdminPage} logout={logout} getUserName={getUserName} />}
+      {isAdminPage ? 
+      <Xheader checkAdminPage={checkAdminPage} logout={logout} getUserName={getUserName} /> 
+      : 
+      <Header checkAdminPage={checkAdminPage} logout={logout} getUserName={getUserName} />}
 
       <Routes>
         <Route path='/' element={<HomePage setLogincheck={setLogincheck} loginCheck={loginCheck} logout={logout} />} />
