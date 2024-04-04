@@ -30,7 +30,7 @@ export default function XQnaBoardAnswerContent({ qnaData }) {
         const { name, value } = e.target;
         setQnaReplyData({
             ...qnaReplyData, [name]: value,
-            // 답변글에 변화가 있다면 기존 답변을 작성한 직원ID를 현재 작성자로 교체
+            // 답변 변화가 있다면 기존 답변을 작성한 직원ID를 현재 작성자로 교체
             'stfid': value ? userID : qnaData.staff ? qnaData.sfaff.stfid : userID
         });
     }
@@ -62,7 +62,7 @@ export default function XQnaBoardAnswerContent({ qnaData }) {
         apiCall(url, 'POST', qnaReplyData, null)
             .then((response) => {
                 console.log("응답을 확인합니다 : ", response);
-                navigate('/XQnaBoardControllPage');
+                navigate('/QnaDetailPage', { state: { qnaData } });
             }).catch((error) => {
                 console.error("RegisterQnaReply fail", error);
             })

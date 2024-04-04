@@ -17,6 +17,7 @@ import EventBoardPage from './components/Pages/EventBoardPage';
 import EventDetailPage from './components/Pages/EventDetailPage';
 import Faq from './components/Pages/Faq';
 import Qna from './components/Pages/Qna';
+import QnaDetailPage from './components/Pages/QnaDetailPage';
 import Sugang from './components/Pages/Sugang';
 import ClassSchedulePage from './components/Pages/ClassSchedulePage';
 import PasswordChangePage from './components/Pages/PasswordChangePage';
@@ -124,6 +125,7 @@ function App() {
         <Route path='/EventDetailPage' element={<EventDetailPage />} />
         <Route path='/Faq' element={<Faq />} />
         <Route path='/Qna' element={<Qna />} />
+        <Route path='/QnaDetailPage' element={<QnaDetailPage />} />
         <Route path='/Sugang' element={<Sugang />} />
         <Route path='/ClassSchedulePage' element={<ClassSchedulePage />} />
         <Route path='/PasswordChangePage' element={<PasswordChangePage getUserID={getUserID} />} />
