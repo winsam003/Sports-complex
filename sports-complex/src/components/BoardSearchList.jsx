@@ -11,15 +11,12 @@ export default function BoardSearchList() {
 
         apiCall(url, 'get', null, null)
             .then((response) => {
-                alert("test1");
                 setNoticeList(response);
             }).catch((error) => {
                 console.log("noticeList error occred = " + error);
-                alert("test2");
             })
     }, [])
 
-    console.log(noticeList)
     return (
         <div>
             <div className='BoardSearchList'>
