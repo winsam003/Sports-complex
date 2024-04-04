@@ -9,9 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.domain.QnaDTO;
-import com.example.demo.entity.Member;
 import com.example.demo.entity.Qna;
-import com.example.demo.entity.Staff;
 
 @Transactional
 @Repository
@@ -42,9 +40,6 @@ public class QnaRepositoryImpl implements QnaRepository {
 //	문의 게시글 등록
 	@Override
 	public int qnainsert(QnaDTO dto) {
-		Member member = dto.getMember();
-		Staff staff = dto.getStaff();
-
 		return em.createNativeQuery(
 				"insert into Qna (qatitle, qacontent, qatype, qadate, qaopen, qapassword, qacount, qafile, qareply, qareplytime, id, stfid) "
 						+ "values (:qatitle, :qacontent, :qatype, :qadate, :qaopen, :qapassword, :qacount, :qafile, :qareply, :qareplytime, :id, :stfid)")
@@ -53,19 +48,15 @@ public class QnaRepositoryImpl implements QnaRepository {
 				.setParameter("qaopen", dto.getQaopen()).setParameter("qapassword", dto.getQapassword())
 				.setParameter("qacount", dto.getQacount()).setParameter("qafile", dto.getQafile())
 				.setParameter("qareply", dto.getQareply()).setParameter("qareplytime", dto.getQareplytime())
-				.setParameter("id", member != null ? member.getId() : null)
-				.setParameter("stfid", staff != null ? staff.getStfid() : null).executeUpdate();
+				.setParameter("id", dto.getId()).setParameter("stfid", dto.getStfid()).executeUpdate();
 	}
 
 //	문의 게시글 답변 등록
 	public int qnareplyinsert(QnaDTO dto) {
-		Staff staff = dto.getStaff();
-
 		return em.createNativeQuery(
 				"Update Qna set qareply = :qareply, qareplytime = :qareplytime, stfid = :stfid where qanum =:qanum")
 				.setParameter("qareply", dto.getQareply()).setParameter("qareplytime", dto.getQareplytime())
-				.setParameter("stfid", staff != null ? staff.getStfid() : null).setParameter("qanum", dto.getQanum())
-				.executeUpdate();
+				.setParameter("stfid", dto.getStfid()).setParameter("qanum", dto.getQanum()).executeUpdate();
 	}
 
 //	문의 게시글 삭제
