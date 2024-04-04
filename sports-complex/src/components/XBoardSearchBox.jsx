@@ -1,6 +1,7 @@
 import './XBoardSearchBox.css'
 
-export default function XBoardSearchBox({ searchValueHandler, searchHandler }) {
+export default function XBoardSearchBox({ searchValueHandler, searchHandler, searchKeywordHandler, KeyPressHandler }) {
+
     return (
         <div>
             {/* 검색 */}
@@ -12,8 +13,8 @@ export default function XBoardSearchBox({ searchValueHandler, searchHandler }) {
                     <option value="작성자">작성자</option>
                     <option value="내용">내용</option>
                 </select>
-                <input type='text'></input>
-                <button onClick={searchHandler}>검색</button>
+                <input type='text' onChange={searchKeywordHandler} onKeyPress={KeyPressHandler}></input>
+                <button onClick={searchHandler} >검색</button>
             </div>
 
         </div>

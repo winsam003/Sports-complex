@@ -48,15 +48,11 @@ public class MemberContoller {
 	// ** mjoin
 	@PostMapping(value="/mjoin", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> mJoin(@RequestBody Member dto){
-		log.info("test");
 		dto.setPassword(passwordEncoder.encode(dto.getPassword()));
-		log.info("test2");
 		
 		if(service.MemberJoin(dto) > 0) {
-			log.info("test3");
 			return ResponseEntity.status(HttpStatus.OK).body("회원가입에 성공하였습니다. 로그인 창으로 이동합니다.");
 		}else {
-			log.info("test4");
 			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("회원가입에 실패하였습니다.");			
 		}
 	} // mJoin

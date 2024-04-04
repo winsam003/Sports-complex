@@ -4,7 +4,7 @@ import XBoardControllContentListContents from './XBoardControllContentListConten
 import { useEffect, useState } from 'react';
 
 
-export default function XBoardControllContentList({ searchValue, noticeList, setNoticeList}) {
+export default function XBoardControllContentList({ searchValue, noticeList, setNoticeList, userDelete, checkedUsers }) {
     return (
         <div className='XBoardControllContentList_div'>
             <div className='XBoardControllContentList_title'>
@@ -18,7 +18,7 @@ export default function XBoardControllContentList({ searchValue, noticeList, set
             </div>
             <div>
                 {noticeList.map((item, index) => (
-                    <XBoardControllContentListContents key={index} {...item} />
+                    <XBoardControllContentListContents key={index} userDelete={userDelete} isChecked={checkedUsers.includes(item.notnum)} {...item} />
                 ))}
             </div>
         </div>

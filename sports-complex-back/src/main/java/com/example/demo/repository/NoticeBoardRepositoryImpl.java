@@ -29,4 +29,14 @@ public class NoticeBoardRepositoryImpl implements NoticeBoardRepository {
 		
 		return em.createQuery("SELECT n FROM Notice n WHERE n.nottype = 'A'", Notice.class).getResultList();
 	}
+	
+	@Override
+	public int noticeDel(Integer[] delBoard) {
+		log.info("noticeDel Repository 접촉 성공");
+		log.info("repository delBoard[0]="+delBoard[0]);
+		
+		int deleteCount = em.createQuery("DELETE FROM Notice WHERE notnum IN (:notnums) ").setParameter("notnums", Arrays.asList(delBoard)).executeUpdate();
+		
+		return deleteCount;
+	}
 }
