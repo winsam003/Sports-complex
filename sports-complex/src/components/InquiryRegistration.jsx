@@ -1,15 +1,90 @@
 import './InquiryRegistration.css'
 import Submenu from './Submenu'
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { apiCall } from '../apiService/apiService';
 
 export default function InquiryRegistration() {
+    // 새글쓰기 내용
+    const [qnaNewOneData, setQnaNewOneDate] = useState([]);
+    // 약관동의 체크 상태
+    const [checkBoxes, setCheckBoxes] = useState({
+        AgreePersonal: false,
+        AgreeInfo: false,
+        AgreeShare: false
+    });
+
+    // Session storage에 있는 userData 가져오기
+    const sessionUserData = sessionStorage.getItem('userData');
+    const userData = sessionUserData ? JSON.parse(sessionUserData) : 'null';
+    const userID = {
+        id: userData.userID
+    }
+
+    // userID에 일치하는 정보 가져오기
+    useEffect(() => {
+        let url = '/member/mDetail';
+
+        apiCall(url, 'post', userID, null)
+            .then((response) => {
+                setQnaNewOneDate(response => (
+                    {
+                        ...response,
+                        phonenum: response.phonenum,
+                        email: response.email,
+                    }
+                ));
+            }).catch((error) => {
+                console.log("LoginID info pull fail : ", error);
+            })
+    }, []);
+
+    // 등록 후 상세페이지 이동
+    const navigate = useNavigate();
+
+    // 약관동의 변경
+    const handleCheckBoxChange = (e) => {
+        const { name, checked } = e.target;
+        setCheckBoxes(prevState => ({
+            ...prevState,
+            [name]: checked
+        }));
+    };
+
+    // 문의게시판 새글등록 요청보내기
+    const QnaWrite = (() => {
+        // 무결성 검사
+        if (!checkBoxes.AgreePersonal) {
+            alert('개인정보 수집이용에 동의해주세요');
+            return;
+        }
+        if (!checkBoxes.AgreeInfo) {
+            alert('정보통신망법에 동의해주세요');
+            return;
+        }
+        if (!checkBoxes.AgreeShare) {
+            alert('민원신청 내용 공유에 동의해주세요');
+            return;
+        }
+
+        let url = 'qna/qnaInsert'
+
+        apiCall(url, 'post', null, null)
+            .them((response) => {
+                console.log("문의게시판 새글등록 완료 : ", response);
+                // navigate('/QnaDetailPage', { state: { qnaData } });
+            }).catch((error) => {
+                console.log("QnaWrite Error : ", error);
+            })
+    });
+
     return (
         <div className='InquiryRegistration_box' >
             <Submenu />
             <div className='InquiryRegistration_InquiryInfo'>
-
                 <h1>문의게시판 등록</h1>
                 <div className='InquiryRegistration_infoBox'>
-                    {/* <h3>게시판 이용 주의사항</h3> */}
+                    <h3>게시판 이용 주의사항</h3>
                     <ul>
                         <li>개인정보가 불법적으로 이용되는 것을 막기 위해 이용자께서는 e-메일, 주소, 주민번호, 전화번호 등 개인정보에 관한 사항을 내용에 게시하는것을 주의하시기 바랍니다.</li>
                         <li>이용자가 게시한 자료중 상업적 광고, 불건전한 내용, 특정인에 대한 비방, 명예훼손 등의 우려가 있는 내용, 정치적 목적이나 성향이 있는 게시물, 개인정보가 포함된 게시물 등은 관리자에 의거 사전 통보없이 삭제됩니다.</li>
@@ -35,7 +110,7 @@ export default function InquiryRegistration() {
                     </ul>
                 </div>
                 <div className='InquiryRegistration_check'>
-                    <input type="checkbox" name='AgreePersonal' id='AgreePersonal' />
+                    <input type="checkbox" name='AgreePersonal' id='AgreePersonal' checked={checkBoxes.AgreePersonal} onChange={handleCheckBoxChange} />
                     <span><label htmlFor="AgreePersonal">위의 개인정보 수집이용에 동의합니다.</label></span>
                 </div>
 
@@ -48,7 +123,7 @@ export default function InquiryRegistration() {
                     </ul>
                 </div>
                 <div className='InquiryRegistration_check'>
-                    <input type="checkbox" name='AgreeInfo' id='AgreeInfo' />
+                    <input type="checkbox" name='AgreeInfo' id='AgreeInfo' checked={checkBoxes.AgreeInfo} onChange={handleCheckBoxChange} />
                     <span><label htmlFor="AgreeInfo">정보통신망법에 동의합니다.</label></span>
                 </div>
 
@@ -57,7 +132,7 @@ export default function InquiryRegistration() {
                     <p>동의를 거부할 수 있으며, 거부에 따른 불이익은 없습니다.</p>
                 </div>
                 <div className='InquiryRegistration_check'>
-                    <input type="checkbox" name='AgreeShare' id='AgreeShare' />
+                    <input type="checkbox" name='AgreeShare' id='AgreeShare' checked={checkBoxes.AgreeShare} onChange={handleCheckBoxChange} />
                     <span><label htmlFor="AgreeShare">귀하의 민원신청 내용을 공유하는 것에 동의하십니까?</label></span>
                 </div>
                 <div className='InquiryRegistration_haveto'>
@@ -73,7 +148,7 @@ export default function InquiryRegistration() {
                             <tbody>
                                 <tr>
                                     <th>작성자 <span className='star'>*</span></th>
-                                    <td><input type="text" name='name' id='name' placeholder='본인인증에서 가져오기' readOnly /></td>
+                                    <td><input type="text" name='name' id='name' readOnly value={userID.id} /></td>
                                 </tr>
                                 <tr>
                                     <th>공개/비공개 <span className='star'>*</span></th>
@@ -87,13 +162,13 @@ export default function InquiryRegistration() {
                                 <tr>
                                     <th>연락처 <span className='star'>*</span></th>
                                     <td>
-                                        <input type="text" name='phoneNum' id='phoneNum' />
+                                        <input type="text" name='phoneNum' id='phoneNum' value={qnaNewOneData.phonenum} />
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>이메일</th>
                                     <td>
-                                        <input type="text" name='email' id='email' />
+                                        <input type="text" name='email' id='email' value={qnaNewOneData.email} />
                                     </td>
                                 </tr>
                                 <tr>
@@ -156,11 +231,7 @@ export default function InquiryRegistration() {
                     </form>
                 </div>
             </div>
-
-
         </div>
-
-
     )
 }
 
