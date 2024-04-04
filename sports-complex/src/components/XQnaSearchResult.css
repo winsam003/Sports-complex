@@ -1,16 +1,25 @@
-.XQnaSearchResult_SearchResult {
+/* 사용자 문의게시판 index */
+.XQnaSearchResult_SearchResult_user {
+    display: grid;
+    grid-template-columns: 1fr 1fr 5fr 1fr 2fr 1fr 1fr;
+}
+
+/* 관리자 문의게시판 index */
+.XQnaSearchResult_SearchResult_admin {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 5fr 1fr 2fr 1fr 1fr;
 }
 
-.XQnaSearchResult_SearchResult p {
+.XQnaSearchResult_SearchResult_user p,
+.XQnaSearchResult_SearchResult_admin p {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 }
 
-/* 게시글 정렬 해제 */
-.XQnaSearchResult_SearchResult .XQnaSearchResult_SearchResult_title {
+/* 게시글 제목 정렬 해제 */
+.XQnaSearchResult_SearchResult_user .XQnaSearchResult_SearchResult_title,
+.XQnaSearchResult_SearchResult_admin .XQnaSearchResult_SearchResult_title {
     justify-content: left;
 }
 

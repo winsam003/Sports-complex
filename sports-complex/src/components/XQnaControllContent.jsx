@@ -1,6 +1,7 @@
 import './XQnaControllContent.css'
 import XQnaSearchResult from './XQnaSearchResult'
 import Submenu from './Submenu';
+import XQnaSearchBox from './XQnaSearchBox';
 import { useState, useEffect } from 'react';
 import { apiCall } from '../apiService/apiService';
 
@@ -78,7 +79,7 @@ export default function XQnaControllContent() {
                 case '제목':
                     return qna.qatitle.toLowerCase().includes(qnaSearchInput.toLowerCase());
                 case '작성자':
-                    return qna.id.id.toLowerCase().includes(qnaSearchInput.toLowerCase());
+                    return qna.member.id.toLowerCase().includes(qnaSearchInput.toLowerCase());
                 case '내용':
                     return qna.qacontent.toLowerCase().includes(qnaSearchInput.toLowerCase());
                 default:
@@ -91,17 +92,11 @@ export default function XQnaControllContent() {
         <div className='XQnaControllContent_div'>
             <Submenu />
             <div className='XQnaControllContent_div_div'>
-                <div className='XQnaSearchBox'>
-                    <select id="XQnaSearchSelect" value={qnaSearchSelect} onChange={(e) => setQnaSearchSelect(e.target.value)}>
-                        <option value="전체">전체</option>
-                        <option value="문의 종류">문의 종류</option>
-                        <option value="제목">제목</option>
-                        <option value="작성자">작성자</option>
-                        <option value="내용">내용</option>
-                    </select>
-                    <input type='search' value={qnaSearchInput} onChange={(e) => setQnaSearchInput(e.target.value)}></input>
-                    <button onClick={handleSearch}>검색</button>
-                </div>
+                <XQnaSearchBox onSearch={handleSearch}
+                    qnaSearchSelect={qnaSearchSelect}
+                    setQnaSearchSelect={setQnaSearchSelect}
+                    qnaSearchInput={qnaSearchInput}
+                    setQnaSearchInput={setQnaSearchInput} />
                 <div className='XBoardControllContent_SearchResult_div'>
                     {/* 조회결과 index */}
                     <div className='XQnaControllContent_index'>

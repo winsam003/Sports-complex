@@ -1,10 +1,21 @@
 import './XQnaBoardAnswerContent.css'
 import Submenu from './Submenu'
-import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { apiCall } from '../apiService/apiService';
 
-// 문의게시판 답변하기
-export default function XQnaBoardAnswerContent({ qnaData }) {
-    const formattedDate = formatDateTime(qnaData.qadate);
+// 문의게시판 사용자 상세페이지
+export default function QnaDetail({ qnaData }) {
+    // Session storage에 있는 userData 가져오기
+    const sessionUserData = sessionStorage.getItem('userData');
+    const userData = sessionUserData ? JSON.parse(sessionUserData) : 'null';
+    const userID = userData.userID;
+
+    // 사용자 작성 시간과 답변 작성 시간
+    const qadate = formatDateTime(qnaData.qadate);
+    const qareplytime = formatDateTime(qnaData.qareplytime);
+
+    // 게시글 삭제 후 목록으로 이동
+    const navigate = useNavigate();
 
     // 날짜 및 시간을 원하는 형식으로 변환하는 함수
     function formatDateTime(dateTimeString) {
@@ -17,19 +28,29 @@ export default function XQnaBoardAnswerContent({ qnaData }) {
         return `${year}-${month}-${day} ${hours}:${minutes}`;
     }
 
-    // 답변 등록하기
+    // 게시물 삭제 요청
+    const handleDelete = (() => {
+        let url = '/qna/qnaDelete';
+        console.log(apiCall(url + `?qanum=${qnaData.qanum}`, 'get', null, null));
+        apiCall(url + `?qanum=${qnaData.qanum}`, 'get', null, null)
+            .then(() => {
+                navigate('/Qna');
+            }).catch((error) => {
+                console.log('Qna Detail Delete Error', error);
+            });
+    });
 
     return (
         <div className='XQnaBoardAnswerContent_div'>
             <Submenu />
             <div className='XQnaBoardAnswerContent_div_div'>
                 <div>
-                    <p className='XQnaBoardAnswerContent_title'>{qnaData.qatitle}</p>
+                    <p className='XQnaBoardAnswerContent_title'>[{qnaData.qatype}] {qnaData.qatitle}</p>
                     <div className='XQnaBoardAnswerContent_title_content'>
                         <p>작성자</p>
                         <p>{qnaData.member.id}</p>
                         <p>등록일시</p>
-                        <p>{formattedDate}</p>
+                        <p>{qadate}</p>
                         <p>조회수</p>
                         <p>{qnaData.qacount}</p>
                         <p>첨부파일</p>
@@ -39,34 +60,32 @@ export default function XQnaBoardAnswerContent({ qnaData }) {
                         {qnaData.qacontent}
                     </p>
                 </div>
-                <p className='XQnaBoardAnswerContent_answer'>답변하기</p>
-                <div className='XQnaBoardAnswerContent_haveto'>
-                    <p>(<span className='star'>*</span>)는 반드시 작성해야 할 필수 항목입니다.</p>
-                </div>
+                <p className='XQnaBoardAnswerContent_answer'>답변</p>
                 <div className='XQnaBoardAnswerContent_form'>
                     <form action="/" method='post'>
                         <table>
                             <tbody>
                                 <tr>
-                                    <th>작성자<span className='star'>*</span></th>
-                                    <td><input type="text" name='name' id='name' readOnly placeholder='백엔드 답변변수명변경 답변시간변수추가 로그인되어있는직원id데이터가져와서사용' /></td>
+                                    <th>작성자</th>
+                                    <td>{qnaData.staff ? qnaData.staff.stfid : ''}</td>
                                 </tr>
                                 <tr>
-                                    <th>내용 <span className='star'>*</span></th>
-                                    <td>
-                                        <input type="text" name='content' id='content' />
-                                    </td>
+                                    <th>내용</th>
+                                    <td>{qnaData.qareply}</td>
                                 </tr>
                                 <tr>
                                     <th>작성일</th>
-                                    <td>자바스크립트로 실시간 날짜, 시간 넣기. 게시판을 들어온 시간을 답변시간에 넣어주고 확인 사용자에서만 작성일을 확인하고 관리자가 작성할 땐 이 칸이 필요없어보임</td>
+                                    <td>{qnaData.qareplytime ? qareplytime : ''}</td>
                                 </tr>
                             </tbody>
                         </table>
                     </form>
                     <div className='XQnaBoardAnswerContent_btn_div'>
-                        <button>등록</button>
-                        <button>목록</button>
+                        {/* 작성자와 로그인된 아이디가 같으면 삭제버튼 나타남 */}
+                        {userID == qnaData.member.id && (
+                            <button onClick={handleDelete}>삭제</button>
+                        )}
+                        <button onClick={() => window.history.back()}>목록</button>
                     </div>
                 </div>
             </div>

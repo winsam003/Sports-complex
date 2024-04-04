@@ -109,6 +109,13 @@ export const PageBannerData = [
     },
     {
         "id": "3",
+        "parameter": "QnaDetailPage",
+        "page": "문의게시판",
+        "title": "고객의 소리에 귀 기울여 발전하겠습니다.",
+        "checkMenu": "N"
+    },
+    {
+        "id": "3",
         "parameter": "Inquiry",
         "page": "문의게시판",
         "title": "고객의 소리에 귀 기울여 발전하겠습니다.",
