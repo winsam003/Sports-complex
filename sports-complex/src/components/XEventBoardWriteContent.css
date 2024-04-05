@@ -62,9 +62,9 @@
 /* 게시글 내용 작성box */
 .XEventBoardContent_form #content {
     height: 300px;
-    line-height: 300px;
-    vertical-align: top;
-    /* 엔터키 가능하게 하려면 자바스크립트로 해야됨. 언젠간 해라.  */
+    width: 95%;
+    /* textarea로 수정함. */
+    resize: none;
 }
 
 /* 게시판 등록, 목록 버튼 */

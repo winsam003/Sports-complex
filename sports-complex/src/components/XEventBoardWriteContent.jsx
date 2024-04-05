@@ -155,7 +155,7 @@ export default function XEventBoardWriteContent({getUserID}) {
                                 <tr>
                                     <th>내용 <span className='star'>*</span></th>
                                     <td>
-                                        <input type="text" name='content' id='content' 
+                                        <textarea type="text" name='content' id='content' 
                                                 value={eventDetail}
                                                 onChange={(e) => makeEventDetail(e.target.value)} />
                                     </td>
@@ -165,10 +165,6 @@ export default function XEventBoardWriteContent({getUserID}) {
                                     <td className='XEventBoardContent_upload'>
                                         <input className='test' type="file" name='uploadfilef' id='uploadfilef' />
                                     </td>
-                                </tr>
-                                <tr>
-                                    <th>작성일</th>
-                                    <td>자바스크립트로 실시간 날짜, 시간 넣기. </td>
                                 </tr>
                             </tbody>
                         </table>
