@@ -25,24 +25,24 @@ export default function EventBoardPage() {
         // console.log(apiCall(url, 'get', null, null));
 
         apiCall(url, 'get', null, null)
-        .then((eventlist) => {
-            seteventlist(eventlist);
-        }).catch((error) => {
-            console.log("eventlist error: ", error);
-        })
+            .then((eventlist) => {
+                seteventlist(eventlist);
+            }).catch((error) => {
+                console.log("eventlist error: ", error);
+            })
     }
 
     // 검색창 ===============================================================
     // 검색 분야 / 키워드 
     const [searchType, setSearchType] = useState('');
     const [searchKeyWord, setSearchKeyWord] = useState('');
-    
+
     // 검색 
     const [searchEvent, setSearchEvent] = useState({
-        searchType: '', 
+        searchType: '',
         searchKeyWord: ''
     });
-    
+
     // 검색버튼
     const handleSearch = (onSearch) => {
         setSearchEvent(onSearch);
@@ -67,14 +67,14 @@ export default function EventBoardPage() {
             <div className='board_div'>
                 <Submenu />
                 <div className='board_div_div'>
-                    <XEventSearch 
+                    <XEventSearch
                         onSearch={handleSearch}
-                        searchType={searchType} 
+                        searchType={searchType}
                         setSearchType={setSearchType}
-                        searchKeyWord={searchKeyWord} 
+                        searchKeyWord={searchKeyWord}
                         setSearchKeyWord={setSearchKeyWord} />
-                        
-                    <XBoardSearchResult 
+
+                    <XBoardSearchResult
                         eventlist={eventlist}
                         searchEvent={searchEvent}
                         handleEventDelete={handleEventDelete}

@@ -57,6 +57,7 @@ import XSugangRequestPage from './components/Pages/XSugangRequestPage';
 import XRentalPlaceRequestControllPage from './components/Pages/XRentalPlaceRequestControllPage';
 import XStaffInfoPage from './components/Pages/XStaffInfoPage';
 import XStaffRegisterPage from './components/Pages/XStaffRegisterPage';
+import XBoardControllPageDetailPage from './components/Pages/XBoardControllPageDetailPage';
 import Footer from './components/Footer';
 import Xheader from './components/Xheader';
 import Header from './components/Header';
@@ -105,7 +106,10 @@ function App() {
     <div>
 
 
-      {isAdminPage ? <Xheader checkAdminPage={checkAdminPage} logout={logout} getUserName={getUserName} /> : <Header checkAdminPage={checkAdminPage} logout={logout} getUserName={getUserName} />}
+      {isAdminPage ? 
+      <Xheader checkAdminPage={checkAdminPage} logout={logout} getUserName={getUserName} /> 
+      : 
+      <Header checkAdminPage={checkAdminPage} logout={logout} getUserName={getUserName} />}
 
       <Routes>
         <Route path='/' element={<HomePage setLogincheck={setLogincheck} loginCheck={loginCheck} logout={logout} />} />
@@ -164,6 +168,7 @@ function App() {
         <Route path='/XRentalPlaceRequestControllPage' element={<XRentalPlaceRequestControllPage />} />
         <Route path='/XStaffInfoPage' element={<XStaffInfoPage />} />
         <Route path='/XStaffRegisterPage' element={<XStaffRegisterPage />} />
+        <Route path='/XBoardControllPageDetailPage' element={<XBoardControllPageDetailPage />} />
 
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
