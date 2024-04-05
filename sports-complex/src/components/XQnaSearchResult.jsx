@@ -10,7 +10,7 @@ export default function XQnaSearchResult({ qanum, qaopen, qapassword, qatype, qa
     // 비밀번호 확인
     const [passwordInput, setPasswordInput] = useState('');
 
-    // 글작성 후 상세페이지로 이동하게
+    // 상세페이지로 이동하기
     const navigate = useNavigate();
 
     // 사용자 페이지 접근
