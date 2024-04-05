@@ -2,6 +2,8 @@ package com.example.demo.domain;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.example.demo.entity.Member;
 
 import lombok.AllArgsConstructor;
@@ -20,7 +22,8 @@ public class QnaDTO {
 	private Boolean qaopen;
 	private String qapassword;
 	private Integer qacount;
-	private String qafile;
+//	파일의 경로를 저장
+	private MultipartFile qafile;
 	private String qareply;
 	private Date qareplytime;
 

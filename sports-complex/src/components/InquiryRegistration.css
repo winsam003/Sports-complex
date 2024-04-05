@@ -54,27 +54,11 @@
     background-color: #F6F6F6
 }
 
-/* 글 등록이 안되는분 */
-.InquiryRegistration_haveto {
-    color: darkblue;
-}
-
+/* 문의게시글 작성 */
 .InquiryRegistration_haveto p:nth-child(1) {
+    color: darkblue;
+    font-size: 25px;
     font-weight: bold;
-}
-
-.InquiryRegistration_haveto a {
-    display: inline-block;
-    background-color: darkblue;
-    color: white;
-    text-decoration: none;
-    width: 50px;
-    margin-left: 10px;
-    height: 30px;
-    text-align: center;
-    vertical-align: middle;
-    line-height: 30px;
-    border-radius: 10%;
 }
 
 /* 필수작성 목록들. className='star' */
@@ -112,11 +96,11 @@
 
 }
 
-.InquiryRegistration_form #name {
+.InquiryRegistration_form #id {
     width: 50%;
 }
 
-.InquiryRegistration_form #content {
+.InquiryRegistration_form #qacontent {
     height: 300px;
     line-height: 300px;
     /* 엔터키 가능하게 하려면 자바스크립트로 해야됨. 언젠간 해라.  */
@@ -139,6 +123,22 @@
     margin: 0;
     width: 200px;
     height: 50px;
+}
+
+.InquiryRegistration_btn_div {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.InquiryRegistration_btn_div button {
+    margin-left: 10px;
+    height: 50px;
+    width: 100px;
+    background-color: #059da5;
+    color: white;
+    border-radius: 5%;
+    border: none;
 }
 
 /* width : 500-1200 */

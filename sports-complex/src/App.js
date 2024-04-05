@@ -58,6 +58,8 @@ import XRentalPlaceRequestControllPage from './components/Pages/XRentalPlaceRequ
 import XStaffInfoPage from './components/Pages/XStaffInfoPage';
 import XStaffRegisterPage from './components/Pages/XStaffRegisterPage';
 import XBoardControllPageDetailPage from './components/Pages/XBoardControllPageDetailPage';
+import XBoardControllInsertPage from './components/Pages/XBoardControllInsertPage';
+
 import Footer from './components/Footer';
 import Xheader from './components/Xheader';
 import Header from './components/Header';
@@ -147,7 +149,7 @@ function App() {
         <Route path='/VisitWayPage' element={<VisitWayPage />} />
 
         <Route path='/XmanagementPage' element={<XmanagementPage />} />
-        <Route path='/XBoardWritePage' element={<XBoardWritePage />} />
+        <Route path='/XBoardWritePage' element={<XBoardWritePage getUserID={getUserID} />} />
         <Route path='/XEventBoardWritePage' element={<XEventBoardWritePage />} />
         <Route path='/XFaqBoardWritePage' element={<XFaqBoardWritePage />} />
         <Route path='/XQnaBoardAnswerPage' element={<XQnaBoardAnswerPage />} />
@@ -170,6 +172,7 @@ function App() {
         <Route path='/XStaffInfoPage' element={<XStaffInfoPage />} />
         <Route path='/XStaffRegisterPage' element={<XStaffRegisterPage />} />
         <Route path='/XBoardControllPageDetailPage' element={<XBoardControllPageDetailPage />} />
+        <Route path='/XBoardControllInsertPage' element={<XBoardControllInsertPage />} />
 
         <Route path='/XEventDetailPage' element = {<XEventDetailPage />} />        
 
