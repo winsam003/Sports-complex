@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router';
 import './XBoardControllContentDateil2.css'
 import { MdFestival } from "react-icons/md";
+import { apiCall } from "../apiService/apiService";
 
 
 export default function XBoardControllContentDateil2() {
@@ -18,6 +19,27 @@ export default function XBoardControllContentDateil2() {
         minute: '2-digit',
         hour12: false // 오전/오후 표기를 제거하기 위해
     }).replace(/\./g, '');
+
+
+    const fileDownloadLink = () => {
+        let filePath = `/notice/downloadFile?fileName=${receivedInfo.notuploadfile}`;
+
+        apiCall(filePath, 'get', null, null)
+            .then((response) => {
+                const url = window.URL.createObjectURL(new Blob([response.blob]));
+                const a = document.createElement('a');
+
+                a.href = url;
+                a.download = receivedInfo.notuploadfile;
+
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+            }).catch((error) => {
+                console.log("error occured = " + error)
+            })
+    }
+
 
 
     return (
@@ -54,7 +76,7 @@ export default function XBoardControllContentDateil2() {
                     <div className='XBoardControllContentDateil2_twin'>
                         <div className="XBoardControllContentDateil2_menu">
                             <p>파일</p>
-                            <p>{receivedInfo.notiploadfile}</p>
+                            <p className='XBoardControllContentDateil2_file' onClick={fileDownloadLink}>{receivedInfo.notuploadfile}</p>
                         </div>
                         <div className="XBoardControllContentDateil2_menu">
                             <p>조회수</p>
