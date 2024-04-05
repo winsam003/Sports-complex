@@ -332,9 +332,23 @@ export const PageBannerData = [
     },
     {
         "id": "12",
+        "parameter": 'XBoardControllInsertPage',
+        "page": '공지사항 관리',
+        "title": '공지사항을 관리할 수 있습니다 ',
+        "checkMenu": "N"
+    },
+    {
+        "id": "12",
         "parameter": 'XBoardWritePage',
         "page": '공지사항 등록',
         "title": '공지사항을 등록할 수 있습니다 ',
+        "checkMenu": "N"
+    },
+    {
+        "id": "12",
+        "parameter": 'XEventDetailPage',
+        "page": '이벤트 게시판 관리',
+        "title": '이벤트 게시판을 관리할 수 있습니다 ',
         "checkMenu": "N"
     },
     {

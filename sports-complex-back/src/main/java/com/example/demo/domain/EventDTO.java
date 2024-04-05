@@ -3,6 +3,10 @@ package com.example.demo.domain;
 import java.sql.Date;
 import java.sql.Timestamp;
 
+import org.springframework.web.multipart.MultipartFile;
+
+import com.example.demo.entity.Staff;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,7 +24,10 @@ public class EventDTO {
 	public String eventtype;
 	public int eventcount;
 	public String eventuploadfile; 
-	public String stfid;
+	
+	public MultipartFile eventfilef;
+	
+	public Staff stfid;
 	public Date eventdate;
 	
 	

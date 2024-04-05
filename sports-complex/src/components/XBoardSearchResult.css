@@ -56,7 +56,7 @@
 
 @media (max-width : 1000px) {
     .listEvent{
-        display: inherit;
+        /* display: inherit; */
     }
 
     /* 조회결과 스크롤박스만들기 */
@@ -70,5 +70,14 @@
 
     .listEvent {
         width: 1000px;
+        display: grid;
+    }
+    /* 관리자 */
+    .XBoardControllContent_SearchResult {
+        grid-template-columns: 0.5fr 0.5fr 3fr 1fr 1fr 1fr 1.5fr 1fr;
+    }
+    /* 사용자 */
+    .XBoardControllContent_SearchResult_User{
+        grid-template-columns: 0.5fr 3fr 1fr 1fr 1fr 1.5fr 1fr;
     }
 }

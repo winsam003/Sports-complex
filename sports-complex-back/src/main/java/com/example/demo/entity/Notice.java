@@ -31,15 +31,20 @@ public class Notice {
 	private Integer notnum;
 	private String nottitle;
 	private String quest;
+	
 	@CreationTimestamp
 	@Column(nullable = false)
 	private Date notdate;
 	private String notuploadfile;
+	
+	@Column(nullable = false)
 	private Integer notcount;
 	private String notdetail;
 	private String nottype;
+	
 	@JoinColumn(name = "stfid")
 	private String stfid;	
+	
 	@Transient
 	private MultipartFile qafilef;
 }

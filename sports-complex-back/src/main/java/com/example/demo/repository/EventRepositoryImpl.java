@@ -3,6 +3,7 @@ package com.example.demo.repository;
 import java.util.List;   
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
@@ -53,6 +54,27 @@ public class EventRepositoryImpl implements EventRepository {
 			return null;
 		}
 		
+	}
+	
+	@Override
+	public int EventInsert(Event dto) {
+		log.info("EventInsert Repository 성공");
+		String jpql = "INSERT INTO Event (eventname, eventdetail, eventfacility, eventtime, eventfor, eventtype, eventuploadfile, stfid, eventdate)"
+					+ "VALUES (:eventname, :eventdetail, :eventfacility, :eventtime, :eventfor, :eventtype, :eventuploadfile, :stfid, :eventdate)";
+		
+		Query query = em.createNativeQuery(jpql);
+
+		query.setParameter("eventname", dto.getEventname());
+		query.setParameter("eventdetail", dto.getEventdetail());
+		query.setParameter("eventfacility", dto.getEventfacility());
+		query.setParameter("eventtime", dto.getEventtime());
+		query.setParameter("eventfor", dto.getEventfor());
+		query.setParameter("eventtype", dto.getEventtype());
+		query.setParameter("eventuploadfile", dto.getEventuploadfile());
+		query.setParameter("stfid", dto.getStfid());
+		query.setParameter("eventdate", dto.getEventdate());
+		
+		return query.executeUpdate();
 	}
 	
 	

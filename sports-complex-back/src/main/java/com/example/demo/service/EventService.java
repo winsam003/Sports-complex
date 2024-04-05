@@ -12,4 +12,6 @@ public interface EventService {
 	
 	Event EventDetail(Integer eventCode);
 	
+	int EventInsert(Event dto);
+	
 }

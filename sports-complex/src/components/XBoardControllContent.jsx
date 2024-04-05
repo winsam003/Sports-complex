@@ -5,6 +5,7 @@ import Submenu from './Submenu';
 import XBoardControllContentList from './XBoardControllContentList';
 import { useEffect, useState } from 'react';
 import { apiCall } from '../apiService/apiService';
+import { useNavigate } from 'react-router';
 
 export default function XBoardControllContent() {
 
@@ -140,12 +141,25 @@ export default function XBoardControllContent() {
 
 
 
+    const navigate = useNavigate();
+
+    //******************************* 등록 버튼 페이지 전환 *********************************//
+    const enterInsertPage = () =>{
+        navigate('/XBoardWritePage');
+    }
+    //******************************* 등록 버튼 페이지 전환 *********************************//
+
+
+
+
+
+
     return (
         <div className='XBoardControllContent_div'>
             <Submenu />
             <div className='XBoardControllContent_div_div'>
                 <XBoardSearchBox searchValueHandler={searchValueHandler} searchHandler={searchHandler}
-                    searchKeywordHandler={searchKeywordHandler} KeyPressHandler={KeyPressHandler} />
+                    searchKeywordHandler={searchKeywordHandler} KeyPressHandler={KeyPressHandler} enterInsertPage={enterInsertPage} />
 
                 <XBoardControllContentList searchValue={searchValue} noticeList={noticeList} setNoticeList={setNoticeList}
                     setSearch={setSearch} search={search} userDelete={userDelete} checkedUsers={checkedUsers} />

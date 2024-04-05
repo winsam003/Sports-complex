@@ -9,3 +9,8 @@
 .XBoardControllContentListContents_contents:hover{
     background-color: rgb(239, 240, 240);
 }
+
+.XBoardControllContentListContents_contents>p{
+    height: 100%;
+    
+}

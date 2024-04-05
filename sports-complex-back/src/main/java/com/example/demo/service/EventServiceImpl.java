@@ -32,6 +32,11 @@ public class EventServiceImpl implements EventService{
 		return repository.EventDetail(eventCode);
 	}
 	
+	@Override
+	public int EventInsert(Event dto) {
+		return repository.EventInsert(dto);
+	}
+	
 }
 
 
