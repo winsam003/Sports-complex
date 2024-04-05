@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -20,12 +21,23 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import java.text.ParseException;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 import com.example.demo.entity.Notice;
 import com.example.demo.service.NoticeBoardServiceImpl;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+
+import org.springframework.http.HttpHeaders;
+import org.springframework.web.bind.annotation.PathVariable;
+import java.nio.file.Path;
 
 
 @RestController
@@ -34,6 +46,8 @@ import lombok.extern.log4j.Log4j2;
 @RequestMapping("/notice")
 public class NoticeBoardContoller {
 	NoticeBoardServiceImpl service;
+	private static final String DOWNLOAD_DIR = "E:\\Sam\\project\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\noticeBoard\\";
+	
 	
 	// noticeList 공지사항 게시글 list
 	@GetMapping(value="/noticeList", produces=MediaType.APPLICATION_JSON_VALUE)
@@ -64,7 +78,7 @@ public class NoticeBoardContoller {
 	} // noticeDel 공지사항 게시글 삭제
 	
 	
-	
+	// 날짜
 	private Date parseDate(String dateString) {
 	    try {
 	        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
@@ -87,9 +101,9 @@ public class NoticeBoardContoller {
 	                                       @RequestParam("notdetail") String notdetail,
 	                                       @RequestParam("notdate") String notdate,
 	                                       @RequestParam("notcount") Integer notcount,
-										   @RequestParam("nottype") String nottype){
-	    
+										   @RequestParam("nottype") String nottype) throws IOException{
 		log.info("Contoller notic1eSubmit 접촉 성공");
+		
 		
 		Notice entity = new Notice();
 		
@@ -101,13 +115,35 @@ public class NoticeBoardContoller {
 		entity.setNottype(nottype);
 		entity.setStfid(stfid);
 		entity.setNotcount(notcount);
+		entity.setQafilef(file);
 		
 		
-//		String realPath = servletContext.getRealPath("/");
+		// 1. 배포 전, 배포 후 물리적 위치 저장
+		String realPath = "E:\\Sam\\project\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\noticeBoard\\";
 		
-//		log.info(realPath);
+		
+		// 솔직히 무슨 기준으로 배포 전, 후 를 나눠야할지 모르겠음 일단 같은 폴더로 지정했음
+		if(realPath.contains(".project."))
+			realPath = "E:\\Sam\\project\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\noticeBoard\\";
+		else 
+			realPath = "E:\\Sam\\project\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\noticeBoard\\";
 		
 		
+		// 1.1. 해당 위치에 폴더가 존재하지 않다면 만들기
+		File file1 = new File(realPath);
+		if(!file1.exists()) {
+			file1.mkdir();
+		}
+		
+		// 1.2. 저장 할 파일 데이터가 존재한다면 저장 경로에 파일 이름을 붙여주고 파일 복사 (저장)
+		MultipartFile uploadfilef = entity.getQafilef();
+		if(uploadfilef != null && !uploadfilef.isEmpty()) {
+			String f2 = realPath + uploadfilef.getOriginalFilename();
+			File f1 = new File(f2);
+			uploadfilef.transferTo(f1);
+		}
+		
+
 		
 		if(service.noticeSubmit(entity)>0) {
 			return ResponseEntity.status(HttpStatus.OK).body("공지사항 등록에 성공하였습니다.");						
@@ -115,4 +151,29 @@ public class NoticeBoardContoller {
 			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(null);			
 		}
 	 }// notic1eSubmit 공지사항 등록
+	
+	
+	
+	@GetMapping("/downloadFile")
+	public ResponseEntity<ByteArrayResource> downloadFile(@RequestParam String fileName) throws IOException{
+		
+	    Path filePath = Paths.get(DOWNLOAD_DIR, fileName);
+	        // 파일의 내용을 바이트 배열로 읽어옴
+	    byte[] data = Files.readAllBytes(filePath);
+	        // 바이트 배열을 ByteArrayResource 객체로 변환
+		
+		
+	    ByteArrayResource resource = new ByteArrayResource(data);
+		
+		return ResponseEntity.ok()
+                // 파일의 MIME 타입 설정		// MIME(Multipurpose Internet Mail Extensions) => 파일의 형식을 식별 (이미지, 텍스트 ...)
+				.contentType(MediaType.IMAGE_PNG) // 이미지 파일인 경우
+                // 다운로드 시 파일명 지정
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + fileName)
+                // 응답에 파일의 내용을 담은 ByteArrayResource 추가
+                .body(resource);
+	}
+	
+	
+	
 }

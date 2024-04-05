@@ -79,6 +79,13 @@
     cursor: pointer;
 }
 
+.XBoardControllContentDateil2_file{
+    color: blue;
+    cursor: pointer;
+
+    text-decoration: underline;
+}
+
 @media(max-width: 1200px) {
     .XBoardControllContentDateil2Containor {
         width: 100%;

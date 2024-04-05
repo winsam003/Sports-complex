@@ -144,7 +144,7 @@ export default function XBoardControllContent() {
     const navigate = useNavigate();
 
     //******************************* 등록 버튼 페이지 전환 *********************************//
-    const enterInsertPage = () =>{
+    const enterInsertPage = () => {
         navigate('/XBoardWritePage');
     }
     //******************************* 등록 버튼 페이지 전환 *********************************//
