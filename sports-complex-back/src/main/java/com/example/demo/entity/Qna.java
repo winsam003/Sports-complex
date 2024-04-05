@@ -50,9 +50,6 @@ public class Qna {
 	private String qapassword;
 	@Column(nullable = false, updatable = false)
 	private Integer qacount;
-	@Column(length = 100, updatable = false)
-	private String qafile;
-//	테이블에 존재하지 않는 값, SQL 구문 처리시 예외
 	@Transient
 	private MultipartFile qafilef;
 	@Column

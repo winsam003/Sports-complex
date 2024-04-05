@@ -63,6 +63,7 @@ import XBoardControllInsertPage from './components/Pages/XBoardControllInsertPag
 import Footer from './components/Footer';
 import Xheader from './components/Xheader';
 import Header from './components/Header';
+import XEventDetailPage from './components/Pages/XEventDetailPage';
 
 function App() {
 
@@ -172,6 +173,8 @@ function App() {
         <Route path='/XStaffRegisterPage' element={<XStaffRegisterPage />} />
         <Route path='/XBoardControllPageDetailPage' element={<XBoardControllPageDetailPage />} />
         <Route path='/XBoardControllInsertPage' element={<XBoardControllInsertPage />} />
+
+        <Route path='/XEventDetailPage' element = {<XEventDetailPage />} />        
 
         <Route path='*' element={<NotFoundPage />} />
       </Routes>

@@ -38,7 +38,7 @@ public class EventController {
 		}else {
 			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("출력할 이벤트가 없습니다. controller ");
 		}
-	}
+	} //eList
 	
 	// 이벤트 삭제
 	@PostMapping(value = "/eventdelete", consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -58,7 +58,7 @@ public class EventController {
 		} else {
 			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("삭제할 이벤트 게시물이 없습니다.");
 		}		
-	}
+	} //eDelete
 	
 	// 이벤트 디테일
 	@GetMapping(value = "/eventdetail", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -71,10 +71,23 @@ public class EventController {
 		if(result != null) {
 			return ResponseEntity.status(HttpStatus.OK).body(result);
 		} else {
-			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("의 디테일이 없습니다.");
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("디테일이 없습니다.");
 		}
 		
-	}
+	} // eDetail
+	
+	// 이벤트 등록
+	@PostMapping(value = "/eventinsert", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> eInsert(@RequestBody Event dto){
+		
+		if(service.EventInsert(dto) > 0) {
+			return ResponseEntity.status(HttpStatus.OK).body("이벤트 등록 완료. 목록으로 이동");
+		} else {
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("이벤트 등록 실패");
+		}
+		
+	} // eInsert
+	
 
 	
 	

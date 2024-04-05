@@ -21,6 +21,8 @@ CREATE TABLE Member (
 
 INSERT INTO Member (id, membercode, name, password, birth, phonenum, homenum, address, address1, address2, email, snsagr, emailagr, carnum, parkuse)
 VALUES
+("dbrghl", "MEINAD", "백승현", "!!Tkfckdrh", "19940223", "01022307060", "0317345268", "경기도 성남시 중원구", "자혜로 8번길 7-1", "13421", "dbrghl@gamil.com", "0", "0", "", null),
+("ahemadbrghl", "MEINAD", "백승현", "$2a$10$MSEYHnYZ23z5LvHfDKD8TujopWcoEneap2/OfNARxyAb7GKqEu6sq", "19940223", "01022307060", "0317345268", "경기도 성남시 중원구", "자혜로 8번길 7-1", "13421", "ahemadbrghl@gamil.com", "0", "0", "", null),
 ("winsam003", "MEINAD", "최승삼", "12345!", "19941022", "01058021809", "0317345268", "경기도 성남시 중원구", "자혜로 8번길 7-1", "13421", "winsam003@gamil.com", "1", "1", "177머8941", null),
 ("bamboo2", "MEINAD", "김철수", "password2", "19901231", "01023456789", "03187654321", "서울특별시 강서구", "강서로 456번길 78", "아파트 202호", "example2@example.com", 1, 1, "234나5678", null),
 ("bamboos3", "MEINKI", "박영희", "password3", "19951115", "01034567890", "03176543210", "서울특별시 강동구", "강동대로 789번길 90", "아파트 303호", "example3@example.com", 1, 1, "456라7890", null),
@@ -209,6 +211,8 @@ CREATE TABLE staff (
 ** 직원 생성 **
 INSERT INTO staff (stfID, stfPassword, stfDmp, stfLevel, stfPNum, stfName, stfCode)
 VALUES 
+('dbrghl', '!!Tkfckdrh', '강좌', '팀장', '01022307060', '백승현', 'STCLBJ'),
+('ahemadbrghl', '$2a$10$MSEYHnYZ23z5LvHfDKD8TujopWcoEneap2/OfNARxyAb7GKqEu6sq', '시설', '팀장', '01022307060', '백승현', 'STSPBJ'),
 ('jgj56', 'rmswjd', '강좌', '팀장', '0100821700', '장근정', 'STCLBJ'),
 ('minsam', 'tmdtka', '시설', '팀장', '01000070000', '최승삼', 'STSPBJ'),
 ('sh9845', 'tmdgus', '일반', '사원', '01015441544', '백승현', 'STGESF'),

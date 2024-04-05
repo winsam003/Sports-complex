@@ -18,8 +18,11 @@ export default function XBoardSearchResult({ eventlist, searchEvent, handleEvent
 
     const handleEventClick = (eventcode) => {
         try {
-            
-            navigate(`/EventDetailPage?eventcode=${eventcode}`);
+            if(location.pathname == '/EventBoardPage' ){
+                navigate(`/EventDetailPage?eventcode=${eventcode}`);
+            } else{
+                navigate(`/XEventDetailPage?eventcode=${eventcode}`);
+            }
         } catch (error) {
             console.log('Error eventDetail : ', error);
         }

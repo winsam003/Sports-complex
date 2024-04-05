@@ -10,4 +10,6 @@ public interface EventRepository{
 	public int EventDelete(int eventcode);
 	
 	public Event EventDetail(Integer eventcode);
+	
+	public int EventInsert(Event dto);
 }
