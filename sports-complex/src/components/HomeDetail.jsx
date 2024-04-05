@@ -141,10 +141,10 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout }) {
                                 <img className='slide1' src='img/ballleague.jpg' />
                             </div>
                             <div>
-                                <img className='slide1' src='img/mainPic1.jpg' />
+                                <img className='slide1' src='img/musical.jpg' />
                             </div>
                             <div>
-                                <img className='slide1' src='img/jumuk.jpg' />
+                                <img className='slide1' src='img/billy.jpg' />
                             </div>
                             <div>
                                 <img className='slide1' src='img/moon.jpg' />

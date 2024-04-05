@@ -8,7 +8,7 @@ export default function EventDetail({ eventcode }) {
     // 디테일 정보 가져오기 ====================================================
     const [eventDetailOne, setEventDetailOne] = useState('');
 
-    console.log(`EventDetail 에서의 eventcode : `, eventcode);
+    // console.log(`EventDetail 에서의 eventcode : `, eventcode);
     useEffect(() => {
         let url = "/event/eventdetail?eventcode=" + eventcode;
 

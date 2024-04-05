@@ -5,6 +5,8 @@ import { apiCall } from '../apiService/apiService';
 
 // 문의게시판 사용자 상세페이지
 export default function QnaDetail({ qnaData }) {
+    console.log(qnaData);
+
     // Session storage에 있는 userData 가져오기
     const sessionUserData = sessionStorage.getItem('userData');
     const userData = sessionUserData ? JSON.parse(sessionUserData) : 'null';
@@ -40,6 +42,11 @@ export default function QnaDetail({ qnaData }) {
             });
     });
 
+    // 목록으로 이동
+    const goToQnaPage = () => {
+        navigate('/Qna');
+    };
+
     return (
         <div className='XQnaBoardAnswerContent_div'>
             <Submenu />
@@ -62,30 +69,35 @@ export default function QnaDetail({ qnaData }) {
                 </div>
                 <p className='XQnaBoardAnswerContent_answer'>답변</p>
                 <div className='XQnaBoardAnswerContent_form'>
-                    <form action="/" method='post'>
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <th>작성자</th>
-                                    <td>{qnaData.staff ? qnaData.staff.stfid : ''}</td>
-                                </tr>
-                                <tr>
-                                    <th>내용</th>
-                                    <td>{qnaData.qareply}</td>
-                                </tr>
-                                <tr>
-                                    <th>작성일</th>
-                                    <td>{qnaData.qareplytime ? qareplytime : ''}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </form>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>작성자</th>
+                                <td>{qnaData.stfid ? qnaData.stfid : ''}</td>
+                            </tr>
+                            <tr>
+                                <th>내용</th>
+                                <textarea
+                                    name='qareply'
+                                    id='qareply'
+                                    value={qnaData.qareply}
+                                    rows="100"
+                                    style={{ resize: 'none', width: '750px', lineHeight: '1.5' }}
+                                    readOnly
+                                />
+                            </tr>
+                            <tr>
+                                <th>작성일</th>
+                                <td>{qnaData.qareplytime ? qareplytime : ''}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                     <div className='XQnaBoardAnswerContent_btn_div'>
                         {/* 작성자와 로그인된 아이디가 같으면 삭제버튼 나타남 */}
                         {userID == qnaData.member.id && (
                             <button onClick={handleDelete}>삭제</button>
                         )}
-                        <button onClick={() => window.history.back()}>목록</button>
+                        <button onClick={goToQnaPage}>목록</button>
                     </div>
                 </div>
             </div>

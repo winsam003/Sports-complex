@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import java.util.Date;
 import java.util.List;   
 
 import javax.persistence.EntityManager;
@@ -57,22 +58,22 @@ public class EventRepositoryImpl implements EventRepository {
 	}
 	
 	@Override
-	public int EventInsert(Event dto) {
+	public int EventInsert(Event Entity) {
 		log.info("EventInsert Repository 성공");
 		String jpql = "INSERT INTO Event (eventname, eventdetail, eventfacility, eventtime, eventfor, eventtype, eventuploadfile, stfid, eventdate)"
 					+ "VALUES (:eventname, :eventdetail, :eventfacility, :eventtime, :eventfor, :eventtype, :eventuploadfile, :stfid, :eventdate)";
 		
 		Query query = em.createNativeQuery(jpql);
 
-		query.setParameter("eventname", dto.getEventname());
-		query.setParameter("eventdetail", dto.getEventdetail());
-		query.setParameter("eventfacility", dto.getEventfacility());
-		query.setParameter("eventtime", dto.getEventtime());
-		query.setParameter("eventfor", dto.getEventfor());
-		query.setParameter("eventtype", dto.getEventtype());
-		query.setParameter("eventuploadfile", dto.getEventuploadfile());
-		query.setParameter("stfid", dto.getStfid());
-		query.setParameter("eventdate", dto.getEventdate());
+		query.setParameter("eventname", Entity.getEventname());
+		query.setParameter("eventdetail", Entity.getEventdetail());
+		query.setParameter("eventfacility", Entity.getEventfacility());
+		query.setParameter("eventtime", Entity.getEventtime());
+		query.setParameter("eventfor", Entity.getEventfor());
+		query.setParameter("eventtype", Entity.getEventtype());
+		query.setParameter("eventuploadfile", Entity.getEventuploadfile());
+		query.setParameter("stfid", Entity.getStfid());
+		query.setParameter("eventdate", new Date(System.currentTimeMillis()));
 		
 		return query.executeUpdate();
 	}

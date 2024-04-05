@@ -11,5 +11,5 @@ public interface EventRepository{
 	
 	public Event EventDetail(Integer eventcode);
 	
-	public int EventInsert(Event dto);
+	public int EventInsert(Event Entity);
 }
