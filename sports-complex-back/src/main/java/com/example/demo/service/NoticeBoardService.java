@@ -9,4 +9,6 @@ public interface NoticeBoardService {
 	public List<Notice> NBoardList();
 	
 	public int noticeDel(Integer[] delBoard);
+	
+	public int noticeSubmit(Notice entity);
 }

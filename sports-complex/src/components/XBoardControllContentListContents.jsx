@@ -22,18 +22,18 @@ export default function XBoardControllContentListContents({ notnum, nottitle, qu
     }
 
 
-// detail로 정보를 가지고 이동
+    // detail로 정보를 가지고 이동
     const navigate = useNavigate();
     const boardDetail = () => {
         navigate(`/XBoardControllPageDetailPage?notnum=${notnum}`, {
             state: {
-                notnum: notnum, 
+                notnum: notnum,
                 nottitle: nottitle,
                 quest: quest,
                 stfid: stfid,
                 notdate: notdate,
                 notiploadfile: notiploadfile,
-                notcount: notcount, 
+                notcount: notcount,
                 notdetail: notdetail
             }
         });
