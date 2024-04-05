@@ -22,10 +22,10 @@ export default function EventDetail({ eventcode }) {
         // fetchEventDetail();
     }, []);
 
-    console.log(`eventDetailOne : `, eventDetailOne);
+    // console.log(`eventDetailOne : `, eventDetailOne);
     
-    
-    console.log(eventDetailOne.eventuploadfile);
+    // 파일명
+    // console.log(eventDetailOne.eventuploadfile);
 
     //===============================================================================
     return (
