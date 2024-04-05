@@ -6,6 +6,7 @@ import Submenu from './Submenu';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { apiCall } from '../apiService/apiService';
+import { Link } from 'react-router-dom';
 
 export default function XEventControllContent() {
 
@@ -87,7 +88,7 @@ export default function XEventControllContent() {
             <Submenu />
             <div className='XEventControllContent_div_div'>
                 <div className='XEventControllContent_uploadAndSearch'>
-                    <button>등록</button>
+                    <button> <Link to = '/XEventBoardWritePage'>등록</Link></button>
                     <XEventSearch
                         onSearch={handleSearch}
                         searchType={searchType}

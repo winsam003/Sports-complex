@@ -6,9 +6,13 @@ import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -32,8 +36,15 @@ public class Event {
 	public String eventtype;
 	public int eventcount;
 	public String eventuploadfile;
-	public String stfid;
-    @Column(nullable = false)
+	
+	@Transient
+	public MultipartFile eventfilef;
+	
+	@ManyToOne
+    @JoinColumn(name = "stfid")
+	public Staff stfid;
+    
+	@Column(nullable = false)
     public Date eventdate;
 	
 	

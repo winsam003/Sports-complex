@@ -339,6 +339,13 @@ export const PageBannerData = [
     },
     {
         "id": "12",
+        "parameter": 'XEventDetailPage',
+        "page": '이벤트 게시판 관리',
+        "title": '이벤트 게시판을 관리할 수 있습니다 ',
+        "checkMenu": "N"
+    },
+    {
+        "id": "12",
         "parameter": 'XEventBoardControllPage',
         "page": '이벤트 게시판 관리',
         "title": '이벤트 게시판을 관리할 수 있습니다 ',

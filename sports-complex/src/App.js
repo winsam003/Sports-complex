@@ -61,6 +61,7 @@ import XBoardControllPageDetailPage from './components/Pages/XBoardControllPageD
 import Footer from './components/Footer';
 import Xheader from './components/Xheader';
 import Header from './components/Header';
+import XEventDetailPage from './components/Pages/XEventDetailPage';
 
 function App() {
 
@@ -169,6 +170,8 @@ function App() {
         <Route path='/XStaffInfoPage' element={<XStaffInfoPage />} />
         <Route path='/XStaffRegisterPage' element={<XStaffRegisterPage />} />
         <Route path='/XBoardControllPageDetailPage' element={<XBoardControllPageDetailPage />} />
+
+        <Route path='/XEventDetailPage' element = {<XEventDetailPage />} />        
 
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
