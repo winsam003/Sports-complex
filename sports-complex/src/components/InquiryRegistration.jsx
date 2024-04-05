@@ -1,19 +1,10 @@
 import './InquiryRegistration.css'
 import Submenu from './Submenu'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { apiCall } from '../apiService/apiService';
 
 export default function InquiryRegistration() {
-    // 새글쓰기 내용
-    const [qnaNewOneData, setQnaNewOneDate] = useState([]);
-    // 약관동의 체크 상태
-    const [checkBoxes, setCheckBoxes] = useState({
-        AgreePersonal: false,
-        AgreeInfo: false,
-        AgreeShare: false
-    });
-
     // Session storage에 있는 userData 가져오기
     const sessionUserData = sessionStorage.getItem('userData');
     const userData = sessionUserData ? JSON.parse(sessionUserData) : 'null';
@@ -21,15 +12,39 @@ export default function InquiryRegistration() {
         id: userData.userID
     }
 
+    // 현재 시간
+    const currentTime = new Date();
+    const formattedTime = currentTime.toISOString();
+
+    // 새글쓰기 내용
+    const [qnaNewOneData, setQnaNewOneDate] = useState({
+        id: userID.id,
+        qatype: '시설문의',
+        qaopen: '1',
+        qacount: '0',
+    });
+
+    // 약관동의 체크 상태
+    const [checkBoxes, setCheckBoxes] = useState({
+        AgreePersonal: false,
+        AgreeInfo: false,
+        AgreeShare: false
+    });
+
+    // 약관동의 위치로 Refs 설정
+    const AgreePersonalRef = useRef(null);
+    const AgreeInfoRef = useRef(null);
+    const AgreeShareRef = useRef(null);
+
     // userID에 일치하는 정보 가져오기
     useEffect(() => {
         let url = '/member/mDetail';
 
         apiCall(url, 'post', userID, null)
             .then((response) => {
-                setQnaNewOneDate(response => (
+                setQnaNewOneDate(userData => (
                     {
-                        ...response,
+                        ...userData,
                         phonenum: response.phonenum,
                         email: response.email,
                     }
@@ -51,28 +66,84 @@ export default function InquiryRegistration() {
         }));
     };
 
+    // 문의글 제목, 내용
+    const handleQnaContent = (e) => {
+        const { name, value, files } = e.target;
+        // 파일 선택 시 처리
+        if (name == 'qafile') {
+            setQnaNewOneDate(prevData => ({
+                ...prevData,
+                [name]: files[0]
+            }));
+        } else {
+            // 다른 입력란에 대한 처리
+            setQnaNewOneDate(prevData => ({
+                ...prevData,
+                [name]: value
+            }));
+        }
+    }
+
     // 문의게시판 새글등록 요청보내기
-    const QnaWrite = (() => {
+    const RegisterQna = (() => {
+
         // 무결성 검사
+        // 동의여부 확인
         if (!checkBoxes.AgreePersonal) {
             alert('개인정보 수집이용에 동의해주세요');
+            AgreePersonalRef.current.scrollIntoView();
             return;
         }
         if (!checkBoxes.AgreeInfo) {
             alert('정보통신망법에 동의해주세요');
+            AgreeInfoRef.current.scrollIntoView();
             return;
         }
         if (!checkBoxes.AgreeShare) {
             alert('민원신청 내용 공유에 동의해주세요');
+            AgreeShareRef.current.scrollIntoView();
             return;
         }
 
+        // 제목, 게시글 입력확인
+        if (!qnaNewOneData.qatitle) {
+            alert('제목을 입력해주세요.');
+            return;
+        }
+        if (!qnaNewOneData.qacontent) {
+            alert('내용을 입력해주세요.');
+            return;
+        }
+
+        // 공개글 선택시 입력한 비밀번호 초기화
+        if (qnaNewOneData.qaopen == '1') {
+            setQnaNewOneDate(qnaNewOneData.qapassword = null);
+        }
+
+        // 비밀글 비밀번호 검사
+        if (qnaNewOneData.qaopen == '0' && !/^\d{4}$/.test(qnaNewOneData.qapassword)) {
+            alert('비밀번호는 숫자로 이루어진 4자리여야 합니다.');
+            return;
+        }
+
+        // 파일을 건네주기 위한 formData객체 생성
+        const formData = new FormData();
+        // 파일 추가
+        formData.append('qafile', qnaNewOneData.qafile);
+
+        // qadate에 현재 시간, 파일 추가
+        setQnaNewOneDate(prevData => ({
+            ...prevData,
+            qadate: formattedTime,
+            qafile: formData.get('file')
+        }));
+
         let url = 'qna/qnaInsert'
 
-        apiCall(url, 'post', null, null)
-            .them((response) => {
+        apiCall(url, 'post', qnaNewOneData, null)
+            .then((response) => {
                 console.log("문의게시판 새글등록 완료 : ", response);
-                // navigate('/QnaDetailPage', { state: { qnaData } });
+                // navigate('/QnaDetailPage', { state: { qnaNewOneData } });
             }).catch((error) => {
                 console.log("QnaWrite Error : ", error);
             })
@@ -109,7 +180,7 @@ export default function InquiryRegistration() {
                         <li>개인정보 수집을 원하지 않을 경우 동의를 거부할 수 있으며, 이 경우 민원 신청 서비스가 제한됩니다.</li>
                     </ul>
                 </div>
-                <div className='InquiryRegistration_check'>
+                <div className='InquiryRegistration_check' ref={AgreePersonalRef}>
                     <input type="checkbox" name='AgreePersonal' id='AgreePersonal' checked={checkBoxes.AgreePersonal} onChange={handleCheckBoxChange} />
                     <span><label htmlFor="AgreePersonal">위의 개인정보 수집이용에 동의합니다.</label></span>
                 </div>
@@ -122,7 +193,7 @@ export default function InquiryRegistration() {
                         <li>정보통신망이용촉진 및 정보보호등에 관한 법률(이하'정보통신망법') 등</li>
                     </ul>
                 </div>
-                <div className='InquiryRegistration_check'>
+                <div className='InquiryRegistration_check' ref={AgreeInfoRef}>
                     <input type="checkbox" name='AgreeInfo' id='AgreeInfo' checked={checkBoxes.AgreeInfo} onChange={handleCheckBoxChange} />
                     <span><label htmlFor="AgreeInfo">정보통신망법에 동의합니다.</label></span>
                 </div>
@@ -131,104 +202,103 @@ export default function InquiryRegistration() {
                 <div className='InquiryRegistration_infoBox'>
                     <p>동의를 거부할 수 있으며, 거부에 따른 불이익은 없습니다.</p>
                 </div>
-                <div className='InquiryRegistration_check'>
+                <div className='InquiryRegistration_check' ref={AgreeShareRef}>
                     <input type="checkbox" name='AgreeShare' id='AgreeShare' checked={checkBoxes.AgreeShare} onChange={handleCheckBoxChange} />
                     <span><label htmlFor="AgreeShare">귀하의 민원신청 내용을 공유하는 것에 동의하십니까?</label></span>
                 </div>
                 <div className='InquiryRegistration_haveto'>
-                    <p>※ 글 등록이 안 되시는 분은, 우측의 '보기' 버튼을 클릭하시기 바랍니다.
-                        <a href="/" >보기</a>
-                        {/* 보기 버튼 누르면 새로운 창 띄워야 됨. */}
+                    <p>문의 게시글 작성
                     </p>
                     <p>(<span className='star'>*</span>)는 반드시 작성해야 할 필수 항목입니다.</p>
                 </div>
                 <div className='InquiryRegistration_form'>
-                    <form action="/" method='post'>
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <th>작성자 <span className='star'>*</span></th>
-                                    <td><input type="text" name='name' id='name' readOnly value={userID.id} /></td>
-                                </tr>
-                                <tr>
-                                    <th>공개/비공개 <span className='star'>*</span></th>
-                                    <td>
-                                        <input type="radio" id='open' name='openOrPrivate' value={'open'} />
-                                        <label htmlFor="open">공개</label>
-                                        <input type="radio" id='private' name='openOrPrivate' value={'private'} />
-                                        <label htmlFor="private">비공개</label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>연락처 <span className='star'>*</span></th>
-                                    <td>
-                                        <input type="text" name='phoneNum' id='phoneNum' value={qnaNewOneData.phonenum} />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>이메일</th>
-                                    <td>
-                                        <input type="text" name='email' id='email' value={qnaNewOneData.email} />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>민원종류</th>
-                                    <td>
-                                        <input type="radio" id='unfriendly' name='InqueryType' value={'unfriendly'} />
-                                        <label htmlFor="unfriendly">불친절</label>
-                                        <input type="radio" id='proposal' name='InqueryType' value={'proposal'} />
-                                        <label htmlFor="proposal">진정, 건의</label>
-                                        <input type="radio" id='question' name='InqueryType' value={'question'} />
-                                        <label htmlFor="question">단순질의</label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>이용시설</th>
-                                    <td>
-                                        <select name="facilityUsed" id="InquiryRegistration_facilityUsed">
-                                            {/* value 값 넣어야 됨. */}
-                                            <option value="df">선택하세요</option>
-                                            <option value="">종합운동장</option>
-                                            <option value="">수강 신청 문의</option>
-                                            <option value="">경기 신청 문의</option>
-                                            <option value="">대관 문의</option>
-                                            <option value="">주차</option>
-                                            <option value="">편의시설</option>
-                                            <option value="">기타 문의</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>비밀번호 <span className='star'>*</span></th>
-                                    <td>
-                                        <input type="password" name='password' id='password' />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>제목 <span className='star'>*</span></th>
-                                    <td>
-                                        <input type="text" name='title' id='title' />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>내용 <span className='star'>*</span></th>
-                                    <td>
-                                        <input type="text" name='content' id='content' />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>첨부파일</th>
-                                    <td className='InquiryRegistration_upload'>
-                                        <input className='test' type="file" name='uploadfilef' id='uploadfilef' />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>작성일</th>
-                                    <td>자바스크립트로 실시간 날짜, 시간 넣기. </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </form>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>작성자 </th>
+                                <td><input type="text" name='name' id='name' readOnly value={userID.id} /></td>
+                            </tr>
+                            <tr>
+                                <th>연락처 </th>
+                                <td>
+                                    <input type="text" name='phoneNum' id='phoneNum' value={qnaNewOneData.phonenum} />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>이메일 </th>
+                                <td>
+                                    <input type="text" name='email' id='email' value={qnaNewOneData.email} />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>민원종류</th>
+                                <td>
+                                    <label htmlFor="qatype">
+                                        <input type="radio" id='qatype1' name='qatype' value='시설문의'
+                                            checked={qnaNewOneData.qatype == '시설문의'} onChange={handleQnaContent} />
+                                        시설문의</label>
+                                    <label htmlFor="qatype">
+                                        <input type="radio" id='qatype2' name='qatype' value='일반문의'
+                                            checked={qnaNewOneData.qatype == '일반문의'} onChange={handleQnaContent} />
+                                        일반문의</label>
+                                    <label htmlFor="qatype">
+                                        <input type="radio" id='qatype3' name='qatype' value='수강문의'
+                                            checked={qnaNewOneData.qatype == '수강문의'} onChange={handleQnaContent} />
+                                        수강문의</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>제목 <span className='star'>*</span></th>
+                                <td>
+                                    <input type="text" name='qatitle' id='qatitle'
+                                        value={qnaNewOneData.qatitle} onChange={handleQnaContent} />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>내용 <span className='star'>*</span></th>
+                                <td>
+                                    <input type="text" name='qacontent' id='qacontent'
+                                        value={qnaNewOneData.qacontent} onChange={handleQnaContent} />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>첨부파일</th>
+                                <td className='InquiryRegistration_upload'>
+                                    <input className='test' type="file" name='qafile' id='qafile'
+                                        onChange={handleQnaContent} />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>공개/비공개 </th>
+                                <td>
+                                    <label htmlFor="open">
+                                        <input type="radio" id='qaopen1' name='qaopen' value='1'
+                                            checked={qnaNewOneData.qaopen == '1'} onChange={handleQnaContent} />
+                                        공개</label>
+                                    <label htmlFor="private">
+                                        <input type="radio" id='qaopen0' name='qaopen' value='0'
+                                            checked={qnaNewOneData.qaopen == '0'} onChange={handleQnaContent} />
+                                        비공개</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>비밀번호 </th>
+                                <td>
+                                    <input type="password" name='qapassword' id='qapassword'
+                                        placeholder={qnaNewOneData.qaopen == '0' ? '4자리 숫자를 입력해주세요' : ''}
+                                        value={qnaNewOneData.qaopen == '1' ? null : qnaNewOneData.qapassword}
+                                        onChange={handleQnaContent}
+                                        disabled={qnaNewOneData.qaopen == '1'}
+                                        style={{ backgroundColor: qnaNewOneData.qaopen == '1' ? '#e9ecef' : 'white' }}
+                                    />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div className='InquiryRegistration_btn_div'>
+                    <button onClick={RegisterQna}>등록</button>
+                    <button onClick={() => window.history.back()}>목록</button>
                 </div>
             </div>
         </div>
