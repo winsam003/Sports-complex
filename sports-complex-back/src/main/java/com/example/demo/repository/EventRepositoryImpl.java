@@ -60,7 +60,7 @@ public class EventRepositoryImpl implements EventRepository {
 	public int EventInsert(Event dto) {
 		log.info("EventInsert Repository 성공");
 		String jpql = "INSERT INTO Event (eventname, eventdetail, eventfacility, eventtime, eventfor, eventtype, eventuploadfile, stfid, eventdate)"
-					+ "VALUES (:eventname, :eventdetail, :eventfacility, eventtime, eventfor, eventtype, eventuploadfile, stfid, eventdate)";
+					+ "VALUES (:eventname, :eventdetail, :eventfacility, :eventtime, :eventfor, :eventtype, :eventuploadfile, :stfid, :eventdate)";
 		
 		Query query = em.createNativeQuery(jpql);
 
@@ -71,7 +71,6 @@ public class EventRepositoryImpl implements EventRepository {
 		query.setParameter("eventfor", dto.getEventfor());
 		query.setParameter("eventtype", dto.getEventtype());
 		query.setParameter("eventuploadfile", dto.getEventuploadfile());
-		query.setParameter("eventuploadfile", dto.getEventfilef());
 		query.setParameter("stfid", dto.getStfid());
 		query.setParameter("eventdate", dto.getEventdate());
 		

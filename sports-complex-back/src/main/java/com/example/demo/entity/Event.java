@@ -35,6 +35,7 @@ public class Event {
 	public String eventfor;
 	public String eventtype;
 	public int eventcount;
+	
 	public String eventuploadfile;
 	
 	@Transient
