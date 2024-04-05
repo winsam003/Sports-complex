@@ -36,6 +36,8 @@ export default function XQnaBoardAnswerContent({ qnaData }) {
         });
     }
 
+    console.log(qnaData.staff);
+    console.log(qnaReplyData);
 
     const formattedDate = formatDateTime(qnaData.qadate);
 
@@ -63,7 +65,7 @@ export default function XQnaBoardAnswerContent({ qnaData }) {
         apiCall(url, 'POST', qnaReplyData, null)
             .then((response) => {
                 console.log("문의게시글 답변 등록 성공 : ", response);
-                navigate('/QnaDetailPage', { state: { qnaData } });
+                navigate('/QnaDetailPage', { state: { qnaData: { ...qnaData, stfid: qnaReplyData.stfid, qareply: qnaReplyData.qareply, qareplytime: qnaReplyData.qareplytime } } });
             }).catch((error) => {
                 console.error("RegisterQnaReply fail", error);
             })
@@ -102,9 +104,17 @@ export default function XQnaBoardAnswerContent({ qnaData }) {
                             </tr>
                             <tr>
                                 <th>내용 <span className='star'>*</span></th>
-                                <td>
+                                {/* <td>
                                     <input type="text" name='qareply' id='qareply' value={qnaReplyData.qareply} onChange={qnaReplyDataChange} />
-                                </td>
+                                </td> */}
+                                <textarea
+                                    name='qareply'
+                                    id='qareply'
+                                    value={qnaReplyData.qareply}
+                                    onChange={qnaReplyDataChange}
+                                    rows="100"
+                                    style={{ resize: 'none', width: '750px', lineHeight: '1.5' }}
+                                />
                             </tr>
                         </tbody>
                     </table>

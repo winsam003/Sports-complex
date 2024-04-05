@@ -50,6 +50,8 @@ public class Qna {
 	private String qapassword;
 	@Column(nullable = false, updatable = false)
 	private Integer qacount;
+	@Column(length = 100, updatable = false)
+	private String qafile;
 	@Transient
 	private MultipartFile qafilef;
 	@Column

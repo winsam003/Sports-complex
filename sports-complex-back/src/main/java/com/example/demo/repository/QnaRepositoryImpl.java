@@ -42,7 +42,7 @@ public class QnaRepositoryImpl implements QnaRepository {
 	public int qnainsert(QnaDTO dto) {
 		return em.createNativeQuery(
 				"insert into Qna (qatitle, qacontent, qatype, qadate, qaopen, qapassword, qacount, qafile, id) "
-						+ "values (:qatitle, :qacontent, :qatype, :qadate, :qaopen, :qapassword, :qacount, :qafile :id)")
+						+ "values (:qatitle, :qacontent, :qatype, :qadate, :qaopen, :qapassword, :qacount, :qafile, :id)")
 				.setParameter("qatitle", dto.getQatitle()).setParameter("qacontent", dto.getQacontent())
 				.setParameter("qatype", dto.getQatype()).setParameter("qadate", dto.getQadate())
 				.setParameter("qaopen", dto.getQaopen()).setParameter("qapassword", dto.getQapassword())
