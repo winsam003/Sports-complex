@@ -2,11 +2,11 @@ import PageBanner from '../PageBanner';
 import XBoardWriteContent from '../XBoardWriteContent';
 
 // 공지사항 등록
-export default function XBoardWritePage() {
+export default function XBoardWritePage({ getUserID }) {
     return (
         <div>
             <PageBanner />
-            <XBoardWriteContent />
+            <XBoardWriteContent getUserID={getUserID} />
         </div>
     )
 }

@@ -22,16 +22,20 @@ public class NoticeBoardServiceImpl implements NoticeBoardService {
 	
 	@Override
 	public List<Notice> NBoardList() {
-		log.info("Service 접촉 성공");
-		
+		log.info("Service NBoardList 접촉 성공");
 		return repository.NBoardList();
 	}
 	
 	
 	@Override
 	public int noticeDel(Integer[] delBoard) {
-		// TODO Auto-generated method stub
-		log.info("service delBoard[0]="+delBoard[0]);
+		log.info("Service noticeDel 접촉 성공");
 		return repository.noticeDel(delBoard);
+	}
+	
+	@Override
+	public int noticeSubmit(Notice entity) {
+		log.info("Service noticeSubmit 접촉 성공");
+		return repository.noticeSubmit(entity);
 	}
 }
