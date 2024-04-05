@@ -22,8 +22,10 @@ public class QnaDTO {
 	private Boolean qaopen;
 	private String qapassword;
 	private Integer qacount;
-//	파일의 경로를 저장
-	private MultipartFile qafile;
+//	파일명
+	private String qafile;
+//	Upload_File 정보 전달받기
+	private MultipartFile qafilef;
 	private String qareply;
 	private Date qareplytime;
 

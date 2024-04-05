@@ -117,7 +117,10 @@ export default function InquiryRegistration() {
 
         // 공개글 선택시 입력한 비밀번호 초기화
         if (qnaNewOneData.qaopen == '1') {
-            setQnaNewOneDate(qnaNewOneData.qapassword = null);
+            setQnaNewOneDate(prevData => ({
+                ...prevData,
+                qapassword: null
+            }));
         }
 
         // 비밀글 비밀번호 검사
@@ -135,11 +138,13 @@ export default function InquiryRegistration() {
         setQnaNewOneDate(prevData => ({
             ...prevData,
             qadate: formattedTime,
-            qafile: formData.get('file')
+            qafile: formData.get('qafile')
         }));
 
-        let url = 'qna/qnaInsert'
+        let url = '/qna/qnaInsert'
 
+        console.log(qnaNewOneData);
+        console.log(apiCall(url, 'post', qnaNewOneData, null));
         apiCall(url, 'post', qnaNewOneData, null)
             .then((response) => {
                 console.log("문의게시판 새글등록 완료 : ", response);
@@ -221,13 +226,13 @@ export default function InquiryRegistration() {
                             <tr>
                                 <th>연락처 </th>
                                 <td>
-                                    <input type="text" name='phoneNum' id='phoneNum' value={qnaNewOneData.phonenum} />
+                                    <input type="text" name='phoneNum' id='phoneNum' readOnly value={qnaNewOneData.phonenum || ''} />
                                 </td>
                             </tr>
                             <tr>
                                 <th>이메일 </th>
                                 <td>
-                                    <input type="text" name='email' id='email' value={qnaNewOneData.email} />
+                                    <input type="text" name='email' id='email' readOnly value={qnaNewOneData.email || ''} />
                                 </td>
                             </tr>
                             <tr>
@@ -257,8 +262,14 @@ export default function InquiryRegistration() {
                             <tr>
                                 <th>내용 <span className='star'>*</span></th>
                                 <td>
-                                    <input type="text" name='qacontent' id='qacontent'
-                                        value={qnaNewOneData.qacontent} onChange={handleQnaContent} />
+                                    <textarea
+                                        name='qacontent'
+                                        id='qacontent'
+                                        value={qnaNewOneData.qacontent || ''}
+                                        onChange={handleQnaContent}
+                                        rows="100"
+                                        style={{ resize: 'none', width: '750px', lineHeight: '1.5' }}
+                                    />
                                 </td>
                             </tr>
                             <tr>
@@ -286,7 +297,7 @@ export default function InquiryRegistration() {
                                 <td>
                                     <input type="password" name='qapassword' id='qapassword'
                                         placeholder={qnaNewOneData.qaopen == '0' ? '4자리 숫자를 입력해주세요' : ''}
-                                        value={qnaNewOneData.qaopen == '1' ? null : qnaNewOneData.qapassword}
+                                        value={qnaNewOneData.qaopen === '1' ? '' : qnaNewOneData.qapassword || ''}
                                         onChange={handleQnaContent}
                                         disabled={qnaNewOneData.qaopen == '1'}
                                         style={{ backgroundColor: qnaNewOneData.qaopen == '1' ? '#e9ecef' : 'white' }}

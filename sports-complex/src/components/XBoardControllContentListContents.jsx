@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router';
 import './XBoardControllContentListContents.css'
 
 
-export default function XBoardControllContentListContents({ notnum, nottitle, quest, notdate, notiploadfile, notcount, notdetail, stfid, userDelete, isChecked }) {
+export default function XBoardControllContentListContents({ notnum, nottitle, quest, notdate, notuploadfile, notcount, notdetail, stfid, userDelete, isChecked }) {
 
     // qadate를 연월일시분 형식으로 표현
     const formattedDate = new Date(notdate).toLocaleString('ko-KR', {
@@ -32,13 +32,14 @@ export default function XBoardControllContentListContents({ notnum, nottitle, qu
                 quest: quest,
                 stfid: stfid,
                 notdate: notdate,
-                notiploadfile: notiploadfile,
+                notuploadfile: notuploadfile,
                 notcount: notcount,
                 notdetail: notdetail
             }
         });
     }
 
+    console.log(notuploadfile)
 
     return (
         <div className='XBoardControllContentListContents_div'>
