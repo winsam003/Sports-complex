@@ -65,10 +65,12 @@ public class EventController {
 	public ResponseEntity<?> eDetail(@RequestParam Integer eventcode){
 
 //		Integer eventCode = requestBody.get("eventCode");
-		log.info("컨트롤러 : " + eventcode );
 		Event result = service.EventDetail(eventcode);
 		
 		if(result != null) {
+			log.info("eventcount : "+ result.getEventcount());
+			result.setEventcount(result.getEventcount() + 1);
+			// 자 기억해. 여기에 업데이트. 해야됨. 그래야 count 없데이트 됨. 
 			return ResponseEntity.status(HttpStatus.OK).body(result);
 		} else {
 			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("디테일이 없습니다.");

@@ -150,7 +150,7 @@ function App() {
 
         <Route path='/XmanagementPage' element={<XmanagementPage />} />
         <Route path='/XBoardWritePage' element={<XBoardWritePage getUserID={getUserID} />} />
-        <Route path='/XEventBoardWritePage' element={<XEventBoardWritePage />} />
+        <Route path='/XEventBoardWritePage' element={<XEventBoardWritePage getUserID={getUserID} />} />
         <Route path='/XFaqBoardWritePage' element={<XFaqBoardWritePage />} />
         <Route path='/XQnaBoardAnswerPage' element={<XQnaBoardAnswerPage />} />
         <Route path='/UserInfoPage' element={<UserInfoPage />} />
