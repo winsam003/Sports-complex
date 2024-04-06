@@ -2,11 +2,11 @@ import PageBanner from '../PageBanner';
 import XEventBoardWriteContent from '../XEventBoardWriteContent';
 
 // 이벤트 게시글 등록
-export default function XEventBoardWritePage() {
+export default function XEventBoardWritePage({getUserID}) {
     return (
         <div>
             <PageBanner />
-            <XEventBoardWriteContent />
+            <XEventBoardWriteContent getUserID={getUserID} />
         </div>
     )
 }
