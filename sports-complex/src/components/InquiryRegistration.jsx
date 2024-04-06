@@ -71,10 +71,19 @@ export default function InquiryRegistration() {
         const { name, value, files } = e.target;
         // 파일 선택 시 처리
         if (name == 'qafile') {
-            setQnaNewOneDate(prevData => ({
-                ...prevData,
-                [name]: files[0]
-            }));
+            // 파일을 선택한 경우에만 처리
+            if (files.length > 0) {
+                setQnaNewOneDate(prevData => ({
+                    ...prevData,
+                    [name]: files[0]
+                }));
+            } else {
+                // 파일을 선택하지 않은 경우 처리
+                setQnaNewOneDate(prevData => ({
+                    ...prevData,
+                    qafilename: null
+                }));
+            }
         } else {
             // 다른 입력란에 대한 처리
             setQnaNewOneDate(prevData => ({
@@ -129,21 +138,29 @@ export default function InquiryRegistration() {
             return;
         }
 
-        // 파일을 건네주기 위한 formData객체 생성
-        const formData = new FormData();
-        // 파일 추가
-        formData.append('qafile', qnaNewOneData.qafile);
-
         // qadate에 현재 시간, 파일 추가
         setQnaNewOneDate(prevData => ({
             ...prevData,
             qadate: formattedTime,
-            qafile: formData.get('qafile')
         }));
+
+        // 파일을 건네주기 위한 formData객체 생성
+        const formData = new FormData();
+        // 파일 추가
+        formData.append('file', qnaNewOneData.qafile);
+        console.log('파일 이름:', qnaNewOneData.qafile.name);
+        console.log('파일 크기:', qnaNewOneData.qafile.size);
+        console.log('파일 유형:', qnaNewOneData.qafile.type);
+        const fileInput = document.getElementById('qafile');
+        console.log('선택된 파일:', fileInput.files[0]);
+
+        qnaNewOneData.qafile = formData.get('file');
+
+
 
         let url = '/qna/qnaInsert'
 
-        console.log(qnaNewOneData);
+        console.log(qnaNewOneData.qafile);
         console.log(apiCall(url, 'post', qnaNewOneData, null));
         apiCall(url, 'post', qnaNewOneData, null)
             .then((response) => {

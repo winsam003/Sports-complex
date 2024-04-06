@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,8 +46,8 @@ public class QnaController {
 
 //	문의게시글 등록
 	@PostMapping("/qnaInsert")
-	public ResponseEntity<?> qnaInsert(@RequestBody QnaDTO dto) {
-
+	public ResponseEntity<?> qnaInsert(@RequestParam("qafile") MultipartFile file, @RequestBody QnaDTO dto) {
+		log.info("Contoller qnainset 접촉 성공");
 		try {
 			// 배포 전 물리적 저장 위치
 			String realPath = "C:\\TP\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\Qna";
@@ -62,15 +63,18 @@ public class QnaController {
 			File file1 = new File(realPath);
 			if (!file1.exists())
 				file1.mkdir();
+			
+		     // 저장할 파일명 생성 (중복 방지를 위해 UUID 활용)
+	        String filename = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+	        String filePath = realPath + "\\" + filename;
 
-			// 저장 파일이 있으면 경로에 파일 이름 붙여서 저장
-			MultipartFile uploadFile = dto.getQafilef();
-			if (uploadFile != null && !uploadFile.isEmpty()) {
-				String f2 = realPath + uploadFile.getOriginalFilename();
-				File f1 = new File(f2);
-				uploadFile.transferTo(f1);
-			}
+	        // 파일 저장
+	        File saveFile = new File(filePath);
+	        file.transferTo(saveFile);
 
+	        // 파일명을 DTO에 설정
+	        dto.setQafile(filename);
+	        
 			// 데이터베이스에 등록
 			if (service.qnainsert(dto) > 0) {
 				return ResponseEntity.status(HttpStatus.OK).body("문의게시글 등록에 성공하셨습니다.");
