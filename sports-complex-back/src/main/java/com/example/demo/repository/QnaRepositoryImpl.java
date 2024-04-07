@@ -40,6 +40,7 @@ public class QnaRepositoryImpl implements QnaRepository {
 //	문의 게시글 등록
 	@Override
 	public int qnainsert(QnaDTO dto) {
+		System.out.println("insert Controller repository");
 		return em.createNativeQuery(
 				"insert into Qna (qatitle, qacontent, qatype, qadate, qaopen, qapassword, qacount, qafile, id) "
 						+ "values (:qatitle, :qacontent, :qatype, :qadate, :qaopen, :qapassword, :qacount, :qafile, :id)")

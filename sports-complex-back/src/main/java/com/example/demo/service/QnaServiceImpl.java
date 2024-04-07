@@ -31,6 +31,7 @@ public class QnaServiceImpl implements QnaService {
 //	문의 게시글 등록
 	@Override
 	public int qnainsert(QnaDTO dto) {
+		System.out.println("insert Controller service");
 		return repository.qnainsert(dto);
 	}
 

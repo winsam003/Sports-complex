@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.domain.QnaDTO;
+import com.example.demo.entity.Member;
 import com.example.demo.entity.Qna;
 import com.example.demo.service.QnaService;
 
@@ -46,9 +48,35 @@ public class QnaController {
 
 //	문의게시글 등록
 	@PostMapping("/qnaInsert")
-	public ResponseEntity<?> qnaInsert(@RequestParam("qafile") MultipartFile file, @RequestBody QnaDTO dto) {
-		log.info("Contoller qnainset 접촉 성공");
+	public ResponseEntity<?> qnaInsert(
+		    @RequestParam("qafile") MultipartFile file,
+		    @RequestParam("id") String id,
+		    @RequestParam("qatitle") String qatitle,
+		    @RequestParam("qacontent") String qacontent,
+		    @RequestParam("qatype") String qatype,
+		    @RequestParam("qaopen") Boolean qaopen,
+		    @RequestParam("qapassword") String qapassword,
+		    @RequestParam("qacount") Integer qacount,
+		    @RequestParam("qareply") String qareply,
+		    @RequestParam("qareplytime") Date qareplytime,
+		    @RequestParam("stfid") String stfid
+		) {
+		
+		System.out.println("insert Controller");
+		System.out.println("클라이언트 네트워크 헤드엔 multipart로 잘보내고있음 서버가 제이슨으로 데이터를 받아와서 문제가 생김");
 		try {
+		       QnaDTO dto = new QnaDTO();
+		        dto.setId(id);
+		        dto.setQatitle(qatitle);
+		        dto.setQacontent(qacontent);
+		        dto.setQatype(qatype);
+		        dto.setQaopen(qaopen);
+		        dto.setQapassword(qapassword);
+		        dto.setQacount(qacount);
+		        dto.setQareply(qareply);
+		        dto.setQareplytime(qareplytime);
+		        dto.setStfid(stfid);
+			
 			// 배포 전 물리적 저장 위치
 			String realPath = "C:\\TP\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\Qna";
 
@@ -67,6 +95,7 @@ public class QnaController {
 		     // 저장할 파일명 생성 (중복 방지를 위해 UUID 활용)
 	        String filename = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
 	        String filePath = realPath + "\\" + filename;
+	        
 
 	        // 파일 저장
 	        File saveFile = new File(filePath);

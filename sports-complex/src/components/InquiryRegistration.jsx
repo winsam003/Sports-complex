@@ -160,6 +160,7 @@ export default function InquiryRegistration() {
 
         let url = '/qna/qnaInsert'
 
+        console.log(qnaNewOneData);
         console.log(qnaNewOneData.qafile);
         console.log(apiCall(url, 'post', qnaNewOneData, null));
         apiCall(url, 'post', qnaNewOneData, null)
