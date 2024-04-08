@@ -97,22 +97,27 @@ function App() {
 
   let getUserName;
   let getUserID;
+  let token;
 
 
   if (sessionStorage.getItem('userData') != null) {
     const userData = JSON.parse(sessionStorage.getItem('userData'));
-    getUserName = userData.userName;
-    getUserID = userData.userID;
+    getUserName = userData.name;
+    getUserID = userData.id;
+    token = userData.token;
   }
+
+  // let test = sessionStorage.getItem(JSON.stringify('userData'));
+  console.log(`token=${token}`);
 
   return (
     <div>
 
 
-      {isAdminPage ? 
-      <Xheader checkAdminPage={checkAdminPage} logout={logout} getUserName={getUserName} /> 
-      : 
-      <Header checkAdminPage={checkAdminPage} logout={logout} getUserName={getUserName} />}
+      {isAdminPage ?
+        <Xheader checkAdminPage={checkAdminPage} logout={logout} getUserName={getUserName} />
+        :
+        <Header checkAdminPage={checkAdminPage} logout={logout} getUserName={getUserName} />}
 
       <Routes>
         <Route path='/' element={<HomePage setLogincheck={setLogincheck} loginCheck={loginCheck} logout={logout} />} />
@@ -174,7 +179,7 @@ function App() {
         <Route path='/XBoardControllPageDetailPage' element={<XBoardControllPageDetailPage />} />
         <Route path='/XBoardControllInsertPage' element={<XBoardControllInsertPage />} />
 
-        <Route path='/XEventDetailPage' element = {<XEventDetailPage />} />        
+        <Route path='/XEventDetailPage' element={<XEventDetailPage />} />
 
         <Route path='*' element={<NotFoundPage />} />
       </Routes>

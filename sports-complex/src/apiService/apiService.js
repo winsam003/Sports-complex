@@ -25,6 +25,7 @@ export async function apiCall(url, method, requestData, token) {
     if (url.indexOf('qnaInsert') >= 0 || url.indexOf('noticeSubmit') >= 0 && token == null) {
         headers = { 'Content-Type': 'multipart/form-data' };
     } else if (token !== null) {
+        console.log("token test");
         headers = {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + token

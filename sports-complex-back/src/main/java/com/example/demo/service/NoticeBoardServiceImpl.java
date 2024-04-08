@@ -38,4 +38,14 @@ public class NoticeBoardServiceImpl implements NoticeBoardService {
 		log.info("Service noticeSubmit 접촉 성공");
 		return repository.noticeSubmit(entity);
 	}
+	
+	
+	
+	// 아래부터는 자주하는 질문 ************************************************************************************
+	@Override
+	public List<Notice> fnqList() {
+		log.info("Service fnqList 접촉 성공");
+		return repository.fnqList();
+	}
 }
+

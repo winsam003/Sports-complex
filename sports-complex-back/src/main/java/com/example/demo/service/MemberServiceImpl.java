@@ -61,4 +61,12 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return repository.mfindID(entity);
 	}
+	
+	@Override
+	public Member getWithRoles(String id) {
+		// TODO Auto-generated method stub
+		return repository.getWithRoles(id);
+	}
+	
+	
 }
