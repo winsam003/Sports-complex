@@ -35,6 +35,10 @@ export default function XEventBoardWriteContent({getUserID}) {
     const makeEventName = (e) => {
         setEventName(e);
 
+        setFormEvent({
+            ...formEvent,
+            eventname : e
+        })
     }
 
     // 이벤트 이용시설. 
@@ -42,38 +46,69 @@ export default function XEventBoardWriteContent({getUserID}) {
         
         setEventFacilityType(e);
         setEventfacilityName(e);
-    
+        
+        setFormEvent({
+            ...formEvent,
+            eventfacility : e
+        })
     }
     
     // 이벤트 종류 
     const makeEventType = (e) => {
         setEventType(e);
         
+        setFormEvent({
+            ...formEvent,
+            eventtype : e
+        })
     }
     
     // 이벤트 대상
     const makeEventFor = (e) => {
         setEventFor(e);
 
+        setFormEvent({
+            ...formEvent,
+            eventfor : e
+        })
     }
     
     // 이벤트 시간
     const makeEventTime = (e) => {
         setEventDate(e);
 
+        setFormEvent({
+            ...formEvent,
+            eventtime : e
+        })
     }
 
     // 이벤트 내용
     const makeEventDetail = (e) => {
         setEventDetail(e);
         
+        setFormEvent({
+            ...formEvent,
+            eventdetail : e
+        })
     }
 
     // 이벤트 사진
     const makeEventfile = (e) => {
         setEventPics(e.target.files[0])
         
+        const formData = new FormData();
+        formData.append('file', eventPics);
+        
+        setFormEvent({
+            ...formEvent,
+            eventuploadfile : formData.get('file')
+        })
+        
     }
+    
+    
+    
     
     
     
@@ -82,10 +117,19 @@ export default function XEventBoardWriteContent({getUserID}) {
     // insert 
     const eventSubmit = () => {
         let url = "/event/eventinsert";
-        const formEvent = new FormData();
-        formEvent.append('file', )
+        
+        console.log('formEvent : ',  formEvent);
 
 
+
+        apiCall(url, 'post', formEvent, null) 
+            .then((response) => {
+                alert((response));
+                navigate('/XEventBoardControllPage');
+            }).catch((error) => {
+                alert("이벤트 등록 실패");
+                console.log("event error : " + error);
+            })
     }
 
 
@@ -111,7 +155,9 @@ export default function XEventBoardWriteContent({getUserID}) {
                             <tbody>
                                 <tr>
                                     <th>작성자 <span className='star'>*</span></th>
-                                    <td><input type="text" name='name' id='name' value={getUserID} readOnly /></td>
+                                    <td><input type="text" name='name' id='name' 
+                                            // value={getUserID} readOnly 
+                                            /></td>
                                 </tr>
                                 <tr>
                                     <th>제목 <span className='star'>*</span></th>
