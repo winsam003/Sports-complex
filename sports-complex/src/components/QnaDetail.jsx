@@ -5,7 +5,8 @@ import { apiCall } from '../apiService/apiService';
 
 // 문의게시판 사용자 상세페이지
 export default function QnaDetail({ qnaData }) {
-    console.log(qnaData);
+    console.log(qnaData.member.id);
+    console.log(qnaData.id);
 
     // Session storage에 있는 userData 가져오기
     const sessionUserData = sessionStorage.getItem('userData');
@@ -47,6 +48,21 @@ export default function QnaDetail({ qnaData }) {
         navigate('/Qna');
     };
 
+    // 파일명을 확장자를 포함하여 분할
+    const fileNameParts = qnaData.qafile.split('.');
+    const fileExtension = fileNameParts.pop();
+    const fileNameWithoutExtension = fileNameParts.join('\u00B7');
+
+    // 파일명의 일부 선택
+    const maxFileNameLength = 20; // 파일명의 최대 길이
+    const maxLengthEachPart = Math.floor((maxFileNameLength - fileExtension.length - 4) / 2); // "..."을 포함한 각 부분의 최대 길이
+    const truncatedFileNameStart = fileNameWithoutExtension.substring(0, maxLengthEachPart);
+    const truncatedFileNameEnd = fileNameWithoutExtension.substring(fileNameWithoutExtension.length - maxLengthEachPart);
+    const displayFileName = `${truncatedFileNameStart}...${truncatedFileNameEnd}`;
+
+    // 화면에 표시할 파일명 및 확장자
+    const displayFile = `${displayFileName}.${fileExtension}`;
+
     return (
         <div className='XQnaBoardAnswerContent_div'>
             <Submenu />
@@ -61,7 +77,7 @@ export default function QnaDetail({ qnaData }) {
                         <p>조회수</p>
                         <p>{qnaData.qacount}</p>
                         <p>첨부파일</p>
-                        <p>{qnaData.qafile}</p>
+                        <p>{displayFile}</p>
                     </div>
                     <p className='XQnaBoardAnswerContent_content'>
                         {qnaData.qacontent}
@@ -77,14 +93,16 @@ export default function QnaDetail({ qnaData }) {
                             </tr>
                             <tr>
                                 <th>내용</th>
-                                <textarea
-                                    name='qareply'
-                                    id='qareply'
-                                    value={qnaData.qareply}
-                                    rows="100"
-                                    style={{ resize: 'none', width: '750px', lineHeight: '1.5' }}
-                                    readOnly
-                                />
+                                <td>
+                                    <textarea
+                                        name='qareply'
+                                        id='qareply'
+                                        value={qnaData.qareply}
+                                        rows="100"
+                                        style={{ resize: 'none', width: '750px', lineHeight: '1.5' }}
+                                        readOnly
+                                    />
+                                </td>
                             </tr>
                             <tr>
                                 <th>작성일</th>

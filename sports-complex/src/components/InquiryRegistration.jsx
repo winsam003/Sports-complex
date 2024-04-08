@@ -12,10 +12,6 @@ export default function InquiryRegistration() {
         id: userData.userID
     }
 
-    // 현재 시간
-    const currentTime = new Date();
-    const formattedTime = currentTime.toISOString();
-
     // 새글쓰기 내용
     const [qnaNewOneData, setQnaNewOneDate] = useState({
         id: userID.id,
@@ -93,6 +89,12 @@ export default function InquiryRegistration() {
         }
     }
 
+    // qadate에 현재 시간, 파일 추가
+    const handleQaDate = () => {
+        const currentTime = new Date().toISOString();
+        return currentTime;
+    }
+
     // 문의게시판 새글등록 요청보내기
     const RegisterQna = (() => {
 
@@ -139,34 +141,21 @@ export default function InquiryRegistration() {
         }
 
         // qadate에 현재 시간, 파일 추가
-        setQnaNewOneDate(prevData => ({
-            ...prevData,
-            qadate: formattedTime,
-        }));
+        qnaNewOneData.qadate = new Date().toISOString();
 
         // 파일을 건네주기 위한 formData객체 생성
         const formData = new FormData();
         // 파일 추가
         formData.append('file', qnaNewOneData.qafile);
-        console.log('파일 이름:', qnaNewOneData.qafile.name);
-        console.log('파일 크기:', qnaNewOneData.qafile.size);
-        console.log('파일 유형:', qnaNewOneData.qafile.type);
-        const fileInput = document.getElementById('qafile');
-        console.log('선택된 파일:', fileInput.files[0]);
-
         qnaNewOneData.qafile = formData.get('file');
 
-
-
         let url = '/qna/qnaInsert'
-
-        console.log(qnaNewOneData);
-        console.log(qnaNewOneData.qafile);
-        console.log(apiCall(url, 'post', qnaNewOneData, null));
         apiCall(url, 'post', qnaNewOneData, null)
-            .then((response) => {
-                console.log("문의게시판 새글등록 완료 : ", response);
-                // navigate('/QnaDetailPage', { state: { qnaNewOneData } });
+            .then((qnaData) => {
+                console.log(qnaData);
+                console.log(qnaData.member.id);
+                console.log(qnaData.id);
+                // navigate('/QnaDetailPage', { state: { qnaData } });
             }).catch((error) => {
                 console.log("QnaWrite Error : ", error);
             })

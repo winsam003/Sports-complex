@@ -4,8 +4,6 @@ import java.util.Date;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.demo.entity.Member;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,6 +28,6 @@ public class QnaDTO {
 	private Date qareplytime;
 
 //	join을 위해
-	private Member id;
+	private String id;
 	private String stfid;
 }
