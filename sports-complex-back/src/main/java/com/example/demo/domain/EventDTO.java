@@ -27,7 +27,7 @@ public class EventDTO {
 	
 	public MultipartFile eventfilef;
 	
-	public Staff stfid;
+	public String stfid;
 	public Date eventdate;
 	
 	

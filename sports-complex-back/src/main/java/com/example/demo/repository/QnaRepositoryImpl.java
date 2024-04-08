@@ -47,7 +47,7 @@ public class QnaRepositoryImpl implements QnaRepository {
 				.setParameter("qatype", dto.getQatype()).setParameter("qadate", dto.getQadate())
 				.setParameter("qaopen", dto.getQaopen()).setParameter("qapassword", dto.getQapassword())
 				.setParameter("qacount", dto.getQacount()).setParameter("qafile", dto.getQafile())
-				.setParameter("id", dto.getId()).setParameter("stfid", dto.getStfid()).executeUpdate();
+				.setParameter("id", dto.getId()).executeUpdate();
 	}
 
 //	문의 게시글 답변 등록

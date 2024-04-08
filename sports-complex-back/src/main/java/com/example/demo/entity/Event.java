@@ -41,9 +41,9 @@ public class Event {
 	@Transient
 	public MultipartFile eventfilef;
 	
-	@ManyToOne
+//	@ManyToOne
     @JoinColumn(name = "stfid")
-	public Staff stfid;
+	public String stfid;
     
 	@Column(nullable = false)
     public Date eventdate;

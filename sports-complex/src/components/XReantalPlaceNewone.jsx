@@ -107,7 +107,6 @@ export default function XReantalPlaceNewone() {
 
     // 등록 버튼. onClick
     const navigate = useNavigate(); 
-    // 이거 대체 왜 밖에다가 선언해야되나요
     const spaceInsert = () => {
         console.log(formPlace);
 

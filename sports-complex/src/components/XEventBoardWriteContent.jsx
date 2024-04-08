@@ -1,6 +1,8 @@
 import './XEventBoardWriteContent.css'
 import Submenu from './Submenu';
 import { useState } from 'react';
+import { apiCall } from '../apiService/apiService';
+import { useNavigate } from 'react-router';
 
 // 공지사항
 export default function XEventBoardWriteContent({getUserID}) {
@@ -14,76 +16,86 @@ export default function XEventBoardWriteContent({getUserID}) {
         eventfor : '', 
         eventtype : '', 
         eventuploadfile : '', 
-        stfid: {getUserID}
+        stfid: getUserID
     });
 
-    console.log('formEvent : ',  formEvent);
+    
 
     const [eventName, setEventName] = useState("");
     const [eventFacilityType, setEventFacilityType] = useState("");
     const [eventfacilityName, setEventfacilityName] = useState("");
     const [eventType, setEventType] = useState("");
+    const [eventFor, setEventFor] = useState("");
     const [eventDate, setEventDate] = useState("");
     const [eventDetail, setEventDetail] = useState("");
+    const [eventPics, setEventPics] = useState(null);
 
 
     // 이벤트 이름. 
     const makeEventName = (e) => {
         setEventName(e);
 
-        setFormEvent({
-            ...formEvent,
-            eventname : e
-        })
     }
 
     // 이벤트 이용시설. 
     const makeEventfacility = (e) => {
-
+        
         setEventFacilityType(e);
         setEventfacilityName(e);
-
-        setFormEvent({
-            ...formEvent,
-            eventfacility : e
-        })
+    
     }
-
+    
     // 이벤트 종류 
     const makeEventType = (e) => {
         setEventType(e);
-
-        setFormEvent({
-            ...formEvent,
-            eventtype : e
-        })
+        
     }
+    
+    // 이벤트 대상
+    const makeEventFor = (e) => {
+        setEventFor(e);
 
+    }
+    
     // 이벤트 시간
     const makeEventTime = (e) => {
         setEventDate(e);
 
-        setFormEvent({
-            ...formEvent,
-            eventtime : e
-        })
     }
 
     // 이벤트 내용
     const makeEventDetail = (e) => {
         setEventDetail(e);
         
-        setFormEvent({
-            ...formEvent,
-            eventdetail : e
-        })
+    }
+
+    // 이벤트 사진
+    const makeEventfile = (e) => {
+        setEventPics(e.target.files[0])
+        
+    }
+    
+    
+    
+    // 등록
+    const navigate = useNavigate();
+    // insert 
+    const eventSubmit = () => {
+        let url = "/event/eventinsert";
+        const formEvent = new FormData();
+        formEvent.append('file', )
+
+
     }
 
 
 
-    console.log(eventfacilityName);
-    console.log(eventName);
-    console.log(eventType);
+
+
+
+    // console.log(eventfacilityName);
+    // console.log(eventName);
+    // console.log(eventType);
     
 
 
@@ -95,7 +107,6 @@ export default function XEventBoardWriteContent({getUserID}) {
                     <p>(<span className='star'>*</span>)는 반드시 작성해야 할 필수 항목입니다.</p>
                 </div>
                 <div className='XEventBoardContent_form'>
-                    <form action="/" method='post'>
                         <table>
                             <tbody>
                                 <tr>
@@ -109,7 +120,6 @@ export default function XEventBoardWriteContent({getUserID}) {
                                                             id='title' 
                                                             value={eventName}
                                                             onChange={(e) => makeEventName(e.target.value)} 
-                                                            // onBlur={makeEventName}
                                                             />
                                     </td>
                                 </tr>
@@ -145,6 +155,21 @@ export default function XEventBoardWriteContent({getUserID}) {
                                     </td>
                                 </tr>
                                 <tr>
+                                    <th>이벤트 대상</th>
+                                    <td>
+                                        <select name="eventfor" id="eventfor"
+                                                value={eventFor}
+                                                onChange={(e) => makeEventFor(e.target.value)}>
+                                                    <option value="전체">전체</option>
+                                                    <option value="아이(만 10세 이하)">아이(만 10세 이하)</option>
+                                                    <option value="청소년(만 19세 이하)">청소년(만 19세 이하)</option>
+                                                    <option value="성인">성인</option>
+                                                    <option value="중장년(만 65세 이상)">노인(만 65세 이상)</option>
+                                                    {/* 노인 말고 다른 호칭이 있나요 */}
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th>날짜 <span className='star'>*</span></th> 
                                     <td>
                                         <input type="date" name='eventdate' id='eventdate' 
@@ -155,7 +180,7 @@ export default function XEventBoardWriteContent({getUserID}) {
                                 <tr>
                                     <th>내용 <span className='star'>*</span></th>
                                     <td>
-                                        <input type="text" name='content' id='content' 
+                                        <textarea type="text" name='content' id='content' 
                                                 value={eventDetail}
                                                 onChange={(e) => makeEventDetail(e.target.value)} />
                                     </td>
@@ -163,19 +188,15 @@ export default function XEventBoardWriteContent({getUserID}) {
                                 <tr>
                                     <th>첨부파일</th>
                                     <td className='XEventBoardContent_upload'>
-                                        <input className='test' type="file" name='uploadfilef' id='uploadfilef' />
+                                        <input className='test' type="file" name='uploadfilef' id='uploadfilef'
+                                                onChange={makeEventfile} />
                                     </td>
-                                </tr>
-                                <tr>
-                                    <th>작성일</th>
-                                    <td>자바스크립트로 실시간 날짜, 시간 넣기. </td>
                                 </tr>
                             </tbody>
                         </table>
-                    </form>
                     <div className='XEventBoardContent_btn_div'>
-                        <button>등록</button>
-                        <button>목록</button>
+                        <button onClick={eventSubmit}>등록</button>
+                        <button onClick={() => window.history.back()}>목록</button>
                     </div>
                 </div>
             </div>
