@@ -87,15 +87,20 @@ public class MemberContoller {
 	// ** mlogin
 	@PostMapping(value="/mlogin", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> mlogin(@RequestBody Member entity){
+		
 		String password = entity.getPassword();
 //		entity = service.MemberOne(entity.getId());
 		entity = service.getWithRoles(entity.getId());
 		
+		// 패스워드 비교
 		if(entity != null && passwordEncoder.matches(password, entity.getPassword())) {
 //			Map<String, Object> response = new HashMap<>();            // 데이터를 맵 형태로 반환을 위해 선언
 //            response.put("userID", entity.getId());
 //            response.put("userName", entity.getName());
 //			return ResponseEntity.status(HttpStatus.OK).body(response);	// 담은 데이터 반환
+			
+			
+			// 패스워드가 맞다면 토큰 발행
 			final String token = tokenProvider.createToken(entity.claimList());
 			final MemberDTO memberDTO = MemberDTO.builder()
 					.token(token)

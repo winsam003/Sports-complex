@@ -90,7 +90,6 @@ export default function XFaqControllContent() {
 
         let url = "/notice/fnqList";
 
-
         apiCall(url, 'post', checkedUsers, null)
             .then((response) => {
                 alert(response);
@@ -112,7 +111,9 @@ export default function XFaqControllContent() {
     useEffect(() => {
         let url = "/notice/fnqList";
 
-        apiCall(url, 'get', null, null)
+        let token = JSON.parse(sessionStorage.getItem("userData")).token;
+
+        apiCall(url, 'get', null, token)
             .then((response) => {
                 setNoticeList(response);
                 setRememberList(response);
