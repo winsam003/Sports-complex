@@ -31,7 +31,7 @@ export default function XQnaSearchResult({ qanum, qaopen, qapassword, qatype, qa
 
     // 비밀글 여부 확인
     const handleQnaResultClick = async () => {
-        if (qaopen == '1') {
+        if (qaopen == '0') {
             setShowModal(true);
         } else {
             try {
@@ -72,13 +72,12 @@ export default function XQnaSearchResult({ qanum, qaopen, qapassword, qatype, qa
 
     // qadate를 연월일시분 형식으로 표현
     const formattedDate = new Date(qadate).toLocaleString('ko-KR', {
-        timeZone: 'UTC',
         year: 'numeric',
         month: '2-digit',
         day: '2-digit',
         hour: '2-digit',
         minute: '2-digit',
-        hour12: false // 오전/오후 표기를 제거하기 위해
+        hour12: false
     });
 
     return (
@@ -95,7 +94,7 @@ export default function XQnaSearchResult({ qanum, qaopen, qapassword, qatype, qa
                     <>
                         {/* 사용자 조회결과 */}
                         <p>{qanum}</p>
-                        <p>{qaopen == '1' ? <img src="/img/Lock.png" className='lockimg' /> : <img src="/img/Unlock.png" className='unlockimg' />}</p>
+                        <p>{qaopen == '0' ? <img src="/img/Lock.png" className='lockimg' /> : <img src="/img/Unlock.png" className='unlockimg' />}</p>
                         <p className='XQnaSearchResult_SearchResult_title'>[{qatype}] {qatitle}</p>
                         <p>{member.id}</p>
                         <p>{formattedDate}</p>
@@ -107,7 +106,7 @@ export default function XQnaSearchResult({ qanum, qaopen, qapassword, qatype, qa
                         {/* 관리자 조회결과 */}
                         <p><input type='checkbox' checked={isChecked} onChange={handleCheckboxChange} /></p>
                         <p>{qanum}</p>
-                        <p>{qaopen == '1' ? <img src="/img/Lock.png" className='lockimg' /> : <img src="/img/Unlock.png" className='unlockimg' />}</p>
+                        <p>{qaopen == '0' ? <img src="/img/Lock.png" className='lockimg' /> : <img src="/img/Unlock.png" className='unlockimg' />}</p>
                         <p className='XQnaSearchResult_SearchResult_title'>[{qatype}] {qatitle}</p>
                         <p>{member.id}</p>
                         <p>{formattedDate}</p>
