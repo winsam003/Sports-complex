@@ -28,7 +28,7 @@ public class NoticeBoardRepositoryImpl implements NoticeBoardRepository {
 	public List<Notice> NBoardList() {
 		log.info("NBoardList Repository 접촉 성공");
 		
-		return em.createQuery("SELECT n FROM Notice n WHERE n.nottype = 'A'", Notice.class).getResultList();
+		return em.createQuery("SELECT n FROM Notice n WHERE n.nottype = 'A' ORDER BY n.notnum DESC", Notice.class).getResultList();
 	}
 	
 	@Override
@@ -62,5 +62,15 @@ public class NoticeBoardRepositoryImpl implements NoticeBoardRepository {
 	    query.setParameter("notcount", entity.getNotcount());
 
 	    return query.executeUpdate();
+	}
+	
+	
+	
+	// 아래부터는 자주하는 질문 **********************************************************************************
+	@Override
+	public List<Notice> fnqList() {
+		log.info("fnqList Repository 접촉 성공");
+		
+		return em.createQuery("SELECT n FROM Notice n WHERE n.nottype = 'B' ORDER BY n.notnum DESC", Notice.class).getResultList();
 	}
 }
