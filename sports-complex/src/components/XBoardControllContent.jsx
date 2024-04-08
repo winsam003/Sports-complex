@@ -89,7 +89,13 @@ export default function XBoardControllContent() {
     useEffect(() => {
         let url = "/notice/noticeList";
 
-        apiCall(url, 'get', null, null)
+
+
+        // console.log(JSON.parse(sessionStorage.getItem("userData")).token);
+
+        let token = JSON.parse(sessionStorage.getItem("userData")).token;
+
+        apiCall(url, 'get', null, token)
             .then((response) => {
                 setNoticeList(response);
                 setRememberList(response);

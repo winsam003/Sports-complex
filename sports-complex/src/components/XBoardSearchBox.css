@@ -43,4 +43,6 @@
     color: white;
     border-radius: 5%;
     border: none;
+
+    cursor: pointer;
 }

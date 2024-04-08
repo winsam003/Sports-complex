@@ -1,11 +1,18 @@
 import './XQnaBoardAnswerContent.css'
 import Submenu from './Submenu'
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { apiCall } from '../apiService/apiService';
 
 // 문의게시판 사용자 상세페이지
 export default function QnaDetail({ qnaData }) {
-    console.log(qnaData);
+
+    console.log("detail하위 컴포넌트 : ", qnaData);
+    // 다운로드 렌더링 제어
+    const [downloading, setDownloading] = useState(false);
+
+    // join에서 member객체를 가져온 경우, qna entity를 직접 가져온 경우 
+    const id = qnaData.id || (qnaData.member ? qnaData.member.id : '') || '';
 
     // Session storage에 있는 userData 가져오기
     const sessionUserData = sessionStorage.getItem('userData');
@@ -21,6 +28,7 @@ export default function QnaDetail({ qnaData }) {
 
     // 날짜 및 시간을 원하는 형식으로 변환하는 함수
     function formatDateTime(dateTimeString) {
+        if (!dateTimeString) return '';
         const date = new Date(dateTimeString);
         const year = date.getFullYear();
         const month = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1;
@@ -33,7 +41,6 @@ export default function QnaDetail({ qnaData }) {
     // 게시물 삭제 요청
     const handleDelete = (() => {
         let url = '/qna/qnaDelete';
-        console.log(apiCall(url + `?qanum=${qnaData.qanum}`, 'get', null, null));
         apiCall(url + `?qanum=${qnaData.qanum}`, 'get', null, null)
             .then(() => {
                 navigate('/Qna');
@@ -47,6 +54,60 @@ export default function QnaDetail({ qnaData }) {
         navigate('/Qna');
     };
 
+    let displayFile = '';
+
+    // qafile 또는 qafile.name이 존재하는 경우에만 처리
+    if (qnaData.qafile || qnaData.qafile.name) {
+        let fileNameParts = [];
+
+        // File 객체인 경우 파일명 분할
+        if (qnaData.qafile instanceof File) {
+            fileNameParts = qnaData.qafile.name.split('.');
+        }
+        // 문자열인 경우 파일명 분할
+        else if (typeof qnaData.qafile === 'string' && qnaData.qafile !== "undefined") {
+            fileNameParts = qnaData.qafile.split('.');
+        }
+
+        // 파일 확장자
+        const fileExtension = fileNameParts.length > 1 ? fileNameParts.pop() : '';
+        const fileNameWithoutExtension = fileNameParts.join('.');
+
+        // 파일명의 일부 선택하여 표시
+        const maxFileNameLength = 20;
+        const maxLengthEachPart = Math.floor((maxFileNameLength - fileExtension.length - 4) / 2);
+        const truncatedFileNameStart = fileNameWithoutExtension.substring(0, maxLengthEachPart);
+        const truncatedFileNameEnd = fileNameWithoutExtension.substring(fileNameWithoutExtension.length - maxLengthEachPart);
+        const displayFileName = `${truncatedFileNameStart}\u00B7\u00B7\u00B7${truncatedFileNameEnd}`;
+
+        // 화면에 표시할 파일명 및 확장자 설정
+        displayFile = `${displayFileName}.${fileExtension}`;
+    }
+
+    // 파일 다운로드
+    const downloadFile = () => {
+        setDownloading(true);
+
+        let filePath = `/qna/downloadFile?fileName=${qnaData.qafile}`;
+
+        apiCall(filePath, 'get', null, null)
+            .then((response) => {
+                const url = window.URL.createObjectURL(new Blob([response.blob]));
+                const a = document.createElement('a');
+
+                a.href = url;
+                a.download = qnaData.qafile;
+
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                setDownloading(false);
+            }).catch((error) => {
+                console.log(" download error = " + error)
+                setDownloading(false);
+            })
+    }
+
     return (
         <div className='XQnaBoardAnswerContent_div'>
             <Submenu />
@@ -55,13 +116,13 @@ export default function QnaDetail({ qnaData }) {
                     <p className='XQnaBoardAnswerContent_title'>[{qnaData.qatype}] {qnaData.qatitle}</p>
                     <div className='XQnaBoardAnswerContent_title_content'>
                         <p>작성자</p>
-                        <p>{qnaData.member.id}</p>
+                        <p>{id}</p>
                         <p>등록일시</p>
                         <p>{qadate}</p>
                         <p>조회수</p>
                         <p>{qnaData.qacount}</p>
                         <p>첨부파일</p>
-                        <p>{qnaData.qafile}</p>
+                        <p><a href="#" onClick={downloadFile}>{displayFile}</a></p>
                     </div>
                     <p className='XQnaBoardAnswerContent_content'>
                         {qnaData.qacontent}
@@ -73,18 +134,20 @@ export default function QnaDetail({ qnaData }) {
                         <tbody>
                             <tr>
                                 <th>작성자</th>
-                                <td>{qnaData.stfid ? qnaData.stfid : ''}</td>
+                                <td>{qnaData.stfid || (qnaData.staff ? qnaData.staff.stfid : '') || ''}</td>
                             </tr>
                             <tr>
                                 <th>내용</th>
-                                <textarea
-                                    name='qareply'
-                                    id='qareply'
-                                    value={qnaData.qareply}
-                                    rows="100"
-                                    style={{ resize: 'none', width: '750px', lineHeight: '1.5' }}
-                                    readOnly
-                                />
+                                <td>
+                                    <textarea
+                                        name='qareply'
+                                        id='qareply'
+                                        value={qnaData.qareply}
+                                        rows="100"
+                                        style={{ resize: 'none', width: '750px', lineHeight: '1.5' }}
+                                        readOnly
+                                    />
+                                </td>
                             </tr>
                             <tr>
                                 <th>작성일</th>
@@ -94,7 +157,7 @@ export default function QnaDetail({ qnaData }) {
                     </table>
                     <div className='XQnaBoardAnswerContent_btn_div'>
                         {/* 작성자와 로그인된 아이디가 같으면 삭제버튼 나타남 */}
-                        {userID == qnaData.member.id && (
+                        {userID == id && (
                             <button onClick={handleDelete}>삭제</button>
                         )}
                         <button onClick={goToQnaPage}>목록</button>

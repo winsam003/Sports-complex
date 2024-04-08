@@ -176,4 +176,22 @@ public class NoticeBoardContoller {
 	
 	
 	
+	//아래는 자주하는 질문 *********************************************************************************************************
+	
+	
+	// fnqList 공지사항 게시글 list
+	@GetMapping(value="/fnqList", produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> fnqList(){
+		log.info("Contoller fnqList 접촉 성공");
+		
+		List<Notice> result = service.fnqList();
+		
+		if(result != null && result.size() > 0) {
+			return ResponseEntity.status(HttpStatus.OK).body(result);
+		}else {
+			return ResponseEntity.status(HttpStatus.OK).body(null);			
+		}
+	} // fnqList 공지사항 게시글 list
+	
+	
 }

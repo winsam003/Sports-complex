@@ -1,7 +1,6 @@
 import './XBoardControllContentList.css'
 import XBoardControllContentListContents from './XBoardControllContentListContents';
 
-import { useEffect, useState } from 'react';
 
 
 export default function XBoardControllContentList({ searchValue, noticeList, setNoticeList, userDelete, checkedUsers }) {
