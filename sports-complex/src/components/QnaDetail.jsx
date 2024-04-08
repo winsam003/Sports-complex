@@ -1,10 +1,17 @@
 import './XQnaBoardAnswerContent.css'
 import Submenu from './Submenu'
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { apiCall } from '../apiService/apiService';
 
 // 문의게시판 사용자 상세페이지
 export default function QnaDetail({ qnaData }) {
+
+    console.log("detail하위 컴포넌트 : ", qnaData);
+    // 다운로드 렌더링 제어
+    const [downloading, setDownloading] = useState(false);
+
+    // join에서 member객체를 가져온 경우, qna entity를 직접 가져온 경우 
     const id = qnaData.id || (qnaData.member ? qnaData.member.id : '') || '';
 
     // Session storage에 있는 userData 가져오기
@@ -47,12 +54,10 @@ export default function QnaDetail({ qnaData }) {
         navigate('/Qna');
     };
 
-    console.log(qnaData);
-
     let displayFile = '';
 
-    // qafile 및 qafile.name이 존재하는 경우에만 처리
-    if (qnaData.qafile && qnaData.qafile.name) {
+    // qafile 또는 qafile.name이 존재하는 경우에만 처리
+    if (qnaData.qafile || qnaData.qafile.name) {
         let fileNameParts = [];
 
         // File 객체인 경우 파일명 분할
@@ -79,6 +84,30 @@ export default function QnaDetail({ qnaData }) {
         displayFile = `${displayFileName}.${fileExtension}`;
     }
 
+    // 파일 다운로드
+    const downloadFile = () => {
+        setDownloading(true);
+
+        let filePath = `/qna/downloadFile?fileName=${qnaData.qafile}`;
+
+        apiCall(filePath, 'get', null, null)
+            .then((response) => {
+                const url = window.URL.createObjectURL(new Blob([response.blob]));
+                const a = document.createElement('a');
+
+                a.href = url;
+                a.download = qnaData.qafile;
+
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                setDownloading(false);
+            }).catch((error) => {
+                console.log(" download error = " + error)
+                setDownloading(false);
+            })
+    }
+
     return (
         <div className='XQnaBoardAnswerContent_div'>
             <Submenu />
@@ -93,7 +122,7 @@ export default function QnaDetail({ qnaData }) {
                         <p>조회수</p>
                         <p>{qnaData.qacount}</p>
                         <p>첨부파일</p>
-                        <p>{displayFile}</p>
+                        <p><a href="#" onClick={downloadFile}>{displayFile}</a></p>
                     </div>
                     <p className='XQnaBoardAnswerContent_content'>
                         {qnaData.qacontent}

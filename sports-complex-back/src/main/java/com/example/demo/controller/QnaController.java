@@ -2,12 +2,18 @@ package com.example.demo.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,6 +39,7 @@ import lombok.extern.log4j.Log4j2;
 public class QnaController {
 	QnaService service;
 	PasswordEncoder passwordEncoder;
+	private static final String DOWNLOAD_DIR = "C:\\TP\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\Qna\\";
 
 //	문의게시글 목록 조회
 	@GetMapping("/qnaList")
@@ -129,6 +136,26 @@ public class QnaController {
 			System.out.println(" QnA Delete Excpetion => " + e.toString());
 		}
 		return "redirect:qna";
+	}
+
+//	첨부파일 다운로드
+	@GetMapping("/downloadFile")
+	public ResponseEntity<ByteArrayResource> downloadFile(@RequestParam String fileName) throws IOException {
+		// 파일의 내용을 바이트 배열로 읽어옴
+		Path filePath = Paths.get(DOWNLOAD_DIR, fileName);
+		// 바이트 배열을 ByteArrayResource 객체로 변환
+		byte[] data = Files.readAllBytes(filePath);
+
+		ByteArrayResource resource = new ByteArrayResource(data);
+
+		return ResponseEntity.ok()
+				// 파일의 MIME 타입 설정 // MIME(Multipurpose Internet Mail Extensions) => 파일의 형식을 식별
+				// (이미지, 텍스트 ...)
+				.contentType(MediaType.IMAGE_PNG) // 이미지 파일인 경우
+				// 다운로드 시 파일명 지정
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + fileName)
+				// 응답에 파일의 내용을 담은 ByteArrayResource 추가
+				.body(resource);
 	}
 
 }
