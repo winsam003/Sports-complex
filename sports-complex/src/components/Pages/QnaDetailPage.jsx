@@ -6,8 +6,7 @@ import { useLocation } from 'react-router-dom';
 export default function QnaDetailPage() {
     const location = useLocation();
     const { qnaData } = location.state;
-    console.log(qnaData.member.id);
-    console.log(qnaData.id);
+
     return (
         <div>
             <PageBanner />

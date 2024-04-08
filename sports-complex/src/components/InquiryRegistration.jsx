@@ -77,7 +77,7 @@ export default function InquiryRegistration() {
                 // 파일을 선택하지 않은 경우 처리
                 setQnaNewOneDate(prevData => ({
                     ...prevData,
-                    qafilename: null
+                    qafile: null
                 }));
             }
         } else {
@@ -152,10 +152,7 @@ export default function InquiryRegistration() {
         let url = '/qna/qnaInsert'
         apiCall(url, 'post', qnaNewOneData, null)
             .then((qnaData) => {
-                console.log(qnaData);
-                console.log(qnaData.member.id);
-                console.log(qnaData.id);
-                // navigate('/QnaDetailPage', { state: { qnaData } });
+                navigate('/QnaDetailPage', { state: { qnaData: { ...qnaNewOneData } } });
             }).catch((error) => {
                 console.log("QnaWrite Error : ", error);
             })

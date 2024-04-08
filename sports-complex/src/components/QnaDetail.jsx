@@ -5,8 +5,7 @@ import { apiCall } from '../apiService/apiService';
 
 // 문의게시판 사용자 상세페이지
 export default function QnaDetail({ qnaData }) {
-    console.log(qnaData.member.id);
-    console.log(qnaData.id);
+    const id = qnaData.id || (qnaData.member ? qnaData.member.id : '') || '';
 
     // Session storage에 있는 userData 가져오기
     const sessionUserData = sessionStorage.getItem('userData');
@@ -22,6 +21,7 @@ export default function QnaDetail({ qnaData }) {
 
     // 날짜 및 시간을 원하는 형식으로 변환하는 함수
     function formatDateTime(dateTimeString) {
+        if (!dateTimeString) return '';
         const date = new Date(dateTimeString);
         const year = date.getFullYear();
         const month = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1;
@@ -34,7 +34,6 @@ export default function QnaDetail({ qnaData }) {
     // 게시물 삭제 요청
     const handleDelete = (() => {
         let url = '/qna/qnaDelete';
-        console.log(apiCall(url + `?qanum=${qnaData.qanum}`, 'get', null, null));
         apiCall(url + `?qanum=${qnaData.qanum}`, 'get', null, null)
             .then(() => {
                 navigate('/Qna');
@@ -48,20 +47,37 @@ export default function QnaDetail({ qnaData }) {
         navigate('/Qna');
     };
 
-    // 파일명을 확장자를 포함하여 분할
-    const fileNameParts = qnaData.qafile.split('.');
-    const fileExtension = fileNameParts.pop();
-    const fileNameWithoutExtension = fileNameParts.join('\u00B7');
+    console.log(qnaData);
 
-    // 파일명의 일부 선택
-    const maxFileNameLength = 20; // 파일명의 최대 길이
-    const maxLengthEachPart = Math.floor((maxFileNameLength - fileExtension.length - 4) / 2); // "..."을 포함한 각 부분의 최대 길이
-    const truncatedFileNameStart = fileNameWithoutExtension.substring(0, maxLengthEachPart);
-    const truncatedFileNameEnd = fileNameWithoutExtension.substring(fileNameWithoutExtension.length - maxLengthEachPart);
-    const displayFileName = `${truncatedFileNameStart}...${truncatedFileNameEnd}`;
+    let displayFile = '';
 
-    // 화면에 표시할 파일명 및 확장자
-    const displayFile = `${displayFileName}.${fileExtension}`;
+    // qafile 및 qafile.name이 존재하는 경우에만 처리
+    if (qnaData.qafile && qnaData.qafile.name) {
+        let fileNameParts = [];
+
+        // File 객체인 경우 파일명 분할
+        if (qnaData.qafile instanceof File) {
+            fileNameParts = qnaData.qafile.name.split('.');
+        }
+        // 문자열인 경우 파일명 분할
+        else if (typeof qnaData.qafile === 'string' && qnaData.qafile !== "undefined") {
+            fileNameParts = qnaData.qafile.split('.');
+        }
+
+        // 파일 확장자
+        const fileExtension = fileNameParts.length > 1 ? fileNameParts.pop() : '';
+        const fileNameWithoutExtension = fileNameParts.join('.');
+
+        // 파일명의 일부 선택하여 표시
+        const maxFileNameLength = 20;
+        const maxLengthEachPart = Math.floor((maxFileNameLength - fileExtension.length - 4) / 2);
+        const truncatedFileNameStart = fileNameWithoutExtension.substring(0, maxLengthEachPart);
+        const truncatedFileNameEnd = fileNameWithoutExtension.substring(fileNameWithoutExtension.length - maxLengthEachPart);
+        const displayFileName = `${truncatedFileNameStart}\u00B7\u00B7\u00B7${truncatedFileNameEnd}`;
+
+        // 화면에 표시할 파일명 및 확장자 설정
+        displayFile = `${displayFileName}.${fileExtension}`;
+    }
 
     return (
         <div className='XQnaBoardAnswerContent_div'>
@@ -71,7 +87,7 @@ export default function QnaDetail({ qnaData }) {
                     <p className='XQnaBoardAnswerContent_title'>[{qnaData.qatype}] {qnaData.qatitle}</p>
                     <div className='XQnaBoardAnswerContent_title_content'>
                         <p>작성자</p>
-                        <p>{qnaData.member.id}</p>
+                        <p>{id}</p>
                         <p>등록일시</p>
                         <p>{qadate}</p>
                         <p>조회수</p>
@@ -89,7 +105,7 @@ export default function QnaDetail({ qnaData }) {
                         <tbody>
                             <tr>
                                 <th>작성자</th>
-                                <td>{qnaData.stfid ? qnaData.stfid : ''}</td>
+                                <td>{qnaData.stfid || (qnaData.staff ? qnaData.staff.stfid : '') || ''}</td>
                             </tr>
                             <tr>
                                 <th>내용</th>
@@ -112,7 +128,7 @@ export default function QnaDetail({ qnaData }) {
                     </table>
                     <div className='XQnaBoardAnswerContent_btn_div'>
                         {/* 작성자와 로그인된 아이디가 같으면 삭제버튼 나타남 */}
-                        {userID == qnaData.member.id && (
+                        {userID == id && (
                             <button onClick={handleDelete}>삭제</button>
                         )}
                         <button onClick={goToQnaPage}>목록</button>
