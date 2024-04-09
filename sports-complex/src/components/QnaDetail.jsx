@@ -1,7 +1,7 @@
 import './XQnaBoardAnswerContent.css'
 import Submenu from './Submenu'
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { apiCall } from '../apiService/apiService';
 
 // 문의게시판 사용자 상세페이지
