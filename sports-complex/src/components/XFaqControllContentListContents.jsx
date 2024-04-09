@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router';
-import './XBoardControllContentListContents.css'
+import './XFaqControllContentListContents.css'
 
 
-export default function XBoardControllContentListContents({ notnum, nottitle, quest, notdate, notuploadfile, notcount, notdetail, stfid, userDelete, isChecked }) {
+export default function XFaqControllContentListContents({ notnum, nottitle, quest, notdate, notuploadfile, notcount, notdetail, stfid, userDelete, isChecked }) {
 
     // qadate를 연월일시분 형식으로 표현
     const formattedDate = new Date(notdate).toLocaleString('ko-KR', {
@@ -15,12 +15,9 @@ export default function XBoardControllContentListContents({ notnum, nottitle, qu
         hour12: false // 오전/오후 표기를 제거하기 위해
     }).replace(/\./g, '');
 
-
-
     const handleDelete = (e) => {
         userDelete(notnum, e.target.checked);
     }
-
 
     // detail로 정보를 가지고 이동
     const navigate = useNavigate();
@@ -40,8 +37,8 @@ export default function XBoardControllContentListContents({ notnum, nottitle, qu
     }
 
     return (
-        <div className='XBoardControllContentListContents_div'>
-            <div className='XBoardControllContentListContents_contents'>
+        <div className='XFaqControllContentListContents_div'>
+            <div className='XFaqControllContentListContents_contents'>
                 <p><input checked={isChecked} type='checkbox' onChange={handleDelete} /></p>
                 <p>{notnum}</p>
                 <p onClick={boardDetail}>{nottitle}</p>

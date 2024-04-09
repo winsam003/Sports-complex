@@ -19,4 +19,6 @@ public interface MemberService {
 	int mPWChange(Member entity);
 	
 	Member mfindID(Member entity);
+	
+	Member getWithRoles(String id);
 }

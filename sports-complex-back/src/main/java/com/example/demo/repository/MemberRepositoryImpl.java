@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.entity.Member;
@@ -129,5 +130,17 @@ public class MemberRepositoryImpl implements MemberRepository {
 		return em.createQuery("SELECT m FROM Member m WHERE m.name = :name AND m.phonenum = :phonenum", Member.class)
 				.setParameter("name", entity.getName()).setParameter("phonenum", entity.getPhonenum())
 				.getSingleResult();
+	}
+
+	
+	@EntityGraph(attributePaths = {"roleList"}) 
+	@Override
+	public Member getWithRoles(String id) {
+	    log.info("getWithRoles Repository 접촉 성공");
+	    log.info("Member ID: {}", id);
+
+	    return em.createQuery("SELECT m FROM Member m LEFT JOIN FETCH m.roleList WHERE m.id = :id", Member.class)
+	             .setParameter("id", id)
+	             .getSingleResult();
 	}
 }

@@ -88,7 +88,7 @@ export default function XEventControllContent() {
             <Submenu />
             <div className='XEventControllContent_div_div'>
                 <div className='XEventControllContent_uploadAndSearch'>
-                    <button> <Link to = '/XEventBoardWritePage'>등록</Link></button>
+                    <Link to = '/XEventBoardWritePage'><span>등록</span></Link>
                     <XEventSearch
                         onSearch={handleSearch}
                         searchType={searchType}

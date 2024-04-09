@@ -57,7 +57,8 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout }) {
         ).then((response) => {
             // 3. 200번일 경우 로그인성공 alert창 띄우고 홈페이지로 이동
             sessionStorage.setItem('userData', JSON.stringify(response));
-            alert(`안녕하세요 ${response.userName} 님`);
+
+            alert(`안녕하세요 ${response.name} 님`);
             setLogincheck(!loginCheck);
             navigate('/');
         }).catch((error) => {
@@ -73,8 +74,8 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout }) {
 
     try {
         const parsedUserData = JSON.parse(userDataFromSession);
-        getUserName = parsedUserData.userName;
-        getUserID = parsedUserData.userID;
+        getUserName = parsedUserData.name;
+        getUserID = parsedUserData.id;
     } catch (error) {
         console.log("userDataFromSession is not JSON formet or null data => " + error)
     }

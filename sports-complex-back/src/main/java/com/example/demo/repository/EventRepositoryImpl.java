@@ -59,9 +59,10 @@ public class EventRepositoryImpl implements EventRepository {
 	
 	@Override
 	public int EventInsert(Event Entity) {
-		log.info("EventInsert Repository 성공");
-		String jpql = "INSERT INTO Event (eventname, eventdetail, eventfacility, eventtime, eventfor, eventtype, eventuploadfile, stfid, eventdate)"
-					+ "VALUES (:eventname, :eventdetail, :eventfacility, :eventtime, :eventfor, :eventtype, :eventuploadfile, :stfid, :eventdate)";
+		log.info("EventInsert Repository 성공");	
+		
+		String jpql = "INSERT INTO Event (eventname, eventdetail, eventfacility, eventtime, eventfor, eventtype, eventuploadfile, stfid, eventdate, eventcount)"
+					+ "VALUES (:eventname, :eventdetail, :eventfacility, :eventtime, :eventfor, :eventtype, :eventuploadfile, :stfid, :eventdate, 0)";
 		
 		Query query = em.createNativeQuery(jpql);
 

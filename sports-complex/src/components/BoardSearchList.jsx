@@ -4,12 +4,17 @@ import './BoardSearchList.css'
 import BoardSearchList2 from './BoardSearchlist2';
 
 export default function BoardSearchList() {
-
+    
     const [noticeList, setNoticeList] = useState([]);
     useEffect(() => {
         let url = "/notice/noticeList";
+        let test = JSON.parse(sessionStorage.getItem('userData'));
+        let token = test.token;
+        console.log(`token=${token}`);
+        
 
-        apiCall(url, 'get', null, null)
+
+        apiCall(url, 'get', null, token)
             .then((response) => {
                 setNoticeList(response);
             }).catch((error) => {
