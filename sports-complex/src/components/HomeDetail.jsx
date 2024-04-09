@@ -16,7 +16,7 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import { IoIosLogOut } from "react-icons/io";
 import { apiCall } from '../apiService/apiService';
 
-export default function HomeDetail({ setLogincheck, loginCheck, logout }) {
+export default function HomeDetail({ setLogincheck, loginCheck, logout, getUserName, getUserID }) {
 
 
 
@@ -68,19 +68,6 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout }) {
         })
     }
 
-    let getUserName;
-    let getUserID;
-    const userDataFromSession = sessionStorage.getItem('userData');
-
-    try {
-        const parsedUserData = JSON.parse(userDataFromSession);
-        getUserName = parsedUserData.name;
-        getUserID = parsedUserData.id;
-    } catch (error) {
-        console.log("userDataFromSession is not JSON formet or null data => " + error)
-    }
-
-
     // 비밀번호에서 enter키 누르면 로그인 요청
     const handleKeypress = (e) => {
         if (e.key === 'Enter') {
@@ -97,9 +84,6 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout }) {
     const passwordHandler = (value) => {
         setPassword(value);
     }
-
-
-
 
 
     return (

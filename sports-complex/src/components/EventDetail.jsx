@@ -2,14 +2,30 @@ import { useEffect, useState } from 'react';
 import { apiCall } from '../apiService/apiService';
 import './EventDetail.css'
 import { MdFestival } from "react-icons/md";
+import axios from 'axios';
+import App from './../App';
+import { API_BASE_URL } from '../apiService/app-config';
 
 export default function EventDetail({ eventcode }) {
 
     // 디테일 정보 가져오기 ====================================================
     const [eventDetailOne, setEventDetailOne] = useState('');
 
+    const [imagePath, setImagePath] = useState('');
+
+
     // console.log(`EventDetail 에서의 eventcode : `, eventcode);
+
     useEffect(() => {
+        
+        apiCall('/event/eventimages', 'get', null, null)
+            .then((response) => {
+                setImagePath(response);
+                // console.log(response);
+                // test = response;
+            }).catch((error) => {
+                console.log("이미지 없음 " + error)
+            })
         let url = "/event/eventdetail?eventcode=" + eventcode;
 
         // 405 오류는 post / get 요청 때문이다. *****
@@ -28,6 +44,11 @@ export default function EventDetail({ eventcode }) {
     // console.log(eventDetailOne.eventuploadfile);
 
     //===============================================================================
+
+    console.log((imagePath)+(eventDetailOne.eventuploadfile));
+    // console.log(imagePath);
+
+
     return (
         <div className="EventDetailContainor">
             <div className='EventDetail_Box'>
@@ -78,9 +99,13 @@ export default function EventDetail({ eventcode }) {
                     <div>
                         <p>{eventDetailOne.eventdetail}</p>
                     </div>
-                    <div>
-                        <img src={`../img/${eventDetailOne.eventuploadfile}`} alt="이벤트 이미지" />
-                    </div>
+                    {(eventDetailOne.eventuploadfile) ? 
+                        <div>
+                            <img src={API_BASE_URL + "/event/eventimages?img=" + eventDetailOne.eventuploadfile} alt="이벤트 이미지" />
+                        </div>
+                    :
+                    <div></div>
+                }
                 </div>
             </div>
             <div className='EventDetail_buttonBox'>

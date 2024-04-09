@@ -1,6 +1,11 @@
 package com.example.demo.controller;
 
+import org.springframework.http.MediaType;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.domain.StaffDTO;
 import com.example.demo.entity.Staff;
+import com.example.demo.jwtToken.TokenProvider;
 import com.example.demo.service.StaffService;
 
 import lombok.AllArgsConstructor;
@@ -26,6 +32,7 @@ import lombok.extern.log4j.Log4j2;
 public class StaffController {
 	StaffService service;
 	PasswordEncoder passwordEncoder;
+	TokenProvider tokenProvider;
 
 	@GetMapping("/staffList")
 	public List<Staff> stafflist() {
@@ -54,6 +61,33 @@ public class StaffController {
 			System.out.println(" Delete Excpetion => " + e.toString());
 		}
 		return "redirect:staff";
+	}
+	
+	@PostMapping(value = "/staffLogin", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> staffLogin(@RequestBody Staff dto){
+		String password = dto.getStfpassword();
+		// 해당직원 조회 (권한까지 조회)
+		dto = service.getWithRoles(dto.getStfid());
+		
+		// 패스워드 비교
+		if(dto != null && passwordEncoder.matches(password, dto.getStfpassword())) {
+			
+			// 패스워드가 맞다면 토큰 발행
+			final String token = tokenProvider.createToken(dto.claimList());
+			final StaffDTO staffDTO = StaffDTO.builder()
+					.token(token)
+					.stfid(dto.getStfid())
+					.stfname(dto.getStfname())
+					.roleList(dto.getRoleList())
+					.build();
+			log.info("login 성공 token = "+token);
+			log.info(staffDTO);
+			return ResponseEntity.status(HttpStatus.OK).body(staffDTO);
+		}else {
+			Map<String, Object> response = new HashMap<>();
+			response.put("message", "로그인에 실패하였습니다. 다시 로그인해주세요.");
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(response);	// 담은 데이터 반환
+		}
 	}
 
 }

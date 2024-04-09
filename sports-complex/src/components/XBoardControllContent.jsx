@@ -100,7 +100,12 @@ export default function XBoardControllContent() {
                 setNoticeList(response);
                 setRememberList(response);
             }).catch((error) => {
-                console.log("noticeList error occred = " + error);
+                if(error === 403){
+                    alert("권한이 없습니다.")
+                    console.log("403 noticeList error occred = " + error);
+                }else{
+                    console.log("noticeList error occred = " + error);
+                }
             })
     }, [deleteRequest])
     // List 불러오기 ******************************************************************************//
