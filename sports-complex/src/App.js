@@ -51,7 +51,7 @@ import XReantalPlaceDetailPage from './components/Pages/XReantalPlaceDetailPage'
 import XlecturePage from './components/Pages/XlecturePage';
 import XlecturerRegisterPage from './components/Pages/XlecturerRegisterPage';
 import XParkingControllPage from './components/Pages/XParkingControllPage';
-import XlectureInfoPage from './components/Pages/XlectureInfoPage';
+import XClassesInfoControl from './components/Pages/XClassesInfoControl';
 import XNewClassUploadPage from './components/Pages/XNewClassUploadPage';
 import XSugangRequestPage from './components/Pages/XSugangRequestPage';
 import XRentalPlaceRequestControllPage from './components/Pages/XRentalPlaceRequestControllPage';
@@ -180,7 +180,7 @@ function App() {
         <Route path='/XlecturePage' element={<XlecturePage />} />
         <Route path='/XlecturerRegisterPage' element={<XlecturerRegisterPage />} />
         <Route path='/XParkingControllPage' element={<XParkingControllPage />} />
-        <Route path='/XlectureInfoPage' element={<XlectureInfoPage />} />
+        <Route path='/XClassesInfoControl' element={<XClassesInfoControl />} />
         <Route path='/XNewClassUploadPage' element={<XNewClassUploadPage />} />
         <Route path='/XSugangRequestPage' element={<XSugangRequestPage />} />
         <Route path='/XRentalPlaceRequestControllPage' element={<XRentalPlaceRequestControllPage />} />

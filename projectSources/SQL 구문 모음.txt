@@ -1,20 +1,20 @@
 // 회원정보 엔티티
 CREATE TABLE Member (
-    id varchar(15) PRIMARY KEY,
-    membercode varchar(6) NOT NULL,
-    name varchar(10) NOT NULL,
-    password varchar(100) NOT NULL,
-    birth varchar(8) NOT NULL,
-    phonenum varchar(11) NOT NULL,
-    homenum varchar(11) NULL,
-    address varchar(100) NOT NULL,
-    address1 varchar(100) NOT NULL,
-    address2 varchar(30) NULL,
-    email varchar(50) NOT NULL,
-    snsagr TINYINT(1) NOT NULL DEFAULT 1,
-    emailagr TINYINT(1) NOT NULL DEFAULT 1,
-    carnum varchar(10) NULL,
-    parkuse date NULL
+id varchar(15) PRIMARY KEY,
+membercode varchar(6) NOT NULL,
+name varchar(10) NOT NULL,
+password varchar(100) NOT NULL,
+birth varchar(8) NOT NULL,
+phonenum varchar(11) NOT NULL,
+homenum varchar(11) NULL,
+address varchar(100) NOT NULL,
+address1 varchar(100) NOT NULL,
+address2 varchar(30) NULL,
+email varchar(50) NOT NULL,
+snsagr TINYINT(1) NOT NULL DEFAULT 1,
+emailagr TINYINT(1) NOT NULL DEFAULT 1,
+carnum varchar(10) NULL,
+parkuse date NULL
 );
 
 // 회원정보 insert 구문
@@ -208,7 +208,7 @@ SELECT id FROM member;
 직원 테이블
 ** 직원 테이블 생성 ** 
 CREATE TABLE staff (
-    stfID varchar(15) COMMENT 'Primary Key', stfPassword varchar(100) NOT NULL, stfDmp varchar(20) NOT NULL, stfLevel varchar(10) NOT NULL, stfPNum int NOT NULL, stfName varchar(10) NOT NULL, stfCode varchar(20) NOT NULL, primary key (stfID)
+stfID varchar(15) COMMENT 'Primary Key', stfPassword varchar(100) NOT NULL, stfDmp varchar(20) NOT NULL, stfLevel varchar(10) NOT NULL, stfPNum int NOT NULL, stfName varchar(10) NOT NULL, stfCode varchar(20) NOT NULL, primary key (stfID)
 );
 
 ** 직원 생성 **
@@ -364,11 +364,11 @@ VALUES
 
 ** space
 CREATE TABLE space (
-	spaceCode varchar(10) NOT NULL,
-	spaceName varchar(20) NOT NULL,
-	spacePrice int NOT NULL,
-	parkSpace int NULL DEFAULT 1,
-	parking int NULL DEFAULT 0
+spaceCode varchar(10) NOT NULL,
+spaceName varchar(20) NOT NULL,
+spacePrice int NOT NULL,
+parkSpace int NULL DEFAULT 1,
+parking int NULL DEFAULT 0
 );
 
 INSERT INTO space (spaceCode, spaceName, spacePrice, parkSpace, parking)
@@ -391,18 +391,18 @@ VALUES
 
 **이벤트 event
 CREATE TABLE Event (
-	eventCode int AUTO_INCREMENT PRIMARY KEY, 
-	eventName varchar(20) NOT NULL,
-	eventDetail varchar(1000) NOT NULL,
-	eventFacility varchar(20) NOT NULL,
-	eventTime varchar(20) NOT NULL,
-	eventFor varchar(10) NOT NULL,
-	eventType varchar(10) NOT NULL,
-	eventCount int NOT NULL,
-	eventUploadfile varchar(100) NULL,
-	stfID varchar(15) NOT NULL,
-	FOREIGN KEY (stfID) REFERENCES staff(stfID);
-    eventdate date Null
+eventCode int AUTO_INCREMENT PRIMARY KEY, 
+eventName varchar(20) NOT NULL,
+eventDetail varchar(1000) NOT NULL,
+eventFacility varchar(20) NOT NULL,
+eventTime varchar(20) NOT NULL,
+eventFor varchar(10) NOT NULL,
+eventType varchar(10) NOT NULL,
+eventCount int NOT NULL,
+eventUploadfile varchar(100) NULL,
+stfID varchar(15) NOT NULL,
+FOREIGN KEY (stfID) REFERENCES staff(stfID);
+eventdate date Null
 );
 
 **이벤트 event insert
@@ -422,22 +422,22 @@ VALUES
 
 *********** 문의게시판
 CREATE TABLE `Qna` (
-    `qaNum` INT NOT NULL AUTO_INCREMENT COMMENT '식별 가능한 코드',
-    `id` VARCHAR(15) NOT NULL COMMENT 'PK - 질문하는 회원 아이디 (회원테이블)',
-    `qaTitle` VARCHAR(30) NOT NULL,
-    `qaContent` VARCHAR(1000) NOT NULL COMMENT '게시글의 내용',
-    `qaType` VARCHAR(10) NOT NULL COMMENT '시설문의 , 일반문의, 수강문의',
-    `qaDate` TIMESTAMP NOT NULL,
-    `qaOpen` BOOLEAN NOT NULL DEFAULT 0 COMMENT '1 - 공개 / 0- 비공개',
-    `qaPassword` VARCHAR(100) NULL COMMENT '게시글의 비밀번호',
-    `qaCount` INT NOT NULL DEFAULT 0,
-    `qaFile` VARCHAR(100) NULL COMMENT '첨부파일 명',
-    `stfid` VARCHAR(15) NULL,
-    `qaReply` VARCHAR(1000) NULL COMMENT '답변이 존재하면 답변완료',
-    `qaReplyTime` TIMESTAMP,
-    PRIMARY KEY (`qaNum`),
-    FOREIGN KEY (`id`) REFERENCES `Member`(`id`),
-    FOREIGN KEY (`stfid`) REFERENCES `Staff`(`stfid`)
+`qaNum` INT NOT NULL AUTO_INCREMENT COMMENT '식별 가능한 코드',
+`id` VARCHAR(15) NOT NULL COMMENT 'PK - 질문하는 회원 아이디 (회원테이블)',
+`qaTitle` VARCHAR(30) NOT NULL,
+`qaContent` VARCHAR(1000) NOT NULL COMMENT '게시글의 내용',
+`qaType` VARCHAR(10) NOT NULL COMMENT '시설문의 , 일반문의, 수강문의',
+`qaDate` TIMESTAMP NOT NULL,
+`qaOpen` BOOLEAN NOT NULL DEFAULT 0 COMMENT '1 - 공개 / 0- 비공개',
+`qaPassword` VARCHAR(100) NULL COMMENT '게시글의 비밀번호',
+`qaCount` INT NOT NULL DEFAULT 0,
+`qaFile` VARCHAR(100) NULL COMMENT '첨부파일 명',
+`stfid` VARCHAR(15) NULL,
+`qaReply` VARCHAR(1000) NULL COMMENT '답변이 존재하면 답변완료',
+`qaReplyTime` TIMESTAMP,
+PRIMARY KEY (`qaNum`),
+FOREIGN KEY (`id`) REFERENCES `Member`(`id`),
+FOREIGN KEY (`stfid`) REFERENCES `Staff`(`stfid`)
 );
 
 ************ 문의게시판 insert
@@ -476,16 +476,16 @@ VALUES
 
 ****************** 공지사항 + 자주하는질문 게시판 CREATE
 CREATE TABLE Notice (
-    notNum INT AUTO_INCREMENT PRIMARY KEY,
-    notTitle VARCHAR(30) NOT NULL,
-    quesT VARCHAR(3) NOT NULL,
-    notDate DATE NOT NULL,
-    notUploadfile VARCHAR(100),
-    notCount INT NOT NULL,
-    notDetail VARCHAR(1000) NOT NULL,
-    notType VARCHAR(2) NOT NULL DEFAULT 'A',
-    stfID VARCHAR(15) NOT NULL,
-    FOREIGN KEY (stfID) REFERENCES staff(stfID)
+notNum INT AUTO_INCREMENT PRIMARY KEY,
+notTitle VARCHAR(30) NOT NULL,
+quesT VARCHAR(3) NOT NULL,
+notDate DATE NOT NULL,
+notUploadfile VARCHAR(100),
+notCount INT NOT NULL,
+notDetail VARCHAR(1000) NOT NULL,
+notType VARCHAR(2) NOT NULL DEFAULT 'A',
+stfID VARCHAR(15) NOT NULL,
+FOREIGN KEY (stfID) REFERENCES staff(stfID)
 );
 
 ***************************************************
@@ -659,8 +659,36 @@ VALUES
 (253, '테니스 강습 변경', '강좌', '2024-04-03', NULL, 0, '테니스 강습 일정이 변경되었습니다. 변경된 시간에 참석해주세요.', 'B', 'winsam003'),
 (254, '요가 클래스 개설', '강좌', '2024-04-03', NULL, 0, '요가 클래스가 새롭게 개설되었습니다. 마음과 몸을 편안하게 만들어보세요!', 'B', 'winsam003');
 
+** 강좌 classes
+CREATE TABLE `Classes` (
+`clNum` INT NOT NULL AUTO_INCREMENT,
+`classCode` VARCHAR(10) NOT NULL, 
+`clName` VARCHAR(20) NOT NULL,
+`clTime` DATE NOT NULL,
+`clEndTime` DATE NOT NULL,
+`clStartDate` DATE NOT NULL,
+`clEndDate` DATE NOT NULL,
+`clFor` VARCHAR(10) NOT NULL,
+`clCount` INT NOT NULL,
+`clWating` INT NOT NULL,
+`clPrice` INT NOT NULL,
+`clType` VARCHAR(10) NULL COMMENT 'Acceptance available, Reservation waiting, Waiting list closed, Registration closed',
+PRIMARY KEY (`clNum`)
+);
 
-
+** 강좌 insert
+INSERT INTO `Classes` (`classCode`, `clName`, `clTime`, `clEndTime`, `clstart`, `clend`, `clFor`, `clCount`, `clWating`, `clPrice`)
+VALUES
+('CLBABK', '농구교실', '2024-04-09 10:00:00', '2024-04-09 12:00:00', '2024-04-09', '2024-04-30', 'KI', 20, 5, 50),
+('CLWASW', '수영교실', '2024-04-10 09:00:00', '2024-04-10 11:00:00', '2024-04-10', '2024-04-30', 'AD', 15, 3, 40),
+('CLDCKP', 'K-pop', '2024-04-11 14:00:00', '2024-04-11 16:00:00', '2024-04-11', '2024-04-30', 'OL', 18, 7, 55),
+('CLLAPP', '탁구교실', '2024-04-18 09:00:00', '2024-04-18 11:00:00', '2024-04-30', '2024-05-02','KI', 18, 5, 50),
+('CLWECR', '크로스핏', '2024-04-09 10:00:00', '2024-04-09 12:00:00', '2024-04-09', '2024-04-30', 'AD', 20, 5, 50),
+('CLBAFT', '풋살교실', '2024-04-10 09:00:00', '2024-04-10 11:00:00', '2024-04-10', '2024-04-30', 'OL', 15, 3, 40),
+('CLWADI', '다이빙', '2024-04-11 14:00:00', '2024-04-11 16:00:00', '2024-04-11', '2024-04-30', 'KI', 18, 7, 55),
+('CLDCBD', '벨리댄스', '2024-04-18 09:00:00', '2024-04-18 11:00:00', '2024-04-30', '2024-05-03', 'AD', 18, 5, 50),
+('CLLABM', '배드민턴교실', '2024-04-11 14:00:00', '2024-04-11 16:00:00', '2024-04-11', '2024-04-30', 'OL', 18, 7, 55),
+('CLWEPI', '필라테스', '2024-04-18 09:00:00', '2024-04-18 11:00:00', '2024-04-30', '2024-05-03', 'KI', 18, 5, 50);
 * 임시저장 ㅎㅎ =================================
 1. 로그인시 토큰 발행한다.
 2. 세션스토리지에서 토큰과 role을 확인할 수 있다.
