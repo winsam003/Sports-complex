@@ -5,9 +5,11 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.domain.StaffDTO;
+import com.example.demo.entity.Member;
 import com.example.demo.entity.Staff;
 
 @Transactional
@@ -45,4 +47,21 @@ public class StaffRepositoryImpl implements StaffRepository {
 		em.createQuery("delete from Staff s where s.stfid = :stfid").setParameter("stfid", stfid).executeUpdate();
 	}
 
+	
+//	직원 1명 조회
+	@Override
+	public Staff StaffOne(String stfid) {
+		return em.createQuery("select s from Staff s where s.stfid=:stfid", Staff.class).setParameter("stfid", stfid)
+				.getSingleResult();
+	}
+	
+//	직원 1명 조회인데 권한번호 까지 받아옴
+	@EntityGraph(attributePaths = {"roleList"}) 
+	@Override
+	public Staff getWithRoles(String stfid) {
+		// TODO Auto-generated method stub
+		return em.createQuery("SELECT s FROM Staff s LEFT JOIN FETCH s.roleList WHERE s.stfid = :stfid", Staff.class)
+	             .setParameter("stfid", stfid)
+	             .getSingleResult();
+	}
 }

@@ -3,10 +3,7 @@ package com.example.demo.domain;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
 
-export default function XStaffRegisterContent() {
+export default function XStaffRegisterContent({ roleList }) {
     // 아이디 중복확인
     const [idDuplication, setIdDuplication] = useState(false);
 
@@ -149,16 +149,19 @@ export default function XStaffRegisterContent() {
     // 직원 등록 데이터 보내기
     const navigate = useNavigate();
     const joinStaff = () => {
-        if (!idDuplication) {
-            alert("아이디 중복을 확인해주세요.");
-        } else if (idcheck && pwcheck && nameCheck && phoneNumCheck) {
+        if (idcheck && pwcheck && nameCheck && phoneNumCheck) {
             if (window.confirm("직원을 등록하시겠습니까?")) {
+
                 axios.post('/staff/staffInsert', staffData)
                     .then((response) => {
                         alert("직원 등록에 성공하였습니다.");
                         navigate('/XStaffInfoPage');
                     }).catch(error => {
-                        console.error('staffInsert :', error);
+                        if(error.response.status === 403){
+                            alert("[403] 해당 기능 접근 권한이 없습니다.");
+                        }else{
+                            console.error('staffInsert :', error);
+                        }
                     });
             } else {
 
@@ -167,6 +170,25 @@ export default function XStaffRegisterContent() {
             alert("입력정보를 확인해주세요.");
         }
     };
+    // const joinStaff = () => {
+    //     if (!idDuplication) {
+    //         alert("아이디 중복을 확인해주세요.");
+    //     } else if (idcheck && pwcheck && nameCheck && phoneNumCheck) {
+    //         if (window.confirm("직원을 등록하시겠습니까?")) {
+    //             axios.post('/staff/staffInsert', staffData)
+    //                 .then((response) => {
+    //                     alert("직원 등록에 성공하였습니다.");
+    //                     navigate('/XStaffInfoPage');
+    //                 }).catch(error => {
+    //                     console.error('staffInsert :', error);
+    //                 });
+    //         } else {
+
+    //         }
+    //     } else {
+    //         alert("입력정보를 확인해주세요.");
+    //     }
+    // };
 
     return (
         <form>
