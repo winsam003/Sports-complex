@@ -252,7 +252,7 @@ export const PageBannerData = [
     // 강의관리 강의관리 강의관리 강의관리 강의관리 강의관리 강의관리 강의관리 
     {
         "id": "9",
-        "parameter": 'XlectureInfoPage',
+        "parameter": 'XClassesInfoControl',
         "page": '강의정보 관리',
         "title": '강의 관리',
         "checkMenu": "Y"

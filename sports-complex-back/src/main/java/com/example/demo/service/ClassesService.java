@@ -2,16 +2,17 @@ package com.example.demo.service;
 
 import java.util.List;
 
+import com.example.demo.domain.ClassesDTO;
 import com.example.demo.entity.Classes;
 
 public interface ClassesService {
-	// SelectList
-	List<Classes> selectList();
+	// 강의 목록
+	List<Classes> classesList();
 
-	// insert
-	Classes save(Classes entity);
+	// 강의 등록
+	int classesInsert(ClassesDTO dto);
 
-	// delete
-	void deleteById(String classCode);
+	// 강의 삭제
+	void classesDelete(Integer clnum);
 
 }
