@@ -8,108 +8,50 @@ import { useNavigate } from 'react-router';
 export default function XEventBoardWriteContent({getUserID}) {
 
     // 이벤트 등록 insert form
-    const [formEvent, setFormEvent] = useState({
-        eventname : '', 
-        eventdetail : '', 
-        eventfacility : '',
-        eventtime : '', 
-        eventfor : '', 
-        eventtype : '', 
-        eventuploadfile : '', 
-        stfid: getUserID
-    });
 
     
-
-    const [eventName, setEventName] = useState("");
-    const [eventFacilityType, setEventFacilityType] = useState("");
-    const [eventfacilityName, setEventfacilityName] = useState("");
-    const [eventType, setEventType] = useState("");
-    const [eventFor, setEventFor] = useState("");
-    const [eventDate, setEventDate] = useState("");
-    const [eventDetail, setEventDetail] = useState("");
-    const [eventPics, setEventPics] = useState(null);
-
-
     // 이벤트 이름. 
+    const [eventName, setEventName] = useState("");
     const makeEventName = (e) => {
         setEventName(e);
-
-        setFormEvent({
-            ...formEvent,
-            eventname : e
-        })
     }
-
+    
     // 이벤트 이용시설. 
-    const makeEventfacility = (e) => {
-        
-        setEventFacilityType(e);
+    const [eventfacilityName, setEventfacilityName] = useState("");
+    const makeEventfacility = (e) => {   
         setEventfacilityName(e);
-        
-        setFormEvent({
-            ...formEvent,
-            eventfacility : e
-        })
     }
     
     // 이벤트 종류 
+    const [eventType, setEventType] = useState("");
     const makeEventType = (e) => {
-        setEventType(e);
-        
-        setFormEvent({
-            ...formEvent,
-            eventtype : e
-        })
+        setEventType(e);   
     }
     
     // 이벤트 대상
+    const [eventFor, setEventFor] = useState("");
     const makeEventFor = (e) => {
         setEventFor(e);
-
-        setFormEvent({
-            ...formEvent,
-            eventfor : e
-        })
     }
     
     // 이벤트 시간
+    const [eventDate, setEventDate] = useState("");
     const makeEventTime = (e) => {
         setEventDate(e);
-
-        setFormEvent({
-            ...formEvent,
-            eventtime : e
-        })
     }
 
     // 이벤트 내용
+    const [eventDetail, setEventDetail] = useState("");
     const makeEventDetail = (e) => {
         setEventDetail(e);
-        
-        setFormEvent({
-            ...formEvent,
-            eventdetail : e
-        })
     }
 
+
     // 이벤트 사진
+    const [eventPics, setEventPics] = useState(null);
     const makeEventfile = (e) => {
         setEventPics(e.target.files[0])
-        
-        const formData = new FormData();
-        formData.append('file', eventPics);
-        
-        setFormEvent({
-            ...formEvent,
-            eventuploadfile : formData.get('file')
-        })
-        
     }
-    
-    
-    
-    
     
     
     // 등록
@@ -117,10 +59,23 @@ export default function XEventBoardWriteContent({getUserID}) {
     // insert 
     const eventSubmit = () => {
         let url = "/event/eventinsert";
+        const formData = new FormData();
+        formData.append('file', eventPics);
         
+        let formEvent = {
+            eventname : eventName, 
+            eventdetail : eventDetail, 
+            eventfacility : eventfacilityName,
+            eventtime : eventDate, 
+            eventfor : eventFor, 
+            eventtype : eventType, 
+            // eventfilef : formData.get('file'), 
+            eventfilef : eventPics, 
+            stfid: getUserID
+        }
+        
+        // let token = JSON.parse(sessionStorage.getItem("userData")).token;
         console.log('formEvent : ',  formEvent);
-
-
 
         apiCall(url, 'post', formEvent, null) 
             .then((response) => {
@@ -155,9 +110,7 @@ export default function XEventBoardWriteContent({getUserID}) {
                             <tbody>
                                 <tr>
                                     <th>작성자 <span className='star'>*</span></th>
-                                    <td><input type="text" name='name' id='name' 
-                                            // value={getUserID} readOnly 
-                                            /></td>
+                                    <td><input type="text" name='name' id='name' value={getUserID} readOnly /></td>
                                 </tr>
                                 <tr>
                                     <th>제목 <span className='star'>*</span></th>
@@ -173,7 +126,7 @@ export default function XEventBoardWriteContent({getUserID}) {
                                     <th>이용 시설<span className='star'>*</span></th>
                                     <td>
                                         <select name="eventfacility" id="eventfacility" 
-                                                value={eventFacilityType} 
+                                                value={eventfacilityName} 
                                                 onChange={(e) => makeEventfacility(e.target.value)}  >
                                             <option value="">직접 입력</option>
                                             <option value="운동장 ">운동장</option>
@@ -182,7 +135,6 @@ export default function XEventBoardWriteContent({getUserID}) {
                                             <option value="테니스장 ">테니스장</option>
                                         </select>
                                         <input type="text" name='eventfacilityName' id='eventfacilityName'
-                                                value={eventfacilityName} 
                                                 onChange={(e) => makeEventfacility(e.target.value)} />
                                     </td>
                                 </tr>
