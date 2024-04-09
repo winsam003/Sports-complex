@@ -15,6 +15,10 @@ export default function XQnaControllContent() {
     // 검색 기능
     const [searchResult, setSearchResult] = useState([]);
 
+    // Session storage에 있는 userData 가져오기
+    const sessionUserData = sessionStorage.getItem('userData');
+    const userData = sessionUserData ? JSON.parse(sessionUserData) : 'null';
+
     // 문의게시글 불러오기
     useEffect(() => {
         const loadQnaList = async () => {
@@ -57,7 +61,7 @@ export default function XQnaControllContent() {
 
         let url = '/qna/qnaDelete';
 
-        apiCall(url + `?qanum=${selectedQnaBoard.join('&qanum=')}`, 'get', null, null)
+        apiCall(url + `?qanum=${selectedQnaBoard.join('&qanum=')}`, 'get', null, userData.token)
             .then(() => {
                 // 삭제 후 선택된 목록 배열 초기화
                 setSelectedQnaBoard([]);

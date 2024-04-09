@@ -1,23 +1,10 @@
-/* 대표항목 */
-.XSugangRequestSearchResult_index {
+/* 내용 사용자 */
+.XSugangRequestSearchResult_content_sugang {
     display: grid;
-    grid-template-columns: 50px 1fr 2fr repeat(3, 1fr) 2fr 1fr;
-    margin-top: 30px;
-    border-top: 3px solid #C9EDFA;
-    background-color: #ceeff250;
-    text-align: center;
+    grid-template-columns: 1fr 2fr repeat(3, 1fr) 2fr 1fr;
 }
 
-.XSugangRequestSearchResult_index p {
-    justify-content: center;
-    align-items: center;
-    word-break: keep-all;
-    margin: 0;
-    padding: 10px 0;
-    font-weight: bold;
-}
-
-/* 내용 */
+/* 내용 관리자 */
 .XSugangRequestSearchResult_content {
     display: grid;
     grid-template-columns: 50px 1fr 2fr repeat(3, 1fr) 2fr 1fr;

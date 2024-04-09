@@ -27,7 +27,7 @@ export default function Xheader({ checkAdminPage, logout, getUserName }) {
                 <div className='Header_logo'><Link to="/XmanagementPage">홈으로</Link></div>
                 <Link to='/XmanagementPage' className='Header_mainHeader Header_Header1'>홈 화면 관리</Link>
                 <Link to='/UserInfoPage' className='Header_mainHeader Header_Header2'>인적 관리</Link>
-                <Link to='/XlectureInfoPage' className='Header_mainHeader Header_Header3'>강의 관리</Link>
+                <Link to='/XClassesInfoControl' className='Header_mainHeader Header_Header3'>강의 관리</Link>
                 <Link to='/XSugangRequestPage' className='Header_mainHeader Header_Header4'>이용신청 관리</Link>
                 <Link to='/XRentalPlaceControllPage' className='Header_mainHeader Header_Header4'>시설 관리</Link>
                 <Link to='/XBoardControllPage' className='Header_mainHeader Header_Header5'>게시판 관리</Link>
@@ -46,7 +46,7 @@ export default function Xheader({ checkAdminPage, logout, getUserName }) {
                         <li className='Header_subMenu Header_Menutitle5'><Link to='/XlecturerRegisterPage' >강사 등록</Link> </li>
                     </ul>
                     <ul>
-                        <li className='Header_subMenu Header_Menutitle6'><Link to='/XlectureInfoPage' >강의정보 관리</Link></li>
+                        <li className='Header_subMenu Header_Menutitle6'><Link to='/XClassesInfoControl' >강의정보 관리</Link></li>
                         <li className='Header_subMenu Header_Menutitle7'><Link to='/XNewClassUploadPage' >신규강의 등록</Link></li>
                     </ul>
                     <ul>

@@ -51,7 +51,7 @@ import XReantalPlaceDetailPage from './components/Pages/XReantalPlaceDetailPage'
 import XlecturePage from './components/Pages/XlecturePage';
 import XlecturerRegisterPage from './components/Pages/XlecturerRegisterPage';
 import XParkingControllPage from './components/Pages/XParkingControllPage';
-import XlectureInfoPage from './components/Pages/XlectureInfoPage';
+import XClassesInfoControl from './components/Pages/XClassesInfoControl';
 import XNewClassUploadPage from './components/Pages/XNewClassUploadPage';
 import XSugangRequestPage from './components/Pages/XSugangRequestPage';
 import XRentalPlaceRequestControllPage from './components/Pages/XRentalPlaceRequestControllPage';
@@ -67,21 +67,6 @@ import XEventDetailPage from './components/Pages/XEventDetailPage';
 
 function App() {
 
-
-
-  // useEffect(() => {
-  //   navigate('/');
-  // }, [])
-
-
-  // admin 모드, 사용자 모드를 확인하고 header를 바꿔주기 위한 hook
-  const [isAdminPage, setIsAdminPage] = useState(false);
-
-  const checkAdminPage = () => {
-    setIsAdminPage(!isAdminPage);
-  }
-
-
   const [loginCheck, setLogincheck] = useState(false);
 
 
@@ -90,26 +75,51 @@ function App() {
   const navigate = useNavigate();
   const logout = () => {
     sessionStorage.clear();
-    setIsLogin(!isLogin);
     alert("로그아웃 되었습니다.");
-    navigate('/');
+    navigate('/'); // 기본 홈 페이지로 이동
+    window.location.reload(); // 현재 페이지 새로 고침
   }
 
   let getUserName;
   let getUserID;
   let token;
+  let roleList;
 
 
   if (sessionStorage.getItem('userData') != null) {
     const userData = JSON.parse(sessionStorage.getItem('userData'));
-    getUserName = userData.name;
-    getUserID = userData.id;
-    token = userData.token;
+    if (userData.name != null){     // 사용자일 경우 
+      getUserName = userData.name;
+      getUserID = userData.id;
+      token = userData.token;
+      roleList = userData.roleList
+    }else{                          // 직원일 경우
+      getUserName = userData.stfname;
+      getUserID = userData.stfid;
+      token = userData.token;
+      roleList = userData.roleList
+    }
   }
 
-  // let test = sessionStorage.getItem(JSON.stringify('userData'));
-  console.log(`token=${token}`);
+  // admin 모드, 사용자 모드를 확인하고 header를 바꿔주기 위한 hook
+  const [isAdminPage, setIsAdminPage] = useState(false);
+  const checkAdminPage = (e) => {
 
+    if (roleList && roleList.length > 0){
+      if (roleList.some(item=>item==="ADMIN" || item==="MANAGER")){
+        setIsAdminPage(!isAdminPage);
+      }else{
+        e.preventDefault();
+        alert("관리자 권한이 없습니다.");
+      }
+    }else{
+      e.preventDefault();
+      alert("관리자 로그인을 해야 이용하실 수 있습니다.");
+    }
+
+    
+  }
+  
   return (
     <div>
 
@@ -120,7 +130,7 @@ function App() {
         <Header checkAdminPage={checkAdminPage} logout={logout} getUserName={getUserName} />}
 
       <Routes>
-        <Route path='/' element={<HomePage setLogincheck={setLogincheck} loginCheck={loginCheck} logout={logout} />} />
+        <Route path='/' element={<HomePage setLogincheck={setLogincheck} loginCheck={loginCheck} logout={logout} getUserName={getUserName} getUserID={getUserID} />} />
         <Route path='/JoinPage1' element={<JoinPage1 />} />
         <Route path='/JoinPage1' element={<JoinPage1 />} />
         <Route path='/JoinPage2' element={<JoinPage2 />} />
@@ -170,12 +180,12 @@ function App() {
         <Route path='/XlecturePage' element={<XlecturePage />} />
         <Route path='/XlecturerRegisterPage' element={<XlecturerRegisterPage />} />
         <Route path='/XParkingControllPage' element={<XParkingControllPage />} />
-        <Route path='/XlectureInfoPage' element={<XlectureInfoPage />} />
+        <Route path='/XClassesInfoControl' element={<XClassesInfoControl />} />
         <Route path='/XNewClassUploadPage' element={<XNewClassUploadPage />} />
         <Route path='/XSugangRequestPage' element={<XSugangRequestPage />} />
         <Route path='/XRentalPlaceRequestControllPage' element={<XRentalPlaceRequestControllPage />} />
         <Route path='/XStaffInfoPage' element={<XStaffInfoPage />} />
-        <Route path='/XStaffRegisterPage' element={<XStaffRegisterPage />} />
+        <Route path='/XStaffRegisterPage' element={<XStaffRegisterPage roleList={roleList} />} />
         <Route path='/XBoardControllPageDetailPage' element={<XBoardControllPageDetailPage />} />
         <Route path='/XBoardControllInsertPage' element={<XBoardControllInsertPage />} />
 

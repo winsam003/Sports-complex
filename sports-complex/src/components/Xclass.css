@@ -1,3 +1,31 @@
-.Xclass_Box{
+.Xclass_Box {
     display: flex;
+}
+
+.Xclass_Box_div {
+    flex-grow: 1;
+}
+
+/* 사용자 */
+.XclassListDetail_category_sugangStyle {
+    grid-template-columns: 1fr 2fr 2fr repeat(4, 1fr) 2fr 1fr;
+}
+
+/* 관리자 */
+.XclassListDetail_category {
+    display: grid;
+    grid-template-columns: 50px 1fr 2fr 2fr repeat(4, 1fr) 2fr 1fr;
+    margin-top: 30px;
+    border-top: 3px solid #C9EDFA;
+    background-color: #ceeff250;
+    text-align: center;
+}
+
+.XclassListDetail_category p {
+    justify-content: center;
+    align-items: center;
+    word-break: keep-all;
+    margin: 0;
+    padding: 10px 0;
+    font-weight: bold;
 }

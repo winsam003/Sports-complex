@@ -20,7 +20,6 @@ import com.example.demo.jwtToken.TokenProvider;
 import com.example.demo.service.MemberServiceImpl;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
 

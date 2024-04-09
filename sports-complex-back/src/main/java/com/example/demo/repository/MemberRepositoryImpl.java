@@ -76,7 +76,6 @@ public class MemberRepositoryImpl implements MemberRepository {
 	public Member MemberOne(String id) {
 		// TODO Auto-generated method stub
 		log.info("MemberOne Repository 접촉 성공");
-		System.out.println(id);
 		return em.createQuery("select m from Member m where id=:id", Member.class).setParameter("id", id)
 				.getSingleResult();
 	}
