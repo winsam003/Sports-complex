@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { apiCall } from '../apiService/apiService';
 
-export default function XQnaSearchResult({ qanum, qaopen, qapassword, qatype, qatitle, member, qadate, qareply, qacount, onToggleCheckbox, isChecked }) {
+export default function XQnaSearchResult({ qanum, qaopen, qapassword, qatype, qatitle, member, qadate, qareply, qacount, onToggleCheckbox, isChecked, userData }) {
     // 모달창 팝업 상태
     const [showModal, setShowModal] = useState(false);
     // 비밀번호 확인

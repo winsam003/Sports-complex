@@ -1,15 +1,16 @@
 import './XQnaBoardAnswerContent.css'
 import Submenu from './Submenu'
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { apiCall } from '../apiService/apiService';
 
 // 문의게시판 사용자 상세페이지
-export default function QnaDetail({ qnaData }) {
+export default function QnaDetail({ }) {
+    const location = useLocation();
+    const qnaData = location.state ? location.state.qnaData : null;
 
-    console.log("detail하위 컴포넌트 : ", qnaData);
-    // 다운로드 렌더링 제어
-    const [downloading, setDownloading] = useState(false);
+    // 게시글 삭제 후 목록으로 이동
+    const navigate = useNavigate();
 
     // join에서 member객체를 가져온 경우, qna entity를 직접 가져온 경우 
     const id = qnaData.id || (qnaData.member ? qnaData.member.id : '') || '';
@@ -17,14 +18,11 @@ export default function QnaDetail({ qnaData }) {
     // Session storage에 있는 userData 가져오기
     const sessionUserData = sessionStorage.getItem('userData');
     const userData = sessionUserData ? JSON.parse(sessionUserData) : 'null';
-    const userID = userData.userID;
+    const userID = userData.id;
 
     // 사용자 작성 시간과 답변 작성 시간
     const qadate = formatDateTime(qnaData.qadate);
     const qareplytime = formatDateTime(qnaData.qareplytime);
-
-    // 게시글 삭제 후 목록으로 이동
-    const navigate = useNavigate();
 
     // 날짜 및 시간을 원하는 형식으로 변환하는 함수
     function formatDateTime(dateTimeString) {
@@ -57,7 +55,7 @@ export default function QnaDetail({ qnaData }) {
     let displayFile = '';
 
     // qafile 또는 qafile.name이 존재하는 경우에만 처리
-    if (qnaData.qafile || qnaData.qafile.name) {
+    if (qnaData.qafile && (qnaData.qafile.name || typeof qnaData.qafile === 'string')) {
         let fileNameParts = [];
 
         // File 객체인 경우 파일명 분할
@@ -84,27 +82,33 @@ export default function QnaDetail({ qnaData }) {
         displayFile = `${displayFileName}.${fileExtension}`;
     }
 
+    // 파일 다운로드 클릭 이벤트 핸들러
+    const handleDownloadClick = (e) => {
+        e.preventDefault(); // 기본 이벤트 동작 방지
+        downloadFile();
+    };
+
     // 파일 다운로드
     const downloadFile = () => {
-        setDownloading(true);
 
         let filePath = `/qna/downloadFile?fileName=${qnaData.qafile}`;
 
         apiCall(filePath, 'get', null, null)
             .then((response) => {
+                // 파일 다운로드를 위해 Blob으로 변환
+                // Blob을 URL로 변환하여 다운로드 링크 생성
                 const url = window.URL.createObjectURL(new Blob([response.blob]));
                 const a = document.createElement('a');
 
                 a.href = url;
                 a.download = qnaData.qafile;
-
+                // 다운로드 링크 클릭하여 파일 다운로드 시작
                 document.body.appendChild(a);
                 a.click();
+                // 다운로드 후 URL 객체 해제
                 window.URL.revokeObjectURL(url);
-                setDownloading(false);
             }).catch((error) => {
                 console.log(" download error = " + error)
-                setDownloading(false);
             })
     }
 
@@ -122,7 +126,7 @@ export default function QnaDetail({ qnaData }) {
                         <p>조회수</p>
                         <p>{qnaData.qacount}</p>
                         <p>첨부파일</p>
-                        <p><a href="#" onClick={downloadFile}>{displayFile}</a></p>
+                        <p><a href="#" onClick={handleDownloadClick}>{displayFile}</a></p>
                     </div>
                     <p className='XQnaBoardAnswerContent_content'>
                         {qnaData.qacontent}
@@ -142,7 +146,7 @@ export default function QnaDetail({ qnaData }) {
                                     <textarea
                                         name='qareply'
                                         id='qareply'
-                                        value={qnaData.qareply}
+                                        value={qnaData.qareply || ''}
                                         rows="100"
                                         style={{ resize: 'none', width: '750px', lineHeight: '1.5' }}
                                         readOnly

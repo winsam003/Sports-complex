@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.entity.Classes;
+import com.example.demo.entity.Sugang;
 import com.example.demo.service.ClassesService;
 
 import lombok.AllArgsConstructor;
@@ -17,31 +17,18 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @AllArgsConstructor
 @RestController
-@RequestMapping("/classes")
+@RequestMapping("/sugang")
 public class ClassesController {
 	ClassesService service;
 
 //	List
-	@GetMapping("/classesList")
-	public List<Classes> classesList() {
+	@GetMapping("/sugangList")
+	public List<Sugang> sugangList() {
 		return service.selectList();
 	}
-
-//	Insert
-//	@GetMapping("/classes/classesInsert")
-//	public String classesInsert(Model model, Qna entity) {
-//		// 요청 분석
-//		String uri = "redirect:qnaList";
-//
-//		// Service
-//		try {
-//			log.info(" 신규 강좌 등록 성공 " + service.save(entity));
-//			model.addAttribute("qna", service.selectList());
-//		} catch (Exception e) {
-//			log.info(" 신규 강좌 등록 실패 " + e.toString());
-//			uri = "qna/qnaInsert";
-//		}
-//	}
+	
+//	update
+	
 
 //	Delete
 	@GetMapping("/classes/classesDelete")

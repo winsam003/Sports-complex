@@ -9,7 +9,7 @@ export default function InquiryRegistration() {
     const sessionUserData = sessionStorage.getItem('userData');
     const userData = sessionUserData ? JSON.parse(sessionUserData) : 'null';
     const userID = {
-        id: userData.userID
+        id: userData.id
     }
 
     // 새글쓰기 내용
@@ -36,7 +36,7 @@ export default function InquiryRegistration() {
     useEffect(() => {
         let url = '/member/mDetail';
 
-        apiCall(url, 'post', userID, null)
+        apiCall(url, 'post', userID, userData.token)
             .then((response) => {
                 setQnaNewOneDate(userData => (
                     {
@@ -150,8 +150,8 @@ export default function InquiryRegistration() {
         qnaNewOneData.qafile = formData.get('file');
 
         let url = '/qna/qnaInsert'
-        apiCall(url, 'post', qnaNewOneData, null)
-            .then((qnaData) => {
+        apiCall(url, 'post', qnaNewOneData, userData.token)
+            .then(() => {
                 navigate('/QnaDetailPage', { state: { qnaData: { ...qnaNewOneData } } });
             }).catch((error) => {
                 console.log("QnaWrite Error : ", error);
