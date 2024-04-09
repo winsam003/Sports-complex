@@ -1,11 +1,11 @@
 import PageBanner from "../PageBanner";
 import XStaffRegister from "../XStaffRegister";
 
-export default function XStaffRegisterPage({ roleList }) {
+export default function XStaffRegisterPage({ token }) {
     return (
         <div>
             <PageBanner />
-            <XStaffRegister roleList={roleList} />
+            <XStaffRegister token={token} />
         </div>
     )
 }

@@ -173,8 +173,6 @@ public class MemberContoller {
 		
 		String name = entity.getName();
 		String phonenum = entity.getPhonenum();
-		log.info(name);
-		log.info(phonenum);
 		
 		entity = service.mfindID(entity);
 		if(entity != null) {
