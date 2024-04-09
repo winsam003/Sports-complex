@@ -669,3 +669,29 @@ VALUES
 5. 권한이 있다면 정상적으로 요청 실행 
 6. 권한이 없다면 필터에서 요청 거부 (403 에러발생)
 ==============================================
+
+
+* member_role_list ==========================
+
+// 테이블 생성
+CREATE TABLE member_role_list (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    member_id VARCHAR(255),
+    staff_id VARCHAR(255),
+    role_list INT
+);
+
+// 현재 member, staff 테이블에서 id 가져오기
+INSERT INTO member_role_list (member_id) SELECT id FROM member;
+insert into member_role_list (staff_id) select stfID from staff;
+
+// 전체 2(user) 권한 주기
+UPDATE member_role_list SET role_list = 2 WHERE member_id IS NOT NULL;
+UPDATE member_role_list SET role_list = 2 WHERE staff_id IS NOT NULL;
+
+// 전체 1(manager) 권한 주기
+INSERT INTO member_role_list (staff_id, role_list) SELECT staff_id, 1 FROM member_role_list WHERE role_list = 2;
+
+// 없는 값 삭제
+DELETE FROM member_role_list WHERE member_id IS NULL and staff_id IS NULL ;
+=============================================
