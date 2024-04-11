@@ -23,17 +23,17 @@ public class ClassesRepositoryImpl implements ClassesRepository {
 	// 강의 목록
 	@Override
 	public List<Classes> classesList() {
-		return em.createQuery("select c from Classes s order by clnum desc", Classes.class).getResultList();
+		return em.createQuery("select c from Classes c order by clnum desc", Classes.class).getResultList();
 	}
 
 	// 강의 등록
 	@Override
 	public int classesInsert(ClassesDTO dto) {
 		return em.createNativeQuery(
-				"insert into classes (classcode, clname, cltime, clendtime, clstart, clend, clfor, clcount, clwating, clprice)"
-						+ "value (:classcode, :clname, :cltime, :clendtime, :clstart, :clend, :clfor, :clcount, :clwating, :clprice)")
+				"insert into classes (classcode, clname, clrequest, clrequestend, clstart, clend, clfor, clcount, clwating, clprice)"
+						+ "value (:classcode, :clname, :clrequest, :clrequestend, :clstart, :clend, :clfor, :clcount, :clwating, :clprice)")
 				.setParameter("classcode", dto.getClasscode()).setParameter("clname", dto.getClname())
-				.setParameter("cltime", dto.getCltime()).setParameter("clendtime", dto.getClendtime())
+				.setParameter("cltime", dto.getClrequest()).setParameter("clendtime", dto.getClrequestend())
 				.setParameter("clstart", dto.getClstart()).setParameter("clend", dto.getClend())
 				.setParameter("clfor", dto.getClfor()).setParameter("clcount", dto.getClcount())
 				.setParameter("clwating", dto.getClwating()).setParameter("clprice", dto.getClprice()).executeUpdate();

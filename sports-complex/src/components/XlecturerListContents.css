@@ -1,4 +1,4 @@
-.XlectureListContents_Box{
+.XlectureListContents_Box {
     width: 100%;
     height: 100%;
 
@@ -9,13 +9,13 @@
     background-color: ivory;
 }
 
-.XlectureListContents_contents{
+.XlectureListContents_contents {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(9, 1fr);
     align-items: center;
     border-bottom: 1px solid #ccc;
 }
 
-.XlectureListContents_contents>span{
+.XlectureListContents_contents>span {
     text-align: center;
 }

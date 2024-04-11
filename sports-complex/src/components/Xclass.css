@@ -8,19 +8,25 @@
 
 /* 사용자 */
 .XclassListDetail_category_sugangStyle {
-    grid-template-columns: 1fr 2fr 2fr repeat(4, 1fr) 2fr 1fr;
-}
-
-/* 관리자 */
-.XclassListDetail_category {
     display: grid;
-    grid-template-columns: 50px 1fr 2fr 2fr repeat(4, 1fr) 2fr 1fr;
+    grid-template-columns: 1fr repeat(3, 2fr) repeat(5, 1fr);
     margin-top: 30px;
     border-top: 3px solid #C9EDFA;
     background-color: #ceeff250;
     text-align: center;
 }
 
+/* 관리자 */
+.XclassListDetail_category {
+    display: grid;
+    grid-template-columns: 50px 1fr repeat(3, 2fr) repeat(5, 1fr);
+    margin-top: 30px;
+    border-top: 3px solid #C9EDFA;
+    background-color: #ceeff250;
+    text-align: center;
+}
+
+.XclassListDetail_category_sugangStyle p,
 .XclassListDetail_category p {
     justify-content: center;
     align-items: center;
