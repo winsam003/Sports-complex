@@ -120,22 +120,24 @@ export default function XEventBoardWriteContent({getUserID, detail}) {
 
         const formData = new FormData();
         formData.append('file', eventPics);
-        
-        // 등록 폼
-        let formEvent = {
-            eventname : eventName, 
-            eventdetail : eventDetail, 
-            eventfacility : eventfacilityType + eventfacilityName,
-            eventtime : eventDate, 
-            eventfor : eventFor, 
-            eventtype : eventType, 
-            eventfilef : eventPics, 
-            stfid: getUserID
-        }
 
         if (detail) {
-            // 수정
 
+            let formEvent = {
+                eventcode : detail.eventcode,
+                eventname : eventName, 
+                eventdetail : eventDetail, 
+                eventfacility : eventfacilityType + eventfacilityName,
+                eventtime : eventDate, 
+                eventfor : eventFor, 
+                eventtype : eventType, 
+                eventfilef : eventPics, 
+                stfid: getUserID
+            }
+
+            console.log('수정 formEvent : ',  formEvent);
+
+            // 수정
             let url = "/event/eventupdate";
             let token = JSON.parse(sessionStorage.getItem("userData")).token;
 
@@ -156,10 +158,20 @@ export default function XEventBoardWriteContent({getUserID, detail}) {
             
             let url = "/event/eventinsert";
 
-    
+            // 등록 폼
+            let formEvent = {
+                eventname : eventName, 
+                eventdetail : eventDetail, 
+                eventfacility : eventfacilityType + eventfacilityName,
+                eventtime : eventDate, 
+                eventfor : eventFor, 
+                eventtype : eventType, 
+                eventfilef : eventPics, 
+                stfid: getUserID
+            }
             
             let token = JSON.parse(sessionStorage.getItem("userData")).token;
-            console.log('formEvent : ',  formEvent);
+            console.log('등록 formEvent : ',  formEvent);
     
             apiCall(url, 'post', formEvent, token) 
                 .then((response) => {
