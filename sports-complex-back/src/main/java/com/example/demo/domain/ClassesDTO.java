@@ -24,5 +24,5 @@ public class ClassesDTO {
 	private Integer clwating;
 	private Integer clprice;
 	private String cltype;
-	private String teacher;
+	private String teachnum;
 }

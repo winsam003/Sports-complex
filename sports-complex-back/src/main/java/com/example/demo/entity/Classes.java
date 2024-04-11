@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -56,6 +57,6 @@ public class Classes {
 	@Column(length = 10)
 	private String cltype;
 	@ManyToOne
-	@JoinColume(name = "teachercode")
-	private Teacher teacher;
+	@JoinColumn(name = "teachnum")
+	private Teach teach;
 }
