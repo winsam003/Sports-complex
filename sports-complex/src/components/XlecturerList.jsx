@@ -38,9 +38,9 @@ export default function XlecturerList() {
                     <span>계좌번호</span>
                 </div>
                 <div>
-                    {data.map((it, index) => (
+                    {/* {data.map((it, index) => (
                         <XlecturerListContents key={index} {...it} lectureDelete={lectureDelete} />
-                    ))}
+                    ))} */}
                 </div>
                 <XlecturerListButton />
             </div>
