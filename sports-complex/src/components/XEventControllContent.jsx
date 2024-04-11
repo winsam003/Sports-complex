@@ -6,7 +6,7 @@ import Submenu from './Submenu';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { apiCall } from '../apiService/apiService';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function XEventControllContent() {
 
@@ -83,6 +83,11 @@ export default function XEventControllContent() {
         setCheckEvent([]);
     }
 
+    const navigate = useNavigate();
+    const uploadEvent = () => {
+        navigate('/XEventBoardWritePage');
+    }
+
 
     //=============================================================== 
     return (
@@ -90,7 +95,8 @@ export default function XEventControllContent() {
             <Submenu />
             <div className='XEventControllContent_div_div'>
                 <div className='XEventControllContent_uploadAndSearch'>
-                    <Link to = '/XEventBoardWritePage'><span>등록</span></Link>
+                    {/* <Link to = '/XEventBoardWritePage'><span>등록</span></Link> */}
+                    <button onClick={uploadEvent}>등록</button>
                     <XEventSearch
                         onSearch={handleSearch}
                         searchType={searchType}
