@@ -91,8 +91,6 @@ export default function XBoardControllContent() {
 
 
 
-        // console.log(JSON.parse(sessionStorage.getItem("userData")).token);
-
         let token = JSON.parse(sessionStorage.getItem("userData")).token;
 
         apiCall(url, 'get', null, token)
@@ -100,10 +98,10 @@ export default function XBoardControllContent() {
                 setNoticeList(response);
                 setRememberList(response);
             }).catch((error) => {
-                if(error === 403){
+                if (error === 403) {
                     alert("권한이 없습니다.")
                     console.log("403 noticeList error occred = " + error);
-                }else{
+                } else {
                     console.log("noticeList error occred = " + error);
                 }
             })

@@ -39,6 +39,12 @@ public class NoticeBoardServiceImpl implements NoticeBoardService {
 		return repository.noticeSubmit(entity);
 	}
 	
+	@Override
+	public int noticeModify(Notice entity) {
+		log.info("Service noticeSubmit 접촉 성공");
+		return repository.noticeModify(entity);
+	}
+	
 	
 	
 	// 아래부터는 자주하는 질문 ************************************************************************************

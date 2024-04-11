@@ -32,6 +32,4 @@ public class WebMvcConfig implements WebMvcConfigurer {
 						.allowCredentials(true)
 						.maxAge(MAX_AGE_SECS);
 	}
-	
-	
 } //class

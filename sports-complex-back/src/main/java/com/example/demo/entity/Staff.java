@@ -31,7 +31,7 @@ public class Staff {
 	@Id
 	private String stfid;
 //	길이, not null
-	@Column(length = 100, nullable = false)
+	@Column(length = 100, nullable = false, updatable = false)
 	private String stfpassword;
 	@Column(length = 20, nullable = false)
 	private String stfdmp;

@@ -4,8 +4,7 @@ import './ModifyMember.css'
 import { useEffect, useState } from 'react'
 import { apiCall } from '../apiService/apiService';
 
-export default function ModifyMember({ getUserID }) {
-
+export default function ModifyMember({ getUserID, roleList }) {
 
 
     // *********************************내정보 detail 불러오기 시작************************************ //
@@ -32,38 +31,60 @@ export default function ModifyMember({ getUserID }) {
     );
 
     // 2. 내 정보 불러오기 (불러 온 후 정보를 객체에 저장)
+    let managerData;
     useEffect(() => {
 
-        let url = "/member/mDetail";
-        let requestDate = {
-            id: getUserID
-        }
+        let url;
+        let requestDate;
 
-        apiCall(url, 'post', requestDate, null)
-            .then((response)=>{
-                setUserData(userData => (
-                    {
-                        ...userData,
-                        membercode: response.membercode,
-                        name: response.name,
-                        birth: response.birth,
-                        id: response.id,
-                        address: response.address,
-                        address1: response.address1,
-                        address2: response.address2,
-                        carnum: response.carnum,
-                        email: response.email.substring(0, response.email.indexOf('@')),
-                        email2: response.email.substring(response.email.indexOf('@')),
-                        firstPhone: response.phonenum.substring(0, 3),
-                        middlePhone: (response.phonenum.length === 11 ? response.phonenum.substring(3, 7) : response.phonenum.substring(3, 6)),
-                        lastPhone: (response.phonenum.length === 11 ? response.phonenum.substring(7) : response.phonenum.substring(6)),
-                        emailagr: response.emailagr,
-                        snsagr: response.snsagr,
-                    }
-                ))            
-            }).catch((error)=>{
-                console.log("error=" + error)
-        })
+        if (roleList && roleList.length > 0) {
+            if (roleList.some(item => item === "ADMIN" || item === "MANAGER")) {
+                url = "/staff/staffDetail";
+                requestDate = {
+                    stfid: getUserID
+                }
+
+                apiCall(url, 'post', requestDate, null)
+                    .then((response) => {
+                        managerData = response;
+                        console.log(managerData);
+                    }).catch((error) => {
+                        console.log("error=" + error)
+                })
+            } else {
+                url = "/member/mDetail";
+                requestDate = {
+                    id: getUserID
+                }
+                apiCall(url, 'post', requestDate, null)
+                    .then((response) => {
+                        setUserData(userData => (
+                            {
+                                ...userData,
+                                membercode: response.membercode,
+                                name: response.name,
+                                birth: response.birth,
+                                id: response.id,
+                                address: response.address,
+                                address1: response.address1,
+                                address2: response.address2,
+                                carnum: response.carnum,
+                                email: response.email.substring(0, response.email.indexOf('@')),
+                                email2: response.email.substring(response.email.indexOf('@')),
+                                firstPhone: response.phonenum.substring(0, 3),
+                                middlePhone: (response.phonenum.length === 11 ? response.phonenum.substring(3, 7) : response.phonenum.substring(3, 6)),
+                                lastPhone: (response.phonenum.length === 11 ? response.phonenum.substring(7) : response.phonenum.substring(6)),
+                                emailagr: response.emailagr,
+                                snsagr: response.snsagr,
+                            }
+                        ))
+                    }).catch((error) => {
+                        console.log("error=" + error)
+                    })
+            }
+        } else {
+            alert("관리자 로그인을 해야 이용하실 수 있습니다.");
+        }
     }, [])
     // *********************************내정보 detail 불러오기 끝************************************ //
 
@@ -232,7 +253,7 @@ export default function ModifyMember({ getUserID }) {
             }).then((response) => {
                 alert(response.data);
                 setReset(!reset);
-                
+
             }).catch((error) => {
                 alert("회원정보 변경에 실패하였습니다. 관리자에게 문의하세요");
                 console.log("modify error occured=" + error)

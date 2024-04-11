@@ -4,8 +4,9 @@ import XFaqControllContentList from './XFaqControllContentList'
 import XResetDeleteBtn from './XBtnResetDelete'
 import Submenu from './Submenu';
 import { useEffect, useState } from 'react';
-import {apiCall} from '../apiService/apiService';
+import { apiCall } from '../apiService/apiService';
 import XBoardSearchBox from './XBoardSearchBox';
+import { useNavigate } from 'react-router-dom';
 
 export default function XFaqControllContent() {
 
@@ -55,6 +56,7 @@ export default function XFaqControllContent() {
 
     // input에서 엔터누를 시 검색 실행
     const KeyPressHandler = (e) => {
+        console.log("TEST");
         if (e.key === 'Enter') {
             setSearch(true);
         }
@@ -141,11 +143,21 @@ export default function XFaqControllContent() {
     };
     // checkbox 클릭된 유저 저장 ******************************************************************************//
 
+
+
+    const navigate = useNavigate();
+
+    //******************************* 등록 버튼 페이지 전환 *********************************//
+    const enterInsertPage = () => {
+        navigate('/XFaqWritePage');
+    }
+    //******************************* 등록 버튼 페이지 전환 *********************************//
+
     return (
         <div className='XFaqControllContent_div'>
             <Submenu />
             <div className='XFaqControllContent_div_div'>
-                <XBoardSearchBox searchValueHandler={searchValueHandler} searchHandler={searchHandler} />
+                <XBoardSearchBox enterInsertPage={enterInsertPage} searchValueHandler={searchValueHandler} searchKeywordHandler={searchKeywordHandler} searchHandler={searchHandler} KeyPressHandler={KeyPressHandler} />
                 <XFaqControllContentList searchValue={searchValue} noticeList={noticeList} setNoticeList={setNoticeList}
                     setSearch={setSearch} search={search} userDelete={userDelete} checkedUsers={checkedUsers} />
                 <XResetDeleteBtn />

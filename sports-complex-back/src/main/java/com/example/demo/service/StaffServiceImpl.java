@@ -40,8 +40,12 @@ public class StaffServiceImpl implements StaffService {
 //	직원 1명 조회인데 권한번호 까지 받아옴
 	@Override
 	public Staff getWithRoles(String stfid) {
-		// TODO Auto-generated method stub
 		return repository.getWithRoles(stfid);
+	}
+	
+	@Override
+	public int staffModify(Staff entity) {
+		return repository.staffModify(entity);
 	}
 
 }
