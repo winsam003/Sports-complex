@@ -57,7 +57,27 @@ public class MemberRepositoryImpl implements MemberRepository {
 		query.setParameter("parkuse", dto.getParkuse());
 
 		// 쿼리 실행 및 결과 반환
-		return query.executeUpdate();
+		
+		int result = query.executeUpdate();
+		
+		if(result>0) {
+		    // 회원의 기본 권한 설정
+		    if (result > 0) {
+		        // 권한 정보 저장 쿼리 작성
+		        String roleJpql = "INSERT INTO member_role_list (member_id, role_list) VALUES (:id, :role)";
+
+		        // 권한 정보 저장 쿼리 객체 생성
+		        Query roleQuery = em.createNativeQuery(roleJpql);
+
+		        // 회원의 기본 권한 설정 (예: 'USER')
+		        roleQuery.setParameter("id", dto.getId());
+		        roleQuery.setParameter("role", 2);
+
+		        // 권한 정보 저장 쿼리 실행
+		        roleQuery.executeUpdate();
+		    }
+		}
+		return result;
 	}
 
 	@Override
@@ -142,4 +162,5 @@ public class MemberRepositoryImpl implements MemberRepository {
 	             .setParameter("id", id)
 	             .getSingleResult();
 	}
+	
 }

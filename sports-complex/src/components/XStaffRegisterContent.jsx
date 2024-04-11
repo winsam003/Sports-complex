@@ -2,8 +2,9 @@ import './XStaffRegisterContent.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
+import {apiCall} from '../apiService/apiService';
 
-export default function XStaffRegisterContent({ roleList }) {
+export default function XStaffRegisterContent({ token }) {
     // 아이디 중복확인
     const [idDuplication, setIdDuplication] = useState(false);
 
@@ -151,16 +152,17 @@ export default function XStaffRegisterContent({ roleList }) {
     const joinStaff = () => {
         if (idcheck && pwcheck && nameCheck && phoneNumCheck) {
             if (window.confirm("직원을 등록하시겠습니까?")) {
+                let url = '/staff/staffInsert';
 
-                axios.post('/staff/staffInsert', staffData)
+                apiCall(url, 'post', staffData, token)
                     .then((response) => {
                         alert("직원 등록에 성공하였습니다.");
                         navigate('/XStaffInfoPage');
                     }).catch(error => {
-                        if(error.response.status === 403){
+                        if (error === 403) {
                             alert("[403] 해당 기능 접근 권한이 없습니다.");
-                        }else{
-                            console.error('staffInsert :', error);
+                        } else {
+                            console.error('staffInsert :' + error);
                         }
                     });
             } else {
