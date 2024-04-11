@@ -70,8 +70,10 @@ public class SecurityConfig {
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS).and() // 세션을 생성하도록 구성
 				// .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 				// => session 기반이 아님을 선언
-				.authorizeRequests().antMatchers("/staff/staffInsert").hasRole("ADMIN")
-				.antMatchers("/", "/event/**", "/member/**", "/qna/**", "/staff/**", "/classes/**").permitAll()
+				.authorizeRequests()
+				.antMatchers("/staff/staffInsert").hasRole("ADMIN")
+				.antMatchers("/staff/staffModify").hasRole("ADMIN")
+				.antMatchers("/", "/event/**", "/member/**", "/qna/**", "/staff/**", "/classes/**", "/notice/**").permitAll()
 				// => "/", "/home", "/resources/**", "/uploadImage/**", "/member/**" 등의 경로는 인증
 				// 안해도 됨.
 				.anyRequest().authenticated().and() // 나머지 모든 요청에 대해서 인증이 필요함을 명시

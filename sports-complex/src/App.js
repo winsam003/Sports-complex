@@ -32,6 +32,8 @@ import InfoHandlingPolicyPage from './components/Pages/InfoHandlingPolicyPage';
 import VideoHandlePage from './components/Pages/VideoHandlePage';
 import EmailCollectRefusal from './components/Pages/EmailCollectRefusal';
 import VisitWayPage from './components/Pages/VisitWayPage';
+import BoardControllPageDetailPage from './components/Pages/BoardControllPageDetailPage';
+import FaqControllPageDetailPage from './components/Pages/FaqControllPageDetailPage';
 import NotFoundPage from './components/Pages/NotFoundPage';
 
 import XmanagementPage from './components/Pages/XmanagementPage';
@@ -59,6 +61,9 @@ import XStaffInfoPage from './components/Pages/XStaffInfoPage';
 import XStaffRegisterPage from './components/Pages/XStaffRegisterPage';
 import XBoardControllPageDetailPage from './components/Pages/XBoardControllPageDetailPage';
 import XBoardControllInsertPage from './components/Pages/XBoardControllInsertPage';
+import XFnqControllPageDetailPage from './components/Pages/XFnqControllPageDetailPage';
+import XFaqWritePage from './components/Pages/XFaqWritePage';
+import XStaffModifyPage from './components/Pages/XStaffModifyPage';
 
 import Footer from './components/Footer';
 import Xheader from './components/Xheader';
@@ -125,18 +130,19 @@ function App() {
 
 
       {isAdminPage ?
-        <Xheader checkAdminPage={checkAdminPage} logout={logout} getUserName={getUserName} />
+        <Xheader checkAdminPage={checkAdminPage} logout={logout} getUserName={getUserName} roleList={roleList} />
         :
-        <Header checkAdminPage={checkAdminPage} logout={logout} getUserName={getUserName} />}
+        <Header checkAdminPage={checkAdminPage} logout={logout} getUserName={getUserName} roleList={roleList} />}
 
       <Routes>
-        <Route path='/' element={<HomePage setLogincheck={setLogincheck} loginCheck={loginCheck} logout={logout} getUserName={getUserName} getUserID={getUserID} />} />
+        <Route path='/' element={<HomePage setLogincheck={setLogincheck} loginCheck={loginCheck} logout={logout} getUserName={getUserName} roleList={roleList} />} />
         <Route path='/JoinPage1' element={<JoinPage1 />} />
         <Route path='/JoinPage1' element={<JoinPage1 />} />
         <Route path='/JoinPage2' element={<JoinPage2 />} />
         <Route path='/JoinPage3' element={<JoinPage3 />} />
         <Route path='/JoinPage4' element={<JoinPage4 />} />
         <Route path='/BoardPage' element={<BoardPage />} />
+        <Route path='/BoardControllPageDetailPage' element={<BoardControllPageDetailPage />} />
         <Route path='/FacilityInformationPage' element={<FacilityInformationPage />} />
         <Route path='/FrequentlyAskedPage' element={<FrequentlyAskedPage />} />
         <Route path='/LoginPage' element={<LoginPage setLogincheck={setLogincheck} loginCheck={loginCheck} />} />
@@ -152,7 +158,7 @@ function App() {
         <Route path='/ClassSchedulePage' element={<ClassSchedulePage />} />
         <Route path='/PasswordChangePage' element={<PasswordChangePage getUserID={getUserID} />} />
         <Route path='/PasswordChangePage2' element={<PasswordChangePage2 />} />
-        <Route path='/ModifyMemberPage' element={<ModifyMemberPage getUserID={getUserID} />} />
+        <Route path='/ModifyMemberPage' element={<ModifyMemberPage getUserID={getUserID} roleList={roleList} />} />
         <Route path='/QRCodePage' element={<QRCodePage />} />
         <Route path='/PlaceRentalInfo' element={<PlaceRentalInfo />} />
         <Route path='/PlaceRental' element={<PlaceRental />} />
@@ -162,9 +168,10 @@ function App() {
         <Route path='/VideoHandlePage' element={<VideoHandlePage />} />
         <Route path='/EmailCollectRefusal' element={<EmailCollectRefusal />} />
         <Route path='/VisitWayPage' element={<VisitWayPage />} />
+        <Route path='/FaqControllPageDetailPage' element={<FaqControllPageDetailPage />} />
 
         <Route path='/XmanagementPage' element={<XmanagementPage />} />
-        <Route path='/XBoardWritePage' element={<XBoardWritePage getUserID={getUserID} />} />
+        <Route path='/XBoardWritePage' element={<XBoardWritePage getUserID={getUserID} token={token} />} />
         <Route path='/XEventBoardWritePage' element={<XEventBoardWritePage getUserID={getUserID} />} />
         <Route path='/XFaqBoardWritePage' element={<XFaqBoardWritePage />} />
         <Route path='/XQnaBoardAnswerPage' element={<XQnaBoardAnswerPage />} />
@@ -188,6 +195,10 @@ function App() {
         <Route path='/XStaffRegisterPage' element={<XStaffRegisterPage token={token} />} />
         <Route path='/XBoardControllPageDetailPage' element={<XBoardControllPageDetailPage />} />
         <Route path='/XBoardControllInsertPage' element={<XBoardControllInsertPage />} />
+        <Route path='/XFnqControllPageDetailPage' element={<XFnqControllPageDetailPage />} />
+        <Route path='/XStaffModifyPage' element={<XStaffModifyPage />} />
+        <Route path='/XFaqWritePage' element={<XFaqWritePage getUserID={getUserID} token={token}/>} />
+
 
         <Route path='/XEventDetailPage' element={<XEventDetailPage />} />
 

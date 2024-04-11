@@ -44,13 +44,17 @@
 .XStaffList_Searchstaff {
     margin-top: 20px;
     display: grid;
-    grid-template-columns: 50px repeat(7, 1fr);
+    grid-template-columns: 50px repeat(6, 1fr);
     align-items: center;
     text-align: center;
     border-top: 3px solid #C9EDFA;
     background-color: #ceeff250;
+
+    height: 3rem;
+
 }
 
 .XStaffList_Searchstaff>span {
+    font-weight: bold;
     padding: 5px
 }

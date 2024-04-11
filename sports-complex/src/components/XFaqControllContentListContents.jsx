@@ -22,7 +22,7 @@ export default function XFaqControllContentListContents({ notnum, nottitle, ques
     // detail로 정보를 가지고 이동
     const navigate = useNavigate();
     const boardDetail = () => {
-        navigate(`/XBoardControllPageDetailPage?notnum=${notnum}`, {
+        navigate(`/XFnqControllPageDetailPage?notnum=${notnum}`, {
             state: {
                 notnum: notnum,
                 nottitle: nottitle,

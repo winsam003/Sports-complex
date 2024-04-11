@@ -1,7 +1,8 @@
 
+import { useNavigate } from 'react-router';
 import './BoardSearchList2.css'
 
-export default function BoardSearchList2({ notnum, nottitle, stfid, notdate }) {
+export default function BoardSearchList2({ quest, notnum, nottitle, stfid, notdate, notcount, notuploadfile, notdetail }) {
 
     // qadate를 연월일시분 형식으로 표현
     const formattedDate = new Date(notdate).toLocaleString('ko-KR', {
@@ -15,13 +16,33 @@ export default function BoardSearchList2({ notnum, nottitle, stfid, notdate }) {
     }).replace(/\./g, '');
 
 
+
+    const navigate = useNavigate();
+    const boardDetail = () => {
+        navigate(`/FaqControllPageDetailPage?notnum=${notnum}`, {
+            state: {
+                notnum: notnum,
+                nottitle: nottitle,
+                quest: quest,
+                stfid: stfid,
+                notdate: notdate,
+                notuploadfile: notuploadfile,
+                notcount: notcount,
+                notdetail: notdetail
+            }
+        });
+    }
+
+
     return (
         <div className='BoardSearchList_content2Box'>
             <div className='BoardSearchList_content2'>
                 <span>{notnum}</span>
-                <span>{nottitle}</span>
-                <span>{stfid}</span>
+                <span onClick={boardDetail}>{nottitle}</span>
+                <span>{quest}</span>
                 <span>{formattedDate}</span>
+                <span>{stfid}</span>
+                <span>{notcount}</span>
             </div>
         </div>
     )

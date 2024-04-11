@@ -47,7 +47,6 @@ public class EventController {
 	// 이벤트 삭제
 	@PostMapping(value = "/eventdelete", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> eDelete(@RequestBody List<Integer> eventCodes ) {
-		log.info("deleteTEST");	
 		log.info(eventCodes);
 		
 		int deleteCount = 0;
@@ -93,7 +92,6 @@ public class EventController {
 									  @RequestParam(value = "eventfilef", required = false) MultipartFile eventfilef, 
 									  @RequestParam("stfid") String stfid)  throws IOException {
 		
-		log.info("Contoller eventinsert");
 		
 		Event entity = new Event();
 		

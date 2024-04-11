@@ -82,6 +82,14 @@
     margin: 0;
 }
 
+.XStaffRegisterContent_input2{
+    width: 300px;
+    margin: 0;
+
+    background-color: #ebe1e1;
+
+}
+
 /* 소제목 */
 .JoinStaff_title {
     font-size: large;
