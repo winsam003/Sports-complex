@@ -185,7 +185,7 @@ function App() {
         <Route path='/XSugangRequestPage' element={<XSugangRequestPage />} />
         <Route path='/XRentalPlaceRequestControllPage' element={<XRentalPlaceRequestControllPage />} />
         <Route path='/XStaffInfoPage' element={<XStaffInfoPage />} />
-        <Route path='/XStaffRegisterPage' element={<XStaffRegisterPage roleList={roleList} />} />
+        <Route path='/XStaffRegisterPage' element={<XStaffRegisterPage token={token} />} />
         <Route path='/XBoardControllPageDetailPage' element={<XBoardControllPageDetailPage />} />
         <Route path='/XBoardControllInsertPage' element={<XBoardControllInsertPage />} />
 
