@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.domain.StaffDTO;
+import com.example.demo.entity.Member;
 import com.example.demo.entity.Staff;
 import com.example.demo.jwtToken.TokenProvider;
 import com.example.demo.service.StaffService;
@@ -63,6 +64,16 @@ public class StaffController {
 		return "redirect:staff";
 	}
 	
+	@PostMapping(value= "/staffDetail", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> staffDetail(@RequestBody Staff entity){
+		entity = service.StaffOne(entity.getStfid());
+		if(entity != null) {
+			return ResponseEntity.status(HttpStatus.OK).body(entity);
+		}else {
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(entity);			
+		}
+	}
+	
 	@PostMapping(value = "/staffLogin", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> staffLogin(@RequestBody Staff dto){
 		String password = dto.getStfpassword();
@@ -89,5 +100,16 @@ public class StaffController {
 			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(response);	// 담은 데이터 반환
 		}
 	}
+	
+	// ** staffModify
+		@PostMapping(value="/staffModify", consumes = MediaType.APPLICATION_JSON_VALUE)
+		public ResponseEntity<?> mUpdate(@RequestBody Staff entity){
+			log.info(entity);		
+			if(service.staffModify(entity) > 0) {
+				return ResponseEntity.status(HttpStatus.OK).body("직원정보수정에 성공하였습니다.");
+			}else {
+				return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("직원정보수정에 실패하였습니다.");			
+			}
+		} // mUpdate
 
 }

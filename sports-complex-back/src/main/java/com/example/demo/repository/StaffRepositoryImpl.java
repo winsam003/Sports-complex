@@ -7,7 +7,12 @@ import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.EntityGraph;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.demo.domain.StaffDTO;
 import com.example.demo.entity.Member;
@@ -96,6 +101,7 @@ public class StaffRepositoryImpl implements StaffRepository {
 //	직원 1명 조회
 	@Override
 	public Staff StaffOne(String stfid) {
+		log.info(stfid);
 		return em.createQuery("select s from Staff s where s.stfid=:stfid", Staff.class).setParameter("stfid", stfid)
 				.getSingleResult();
 	}
@@ -104,9 +110,32 @@ public class StaffRepositoryImpl implements StaffRepository {
 	@EntityGraph(attributePaths = {"roleList"}) 
 	@Override
 	public Staff getWithRoles(String stfid) {
-		// TODO Auto-generated method stub
 		return em.createQuery("SELECT s FROM Staff s LEFT JOIN FETCH s.roleList WHERE s.stfid = :stfid", Staff.class)
 	             .setParameter("stfid", stfid)
 	             .getSingleResult();
 	}
+	
+	
+	
+//	직원 정보 수정
+	@Override
+	public int staffModify(Staff entity) {
+		
+		String sql = "UPDATE Staff SET stfdmp = :stfdmp, stflevel = :stflevel, stfname = :stfname, stfpnum = :stfpnum, stfcode = :stfcode WHERE stfid = :stfid";
+
+		Query query = em.createNativeQuery(sql);
+		
+		query.setParameter("stfid", entity.getStfid());
+		query.setParameter("stfdmp", entity.getStfdmp());
+		query.setParameter("stflevel", entity.getStflevel());
+		query.setParameter("stfname", entity.getStfname());
+		query.setParameter("stfpnum", entity.getStfpnum());
+		query.setParameter("stfcode", entity.getStfcode());
+		
+		
+		return query.executeUpdate();
+	}
+	
+	
+
 }

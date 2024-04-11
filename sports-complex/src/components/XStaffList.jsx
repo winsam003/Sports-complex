@@ -78,6 +78,7 @@ export default function XStaffList() {
         setselectedStaffIds([]);
     };
 
+
     return (
         <div className='XStaffList_Box'>
             <div className='XStaffList_searchTitle'>직원 검색</div>
@@ -106,7 +107,6 @@ export default function XStaffList() {
                 <div className='XStaffList_Searchstaff'>
                     <span>체크</span>
                     <span>ID</span>
-                    <span>비밀번호</span>
                     <span>소속</span>
                     <span>직위</span>
                     <span>전화번호</span>

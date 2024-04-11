@@ -47,7 +47,6 @@ public class EventController {
 	// 이벤트 삭제
 	@PostMapping(value = "/eventdelete", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> eDelete(@RequestBody List<Integer> eventCodes ) {
-		log.info("deleteTEST");	
 		log.info(eventCodes);
 		
 		int deleteCount = 0;
@@ -58,7 +57,8 @@ public class EventController {
 			}
 		}		
 		if(deleteCount > 0) {
-			return ResponseEntity.status(HttpStatus.OK).body(deleteCount + "개 이벤트 항목 삭제");
+			return ResponseEntity.status(HttpStatus.OK).body(eventCodes + "번 이벤트 삭제되었습니다. ");
+//			return ResponseEntity.status(HttpStatus.OK).body(deleteCount + "개 이벤트 항목 삭제");
 		} else {
 			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("삭제할 이벤트 게시물이 없습니다.");
 		}		
@@ -91,9 +91,9 @@ public class EventController {
 									  @RequestParam("eventfor") String eventfor, 
 									  @RequestParam("eventtype") String eventtype, 
 									  @RequestParam(value = "eventfilef", required = false) MultipartFile eventfilef, 
-									  @RequestParam("stfid") String stfid)  throws IOException {
+									  @RequestParam("stfid") String stfid) throws IOException {
 		
-		log.info("Contoller eventinsert");
+		log.info("Controller eventinsert");
 		
 		Event entity = new Event();
 		
@@ -113,7 +113,6 @@ public class EventController {
 			
 			String realPath = "C:\\jgj\\TeamSSJ\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\eventBoard\\";
 			
-			// 솔직히 무슨 기준으로 배포 전, 후 를 나눠야할지 모르겠음 일단 같은 폴더로 지정했음
 			if(realPath.contains(".TeamSSJ."))
 				realPath = "C:\\jgj\\TeamSSJ\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\eventBoard\\";
 			else 
@@ -144,6 +143,7 @@ public class EventController {
 			
 	} // eInsert
 	
+	// 이벤트 이미지 경로 보내기
 	@GetMapping(value = "/eventimages")
 	public ResponseEntity<?> getImagePath(@RequestParam String img, HttpServletRequest request) throws Exception {
 		
@@ -152,6 +152,74 @@ public class EventController {
 		FileSystemResource resource = new FileSystemResource(realPath + "\\" + img);
 		
 		return new ResponseEntity<>(resource, HttpStatus.OK);
+	} //getImagePath
+	
+	
+	
+	
+	// 업데이트
+	@PostMapping(value = "/eventupdate")
+	public ResponseEntity<?> eUpdate(@RequestParam("eventcode") int eventcode, 
+									 @RequestParam("eventname") String eventname, 
+								     @RequestParam("eventdetail") String eventdetail, 
+								     @RequestParam("eventfacility") String eventfacility, 
+								     @RequestParam("eventtime") String eventtime, 
+							   	     @RequestParam("eventfor") String eventfor, 
+								     @RequestParam("eventtype") String eventtype, 
+								     @RequestParam(value = "eventfilef", required = false) MultipartFile eventfilef, 
+								     @RequestParam("stfid") String stfid) throws IOException{
+		
+		log.info("UPDATE . UPDATE . // Controller eventupdate // UPDATE . UPDATE . ");
+		
+		Event entity = new Event();
+		
+		entity.setEventcode(eventcode);
+		entity.setEventname(eventname);
+		entity.setEventdetail(eventdetail);
+		entity.setEventfacility(eventfacility);
+		entity.setEventtime(eventtime);
+		entity.setEventfor(eventfor);
+		entity.setEventtype(eventtype);
+		entity.setEventfilef(eventfilef);
+		entity.setStfid(stfid);
+		
+		// 파일이 있을 경우.
+		if (eventfilef != null && !eventfilef.isEmpty()) {
+			
+			entity.setEventuploadfile(eventfilef.getOriginalFilename());
+			
+			String realPath = "C:\\jgj\\TeamSSJ\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\eventBoard\\";
+			
+			if(realPath.contains(".TeamSSJ."))
+				realPath = "C:\\jgj\\TeamSSJ\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\eventBoard\\";
+			else 
+				realPath = "C:\\jgj\\TeamSSJ\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\eventBoard\\";
+			
+			// 1.1. 해당 위치에 폴더가 존재하지 않다면 만들기
+			File file1 = new File(realPath);
+			if(!file1.exists()) {
+				file1.mkdir();
+			}
+			
+			// 1.2. 저장 할 파일 데이터가 존재한다면 저장 경로에 파일 이름을 붙여주고 파일 복사 (저장)
+			MultipartFile uploadfilef = entity.getEventfilef();
+			if(uploadfilef != null && !uploadfilef.isEmpty()) {
+				String f2 = realPath + uploadfilef.getOriginalFilename();
+				File f1 = new File(f2);
+				uploadfilef.transferTo(f1);
+			}
+		}
+		
+		log.info(entity);
+		
+		if(service.EventUpdate(entity) > 0) {
+			return ResponseEntity.status(HttpStatus.OK).body("이벤트 업데이트 완료. 해당 게시물 디테일로 이동");
+		} else {
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("이벤트 업데이트 실패");
+		}
+
+		
+		
 	}
 	
 	

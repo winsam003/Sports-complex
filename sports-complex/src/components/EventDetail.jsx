@@ -2,22 +2,19 @@ import { useEffect, useState } from 'react';
 import { apiCall } from '../apiService/apiService';
 import './EventDetail.css'
 import { MdFestival } from "react-icons/md";
-import axios from 'axios';
-import App from './../App';
 import { API_BASE_URL } from '../apiService/app-config';
+import { useLocation } from 'react-router';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function EventDetail({ eventcode }) {
 
     // 디테일 정보 가져오기 ====================================================
     const [eventDetailOne, setEventDetailOne] = useState('');
-
     const [imagePath, setImagePath] = useState('');
-
-
     // console.log(`EventDetail 에서의 eventcode : `, eventcode);
 
     useEffect(() => {
-        
+        // 이미지 요청
         apiCall('/event/eventimages', 'get', null, null)
             .then((response) => {
                 setImagePath(response);
@@ -38,16 +35,18 @@ export default function EventDetail({ eventcode }) {
         // fetchEventDetail();
     }, []);
 
-    // console.log(`eventDetailOne : `, eventDetailOne);
-    
-    // 파일명
-    // console.log(eventDetailOne.eventuploadfile);
+    const location = useLocation();
 
-    //===============================================================================
-
-    console.log((imagePath)+(eventDetailOne.eventuploadfile));
-    // console.log(imagePath);
-
+    const navigate = useNavigate();
+    // 수정버튼 이벤트
+    const updateEventPage = () => {
+        console.log(eventDetailOne);
+        navigate(`/XEventBoardWritePage?eventcode=${eventDetailOne.eventcode}`, 
+                    {
+                        state: {detail : eventDetailOne}
+                    });
+        
+    }
 
     return (
         <div className="EventDetailContainor">
@@ -106,10 +105,18 @@ export default function EventDetail({ eventcode }) {
                     :
                     <div></div>
                 }
+                <p className='EventDetail_stfid'>작성자 : {eventDetailOne.stfid}</p>
                 </div>
             </div>
             <div className='EventDetail_buttonBox'>
-                
+                {location.pathname == '/XEventDetailPage' ?
+                // <button className='EventDetail_update'>수정</button>
+                <button className='EventDetail_update'
+                        onClick={updateEventPage} >수정</button>
+
+                :
+                <span></span>}
+
                 <button className='EventDetail_button' 
                         onClick={() => window.history.back()} >목록</button>
             </div>

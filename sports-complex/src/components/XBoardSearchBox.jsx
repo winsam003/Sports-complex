@@ -1,6 +1,9 @@
+import { useLocation } from 'react-router';
 import './XBoardSearchBox.css'
 
 export default function XBoardSearchBox({ searchValueHandler, searchHandler, searchKeywordHandler, KeyPressHandler, enterInsertPage }) {
+
+    const location = useLocation();
 
     return (
         <div>
@@ -8,7 +11,7 @@ export default function XBoardSearchBox({ searchValueHandler, searchHandler, sea
             <div className='XBoardSearchBox_div'>
                 <div className='XBoardSearchBox_SearchBox'>
                     <span className='XBoardSearchBox_SearchBoxSpan1'>
-                        <button className='XBoardSearchBox_insertBtn' onClick={enterInsertPage}>등록</button>
+                        {location.pathname.indexOf("/Faq") !== -1 || location.pathname.indexOf("/BoardPage") !== -1  ? "" : <button className='XBoardSearchBox_insertBtn' onClick={enterInsertPage}>등록</button>}
                     </span>
                     <span>
                         <select onChange={searchValueHandler}>

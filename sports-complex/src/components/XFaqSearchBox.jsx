@@ -1,6 +1,6 @@
 import './XFaqSearchBox.css'
 
-export default function XFaqSearchBox() {
+export default function XFaqSearchBox({ searchValueHandler, searchHandler, searchKeywordHandler, KeyPressHandler, enterInsertPage }) {
     return (
         <div>
             {/* 검색 */}
