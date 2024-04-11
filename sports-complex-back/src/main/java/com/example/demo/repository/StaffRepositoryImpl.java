@@ -3,6 +3,7 @@ package com.example.demo.repository;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.EntityGraph;
@@ -12,8 +13,11 @@ import com.example.demo.domain.StaffDTO;
 import com.example.demo.entity.Member;
 import com.example.demo.entity.Staff;
 
+import lombok.extern.log4j.Log4j2;
+
 @Transactional
 @Repository
+@Log4j2
 public class StaffRepositoryImpl implements StaffRepository {
 	private final EntityManager em;
 
@@ -31,14 +35,55 @@ public class StaffRepositoryImpl implements StaffRepository {
 //	직원 등록
 	@Override
 	public int staffinsert(StaffDTO dto) {
-		return em
+		
+		// 쿼리 실행 및 결과 반환
+		
+		int result = em
 				.createNativeQuery(
 						"insert into Staff (stfid, stfpassword, stfdmp, stflevel, stfname, stfpnum, stfcode) "
 								+ "values (:stfid, :stfpassword, :stfdmp, :stflevel, :stfname, :stfpnum, :stfcode)")
 				.setParameter("stfid", dto.getStfid()).setParameter("stfpassword", dto.getStfpassword())
 				.setParameter("stfdmp", dto.getStfdmp()).setParameter("stflevel", dto.getStflevel())
 				.setParameter("stfname", dto.getStfname()).setParameter("stfpnum", dto.getStfpnum())
-				.setParameter("stfcode", dto.getStfcode()).executeUpdate();
+				.setParameter("stfcode", dto.getStfcode()).executeUpdate();;
+		
+		// 회원의 기본 권한 설정
+		if (result > 0) {
+			if("팀장".equals(dto.getStflevel())) {
+				for(int i=0 ; i<3 ; i++) {
+					// 권한 정보 저장 쿼리 작성
+			        String roleJpql = "INSERT INTO staff_role_list (staff_stfid, role_list) VALUES (:stfid, :role)";
+
+			        // 권한 정보 저장 쿼리 객체 생성
+			        Query roleQuery = em.createNativeQuery(roleJpql);
+
+			        // 회원의 기본 권한 설정 (예: 'USER')
+			        roleQuery.setParameter("stfid", dto.getStfid());
+			        roleQuery.setParameter("role", i);
+
+			        // 권한 정보 저장 쿼리 실행
+			        roleQuery.executeUpdate();
+				}
+			}else if("사원".equals(dto.getStflevel())) {
+				for(int i=1 ; i<3 ; i++) {
+					// 권한 정보 저장 쿼리 작성
+			        String roleJpql = "INSERT INTO staff_role_list (staff_stfid, role_list) VALUES (:stfid, :role)";
+
+			        // 권한 정보 저장 쿼리 객체 생성
+			        Query roleQuery = em.createNativeQuery(roleJpql);
+
+			        // 회원의 기본 권한 설정 (예: 'USER')
+			        roleQuery.setParameter("stfid", dto.getStfid());
+			        roleQuery.setParameter("role", i);
+
+			        // 권한 정보 저장 쿼리 실행
+			        roleQuery.executeUpdate();
+				}
+			}
+		        
+		}
+		return result;
+		
 	}
 
 //	직원 삭제

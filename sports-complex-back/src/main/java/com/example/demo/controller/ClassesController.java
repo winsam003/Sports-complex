@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.entity.Sugang;
+//import com.example.demo.entity.Sugang;
 import com.example.demo.service.ClassesService;
 
 import lombok.AllArgsConstructor;
@@ -22,10 +22,10 @@ public class ClassesController {
 	ClassesService service;
 
 //	List
-	@GetMapping("/sugangList")
-	public List<Sugang> sugangList() {
-		return service.selectList();
-	}
+//	@GetMapping("/sugangList")
+//	public List<Sugang> sugangList() {
+//		return service.selectList();
+//	}
 	
 //	update
 	
@@ -38,9 +38,9 @@ public class ClassesController {
 
 		// Service
 		try {
-			service.deleteById(classCode);
+//			service.deleteById(classCode);
 			log.info(" 강좌 삭제 성공 " + classCode);
-			model.addAttribute("qna", service.selectList());
+//			model.addAttribute("qna", service.selectList());
 		} catch (Exception e) {
 			log.info(" 강좌 삭제 실패 " + e.toString());
 		}
