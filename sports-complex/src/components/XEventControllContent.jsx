@@ -67,8 +67,10 @@ export default function XEventControllContent() {
     const del = () => {
         let url = "/event/eventdelete"
 
+        window.scrollTo(0, 0);
         apiCall(url, 'post', checkEvent, null)
             .then((checkEvent) => {
+                alert(`${checkEvent}`);
                 setCheckEvent([]);
                 fetchEventList();
             }).catch((error) => {
