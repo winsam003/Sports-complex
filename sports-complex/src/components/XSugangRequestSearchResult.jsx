@@ -1,7 +1,7 @@
 import './XSugangRequestSearchResult.css'
 import { useLocation } from 'react-router-dom';
 
-export default function XSugangRequestSearchResult({ clnum, classcode, clname, clrequest, clrequestend, clstart, clend, clfor, clcount, clwating, clprice, cltype, onToggleCheckbox, isChecked }) {
+export default function XSugangRequestSearchResult({ clnum, classcode, clname, clrequest, clrequestend, clstart, clend, cltime, clfor, clcount, clwating, clprice, cltype, onToggleCheckbox, isChecked }) {
     // 사용자 페이지 접근
     const location = useLocation();
 
@@ -29,13 +29,13 @@ export default function XSugangRequestSearchResult({ clnum, classcode, clname, c
     const getTargetType = (clfor) => {
         switch (clfor) {
             case 'KI':
-                return '아동(만 12세이하)';
+                return '아동';
             case 'HT':
-                return '청소년(만 13-18세)';
+                return '청소년';
             case 'AD':
-                return '성인(만 19-64세)';
+                return '성인';
             case 'OL':
-                return '노인(만 65세 이상)';
+                return '노인';
             default:
                 return '';
         }
@@ -73,6 +73,7 @@ export default function XSugangRequestSearchResult({ clnum, classcode, clname, c
                                 <p>{clnum}</p>
                                 <p>{clname}</p>
                                 <p>{clstartdate}<br />- {clenddate}</p>
+                                <p>{cltime}</p>
                                 <p>{getTargetType(clfor)}</p>
                                 <p>{countRatio}</p>
                                 <p>{watingRatio}</p>
@@ -86,6 +87,7 @@ export default function XSugangRequestSearchResult({ clnum, classcode, clname, c
                                 <p>{clnum}</p>
                                 <p>{clname}</p>
                                 <p>{clstartdate}<br />- {clenddate}</p>
+                                <p>{cltime}</p>
                                 <p>{getTargetType(clfor)}</p>
                                 <p>{countRatio}</p>
                                 <p>{watingRatio}</p>

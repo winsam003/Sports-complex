@@ -1,6 +1,6 @@
 import './Xclass.css';
 import Submenu from './Submenu';
-import XBtnResetDelete from './XBtnResetDelete';
+import SugangReciptInfo from './SugangReciptInfo';
 import XclassSearchBox from './XclassSearchBox';
 import XSugangRequestSearchResult from './XSugangRequestSearchResult';
 import { useState, useEffect } from 'react';
@@ -112,6 +112,9 @@ export default function Xclass() {
         <div className='Xclass_Box'>
             <Submenu />
             <div className='Xclass_Box_div'>
+                {location.pathname == '/Sugang' ?
+                    <SugangReciptInfo /> : ''
+                }
                 <XclassSearchBox onSearch={handleSearch} onReset={reset}
                     classesSearchBTSelect={classesSearchBTSelect} setClassesSearchBTSelect={setClassesSearchBTSelect}
                     classesSearchSTSelect={classesSearchSTSelect} setClassesSearchSTSelect={setClassesSearchSTSelect}
@@ -119,13 +122,14 @@ export default function Xclass() {
                     setClassesSearcTargetSelect={setClassesSearcTargetSelect}
                     classesSearchInput={classesSearchInput} setClassesSearchInput={setClassesSearchInput} />
                 <div className='XclassListDetail_Container'>
-                    <div className={location.pathname === '/sugang' ? 'XclassListDetail_category_sugangStyle' : 'XclassListDetail_category'}>
+                    <div className={location.pathname === '/Sugang' ? 'XclassListDetail_category_sugangStyle' : 'XclassListDetail_category'}>
                         {location.pathname == '/Sugang' ?
                             // 사용자
                             <>
                                 <p>번호</p>
                                 <p>강좌명</p>
                                 <p>강의 날짜</p>
+                                <p>시간</p>
                                 <p>대상</p>
                                 <p>현재원</p>
                                 <p>대기원</p>
@@ -139,6 +143,7 @@ export default function Xclass() {
                                 <p>번호</p>
                                 <p>강좌명</p>
                                 <p>강의 날짜</p>
+                                <p>시간</p>
                                 <p>대상</p>
                                 <p>현재원</p>
                                 <p>대기원</p>

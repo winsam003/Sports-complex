@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
 @Data
 public class ClassesDTO {
 	private Integer clnum;
+	private String cldays;
+	private String cltime;
 	private String classcode;
 	private String clname;
 	private Timestamp clrequest;
@@ -22,4 +24,5 @@ public class ClassesDTO {
 	private Integer clwating;
 	private Integer clprice;
 	private String cltype;
+	private String teacher;
 }
