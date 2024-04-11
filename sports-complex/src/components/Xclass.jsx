@@ -14,8 +14,8 @@ export default function Xclass() {
     // 검색 이용을 위한 select과 input
     const [classesSearchBTSelect, setClassesSearchBTSelect] = useState('전체');
     const [classesSearchSTSelect, setClassesSearchSTSelect] = useState('전체');
-    const [classesSearchDaySelect, setClassesSearchDaySelect] = useState('월');
-    const [classesSearchTargetSelect, setClassesSearcTargetSelect] = useState('성인');
+    const [classesSearchDaySelect, setClassesSearchDaySelect] = useState('전체');
+    const [classesSearchTargetSelect, setClassesSearcTargetSelect] = useState('전체');
     const [classesSearchInput, setClassesSearchInput] = useState('');
     // 검색 기능
     const [searchResult, setSearchResult] = useState([]);
@@ -30,11 +30,11 @@ export default function Xclass() {
     // 강의 목록 불러오기
     useEffect(() => {
         const loadClassesList = async () => {
-            let url = '/sugang/sugangList';
+            let url = '/classes/classesList';
 
             apiCall(url, 'get', null, null)
-                .then((sugang) => {
-                    console.log(` sugang = ${sugang}`);
+                .then((classes) => {
+                    console.log(` classes = ${classes}`);
                     setClasses(classes);
                     setSearchResult(classes);
                 }).catch((error) => {
@@ -46,7 +46,7 @@ export default function Xclass() {
 
     // 강의 선택
     const handleToggleCheckbox = (clnum) => {
-        selectedClasses(prevState => {
+        setSelectedClasses(prevState => {
             if (prevState.includes(clnum)) {
                 return prevState.filter(num => num !== clnum);
             } else {
@@ -66,7 +66,7 @@ export default function Xclass() {
             return;
         }
 
-        let url = '/sugang/classesDelete';
+        let url = '/classes/classesDelete';
 
         apiCall(url + `?clnum=${selectedClasses.join('&clnum=')}`, 'get', null, userData.token)
             .then(() => {
@@ -104,7 +104,7 @@ export default function Xclass() {
     const reset = () => {
         setClassesSearchBTSelect('전체');
         setClassesSearchSTSelect('전체');
-        setClassesSearchDaySelect('월');
+        setClassesSearchDaySelect('전체');
         setClassesSearcTargetSelect('전체');
         setClassesSearchInput('');
     }
@@ -126,11 +126,10 @@ export default function Xclass() {
                                 <p>번호</p>
                                 <p>강좌명</p>
                                 <p>강의 날짜</p>
+                                <p>대상</p>
                                 <p>현재원</p>
                                 <p>대기원</p>
-                                <p>정원</p>
                                 <p>금액</p>
-                                <p>신청 날짜</p>
                                 <p>현황</p>
                             </>
                             :
@@ -140,11 +139,10 @@ export default function Xclass() {
                                 <p>번호</p>
                                 <p>강좌명</p>
                                 <p>강의 날짜</p>
+                                <p>대상</p>
                                 <p>현재원</p>
                                 <p>대기원</p>
-                                <p>정원</p>
                                 <p>금액</p>
-                                <p>신청 날짜</p>
                                 <p>현황</p>
                             </>
                         }
@@ -152,7 +150,10 @@ export default function Xclass() {
                     {searchResult && searchResult.map((item, index) => (
                         <XSugangRequestSearchResult key={index} {...item} onToggleCheckbox={handleToggleCheckbox} isChecked={selectedClasses.includes(item.clnum)} />
                     ))}
-                    <XBtnResetDelete />
+                    <div className='XResetDeleteBtn'>
+                        <button onClick={handleResetSelection}>초기화</button>
+                        <button onClick={handleDeleteSelectedClasses}>삭제</button>
+                    </div>
                 </div>
             </div>
         </div>

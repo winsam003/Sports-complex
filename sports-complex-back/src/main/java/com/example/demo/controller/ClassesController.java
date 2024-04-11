@@ -2,13 +2,12 @@ package com.example.demo.controller;
 
 import java.util.List;
 
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-//import com.example.demo.entity.Sugang;
+import com.example.demo.entity.Classes;
 import com.example.demo.service.ClassesService;
 
 import lombok.AllArgsConstructor;
@@ -17,34 +16,28 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @AllArgsConstructor
 @RestController
-@RequestMapping("/sugang")
+@RequestMapping("/classes")
 public class ClassesController {
 	ClassesService service;
 
 //	List
-//	@GetMapping("/sugangList")
-//	public List<Sugang> sugangList() {
-//		return service.selectList();
-//	}
-	
-//	update
-	
+	@GetMapping("/classesList")
+	public List<Classes> classesList() {
+		return service.classesList();
+	}
 
 //	Delete
-	@GetMapping("/classes/classesDelete")
-	public String classesDelete(@RequestParam("classCode") String classCode, Model model) {
-		// 요청 분석
-		String uri = "redirect:qnaList";
-
-		// Service
+	@GetMapping("/classesDelete")
+	public String classesDelete(@RequestParam("clnum") List<Integer> clnumList) {
 		try {
-//			service.deleteById(classCode);
-			log.info(" 강좌 삭제 성공 " + classCode);
-//			model.addAttribute("qna", service.selectList());
+			for (Integer clnum : clnumList) {
+				System.out.println(clnum);
+				service.classesDelete(clnum);
+				System.out.println(" 삭제 성공 => " + clnum);
+			}
 		} catch (Exception e) {
-			log.info(" 강좌 삭제 실패 " + e.toString());
+			System.out.println(" QnA Delete Excpetion => " + e.toString());
 		}
-
-		return uri;
+		return "redirect:classes";
 	}
 }

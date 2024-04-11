@@ -13,8 +13,8 @@ public class ClassesDTO {
 	private Integer clnum;
 	private String classcode;
 	private String clname;
-	private Timestamp cltime;
-	private Timestamp clendtime;
+	private Timestamp clrequest;
+	private Timestamp clrequestend;
 	private Timestamp clstart;
 	private Timestamp clend;
 	private String clfor;

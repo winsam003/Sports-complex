@@ -1,13 +1,13 @@
 /* 내용 사용자 */
 .XSugangRequestSearchResult_content_sugang {
     display: grid;
-    grid-template-columns: 1fr 2fr repeat(3, 1fr) 2fr 1fr;
+    grid-template-columns: 1fr repeat(3, 2fr) repeat(4, 1fr);
 }
 
 /* 내용 관리자 */
 .XSugangRequestSearchResult_content {
     display: grid;
-    grid-template-columns: 50px 1fr 2fr repeat(3, 1fr) 2fr 1fr;
+    grid-template-columns: 50px 1fr repeat(3, 2fr) repeat(4, 1fr);
 }
 
 /* 선택 체크박스 */

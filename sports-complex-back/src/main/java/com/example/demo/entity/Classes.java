@@ -31,9 +31,9 @@ public class Classes {
 	@Column(length = 20, nullable = false)
 	private String clname;
 	@Column
-	private Timestamp cltime;
+	private Timestamp clrequest;
 	@Column
-	private Timestamp clendtime;
+	private Timestamp clrequestend;
 	@Column
 	private Timestamp clstart;
 	@Column
