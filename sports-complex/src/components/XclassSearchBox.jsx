@@ -77,7 +77,6 @@ export default function XclassSearchBox({ onSearch, onReset, classesSearchBTSele
                             <option value="필라테스">필라테스</option>
                         </select>
                     )}
-
                 </span>
             </div>
             <div className='XclassSearchBox_inputBox'>
@@ -89,6 +88,7 @@ export default function XclassSearchBox({ onSearch, onReset, classesSearchBTSele
                 <span>요일선택
                     <select name="XclassSearchBox_classday" id="XclassSearchBox_classday"
                         value={classesSearchDaySelect} onChange={(e) => setClassesSearchDaySelect(e.target.value)}>
+                        <option value="전체">전체</option>
                         <option value="월">월</option>
                         <option value="화">화</option>
                         <option value="수">수</option>
@@ -101,9 +101,10 @@ export default function XclassSearchBox({ onSearch, onReset, classesSearchBTSele
                     <select name="XclassSearchBox_MainCategory" id="XclassSearchBox_MainCategory"
                         value={classesSearchTargetSelect} onChange={(e) => setClassesSearcTargetSelect(e.target.value)}>
                         <option value="전체">전체</option>
-                        <option value="아동">아동</option>
-                        <option value="성인">성인</option>
-                        <option value="노인">노인</option>
+                        <option value="KI">아동</option>
+                        <option value="HT">청소년</option>
+                        <option value="AD">성인</option>
+                        <option value="OL">노인</option>
                     </select>
                 </span>
             </div>

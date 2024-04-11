@@ -14,4 +14,6 @@ public interface EventService {
 	
 	int EventInsert(Event Entity);
 	
+	int EventUpdate(Event Entity);
+	
 }

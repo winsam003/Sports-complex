@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -26,14 +28,18 @@ public class Classes {
 //	Auto_Increment
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer clnum;
+	@Column(length = 25, nullable = false)
+	private String cldays;
+	@Column(length = 10, nullable = false)
+	private String cltime;
 	@Column(length = 10, nullable = false)
 	private String classcode;
 	@Column(length = 20, nullable = false)
 	private String clname;
 	@Column
-	private Timestamp cltime;
+	private Timestamp clrequest;
 	@Column
-	private Timestamp clendtime;
+	private Timestamp clrequestend;
 	@Column
 	private Timestamp clstart;
 	@Column
@@ -50,4 +56,7 @@ public class Classes {
 //	신청현황
 	@Column(length = 10)
 	private String cltype;
+	@ManyToOne
+	@JoinColumn(name = "teachnum")
+	private Teach teach;
 }
