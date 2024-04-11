@@ -9,17 +9,10 @@ export default function XEventDetailPage(){
     const searchParams = new URLSearchParams(location.search);
     const eventcode = searchParams.get('eventcode');
 
-
-    // console.log(`location: `, location);
-    // console.log(`EventDetailPage 에서의 eventcode : `, eventcode);
-    
-
     return(
         <div>
             <PageBanner />
             <XEventBoardDetail eventcode={eventcode} />
-            
-
         </div>
     )
 }

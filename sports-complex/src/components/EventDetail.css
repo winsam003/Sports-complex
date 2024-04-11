@@ -59,6 +59,10 @@
     text-align: center;
     margin: 3rem;
 }
+/* 사진 */
+.EventDetail_content img{
+    width: 700px;
+}
 
 
 /* 버튼 */
@@ -69,6 +73,20 @@
 
     padding-top: 5rem;
     border-top: 1px solid rgb(194, 191, 191);
+}
+.EventDetail_update{
+    margin-right: 20px;
+    width: 100px;
+    height: 50px;
+    font-size: large;
+    background-color: #db4c4c;
+    color: white;
+    border-radius: 0.5em;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    line-height: 50px;
+
 }
 
 .EventDetail_button{
