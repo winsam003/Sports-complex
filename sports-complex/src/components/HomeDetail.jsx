@@ -8,16 +8,18 @@ import { TbLock } from "react-icons/tb";
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { TbCalendar } from "react-icons/tb";
 import { useState } from 'react';
-import axios from 'axios';
 import { CiViewList } from "react-icons/ci";
 import { BsQrCode } from "react-icons/bs";
 import { GrContactInfo } from "react-icons/gr";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { IoIosLogOut } from "react-icons/io";
 import { apiCall } from '../apiService/apiService';
+import { MdOutlineRememberMe } from "react-icons/md";
+import { MdOutlinePlayLesson } from "react-icons/md";
+import { TbSoccerField } from "react-icons/tb";
+import { HiClipboardDocumentList } from "react-icons/hi2";
 
-export default function HomeDetail({ setLogincheck, loginCheck, logout, getUserName, getUserID }) {
-
+export default function HomeDetail({ setLogincheck, loginCheck, logout, getUserName, roleList }) {
 
 
     // **********************************slick settings 시작***********************************//
@@ -177,11 +179,24 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout, getUserN
                     <div className='homeDetail_loginDiv'>
                         <div className='homeDetail_loginUserName'>{getUserName} 님</div>
                         <div className='homeDetail_firstMenuBox'>
-                            <Link to='/ApplicationDetailsPage' className='homeDetail_firstMenuBox_s1'><CiViewList className='homeDetail_icons' />신청내역</Link>
-                            <Link to='/QRCodePage' className='homeDetail_firstMenuBox_s2'><BsQrCode className='homeDetail_icons' />QR코드</Link>
-                            <Link to='/ModifyMemberPage' className='homeDetail_firstMenuBox_s3'><GrContactInfo className='homeDetail_icons' />내 정보 수정</Link>
-                            <Link to='/PasswordChangePage' className='homeDetail_firstMenuBox_s4'><RiLockPasswordLine className='homeDetail_icons' />비밀번호 수정</Link>
+
+                            {/* 직원일 경우, 회원일 경우 구분해서 링크 박스 변경 */}
+                            {roleList && roleList.length > 0 && roleList.some(item => item === "ADMIN" || item === "MANAGER") ? <Link to='/UserInfoPage' className='homeDetail_firstMenuBox_s1'><MdOutlineRememberMe className='homeDetail_icons' />인적관리</Link>
+                                : <Link to='/ApplicationDetailsPage' className='homeDetail_firstMenuBox_s1'><CiViewList className='homeDetail_icons' />신청내역</Link>}
+
+                            {roleList && roleList.length > 0 && roleList.some(item => item === "ADMIN" || item === "MANAGER") ? <Link to='/XClassesInfoControl' className='homeDetail_firstMenuBox_s1'><MdOutlinePlayLesson className='homeDetail_icons' />강의관리</Link>
+                                : <Link to='/QRCodePage' className='homeDetail_firstMenuBox_s2'><BsQrCode className='homeDetail_icons' />QR코드</Link>}
+
+                            {roleList && roleList.length > 0 && roleList.some(item => item === "ADMIN" || item === "MANAGER") ? <Link to='/XSugangRequestPage' className='homeDetail_firstMenuBox_s1'><CiViewList className='homeDetail_icons' />신청관리</Link>
+                                : <Link to='/ModifyMemberPage' className='homeDetail_firstMenuBox_s3'><GrContactInfo className='homeDetail_icons' />내 정보 수정</Link>}
+
+                            {roleList && roleList.length > 0 && roleList.some(item => item === "ADMIN" || item === "MANAGER") ? <Link to='/XRentalPlaceControllPage' className='homeDetail_firstMenuBox_s1'><TbSoccerField className='homeDetail_icons' />시설관리</Link>
+                                : <Link to='/PasswordChangePage' className='homeDetail_firstMenuBox_s4'><RiLockPasswordLine className='homeDetail_icons' />비밀번호 수정</Link>}
+
+                            {roleList && roleList.length > 0 && roleList.some(item => item === "ADMIN" || item === "MANAGER") ? <Link to='/XBoardControllPage' className='homeDetail_firstMenuBox_s1'><HiClipboardDocumentList className='homeDetail_icons' />게시판관리</Link>
+                                : ""}
                         </div>
+
                         <div className='homeDetail_lastMenuBox'>
                             <span onClick={() => { logout(); setLogincheck(!loginCheck); }}><IoIosLogOut className='homeDetail_icons' />로그아웃</span>
                         </div>

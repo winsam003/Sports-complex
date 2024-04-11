@@ -2,7 +2,7 @@ import './XFaqControllContentList.css'
 import XFaqControllContentListContents from './XFaqControllContentListContents'
 
 
-export default function XFaqControllContentList({ searchValue, noticeList, setNoticeList, userDelete, checkedUsers }) {
+export default function XFaqControllContentList({ noticeList, userDelete, checkedUsers }) {
     return (
         <div className='XFaqControllContentList_div'>
             <div className='XFaqControllContentList_div'>

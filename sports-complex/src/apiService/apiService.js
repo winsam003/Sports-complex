@@ -21,6 +21,9 @@ export async function apiCall(url, method, requestData, token) {
     //  - JavasScript 의 문자열 확인함수
     //  - 존재하면 찾는문자열이 첫번째 나타나는 위치(index) 를 return,
     //    없으면 -1 dmf return
+
+
+
     let headers = '';
     if ((url.indexOf('qnaInsert') >= 0 || url.indexOf('eventinsert') >= 0  || url.indexOf('noticeSubmit') >= 0) && token != null) {
         headers = { 'Content-Type': 'multipart/form-data' };

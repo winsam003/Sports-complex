@@ -12,6 +12,8 @@ public interface NoticeBoardRepository {
 	
 	public int noticeSubmit(Notice entity);
 	
+	public int noticeModify(Notice entity);
+	
 	
 	
 	

@@ -1,35 +1,18 @@
-import { useEffect, useState } from 'react'
-import { apiCall } from '../apiService/apiService';
 import './BoardSearchList.css'
 import BoardSearchList2 from './BoardSearchlist2';
 
-export default function BoardSearchList() {
-    
-    const [noticeList, setNoticeList] = useState([]);
-    useEffect(() => {
-        let url = "/notice/noticeList";
-        let test = JSON.parse(sessionStorage.getItem('userData'));
-        let token = test.token;
-        console.log(`token=${token}`);
-        
-
-
-        apiCall(url, 'get', null, token)
-            .then((response) => {
-                setNoticeList(response);
-            }).catch((error) => {
-                console.log("noticeList error occred = " + error);
-            })
-    }, [])
+export default function BoardSearchList({ noticeList }) {
 
     return (
         <div>
             <div className='BoardSearchList'>
                 <div className='BoardSearchList_div'>
-                    <span>번호</span>
-                    <span>제목</span>
-                    <span>작성자</span>
-                    <span>등록일시</span>
+                    <p>번호</p>
+                    <p>제목</p>
+                    <p>공지대상</p>
+                    <p>작성일</p>
+                    <p>작성자</p>
+                    <p>조회수</p>
                 </div>
 
                 {noticeList.map((it, index) => (

@@ -95,10 +95,24 @@ export const PageBannerData = [
     },
     {
         "id": "3",
+        "parameter": "BoardControllPageDetailPage",
+        "page": "공지사항",
+        "title": "고객의 소리에 귀 기울여 발전하겠습니다.",
+        "checkMenu": "N"
+    },
+    {
+        "id": "3",
         "parameter": "Faq",
         "page": "자주하는 질문",
         "title": "고객의 소리에 귀 기울여 발전하겠습니다.",
         "checkMenu": "Y"
+    },
+    {
+        "id": "3",
+        "parameter": "FaqControllPageDetailPage",
+        "page": "자주하는 질문",
+        "title": "고객의 소리에 귀 기울여 발전하겠습니다.",
+        "checkMenu": "N"
     },
     {
         "id": "3",
@@ -227,6 +241,13 @@ export const PageBannerData = [
         "page": '직원정보 관리',
         "title": '인적 관리',
         "checkMenu": "Y"
+    },
+    {
+        "id": "8",
+        "parameter": 'XStaffModifyPage',
+        "page": '직원정보 관리',
+        "title": '인적 관리',
+        "checkMenu": "N"
     },
     {
         "id": "8",
@@ -377,6 +398,20 @@ export const PageBannerData = [
         "parameter": 'XFaqBoardWritePage',
         "page": '자주하는 질문 등록',
         "title": '자주하는 질문을 등록할 수 있습니다 ',
+        "checkMenu": "N"
+    },
+    {
+        "id": "12",
+        "parameter": 'XFnqControllPageDetailPage',
+        "page": '자주하는 질문 관리',
+        "title": '자주하는 질문을 관리할 수 있습니다 ',
+        "checkMenu": "N"
+    },
+    {
+        "id": "12",
+        "parameter": 'XFaqWritePage',
+        "page": '자주하는 질문 관리',
+        "title": '자주하는 질문을 관리할 수 있습니다 ',
         "checkMenu": "N"
     },
     {

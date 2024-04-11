@@ -1,22 +1,23 @@
 import './XlecturerListContents.css';
 
-export default function XlectureListContents({ lectureNum, lectureName, lectureBirth, lecturePhone, lectureAddress, license, lectureDelete }){
+export default function XlectureListContents({ teachNum, teachCode, teachName, teachBirth, teachPhone, teachAdress, teachLicense, lectureDelete, teachAccount }) {
 
     const handleDelete = (e) => {
-        lectureDelete(lectureNum, e.target.checked);
+        lectureDelete(teachNum, e.target.checked);
     }
 
-
-    return(
+    return (
         <div className='XlectureListContents_Box'>
             <div className='XlectureListContents_contents'>
                 <input type="checkbox" onChange={handleDelete} />
-                <span>{lectureNum}</span>
-                <span>{lectureName}</span>
-                <span>{lectureBirth}</span>
-                <span>{lecturePhone}</span>
-                <span>{lectureAddress}</span>
-                <span>{license}</span>
+                <span>{teachNum}</span>
+                <span>{teachCode}</span>
+                <span>{teachName}</span>
+                <span>{teachBirth}</span>
+                <span>{teachPhone}</span>
+                <span>{teachAdress}</span>
+                <span>{teachLicense}</span>
+                <span>{teachAccount}</span>
             </div>
         </div>
     )
