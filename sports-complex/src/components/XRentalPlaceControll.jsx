@@ -6,6 +6,7 @@ import XRentalPlaceSearchResult from './XRentalPlaceSearchResult';
 import XBtnResetDelete from './XBtnResetDelete';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { apiCall } from '../apiService/apiService';
 
 // 대관 시설 관리
 export default function XRentalPlaceControll() {
@@ -33,19 +34,33 @@ export default function XRentalPlaceControll() {
     
     const del = () => {
         // console.log("나오나 이거: ");
-        axios.post('/space/spacedelete', checkList)
-        .then((ss) => {
-            // 삭제하면 checkList 배열 비워줘야됨. 
-            setCheckList([]);
 
-            setTest(ss.data);
-            console.log(`ss.data: ${ss.data}`);
+        let url = '/space/spacedelete';
+        let token = JSON.parse(sessionStorage.getItem("userData")).token;
+
+        apiCall(url, 'post', checkList, token)
+            .then((response) => {
+                setCheckList([]);
+                setTest(response);
+                setRefreshList(prev => !prev);
+            }).catch((error) => {
+                console.log("Error: ",error);
+            })
+
+
+        // axios.post('/space/spacedelete', checkList)
+        // .then((ss) => {
+        //     // 삭제하면 checkList 배열 비워줘야됨. 
+        //     setCheckList([]);
+
+        //     setTest(ss.data);
+        //     console.log(`ss.data: ${ss.data}`);
             
-            // 삭제하고 상태 보내야됨. 
-            setRefreshList(prev => !prev);
-        }).catch((error) => {
-            console.log("Error: ",error);
-        })
+        //     // 삭제하고 상태 보내야됨. 
+        //     setRefreshList(prev => !prev);
+        // }).catch((error) => {
+        //     console.log("Error: ",error);
+        // })
     }
 
 
