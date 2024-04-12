@@ -3,6 +3,7 @@ package com.example.demo.repository;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
@@ -22,48 +23,44 @@ public class TeachRepositoryImpl implements TeachRepository {
 //	문의 게시글 조회
 	@Override
 	public List<Teach> teachList() {
-		return null;
-//		return em.createQuery("select q from Qna q order by qanum desc", Teach.class).getResultList();
+		return em.createQuery("select t from Teach t order by teachnum desc", Teach.class).getResultList();
 	}
 
 //	문의 게시글 상세 페이지
 	@Override
 	public Teach teachDetail(Integer teachnum) {
-		return null;
-//		try {
-//			return em.createQuery("select q from Qna q where q.qanum = :qanum", Teach.class)
-//					.setParameter("qanum", qanum).getSingleResult();
-//		} catch (NoResultException e) {
-//			return null;
-//		}
+		try {
+			return em.createQuery("select t from Teach t where t.teachnum = :teachnum", Teach.class)
+					.setParameter("teachnum", teachnum).getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 //	강사 등록
 	@Override
 	public int teachInsert(TeachDTO dto) {
-		return 0;
-//		return em.createNativeQuery(
-//				"insert into Qna (qatitle, qacontent, qatype, qadate, qaopen, qapassword, qacount, qafile, id) "
-//						+ "values (:qatitle, :qacontent, :qatype, :qadate, :qaopen, :qapassword, :qacount, :qafile, :id)")
-//				.setParameter("qatitle", dto.getQatitle()).setParameter("qacontent", dto.getQacontent())
-//				.setParameter("qatype", dto.getQatype()).setParameter("qadate", dto.getQadate())
-//				.setParameter("qaopen", dto.getQaopen()).setParameter("qapassword", dto.getQapassword())
-//				.setParameter("qacount", dto.getQacount()).setParameter("qafile", dto.getQafile())
-//				.setParameter("id", dto.getId()).executeUpdate();
+		return em.createNativeQuery(
+				"insert into Teach (teachcode, teachname, teachbirth, teachphone, teachlicense, teachaccount, teachrdate) "
+						+ "values (:teachcode, :teachname, :teachbirth, :teachphone, :teachlicense, :teachaccount, :teachrdate)")
+				.setParameter("teachcode", dto.getTeachcode()).executeUpdate();
 	}
 
 //	강사 업데이트
 	public int teachUpdate(TeachDTO dto) {
-		return 0;
-//		return em.createNativeQuery(
-//				"Update Qna set qareply = :qareply, qareplytime = :qareplytime, stfid = :stfid where qanum =:qanum")
-//				.setParameter("qareply", dto.getQareply()).setParameter("qareplytime", dto.getQareplytime())
-//				.setParameter("stfid", dto.getStfid()).setParameter("qanum", dto.getQanum()).executeUpdate();
+		return em.createNativeQuery(
+				"Update Teach set teachcode = :teachcode, teachphone = :teachphone, teachlicense = :teachlicense, teachaccount = :teachaccount, teachrdate = :teachrdate"
+						+ "  where teachnum =:teachnum")
+				.setParameter("teachcode", dto.getTeachcode()).setParameter("teachphone", dto.getTeachphone())
+				.setParameter("teachlicense", dto.getTeachlicense()).setParameter("teachaccount", dto.getTeachaccount())
+				.setParameter("teachrdate", dto.getTeachrdate()).setParameter("teachnum", dto.getTeachnum())
+				.executeUpdate();
 	}
 
 //	강사 삭제
 	@Override
 	public void teachDelete(Integer teachnum) {
-//		em.createQuery("delete from Qna q where q.qanum = :qanum").setParameter("qanum", qanum).executeUpdate();
+		em.createQuery("delete from Teach t where t.teachnum = :teachnum").setParameter("teachnum", teachnum)
+				.executeUpdate();
 	}
 }
