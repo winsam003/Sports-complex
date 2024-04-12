@@ -362,7 +362,7 @@ VALUES
 
 
 
-** space
+** 
 CREATE TABLE space (
 spaceCode varchar(10) NOT NULL,
 spaceName varchar(20) NOT NULL,

@@ -99,11 +99,11 @@ export default function Login({ setLogincheck, loginCheck }) {
                                 방문해주셔서 감사합니다!</div>
                         </div>
                         <div className="login_Box">
-                            <div>
+                            <div className="login_Box_div">
                                 <span><TbUser className='login_Icon' /></span>
                                 <input type="text" name="id" id="id" size={"50"} placeholder="아이디를 입력해주세요. " value={id} onChange={(e) => setId(e.target.value)} />
                             </div>
-                            <div>
+                            <div className="login_Box_div">
                                 <span><TbLock className='login_Icon' /></span>
                                 <input type="password" name="password" id="password" size={"50"} placeholder="비밀번호를 입력해주세요." value={password} onChange={(e) => setPassword(e.target.value)} onKeyPress={handleKeypress} />
                             </div>
@@ -112,7 +112,7 @@ export default function Login({ setLogincheck, loginCheck }) {
                                 <input type="button" onClick={requestLogin} value={"로그인"} /> &nbsp;&nbsp;
                                 <input type="button" value={"초기화"} onClick={loginRefresh} />
                             </div>
-                            <div>
+                            <div className="login_Box_div">
                                 <input type="checkbox" id="rememberMe" name="rememberMe" />
                                 <label htmlFor="rememberMe">아이디 저장</label>
                             </div>
@@ -137,11 +137,11 @@ export default function Login({ setLogincheck, loginCheck }) {
                                 관리자로그인 입니다.</div>
                         </div>
                         <div className="login_Box">
-                            <div>
+                            <div className="login_Box_div">
                                 <span><TbUser className='login_Icon' /></span>
                                 <input type="text" name="id" id="id" size={"50"} placeholder="관리자 아이디를 입력해주세요. " value={id} onChange={(e) => setId(e.target.value)} />
                             </div>
-                            <div>
+                            <div className="login_Box_div">
                                 <span><TbLock className='login_Icon' /></span>
                                 <input type="password" name="password" id="password" size={"50"} placeholder="비밀번호를 입력해주세요." value={password} onChange={(e) => setPassword(e.target.value)} onKeyPress={mhandleKeypress} />
                             </div>
@@ -150,7 +150,7 @@ export default function Login({ setLogincheck, loginCheck }) {
                                 <input type="button" onClick={ManagerRequestLogin} value={"로그인"} /> &nbsp;&nbsp;
                                 <input type="button" value={"초기화"} onClick={loginRefresh} />
                             </div>
-                            <div>
+                            <div className="login_Box_div">
                                 <input type="checkbox" id="rememberMe" name="rememberMe" />
                                 <label htmlFor="rememberMe">아이디 저장</label>
                             </div>
