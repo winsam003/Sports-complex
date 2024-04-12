@@ -40,15 +40,10 @@ public class TeachRepositoryImpl implements TeachRepository {
 //	강사 등록
 	@Override
 	public int teachInsert(TeachDTO dto) {
-		return 0;
-//		return em.createNativeQuery(
-//				"insert into Qna (qatitle, qacontent, qatype, qadate, qaopen, qapassword, qacount, qafile, id) "
-//						+ "values (:qatitle, :qacontent, :qatype, :qadate, :qaopen, :qapassword, :qacount, :qafile, :id)")
-//				.setParameter("qatitle", dto.getQatitle()).setParameter("qacontent", dto.getQacontent())
-//				.setParameter("qatype", dto.getQatype()).setParameter("qadate", dto.getQadate())
-//				.setParameter("qaopen", dto.getQaopen()).setParameter("qapassword", dto.getQapassword())
-//				.setParameter("qacount", dto.getQacount()).setParameter("qafile", dto.getQafile())
-//				.setParameter("id", dto.getId()).executeUpdate();
+		return em.createNativeQuery(
+				"insert into Teach (teachcode, teachname, teachbirth, teachphone, teachlicense, teachaccount, teachrdate) "
+						+ "values (:teachcode, :teachname, :teachbirth, :teachphone, :teachlicense, :teachaccount, :teachrdate)")
+				.setParameter("teachcode", dto.getTeachcode()).executeUpdate();
 	}
 
 //	강사 업데이트

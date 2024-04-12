@@ -38,6 +38,16 @@ public class TeachController {
 		return service.teachDetail(teachnum);
 	}
 
+//	Insert
+	@PostMapping("/teachInsert")
+	public ResponseEntity<?> teachInsert(@RequestBody TeachDTO dto) {
+		if (service.teachInsert(dto) > 0) {
+			return ResponseEntity.status(HttpStatus.OK).body("강사 등록에 성공하셨습니다.");
+		} else {
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("강사 등록에 실패하였습니다.");
+		}
+	}
+
 //	Update
 	@PostMapping("/teachUpdate")
 	public ResponseEntity<?> teachUpdate(@RequestBody TeachDTO dto) {
