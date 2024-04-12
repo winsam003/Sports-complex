@@ -17,6 +17,8 @@ public class TeachDTO {
 	private Date teachbirth;
 	private String teachphone;
 	private String teachadress;
+	private String teachadress2;
+	private String teachadress3;
 	private String teachlicense;
 	private String teachaccount;
 	private Timestamp teachrdate;

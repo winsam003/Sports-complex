@@ -36,7 +36,7 @@ public class ClassesController {
 				System.out.println(" 삭제 성공 => " + clnum);
 			}
 		} catch (Exception e) {
-			System.out.println(" QnA Delete Excpetion => " + e.toString());
+			System.out.println(" classes Delete Excpetion => " + e.toString());
 		}
 		return "redirect:classes";
 	}

@@ -22,8 +22,7 @@ public class TeachRepositoryImpl implements TeachRepository {
 //	문의 게시글 조회
 	@Override
 	public List<Teach> teachList() {
-		return null;
-//		return em.createQuery("select q from Qna q order by qanum desc", Teach.class).getResultList();
+		return em.createQuery("select t from Teach t order by teachnum desc", Teach.class).getResultList();
 	}
 
 //	문의 게시글 상세 페이지
@@ -64,6 +63,7 @@ public class TeachRepositoryImpl implements TeachRepository {
 //	강사 삭제
 	@Override
 	public void teachDelete(Integer teachnum) {
-//		em.createQuery("delete from Qna q where q.qanum = :qanum").setParameter("qanum", qanum).executeUpdate();
+		em.createQuery("delete from Teach t where t.teachnum = :teachnum").setParameter("teachnum", teachnum)
+				.executeUpdate();
 	}
 }
