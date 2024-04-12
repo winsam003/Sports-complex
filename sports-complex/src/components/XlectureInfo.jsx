@@ -91,9 +91,6 @@ export default function XlectureInfo() {
             });
     });
 
-    console.log(lecture);
-    console.log(searchResult);
-
     return (
         <div className='XlectureInfo_Box'>
             <Submenu />

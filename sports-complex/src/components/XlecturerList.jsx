@@ -26,7 +26,6 @@ export default function XlecturerList({ teachnum, teachcode, teachname, teachbir
 
     // detail 페이지 데이터 요청
     const fetchTeachData = async (teachnum) => {
-        console.log('데이터받아오니');
         try {
             let url = '/teach/teachDetail';
             const response = await
@@ -39,7 +38,6 @@ export default function XlecturerList({ teachnum, teachcode, teachname, teachbir
     };
 
     const handleTeachResultClick = async () => {
-        console.log('페이지이동요청');
         try {
             const teachData = await fetchTeachData(teachnum);
             navigate('/XlectureDetailPage', { state: { teachData } });

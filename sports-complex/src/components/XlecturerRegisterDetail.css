@@ -67,7 +67,6 @@ table>tr {
 
 .JoinLecture_title::after {
     content: "";
-    border-right: 1px solid #ccc;
 
     padding-right: 10px;
     margin-right: 10px;

@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,9 +29,9 @@ public class Teach {
 	private Integer teachnum;
 	@Column(length = 10, nullable = false)
 	private String teachcode;
-	@Column(length = 10, nullable = false)
+	@Column(length = 10, nullable = false, updatable = false)
 	private String teachname;
-	@Column
+	@Column(nullable = false, updatable = false)
 	private Date teachbirth;
 	@Column(length = 15)
 	private String teachphone;
@@ -37,6 +39,6 @@ public class Teach {
 	private String teachlicense;
 	@Column(length = 30, nullable = false)
 	private String teachaccount;
-	@Column(nullable = false)
+	@CreationTimestamp
 	private Timestamp teachrdate;
 }

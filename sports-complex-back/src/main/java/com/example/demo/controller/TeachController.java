@@ -2,12 +2,17 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.domain.TeachDTO;
 import com.example.demo.entity.Teach;
 import com.example.demo.service.TeachService;
 
@@ -31,6 +36,17 @@ public class TeachController {
 	@GetMapping("/teachDetail/{teachnum}")
 	public Teach teachDetail(@PathVariable("teachnum") Integer teachnum) {
 		return service.teachDetail(teachnum);
+	}
+
+//	Update
+	@PostMapping("/teachUpdate")
+	public ResponseEntity<?> teachUpdate(@RequestBody TeachDTO dto) {
+		System.out.println("dto : " + dto);
+		if (service.teachUpdate(dto) > 0) {
+			return ResponseEntity.status(HttpStatus.OK).body("강사 정보 변경에 성공하셨습니다.");
+		} else {
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("강사 정보 변경에 실패하였습니다.");
+		}
 	}
 
 //	Delete

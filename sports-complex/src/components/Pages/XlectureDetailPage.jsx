@@ -6,7 +6,7 @@ export default function XlectureDetailPage() {
     // 사용자 페이지 접근
     const location = useLocation();
     const { teachData } = location.state;
-    const { teachname, teachbirth, teachphone, teachlicense, teachaccount } = teachData;
+    const { teachname, teachbirth, teachphone, teachlicense, teachaccount, teachrdate, teachcode, teachnum } = teachData;
 
     // 강사 목록으로 이동
     const navigate = useNavigate();
@@ -16,13 +16,24 @@ export default function XlectureDetailPage() {
     }
 
     // 강사 생일 출력 양식
-    const formatDate = (teachbirth) => {
+    const formatbirth = (teachbirth) => {
         const date = new Date(teachbirth);
         const year = date.getFullYear();
         const month = String(date.getMonth() + 1).padStart(2, '0');
         const day = String(date.getDate()).padStart(2, '0');
         return `${year}.${month}.${day}`;
     };
+    const formatrDate = (teachrdate) => {
+        const date = new Date(teachrdate);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}.${month}.${day}`;
+    };
+
+    const lectureInfoUpdate = () => {
+        navigate('/XlectureModifyPage', { state: { teachData } });
+    }
 
     return (
         <div>
@@ -35,16 +46,24 @@ export default function XlectureDetailPage() {
                             <caption className='XlectureRegisterDetail_Caption'>강사정보</caption>
                             <tbody>
                                 <tr>
+                                    <th className='JoinLecture_title'>강사번호</th>
+                                    <td>{teachnum}</td>
+                                </tr>
+                                <tr>
                                     <th className='JoinLecture_title'>이름</th>
                                     <td>{teachname}</td>
                                 </tr>
                                 <tr>
                                     <th className='JoinLecture_title'>생년월일</th>
-                                    <td>{formatDate(teachbirth)}</td>
+                                    <td>{formatbirth(teachbirth)}</td>
                                 </tr>
                                 <tr>
                                     <th className='JoinLecture_title'>연락처</th>
                                     <td>{teachphone}</td>
+                                </tr>
+                                <tr>
+                                    <th className='JoinLecture_title'>강사 코드</th>
+                                    <td>{teachcode}</td>
                                 </tr>
                                 <tr>
                                     <th className='JoinLecture_title'>보유 자격증</th>
@@ -54,11 +73,15 @@ export default function XlectureDetailPage() {
                                     <th className='JoinLecture_title'>계좌번호</th>
                                     <td>{teachaccount}</td>
                                 </tr>
+                                <tr>
+                                    <th className='JoinLecture_title'>등록일</th>
+                                    <td>{formatrDate(teachrdate)}</td>
+                                </tr>
                             </tbody>
                         </table>
                         <div className='XResetDeleteBtn' >
                             <button className="JoinLecture_submitButton" onClick={goToLecturePage}>목록</button>
-                            <button className="JoinLecture_submitButton" >변경</button>
+                            <button className="JoinLecture_submitButton" onClick={lectureInfoUpdate}>변경</button>
                         </div>
                     </div>
                 </div>

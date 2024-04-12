@@ -53,11 +53,13 @@ public class TeachRepositoryImpl implements TeachRepository {
 
 //	강사 업데이트
 	public int teachUpdate(TeachDTO dto) {
-		return 0;
-//		return em.createNativeQuery(
-//				"Update Qna set qareply = :qareply, qareplytime = :qareplytime, stfid = :stfid where qanum =:qanum")
-//				.setParameter("qareply", dto.getQareply()).setParameter("qareplytime", dto.getQareplytime())
-//				.setParameter("stfid", dto.getStfid()).setParameter("qanum", dto.getQanum()).executeUpdate();
+		return em.createNativeQuery(
+				"Update Teach set teachcode = :teachcode, teachphone = :teachphone, teachlicense = :teachlicense, teachaccount = :teachaccount, teachrdate = :teachrdate"
+						+ "  where teachnum =:teachnum")
+				.setParameter("teachcode", dto.getTeachcode()).setParameter("teachphone", dto.getTeachphone())
+				.setParameter("teachlicense", dto.getTeachlicense()).setParameter("teachaccount", dto.getTeachaccount())
+				.setParameter("teachrdate", dto.getTeachrdate()).setParameter("teachnum", dto.getTeachnum())
+				.executeUpdate();
 	}
 
 //	강사 삭제
