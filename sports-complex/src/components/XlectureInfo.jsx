@@ -110,7 +110,6 @@ export default function XlectureInfo() {
                     <span>이름</span>
                     <span>생년월일</span>
                     <span>연락처</span>
-                    <span>주소</span>
                     <span>자격증</span>
                     <span>계좌번호</span>
                 </div>

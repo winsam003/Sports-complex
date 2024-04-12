@@ -3,6 +3,7 @@ package com.example.demo.repository;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
@@ -28,13 +29,12 @@ public class TeachRepositoryImpl implements TeachRepository {
 //	문의 게시글 상세 페이지
 	@Override
 	public Teach teachDetail(Integer teachnum) {
-		return null;
-//		try {
-//			return em.createQuery("select q from Qna q where q.qanum = :qanum", Teach.class)
-//					.setParameter("qanum", qanum).getSingleResult();
-//		} catch (NoResultException e) {
-//			return null;
-//		}
+		try {
+			return em.createQuery("select t from Teach t where t.teachnum = :teachnum", Teach.class)
+					.setParameter("teachnum", teachnum).getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 //	강사 등록

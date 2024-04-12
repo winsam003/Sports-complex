@@ -33,12 +33,6 @@ public class Teach {
 	private Date teachbirth;
 	@Column(length = 15)
 	private String teachphone;
-	@Column(length = 100, nullable = false)
-	private String teachadress;
-	@Column(length = 100, nullable = false)
-	private String teachadress1;
-	@Column(length = 100)
-	private String teachadress2;
 	@Column(length = 50)
 	private String teachlicense;
 	@Column(length = 30, nullable = false)

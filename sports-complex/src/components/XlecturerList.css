@@ -91,7 +91,7 @@
 /* 강사목록내용 */
 .XlectureInfoList_content {
     display: grid;
-    grid-template-columns: 50px repeat(4, 1fr) repeat(4, 2fr);
+    grid-template-columns: 50px repeat(4, 1fr) repeat(3, 2fr);
 }
 
 .XlectureInfoList_content input {

@@ -51,6 +51,8 @@ import XRentalPlaceControllPage from './components/Pages/XRentalPlaceControllPag
 import XReantalPlaceNewonePage from './components/Pages/XReantalPlaceNewonePage';
 import XReantalPlaceDetailPage from './components/Pages/XReantalPlaceDetailPage';
 import XlecturePage from './components/Pages/XlecturePage';
+import XlectureDetailPage from './components/Pages/XlectureDetailPage';
+import XlectureModifyPage from './components/Pages/XlectureModifyPage';
 import XlecturerRegisterPage from './components/Pages/XlecturerRegisterPage';
 import XParkingControllPage from './components/Pages/XParkingControllPage';
 import XClassesInfoControl from './components/Pages/XClassesInfoControl';
@@ -93,12 +95,12 @@ function App() {
 
   if (sessionStorage.getItem('userData') != null) {
     const userData = JSON.parse(sessionStorage.getItem('userData'));
-    if (userData.name != null){     // 사용자일 경우 
+    if (userData.name != null) {     // 사용자일 경우 
       getUserName = userData.name;
       getUserID = userData.id;
       token = userData.token;
       roleList = userData.roleList
-    }else{                          // 직원일 경우
+    } else {                          // 직원일 경우
       getUserName = userData.stfname;
       getUserID = userData.stfid;
       token = userData.token;
@@ -110,21 +112,21 @@ function App() {
   const [isAdminPage, setIsAdminPage] = useState(false);
   const checkAdminPage = (e) => {
 
-    if (roleList && roleList.length > 0){
-      if (roleList.some(item=>item==="ADMIN" || item==="MANAGER")){
+    if (roleList && roleList.length > 0) {
+      if (roleList.some(item => item === "ADMIN" || item === "MANAGER")) {
         setIsAdminPage(!isAdminPage);
-      }else{
+      } else {
         e.preventDefault();
         alert("관리자 권한이 없습니다.");
       }
-    }else{
+    } else {
       e.preventDefault();
       alert("관리자 로그인을 해야 이용하실 수 있습니다.");
     }
 
-    
+
   }
-  
+
   return (
     <div>
 
@@ -185,6 +187,8 @@ function App() {
         <Route path='/XReantalPlaceNewonePage' element={<XReantalPlaceNewonePage />} />
         <Route path='/XReantalPlaceDetailPage' element={<XReantalPlaceDetailPage />} />
         <Route path='/XlecturePage' element={<XlecturePage />} />
+        <Route path='/XlectureDetailPage' element={<XlectureDetailPage />} />
+        <Route path='/XlectureModifyPage' element={<XlectureModifyPage />} />
         <Route path='/XlecturerRegisterPage' element={<XlecturerRegisterPage />} />
         <Route path='/XParkingControllPage' element={<XParkingControllPage />} />
         <Route path='/XClassesInfoControl' element={<XClassesInfoControl />} />
@@ -197,7 +201,7 @@ function App() {
         <Route path='/XBoardControllInsertPage' element={<XBoardControllInsertPage />} />
         <Route path='/XFnqControllPageDetailPage' element={<XFnqControllPageDetailPage />} />
         <Route path='/XStaffModifyPage' element={<XStaffModifyPage />} />
-        <Route path='/XFaqWritePage' element={<XFaqWritePage getUserID={getUserID} token={token}/>} />
+        <Route path='/XFaqWritePage' element={<XFaqWritePage getUserID={getUserID} token={token} />} />
 
 
         <Route path='/XEventDetailPage' element={<XEventDetailPage />} />
