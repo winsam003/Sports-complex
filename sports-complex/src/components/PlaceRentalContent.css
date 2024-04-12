@@ -1,13 +1,32 @@
+.PlaceRentalContent_infoTitle1{
+    margin-top: 1rem;
+}
+.PlaceRentalContent_infoTitle2{
+    margin-top: 1rem;
+}
+
+.PlaceRentalContent_infoTitle{
+    font-weight: bold;
+    font-size: larger;
+}
+.PlaceRentalContent_infoTitleBox{
+    padding-left: 2rem;
+    background-color: #F0F8FF;
+}
+
+
 /* 고르는 버튼 */
-.PlaceRentalContent_select{
+.PlaceRentalContent_select {
     background-color: #C9EDFA;
     text-align: center;
 }
-.PlaceRentalContent_select *{
+
+.PlaceRentalContent_select * {
     margin: 1rem;
     display: inline-block;
     margin-left: 3rem;
 }
+
 
 /* 조회, 초기화 버튼  */
 .RentalSearchButton button {
@@ -82,7 +101,7 @@
 }
 
 @media (max-width : 750px) {
-    .PlaceRentalContent_select span{
+    .PlaceRentalContent_select span {
         width: 50%;
         margin-left: 0;
     }

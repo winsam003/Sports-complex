@@ -24,6 +24,10 @@
     border: black solid 1px;
 }
 
+.RentalInfoSearchButton>button{
+    cursor: pointer;
+}
+
 .TermsAndConditions_subtitle {
     margin: 15px;
     font-size: 25px;
@@ -78,6 +82,8 @@
     background-color: rgb(88, 143, 175);
     font-size: large;
     border: none;
+
+    cursor: pointer;
 }
 
 @media (max-width : 1200px) {

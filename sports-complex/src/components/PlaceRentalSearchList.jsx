@@ -10,7 +10,6 @@ export default function PlaceRentalSearchList({handleRentPrice}) {
         axios.get('/space/spacelist')
         .then((list) => {
             setSpaceList(list.data);
-            console.log(`list.data: ${list.data}`);
         }).catch((error) => {
             console.log("Error: ",error);
         })
@@ -20,12 +19,24 @@ export default function PlaceRentalSearchList({handleRentPrice}) {
     // console.log(JSON.stringify(spacelist));
 
     // 가격 가져가기
+    // 한개만 체크하기
+
+    const [selectedCheckBox, setSelectedCheckBox] = useState(null);
     const handleRentPriceValue = (event) => {
         const spacecode = event.target.value;
+        setSelectedCheckBox(spacecode);
         const isChecked = event.target.checked;
         const space = spacelist.find(item => item.spacecode === spacecode);
         if(isChecked && space) {
             handleRentPrice(space.spaceprice);
+        }
+
+        // 선택된 체크박스가 다시 클릭되었을 때, 선택을 해제합니다.
+        if (selectedCheckBox === spacecode) {
+            setSelectedCheckBox(null);
+            handleRentPrice(0);
+        } else {
+            setSelectedCheckBox(spacecode); // 클릭된 체크박스를 선택 상태로 변경합니다.
         }
     }
 
@@ -45,7 +56,8 @@ export default function PlaceRentalSearchList({handleRentPrice}) {
                     .map(({spacecode, spacename, spaceprice, parkspace, parking }, index) => (
                     <div key={index} className='PlaceRentalSearchList_content'>
                         <span><input type="checkbox" 
-                                    value={spacecode} 
+                                    value={spacecode}
+                                    checked={selectedCheckBox === spacecode}
                                     onChange={handleRentPriceValue}
                                     disabled={parkspace - parking === 0}/></span>
                         <span>{spacename}</span>
