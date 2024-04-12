@@ -19,7 +19,8 @@ export default function XEventBoardWriteContent({getUserID, detail}) {
             setEventFor(detail.eventfor || "");
             setEventDate(detail.eventtime || "");
             setEventDetail(detail.eventdetail || "");
-            // setEventPics(detail.eventuploadfile || null); // You might need additional logic to handle file input
+            // setEventPics(detail.eventuploadfile || null); 
+            // You might need additional logic to handle file input
         }
         titleInputRef.current.focus();
     }, [detail]);
@@ -221,7 +222,7 @@ export default function XEventBoardWriteContent({getUserID, detail}) {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>이용 시설<span className='star'>*</span></th>
+                                    <th>이용 시설 <span className='star'>*</span></th>
                                     <td>
                                         <select name="eventfacility" id="eventfacility" 
                                                 value={eventfacilityType} 
@@ -292,7 +293,8 @@ export default function XEventBoardWriteContent({getUserID, detail}) {
                                     <th>첨부파일</th>
                                     <td className='XEventBoardContent_upload'>
                                         <input className='test' type="file" name='uploadfilef' id='uploadfilef'
-                                                onChange={makeEventfile} />
+                                                onChange={makeEventfile}
+                                                defaultValue={eventPics} />
                                     </td>
                                 </tr>
                             </tbody>
