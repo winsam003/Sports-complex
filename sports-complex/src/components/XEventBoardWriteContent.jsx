@@ -10,6 +10,7 @@ export default function XEventBoardWriteContent({getUserID, detail}) {
     // 수정 버전으로 들어왔을 때, 
     useEffect(() => {
         if (detail) {
+            console.log('이벤트 상세 정보:detailState : ', detail);
             // 디테일이 존재한다면 
             setEventName(detail.eventname || "");
             setEventfacilityType(""); // clear the facility type as per your requirement
