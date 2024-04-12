@@ -136,7 +136,7 @@ export default function XReantalPlaceNewone() {
 
         apiCall(url, 'post', formPlace, token)
             .then((response) => {
-                alert(response.data);
+                alert(response);
                 navigate('/XRentalPlaceControllPage');
             }).catch((error) =>{
                 alert(`${placeNumber}번 은 이미 있는 시설 번호입니다. 다른 번호를 입력해주세요.`)

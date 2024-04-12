@@ -17,9 +17,9 @@ export default function XEventControllContent() {
     const [eventlist, seteventlist] = useState([]);
 
     useEffect(() => {
+        window.scrollTo(0, 525);
         fetchEventList();
         // 배열로 나오는것 확인, 
-        console.log(checkEvent);
     }, [checkEvent]);
 
     const fetchEventList = () => {
@@ -90,6 +90,8 @@ export default function XEventControllContent() {
 
 
     //=============================================================== 
+
+
     return (
         <div className='XEventControllContent_div'>
             <Submenu />

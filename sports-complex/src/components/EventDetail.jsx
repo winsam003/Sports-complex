@@ -40,13 +40,14 @@ export default function EventDetail({ eventcode }) {
     const navigate = useNavigate();
     // 수정버튼 이벤트
     const updateEventPage = () => {
-        console.log(eventDetailOne);
+        // console.log(eventDetailOne);
         navigate(`/XEventBoardWritePage?eventcode=${eventDetailOne.eventcode}`, 
                     {
                         state: {detail : eventDetailOne}
                     });
         
     }
+    console.log(eventDetailOne)
 
     return (
         <div className="EventDetailContainor">
@@ -117,8 +118,9 @@ export default function EventDetail({ eventcode }) {
                 :
                 <span></span>}
 
-                <button className='EventDetail_button' 
-                        onClick={() => window.history.back()} >목록</button>
+                {/* <button className='EventDetail_button'  onClick={() => window.history.back()} >목록</button> */}
+                <Link to="/XEventBoardControllPage" className='EventDetail_button' >목록</Link>
+
             </div>
         </div>
     )

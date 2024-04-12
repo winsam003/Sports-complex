@@ -84,7 +84,9 @@ public class EventRepositoryImpl implements EventRepository {
 		
 		log.info("EventUpdate Repository 성공");	
 		
-		String jpql = "UPDATE Event "
+		
+		if(Entity.getEventfilef() != null) {
+			String jpql = "UPDATE Event "
 					+ "SET eventname = :eventname, "
 					+ "	   eventdetail = :eventdetail, "
 					+ "	   eventfacility = :eventfacility, "
@@ -92,23 +94,53 @@ public class EventRepositoryImpl implements EventRepository {
 					+ "	   eventfor = :eventfor, "
 					+ "	   eventtype = :eventtype, "
 					+ "	   eventuploadfile = :eventuploadfile, "
-					+ "	   stfid = concat(stfid, ', 수정: :stfid' "
-					+ "WHERE eventcode = :eventcode ";
+					+ "	   stfid = :stfid "
+					+ "WHERE eventcode = :eventcode";
+			
+			Query query = em.createNativeQuery(jpql);
+			
+			log.info("레파지토리 임플임 여기 eventcode : ", Entity.getEventcode());	
+			query.setParameter("eventcode", Entity.getEventcode());
+			query.setParameter("eventname", Entity.getEventname());
+			query.setParameter("eventdetail", Entity.getEventdetail());
+			query.setParameter("eventfacility", Entity.getEventfacility());
+			query.setParameter("eventtime", Entity.getEventtime());
+			query.setParameter("eventfor", Entity.getEventfor());
+			query.setParameter("eventtype", Entity.getEventtype());
+			query.setParameter("eventuploadfile", Entity.getEventuploadfile());
+			query.setParameter("stfid", Entity.getStfid());
+			
+			
+			return query.executeUpdate();
+			
+		}else {
+			String jpql = "UPDATE Event "
+					+ "SET eventname = :eventname, "
+					+ "	   eventdetail = :eventdetail, "
+					+ "	   eventfacility = :eventfacility, "
+					+ "	   eventtime = :eventtime, "
+					+ "	   eventfor = :eventfor, "
+					+ "	   eventtype = :eventtype, "
+					+ "	   stfid = :stfid "
+					+ "WHERE eventcode = :eventcode";
+			
+			Query query = em.createNativeQuery(jpql);
+			
+			log.info("레파지토리 임플임 여기 eventcode : ", Entity.getEventcode());	
+			query.setParameter("eventcode", Entity.getEventcode());
+			query.setParameter("eventname", Entity.getEventname());
+			query.setParameter("eventdetail", Entity.getEventdetail());
+			query.setParameter("eventfacility", Entity.getEventfacility());
+			query.setParameter("eventtime", Entity.getEventtime());
+			query.setParameter("eventfor", Entity.getEventfor());
+			query.setParameter("eventtype", Entity.getEventtype());
+			query.setParameter("stfid", Entity.getStfid());
+			
+			
+			return query.executeUpdate();
+			
+		}
 		
-		Query query = em.createNativeQuery(jpql);
-
-		query.setParameter("eventname", Entity.getEventname());
-		query.setParameter("eventdetail", Entity.getEventdetail());
-		query.setParameter("eventfacility", Entity.getEventfacility());
-		query.setParameter("eventtime", Entity.getEventtime());
-		query.setParameter("eventfor", Entity.getEventfor());
-		query.setParameter("eventtype", Entity.getEventtype());
-		query.setParameter("eventuploadfile", Entity.getEventuploadfile());
-		query.setParameter("stfid", Entity.getStfid());
-		
-		query.setParameter("eventcode", Entity.getEventcode());
-		
-		return query.executeUpdate();
 		
 		
 	}
