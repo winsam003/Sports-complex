@@ -70,7 +70,7 @@ public class EventController {
 
 //		Integer eventCode = requestBody.get("eventCode");
 		Event result = service.EventDetail(eventcode);
-		
+		log.info(result);
 		if(result != null) {
 			log.info("eventcount : "+ result.getEventcount());
 			result.setEventcount(result.getEventcount() + 1);
@@ -159,7 +159,7 @@ public class EventController {
 	
 	// 업데이트
 	@PostMapping(value = "/eventupdate")
-	public ResponseEntity<?> eUpdate(@RequestParam("eventcode") int eventcode, 
+	public ResponseEntity<?> eUpdate(@RequestParam("eventcode") Integer eventcode, 
 									 @RequestParam("eventname") String eventname, 
 								     @RequestParam("eventdetail") String eventdetail, 
 								     @RequestParam("eventfacility") String eventfacility, 
@@ -170,6 +170,7 @@ public class EventController {
 								     @RequestParam("stfid") String stfid) throws IOException{
 		
 		log.info("UPDATE . UPDATE . // Controller eventupdate // UPDATE . UPDATE . ");
+		log.info("eventcode : ", eventcode);
 		
 		Event entity = new Event();
 		
@@ -182,6 +183,8 @@ public class EventController {
 		entity.setEventtype(eventtype);
 		entity.setEventfilef(eventfilef);
 		entity.setStfid(stfid);
+		
+		log.info("entity : ", entity);
 		
 		// 파일이 있을 경우.
 		if (eventfilef != null && !eventfilef.isEmpty()) {
@@ -210,7 +213,6 @@ public class EventController {
 			}
 		}
 		
-		log.info(entity);
 		
 		if(service.EventUpdate(entity) > 0) {
 			return ResponseEntity.status(HttpStatus.OK).body("이벤트 업데이트 완료. 해당 게시물 디테일로 이동");

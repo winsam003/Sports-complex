@@ -1,5 +1,4 @@
-/* 회원 정보 관리 전체 박스 */
-.XlectureInfoList_Box {
+회원 정보 관리 전체 박스 .XlectureInfoList_Box {
     background-color: #F0FFFF;
     width: 100%;
     height: auto;
@@ -87,4 +86,23 @@
 
 .XlectureInfoList_textMessage>input {
     width: 50rem;
+}
+
+/* 강사목록내용 */
+.XlectureInfoList_content {
+    display: grid;
+    grid-template-columns: 50px repeat(4, 1fr) repeat(3, 2fr);
+}
+
+.XlectureInfoList_content input {
+    width: 20px;
+    display: flex;
+    margin-left: 15px;
+}
+
+.XlectureInfoList_content span {
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

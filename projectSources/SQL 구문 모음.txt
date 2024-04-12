@@ -726,6 +726,36 @@ INSERT INTO member_role_list (staff_id, role_list) SELECT staff_id, 1 FROM membe
 DELETE FROM member_role_list WHERE member_id IS NULL and staff_id IS NULL ;
 =============================================
 
+** 강사 table insert
+CREATE TABLE teach (
+    teachnum INT AUTO_INCREMENT PRIMARY KEY,
+    teachaccount VARCHAR(30),
+    teachadress VARCHAR(100),
+    teachadress1 VARCHAR(100),
+    teachadress2 VARCHAR(100),
+    teachbirth DATETIME(6),
+    teachcode VARCHAR(10),
+    teachlicense VARCHAR(50),
+    teachname VARCHAR(10),
+    teachphone VARCHAR(15),
+    teachrdate DATETIME(6)
+);
+
+** 강사 insert
+INSERT INTO teach (teachcode, teachaccount, teachrdate, teachbirth, teachlicense, teachname, teachphone) VALUES
+('TEBABK', '123456-78-901234', '2024-04-12', '1980-05-15', '운전면허증', '백승현', '01012345678'),
+('TEBABS', '234567-89-012345', '2024-04-11', '1975-08-20', '한국어교원자격증', '최승삼', '01023456789'),
+('TEBAFT', '345678-90-123456', '2024-04-10', '1983-11-30', '정보처리기사', '장근정', '01034567890'),
+('TEWASW', '456789-01-234567', '2024-04-09', '1978-03-25', '전산회계', '이정혁', '01045678901'),
+('TEWADI', '567890-12-345678', '2024-04-08', '1985-10-10', '영어교사자격증', '김수빈', '01056789012'),
+('TEDCKP', '678901-23-456789', '2024-04-07', '1973-12-05', '한국사능력검정시험', '전예원', '01067890123'),
+('TEDCBD', '789012-34-567890', '2024-04-06', '1970-06-18', '토익', '임시운', '01078901234'),
+('TELAPP', '890123-45-678901', '2024-04-05', '1987-09-22', '컴퓨터활용능력', '김수옥', '01089012345'),
+('TELABM', '901234-56-789012', '2024-04-04', '1982-04-07', '초등교원자격증', '임명건', '01090123456'),
+('TELATE', '012345-67-890123', '2024-04-03', '1976-07-14', '사회복지사', '최문석', '01001234567'),
+('TELASQ', '987654-32-109876', '2024-04-02', '1979-01-29', '산업기사', '김수미', '0109876432'),
+('TEWECL', '876543-21-210987', '2024-04-01', '1984-02-03', '의사면허증', '주용현', '01087654321');
+
 
 
 대관 신청 테이블 생성
