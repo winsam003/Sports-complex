@@ -250,7 +250,7 @@ export default function PlaceRentalInfoContent() {
                 </div>
                 <div className='RentalInfoSearchButton'>
                     <button>신청서 다운로드</button>
-                    <button><Link to='/PlaceRental'>사용허가신청</Link></button>
+                    <Link to='/PlaceRental'><button>사용허가신청</button></Link>
                 </div>
             </div>
         </div >

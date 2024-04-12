@@ -24,7 +24,7 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout, getUserN
 
     // **********************************slick settings 시작***********************************//
     const settings = {
-        dots: false,            // 하단 페이지 위치 점 표시
+        dots: true,            // 하단 페이지 위치 점 표시
         infinite: true,         // 끝에 도달하면 슬라이드 무한루프
         speed: 500,             // 슬라이드 전환 속도
         slidesToShow: 1,        // 한번에 보여지는 슬라이드 수

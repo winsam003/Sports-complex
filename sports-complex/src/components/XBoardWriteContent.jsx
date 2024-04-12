@@ -36,11 +36,11 @@ export default function XBoardWriteContent({ getUserID, token }) {
     const noticeSubmit = () => {
         let url;
         let requestData;
-        if (location.pathname.indexOf("XBoardControllPage") !== -1){           // 공지사항 등록
+        if (location.pathname.indexOf("/XBoardWritePage") !== -1) {           // 공지사항 등록
             url = "/notice/noticeSubmit";
             const formData = new FormData();
             formData.append('file', selectedFile);
-    
+
             requestData = {
                 stfid: getUserID,
                 quest: questype,
@@ -51,11 +51,11 @@ export default function XBoardWriteContent({ getUserID, token }) {
                 nottype: 'A',
                 notcount: 0
             }
-        }else{                                                          // 자주하는 질문 게시판 등록
+        } else {         
             url = "/notice/noticeSubmit";
             const formData = new FormData();
             formData.append('file', selectedFile);
-    
+
             requestData = {
                 stfid: getUserID,
                 quest: questype,
@@ -69,11 +69,11 @@ export default function XBoardWriteContent({ getUserID, token }) {
 
         }
 
-        
+
         apiCall(url, 'post', requestData, token)
             .then((response) => {
                 alert(response);
-                if (location.pathname.indexOf("XBoardWritePage") !== -1){       // 공지사항 게시판일 경우 공지사항 list로 이동
+                if (location.pathname.indexOf("XBoardWritePage") !== -1) {       // 공지사항 게시판일 경우 공지사항 list로 이동
                     navigate("/XBoardControllPage");
                 } else {                                                    // 자주묻는질문 게시판일 경우 자주묻는질문 list로 이동
                     navigate("/XFaqBoardControllPage");

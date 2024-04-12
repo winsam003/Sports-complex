@@ -113,8 +113,6 @@ export default function XBoardControllContent() {
 
 
 
-
-
     // checkbox 클릭된 유저 저장 ******************************************************************************//
     const [checkedUsers, setCheckedUsers] = useState([]);
     const userDelete = (notnum, checked) => {

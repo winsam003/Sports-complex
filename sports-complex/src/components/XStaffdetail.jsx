@@ -21,14 +21,14 @@ export default function XStaffdetail({ stfid, stfdmp, stflevel, stfpnum, stfname
     }
 
     return (
-        <div className='XStaffdetail_contents' onClick={boardDetail}>
+        <div className='XStaffdetail_contents'>
             <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} />
-            <span>{stfid}</span>
-            <span>{stfdmp}</span>
-            <span>{stflevel}</span>
-            <span>{stfpnum}</span>
-            <span>{stfname}</span>
-            <span>{stfcode}</span>
+            <span onClick={boardDetail}>{stfid}</span>
+            <span onClick={boardDetail}>{stfdmp}</span>
+            <span onClick={boardDetail}>{stflevel}</span>
+            <span  onClick={boardDetail}>{stfpnum}</span>
+            <span  onClick={boardDetail}>{stfname}</span>
+            <span  onClick={boardDetail}>{stfcode}</span>
         </div>
     )
 }
