@@ -17,7 +17,7 @@ export default function QnaBoard() {
     // Session storage에 있는 userData 가져오기
     const sessionUserData = sessionStorage.getItem('userData');
     const userData = sessionUserData ? JSON.parse(sessionUserData) : 'null';
-    const userID = userData.userID;
+    const userID = userData.id;
 
     // 문의게시글 불러오기
     useEffect(() => {

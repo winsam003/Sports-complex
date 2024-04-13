@@ -32,5 +32,20 @@ public class StaffServiceImpl implements StaffService {
 	public void staffdelete(String stfid) {
 		repository.staffdelete(stfid);
 	}
+	
+//  직원 1명 조회
+	public Staff StaffOne(String stfid) {
+		return repository.StaffOne(stfid);
+	}
+//	직원 1명 조회인데 권한번호 까지 받아옴
+	@Override
+	public Staff getWithRoles(String stfid) {
+		return repository.getWithRoles(stfid);
+	}
+	
+	@Override
+	public int staffModify(Staff entity) {
+		return repository.staffModify(entity);
+	}
 
 }

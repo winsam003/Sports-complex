@@ -1,10 +1,11 @@
 import './SugangSearchList.css'
 
 
-export default function SugangSearchList({ classcode, clname, clstartdate, clenddate, clfor, clcount, clwating, clprice, cltype }) {
+export default function SugangSearchList({ clnum, classcode, clname, clstartdate, clenddate, clfor, clcount, clwating, clprice, cltype }) {
 
     return (
         <div className='SugangSearchList_content'>
+            <span>{clnum}</span>
             <span>{classcode}</span>
             <span>{clname}</span>
             <span>{clstartdate}-{clenddate}</span>

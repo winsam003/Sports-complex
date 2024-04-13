@@ -9,13 +9,14 @@
 }
 
 .XlectureRegisterDetail_Container {
-    height: 100%;
+    margin-top: 40px;
 }
 
 .XlectureRegisterDetail_Container {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .XlectureRegisterDetail_Caption {
@@ -31,49 +32,43 @@ table>tr {
     height: 5rem;
 }
 
-.XlectureRegisterDetail_input{
+.XlectureRegisterDetail_input {
     height: 1.5rem;
     width: 10rem;
 }
 
-.XlectureRegisterDetail_address{
+.XlectureRegisterDetail_address {
     margin-bottom: 5px;
 }
 
-.JoinLecture_submitBox{
-    display: flex;
-    justify-content: flex-end;
+.JoinLecture_submitBox {
+    display: block;
 }
 
-.JoinLecture_submitInput{
+.JoinLecture_submitInput {
     margin-top: 1rem;
     margin-right: 1rem;
     height: 3rem;
     width: 6rem;
-        
+
     background-color: #059da5;
     color: white;
     border-radius: 0.5em;
     border: none;
-        
+
     cursor: pointer;
 }
 
-.JoinLecture_title{
+.JoinLecture_title {
     font-size: large;
     font-weight: bold;
 
 }
 
-.JoinLecture_title::after{
+.JoinLecture_title::after {
     content: "";
-    border-right: 1px solid #ccc;
 
     padding-right: 10px;
     margin-right: 10px;
 
-}
-
-.JoinLecture_submitBox{
-    border-top: 1px solid #ccc;
 }

@@ -11,4 +11,11 @@ public interface NoticeBoardService {
 	public int noticeDel(Integer[] delBoard);
 	
 	public int noticeSubmit(Notice entity);
+	
+	public int noticeModify(Notice entity);
+	
+	
+	// 아래부터는 자주하는 질문 ****************************************************************
+	
+	public List<Notice> fnqList();
 }

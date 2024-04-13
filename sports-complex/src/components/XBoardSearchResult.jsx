@@ -20,8 +20,10 @@ export default function XBoardSearchResult({ eventlist, searchEvent, handleEvent
         try {
             if(location.pathname == '/EventBoardPage' ){
                 navigate(`/EventDetailPage?eventcode=${eventcode}`);
+                window.scrollTo(0, 525);
             } else{
                 navigate(`/XEventDetailPage?eventcode=${eventcode}`);
+                window.scrollTo(0, 525);
             }
         } catch (error) {
             console.log('Error eventDetail : ', error);
@@ -37,7 +39,7 @@ export default function XBoardSearchResult({ eventlist, searchEvent, handleEvent
                 <div className='indexEvent XBoardControllContent_SearchResult_index_User'>
                     <p>번호</p>
                     <p>제목</p>
-                    <p>이용시설</p>
+                    {/* <p>이용시설</p> */}
                     <p>이용대상</p>
                     <p>이벤트 타입</p>
                     <p>작성일</p>
@@ -48,10 +50,11 @@ export default function XBoardSearchResult({ eventlist, searchEvent, handleEvent
                     <p>선택</p>
                     <p>번호</p>
                     <p>제목</p>
-                    <p>이용시설</p>
+                    {/* <p>이용시설</p> */}
                     <p>이용대상</p>
                     <p>이벤트 타입</p>
                     <p>작성일</p>
+                    <p>작성자</p>
                     <p>조회수</p>
                 </div>
 
@@ -81,7 +84,7 @@ export default function XBoardSearchResult({ eventlist, searchEvent, handleEvent
                             <p>{eventcode}</p>
                             <p onClick={() => handleEventClick(eventcode)} 
                                 className='XBoardControllContent_clickDetail' >{eventname}</p>
-                            <p>{eventfacility}</p>
+                            {/* <p>{eventfacility}</p> */}
                             <p>{eventfor}</p>
                             <p>{eventtype}</p>
                             <p>{eventdate}</p>
@@ -116,10 +119,11 @@ export default function XBoardSearchResult({ eventlist, searchEvent, handleEvent
                             <p>{eventcode}</p>
                             <p onClick={() => handleEventClick(eventcode)}
                                 className='XBoardControllContent_clickDetail' >{eventname}</p>
-                            <p>{eventfacility}</p>
+                            {/* <p>{eventfacility}</p> */}
                             <p>{eventfor}</p>
                             <p>{eventtype}</p>
                             <p>{eventdate}</p>
+                            <p>{stfid}</p>
                             <p>{eventcount}</p>
                         </div>
 

@@ -1,20 +1,20 @@
 // 회원정보 엔티티
 CREATE TABLE Member (
-    id varchar(15) PRIMARY KEY,
-    membercode varchar(6) NOT NULL,
-    name varchar(10) NOT NULL,
-    password varchar(100) NOT NULL,
-    birth varchar(8) NOT NULL,
-    phonenum varchar(11) NOT NULL,
-    homenum varchar(11) NULL,
-    address varchar(100) NOT NULL,
-    address1 varchar(100) NOT NULL,
-    address2 varchar(30) NULL,
-    email varchar(50) NOT NULL,
-    snsagr TINYINT(1) NOT NULL DEFAULT 1,
-    emailagr TINYINT(1) NOT NULL DEFAULT 1,
-    carnum varchar(10) NULL,
-    parkuse date NULL
+id varchar(15) PRIMARY KEY,
+membercode varchar(6) NOT NULL,
+name varchar(10) NOT NULL,
+password varchar(100) NOT NULL,
+birth varchar(8) NOT NULL,
+phonenum varchar(11) NOT NULL,
+homenum varchar(11) NULL,
+address varchar(100) NOT NULL,
+address1 varchar(100) NOT NULL,
+address2 varchar(30) NULL,
+email varchar(50) NOT NULL,
+snsagr TINYINT(1) NOT NULL DEFAULT 1,
+emailagr TINYINT(1) NOT NULL DEFAULT 1,
+carnum varchar(10) NULL,
+parkuse date NULL
 );
 
 // 회원정보 insert 구문
@@ -199,13 +199,16 @@ VALUES
 ("user099", "MEFOAD", "윤아", "password99", "19900530", "01033334444", "0223456789", "경기도 성남시 분당구", "정자로 234번길 34", "아파트 107호", "user099@example.com", "1", "1", "567마6789", null),
 ("user100", "MEFOOL", "조세호", "password100", "19750805", "01055556666", "03134567890", "서울특별시 서초구", "서초로 567번길 56", "빌라 602호", "user100@example.com", "1", "1", "678바7890", null);
 
+// 토큰으로 인한 role insert문
+INSERT INTO member_role_list (member_id)
+SELECT id FROM member;
 
 
 
 직원 테이블
 ** 직원 테이블 생성 ** 
 CREATE TABLE staff (
-    stfID varchar(15) COMMENT 'Primary Key', stfPassword varchar(100) NOT NULL, stfDmp varchar(20) NOT NULL, stfLevel varchar(10) NOT NULL, stfPNum int NOT NULL, stfName varchar(10) NOT NULL, stfCode varchar(20) NOT NULL, primary key (stfID)
+stfID varchar(15) COMMENT 'Primary Key', stfPassword varchar(100) NOT NULL, stfDmp varchar(20) NOT NULL, stfLevel varchar(10) NOT NULL, stfPNum int NOT NULL, stfName varchar(10) NOT NULL, stfCode varchar(20) NOT NULL, primary key (stfID)
 );
 
 ** 직원 생성 **
@@ -359,13 +362,13 @@ VALUES
 
 
 
-** space
+** 
 CREATE TABLE space (
-	spaceCode varchar(10) NOT NULL,
-	spaceName varchar(20) NOT NULL,
-	spacePrice int NOT NULL,
-	parkSpace int NULL DEFAULT 1,
-	parking int NULL DEFAULT 0
+spaceCode varchar(10) NOT NULL,
+spaceName varchar(20) NOT NULL,
+spacePrice int NOT NULL,
+parkSpace int NULL DEFAULT 1,
+parking int NULL DEFAULT 0
 );
 
 INSERT INTO space (spaceCode, spaceName, spacePrice, parkSpace, parking)
@@ -388,18 +391,18 @@ VALUES
 
 **이벤트 event
 CREATE TABLE Event (
-	eventCode int AUTO_INCREMENT PRIMARY KEY, 
-	eventName varchar(20) NOT NULL,
-	eventDetail varchar(1000) NOT NULL,
-	eventFacility varchar(20) NOT NULL,
-	eventTime varchar(20) NOT NULL,
-	eventFor varchar(10) NOT NULL,
-	eventType varchar(10) NOT NULL,
-	eventCount int NOT NULL,
-	eventUploadfile varchar(100) NULL,
-	stfID varchar(15) NOT NULL,
-	FOREIGN KEY (stfID) REFERENCES staff(stfID);
-    eventdate date Null
+eventCode int AUTO_INCREMENT PRIMARY KEY, 
+eventName varchar(20) NOT NULL,
+eventDetail varchar(1000) NOT NULL,
+eventFacility varchar(20) NOT NULL,
+eventTime varchar(20) NOT NULL,
+eventFor varchar(10) NOT NULL,
+eventType varchar(10) NOT NULL,
+eventCount int NOT NULL,
+eventUploadfile varchar(100) NULL,
+stfID varchar(15) NOT NULL,
+FOREIGN KEY (stfID) REFERENCES staff(stfID);
+eventdate date Null
 );
 
 **이벤트 event insert
@@ -419,22 +422,22 @@ VALUES
 
 *********** 문의게시판
 CREATE TABLE `Qna` (
-    `qaNum` INT NOT NULL AUTO_INCREMENT COMMENT '식별 가능한 코드',
-    `id` VARCHAR(15) NOT NULL COMMENT 'PK - 질문하는 회원 아이디 (회원테이블)',
-    `qaTitle` VARCHAR(20) NOT NULL,
-    `qaContent` VARCHAR(1000) NOT NULL COMMENT '게시글의 내용',
-    `qaType` VARCHAR(10) NOT NULL COMMENT '시설문의 , 일반문의, 수강문의',
-    `qaDate` DATE NOT NULL,
-    `qaOpen` BOOLEAN NOT NULL DEFAULT 0 COMMENT '1 - 공개 / 0- 비공개',
-    `qaPassword` VARCHAR(100) NULL COMMENT '게시글의 비밀번호',
-    `qaCount` INT NOT NULL DEFAULT 0,
-    `qaFile` VARCHAR(100) NULL COMMENT '첨부파일 명',
-    `stfid` VARCHAR(15) NULL,
-    `qaReply` VARCHAR(1000) NULL COMMENT '답변이 존재하면 답변완료',
-    `qaReplyTime` DATE,
-    PRIMARY KEY (`qaNum`),
-    FOREIGN KEY (`id`) REFERENCES `Member`(`id`),
-    FOREIGN KEY (`stfid`) REFERENCES `Staff`(`stfid`)
+`qaNum` INT NOT NULL AUTO_INCREMENT COMMENT '식별 가능한 코드',
+`id` VARCHAR(15) NOT NULL COMMENT 'PK - 질문하는 회원 아이디 (회원테이블)',
+`qaTitle` VARCHAR(30) NOT NULL,
+`qaContent` VARCHAR(1000) NOT NULL COMMENT '게시글의 내용',
+`qaType` VARCHAR(10) NOT NULL COMMENT '시설문의 , 일반문의, 수강문의',
+`qaDate` TIMESTAMP NOT NULL,
+`qaOpen` BOOLEAN NOT NULL DEFAULT 0 COMMENT '1 - 공개 / 0- 비공개',
+`qaPassword` VARCHAR(100) NULL COMMENT '게시글의 비밀번호',
+`qaCount` INT NOT NULL DEFAULT 0,
+`qaFile` VARCHAR(100) NULL COMMENT '첨부파일 명',
+`stfid` VARCHAR(15) NULL,
+`qaReply` VARCHAR(1000) NULL COMMENT '답변이 존재하면 답변완료',
+`qaReplyTime` TIMESTAMP,
+PRIMARY KEY (`qaNum`),
+FOREIGN KEY (`id`) REFERENCES `Member`(`id`),
+FOREIGN KEY (`stfid`) REFERENCES `Staff`(`stfid`)
 );
 
 ************ 문의게시판 insert
@@ -473,16 +476,16 @@ VALUES
 
 ****************** 공지사항 + 자주하는질문 게시판 CREATE
 CREATE TABLE Notice (
-    notNum INT AUTO_INCREMENT PRIMARY KEY,
-    notTitle VARCHAR(30) NOT NULL,
-    quesT VARCHAR(3) NOT NULL,
-    notDate DATE NOT NULL,
-    notUploadfile VARCHAR(100),
-    notCount INT NOT NULL,
-    notDetail VARCHAR(1000) NOT NULL,
-    notType VARCHAR(2) NOT NULL DEFAULT 'A',
-    stfID VARCHAR(15) NOT NULL,
-    FOREIGN KEY (stfID) REFERENCES staff(stfID)
+notNum INT AUTO_INCREMENT PRIMARY KEY,
+notTitle VARCHAR(30) NOT NULL,
+quesT VARCHAR(3) NOT NULL,
+notDate DATE NOT NULL,
+notUploadfile VARCHAR(100),
+notCount INT NOT NULL,
+notDetail VARCHAR(1000) NOT NULL,
+notType VARCHAR(2) NOT NULL DEFAULT 'A',
+stfID VARCHAR(15) NOT NULL,
+FOREIGN KEY (stfID) REFERENCES staff(stfID)
 );
 
 ***************************************************
@@ -656,5 +659,219 @@ VALUES
 (253, '테니스 강습 변경', '강좌', '2024-04-03', NULL, 0, '테니스 강습 일정이 변경되었습니다. 변경된 시간에 참석해주세요.', 'B', 'winsam003'),
 (254, '요가 클래스 개설', '강좌', '2024-04-03', NULL, 0, '요가 클래스가 새롭게 개설되었습니다. 마음과 몸을 편안하게 만들어보세요!', 'B', 'winsam003');
 
+** 강좌 classes
+CREATE TABLE `Classes` (
+`clNum` INT NOT NULL AUTO_INCREMENT,
+`cldays` VARCHAR(25) NOT NULL,
+`cltime` VARCHAR(10) NOT NULL,
+`classCode` VARCHAR(10) NOT NULL, 
+`clName` VARCHAR(20) NOT NULL,
+`clRequest` TIMESTAMP  NOT NULL,
+`clRequestEnd` TIMESTAMP  NOT NULL,
+`clStart` TIMESTAMP  NOT NULL,
+`clEnd` TIMESTAMP  NOT NULL,
+`clFor` VARCHAR(10) NOT NULL,
+`clCount` INT NOT NULL,
+`clWating` INT NOT NULL,
+`clPrice` INT NOT NULL,
+`clType` VARCHAR(10) NULL COMMENT 'Acceptance available, Reservation waiting, Waiting list closed, Registration closed',
+PRIMARY KEY (`clNum`)
+);
+
+** 강좌 insert
+INSERT INTO `Classes` (`cldays`, `cltime`, `classCode`, `clName`, `clRequest`, `clRequestEnd`, `clStart`, `clEnd`, `clFor`, `clCount`, `clWating`, `clPrice`)
+VALUES
+('월', '10:00', 'CLBABK', '농구교실', '2024-04-09', '2024-04-30', '2024-04-09', '2024-04-30', 'KI', 20, 5, FLOOR(RAND() * (120000 - 60000 + 1) + 60000)),
+('화', '09:00', 'CLWASW', '수영교실', '2024-04-09', '2024-04-30', '2024-04-10', '2024-04-30', 'AD', 15, 3, FLOOR(RAND() * (120000 - 60000 + 1) + 60000)),
+('수,목', '14:00', 'CLDCKP', 'K-pop', '2024-04-09', '2024-04-30', '2024-04-11', '2024-04-30', 'HT', 18, 7, FLOOR(RAND() * (120000 - 60000 + 1) + 60000)),
+('월,화,수', '17:00', 'CLLAPP', '탁구교실', '2024-04-09', '2024-04-30', '2024-04-30', '2024-05-02', 'KI', 18, 5, FLOOR(RAND() * (120000 - 60000 + 1) + 60000)),
+('월', '10:00', 'CLWECR', '크로스핏', '2024-04-09', '2024-04-30', '2024-04-09', '2024-04-30', 'AD', 20, 5, FLOOR(RAND() * (120000 - 60000 + 1) + 60000)),
+('화', '09:00', 'CLBAFT', '풋살교실', '2024-04-09', '2024-04-30', '2024-04-10', '2024-04-30', 'OL', 15, 3, FLOOR(RAND() * (120000 - 60000 + 1) + 60000)),
+('수,목', '14:00', 'CLWADI', '다이빙', '2024-04-09', '2024-04-30', '2024-04-11', '2024-04-30', 'KI', 18, 7, FLOOR(RAND() * (120000 - 60000 + 1) + 60000)),
+('월,수,금', '15:00', 'CLDCBD', '벨리댄스', '2024-04-09', '2024-04-30', '2024-04-30', '2024-05-03', 'HT', 18, 5, FLOOR(RAND() * (120000 - 60000 + 1) + 60000)),
+('수,목', '14:00', 'CLLABM', '배드민턴교실', '2024-04-09', '2024-04-30', '2024-04-11', '2024-04-30', 'OL', 18, 7, FLOOR(RAND() * (120000 - 60000 + 1) + 60000)),
+('목,금,토,일', '21:00', 'CLWEPI', '필라테스', '2024-04-09', '2024-04-30', '2024-04-30', '2024-05-03', 'KI', 18, 5, FLOOR(RAND() * (120000 - 60000 + 1) + 60000));
+* 임시저장 ㅎㅎ =================================
+1. 로그인시 토큰 발행한다.
+2. 세션스토리지에서 토큰과 role을 확인할 수 있다.
+3. "그 아이디로 어떤 권한이 필요한 요청을 한다면" 을 위해서 config 파일에서 해당 요청을 특정 role이 존재할때만 설정가능 함. (여기서는 notice)
+4. 권한이 있는 아이디로 로그인해서 특정 권한이 필요한 요청 (notice) 를 보내본다.
+5. 권한이 있다면 정상적으로 요청 실행 
+6. 권한이 없다면 필터에서 요청 거부 (403 에러발생)
+==============================================
 
 
+* member_role_list ==========================
+
+// 테이블 생성
+CREATE TABLE member_role_list (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    member_id VARCHAR(255),
+    staff_id VARCHAR(255),
+    role_list INT
+);
+
+// 현재 member, staff 테이블에서 id 가져오기
+INSERT INTO member_role_list (member_id) SELECT id FROM member;
+insert into member_role_list (staff_id) select stfID from staff;
+
+// 전체 2(user) 권한 주기
+UPDATE member_role_list SET role_list = 2 WHERE member_id IS NOT NULL;
+UPDATE member_role_list SET role_list = 2 WHERE staff_id IS NOT NULL;
+
+// 전체 1(manager) 권한 주기
+INSERT INTO member_role_list (staff_id, role_list) SELECT staff_id, 1 FROM member_role_list WHERE role_list = 2;
+
+// 없는 값 삭제
+DELETE FROM member_role_list WHERE member_id IS NULL and staff_id IS NULL ;
+=============================================
+
+** 강사 table insert
+CREATE TABLE teach (
+    teachnum INT AUTO_INCREMENT PRIMARY KEY,
+    teachaccount VARCHAR(30),
+    teachadress VARCHAR(100),
+    teachadress1 VARCHAR(100),
+    teachadress2 VARCHAR(100),
+    teachbirth DATETIME(6),
+    teachcode VARCHAR(10),
+    teachlicense VARCHAR(50),
+    teachname VARCHAR(10),
+    teachphone VARCHAR(15),
+    teachrdate DATETIME(6)
+);
+
+** 강사 insert
+INSERT INTO teach (teachcode, teachaccount, teachrdate, teachbirth, teachlicense, teachname, teachphone) VALUES
+('TEBABK', '123456-78-901234', '2024-04-12', '1980-05-15', '운전면허증', '백승현', '01012345678'),
+('TEBABS', '234567-89-012345', '2024-04-11', '1975-08-20', '한국어교원자격증', '최승삼', '01023456789'),
+('TEBAFT', '345678-90-123456', '2024-04-10', '1983-11-30', '정보처리기사', '장근정', '01034567890'),
+('TEWASW', '456789-01-234567', '2024-04-09', '1978-03-25', '전산회계', '이정혁', '01045678901'),
+('TEWADI', '567890-12-345678', '2024-04-08', '1985-10-10', '영어교사자격증', '김수빈', '01056789012'),
+('TEDCKP', '678901-23-456789', '2024-04-07', '1973-12-05', '한국사능력검정시험', '전예원', '01067890123'),
+('TEDCBD', '789012-34-567890', '2024-04-06', '1970-06-18', '토익', '임시운', '01078901234'),
+('TELAPP', '890123-45-678901', '2024-04-05', '1987-09-22', '컴퓨터활용능력', '김수옥', '01089012345'),
+('TELABM', '901234-56-789012', '2024-04-04', '1982-04-07', '초등교원자격증', '임명건', '01090123456'),
+('TELATE', '012345-67-890123', '2024-04-03', '1976-07-14', '사회복지사', '최문석', '01001234567'),
+('TELASQ', '987654-32-109876', '2024-04-02', '1979-01-29', '산업기사', '김수미', '0109876432'),
+('TEWECL', '876543-21-210987', '2024-04-01', '1984-02-03', '의사면허증', '주용현', '01087654321');
+
+
+
+대관 신청 테이블 생성
+=======================================================================================================================================
+CREATE TABLE `spaceRentApp` (
+    `spRNum` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `spaceCode` varchar(10) NOT NULL COMMENT '시설관리의 시설코드 PK',
+    `spRDate` date NOT NULL,
+    `ID` varchar(15) COMMENT '첫번째 대관신청 PK',
+    `spRState` varchar(5) NOT NULL COMMENT '접수 / 결제 대기/ 확정',
+    `payment` varchar(10) NULL COMMENT '첫번째 대관신청 결제',
+    `ID2` varchar(15) NULL COMMENT '두번째 대관신청(경기) PK',
+    `spRState2` varchar(5) NULL,
+    `payment2` varchar(15) NULL,
+    FOREIGN KEY (`ID`) REFERENCES `member` (`id`), -- 첫 번째 외래 키 수정
+    FOREIGN KEY (`ID2`) REFERENCES `member` (`id`), -- 두 번째 외래 키 수정
+    FOREIGN KEY (`spaceCode`) REFERENCES `space` (`spaceCode`) -- 세 번째 외래 키 수정
+);
+
+
+대관 신청 테이블 생성 전 외래키 제약조건 설정
+=======================================================================================================================================
+ALTER TABLE `space` ADD INDEX `idx_spaceCode` (`spaceCode`);
+
+
+대관 신청 테스트용 insert문
+=======================================================================================================================================
+INSERT INTO spaceRentApp (spRNum, spaceCode, spRDate, spRState, payment) 
+VALUES 
+(1, 'FABK1C', '2024-04-13 06:00:00', '10000', 0),
+(2, 'FABK2C', '2024-04-13 06:00:00', '10000', 0),
+(3, 'FAFT1C', '2024-04-13 06:00:00', '10000', 0),
+(4, 'FAFT2C', '2024-04-13 06:00:00', '10000', 0),
+(5, 'FATE1C', '2024-04-13 06:00:00', '10000', 0),
+(6, 'FATE2C', '2024-04-13 06:00:00', '10000', 0),
+(7, 'FABK1C', '2024-04-13 09:00:00', '10000', 0),
+(8, 'FABK2C', '2024-04-13 09:00:00', '10000', 0),
+(9, 'FAFT1C', '2024-04-13 09:00:00', '10000', 0),
+(10, 'FAFT2C', '2024-04-13 09:00:00', '10000', 0),
+(11, 'FATE1C', '2024-04-13 09:00:00', '10000', 0),
+(12, 'FATE2C', '2024-04-13 09:00:00', '10000', 0),
+(13, 'FABK1C', '2024-04-13 12:00:00', '10000', 0),
+(14, 'FABK2C', '2024-04-13 12:00:00', '10000', 0),
+(15, 'FAFT1C', '2024-04-13 12:00:00', '10000', 0),
+(16, 'FAFT2C', '2024-04-13 12:00:00', '10000', 0),
+(17, 'FATE1C', '2024-04-13 12:00:00', '10000', 0),
+(18, 'FATE2C', '2024-04-13 12:00:00', '10000', 0),
+(19, 'FABK1C', '2024-04-13 15:00:00', '10000', 0),
+(20, 'FABK2C', '2024-04-13 15:00:00', '10000', 0),
+(21, 'FAFT1C', '2024-04-13 15:00:00', '10000', 0),
+(22, 'FAFT2C', '2024-04-13 15:00:00', '10000', 0),
+(23, 'FATE1C', '2024-04-13 15:00:00', '10000', 0),
+(24, 'FATE2C', '2024-04-13 15:00:00', '10000', 0),
+(25, 'FABK1C', '2024-04-13 18:00:00', '10000', 0),
+(26, 'FABK2C', '2024-04-13 18:00:00', '10000', 0),
+(27, 'FAFT1C', '2024-04-13 18:00:00', '10000', 0),
+(28, 'FAFT2C', '2024-04-13 18:00:00', '10000', 0),
+(29, 'FATE1C', '2024-04-13 18:00:00', '10000', 0),
+(30, 'FATE2C', '2024-04-13 18:00:00', '10000', 0),
+(31, 'FABK1C', '2024-04-14 06:00:00', '10000', 0),
+(32, 'FABK2C', '2024-04-14 06:00:00', '10000', 0),
+(33, 'FAFT1C', '2024-04-14 06:00:00', '10000', 0),
+(34, 'FAFT2C', '2024-04-14 06:00:00', '10000', 0),
+(35, 'FATE1C', '2024-04-14 06:00:00', '10000', 0),
+(36, 'FATE2C', '2024-04-14 06:00:00', '10000', 0),
+(37, 'FABK1C', '2024-04-14 09:00:00', '10000', 0),
+(38, 'FABK2C', '2024-04-14 09:00:00', '10000', 0),
+(39, 'FAFT1C', '2024-04-14 09:00:00', '10000', 0),
+(40, 'FAFT2C', '2024-04-14 09:00:00', '10000', 0),
+(41, 'FATE1C', '2024-04-14 09:00:00', '10000', 0),
+(42, 'FATE2C', '2024-04-14 09:00:00', '10000', 0),
+(43, 'FABK1C', '2024-04-14 12:00:00', '10000', 0),
+(44, 'FABK2C', '2024-04-14 12:00:00', '10000', 0),
+(45, 'FAFT1C', '2024-04-14 12:00:00', '10000', 0),
+(46, 'FAFT2C', '2024-04-14 12:00:00', '10000', 0),
+(47, 'FATE1C', '2024-04-14 12:00:00', '10000', 0),
+(48, 'FATE2C', '2024-04-14 12:00:00', '10000', 0),
+(49, 'FABK1C', '2024-04-14 15:00:00', '10000', 0),
+(50, 'FABK2C', '2024-04-14 15:00:00', '10000', 0),
+(51, 'FAFT1C', '2024-04-14 15:00:00', '10000', 0),
+(52, 'FAFT2C', '2024-04-14 15:00:00', '10000', 0),
+(53, 'FATE1C', '2024-04-14 15:00:00', '10000', 0),
+(54, 'FATE2C', '2024-04-14 15:00:00', '10000', 0),
+(55, 'FABK1C', '2024-04-14 18:00:00', '10000', 0),
+(56, 'FABK2C', '2024-04-14 18:00:00', '10000', 0),
+(57, 'FAFT1C', '2024-04-14 18:00:00', '10000', 0),
+(58, 'FAFT2C', '2024-04-14 18:00:00', '10000', 0),
+(59, 'FATE1C', '2024-04-14 18:00:00', '10000', 0),
+(60, 'FATE2C', '2024-04-14 18:00:00', '10000', 0),
+(61, 'FABK1C', '2024-04-15 06:00:00', '10000', 0),
+(62, 'FABK2C', '2024-04-15 06:00:00', '10000', 0),
+(63, 'FAFT1C', '2024-04-15 06:00:00', '10000', 0),
+(64, 'FAFT2C', '2024-04-15 06:00:00', '10000', 0),
+(65, 'FATE1C', '2024-04-15 06:00:00', '10000', 0),
+(66, 'FATE2C', '2024-04-15 06:00:00', '10000', 0),
+(67, 'FABK1C', '2024-04-15 09:00:00', '10000', 0),
+(68, 'FABK2C', '2024-04-15 09:00:00', '10000', 0),
+(69, 'FAFT1C', '2024-04-15 09:00:00', '10000', 0),
+(70, 'FAFT2C', '2024-04-15 09:00:00', '10000', 0),
+(71, 'FATE1C', '2024-04-15 09:00:00', '10000', 0),
+(72, 'FATE2C', '2024-04-15 09:00:00', '10000', 0),
+(73, 'FABK1C', '2024-04-15 12:00:00', '10000', 0),
+(74, 'FABK2C', '2024-04-15 12:00:00', '10000', 0),
+(75, 'FAFT1C', '2024-04-15 12:00:00', '10000', 0),
+(76, 'FAFT2C', '2024-04-15 12:00:00', '10000', 0),
+(77, 'FATE1C', '2024-04-15 12:00:00', '10000', 0),
+(78, 'FATE2C', '2024-04-15 12:00:00', '10000', 0),
+(79, 'FABK1C', '2024-04-15 15:00:00', '10000', 0),
+(80, 'FABK2C', '2024-04-15 15:00:00', '10000', 0),
+(81, 'FAFT1C', '2024-04-15 15:00:00', '10000', 0),
+(82, 'FAFT2C', '2024-04-15 15:00:00', '10000', 0),
+(83, 'FATE1C', '2024-04-15 15:00:00', '10000', 0),
+(84, 'FATE2C', '2024-04-15 15:00:00', '10000', 0),
+(85, 'FABK1C', '2024-04-15 18:00:00', '10000', 0),
+(86, 'FABK2C', '2024-04-15 18:00:00', '10000', 0),
+(87, 'FAFT1C', '2024-04-15 18:00:00', '10000', 0),
+(88, 'FAFT2C', '2024-04-15 18:00:00', '10000', 0),
+(89, 'FATE1C', '2024-04-15 18:00:00', '10000', 0),
+(90, 'FATE2C', '2024-04-15 18:00:00', '10000', 0);

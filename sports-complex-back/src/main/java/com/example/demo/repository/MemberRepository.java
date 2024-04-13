@@ -19,4 +19,6 @@ public interface MemberRepository {
 	public int mPWChange(Member entity);
 	
 	public Member mfindID(Member entity);
+
+	Member getWithRoles(String id);
 }

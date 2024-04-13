@@ -8,21 +8,23 @@ import { TbLock } from "react-icons/tb";
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { TbCalendar } from "react-icons/tb";
 import { useState } from 'react';
-import axios from 'axios';
 import { CiViewList } from "react-icons/ci";
 import { BsQrCode } from "react-icons/bs";
 import { GrContactInfo } from "react-icons/gr";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { IoIosLogOut } from "react-icons/io";
 import { apiCall } from '../apiService/apiService';
+import { MdOutlineRememberMe } from "react-icons/md";
+import { MdOutlinePlayLesson } from "react-icons/md";
+import { TbSoccerField } from "react-icons/tb";
+import { HiClipboardDocumentList } from "react-icons/hi2";
 
-export default function HomeDetail({ setLogincheck, loginCheck, logout }) {
-
+export default function HomeDetail({ setLogincheck, loginCheck, logout, getUserName, roleList }) {
 
 
     // **********************************slick settings 시작***********************************//
     const settings = {
-        dots: false,            // 하단 페이지 위치 점 표시
+        dots: true,            // 하단 페이지 위치 점 표시
         infinite: true,         // 끝에 도달하면 슬라이드 무한루프
         speed: 500,             // 슬라이드 전환 속도
         slidesToShow: 1,        // 한번에 보여지는 슬라이드 수
@@ -57,7 +59,8 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout }) {
         ).then((response) => {
             // 3. 200번일 경우 로그인성공 alert창 띄우고 홈페이지로 이동
             sessionStorage.setItem('userData', JSON.stringify(response));
-            alert(`안녕하세요 ${response.userName} 님`);
+
+            alert(`안녕하세요 ${response.name} 님`);
             setLogincheck(!loginCheck);
             navigate('/');
         }).catch((error) => {
@@ -66,19 +69,6 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout }) {
             console.log("login Error occured => " + error)
         })
     }
-
-    let getUserName;
-    let getUserID;
-    const userDataFromSession = sessionStorage.getItem('userData');
-
-    try {
-        const parsedUserData = JSON.parse(userDataFromSession);
-        getUserName = parsedUserData.userName;
-        getUserID = parsedUserData.userID;
-    } catch (error) {
-        console.log("userDataFromSession is not JSON formet or null data => " + error)
-    }
-
 
     // 비밀번호에서 enter키 누르면 로그인 요청
     const handleKeypress = (e) => {
@@ -96,9 +86,6 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout }) {
     const passwordHandler = (value) => {
         setPassword(value);
     }
-
-
-
 
 
     return (
@@ -192,11 +179,24 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout }) {
                     <div className='homeDetail_loginDiv'>
                         <div className='homeDetail_loginUserName'>{getUserName} 님</div>
                         <div className='homeDetail_firstMenuBox'>
-                            <Link to='/ApplicationDetailsPage' className='homeDetail_firstMenuBox_s1'><CiViewList className='homeDetail_icons' />신청내역</Link>
-                            <Link to='/QRCodePage' className='homeDetail_firstMenuBox_s2'><BsQrCode className='homeDetail_icons' />QR코드</Link>
-                            <Link to='/ModifyMemberPage' className='homeDetail_firstMenuBox_s3'><GrContactInfo className='homeDetail_icons' />내 정보 수정</Link>
-                            <Link to='/PasswordChangePage' className='homeDetail_firstMenuBox_s4'><RiLockPasswordLine className='homeDetail_icons' />비밀번호 수정</Link>
+
+                            {/* 직원일 경우, 회원일 경우 구분해서 링크 박스 변경 */}
+                            {roleList && roleList.length > 0 && roleList.some(item => item === "ADMIN" || item === "MANAGER") ? <Link to='/UserInfoPage' className='homeDetail_firstMenuBox_s1'><MdOutlineRememberMe className='homeDetail_icons' />인적관리</Link>
+                                : <Link to='/ApplicationDetailsPage' className='homeDetail_firstMenuBox_s1'><CiViewList className='homeDetail_icons' />신청내역</Link>}
+
+                            {roleList && roleList.length > 0 && roleList.some(item => item === "ADMIN" || item === "MANAGER") ? <Link to='/XClassesInfoControl' className='homeDetail_firstMenuBox_s1'><MdOutlinePlayLesson className='homeDetail_icons' />강의관리</Link>
+                                : <Link to='/QRCodePage' className='homeDetail_firstMenuBox_s2'><BsQrCode className='homeDetail_icons' />QR코드</Link>}
+
+                            {roleList && roleList.length > 0 && roleList.some(item => item === "ADMIN" || item === "MANAGER") ? <Link to='/XSugangRequestPage' className='homeDetail_firstMenuBox_s1'><CiViewList className='homeDetail_icons' />신청관리</Link>
+                                : <Link to='/ModifyMemberPage' className='homeDetail_firstMenuBox_s3'><GrContactInfo className='homeDetail_icons' />내 정보 수정</Link>}
+
+                            {roleList && roleList.length > 0 && roleList.some(item => item === "ADMIN" || item === "MANAGER") ? <Link to='/XRentalPlaceControllPage' className='homeDetail_firstMenuBox_s1'><TbSoccerField className='homeDetail_icons' />시설관리</Link>
+                                : <Link to='/PasswordChangePage' className='homeDetail_firstMenuBox_s4'><RiLockPasswordLine className='homeDetail_icons' />비밀번호 수정</Link>}
+
+                            {roleList && roleList.length > 0 && roleList.some(item => item === "ADMIN" || item === "MANAGER") ? <Link to='/XBoardControllPage' className='homeDetail_firstMenuBox_s1'><HiClipboardDocumentList className='homeDetail_icons' />게시판관리</Link>
+                                : ""}
                         </div>
+
                         <div className='homeDetail_lastMenuBox'>
                             <span onClick={() => { logout(); setLogincheck(!loginCheck); }}><IoIosLogOut className='homeDetail_icons' />로그아웃</span>
                         </div>

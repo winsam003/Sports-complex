@@ -28,7 +28,7 @@ public class NoticeBoardRepositoryImpl implements NoticeBoardRepository {
 	public List<Notice> NBoardList() {
 		log.info("NBoardList Repository 접촉 성공");
 		
-		return em.createQuery("SELECT n FROM Notice n WHERE n.nottype = 'A'", Notice.class).getResultList();
+		return em.createQuery("SELECT n FROM Notice n WHERE n.nottype = 'A' ORDER BY n.notnum DESC", Notice.class).getResultList();
 	}
 	
 	@Override
@@ -62,5 +62,41 @@ public class NoticeBoardRepositoryImpl implements NoticeBoardRepository {
 	    query.setParameter("notcount", entity.getNotcount());
 
 	    return query.executeUpdate();
+	}
+	
+	
+	@Override
+	public int noticeModify(Notice entity) {
+		log.info("noticeModify Repository 접촉 성공");
+		
+		if(entity.getNotuploadfile() != null) {
+			String sql = "UPDATE notice SET stfid=:stfid, notuploadfile = :notuploadfile, notdetail = :notdetail where notnum = :notnum";
+			
+			Query query = em.createNativeQuery(sql);
+			query.setParameter("stfid", entity.getStfid());
+			query.setParameter("notuploadfile", entity.getNotuploadfile());
+			query.setParameter("notdetail", entity.getNotdetail());
+			query.setParameter("notnum", entity.getNotnum());
+			
+			return query.executeUpdate();
+		}else {
+			String sql = "UPDATE notice SET stfid=:stfid, notdetail = :notdetail where notnum = :notnum";
+			
+			Query query = em.createNativeQuery(sql);
+			query.setParameter("stfid", entity.getStfid());
+			query.setParameter("notdetail", entity.getNotdetail());
+			query.setParameter("notnum", entity.getNotnum());
+			
+			return query.executeUpdate();
+		}
+	}
+	
+	
+	// 아래부터는 자주하는 질문 **********************************************************************************
+	@Override
+	public List<Notice> fnqList() {
+		log.info("fnqList Repository 접촉 성공");
+		
+		return em.createQuery("SELECT n FROM Notice n WHERE n.nottype = 'B' ORDER BY n.notnum DESC", Notice.class).getResultList();
 	}
 }

@@ -9,12 +9,8 @@ export default function InquiryRegistration() {
     const sessionUserData = sessionStorage.getItem('userData');
     const userData = sessionUserData ? JSON.parse(sessionUserData) : 'null';
     const userID = {
-        id: userData.userID
+        id: userData.id
     }
-
-    // 현재 시간
-    const currentTime = new Date();
-    const formattedTime = currentTime.toISOString();
 
     // 새글쓰기 내용
     const [qnaNewOneData, setQnaNewOneDate] = useState({
@@ -40,7 +36,7 @@ export default function InquiryRegistration() {
     useEffect(() => {
         let url = '/member/mDetail';
 
-        apiCall(url, 'post', userID, null)
+        apiCall(url, 'post', userID, userData.token)
             .then((response) => {
                 setQnaNewOneDate(userData => (
                     {
@@ -71,10 +67,19 @@ export default function InquiryRegistration() {
         const { name, value, files } = e.target;
         // 파일 선택 시 처리
         if (name == 'qafile') {
-            setQnaNewOneDate(prevData => ({
-                ...prevData,
-                [name]: files[0]
-            }));
+            // 파일을 선택한 경우에만 처리
+            if (files.length > 0) {
+                setQnaNewOneDate(prevData => ({
+                    ...prevData,
+                    [name]: files[0]
+                }));
+            } else {
+                // 파일을 선택하지 않은 경우 처리
+                setQnaNewOneDate(prevData => ({
+                    ...prevData,
+                    qafile: null
+                }));
+            }
         } else {
             // 다른 입력란에 대한 처리
             setQnaNewOneDate(prevData => ({
@@ -82,6 +87,12 @@ export default function InquiryRegistration() {
                 [name]: value
             }));
         }
+    }
+
+    // qadate에 현재 시간, 파일 추가
+    const handleQaDate = () => {
+        const currentTime = new Date().toISOString();
+        return currentTime;
     }
 
     // 문의게시판 새글등록 요청보내기
@@ -129,26 +140,19 @@ export default function InquiryRegistration() {
             return;
         }
 
+        // qadate에 현재 시간, 파일 추가
+        qnaNewOneData.qadate = new Date().toISOString();
+
         // 파일을 건네주기 위한 formData객체 생성
         const formData = new FormData();
         // 파일 추가
-        formData.append('qafile', qnaNewOneData.qafile);
-
-        // qadate에 현재 시간, 파일 추가
-        setQnaNewOneDate(prevData => ({
-            ...prevData,
-            qadate: formattedTime,
-            qafile: formData.get('qafile')
-        }));
+        formData.append('file', qnaNewOneData.qafile);
+        qnaNewOneData.qafile = formData.get('file');
 
         let url = '/qna/qnaInsert'
-
-        console.log(qnaNewOneData);
-        console.log(apiCall(url, 'post', qnaNewOneData, null));
-        apiCall(url, 'post', qnaNewOneData, null)
-            .then((response) => {
-                console.log("문의게시판 새글등록 완료 : ", response);
-                // navigate('/QnaDetailPage', { state: { qnaNewOneData } });
+        apiCall(url, 'post', qnaNewOneData, userData.token)
+            .then(() => {
+                navigate('/QnaDetailPage', { state: { qnaData: { ...qnaNewOneData } } });
             }).catch((error) => {
                 console.log("QnaWrite Error : ", error);
             })

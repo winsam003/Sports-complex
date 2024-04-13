@@ -12,7 +12,6 @@ import { Link, useNavigate } from 'react-router-dom';
 // import ManagementPage from './ManagementPage';
 
 import { TbUserPlus } from "react-icons/tb";
-import { useState } from 'react';
 
 export default function Header({ checkAdminPage, logout, getUserName }) {
 

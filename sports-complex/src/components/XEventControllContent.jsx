@@ -6,7 +6,7 @@ import Submenu from './Submenu';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { apiCall } from '../apiService/apiService';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function XEventControllContent() {
 
@@ -17,9 +17,9 @@ export default function XEventControllContent() {
     const [eventlist, seteventlist] = useState([]);
 
     useEffect(() => {
+        window.scrollTo(0, 525);
         fetchEventList();
         // 배열로 나오는것 확인, 
-        console.log(checkEvent);
     }, [checkEvent]);
 
     const fetchEventList = () => {
@@ -67,8 +67,10 @@ export default function XEventControllContent() {
     const del = () => {
         let url = "/event/eventdelete"
 
+        window.scrollTo(0, 0);
         apiCall(url, 'post', checkEvent, null)
             .then((checkEvent) => {
+                alert(`${checkEvent}`);
                 setCheckEvent([]);
                 fetchEventList();
             }).catch((error) => {
@@ -81,14 +83,22 @@ export default function XEventControllContent() {
         setCheckEvent([]);
     }
 
+    const navigate = useNavigate();
+    const uploadEvent = () => {
+        navigate('/XEventBoardWritePage');
+    }
+
 
     //=============================================================== 
+
+
     return (
         <div className='XEventControllContent_div'>
             <Submenu />
             <div className='XEventControllContent_div_div'>
                 <div className='XEventControllContent_uploadAndSearch'>
-                    <button> <Link to = '/XEventBoardWritePage'>등록</Link></button>
+                    {/* <Link to = '/XEventBoardWritePage'><span>등록</span></Link> */}
+                    <button onClick={uploadEvent}>등록</button>
                     <XEventSearch
                         onSearch={handleSearch}
                         searchType={searchType}

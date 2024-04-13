@@ -94,7 +94,7 @@ public class NoticeBoardContoller {
 	
 	// notic1eSubmit 공지사항 등록
 	@PostMapping(value="/noticeSubmit")
-	public ResponseEntity<?> noticeSubmit( @RequestParam("file") MultipartFile file,
+	public ResponseEntity<?> noticeSubmit( @RequestParam(value = "file", required = false) MultipartFile file,
 	                                       @RequestParam("stfid") String stfid,
 	                                       @RequestParam("quest") String quest,
 	                                       @RequestParam("nottitle") String nottitle,
@@ -102,7 +102,8 @@ public class NoticeBoardContoller {
 	                                       @RequestParam("notdate") String notdate,
 	                                       @RequestParam("notcount") Integer notcount,
 										   @RequestParam("nottype") String nottype) throws IOException{
-		log.info("Contoller notic1eSubmit 접촉 성공");
+		log.info("Contoller noticeSubmit 접촉 성공");
+		
 		
 		
 		Notice entity = new Notice();
@@ -110,39 +111,41 @@ public class NoticeBoardContoller {
 		entity.setNottitle(nottitle);
 		entity.setQuest(quest);
 		entity.setNotdate(parseDate(notdate));
-		entity.setNotuploadfile(file.getOriginalFilename());
 		entity.setNotdetail(notdetail);
 		entity.setNottype(nottype);
 		entity.setStfid(stfid);
 		entity.setNotcount(notcount);
 		entity.setQafilef(file);
 		
-		
-		// 1. 배포 전, 배포 후 물리적 위치 저장
-		String realPath = "E:\\Sam\\project\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\noticeBoard\\";
-		
-		
-		// 솔직히 무슨 기준으로 배포 전, 후 를 나눠야할지 모르겠음 일단 같은 폴더로 지정했음
-		if(realPath.contains(".project."))
-			realPath = "E:\\Sam\\project\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\noticeBoard\\";
-		else 
-			realPath = "E:\\Sam\\project\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\noticeBoard\\";
-		
-		
-		// 1.1. 해당 위치에 폴더가 존재하지 않다면 만들기
-		File file1 = new File(realPath);
-		if(!file1.exists()) {
-			file1.mkdir();
+		// 파일이 있을 경우.
+		if (file != null && !file.isEmpty()) {
+			entity.setNotuploadfile(file.getOriginalFilename());
+			
+			// 1. 배포 전, 배포 후 물리적 위치 저장
+			String realPath = "E:\\Sam\\project\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\noticeBoard\\";
+			
+			
+			// 솔직히 무슨 기준으로 배포 전, 후 를 나눠야할지 모르겠음 일단 같은 폴더로 지정했음
+			if(realPath.contains(".project."))
+				realPath = "E:\\Sam\\project\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\noticeBoard\\";
+			else 
+				realPath = "E:\\Sam\\project\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\noticeBoard\\";
+			
+			
+			// 1.1. 해당 위치에 폴더가 존재하지 않다면 만들기
+			File file1 = new File(realPath);
+			if(!file1.exists()) {
+				file1.mkdir();
+			}
+			
+			// 1.2. 저장 할 파일 데이터가 존재한다면 저장 경로에 파일 이름을 붙여주고 파일 복사 (저장)
+			MultipartFile uploadfilef = entity.getQafilef();
+			if(uploadfilef != null && !uploadfilef.isEmpty()) {
+				String f2 = realPath + uploadfilef.getOriginalFilename();
+				File f1 = new File(f2);
+				uploadfilef.transferTo(f1);
+			}
 		}
-		
-		// 1.2. 저장 할 파일 데이터가 존재한다면 저장 경로에 파일 이름을 붙여주고 파일 복사 (저장)
-		MultipartFile uploadfilef = entity.getQafilef();
-		if(uploadfilef != null && !uploadfilef.isEmpty()) {
-			String f2 = realPath + uploadfilef.getOriginalFilename();
-			File f1 = new File(f2);
-			uploadfilef.transferTo(f1);
-		}
-		
 
 		
 		if(service.noticeSubmit(entity)>0) {
@@ -150,7 +153,60 @@ public class NoticeBoardContoller {
 		}else {
 			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(null);			
 		}
+		
 	 }// notic1eSubmit 공지사항 등록
+	
+	
+	// 공지사항 수정
+	@PostMapping(value="/noticeModify")
+	public ResponseEntity<?> noticeModify(@RequestParam(value = "file", required = false) MultipartFile file,
+										  @RequestParam("stfid") String stfid,
+										  @RequestParam("notdetail") String notdetail,
+										  @RequestParam("notnum") int notnum) throws IOException{
+		log.info("Contoller noticeModify 접촉 성공");
+		
+		
+		Notice entity = new Notice();
+		entity.setStfid(stfid);
+		entity.setNotnum(notnum);
+		entity.setNotdetail(notdetail);
+		
+		
+		if (file != null && !file.isEmpty()) {
+			entity.setNotuploadfile(file.getOriginalFilename());
+			
+			// 1. 배포 전, 배포 후 물리적 위치 저장
+			String realPath = "E:\\Sam\\project\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\noticeBoard\\";
+						
+						
+			// 솔직히 무슨 기준으로 배포 전, 후 를 나눠야할지 모르겠음 일단 같은 폴더로 지정했음
+			if(realPath.contains(".project."))
+				realPath = "E:\\Sam\\project\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\noticeBoard\\";
+			else 
+				realPath = "E:\\Sam\\project\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\noticeBoard\\";
+						
+						
+			// 1.1. 해당 위치에 폴더가 존재하지 않다면 만들기
+			File file1 = new File(realPath);
+			if(!file1.exists()) {
+				file1.mkdir();
+			}
+						
+			// 1.2. 저장 할 파일 데이터가 존재한다면 저장 경로에 파일 이름을 붙여주고 파일 복사 (저장)
+			MultipartFile uploadfilef = entity.getQafilef();
+			if(uploadfilef != null && !uploadfilef.isEmpty()) {
+				String f2 = realPath + uploadfilef.getOriginalFilename();
+				File f1 = new File(f2);
+				uploadfilef.transferTo(f1);			
+				}
+			}
+		
+		if(service.noticeModify(entity)>0) {
+			return ResponseEntity.status(HttpStatus.OK).body("공지사항 수정에 성공하였습니다.");						
+		}else {
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(null);			
+		}
+	} // 공지사항 수정
 	
 	
 	
@@ -158,6 +214,7 @@ public class NoticeBoardContoller {
 	public ResponseEntity<ByteArrayResource> downloadFile(@RequestParam String fileName) throws IOException{
 		
 	    Path filePath = Paths.get(DOWNLOAD_DIR, fileName);
+	    log.info(filePath);
 	        // 파일의 내용을 바이트 배열로 읽어옴
 	    byte[] data = Files.readAllBytes(filePath);
 	        // 바이트 배열을 ByteArrayResource 객체로 변환
@@ -174,6 +231,24 @@ public class NoticeBoardContoller {
                 .body(resource);
 	}
 	
+	
+	
+	//아래는 자주하는 질문 *********************************************************************************************************
+	
+	
+	// fnqList 공지사항 게시글 list
+	@GetMapping(value="/fnqList", produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> fnqList(){
+		log.info("Contoller fnqList 접촉 성공");
+		
+		List<Notice> result = service.fnqList();
+		
+		if(result != null && result.size() > 0) {
+			return ResponseEntity.status(HttpStatus.OK).body(result);
+		}else {
+			return ResponseEntity.status(HttpStatus.OK).body(null);			
+		}
+	} // fnqList 공지사항 게시글 list
 	
 	
 }

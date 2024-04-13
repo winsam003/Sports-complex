@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './XReantalPlaceNewone.css'
-import axios from 'axios';
 import { useNavigate } from 'react-router';
+import { apiCall } from '../apiService/apiService';
 
 export default function XReantalPlaceNewone() {
 
@@ -30,12 +30,15 @@ export default function XReantalPlaceNewone() {
         // placeType 담아주기.
         setPlaceType(e);
         // spacelist 불러오기. filter 거를 예정.
-        axios.get('/space/spacelist')
+
+        let url = '/space/spacelist';
+        apiCall(url, 'get', null, null)
             .then((list) => {
                 setSpaceList(list.data);
-            }).catch((error) => {
+            }).catch((error) =>{
                 console.log("Error: ", error);
             })
+
     }
 
     const makePlaceNumber = (e) => {
@@ -107,7 +110,6 @@ export default function XReantalPlaceNewone() {
 
     // 등록 버튼. onClick
     const navigate = useNavigate(); 
-    // 이거 대체 왜 밖에다가 선언해야되나요
     const spaceInsert = () => {
         console.log(formPlace);
 
@@ -129,16 +131,17 @@ export default function XReantalPlaceNewone() {
         }
 
 
-        axios.post('/space/spaceInsert', formPlace
-        ).then((response) => {
-            alert(response.data);
-            navigate('/XRentalPlaceControllPage');
-            
-        } ).catch((error) => {
-            alert(`${placeNumber}번 은 이미 있는 시설 번호입니다. 다른 번호를 입력해주세요.`)
-            console.error("spaceInsert error : ", error);
-        })
+        let url = "/space/spaceInsert";
+        let token = JSON.parse(sessionStorage.getItem("userData")).token;
 
+        apiCall(url, 'post', formPlace, token)
+            .then((response) => {
+                alert(response);
+                navigate('/XRentalPlaceControllPage');
+            }).catch((error) =>{
+                alert(`${placeNumber}번 은 이미 있는 시설 번호입니다. 다른 번호를 입력해주세요.`)
+                console.error("spaceInsert error : ", error);
+            })
 
     }
 

@@ -2,12 +2,12 @@ import Submenu from './Submenu';
 import ModifyMember from './ModifyMember';
 import './ModifyMemberAndSubMenu.css';
 
-export default function ModifyMemberAndSubMenu({ getUserID }) {
+export default function ModifyMemberAndSubMenu({ getUserID, roleList }) {
     return (
         <div className='ModifyMemberAndSubMenu_Box'>
             <Submenu />
             <div className='ModifyMemberAndSubMenu_Box2'>
-                <ModifyMember getUserID={getUserID} />
+                <ModifyMember getUserID={getUserID} roleList={roleList} />
             </div>
         </div>
     )

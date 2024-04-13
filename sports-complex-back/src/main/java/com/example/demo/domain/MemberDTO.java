@@ -1,15 +1,21 @@
 package com.example.demo.domain;
 
-import java.util.Date; 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class MemberDTO {
+	private String token;
 	private String id;
 	private String membercode;
 	private String name;
@@ -25,5 +31,8 @@ public class MemberDTO {
 	private boolean emailagr;
 	private String carnum;
 	private Date parkuse;
+	
+	private List<MemberRole> roleList = new ArrayList<>();
+
 	
 }

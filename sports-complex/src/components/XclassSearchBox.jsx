@@ -1,24 +1,24 @@
 import './XclassSearchBox.css';
 import { useState } from 'react';
-import XclassSearchButton from './XclassSearchButton';
 
-export default function XclassSearchBox() {
+export default function XclassSearchBox({ onSearch, onReset, classesSearchBTSelect, setClassesSearchBTSelect, classesSearchSTSelect, setClassesSearchSTSelect, classesSearchDaySelect, setClassesSearchDaySelect, classesSearchTargetSelect, setClassesSearcTargetSelect, classesSearchInput, setClassesSearchInput }) {
 
-
-    const [selectedOption, setSelectedOption] = useState('구기');
-
-    const handlerOptionChange = (event) => {
-        setSelectedOption(event.target.value);
-        console.log(selectedOption);
-    };
-
+    // 검색
+    const handleSearch = () => {
+        onSearch(classesSearchBTSelect, classesSearchSTSelect, classesSearchDaySelect, classesSearchTargetSelect, classesSearchInput);
+    }
+    // 초기화
+    const reset = () => {
+        onReset();
+    }
 
     return (
         <div className='XclassSearchBox_box'>
             <div className='XclassSearchBox_title'>강의정보</div>
             <div className='XclassSearchBox_division'>
                 <span>대분류
-                    <select value={selectedOption} onChange={handlerOptionChange} name="XclassSearchBox_MainCategory" id="XclassSearchBox_MainCategory">
+                    <select value={classesSearchBTSelect} onChange={(e) => setClassesSearchBTSelect(e.target.value)} name="XclassSearchBox_MainCategory" id="XclassSearchBox_MainCategory">
+                        <option value="전체">전체</option>
                         <option value="구기">구기</option>
                         <option value="수상">수상</option>
                         <option value="댄스">댄스</option>
@@ -27,50 +27,68 @@ export default function XclassSearchBox() {
                     </select>
                 </span>
                 <span>세부종목
-                    {selectedOption === '구기' && (
-                        <select name="XclassSearchBox_SubCategory" id="XclassSearchBox_SubCategory">
-                            <option value="구기">농구</option>
-                            <option value="수상">야구</option>
-                            <option value="댄스">풋살</option>
+                    {classesSearchBTSelect === '전체' && (
+                        <select name="XclassSearchBox_SubCategory" id="XclassSearchBox_SubCategory"
+                            value={classesSearchSTSelect} onChange={(e) => setClassesSearchSTSelect(e.target.value)}>
+                            <option value="전체">전체</option>
                         </select>
                     )}
-                    {selectedOption === '수상' && (
-                        <select name="XclassSearchBox_SubCategory" id="XclassSearchBox_SubCategory">
+                    {classesSearchBTSelect === '구기' && (
+                        <select name="XclassSearchBox_SubCategory" id="XclassSearchBox_SubCategory"
+                            value={classesSearchSTSelect} onChange={(e) => setClassesSearchSTSelect(e.target.value)}>
+                            <option value="전체">전체</option>
+                            <option value="농구">농구</option>
+                            <option value="야구">야구</option>
+                            <option value="풋살">풋살</option>
+                        </select>
+                    )}
+                    {classesSearchBTSelect === '수상' && (
+                        <select name="XclassSearchBox_SubCategory" id="XclassSearchBox_SubCategory"
+                            value={classesSearchSTSelect} onChange={(e) => setClassesSearchSTSelect(e.target.value)}>
+                            <option value="전체">전체</option>
                             <option value="수영">수영</option>
                             <option value="다이빙">다이빙</option>
                         </select>
                     )}
-                    {selectedOption === '댄스' && (
-                        <select name="XclassSearchBox_SubCategory" id="XclassSearchBox_SubCategory">
+                    {classesSearchBTSelect === '댄스' && (
+                        <select name="XclassSearchBox_SubCategory" id="XclassSearchBox_SubCategory"
+                            value={classesSearchSTSelect} onChange={(e) => setClassesSearchSTSelect(e.target.value)}>
+                            <option value="전체">전체</option>
                             <option value="k-pop">k-pop</option>
                             <option value="벨리댄스">벨리댄스</option>
                         </select>
                     )}
-                    {selectedOption === '라켓' && (
-                        <select name="XclassSearchBox_SubCategory" id="XclassSearchBox_SubCategory">
+                    {classesSearchBTSelect === '라켓' && (
+                        <select name="XclassSearchBox_SubCategory" id="XclassSearchBox_SubCategory"
+                            value={classesSearchSTSelect} onChange={(e) => setClassesSearchSTSelect(e.target.value)}>
+                            <option value="전체">전체</option>
                             <option value="탁구">탁구</option>
                             <option value="배드민턴">배드민턴</option>
                             <option value="테니스">테니스</option>
                             <option value="스쿼시">스쿼시</option>
                         </select>
                     )}
-                    {selectedOption === '웨이트' && (
-                        <select name="XclassSearchBox_SubCategory" id="XclassSearchBox_SubCategory">
+                    {classesSearchBTSelect === '웨이트' && (
+                        <select name="XclassSearchBox_SubCategory" id="XclassSearchBox_SubCategory"
+                            value={classesSearchSTSelect} onChange={(e) => setClassesSearchSTSelect(e.target.value)}>
+                            <option value="전체">전체</option>
                             <option value="클라이밍">클라이밍</option>
                             <option value="크로스핏">크로스핏</option>
                             <option value="필라테스">필라테스</option>
                         </select>
                     )}
-
                 </span>
             </div>
             <div className='XclassSearchBox_inputBox'>
                 <span>강좌명 </span>
-                <input className='XclassSearchBox_input' type="text" placeholder='검색할 강의를 입력해주세요' />
+                <input className='XclassSearchBox_input' type="search" placeholder='검색할 강의를 입력해주세요'
+                    value={classesSearchInput} onChange={(e) => setClassesSearchInput(e.target.value)} />
             </div>
             <div className='XclassSearchBox_target'>
                 <span>요일선택
-                    <select name="XclassSearchBox_classday" id="XclassSearchBox_classday">
+                    <select name="XclassSearchBox_classday" id="XclassSearchBox_classday"
+                        value={classesSearchDaySelect} onChange={(e) => setClassesSearchDaySelect(e.target.value)}>
+                        <option value="전체">전체</option>
                         <option value="월">월</option>
                         <option value="화">화</option>
                         <option value="수">수</option>
@@ -80,12 +98,20 @@ export default function XclassSearchBox() {
                     </select>
                 </span>
                 <span>교육대상
-                    <select name="XclassSearchBox_MainCategory" id="XclassSearchBox_MainCategory">
-                        <option value="성인">성인</option>
-                        <option value="아동">아동</option>
+                    <select name="XclassSearchBox_MainCategory" id="XclassSearchBox_MainCategory"
+                        value={classesSearchTargetSelect} onChange={(e) => setClassesSearcTargetSelect(e.target.value)}>
+                        <option value="전체">전체</option>
+                        <option value="KI">아동</option>
+                        <option value="HT">청소년</option>
+                        <option value="AD">성인</option>
+                        <option value="OL">노인</option>
                     </select>
                 </span>
             </div>
-        </div>
+            <div className='XBtnResetSearch'>
+                <button onClick={reset}>초기화</button>
+                <button onClick={handleSearch}>조회</button>
+            </div>
+        </div >
     )
 }

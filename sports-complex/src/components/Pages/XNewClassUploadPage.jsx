@@ -7,7 +7,6 @@ export default function XNewClassUploadPage() {
         <div>
             <PageBanner />
             <XNewClassUpload />
-
         </div>
     )
 }

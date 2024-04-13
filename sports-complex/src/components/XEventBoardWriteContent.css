@@ -66,6 +66,15 @@
     /* textarea로 수정함. */
     resize: none;
 }
+/* 사진 */
+.XEventBoardContent_upload input {
+    display: block;
+}
+.XEventBoardContent_upload img {
+    width: 200px;
+    display: inline-block;
+    margin-right: 5px;
+}
 
 /* 게시판 등록, 목록 버튼 */
 .XEventBoardContent_btn_div {
@@ -74,10 +83,19 @@
     justify-content: center;
 }
 
+.XEventBoardContent_btn_div>button:nth-child(1){
+    background-color: darkcyan;
+    color: white;
+}
 .XEventBoardContent_btn_div button {
-    margin: 0 30px;
     width: 100px;
     height: 50px;
-    font-size: 20px;
-    font-weight: bold;
+    margin-right: 30px;
+    font-size: large;
+    background-color: #a5a6a7;
+    border-radius: 0.5em;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    line-height: 50px;
 }

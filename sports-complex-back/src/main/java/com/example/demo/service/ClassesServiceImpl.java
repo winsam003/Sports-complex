@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.example.demo.domain.ClassesDTO;
 import com.example.demo.entity.Classes;
 import com.example.demo.repository.ClassesRepository;
 
@@ -14,22 +15,22 @@ import lombok.RequiredArgsConstructor;
 public class ClassesServiceImpl implements ClassesService {
 	private final ClassesRepository repository;
 
-//	 SelectList
+	// 강의 목록
 	@Override
-	public List<Classes> selectList() {
-		return repository.findAll();
+	public List<Classes> classesList() {
+		return repository.classesList();
 	}
 
-//	 insert
+	// 강의 등록
 	@Override
-	public Classes save(Classes entity) {
-		return repository.save(entity);
+	public int classesInsert(ClassesDTO dto) {
+		return repository.classesInsert(dto);
 	}
 
-//	 delete
+	// 강의 삭제
 	@Override
-	public void deleteById(String classCode) {
-		repository.deleteById(classCode);
+	public void classesDelete(Integer clnum) {
+		repository.classesDelete(clnum);
 	}
 
 }

@@ -16,11 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.domain.MemberDTO;
 import com.example.demo.entity.Member;
-
+import com.example.demo.jwtToken.TokenProvider;
 import com.example.demo.service.MemberServiceImpl;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
 
@@ -31,6 +30,7 @@ import lombok.extern.log4j.Log4j2;
 public class MemberContoller {
 	MemberServiceImpl service;
 	PasswordEncoder passwordEncoder;
+	TokenProvider tokenProvider;
 	
 	
 	// ** Member List
@@ -86,15 +86,30 @@ public class MemberContoller {
 	// ** mlogin
 	@PostMapping(value="/mlogin", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> mlogin(@RequestBody Member entity){
-		String password = entity.getPassword();
-		entity = service.MemberOne(entity.getId());
 		
+		String password = entity.getPassword();
+//		entity = service.MemberOne(entity.getId());
+		entity = service.getWithRoles(entity.getId());
+		
+		// 패스워드 비교
 		if(entity != null && passwordEncoder.matches(password, entity.getPassword())) {
-			Map<String, Object> response = new HashMap<>();			// 데이터를 맵 형태로 반환을 위해 선언
-			response.put("userID", entity.getId());
-			response.put("userName", entity.getName());
+//			Map<String, Object> response = new HashMap<>();            // 데이터를 맵 형태로 반환을 위해 선언
+//            response.put("userID", entity.getId());
+//            response.put("userName", entity.getName());
+//			return ResponseEntity.status(HttpStatus.OK).body(response);	// 담은 데이터 반환
 			
-			return ResponseEntity.status(HttpStatus.OK).body(response);	// 담은 데이터 반환
+			
+			// 패스워드가 맞다면 토큰 발행
+			final String token = tokenProvider.createToken(entity.claimList());
+			final MemberDTO memberDTO = MemberDTO.builder()
+					.token(token)
+					.id(entity.getId())
+					.name(entity.getName())
+					.roleList(entity.getRoleList())
+					.build();
+			log.info("login 성공 token = "+token);
+			log.info(memberDTO);
+			return ResponseEntity.status(HttpStatus.OK).body(memberDTO);
 		}else {
 			Map<String, Object> response = new HashMap<>();
 			response.put("message", "로그인에 실패하였습니다. 다시 로그인해주세요.");
@@ -158,8 +173,6 @@ public class MemberContoller {
 		
 		String name = entity.getName();
 		String phonenum = entity.getPhonenum();
-		log.info(name);
-		log.info(phonenum);
 		
 		entity = service.mfindID(entity);
 		if(entity != null) {

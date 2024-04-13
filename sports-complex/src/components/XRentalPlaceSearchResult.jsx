@@ -1,6 +1,6 @@
 import './XRentalPlaceSearchResult.css'
-import axios from 'axios';
 import { useEffect, useState } from 'react'
+import { apiCall } from '../apiService/apiService';
 
 export default function XRentalPlaceSearchResult({ checkList, setCheckList, refreshList, inputReset, setInputReset, handleReset, searchPlace }) {
 
@@ -12,15 +12,17 @@ export default function XRentalPlaceSearchResult({ checkList, setCheckList, refr
     }, [refreshList]);
 
     const fetchSpaceList = () => {
-        axios.get('/space/spacelist')
-            .then((list) => {
 
-                setSpaceList(list.data);
-                console.log(`list.data: ${list.data}`);
+        let url = "/space/spacelist";
+        let token = JSON.parse(sessionStorage.getItem("userData")).token;
 
+        apiCall(url, 'get', null, null)
+            .then((response) => {
+                setSpaceList(response);
             }).catch((error) => {
                 console.log("Error: ", error);
             })
+
     }
 
     // 체크한거에 spacecode 가져가기. 

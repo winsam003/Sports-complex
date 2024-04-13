@@ -39,8 +39,6 @@ export default function XBoardControllContentListContents({ notnum, nottitle, qu
         });
     }
 
-    console.log(notuploadfile)
-
     return (
         <div className='XBoardControllContentListContents_div'>
             <div className='XBoardControllContentListContents_contents'>

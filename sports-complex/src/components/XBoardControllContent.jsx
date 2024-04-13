@@ -89,17 +89,24 @@ export default function XBoardControllContent() {
     useEffect(() => {
         let url = "/notice/noticeList";
 
-        apiCall(url, 'get', null, null)
+
+
+        let token = JSON.parse(sessionStorage.getItem("userData")).token;
+
+        apiCall(url, 'get', null, token)
             .then((response) => {
                 setNoticeList(response);
                 setRememberList(response);
             }).catch((error) => {
-                console.log("noticeList error occred = " + error);
+                if (error === 403) {
+                    alert("권한이 없습니다.")
+                    console.log("403 noticeList error occred = " + error);
+                } else {
+                    console.log("noticeList error occred = " + error);
+                }
             })
     }, [deleteRequest])
     // List 불러오기 ******************************************************************************//
-
-
 
 
 

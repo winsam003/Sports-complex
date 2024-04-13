@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.entity.Member;
@@ -56,7 +57,27 @@ public class MemberRepositoryImpl implements MemberRepository {
 		query.setParameter("parkuse", dto.getParkuse());
 
 		// 쿼리 실행 및 결과 반환
-		return query.executeUpdate();
+		
+		int result = query.executeUpdate();
+		
+		if(result>0) {
+		    // 회원의 기본 권한 설정
+		    if (result > 0) {
+		        // 권한 정보 저장 쿼리 작성
+		        String roleJpql = "INSERT INTO member_role_list (member_id, role_list) VALUES (:id, :role)";
+
+		        // 권한 정보 저장 쿼리 객체 생성
+		        Query roleQuery = em.createNativeQuery(roleJpql);
+
+		        // 회원의 기본 권한 설정 (예: 'USER')
+		        roleQuery.setParameter("id", dto.getId());
+		        roleQuery.setParameter("role", 2);
+
+		        // 권한 정보 저장 쿼리 실행
+		        roleQuery.executeUpdate();
+		    }
+		}
+		return result;
 	}
 
 	@Override
@@ -75,7 +96,6 @@ public class MemberRepositoryImpl implements MemberRepository {
 	public Member MemberOne(String id) {
 		// TODO Auto-generated method stub
 		log.info("MemberOne Repository 접촉 성공");
-		System.out.println(id);
 		return em.createQuery("select m from Member m where id=:id", Member.class).setParameter("id", id)
 				.getSingleResult();
 	}
@@ -130,4 +150,17 @@ public class MemberRepositoryImpl implements MemberRepository {
 				.setParameter("name", entity.getName()).setParameter("phonenum", entity.getPhonenum())
 				.getSingleResult();
 	}
+
+	
+	@EntityGraph(attributePaths = {"roleList"}) 
+	@Override
+	public Member getWithRoles(String id) {
+	    log.info("getWithRoles Repository 접촉 성공");
+	    log.info("Member ID: {}", id);
+
+	    return em.createQuery("SELECT m FROM Member m LEFT JOIN FETCH m.roleList WHERE m.id = :id", Member.class)
+	             .setParameter("id", id)
+	             .getSingleResult();
+	}
+	
 }

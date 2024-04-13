@@ -2,10 +2,13 @@ import './XBoardWriteContent.css';
 import Submenu from './Submenu';
 import { useState } from 'react';
 import { apiCall } from '../apiService/apiService';
+import { useLocation, useNavigate } from 'react-router';
 
 // 공지사항
-export default function XBoardWriteContent({ getUserID }) {
+export default function XBoardWriteContent({ getUserID, token }) {
 
+    const location = useLocation();
+    const navigate = useNavigate();
 
 
     const [questype, setQuestype] = useState('')
@@ -31,27 +34,57 @@ export default function XBoardWriteContent({ getUserID }) {
 
 
     const noticeSubmit = () => {
-        let url = "/notice/noticeSubmit";
-        const formData = new FormData();
-        formData.append('file', selectedFile);
+        let url;
+        let requestData;
+        if (location.pathname.indexOf("/XBoardWritePage") !== -1) {           // 공지사항 등록
+            url = "/notice/noticeSubmit";
+            const formData = new FormData();
+            formData.append('file', selectedFile);
 
-        let requestData = {
-            stfid: getUserID,
-            quest: questype,
-            nottitle: noticeTitle,
-            notdetail: noticeContent,
-            file: formData.get('file'),
-            notdate: new Date(),
-            nottype: 'A',
-            notcount: 0
+            requestData = {
+                stfid: getUserID,
+                quest: questype,
+                nottitle: noticeTitle,
+                notdetail: noticeContent,
+                file: formData.get('file'),
+                notdate: new Date(),
+                nottype: 'A',
+                notcount: 0
+            }
+        } else {         
+            url = "/notice/noticeSubmit";
+            const formData = new FormData();
+            formData.append('file', selectedFile);
+
+            requestData = {
+                stfid: getUserID,
+                quest: questype,
+                nottitle: noticeTitle,
+                notdetail: noticeContent,
+                file: formData.get('file'),
+                notdate: new Date(),
+                nottype: 'B',
+                notcount: 0
+            }
+
         }
 
-        apiCall(url, 'post', requestData, null)
+
+        apiCall(url, 'post', requestData, token)
             .then((response) => {
                 alert(response);
+                if (location.pathname.indexOf("XBoardWritePage") !== -1) {       // 공지사항 게시판일 경우 공지사항 list로 이동
+                    navigate("/XBoardControllPage");
+                } else {                                                    // 자주묻는질문 게시판일 경우 자주묻는질문 list로 이동
+                    navigate("/XFaqBoardControllPage");
+                }
             }).catch((error) => {
                 alert("등록에 실패하였습니다. 관리자에게 문의해주세요.");
-                console.log("board writing error occured = " + error);
+                if (location.pathname.indexOf("XBoardControllPage" !== -1)) {       // 공지사항 게시판일 경우 공지사항 에러 발생
+                    console.log("Notice board writing error occured = " + error);
+                } else {                                                    // 자주묻는질문 게시판일 경우 자주묻는질문 에러 발생
+                    console.log("Faq board writing error occured = " + error);
+                }
             })
     }
 

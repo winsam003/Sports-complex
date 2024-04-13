@@ -1,10 +1,14 @@
 package com.example.demo.entity;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -12,39 +16,47 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
 @Table(name = "classes")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Entity
 public class Classes {
 //	PK
 	@Id
 //	Auto_Increment
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String classcode;
-//	강좌명 길이, not null
+	private Integer clnum;
+	@Column(length = 25, nullable = false)
+	private String cldays;
 	@Column(length = 10, nullable = false)
+	private String cltime;
+	@Column(length = 10, nullable = false)
+	private String classcode;
+	@Column(length = 20, nullable = false)
 	private String clname;
 	@Column
-	private String cltime;
+	private Timestamp clrequest;
 	@Column
-	private String clendtime;
+	private Timestamp clrequestend;
 	@Column
-	private String clstartdate;
+	private Timestamp clstart;
 	@Column
-	private String clenddate;
+	private Timestamp clend;
 //	강좌대상
 	@Column(length = 10, nullable = false)
 	private String clfor;
-	@Column
+	@Column(nullable = false)
 	private Integer clcount;
-	@Column
+	@Column(nullable = false)
 	private Integer clwating;
-	@Column
+	@Column(nullable = false)
 	private Integer clprice;
 //	신청현황
-	@Column(length = 10, nullable = false)
+	@Column(length = 10)
 	private String cltype;
+	@ManyToOne
+	@JoinColumn(name = "teachnum")
+	private Teach teach;
 }

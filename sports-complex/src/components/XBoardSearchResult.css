@@ -7,11 +7,11 @@
 }
 /* 관리 */
 .XBoardControllContent_SearchResult_index {
-    grid-template-columns: 0.5fr 0.5fr 3fr 1fr 1fr 1fr 1.5fr 1fr;
+    grid-template-columns: 0.5fr 0.5fr 3fr 1fr 1fr 1fr 1fr 0.5fr;
 }
 /* 사용자 */
 .XBoardControllContent_SearchResult_index_User{
-    grid-template-columns: 0.5fr 3fr 1fr 1fr 1fr 1.5fr 1fr;
+    grid-template-columns: 0.5fr 3fr 1fr 1fr 1fr 0.5fr;
 }
 
 .indexEvent p {
@@ -26,11 +26,11 @@
     display: grid;
 }
 .XBoardControllContent_SearchResult {
-    grid-template-columns: 0.5fr 0.5fr 3fr 1fr 1fr 1fr 1.5fr 1fr;
+    grid-template-columns: 0.5fr 0.5fr 3fr 1fr 1fr 1fr 1fr 0.5fr;
 }
 /* 사용자 */
 .XBoardControllContent_SearchResult_User{
-    grid-template-columns: 0.5fr 3fr 1fr 1fr 1fr 1.5fr 1fr;
+    grid-template-columns: 0.5fr 3fr 1fr 1fr 1fr 0.5fr;
 }
 
 .listEvent:hover{

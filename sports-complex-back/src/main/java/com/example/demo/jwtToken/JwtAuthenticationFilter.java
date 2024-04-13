@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
@@ -17,6 +18,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 // ** 인증필터(AuthenticationFilter) 클래스 만들기 & 등록하기
 // => 등록: SecurityConfig.java 의 filterChain 메서드 참고
@@ -74,8 +78,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 	private TokenProvider tokenProvider;
 
 	// => doFilterInternal 메서드는 인증처리를 담당
-	@Override
-	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+	protected void doFilterInternal_OLD(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 		try {
 			// 1) request 에서 토큰 가져오기.
 			String token = parseBearerToken(request);
@@ -133,6 +136,62 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 	}
 
+	
+	// 2. Role을 token에 포함한 이후
+		@Override
+		protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+			try {
+				// 1) request 에서 토큰 가져오기.
+				String token = parseBearerToken(request);  //아래에 메서드 구현해놓음
+				log.info("** JwtAuthenticationFilter.java, doFilterInternal(), token 확인=> "+token);
+				
+				if (token != null && !token.equalsIgnoreCase("null")) {
+					
+					// 2) 토큰 검증 & claims 가져오기
+					Map<String, Object> claims = tokenProvider.validateToken(token);
+					log.info("** Authenticated 결과 JWT claims: " + claims);
+					String userId = (String) claims.get("userId");
+					//String pw = (String) claims.get("pw");
+					List<String> roleList = (List<String>)claims.get("roleList");
+					
+					// 3) 인증 완료
+					// => 인증결과를 UsernamePasswordAuthenticationToken 에 담아 시큐리티가 사용하는 인증토큰을 만들고
+					// => 이 인증토큰 값(Authentication)을 SecurityContextHolder를 이용하여 SecurityContext에 등록
+					//	  ( SecurityContextHolder에 등록해야 인증된 user로 인식함)
+					
+					AbstractAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+							userId, // 컨트롤러에서 @AuthenticationPrincipal 로 사용가능 (AuthController userDetail() 확인) 
+							null, // Password를 의미하며 보통은 null 로 처리
+							roleList.stream()
+									.map(str -> new SimpleGrantedAuthority("ROLE_"+str))
+									.collect(Collectors.toList()) );
+							// => Collection<? extends GrantedAuthority> Type 에 맞추기 위함
+					
+					//=> 아래의 경우처럼 객체를 생성자의 principal 로 전달할수도 있음  	
+					// MemberDTO memberDTO = new MemberDTO(userId, pw, ~~~ , roleNames);
+					// ~~~ = new UsernamePasswordAuthenticationToken(memberDTO, pw, memberDTO.getAuthorities());
+					
+					authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+					// => details 필드에 인증 소스인 request 값 set 
+					
+					// => SecurityContextHolder에 인증된 user등록.
+					//	  ( 그래야만 인증된 user로 인식함)
+					//	-> SecurityContext 생성
+					//	-> 여기에 인증정보를 넣고
+					//	-> 이렇게 인증정보를 담은 SecurityContext 를 SecurityContextHolder에 등록함.
+					SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
+					securityContext.setAuthentication(authentication);
+					SecurityContextHolder.setContext(securityContext);
+				} //if_token 존재
+			} catch (Exception ex) {
+				log.error("Could not set user authentication in security context", ex);
+			}
+
+			filterChain.doFilter(request, response);
+
+		} //doFilterInternal
+	
+	
 	// ** Bearer Token
 	// => HTTP통신에서 사용하는 인증 방식에 Bearer Authentication을 사용하는 것이다.
 	// => Bearer Authentication이란, "이 토큰을 나르는(bearer) 사람에게 권한을 부여하시오"라는 것

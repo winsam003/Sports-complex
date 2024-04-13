@@ -2,14 +2,27 @@ import { useEffect, useState } from 'react';
 import { apiCall } from '../apiService/apiService';
 import './EventDetail.css'
 import { MdFestival } from "react-icons/md";
+import { API_BASE_URL } from '../apiService/app-config';
+import { useLocation } from 'react-router';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function EventDetail({ eventcode }) {
 
     // 디테일 정보 가져오기 ====================================================
     const [eventDetailOne, setEventDetailOne] = useState('');
-
+    const [imagePath, setImagePath] = useState('');
     // console.log(`EventDetail 에서의 eventcode : `, eventcode);
+
     useEffect(() => {
+        // 이미지 요청
+        apiCall('/event/eventimages', 'get', null, null)
+            .then((response) => {
+                setImagePath(response);
+                // console.log(response);
+                // test = response;
+            }).catch((error) => {
+                console.log("이미지 없음 " + error)
+            })
         let url = "/event/eventdetail?eventcode=" + eventcode;
 
         // 405 오류는 post / get 요청 때문이다. *****
@@ -22,12 +35,20 @@ export default function EventDetail({ eventcode }) {
         // fetchEventDetail();
     }, []);
 
-    // console.log(`eventDetailOne : `, eventDetailOne);
-    
-    // 파일명
-    // console.log(eventDetailOne.eventuploadfile);
+    const location = useLocation();
 
-    //===============================================================================
+    const navigate = useNavigate();
+    // 수정버튼 이벤트
+    const updateEventPage = () => {
+        // console.log(eventDetailOne);
+        navigate(`/XEventBoardWritePage?eventcode=${eventDetailOne.eventcode}`, 
+                    {
+                        state: {detail : eventDetailOne}
+                    });
+        
+    }
+    console.log(eventDetailOne)
+
     return (
         <div className="EventDetailContainor">
             <div className='EventDetail_Box'>
@@ -78,15 +99,28 @@ export default function EventDetail({ eventcode }) {
                     <div>
                         <p>{eventDetailOne.eventdetail}</p>
                     </div>
-                    <div>
-                        <img src={`../img/${eventDetailOne.eventuploadfile}`} alt="이벤트 이미지" />
-                    </div>
+                    {(eventDetailOne.eventuploadfile) ? 
+                        <div>
+                            <img src={API_BASE_URL + "/event/eventimages?img=" + eventDetailOne.eventuploadfile} alt="이벤트 이미지" />
+                        </div>
+                    :
+                    <div></div>
+                }
+                <p className='EventDetail_stfid'>작성자 : {eventDetailOne.stfid}</p>
                 </div>
             </div>
             <div className='EventDetail_buttonBox'>
-                
-                <button className='EventDetail_button' 
-                        onClick={() => window.history.back()} >목록</button>
+                {location.pathname == '/XEventDetailPage' ?
+                // <button className='EventDetail_update'>수정</button>
+                <button className='EventDetail_update'
+                        onClick={updateEventPage} >수정</button>
+
+                :
+                <span></span>}
+
+                {/* <button className='EventDetail_button'  onClick={() => window.history.back()} >목록</button> */}
+                <Link to="/XEventBoardControllPage" className='EventDetail_button' >목록</Link>
+
             </div>
         </div>
     )

@@ -36,9 +36,6 @@ export default function XQnaBoardAnswerContent({ qnaData }) {
         });
     }
 
-    console.log(qnaData.staff);
-    console.log(qnaReplyData);
-
     const formattedDate = formatDateTime(qnaData.qadate);
 
     // 날짜 및 시간을 원하는 형식으로 변환하는 함수
@@ -104,17 +101,16 @@ export default function XQnaBoardAnswerContent({ qnaData }) {
                             </tr>
                             <tr>
                                 <th>내용 <span className='star'>*</span></th>
-                                {/* <td>
-                                    <input type="text" name='qareply' id='qareply' value={qnaReplyData.qareply} onChange={qnaReplyDataChange} />
-                                </td> */}
-                                <textarea
-                                    name='qareply'
-                                    id='qareply'
-                                    value={qnaReplyData.qareply}
-                                    onChange={qnaReplyDataChange}
-                                    rows="100"
-                                    style={{ resize: 'none', width: '750px', lineHeight: '1.5' }}
-                                />
+                                <td>
+                                    <textarea
+                                        name='qareply'
+                                        id='qareply'
+                                        value={qnaReplyData.qareply}
+                                        onChange={qnaReplyDataChange}
+                                        rows="100"
+                                        style={{ resize: 'none', width: '750px', lineHeight: '1.5' }}
+                                    />
+                                </td>
                             </tr>
                         </tbody>
                     </table>
