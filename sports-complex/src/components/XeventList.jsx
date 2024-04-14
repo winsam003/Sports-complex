@@ -1,8 +1,7 @@
 import './XeventList.css'
 import React, {useState}  from 'react';
-import XeventContentList from './XeventContentList';
 
-export default function XeventList({data, insertMainPic}) {
+export default function XeventList({eventlist}) {
 
     return(
         <div className='XeventList'>
@@ -12,12 +11,20 @@ export default function XeventList({data, insertMainPic}) {
                 <span>제목</span>
                 <span>작성자</span>
                 <span>등록일시</span>
-                <span>첨부파일</span>
+                {/* <span>첨부파일</span> */}
             </div>
             <div className='XeventList_content'>
-                {data.map((it, index) => (
-                    <XeventContentList key={index} insertMainPic={insertMainPic} {...it} 
-                        />
+                {eventlist.map((it, index) => (
+                    <div className="XeventContentList_Box">
+                        <div key={index} className="XeventContentList_contents">
+                            <span><input type="checkbox"
+                                     /></span>
+                            <span>{it.eventcode}</span>
+                            <span>{it.eventname}</span>
+                            <span>{it.stfid}</span>
+                            <span>{it.eventdate}</span>
+                        </div>
+                    </div>
                 ))}
             </div>
         </div>

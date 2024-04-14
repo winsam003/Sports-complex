@@ -1,6 +1,6 @@
 package com.example.demo.repository;
 
-import java.util.Date;
+import java.util.Date; 
 import java.util.List;   
 
 import javax.persistence.EntityManager;
@@ -54,6 +54,21 @@ public class EventRepositoryImpl implements EventRepository {
 		} catch (Exception e) {
 			return null;
 		}
+		
+	}
+	
+	@Override
+	public void EventCount(Event Entity) {
+		log.info("이벤트 조회수 하나 올라라. ");
+		
+		String jpql = "update event "
+					  + "set eventcount = :eventcount + 1 "
+					  + "where eventcode = :eventcode";
+				
+		Query query = em.createNativeQuery(jpql);
+		
+		query.setParameter("eventcount", Entity.getEventcount());
+		query.setParameter("eventcode", Entity.getEventcode());
 		
 	}
 	

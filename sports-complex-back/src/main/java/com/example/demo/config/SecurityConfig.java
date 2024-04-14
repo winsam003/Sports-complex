@@ -73,7 +73,7 @@ public class SecurityConfig {
 				.authorizeRequests()
 				.antMatchers("/staff/staffInsert").hasRole("ADMIN")
 				.antMatchers("/staff/staffModify").hasRole("ADMIN")
-				.antMatchers("/", "/event/**", "/member/**", "/qna/**", "/staff/**", "/classes/**", "/notice/**", "/space/**").permitAll()
+				.antMatchers("/", "/event/**", "/member/**", "/qna/**", "/staff/**", "/classes/**", "/notice/**", "/space/**", "/banner/**").permitAll()
 				// => "/", "/home", "/resources/**", "/uploadImage/**", "/member/**" 등의 경로는 인증
 				// 안해도 됨.
 				.anyRequest().authenticated().and() // 나머지 모든 요청에 대해서 인증이 필요함을 명시

@@ -875,3 +875,23 @@ VALUES
 (88, 'FAFT2C', '2024-04-15 18:00:00', '10000', 0),
 (89, 'FATE1C', '2024-04-15 18:00:00', '10000', 0),
 (90, 'FATE2C', '2024-04-15 18:00:00', '10000', 0);
+
+
+// 배너 관리 테이블 
+CREATE TABLE `banner` (
+	`bannerNum` INT NOT NULL,
+	`eventNum` INT NOT NULL,
+	`bannerImage` VARCHAR(100) NOT NULL DEFAULT 'NoImage' COMMENT '이미지가 없으면 NoImage 넣기.',
+	PRIMARY KEY (`bannerNum`, `eventNum`),
+	FOREIGN KEY (`eventNum`) REFERENCES `Event` (`eventCode`)
+);
+
+// 인서트 
+엥 해야되나 
+
+
+
+
+
+
+
