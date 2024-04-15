@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpStatus;
@@ -66,15 +67,29 @@ public class EventController {
 	
 	// 이벤트 디테일
 	@GetMapping(value = "/eventdetail", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> eDetail(@RequestParam Integer eventcode){
+	public ResponseEntity<?> eDetail(@RequestParam Integer eventcode, HttpSession session){
 
 //		Integer eventCode = requestBody.get("eventCode");
+		
+		// 게시물을 보는 사람. 
+		
 		Event result = service.EventDetail(eventcode);
 		log.info(result);
+		
 		if(result != null) {
-			log.info("eventcount : "+ result.getEventcount());
-			result.setEventcount(result.getEventcount() + 1);
+//			result.setEventcount(result.getEventcount() + 1);
 			// 자 기억해. 여기에 업데이트. 해야됨. 그래야 count 없데이트 됨. 
+			
+			String userId = (String) session.getAttribute("id");
+			// null 나옴. 로그인해서 세션에 id 가 담겨져 있는데도 왜 안담길까잉
+			log.info("userId : " + userId);
+			
+			if(!result.getStfid().equals(userId)) {
+				log.info("여기에 들어온 Member : " + userId);
+				service.EventCount(result);
+			} 
+			
+			log.info("eventcount :  "+ result.getEventcount());
 			return ResponseEntity.status(HttpStatus.OK).body(result);
 		} else {
 			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("디테일이 없습니다.");

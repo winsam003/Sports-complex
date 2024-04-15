@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,18 +29,16 @@ public class Classes {
 //	Auto_Increment
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer clnum;
-	@Column(length = 25, nullable = false)
+	@Column(length = 25, nullable = false, columnDefinition = "VARCHAR(25) DEFAULT '월'")
 	private String cldays;
-	@Column(length = 10, nullable = false)
+	@Column(length = 10, nullable = false, columnDefinition = "VARCHAR(25) DEFAULT '06:00'")
 	private String cltime;
 	@Column(length = 10, nullable = false)
 	private String classcode;
-	@Column(length = 20, nullable = false)
+	@Column(length = 40, nullable = false)
 	private String clname;
-	@Column
-	private Timestamp clrequest;
-	@Column
-	private Timestamp clrequestend;
+	private LocalDate clrequest;
+	private LocalDate clrequestend;
 	@Column
 	private Timestamp clstart;
 	@Column
@@ -48,8 +47,10 @@ public class Classes {
 	@Column(length = 10, nullable = false)
 	private String clfor;
 	@Column(nullable = false)
+//	강좌 정원
 	private Integer clcount;
 	@Column(nullable = false)
+//	대기 정원
 	private Integer clwating;
 	@Column(nullable = false)
 	private Integer clprice;

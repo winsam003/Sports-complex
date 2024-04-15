@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -30,18 +31,42 @@ public class ClassesRepositoryImpl implements ClassesRepository {
 	@Override
 	public int classesInsert(ClassesDTO dto) {
 		return em.createNativeQuery(
-				"insert into classes (classcode, clname, clrequest, clrequestend, clstart, clend, clfor, clcount, clwating, clprice)"
-						+ "value (:classcode, :clname, :clrequest, :clrequestend, :clstart, :clend, :clfor, :clcount, :clwating, :clprice)")
+				"insert into classes (classcode, clname, clrequest, clrequestend, clstart, clend, clfor, clcount, clwating, clprice, teachnum)"
+						+ "value (:classcode, :clname, :clrequest, :clrequestend, :clstart, :clend, :clfor, :clcount, :clwating, :clprice, :teachnum)")
 				.setParameter("classcode", dto.getClasscode()).setParameter("clname", dto.getClname())
-				.setParameter("cltime", dto.getClrequest()).setParameter("clendtime", dto.getClrequestend())
+				.setParameter("clrequest", dto.getClrequest()).setParameter("clrequestend", dto.getClrequestend())
 				.setParameter("clstart", dto.getClstart()).setParameter("clend", dto.getClend())
 				.setParameter("clfor", dto.getClfor()).setParameter("clcount", dto.getClcount())
-				.setParameter("clwating", dto.getClwating()).setParameter("clprice", dto.getClprice()).executeUpdate();
+				.setParameter("clwating", dto.getClwating()).setParameter("clprice", dto.getClprice())
+				.setParameter("teachnum", dto.getTeachnum()).executeUpdate();
 	}
 
 	// 강의 삭제
 	@Override
 	public void classesDelete(Integer clnum) {
 		em.createQuery("delete from Classes c where c.clnum = :clnum").setParameter("clnum", clnum).executeUpdate();
+	}
+
+	@Override
+	public void updateClassesType(Integer clnum, String cltype) {
+		em.createQuery("update Classes c set c.cltype = :cltype where c.clnum = :clnum").setParameter("cltype", cltype)
+				.setParameter("clnum", clnum).executeUpdate();
+	}
+
+	@Override
+	public List<Classes> findByCltypeAndClrequest(String cltype, LocalDate clrequest) {
+		return em
+				.createQuery("select c from Classes c where c.cltype = :cltype and c.clrequest = :clrequest",
+						Classes.class)
+				.setParameter("cltype", cltype).setParameter("clrequest", clrequest).getResultList();
+	}
+
+	@Override
+	public List<Classes> findByCltypeAndClrequestendIn(String cltype1, String cltype2, String cltype3,
+			LocalDate clrequestend) {
+		return em.createQuery(
+				"select c from Classes c where c.cltype in (:cltype1, :cltype2, :cltype3) and c.clrequestend = :clrequestend",
+				Classes.class).setParameter("cltype1", cltype1).setParameter("cltype2", cltype2)
+				.setParameter("cltype3", cltype3).setParameter("clrequestend", clrequestend).getResultList();
 	}
 }

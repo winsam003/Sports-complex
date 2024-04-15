@@ -1,6 +1,6 @@
 package com.example.demo.repository;
 
-import java.util.Date;
+import java.util.Date; 
 import java.util.List;   
 
 import javax.persistence.EntityManager;
@@ -58,6 +58,21 @@ public class EventRepositoryImpl implements EventRepository {
 	}
 	
 	@Override
+	public void EventCount(Event Entity) {
+		log.info("이벤트 조회수 하나 올라라. ");
+		
+		String jpql = "update event "
+					  + "set eventcount = :eventcount + 1 "
+					  + "where eventcode = :eventcode";
+				
+		Query query = em.createNativeQuery(jpql);
+		
+		query.setParameter("eventcount", Entity.getEventcount());
+		query.setParameter("eventcode", Entity.getEventcode());
+		
+	}
+	
+	@Override
 	public int EventInsert(Event Entity) {
 		log.info("EventInsert Repository 성공");	
 		
@@ -87,15 +102,15 @@ public class EventRepositoryImpl implements EventRepository {
 		
 		if(Entity.getEventfilef() != null) {
 			String jpql = "UPDATE Event "
-					+ "SET eventname = :eventname, "
-					+ "	   eventdetail = :eventdetail, "
-					+ "	   eventfacility = :eventfacility, "
-					+ "	   eventtime = :eventtime, "
-					+ "	   eventfor = :eventfor, "
-					+ "	   eventtype = :eventtype, "
-					+ "	   eventuploadfile = :eventuploadfile, "
-					+ "	   stfid = :stfid "
-					+ "WHERE eventcode = :eventcode";
+						+ "SET eventname = :eventname, "
+						+ "	   eventdetail = :eventdetail, "
+						+ "	   eventfacility = :eventfacility, "
+						+ "	   eventtime = :eventtime, "
+						+ "	   eventfor = :eventfor, "
+						+ "	   eventtype = :eventtype, "
+						+ "	   eventuploadfile = :eventuploadfile, "
+						+ "	   stfid = :stfid "
+						+ "WHERE eventcode = :eventcode";
 			
 			Query query = em.createNativeQuery(jpql);
 			
@@ -115,14 +130,14 @@ public class EventRepositoryImpl implements EventRepository {
 			
 		}else {
 			String jpql = "UPDATE Event "
-					+ "SET eventname = :eventname, "
-					+ "	   eventdetail = :eventdetail, "
-					+ "	   eventfacility = :eventfacility, "
-					+ "	   eventtime = :eventtime, "
-					+ "	   eventfor = :eventfor, "
-					+ "	   eventtype = :eventtype, "
-					+ "	   stfid = :stfid "
-					+ "WHERE eventcode = :eventcode";
+						+ "SET eventname = :eventname, "
+						+ "	   eventdetail = :eventdetail, "
+						+ "	   eventfacility = :eventfacility, "
+						+ "	   eventtime = :eventtime, "
+						+ "	   eventfor = :eventfor, "
+						+ "	   eventtype = :eventtype, "
+						+ "	   stfid = :stfid "
+						+ "WHERE eventcode = :eventcode";
 			
 			Query query = em.createNativeQuery(jpql);
 			

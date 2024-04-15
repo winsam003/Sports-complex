@@ -25,8 +25,9 @@ export async function apiCall(url, method, requestData, token) {
 
 
     let headers = '';
-    if ((url.indexOf('qnaInsert') >= 0 || url.indexOf('eventinsert') >= 0 || url.indexOf('eventupdate') >= 0 || url.indexOf('noticeSubmit') >= 0 || url.indexOf('noticeModify') >= 0) && token != null) {
+    if ((url.indexOf('qnaInsert') >= 0 || url.indexOf('eventinsert') >= 0 || url.indexOf('eventupdate') >= 0 || url.indexOf('bannerinsert') >= 0 || url.indexOf('noticeSubmit') >= 0 || url.indexOf('noticeModify') >= 0) && token != null) {
         headers = { 'Content-Type': 'multipart/form-data' };
+        console.log("api여기여기");
     } else if (token !== null) {
         headers = {
             'Content-Type': 'application/json',

@@ -662,10 +662,10 @@ VALUES
 ** 강좌 classes
 CREATE TABLE `Classes` (
 `clNum` INT NOT NULL AUTO_INCREMENT,
-`cldays` VARCHAR(25) NOT NULL,
+`cldays` VARCHAR(25) NOT NULL DEFAULT '월',
 `cltime` VARCHAR(10) NOT NULL,
 `classCode` VARCHAR(10) NOT NULL, 
-`clName` VARCHAR(20) NOT NULL,
+`clName` VARCHAR(40) NOT NULL,
 `clRequest` TIMESTAMP  NOT NULL,
 `clRequestEnd` TIMESTAMP  NOT NULL,
 `clStart` TIMESTAMP  NOT NULL,
@@ -879,3 +879,23 @@ VALUES
 (88, 'FAFT2C', '2024-04-17 18:00:00', '10000', 0),
 (89, 'FATE1C', '2024-04-17 18:00:00', '10000', 0),
 (90, 'FATE2C', '2024-04-17 18:00:00', '10000', 0);
+
+
+// 배너 관리 테이블 
+CREATE TABLE `banner` (
+	`bannerNum` INT NOT NULL,
+	`eventcode` INT NOT NULL,
+	`bannerImage` VARCHAR(100) NOT NULL DEFAULT 'NoImage' COMMENT '이미지가 없으면 NoImage 넣기.',
+	PRIMARY KEY (`bannerNum`, `eventcode`),
+	FOREIGN KEY (`eventcode`) REFERENCES `Event` (`eventCode`)
+);
+
+// 인서트 
+엥 해야되나 
+
+
+
+
+
+
+

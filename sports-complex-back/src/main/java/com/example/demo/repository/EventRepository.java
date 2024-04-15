@@ -14,4 +14,7 @@ public interface EventRepository{
 	public int EventInsert(Event Entity);
 	
 	public int EventUpdate(Event Entity);
+	
+	// 조회수 용 
+	public void EventCount(Event Entity);
 }

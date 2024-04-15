@@ -111,10 +111,10 @@ export default function XBoardSearchResult({ eventlist, searchEvent, handleEvent
                     .map(({ eventcode, eventname, eventdetail, eventfacility, eventtime, eventfor, eventtype, eventcount, eventuploadfile, stfid, eventdate }, index) => (
                         <div className='listEvent XBoardControllContent_SearchResult' key={eventcode}>
                             <p><input type='checkbox'
-                                value={eventcode}
-                                onChange={(e) => handleEventDelete(e.target.value)}
-                                //   checked={checkEvent[eventcode]}
-                                checked={checkEvent.includes(eventcode.toString())}
+                                    value={eventcode}
+                                    onChange={(e) => handleEventDelete(e.target.value)}
+                                    //   checked={checkEvent[eventcode]}
+                                    checked={checkEvent.includes(eventcode.toString())}
                             /></p>
                             <p>{eventcode}</p>
                             <p onClick={() => handleEventClick(eventcode)}
