@@ -2,7 +2,7 @@ import './XlecturerList.css';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { apiCall } from '../apiService/apiService';
 
-export default function XlecturerList({ teachnum, teachcode, teachname, teachbirth, teachphone, teachadress, teachadress1, teachadress2, teachlicense, teachaccount, onToggleCheckbox, isChecked }) {
+export default function XlectureList({ teachnum, teachcode, teachname, teachbirth, teachphone, teachadress, teachadress1, teachadress2, teachlicense, teachaccount, onToggleCheckbox, isChecked }) {
     // 상세페이지로 이동하기
     const navigate = useNavigate();
 

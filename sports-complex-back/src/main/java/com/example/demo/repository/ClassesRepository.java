@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.example.demo.domain.ClassesDTO;
@@ -15,4 +16,9 @@ public interface ClassesRepository {
 	// 강의 삭제
 	void classesDelete(Integer clnum);
 
+	void updateClassesType(Integer clnum, String cltype);
+
+	List<Classes> findByCltypeAndClrequest(String cltype, LocalDate clrequest);
+
+	List<Classes> findByCltypeAndClrequestendIn(String cltype1, String cltype2, String cltype3, LocalDate clrequestend);
 }
