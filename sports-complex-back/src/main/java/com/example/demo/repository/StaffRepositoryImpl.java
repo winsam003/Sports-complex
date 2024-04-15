@@ -111,13 +111,13 @@ public class StaffRepositoryImpl implements StaffRepository {
 	@Override
 	public Staff getWithRoles(String stfid) {
 		return em.createQuery("SELECT s FROM Staff s LEFT JOIN FETCH s.roleList WHERE s.stfid = :stfid", Staff.class)
-	             .setParameter("stfid", stfid)
+	             .setParameter("stfid", stfid) 
 	             .getSingleResult();
 	}
 	
 	
 	
-//	직원 정보 수정
+//	직원 정보 수정 
 	@Override
 	public int staffModify(Staff entity) {
 		

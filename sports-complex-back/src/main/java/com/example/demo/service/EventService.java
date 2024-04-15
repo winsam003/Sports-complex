@@ -16,4 +16,6 @@ public interface EventService {
 	
 	int EventUpdate(Event Entity);
 	
+	void EventCount(Event Entity); 
+	
 }

@@ -83,6 +83,7 @@ public class StaffController {
 		// 패스워드 비교
 		if(dto != null && passwordEncoder.matches(password, dto.getStfpassword())) {
 			
+			
 			// 패스워드가 맞다면 토큰 발행
 			final String token = tokenProvider.createToken(dto.claimList());
 			final StaffDTO staffDTO = StaffDTO.builder()

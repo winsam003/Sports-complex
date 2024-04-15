@@ -19,6 +19,7 @@
 .PlaceRentalContent_select {
     background-color: #C9EDFA;
     text-align: center;
+    width: 100%;
 }
 
 .PlaceRentalContent_select * {
@@ -42,16 +43,16 @@
 }
 
 /* form */
-.PlaceRentalContent_form {
+.PlaceRentalContent_formSet {
     border-top: 3px solid #C9EDFA;
 }
 
-.PlaceRentalContent_form table {
+.PlaceRentalContent_formSet table {
     border-collapse: collapse;
     width: 100%;
 }
 
-.PlaceRentalContent_form th {
+.PlaceRentalContent_formSet th {
     border-left: rgba(28, 28, 28, 0.199) 1px solid;
     border-bottom: rgba(28, 28, 28, 0.199) 1px solid;
     border-right: rgba(28, 28, 28, 0.199) 1px solid;
@@ -61,7 +62,7 @@
     background-color: aliceblue;
 }
 
-.PlaceRentalContent_form td {
+.PlaceRentalContent_formSet td {
     border-left: rgba(28, 28, 28, 0.199) 1px solid;
     border-bottom: rgba(28, 28, 28, 0.199) 1px solid;
     border-right: rgba(28, 28, 28, 0.199) 1px solid;
@@ -70,21 +71,24 @@
     width: max-content;
 }
 
-.PlaceRentalContent_form td * {
+.PlaceRentalContent_formSet td * {
     vertical-align: middle;
 }
 
-.PlaceRentalContent_form input {
+.PlaceRentalContent_formSet input {
     height: 30px;
 
 }
+.PlaceRentalContent_form{
+    height: 40px;
+}
 
-.PlaceRentalContent_form #name {
+.PlaceRentalContent_formSet #name {
     width: 95%;
 }
 
-.PlaceRentalContent_form input[type="text"] {
-    width: 95%;
+.PlaceRentalContent_formSet input[type="text"] {
+    width: 98%;
 }
 
 /* 글쓰기 버튼 */
