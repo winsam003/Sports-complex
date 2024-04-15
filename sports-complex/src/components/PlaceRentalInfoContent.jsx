@@ -1,9 +1,21 @@
 import './PlaceRentalInfoContent.css'
 import Submenu from './Submenu'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 // 수강 신청
-export default function PlaceRentalInfoContent() {
+export default function PlaceRentalInfoContent({ roleList }) {
+
+
+    const navigate = useNavigate();
+    const checkRole = () => {
+        if (roleList && roleList.some(item => item === "USER")){
+            navigate("/PlaceRental");
+        }else{
+            alert("로그인 후 이용해주세요.");
+            navigate("/LoginPage");
+        }
+    }
+
     return (
         <div className='board_div'>
             <Submenu />
@@ -250,7 +262,7 @@ export default function PlaceRentalInfoContent() {
                 </div>
                 <div className='RentalInfoSearchButton'>
                     <button>신청서 다운로드</button>
-                    <Link to='/PlaceRental'><button>사용허가신청</button></Link>
+                    <button onClick={checkRole}>사용허가신청</button>
                 </div>
             </div>
         </div >

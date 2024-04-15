@@ -8,6 +8,10 @@
     margin-top: 20px;
 }
 
+.PlaceRentalSearchList_number{
+    display: none;
+}
+
 .PlaceRentalSearchList_index span {
     font-weight: bold;
 }
