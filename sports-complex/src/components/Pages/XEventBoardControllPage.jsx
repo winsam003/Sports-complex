@@ -7,6 +7,6 @@ export default function XEventBoardControllPage() {
         <div>
             <PageBanner />
             <XEventControllContent />
-        </div>
+        </div> 
     )
 }
