@@ -7,7 +7,7 @@ import { TbUser } from "react-icons/tb";
 import { TbLock } from "react-icons/tb";
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { TbCalendar } from "react-icons/tb";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CiViewList } from "react-icons/ci";
 import { BsQrCode } from "react-icons/bs";
 import { GrContactInfo } from "react-icons/gr";
@@ -18,6 +18,7 @@ import { MdOutlineRememberMe } from "react-icons/md";
 import { MdOutlinePlayLesson } from "react-icons/md";
 import { TbSoccerField } from "react-icons/tb";
 import { HiClipboardDocumentList } from "react-icons/hi2";
+import { API_BASE_URL } from '../apiService/app-config';
 
 export default function HomeDetail({ setLogincheck, loginCheck, logout, getUserName, roleList }) {
 
@@ -87,6 +88,55 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout, getUserN
         setPassword(value);
     }
 
+    // ============================================배너
+    // 배너 요청
+
+    useEffect(() => {
+        async function fetchData() {
+            await showBanner();
+            // showBannerImage();
+        }
+
+        fetchData();
+    }, []);
+    
+    const [bannerlist, setBannerlist] = useState([]);
+    const showBanner = async () => {
+
+        try{
+            let url = "/banner/bannerlist";
+            const bannerlist = await apiCall(url, 'get', null, null); 
+            setBannerlist(bannerlist);
+            console.log('bannerlist', bannerlist);
+            showBannerImage();
+        } catch (error) {
+            console.log("bannerlist error : ", error);
+
+        }
+    }
+
+    // 배너 이미지 경로 요청
+    const [imagePath, setImagePath] = useState('');
+    const showBannerImage = () => {
+        apiCall('/banner/bannerimages', 'get', null, null)
+            .then((response) => {
+                    setImagePath(response);
+                }).catch((error) => {
+                    console.log("이미지 없음 " + error);
+                })
+    }
+
+    // 배너 이미지 클릭시 디테일로 이동.
+    const goEventDetail = (eventcode) => {
+        try {
+            navigate(`/EventDetailPage?eventcode=${eventcode}`);
+            // window.scrollTo(0, 525);
+        } catch (error) {
+            console.log('Error eventDetail from HomeDetail : ', error);
+        }
+    }
+
+
 
     return (
         <div className='homeDetail_container'>
@@ -115,33 +165,16 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout, getUserN
                     </div>
                     <div className='slideBox'>
                         <Slider {...settings}>
-                            <div>
-                                <img className='slide1' src='img/seungnamFC.jpg' />
-                            </div>
-                            <div>
-                                <img className='slide1' src='img/show.jpg' />
-                            </div>
-                            <div>
-                                <img className='slide1' src='img/IU.jpg' />
-                            </div>
-                            <div>
-                                <img className='slide1' src='img/ballleague.jpg' />
-                            </div>
-                            <div>
-                                <img className='slide1' src='img/musical.jpg' />
-                            </div>
-                            <div>
-                                <img className='slide1' src='img/billy.jpg' />
-                            </div>
-                            <div>
-                                <img className='slide1' src='img/moon.jpg' />
-                            </div>
-                            <div>
-                                <img className='slide1' src='img/zzanggu.jpg' />
-                            </div>
-                            <div>
-                                <img className='slide1' src='img/snoopy.jpg' />
-                            </div>
+                            {bannerlist && bannerlist.map((item, index) => (
+                                <div>
+                                    <img 
+                                        className={`slide${index}`} 
+                                        key={item.bannernum}
+                                        src={API_BASE_URL + "/banner/bannerimages?img=" + item.bannerimage}
+                                        onClick={() => goEventDetail(item.eventcode)}
+                                        alt='bannerImage' />
+                                </div>
+                            ))}
                         </Slider>
                     </div>
                 </div>

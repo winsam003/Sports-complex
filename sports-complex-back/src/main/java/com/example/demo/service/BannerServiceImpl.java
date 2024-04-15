@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.example.demo.domain.BannerDTO;
 import com.example.demo.entity.Banner;
 import com.example.demo.repository.BannerRepositoryImpl;
 
@@ -18,6 +19,7 @@ public class BannerServiceImpl implements BannerService{
 	private final BannerRepositoryImpl repository;
 	
 	@Override
+//	public List<BannerDTO> BannerList() {
 	public List<Banner> BannerList() {
 		return repository.BannerList();
 	}
@@ -28,7 +30,7 @@ public class BannerServiceImpl implements BannerService{
 	}
 	
 	@Override
-	public int BannerInsert(Banner entity) {
+	public int BannerInsert(BannerDTO entity) {
 		return repository.BannerInsert(entity);
 	}
 	

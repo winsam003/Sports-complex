@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class BannerDTO {
 	
 	public int bannerNum;
-	public int eventNum;
+	public int eventcode;
 	public String bannerImage;
 	public MultipartFile bannerfilef;
 	

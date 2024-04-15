@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.demo.domain.BannerDTO;
+import com.example.demo.domain.EventDTO;
 import com.example.demo.entity.Banner;
 import com.example.demo.entity.Event;
 import com.example.demo.service.BannerServiceImpl;
@@ -35,6 +37,7 @@ public class BannerController {
 	public ResponseEntity<?> bList() {
 		log.info("배너리스트");
 		List<Banner> banner = service.BannerList();
+//		List<BannerDTO> banner = service.BannerList();
 		log.info("리스트 뽑았다", banner);
 		if(banner != null && banner.size() > 0) {
 			return ResponseEntity.status(HttpStatus.OK).body(banner);
@@ -65,22 +68,26 @@ public class BannerController {
 
 	// 등록 
 	@PostMapping(value = "/bannerinsert")
-	public ResponseEntity<?> bInsert (@RequestParam("bannerNum") int bannerNum, 
-									  @RequestParam("eventcode") Event eventcode, 
+	public ResponseEntity<?> bInsert (@RequestParam("eventcode") int eventcode, 
 									  @RequestParam("bannerfilef") MultipartFile bannerfilef)
 									  throws IOException {
 		log.info("Controller bannerinsert");
+		log.info(eventcode);
 		
-		Banner entity = new Banner();
+		BannerDTO dto = new BannerDTO();
 		
-		entity.setBannernum(bannerNum);
-		entity.setEvent(eventcode);
-		entity.setBannerfilef(bannerfilef);
+		dto.setEventcode(eventcode);
+		dto.setBannerfilef(bannerfilef);
 		
 		if(bannerfilef != null && !bannerfilef.isEmpty()) {
-			entity.setBannerimage(bannerfilef.getOriginalFilename());
+			dto.setBannerImage(bannerfilef.getOriginalFilename());
 			
-			String realPath = "";
+			String realPath = "C:\\jgj\\TeamSSJ\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\mainBanner\\";
+			
+			if(realPath.contains(".TeamSSJ."))
+				realPath = "C:\\jgj\\TeamSSJ\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\mainBanner\\";
+			else 
+				realPath = "C:\\jgj\\TeamSSJ\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\mainBanner\\";			
 			
 			// 1.1. 해당 위치에 폴더가 존재하지 않다면 만들기
 			File file1 = new File(realPath);
@@ -89,7 +96,7 @@ public class BannerController {
 			}
 			
 			// 1.2. 저장 할 파일 데이터가 존재한다면 저장 경로에 파일 이름을 붙여주고 파일 복사 (저장)
-			MultipartFile uploadfilef = entity.getBannerfilef();
+			MultipartFile uploadfilef = dto.getBannerfilef();
 			if(uploadfilef != null && !uploadfilef.isEmpty()) {
 				String f2 = realPath + uploadfilef.getOriginalFilename();
 				File f1 = new File(f2);
@@ -99,15 +106,26 @@ public class BannerController {
 			
 		}
 		
-		log.info(entity);
+		log.info(dto);
 		
-		if(service.BannerInsert(entity) > 0) {
+		if(service.BannerInsert(dto) > 0) {
 			return ResponseEntity.status(HttpStatus.OK).body("배너 등록 완료");
 		} else {
 			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("배너 등록 실패");
 		}
 		
 	}
+	
+	@GetMapping(value = "/bannerimages")
+	public ResponseEntity<?> getImagePath(@RequestParam String img) throws Exception {
+		String realPath = "C:\\jgj\\TeamSSJ\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\mainBanner\\";
+		
+		FileSystemResource resource = new FileSystemResource(realPath + "\\" + img);
+		
+		return new ResponseEntity<>(resource, HttpStatus.OK);
+		
+	}
+	
 	
 	
 	

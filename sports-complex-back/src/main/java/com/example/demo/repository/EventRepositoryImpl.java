@@ -102,15 +102,15 @@ public class EventRepositoryImpl implements EventRepository {
 		
 		if(Entity.getEventfilef() != null) {
 			String jpql = "UPDATE Event "
-					+ "SET eventname = :eventname, "
-					+ "	   eventdetail = :eventdetail, "
-					+ "	   eventfacility = :eventfacility, "
-					+ "	   eventtime = :eventtime, "
-					+ "	   eventfor = :eventfor, "
-					+ "	   eventtype = :eventtype, "
-					+ "	   eventuploadfile = :eventuploadfile, "
-					+ "	   stfid = :stfid "
-					+ "WHERE eventcode = :eventcode";
+						+ "SET eventname = :eventname, "
+						+ "	   eventdetail = :eventdetail, "
+						+ "	   eventfacility = :eventfacility, "
+						+ "	   eventtime = :eventtime, "
+						+ "	   eventfor = :eventfor, "
+						+ "	   eventtype = :eventtype, "
+						+ "	   eventuploadfile = :eventuploadfile, "
+						+ "	   stfid = :stfid "
+						+ "WHERE eventcode = :eventcode";
 			
 			Query query = em.createNativeQuery(jpql);
 			
@@ -130,14 +130,14 @@ public class EventRepositoryImpl implements EventRepository {
 			
 		}else {
 			String jpql = "UPDATE Event "
-					+ "SET eventname = :eventname, "
-					+ "	   eventdetail = :eventdetail, "
-					+ "	   eventfacility = :eventfacility, "
-					+ "	   eventtime = :eventtime, "
-					+ "	   eventfor = :eventfor, "
-					+ "	   eventtype = :eventtype, "
-					+ "	   stfid = :stfid "
-					+ "WHERE eventcode = :eventcode";
+						+ "SET eventname = :eventname, "
+						+ "	   eventdetail = :eventdetail, "
+						+ "	   eventfacility = :eventfacility, "
+						+ "	   eventtime = :eventtime, "
+						+ "	   eventfor = :eventfor, "
+						+ "	   eventtype = :eventtype, "
+						+ "	   stfid = :stfid "
+						+ "WHERE eventcode = :eventcode";
 			
 			Query query = em.createNativeQuery(jpql);
 			

@@ -5,7 +5,14 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.example.demo.domain.BannerDTO;
 import com.example.demo.entity.Banner;
 
 import lombok.extern.log4j.Log4j2;
@@ -21,15 +28,15 @@ public class BannerRepositoryImpl implements BannerRepository {
 	}
 	
 	@Override
+//	public List<BannerDTO> BannerList() {
 	public List<Banner> BannerList() {
-		return em.createQuery("select b from Banner b ", Banner.class).getResultList();
+		log.info("BannerList Repository 성공");
 		
-//		return em.createQuery("SELECT b.bannerNum, b.eventcode, e.eventname, b.bannerImage "
-//				+ "FROM Banner b "
-//				+ "INNER JOIN Event e "
-//				+ "ON b.eventNum = e.eventcode "
-//				+ "order by bannerNum", Banner.class) 
-//				.getResultList();
+		return em.createQuery("SELECT b FROM Banner b " +
+				            "JOIN FETCH b.event " + 
+							// 이 부분은 연관된 Event 엔터티를 가져오기 위한 조인.
+				            "ORDER BY b.bannernum DESC", Banner.class)
+				            .getResultList();
 		
 	}
 	
@@ -45,21 +52,21 @@ public class BannerRepositoryImpl implements BannerRepository {
 	}
 	
 	@Override
-	public int BannerInsert(Banner entity) {
+	public int BannerInsert(BannerDTO entity) {
 		
 		log.info("BannerInsert Repository 성공");
-		String jpql = "INSERT INTO Banner (bannernum, eventcode, bannerimage) "
-					+ "VALUES (:bannernum, :eventcode, :bannerimage)";
+		String jpql = "INSERT INTO Banner (eventcode, bannerimage) "
+					+ "VALUES (:eventcode, :bannerimage)";
 		
 		Query query = em.createNativeQuery(jpql);
 		
-		query.setParameter("bannernum", entity.getBannernum());
-		query.setParameter("eventcode", entity.getEvent());
-		query.setParameter("bannerimage", entity.getBannerimage());
+		query.setParameter("eventcode", entity.getEventcode());
+		query.setParameter("bannerimage", entity.getBannerImage());
 		
 		return query.executeUpdate();
 	}
 	
+
 	
 	
 }

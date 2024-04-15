@@ -1,14 +1,17 @@
 import './XhomeBannerEventContent.css'
 
-export default function XhomeBannerEventContent({bannerNum, eventcode, bannerImage}) {
+export default function XhomeBannerEventContent({bannernum, event, bannerimage, handleBanner}) {
     return(
         <div className="XhomeBannerEventContent_Box">
             <div className="XhomeBannerEventContent_contents">
-                <span><input type="checkbox" /></span>
-                <span>{bannerNum}</span>
-                <span>{eventcode}</span>
-                {/* <span>{eventName}</span> */}
-                <span>{bannerImage}</span>
+                <span><input type="checkbox"
+                            value={bannernum}
+                            onChange={(e) => handleBanner(bannernum)}
+                        /></span>
+                <span>{bannernum}</span>
+                <span>{event.eventcode}</span>
+                <span>{event.eventname}</span>
+                <span>{bannerimage}</span>
             </div>
         </div>
     )
