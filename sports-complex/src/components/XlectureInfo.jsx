@@ -3,9 +3,10 @@ import Submenu from './Submenu';
 import XlectureList from './XlecturerList';
 import XlectureSerachBox from './XlectureSerachBox';
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { apiCall } from '../apiService/apiService';
 
-export default function XlectureInfo() {
+export default function XlectureInfo({ onTeacherSelect, isSingleSelection }) {
     const [lecture, setLecture] = useState([]);
     // 검색 이용을 위한 select과 input
     const [lectureSearchSelect, setLectureSearchSelect] = useState('전체');
@@ -19,6 +20,8 @@ export default function XlectureInfo() {
     // Session storage에 있는 userData 가져오기
     const sessionUserData = sessionStorage.getItem('userData');
     const userData = sessionUserData ? JSON.parse(sessionUserData) : 'null';
+
+    const location = useLocation();
 
     // 강사 불러오기
     useEffect(() => {
@@ -58,29 +61,55 @@ export default function XlectureInfo() {
     };
 
     // 강사 선택하기
-    const handleToggleCheckbox = (teachnum) => {
-        setSelectedLecture(prevState => {
-            if (prevState.includes(teachnum)) {
-                return prevState.filter(num => num !== teachnum);
-            } else {
-                return [...prevState, teachnum];
-            }
-        });
+    // const handleToggleCheckbox = (teachnum, teachname) => {
+    //     setSelectedLecture(prevState => {
+    //         if (prevState.includes(teachnum)) {
+    //             return prevState.filter(num => num !== teachnum);
+    //         } else {
+    //             return [...prevState, teachnum];
+    //         }
+    //     });
+    //     // 선택된 강사의 이름과 teachnum을 부모 컴포넌트로 전달
+    //     onTeacherSelect(teachnum, teachname);
+    // };
+    const handleToggleCheckbox = (teachnum, teachname) => {
+        if (isSingleSelection) {
+            setSelectedLecture([teachnum]);
+            onTeacherSelect(teachnum, teachname);
+        } else {
+            setSelectedLecture(prevState => {
+                if (prevState.includes(teachnum)) {
+                    return prevState.filter(num => num !== teachnum);
+                } else {
+                    return [...prevState, teachnum];
+                }
+            });
+            onTeacherSelect(teachnum, teachname);
+        }
     };
 
     // 강사 선택 초기화
+    // const handleResetSelection = () => {
+    //     setSelectedLecture([]);
+    // };
+
+
+    // 선택 초기화
     const handleResetSelection = () => {
         setSelectedLecture([]);
+        onTeacherSelect('', '');
     };
 
     // 선택된 문의게시글 apiCall 요청 보내고 삭제하기
     const handleDeleteSelected = (() => {
         if (selectedLecture.length === 0) {
-            // console.log(" 선택된 목록이 없습니다 ");
+            console.log(" 선택된 목록이 없습니다 ");
             return;
         }
 
         let url = '/teach/teachDelete';
+
+        console.log(selectedLecture);
 
         apiCall(url + `?teachnum=${selectedLecture.join('&teachnum=')}`, 'get', null, userData.token)
             .then(() => {
@@ -93,7 +122,7 @@ export default function XlectureInfo() {
 
     return (
         <div className='XlectureInfo_Box'>
-            <Submenu />
+            {location.pathname !== '/XNewClassUploadPage' && <Submenu />}
             <div className='XlectureInfo'>
                 <XlectureSerachBox onSearch={handleSearch}
                     lectureSearchSelect={lectureSearchSelect}
@@ -112,12 +141,22 @@ export default function XlectureInfo() {
                 </div>
                 <div>
                     {searchResult && searchResult.map((item, index) => (
-                        <XlectureList key={index} {...item} onToggleCheckbox={handleToggleCheckbox} isChecked={selectedLecture.includes(item.teachnum)} />
+                        <XlectureList
+                            key={index}
+                            {...item}
+                            onToggleCheckbox={(teachnum, teachname) => handleToggleCheckbox(teachnum, item.teachname)}
+                            isChecked={selectedLecture.includes(item.teachnum)} />
                     ))}
                 </div>
                 <div className='XResetDeleteBtn'>
-                    <button onClick={handleResetSelection}>초기화</button>
-                    <button onClick={handleDeleteSelected}>삭제</button>
+                    {location.pathname === '/XNewClassUploadPage' ? (
+                        <button onClick={handleResetSelection}>초기화</button>
+                    ) : (
+                        <>
+                            <button onClick={handleResetSelection}>초기화</button>
+                            <button onClick={handleDeleteSelected}>삭제</button>
+                        </>
+                    )}
                 </div>
             </div>
         </div>

@@ -46,10 +46,6 @@ export default function XlectureDetailPage() {
                             <caption className='XlectureRegisterDetail_Caption'>강사정보</caption>
                             <tbody>
                                 <tr>
-                                    <th className='JoinLecture_title'>강사번호</th>
-                                    <td>{teachnum}</td>
-                                </tr>
-                                <tr>
                                     <th className='JoinLecture_title'>이름</th>
                                     <td>{teachname}</td>
                                 </tr>

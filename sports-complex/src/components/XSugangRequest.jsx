@@ -55,7 +55,7 @@ export default function XSugangRequest() {
         setSelectedClasses([]);
     };
 
-    // 선택 강좌 삭제
+    // 선택 신청 삭제
     const handleDeleteSelectedClasses = (() => {
         if (selectedClasses.length === 0) {
             return;
@@ -67,7 +67,7 @@ export default function XSugangRequest() {
             .then(() => {
                 setSelectedClasses([]);
             }).catch((error) => {
-                console.error(`문의게시판 삭제 실패 : `, error);
+                console.error(`수강 신청 삭제 실패 : `, error);
             });
     });
 
@@ -99,7 +99,7 @@ export default function XSugangRequest() {
     const reset = () => {
         setClassesSearchBTSelect('전체');
         setClassesSearchSTSelect('전체');
-        setClassesSearchDaySelect('월');
+        setClassesSearchDaySelect('전체');
         setClassesSearcTargetSelect('전체');
         setClassesSearchInput('');
     }

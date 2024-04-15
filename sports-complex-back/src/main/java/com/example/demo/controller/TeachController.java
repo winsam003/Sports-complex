@@ -51,7 +51,6 @@ public class TeachController {
 //	Update
 	@PostMapping("/teachUpdate")
 	public ResponseEntity<?> teachUpdate(@RequestBody TeachDTO dto) {
-		System.out.println("dto : " + dto);
 		if (service.teachUpdate(dto) > 0) {
 			return ResponseEntity.status(HttpStatus.OK).body("강사 정보 변경에 성공하셨습니다.");
 		} else {

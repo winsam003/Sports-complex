@@ -18,12 +18,6 @@ export default function XRentalPlaceControll() {
         setCheckList([...checkList, ...value]);
     }
 
-
-
-
-    // checkList 배열로 담아줌. 
-    console.log(checkList);
-
     
     const [test, setTest] = useState();
     // 리스트 다시 새로고침 위해서 상태 알려주기. <refreshList>
