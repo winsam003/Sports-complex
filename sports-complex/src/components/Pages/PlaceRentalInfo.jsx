@@ -2,11 +2,11 @@ import PageBanner from '../PageBanner';
 import PlaceRentalInfoContent from '../PlaceRentalInfoContent';
 
 // 대관 신청 안내페이지
-export default function PlaceRental() {
+export default function PlaceRental({ roleList }) {
     return (
         <div>
             <PageBanner />
-            <PlaceRentalInfoContent />
+            <PlaceRentalInfoContent roleList={roleList}/>
         </div>
     )
 }

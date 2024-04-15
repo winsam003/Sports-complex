@@ -1,11 +1,14 @@
 import './PlaceRentalContent.css'
 import Submenu from './Submenu'
 import PlaceRentalSearchList from './PlaceRentalSearchList'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react';
+import { apiCall } from '../apiService/apiService'
 
 // 수강 신청
-export default function PlaceRentalContent({ getUserName }) {
+export default function PlaceRentalContent({ getUserName, getUserID }) {
+
+    const navigate = useNavigate();
 
     const today = new Date();
     useEffect(() => {
@@ -20,38 +23,87 @@ export default function PlaceRentalContent({ getUserName }) {
     }, []);
 
     // 날짜 선택 값 td 안으로. 
-    const [rentDate, setRentDate] = useState(today.getFullYear() + "-" + String(today.getMonth() + 1).padStart(2, '0') + "-" + String(today.getDate()).padStart(2, '0'));
-
+    const [rentDate, setRentDate] = useState(today.getFullYear() + "-" + String(today.getMonth() + 1).padStart(2, '0') + "-" + String(today.getDate() + 1).padStart(2, '0'));
     const handleRentDate = (event) => {
         setRentDate(event.target.value);
     }
 
     // 시간 선택 값 td 안으로. 
-    const [rentTime, setRentTime] = useState('오전 6시');
-
+    const [rentTime, setRentTime] = useState('06:00:00');
     const handleRentTime = (event) => {
         setRentTime(event.target.value);
     }
 
     // 인원 수 저장
-    const [useNum, setUseNum] = useState(1);
+    const [numOfPeople, setNumOfPeople] = useState(1);
     const useNumHandler = (e) => {
-        setUseNum(e.target.value);
+        setNumOfPeople(e.target.value);
     }
 
     // 가격 가져오기
-    const [rentPrice, setRentPrice] = useState('');
-
+    const [rentPrice, setRentPrice] = useState(0);
     const handleRentPrice = (value) => {
         setRentPrice(value);
     }
 
-    console.log(new Date());
-    console.log(new Date().getFullYear());
-    console.log(new Date().getMonth());
-    console.log(new Date().getDate());
-    console.log(new Date().getDay());
-    console.log(new Date().getHours());
+    const [appPhoneNum, setAppPhoneNum] = useState('');
+    const appPhoneNumHandler = (e) => {
+        setAppPhoneNum(e.target.value)
+    }
+
+    const [sprNum, setSprNum] = useState('');
+    const sprNumHandler = (e) => {
+        setSprNum(e);
+    }
+
+    // 해당 날짜, 시간 신청list 가져오기 ============================================================================
+    let token = JSON.parse(sessionStorage.getItem('userData')).token;
+    let sprDate = rentDate + ' ' + rentTime;
+    const [spacelist, setSpaceList] = useState([]);
+    useEffect(() => {
+        let url = '/spaceRentApp/spaceRentApplist';
+        let requestData = {
+            sprDate: sprDate,
+        }
+
+        apiCall(url, 'post', requestData, token)
+            .then((response) => {
+                setSpaceList(response);
+            }).catch((error) => {
+                console.log("spaceRentAppList Error Occured: " + error);
+            })
+    }, [rentDate, rentTime])
+    // 해당 날짜, 시간 신청list 가져오기 ============================================================================
+
+
+
+
+
+    // 대관신청 ====================================================================================================
+
+    const requestApp = () => {
+        let url = '/spaceRentApp/spaceRentApplication';
+        let requestData = {
+            sprnum: sprNum,
+            id: getUserID,
+            appPhoneNum: appPhoneNum,
+            NumOfPeople: numOfPeople
+        }
+
+
+        apiCall(url, 'post', requestData, token)
+            .then((response) => {
+                alert(response);
+                window.location.reload();
+            }).catch((error) => {
+                alert("대관 신청에 실패하였습니다. 관리자에게 문의하세요.");
+                console.log("spaceRentApplication error occured = " + error);
+            })
+    }
+
+
+
+    // 대관신청 ====================================================================================================
 
 
 
@@ -78,55 +130,52 @@ export default function PlaceRentalContent({ getUserName }) {
                     <input type="date" className='selectRent' name="rentDate" id="rentDate" value={rentDate} onChange={handleRentDate} />
                     <span>시간 선택</span>
                     <select name="rentTime" className='selectRent' id="rentTime" value={rentTime} onChange={handleRentTime}>
-                        <option value="오전 6시">오전 6시</option>
-                        <option value="오전 9시">오전 9시</option>
-                        <option value="오후 12시">오후 12시</option>
-                        <option value="오후 3시">오후 3시</option>
-                        <option value="오후 6시">오후 6시</option>
+                        <option value="06:00:00">오전 6시</option>
+                        <option value="09:00:00">오전 9시</option>
+                        <option value="12:00:00">오후 12시</option>
+                        <option value="15:00:00">오후 3시</option>
+                        <option value="18:00:00">오후 6시</option>
                     </select>
                 </div>
-                <PlaceRentalSearchList handleRentPrice={handleRentPrice} />
-                <div className='PlaceRentalContent_form'>
-                    <form action="/" method='post'>
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <th>날짜 선택 <span className='star'></span></th>
-                                    <td><input type="text" name='date' id='date' placeholder='선택해주세요' value={rentDate} readOnly /></td>
-                                </tr>
-                                <tr>
-                                    <th>시간 선택 <span className='star'></span></th>
-                                    <td><input type="text" name='time' id='time' placeholder='선택해주세요' value={rentTime} readOnly /></td>
-                                </tr>
-                                <tr>
-                                    <th>작성자 <span className='star'></span></th>
-                                    <td><input type="text" name='name' id='name' value={getUserName} readOnly /></td>
-                                </tr>
-                                <tr>
-                                    <th>연락처 <span className='star'></span></th>
-                                    <td>
-                                        <input type="text" name='phoneNum' id='phoneNum' placeholder='연락가능한 연락처를 하이픈(-) 없이 입력해주세요' />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>이용 인원 <span className='star'></span></th>
-                                    <td>
-                                        <input type="text" name='useNum' id='useNum' onChange={useNumHandler} />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>가격 <span className='star'></span></th>
-                                    <td>
-                                        <input type="text" name='price' id='price' value={rentPrice} placeholder='선택한 시설에서 가져오기' />
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </form>
+                <PlaceRentalSearchList handleRentPrice={handleRentPrice} sprNumHandler={sprNumHandler} spacelist={spacelist} />
+                <div className='PlaceRentalContent_formSet'>
+                    <table>
+                        <tbody>
+                            <tr className='PlaceRentalContent_form'>
+                                <th>날짜 선택 <span className='star'></span></th>
+                                <td>{rentDate}</td>
+                            </tr>
+                            <tr className='PlaceRentalContent_form'>
+                                <th>시간 선택 <span className='star'></span></th>
+                                <td>{rentTime}</td>
+                            </tr>
+                            <tr className='PlaceRentalContent_form'>
+                                <th>작성자 <span className='star'></span></th>
+                                <td>{getUserName}</td>
+                            </tr>
+                            <tr>
+                                <th>연락처 <span className='star'></span></th>
+                                <td>
+                                    <input type="text" name='phoneNum' id='phoneNum' value={appPhoneNum} onChange={appPhoneNumHandler} placeholder='연락가능한 연락처를 하이픈(-) 없이 입력해주세요' />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>이용 인원 <span className='star'></span></th>
+                                <td>
+                                    <input type="text" name='useNum' id='useNum' value={numOfPeople} onChange={useNumHandler} />
+                                </td>
+                            </tr>
+                            <tr className='PlaceRentalContent_form'>
+                                <th>가격 <span className='star'></span></th>
+                                <td>
+                                    {rentPrice} 원
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div className='RentalWriteButton'>
-                    <button><Link to='/PlaceRentalInfo'>신청</Link></button>
-                    <button><Link to='/PlaceRentalInfo'>목록</Link></button>
+                    <button onClick={requestApp}>신청</button>
                 </div>
             </div>
         </div>

@@ -29,7 +29,6 @@ public class SpaceController {
 	@GetMapping(value="/spacelist", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> sList() {
 		List<Space> result = service.SpaceList();
-//		log.info(result);
 		if(result != null && result.size() > 0) {
 			return ResponseEntity.status(HttpStatus.OK).body(result);
 		}else {

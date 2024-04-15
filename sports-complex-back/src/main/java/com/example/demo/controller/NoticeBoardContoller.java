@@ -214,7 +214,6 @@ public class NoticeBoardContoller {
 	public ResponseEntity<ByteArrayResource> downloadFile(@RequestParam String fileName) throws IOException{
 		
 	    Path filePath = Paths.get(DOWNLOAD_DIR, fileName);
-	    log.info(filePath);
 	        // 파일의 내용을 바이트 배열로 읽어옴
 	    byte[] data = Files.readAllBytes(filePath);
 	        // 바이트 배열을 ByteArrayResource 객체로 변환

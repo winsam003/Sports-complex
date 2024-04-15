@@ -16,7 +16,7 @@ export default function XRentalPlaceSearchResult({ checkList, setCheckList, refr
         let url = "/space/spacelist";
         let token = JSON.parse(sessionStorage.getItem("userData")).token;
 
-        apiCall(url, 'get', null, null)
+        apiCall(url, 'get', null, token)
             .then((response) => {
                 setSpaceList(response);
             }).catch((error) => {

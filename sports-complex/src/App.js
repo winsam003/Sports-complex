@@ -92,6 +92,7 @@ function App() {
   let token;
   let roleList;
 
+  // token =  JSON.parse(sessionStorage.getItem('userData')).token;
 
   if (sessionStorage.getItem('userData') != null) {
     const userData = JSON.parse(sessionStorage.getItem('userData'));
@@ -162,8 +163,8 @@ function App() {
         <Route path='/PasswordChangePage2' element={<PasswordChangePage2 />} />
         <Route path='/ModifyMemberPage' element={<ModifyMemberPage getUserID={getUserID} roleList={roleList} />} />
         <Route path='/QRCodePage' element={<QRCodePage />} />
-        <Route path='/PlaceRentalInfo' element={<PlaceRentalInfo />} />
-        <Route path='/PlaceRental' element={<PlaceRental getUserName ={getUserName}/>} />
+        <Route path='/PlaceRentalInfo' element={<PlaceRentalInfo roleList={roleList} />} />
+        <Route path='/PlaceRental' element={<PlaceRental getUserName={getUserName} getUserID = {getUserID} />} />
         <Route path='/ParkingRequest' element={<ParkingRequest />} />
         <Route path='/ApplicationDetailsPage' element={<ApplicationDetailsPage />} />
         <Route path='/InfoHandlingPolicyPage' element={<InfoHandlingPolicyPage />} />
