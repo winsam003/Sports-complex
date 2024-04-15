@@ -44,23 +44,24 @@ export default function XSugangRequestSearchResult({ clnum, classcode, clname, c
     // 가격 설정
     const formattedPrice = new Intl.NumberFormat('ko-KR').format(clprice);
 
-    // 클래스 상태를 나타내는 cltype 설정
-    let classStatus;
-    if (new Date() >= new Date(clrequest) && new Date() <= new Date(clrequestend)) {
-        if (clcount < 50) {
-            classStatus = '수강 신청';
-        } else if (clwating < 50) {
-            classStatus = '대기 신청';
-        } else {
-            classStatus = '대기 마감';
-        }
-    } else {
-        classStatus = '접수 마감';
-    }
+    // // 클래스 상태를 나타내는 cltype 설정
+    // if (new Date() >= new Date(clrequest) && new Date() <= new Date(clrequestend)) {
+    //     if (clcount > 50) {
+    //         cltype = '수강 신청';
+    //     } else if (clwating > 50) {
+    //         cltype = '대기 신청';
+    //     } else {
+    //         cltype = '대기 마감';
+    //     }
+    // } else {
+    //     cltype = '접수 마감';
+    // }
 
     // 클래스 현재원과 대기원을 비교하여 표시
-    const countRatio = `${clcount}/50`;
-    const watingRatio = `${clwating}/50`;
+    const countRatio = `50/${clcount}`;
+    const watingRatio = `50/${clwating}`;
+
+    console.log(cltype);
 
     return (
         <div>
@@ -78,7 +79,7 @@ export default function XSugangRequestSearchResult({ clnum, classcode, clname, c
                                 <p>{countRatio}</p>
                                 <p>{watingRatio}</p>
                                 <p>{formattedPrice}</p>
-                                <p>{classStatus}</p>
+                                <p>{cltype}</p>
                             </>
                             :
                             // 관리자
@@ -92,7 +93,7 @@ export default function XSugangRequestSearchResult({ clnum, classcode, clname, c
                                 <p>{countRatio}</p>
                                 <p>{watingRatio}</p>
                                 <p>{formattedPrice}</p>
-                                <p>{classStatus}</p>
+                                <p>{cltype}</p>
                             </>
                     }
                 </div>

@@ -1,6 +1,6 @@
 import Submenu from './Submenu';
 import './XNewClassUpload.css';
-import XlecturerList from './XlecturerList';
+import XlectureInfo from './XlectureInfo';
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { apiCall } from '../apiService/apiService';
@@ -9,6 +9,27 @@ export default function XNewClassUpload() {
     // Session storage에 있는 userData 가져오기
     const sessionUserData = sessionStorage.getItem('userData');
     const userData = sessionUserData ? JSON.parse(sessionUserData) : 'null';
+
+    // 강사 정보 상태 추가
+    const [selectedTeacher, setSelectedTeacher] = useState({
+        teachnum: '',
+        teachname: ''
+    });
+
+    // 선택된 강사 정보를 저장하는 함수
+    const handleTeacherSelect = (teachnum, teachname) => {
+        setSelectedTeacher({
+            teachnum: teachnum,
+            teachname: teachname
+        });
+
+        // 강사 이름을 newClassesData에 업데이트
+        setNewClassesData(prevState => ({
+            ...prevState,
+            teachname: teachname,
+            teachnum: teachnum
+        }));
+    };
 
     // 등록 후 강의정보관리 페이지 이동
     const navigate = useNavigate();
@@ -26,6 +47,7 @@ export default function XNewClassUpload() {
         clend: '',
         clfor: 'KI',
         clcount: '50',
+        clwating: '75',
         clprice: '25000'
     });
 
@@ -240,7 +262,7 @@ export default function XNewClassUpload() {
                 price = 25000 + (cldaysLength - 1) * 5000;
             }
         }
-        setNewClassesData(prevState => ({ ...prevState, clprice: price.toLocaleString() }));
+        setNewClassesData(prevState => ({ ...prevState, clprice: price }));
     };
 
     console.log(newClassesData);
@@ -385,7 +407,7 @@ export default function XNewClassUpload() {
                         </tr>
                         <tr>
                             <th>강사명</th>
-                            <td><input type="text" placeholder='아래에서 강사 검색 후 등록버튼을 눌러 등록해주세요.' size={'50'} readOnly /></td>
+                            <td><input type="text" placeholder='아래에서 강사 검색 후 등록버튼을 눌러 등록해주세요.' size={'50'} value={newClassesData.teachname} /></td>
                         </tr>
                         <tr className='XNewClassUpload_classAppDate'>
                             <th>강좌 신청 시작날</th>
@@ -422,10 +444,17 @@ export default function XNewClassUpload() {
                             </td>
                         </tr>
                         <tr>
+                            <th>대기 정원</th>
+                            <td>
+                                <input type="text" placeholder='숫자만 입력해주세요.' name='clcount'
+                                    value={newClassesData.clwating} onChange={NewClassesContent} /> 명
+                            </td>
+                        </tr>
+                        <tr>
                             <th>강좌 금액</th>
                             <td>
                                 <input type="text" placeholder='숫자만 입력해주세요.' name='clprice'
-                                    value={newClassesData.clprice} onChange={NewClassesContent} /> 원
+                                    value={newClassesData.clprice.toLocaleString()} onChange={NewClassesContent} /> 원
                             </td>
                         </tr>
                     </tbody>
@@ -434,10 +463,7 @@ export default function XNewClassUpload() {
                     <button onClick={ClassesRegister}>강좌 등록</button>
                 </div>
 
-                <XlecturerList className="XNewClassUpload_findT" />
-                <div className="XNewClassUpload_submitBtn">
-                    <input type="submit" value={'강사 등록'} />
-                </div>
+                <XlectureInfo onTeacherSelect={handleTeacherSelect} isSingleSelection={true} />
             </div>
         </div >
     )
