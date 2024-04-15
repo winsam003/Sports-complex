@@ -43,7 +43,9 @@ public class TeachRepositoryImpl implements TeachRepository {
 		return em.createNativeQuery(
 				"insert into Teach (teachcode, teachname, teachbirth, teachphone, teachlicense, teachaccount, teachrdate) "
 						+ "values (:teachcode, :teachname, :teachbirth, :teachphone, :teachlicense, :teachaccount, :teachrdate)")
-				.setParameter("teachcode", dto.getTeachcode()).executeUpdate();
+				.setParameter("teachcode", dto.getTeachcode()).setParameter("teachname", dto.getTeachname()).setParameter("teachbirth", dto.getTeachbirth())
+				.setParameter("teachphone", dto.getTeachphone()).setParameter("teachlicense", dto.getTeachlicense())
+				.setParameter("teachaccount", dto.getTeachaccount()).setParameter("teachrdate", dto.getTeachrdate()).executeUpdate();
 	}
 
 //	강사 업데이트
