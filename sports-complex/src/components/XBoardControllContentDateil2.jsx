@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from 'react-router';
 import './XBoardControllContentDateil2.css'
 import { MdFestival } from "react-icons/md";
 import { apiCall } from "../apiService/apiService";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 export default function XBoardControllContentDateil2() {
@@ -41,15 +41,18 @@ export default function XBoardControllContentDateil2() {
             })
     }
 
+    
+
     const [noticeContent, setNoticeContent] = useState('');
     const noticeContentHandler = (e) => {
         setNoticeContent(e.target.value);
     }
 
 
-    const [selectedFile, setSelectedFile] = useState(receivedInfo.notuploadfile);
+    const [selectedFile, setSelectedFile] = useState();
     const handleFileChange = (e) => {
-        setSelectedFile(e.target.files[0])
+        setSelectedFile(e.target.files[0]);
+        receivedInfo.notuploadfile = e.target.files[0].name;
     }
 
     const [modifyOn, setModifyOn] = useState(false);
@@ -66,8 +69,9 @@ export default function XBoardControllContentDateil2() {
             const formData = new FormData();
             formData.append('file', selectedFile);
 
-            
+            const getUserName = JSON.parse(sessionStorage.getItem('userData')).stfid;
             let requestData = {
+                stfid: getUserName,
                 notnum: receivedInfo.notnum,
                 notdetail: noticeContent,
                 file: formData.get('file')
@@ -84,6 +88,11 @@ export default function XBoardControllContentDateil2() {
             }
     }
 
+
+    useEffect(() => {
+        setNoticeContent(receivedInfo.notdetail);
+        setSelectedFile(receivedInfo.notuploadfile);
+    },[])
 
     return (
         <div className='XBoardControllContentDateil2_div'>
@@ -102,27 +111,27 @@ export default function XBoardControllContentDateil2() {
 
                     <div className="XBoardControllContentDateil2_title">
                         <MdFestival className='EventDetail_icon' />
-                        <p>{receivedInfo.nottitle}</p>
+                        <p className="XBoardControllContentDetail2_title2" >{receivedInfo.nottitle}</p>
                     </div>
                     <div className='XBoardControllContentDateil2_twin'>
                         <div className="XBoardControllContentDateil2_menu">
                             <p>게시글 번호</p>
-                            <p>{receivedInfo.notnum}</p>
+                            <p className="XBoardControllContentDetail2_title2" >{receivedInfo.notnum}</p>
                         </div>
                         <div className="XBoardControllContentDateil2_menu">
                             <p>공지대상</p>
-                            <p>{receivedInfo.quest}</p>
+                            <p className="XBoardControllContentDetail2_title2" >{receivedInfo.quest}</p>
                         </div>
                     </div>
 
                     <div className='XBoardControllContentDateil2_twin'>
                         <div className="XBoardControllContentDateil2_menu">
                             <p>작성자</p>
-                            <p>{receivedInfo.stfid}</p>
+                            <p className="XBoardControllContentDetail2_title2" >{receivedInfo.stfid}</p>
                         </div>
                         <div className="XBoardControllContentDateil2_menu">
                             <p>작성날짜</p>
-                            <p>{formattedDate}</p>
+                            <p className="XBoardControllContentDetail2_title2" >{formattedDate}</p>
                         </div>
                     </div>
 
@@ -131,19 +140,22 @@ export default function XBoardControllContentDateil2() {
                         <div className="XBoardControllContentDateil2_menu">
                             <p>파일</p>
                             {modifyOn ?
+                            <span>
+                                    <span className='XBoardControllContentDateil2_selectedFile'>{receivedInfo.notuploadfile ? receivedInfo.notuploadfile : ""}</span>
                                 <input className='test' type="file" name='uploadfilef' id='uploadfilef' onChange={handleFileChange} />
+                            </span>
                                 :
-                                <p className='XBoardControllContentDateil2_file' onClick={fileDownloadLink}>{receivedInfo.notuploadfile}</p>
+                                <p className= 'XBoardControllContentDetail2_title2 XBoardControllContentDateil2_file' onClick={fileDownloadLink}>{receivedInfo.notuploadfile}</p>
                             }
                         </div>
                         <div className="XBoardControllContentDateil2_menu">
                             <p>조회수</p>
-                            <p>{receivedInfo.notcount}</p>
+                            <p className="XBoardControllContentDetail2_title2" >{receivedInfo.notcount}</p>
                         </div>
                     </div>
                     <div className="XBoardControllContentDateil2_contents">
                         {modifyOn ?
-                            <textarea className='XBoardControllContentDateil2_modifiedContents' type="text" name='content' id='content' onBlur={noticeContentHandler}>{receivedInfo.notdetail}</textarea>
+                            <textarea className='XBoardControllContentDateil2_modifiedContents' type="text" name='content' id='content' value={noticeContent} onChange={noticeContentHandler}></textarea>
                             :
                             receivedInfo.notdetail
                         }

@@ -107,3 +107,24 @@
 .login_managerLogin {
     cursor: pointer;
 }
+
+@media(max-width: 850px){
+    .login_Page, 
+    .loginManagement_Page{
+        display: inherit;
+    }
+    .login_logo {
+        display: none;
+    }
+    .login_Box_div{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .loginManagement_Page,
+    .login_Page{
+        padding-top: 100px;
+    }
+    
+}

@@ -13,7 +13,7 @@
     align-items: center;
     
 }
-.XEventControllContent_uploadAndSearch>a{
+.XEventControllContent_uploadAndSearch>button{
     margin-left: 20px;
     width: 100px;
     height: 50px;

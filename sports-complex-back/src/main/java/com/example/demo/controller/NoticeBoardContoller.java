@@ -160,12 +160,14 @@ public class NoticeBoardContoller {
 	// 공지사항 수정
 	@PostMapping(value="/noticeModify")
 	public ResponseEntity<?> noticeModify(@RequestParam(value = "file", required = false) MultipartFile file,
+										  @RequestParam("stfid") String stfid,
 										  @RequestParam("notdetail") String notdetail,
 										  @RequestParam("notnum") int notnum) throws IOException{
 		log.info("Contoller noticeModify 접촉 성공");
 		
 		
 		Notice entity = new Notice();
+		entity.setStfid(stfid);
 		entity.setNotnum(notnum);
 		entity.setNotdetail(notdetail);
 		
@@ -212,6 +214,7 @@ public class NoticeBoardContoller {
 	public ResponseEntity<ByteArrayResource> downloadFile(@RequestParam String fileName) throws IOException{
 		
 	    Path filePath = Paths.get(DOWNLOAD_DIR, fileName);
+	    log.info(filePath);
 	        // 파일의 내용을 바이트 배열로 읽어옴
 	    byte[] data = Files.readAllBytes(filePath);
 	        // 바이트 배열을 ByteArrayResource 객체로 변환

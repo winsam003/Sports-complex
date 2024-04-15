@@ -69,14 +69,26 @@ public class NoticeBoardRepositoryImpl implements NoticeBoardRepository {
 	public int noticeModify(Notice entity) {
 		log.info("noticeModify Repository 접촉 성공");
 		
-		String sql = "UPDATE notice SET notuploadfile = :notuploadfile, notdetail = :notdetail where notnum = :notnum";
-		
-		Query query = em.createNativeQuery(sql);
-		query.setParameter("notuploadfile", entity.getNotuploadfile());
-		query.setParameter("notdetail", entity.getNotdetail());
-		query.setParameter("notnum", entity.getNotnum());
-		
-		return query.executeUpdate();
+		if(entity.getNotuploadfile() != null) {
+			String sql = "UPDATE notice SET stfid=:stfid, notuploadfile = :notuploadfile, notdetail = :notdetail where notnum = :notnum";
+			
+			Query query = em.createNativeQuery(sql);
+			query.setParameter("stfid", entity.getStfid());
+			query.setParameter("notuploadfile", entity.getNotuploadfile());
+			query.setParameter("notdetail", entity.getNotdetail());
+			query.setParameter("notnum", entity.getNotnum());
+			
+			return query.executeUpdate();
+		}else {
+			String sql = "UPDATE notice SET stfid=:stfid, notdetail = :notdetail where notnum = :notnum";
+			
+			Query query = em.createNativeQuery(sql);
+			query.setParameter("stfid", entity.getStfid());
+			query.setParameter("notdetail", entity.getNotdetail());
+			query.setParameter("notnum", entity.getNotnum());
+			
+			return query.executeUpdate();
+		}
 	}
 	
 	

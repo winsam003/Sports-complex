@@ -57,9 +57,20 @@
     padding-right: 1rem;
 }
 
+.XBoardControllContentDetail2_title2{
+    padding-left: 1rem;
+}
+
+.XBoardControllContentDateil2_selectedFile{
+    display: block;
+    padding-left: 1rem;
+    padding-top: .5rem;
+}
+
 /* 아래 정보 */
 .XBoardControllContentDateil2_menu {
     display: flex;
+    /* justify-content: center; */
     /* margin-top: 2rem; */
     border-bottom: 1px solid #ccc;
 
@@ -68,15 +79,18 @@
 .XBoardControllContentDateil2_menu>* {
     margin: 0;
     height: 4rem;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    /* display: flex; */
+    /* justify-content: flex-start;
+    align-items: center; */
     /* padding: 1rem; */
     /* width: ; */
 }
 
 .XBoardControllContentDateil2_menu>p{
-    padding-left: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-left: 1rem; */
 }
 
 .XBoardControllContentDateil2_menu>:first-child {
