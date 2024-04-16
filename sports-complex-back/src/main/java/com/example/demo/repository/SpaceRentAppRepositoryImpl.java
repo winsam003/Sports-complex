@@ -1,5 +1,7 @@
 package com.example.demo.repository;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -46,6 +48,67 @@ public class SpaceRentAppRepositoryImpl implements SpaceRentAppRepository {
 	
 	@Override
 	public void runDailyTasks() {
-		log.info("TEST");
+		log.info("runDailyTasks Repository 매일 10시 자동 insert 성공");
+		
+        // 현재 날짜 가져오기
+        LocalDate currentDate = LocalDate.now().plusDays(3);
+        
+        // 원하는 형식의 포맷터 설정
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        
+        // 현재 날짜를 원하는 형식으로 변환하여 출력
+        String formattedDate = currentDate.format(formatter);
+		
+		em.createQuery("INSERT INTO spaceRentApp (spaceCode, spRDate, spRState, payment) VALUES " +
+						"('FABK1C',"+formattedDate+"' 06:00:00', '10000', 0), "+
+						"('FABK2C',"+formattedDate+"' 06:00:00', '10000', 0), "+
+						"('FAFT1C',"+formattedDate+"' 06:00:00', '10000', 0), "+
+						"('FAFT2C',"+formattedDate+"' 06:00:00', '10000', 0), "+
+						"('FATE1C',"+formattedDate+"' 06:00:00', '10000', 0), "+
+						"('FATE2C',"+formattedDate+"' 06:00:00', '10000', 0), "+
+						"('FABK1C',"+formattedDate+"' 06:00:00', '10000', 0), "+
+						"('FABK2C',"+formattedDate+"' 06:00:00', '10000', 0), "+
+						"('FAFT1C',"+formattedDate+"' 06:00:00', '10000', 0), "+
+						"('FAFT2C',"+formattedDate+"' 06:00:00', '10000', 0), "+
+						"('FABK1C',"+formattedDate+"' 09:00:00', '10000', 0), "+
+						"('FABK2C',"+formattedDate+"' 09:00:00', '10000', 0), "+
+						"('FAFT1C',"+formattedDate+"' 09:00:00', '10000', 0), "+
+						"('FAFT2C',"+formattedDate+"' 09:00:00', '10000', 0), "+
+						"('FATE1C',"+formattedDate+"' 09:00:00', '10000', 0), "+
+						"('FATE2C',"+formattedDate+"' 09:00:00', '10000', 0), "+
+						"('FABK1C',"+formattedDate+"' 09:00:00', '10000', 0), "+
+						"('FABK2C',"+formattedDate+"' 09:00:00', '10000', 0), "+
+						"('FAFT1C',"+formattedDate+"' 09:00:00', '10000', 0), "+
+						"('FAFT2C',"+formattedDate+"' 09:00:00', '10000', 0), "+
+						"('FABK1C',"+formattedDate+"' 12:00:00', '10000', 0), "+
+						"('FABK2C',"+formattedDate+"' 12:00:00', '10000', 0), "+
+						"('FAFT1C',"+formattedDate+"' 12:00:00', '10000', 0), "+
+						"('FAFT2C',"+formattedDate+"' 12:00:00', '10000', 0), "+
+						"('FATE1C',"+formattedDate+"' 12:00:00', '10000', 0), "+
+						"('FATE2C',"+formattedDate+"' 12:00:00', '10000', 0), "+
+						"('FABK1C',"+formattedDate+"' 12:00:00', '10000', 0), "+
+						"('FABK2C',"+formattedDate+"' 12:00:00', '10000', 0), "+
+						"('FAFT1C',"+formattedDate+"' 12:00:00', '10000', 0), "+
+						"('FAFT2C',"+formattedDate+"' 12:00:00', '10000', 0), "+
+						"('FABK1C',"+formattedDate+"' 15:00:00', '10000', 0), "+
+						"('FABK2C',"+formattedDate+"' 15:00:00', '10000', 0), "+
+						"('FAFT1C',"+formattedDate+"' 15:00:00', '10000', 0), "+
+						"('FAFT2C',"+formattedDate+"' 15:00:00', '10000', 0), "+
+						"('FATE1C',"+formattedDate+"' 15:00:00', '10000', 0), "+
+						"('FATE2C',"+formattedDate+"' 15:00:00', '10000', 0), "+
+						"('FABK1C',"+formattedDate+"' 15:00:00', '10000', 0), "+
+						"('FABK2C',"+formattedDate+"' 15:00:00', '10000', 0), "+
+						"('FAFT1C',"+formattedDate+"' 15:00:00', '10000', 0), "+
+						"('FAFT2C',"+formattedDate+"' 15:00:00', '10000', 0), "+
+						"('FABK1C',"+formattedDate+"' 18:00:00', '10000', 0), "+
+						"('FABK2C',"+formattedDate+"' 18:00:00', '10000', 0), "+
+						"('FAFT1C',"+formattedDate+"' 18:00:00', '10000', 0), "+
+						"('FAFT2C',"+formattedDate+"' 18:00:00', '10000', 0), "+
+						"('FATE1C',"+formattedDate+"' 18:00:00', '10000', 0), "+
+						"('FATE2C',"+formattedDate+"' 18:00:00', '10000', 0), "+
+						"('FABK1C',"+formattedDate+"' 18:00:00', '10000', 0), "+
+						"('FABK2C',"+formattedDate+"' 18:00:00', '10000', 0), "+
+						"('FAFT1C',"+formattedDate+"' 18:00:00', '10000', 0), "+
+						"('FAFT2C',"+formattedDate+"' 18:00:00', '10000', 0), ");
 	}
 }

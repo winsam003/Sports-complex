@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { apiCall } from '../apiService/apiService';
 
 
-export default function XuserInfoList() {
+export default function XuserInfoList({ token }) {
 
 
 
@@ -58,7 +58,7 @@ export default function XuserInfoList() {
 
         let url = "/member/memberList";
 
-        apiCall(url, 'get', null, null)
+        apiCall(url, 'get', null, token)
             .then((userList) => {
                 setUserInfoList(userList);
                 setRememberList(userList);     // 불러온 최초 값 저장

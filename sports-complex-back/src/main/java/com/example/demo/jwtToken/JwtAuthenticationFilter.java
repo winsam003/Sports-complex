@@ -167,9 +167,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 									.collect(Collectors.toList()) );
 							// => Collection<? extends GrantedAuthority> Type 에 맞추기 위함
 					
-					//=> 아래의 경우처럼 객체를 생성자의 principal 로 전달할수도 있음  	
-					// MemberDTO memberDTO = new MemberDTO(userId, pw, ~~~ , roleNames);
-					// ~~~ = new UsernamePasswordAuthenticationToken(memberDTO, pw, memberDTO.getAuthorities());
 					
 					authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 					// => details 필드에 인증 소스인 request 값 set 
