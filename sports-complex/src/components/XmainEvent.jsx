@@ -123,8 +123,6 @@ export default function XmainEvent() {
                 console.log("banner error : " + error);
                 setEventcodeC([]);
             })
-
-
     }
 
     // ================================================= 배너 삭제 버튼.
