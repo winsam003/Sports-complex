@@ -8,7 +8,7 @@ export default function XEventBoardWritePage({getUserID}) {
     const location = useLocation();
     const detail = location.state ? location.state.detail : null;
     
-    // console.log(`수정/등록 페이지 `, location);
+    console.log(`수정/등록 페이지 `, location);
     // console.log('이벤트 상세 정보:detailState : ', detail);
 
     return (

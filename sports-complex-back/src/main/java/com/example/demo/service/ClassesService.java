@@ -19,5 +19,5 @@ public interface ClassesService {
 	void updateClassesStatusMorning();
 
 	// 강의 상태 접수마감 업데이트
-//	void updateClassesStatusEvening();
+	void updateClassesStatusEvening();
 }

@@ -55,7 +55,7 @@ public class Classes {
 	@Column(nullable = false)
 	private Integer clprice;
 //	신청현황
-	@Column(length = 10)
+	@Column(length = 10, columnDefinition = "VARCHAR(10) DEFAULT '접수 마감'")
 	private String cltype;
 	@ManyToOne
 	@JoinColumn(name = "teachnum")

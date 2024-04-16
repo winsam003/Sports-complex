@@ -22,12 +22,10 @@ export default function XRentalPlaceSearchResult({ checkList, setCheckList, refr
             }).catch((error) => {
                 console.log("Error: ", error);
             })
-
     }
 
     // 체크한거에 spacecode 가져가기. 
     const handleDeletePlace = (event) => {
-        // value 값, 체크값.
         const spacecode = event.target.value;
         const isChecked = event.target.checked;
 
@@ -36,7 +34,6 @@ export default function XRentalPlaceSearchResult({ checkList, setCheckList, refr
 
         const space = spacelist.find(item => item.spacecode === spacecode);
         if (isChecked && space) {
-            // 배열에 넣어주기
             updatedCheckList.push(spacecode);
         } else {
             updatedCheckList = updatedCheckList.filter(code => code !== spacecode);
@@ -45,9 +42,9 @@ export default function XRentalPlaceSearchResult({ checkList, setCheckList, refr
 
     }
 
-    const handleSelectedChange = (selectedList) => {
-        setCheckList(selectedList);
-    }
+    // const handleSelectedChange = (selectedList) => {
+    //     setCheckList(selectedList);
+    // }
 
 
     return (

@@ -46,7 +46,7 @@ export default function XBoardSearchResult({ eventlist, searchEvent, handleEvent
                     <p>조회수</p>
                 </div>
                 :
-                <div className='indexEvent XBoardControllContent_SearchResult_index'>
+                <div className='indexEvent XBoardControllContent_SearchResult_index'> 
                     <p>선택</p>
                     <p>번호</p>
                     <p>제목</p>
