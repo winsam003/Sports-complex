@@ -5,6 +5,7 @@ export default function XlectureSerachBox({ onSearch, lectureSearchSelect, setLe
     const handleSearch = () => {
         onSearch(lectureSearchSelect, lectureSearchInput);
     }
+
     return (
         <div>
             {/* 검색 */}
