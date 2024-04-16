@@ -59,9 +59,10 @@ public class SpaceRentAppController {
 		}
 	} // 대관신청
 	
-	@Scheduled(cron = "0 53 18 * * *")
+	@Scheduled(cron = "0 0 10 * * *")
 	public void runDailyTasks() {
-		log.info("CONTROLLER TEST");
+		log.info("runDailyTasks Contoller 매일 10시 자동 insert 성공");
+		
 		service.runDailyTasks();
 	}
 }

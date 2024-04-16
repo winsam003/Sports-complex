@@ -47,12 +47,14 @@ public class ClassesRepositoryImpl implements ClassesRepository {
 		em.createQuery("delete from Classes c where c.clnum = :clnum").setParameter("clnum", clnum).executeUpdate();
 	}
 
+	// 강의 현황 변경
 	@Override
 	public void updateClassesType(Integer clnum, String cltype) {
 		em.createQuery("update Classes c set c.cltype = :cltype where c.clnum = :clnum").setParameter("cltype", cltype)
 				.setParameter("clnum", clnum).executeUpdate();
 	}
 
+	// 신청 가능 상태로 변경
 	@Override
 	public List<Classes> findByCltypeAndClrequest(String cltype, LocalDate clrequest) {
 		return em
@@ -61,6 +63,7 @@ public class ClassesRepositoryImpl implements ClassesRepository {
 				.setParameter("cltype", cltype).setParameter("clrequest", clrequest).getResultList();
 	}
 
+	// 접수 마감 상태로 변경
 	@Override
 	public List<Classes> findByCltypeAndClrequestendIn(String cltype1, String cltype2, String cltype3,
 			LocalDate clrequestend) {

@@ -201,10 +201,6 @@ export default function XlectureModifyPage() {
                                     <td><input name="teachcode" value={updateTeachData.teachcode} /></td>
                                 </tr>
                                 <tr>
-                                    <th className='JoinLecture_title'>강사번호</th>
-                                    <td><input name="teachname" defaultValue={updateTeachData.teachnum} readOnly /></td>
-                                </tr>
-                                <tr>
                                     <th className='JoinLecture_title'>이름</th>
                                     <td><input name="teachname" defaultValue={updateTeachData.teachname} readOnly /></td>
                                 </tr>

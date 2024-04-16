@@ -28,6 +28,7 @@ export default function XlectureList({ teachnum, teachcode, teachname, teachbirt
     const fetchTeachData = async (teachnum) => {
         try {
             let url = '/teach/teachDetail';
+            
             const response = await
                 apiCall(url + `/${teachnum}`, 'get', null, userData.token)
             return response;

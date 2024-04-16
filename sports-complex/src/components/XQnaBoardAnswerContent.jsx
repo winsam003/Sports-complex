@@ -13,7 +13,7 @@ export default function XQnaBoardAnswerContent({ qnaData }) {
     // Session storage에 있는 userData 가져오기
     const sessionUserData = sessionStorage.getItem('userData');
     const userData = sessionUserData ? JSON.parse(sessionUserData) : 'null';
-    const userID = userData.userID;
+    const userID = userData.stfid;
 
     // 답변작성직원ID,답변내용 상태변화
     const [qnaReplyData, setQnaReplyData] = useState({
