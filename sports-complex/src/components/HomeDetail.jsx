@@ -97,11 +97,21 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout, getUserN
             let url = "/banner/bannerlist";
             const bannerlist = await apiCall(url, 'get', null, null); 
             setBannerlist(bannerlist);
-            console.log('bannerlist', bannerlist);
+            console.log('bannerlistbannerlistbannerlistbannerlist', bannerlist);
         } catch (error) {
             console.log("bannerlist error : ", error);
         }
     }
+
+    useEffect(() => {
+        showBanner();
+    }, []);
+
+    useEffect(() => {
+        if(bannerlist.length > 0) {
+            showBannerImage();
+        }
+    }, [bannerlist]);
 
     // 배너 이미지 경로 요청
     const [imagePath, setImagePath] = useState('');
@@ -127,7 +137,7 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout, getUserN
         } catch (error) {
             console.log('Error eventDetail from HomeDetail : ', error);
         }
-    }, []);
+    }, [navigate]);
 
 
 
@@ -164,7 +174,7 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout, getUserN
                                         className={`slide${index}`} 
                                         
                                         src={API_BASE_URL + "/banner/bannerimages?img=" + item.bannerimage}
-                                        onClick={() => goEventDetail(item.eventcode)}
+                                        onClick={() => goEventDetail(item.event.eventcode)}
                                         alt='bannerImage' />
                                 </div>
                             ))}
