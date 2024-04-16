@@ -83,12 +83,7 @@ public class BannerController {
 			dto.setBannerImage(bannerfilef.getOriginalFilename());
 			
 			String realPath = "C:\\jgj\\TeamSSJ\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\mainBanner\\";
-			
-			if(realPath.contains(".TeamSSJ."))
-				realPath = "C:\\jgj\\TeamSSJ\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\mainBanner\\";
-			else 
-				realPath = "C:\\jgj\\TeamSSJ\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\mainBanner\\";			
-			
+						
 			// 1.1. 해당 위치에 폴더가 존재하지 않다면 만들기
 			File file1 = new File(realPath);
 			if(!file1.exists()) {

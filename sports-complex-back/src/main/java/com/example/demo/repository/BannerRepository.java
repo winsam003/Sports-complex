@@ -8,7 +8,6 @@ import com.example.demo.entity.Banner;
 public interface BannerRepository{
 	
 	public List<Banner> BannerList();
-//	public List<BannnerDTO> BannerList();
 	
 	public int BannerDelete(Integer bannernum);
 	

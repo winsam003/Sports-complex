@@ -28,16 +28,13 @@ public class BannerRepositoryImpl implements BannerRepository {
 	}
 	
 	@Override
-//	public List<BannerDTO> BannerList() {
 	public List<Banner> BannerList() {
 		log.info("BannerList Repository 성공");
 		
 		return em.createQuery("SELECT b FROM Banner b " +
 				            "JOIN FETCH b.event " + 
-							// 이 부분은 연관된 Event 엔터티를 가져오기 위한 조인.
 				            "ORDER BY b.bannernum DESC", Banner.class)
 				            .getResultList();
-		
 	}
 	
 	@Override
@@ -66,7 +63,7 @@ public class BannerRepositoryImpl implements BannerRepository {
 		return query.executeUpdate();
 	}
 	
-
+	
 	
 	
 }
