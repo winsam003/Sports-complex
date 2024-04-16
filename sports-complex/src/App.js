@@ -178,7 +178,7 @@ function App() {
         <Route path='/XEventBoardWritePage' element={<XEventBoardWritePage getUserID={getUserID} />} />
         <Route path='/XFaqBoardWritePage' element={<XFaqBoardWritePage />} />
         <Route path='/XQnaBoardAnswerPage' element={<XQnaBoardAnswerPage />} />
-        <Route path='/UserInfoPage' element={<UserInfoPage />} />
+        <Route path='/UserInfoPage' element={<UserInfoPage token={token} />} />
         <Route path='/XmainEvent' element={<XmainEvent />} />
         <Route path='/XBoardControllPage' element={<XBoardControllPage />} />
         <Route path='/XEventBoardControllPage' element={<XEventBoardControllPage />} />
