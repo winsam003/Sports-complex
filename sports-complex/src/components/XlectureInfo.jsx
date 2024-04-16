@@ -55,7 +55,8 @@ export default function XlectureInfo({ onTeacherSelect, isSingleSelection }) {
                 case '자격증':
                     return item.teachlicense.toLowerCase().includes(lectureSearchInput.toLowerCase());
                 default:
-                    return true; // 전체일 경우 모든 항목을 반환합니다.
+                    // 전체일 경우 모든 항목을 반환합니다.
+                    return true;
             }
         }) || []);
     };
@@ -109,9 +110,9 @@ export default function XlectureInfo({ onTeacherSelect, isSingleSelection }) {
 
         let url = '/teach/teachDelete';
 
-        console.log(selectedLecture);
+        const teachNums = selectedLecture.join(',');
 
-        apiCall(url + `?teachnum=${selectedLecture.join('&teachnum=')}`, 'get', null, userData.token)
+        apiCall(url + `?teachnum=${teachNums}`, 'get', null, userData.token)
             .then(() => {
                 // 삭제 후 선택된 목록 배열 초기화
                 setSelectedLecture([]);
