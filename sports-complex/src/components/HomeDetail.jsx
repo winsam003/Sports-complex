@@ -131,9 +131,7 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout, getUserN
         try {
             console.log("goEventDetail", eventcode);
             navigate(`/EventDetailPage?eventcode=${eventcode}`);
-            // window.scrollTo(0, 525);
-            // if (eventcode) { // eventcode가 유효한 경우에만 실행
-            // }
+            window.scrollTo(0, 525);
         } catch (error) {
             console.log('Error eventDetail from HomeDetail : ', error);
         }
