@@ -25,14 +25,35 @@ export default function EventDetail({ eventcode }) {
             })
         let url = "/event/eventdetail?eventcode=" + eventcode;
 
-        // 405 오류는 post / get 요청 때문이다. *****
-        apiCall(url, 'get', eventcode, null)
-            .then((eventDetailOne) => {
-                setEventDetailOne(eventDetailOne);
-            }).catch((error) => {
-                console.log("eventDetail error : ", error);
-            })
-        // fetchEventDetail();
+        // stfid 가 아닐 때만 조회수를 올릴 것임. 그러니 세션에서 가져다가 담아주기
+        let stfid = null;
+        let token = null;
+        if (sessionStorage.getItem('userData') != null) {
+            token = JSON.parse(sessionStorage.getItem("userData")).token;
+            const userData = sessionStorage.getItem("userData");
+            if(JSON.parse(userData).stfid){
+                stfid = JSON.parse(userData).stfid;
+            } else {
+                stfid = null;
+            }
+        }
+        
+        console.log("eventcode : ",  eventcode); 
+        console.log("stfid : ",  stfid); 
+        
+        let formDetail = {
+            eventcode : eventcode, 
+            stfid : stfid
+        }
+        console.log("token : ",  token); 
+            apiCall(url, 'post', formDetail, token)
+                .then((eventDetailOne) => {
+                    setEventDetailOne(eventDetailOne);
+                }).catch((error) => {
+                    console.log("eventDetail error : ", error);
+                })
+             
+        
     }, []);
 
     const location = useLocation();
@@ -47,7 +68,7 @@ export default function EventDetail({ eventcode }) {
                     });
         
     }
-    console.log(eventDetailOne)
+    // console.log(eventDetailOne)
 
     return (
         <div className="EventDetailContainor">

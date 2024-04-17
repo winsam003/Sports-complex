@@ -3,7 +3,7 @@ import EventBoardDetail from '../EventBoardDetail';
 import { useLocation } from 'react-router';
 import XEventBoardDetail from '../XEventBoardDetail';
 
-export default function XEventDetailPage(){
+export default function XEventDetailPage({token}){
 
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
@@ -12,7 +12,7 @@ export default function XEventDetailPage(){
     return(
         <div>
             <PageBanner />
-            <XEventBoardDetail eventcode={eventcode} />
+            <XEventBoardDetail eventcode={eventcode} token={token}/>
         </div>
     )
 }

@@ -74,6 +74,7 @@ export default function XEventControllContent() {
                 fetchEventList();
             }).catch((error) => {
                 console.log("delete error: ", error);
+                alert('배너에 등록되어 있는 이벤트 입니다. 삭제가 불가합니다.');
             })
     }
 

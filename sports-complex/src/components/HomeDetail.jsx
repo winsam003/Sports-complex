@@ -131,7 +131,7 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout, getUserN
         try {
             console.log("goEventDetail", eventcode);
             navigate(`/EventDetailPage?eventcode=${eventcode}`);
-            window.scrollTo(0, 525);
+            window.scrollTo(0, 0);
         } catch (error) {
             console.log('Error eventDetail from HomeDetail : ', error);
         }

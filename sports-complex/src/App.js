@@ -205,7 +205,7 @@ function App() {
         <Route path='/XFaqWritePage' element={<XFaqWritePage getUserID={getUserID} token={token} />} />
 
 
-        <Route path='/XEventDetailPage' element={<XEventDetailPage />} />
+        <Route path='/XEventDetailPage' element={<XEventDetailPage token ={token}/>} />
 
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
