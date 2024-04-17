@@ -19,6 +19,8 @@ export default function Xclass() {
     const [classesSearchInput, setClassesSearchInput] = useState('');
     // 검색 기능
     const [searchResult, setSearchResult] = useState([]);
+    // 강좌 신청 갯수
+    const [classAppStatusCounts, setClassAppStatusCounts] = useState({});
 
     // 사용자 페이지 접근
     const location = useLocation();
@@ -34,7 +36,7 @@ export default function Xclass() {
 
             apiCall(url, 'get', null, null)
                 .then((classes) => {
-                    console.log(` classes = ${classes}`);
+                    // console.log(` classes = ${classes}`);
                     setClasses(classes);
                     setSearchResult(classes);
                 }).catch((error) => {
@@ -43,6 +45,24 @@ export default function Xclass() {
         }
         loadClassesList();
     }, [selectedClasses])
+
+    // 강좌 신청 갯수
+    useEffect(() => {
+        const updateClassAppStatusCounts = async () => {
+            let url = '/classApp/classAppStatusCounts';
+            apiCall(url, 'get', null, userData.token)
+                .then((counts) => {
+                    setClassAppStatusCounts(counts);
+                }).catch((error) => {
+                    console.error("클래스 앱 상태 갯수 불러오기 실패 ", error);
+                });
+        };
+        updateClassAppStatusCounts();
+    }, [classAppStatusCounts]);
+
+    // XSugangRequestSearchResult 컴포넌트에서 사용할 각 상태의 갯수 추출
+    const completedCount = classAppStatusCounts[clnum]?.completed || 0;
+    const waitingCount = classAppStatusCounts[clnum]?.waiting || 0;
 
     // 강의 선택
     const handleToggleCheckbox = (clnum) => {

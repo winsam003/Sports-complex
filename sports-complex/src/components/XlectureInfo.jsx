@@ -62,17 +62,6 @@ export default function XlectureInfo({ onTeacherSelect, isSingleSelection }) {
     };
 
     // 강사 선택하기
-    // const handleToggleCheckbox = (teachnum, teachname) => {
-    //     setSelectedLecture(prevState => {
-    //         if (prevState.includes(teachnum)) {
-    //             return prevState.filter(num => num !== teachnum);
-    //         } else {
-    //             return [...prevState, teachnum];
-    //         }
-    //     });
-    //     // 선택된 강사의 이름과 teachnum을 부모 컴포넌트로 전달
-    //     onTeacherSelect(teachnum, teachname);
-    // };
     const handleToggleCheckbox = (teachnum, teachname) => {
         if (isSingleSelection) {
             setSelectedLecture([teachnum]);
@@ -90,12 +79,6 @@ export default function XlectureInfo({ onTeacherSelect, isSingleSelection }) {
     };
 
     // 강사 선택 초기화
-    // const handleResetSelection = () => {
-    //     setSelectedLecture([]);
-    // };
-
-
-    // 선택 초기화
     const handleResetSelection = () => {
         setSelectedLecture([]);
         onTeacherSelect('', '');
