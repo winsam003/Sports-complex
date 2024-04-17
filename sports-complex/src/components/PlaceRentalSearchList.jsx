@@ -40,7 +40,7 @@ export default function PlaceRentalSearchList({ handleRentPrice, sprNumHandler, 
                     <span>구분</span>
                 </div>
 
-                {spacelist
+                {spacelist ? spacelist
                     .filter(({ spacecode }) => spacecode.spacecode.substring(2, 4) !== 'PA')
                     .map(({spacecode, sprnum, id}, index) => (
                         <div key={index} className='PlaceRentalSearchList_content'>
@@ -54,7 +54,12 @@ export default function PlaceRentalSearchList({ handleRentPrice, sprNumHandler, 
                             <span>{spacecode.spaceprice} 원</span>
                             <span>{id !== null ? '대관 불가' : '가능'}</span>
                         </div>
-                    ))}
+                    ))
+                    :
+                    <div className='PlaceRentalSearchList_info'>
+                        10시 이후 대관 신청이 가능합니다.
+                    </div>
+                    }
 
             </div>
         </div>

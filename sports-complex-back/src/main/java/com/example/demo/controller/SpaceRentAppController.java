@@ -29,6 +29,18 @@ import lombok.extern.log4j.Log4j2;
 public class SpaceRentAppController {
 	SpaceRentAppServiceImpl service;
 	
+	@PostMapping(value="/spaceRentAppAll", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> SpaceRentAppAll(){
+		log.info("SpaceRentAppAll Contoller 접촉 성공");
+		
+		List<SpaceRentApp> result = service.SpaceRentAppAll();
+		
+		if(result != null && result.size() > 0) {
+			return ResponseEntity.status(HttpStatus.OK).body(result);
+		}else {
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(null);
+		}
+	}
 	
 	// 리스트
 	@PostMapping(value="/spaceRentApplist", produces = MediaType.APPLICATION_JSON_VALUE)
