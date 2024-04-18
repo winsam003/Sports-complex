@@ -79,4 +79,18 @@ public class ClassesRepositoryImpl implements ClassesRepository {
 		return em.createQuery("select c.cltype from Classes c where c.clnum = :clnum", String.class)
 				.setParameter("clnum", clnum).getSingleResult();
 	}
+
+	// 수강 정원
+	@Override
+	public int getClassesClCount(int clnum) {
+		return ((Number) em.createQuery("SELECT c.clcount FROM Classes c WHERE c.clnum = :clnum")
+				.setParameter("clnum", clnum).getSingleResult()).intValue();
+	}
+
+	// 대기 정원
+	@Override
+	public int getClassesClWaiting(int clnum) {
+		return ((Number) em.createQuery("SELECT c.clwaiting FROM Classes c WHERE c.clnum = :clnum")
+				.setParameter("clnum", clnum).getSingleResult()).intValue();
+	}
 }
