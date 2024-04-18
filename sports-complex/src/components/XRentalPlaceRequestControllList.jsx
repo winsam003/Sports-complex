@@ -5,7 +5,9 @@ export default function XRentalPlaceRequestControll({ sprnum, spacecode, sprdate
     return (
         <div className='XRentalPlaceRequestControll_SearchList'>
             <div className='XRentalPlaceRequestControll_content'>
-                <input type='checkbox'></input>
+                <span className='XRentalPlaceRequestControll_span'>
+                    <input type='checkbox'></input>
+                </span>
                 <p>{sprnum}</p>
                 <p>{spacecode.spacename}</p>
                 <p>{sprdate}</p>
