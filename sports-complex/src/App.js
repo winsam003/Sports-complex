@@ -92,8 +92,6 @@ function App() {
   let token;
   let roleList;
 
-  // token =  JSON.parse(sessionStorage.getItem('userData')).token;
-
   if (sessionStorage.getItem('userData') != null) {
     const userData = JSON.parse(sessionStorage.getItem('userData'));
     if (userData.name != null) {     // 사용자일 경우 
@@ -178,7 +176,7 @@ function App() {
         <Route path='/XEventBoardWritePage' element={<XEventBoardWritePage getUserID={getUserID} />} />
         <Route path='/XFaqBoardWritePage' element={<XFaqBoardWritePage />} />
         <Route path='/XQnaBoardAnswerPage' element={<XQnaBoardAnswerPage />} />
-        <Route path='/UserInfoPage' element={<UserInfoPage />} />
+        <Route path='/UserInfoPage' element={<UserInfoPage token={token} />} />
         <Route path='/XmainEvent' element={<XmainEvent />} />
         <Route path='/XBoardControllPage' element={<XBoardControllPage />} />
         <Route path='/XEventBoardControllPage' element={<XEventBoardControllPage />} />
@@ -195,7 +193,7 @@ function App() {
         <Route path='/XClassesInfoControl' element={<XClassesInfoControl />} />
         <Route path='/XNewClassUploadPage' element={<XNewClassUploadPage />} />
         <Route path='/XSugangRequestPage' element={<XSugangRequestPage />} />
-        <Route path='/XRentalPlaceRequestControllPage' element={<XRentalPlaceRequestControllPage />} />
+        <Route path='/XRentalPlaceRequestControllPage' element={<XRentalPlaceRequestControllPage token={token} />} />
         <Route path='/XStaffInfoPage' element={<XStaffInfoPage />} />
         <Route path='/XStaffRegisterPage' element={<XStaffRegisterPage token={token} />} />
         <Route path='/XBoardControllPageDetailPage' element={<XBoardControllPageDetailPage />} />
@@ -205,7 +203,7 @@ function App() {
         <Route path='/XFaqWritePage' element={<XFaqWritePage getUserID={getUserID} token={token} />} />
 
 
-        <Route path='/XEventDetailPage' element={<XEventDetailPage />} />
+        <Route path='/XEventDetailPage' element={<XEventDetailPage token ={token}/>} />
 
         <Route path='*' element={<NotFoundPage />} />
       </Routes>

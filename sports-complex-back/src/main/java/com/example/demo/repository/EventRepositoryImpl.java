@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Repository;
 
@@ -41,36 +43,47 @@ public class EventRepositoryImpl implements EventRepository {
 	}
 	
 	@Override
-	public Event EventDetail(Integer eventcode) {
+	public Event EventDetail(Integer eventcode, String stfid) {
 		log.info("EventDetail Repository 성공");
 		String jpql = "select e from Event e where eventcode = :eventcode";
+		String jpqlU = "update Event "
+						+ "set eventcount = eventcount + 1 "
+						+ "where eventcode = :eventcode";
 		
-		log.info("eventcode : "+ eventcode);
+		log.info("repositoryImpl stfid : "+ stfid);
 		
-		try {			
+		if(stfid != null) {
 			return em.createQuery(jpql, Event.class)
 					.setParameter("eventcode", eventcode)
 					.getSingleResult();
-		} catch (Exception e) {
-			return null;
+		} else {
+			em.createQuery(jpqlU)
+				.setParameter("eventcode", eventcode)
+				.executeUpdate();
+			return em.createQuery(jpql, Event.class)
+					.setParameter("eventcode", eventcode)
+					.getSingleResult();
 		}
 		
 	}
 	
-	@Override
-	public void EventCount(Event Entity) {
-		log.info("이벤트 조회수 하나 올라라. ");
-		
-		String jpql = "update event "
-					  + "set eventcount = :eventcount + 1 "
-					  + "where eventcode = :eventcode";
-				
-		Query query = em.createNativeQuery(jpql);
-		
-		query.setParameter("eventcount", Entity.getEventcount());
-		query.setParameter("eventcode", Entity.getEventcode());
-		
-	}
+//	@Override
+//	public void EventCount(Event Entity) {
+//		log.info("이벤트 조회수 하나 올라라. ");
+//		
+//		String jpql = "update event "
+//					  + "set eventcount = eventcount + 1 "
+//					  + "where eventcode = :eventcode";
+//				
+//		Query query = em.createNativeQuery(jpql);
+//		
+////		query.setParameter("eventcount", Entity.getEventcount());
+//		log.info("Entity.getEventcode" + Entity.getEventcode());	
+//		query.setParameter("eventcode", Entity.getEventcode());
+//		
+//		query.executeUpdate();
+//		
+//	}
 	
 	@Override
 	public int EventInsert(Event Entity) {

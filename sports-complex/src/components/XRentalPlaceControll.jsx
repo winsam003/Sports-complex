@@ -27,8 +27,6 @@ export default function XRentalPlaceControll() {
     
     
     const del = () => {
-        // console.log("나오나 이거: ");
-
         let url = '/space/spacedelete';
         let token = JSON.parse(sessionStorage.getItem("userData")).token;
 
@@ -40,21 +38,6 @@ export default function XRentalPlaceControll() {
             }).catch((error) => {
                 console.log("Error: ",error);
             })
-
-
-        // axios.post('/space/spacedelete', checkList)
-        // .then((ss) => {
-        //     // 삭제하면 checkList 배열 비워줘야됨. 
-        //     setCheckList([]);
-
-        //     setTest(ss.data);
-        //     console.log(`ss.data: ${ss.data}`);
-            
-        //     // 삭제하고 상태 보내야됨. 
-        //     setRefreshList(prev => !prev);
-        // }).catch((error) => {
-        //     console.log("Error: ",error);
-        // })
     }
 
 
@@ -70,7 +53,7 @@ export default function XRentalPlaceControll() {
                 checkbox.checked = false;
             });
         }
-        // 삭제하면 checkList 배열 비워줘야됨. 
+        // 삭제하면 checkList 배열 비워주기. 
         setCheckList([]);
     }
 

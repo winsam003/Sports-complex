@@ -7,7 +7,6 @@ import com.example.demo.entity.Banner;
 
 public interface BannerService {
 
-//	 List<BannerDTO> BannerList();
 	 List<Banner> BannerList();
 	 
 	 int BannerDelete(Integer bannernum);

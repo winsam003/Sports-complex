@@ -19,11 +19,10 @@ public class BannerServiceImpl implements BannerService{
 	private final BannerRepositoryImpl repository;
 	
 	@Override
-//	public List<BannerDTO> BannerList() {
 	public List<Banner> BannerList() {
 		return repository.BannerList();
 	}
-	
+		
 	@Override
 	public int BannerDelete(Integer bannernum) {
 		return repository.BannerDelete(bannernum);

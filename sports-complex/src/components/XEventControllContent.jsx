@@ -20,11 +20,10 @@ export default function XEventControllContent() {
         window.scrollTo(0, 525);
         fetchEventList();
         // 배열로 나오는것 확인, 
-    }, [checkEvent]);
+    }, []);
 
     const fetchEventList = () => {
         let url = "/event/eventlist";
-        // console.log(apiCall(url, 'get', null, null));
 
         apiCall(url, 'get', null, null)
             .then((eventlist) => {
@@ -67,7 +66,7 @@ export default function XEventControllContent() {
     const del = () => {
         let url = "/event/eventdelete"
 
-        window.scrollTo(0, 0);
+        // window.scrollTo(0, 0);
         apiCall(url, 'post', checkEvent, null)
             .then((checkEvent) => {
                 alert(`${checkEvent}`);
@@ -75,6 +74,7 @@ export default function XEventControllContent() {
                 fetchEventList();
             }).catch((error) => {
                 console.log("delete error: ", error);
+                alert('배너에 등록되어 있는 이벤트 입니다. 삭제가 불가합니다.');
             })
     }
 

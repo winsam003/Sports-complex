@@ -21,8 +21,6 @@ export default function XEventBoardWriteContent({getUserID, detail}) {
             setEventFor(detail.eventfor || "");
             setEventDate(detail.eventtime || "");
             setEventDetail(detail.eventdetail || "");
-            // setEventPics(detail.eventuploadfile || null); 
-            // You might need additional logic to handle file input
         }
         titleInputRef.current.focus();
     }, [detail]);
@@ -314,7 +312,7 @@ export default function XEventBoardWriteContent({getUserID, detail}) {
                                     <th>내용 <span className='star'>*</span></th>
                                     <td>
                                         <textarea type="text" name='content' id='content' 
-                                                value={eventDetail}
+                                                defaultValue={eventDetail}
                                                 onChange={(e) => makeEventDetail(e.target.value)}
                                                 ref={detailInputRef} />
                                     </td>

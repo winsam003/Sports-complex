@@ -7,7 +7,7 @@ import { TbUser } from "react-icons/tb";
 import { TbLock } from "react-icons/tb";
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { TbCalendar } from "react-icons/tb";
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { CiViewList } from "react-icons/ci";
 import { BsQrCode } from "react-icons/bs";
 import { GrContactInfo } from "react-icons/gr";
@@ -90,51 +90,52 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout, getUserN
 
     // ============================================배너
     // 배너 요청
-
-    useEffect(() => {
-        async function fetchData() {
-            await showBanner();
-            // showBannerImage();
-        }
-
-        fetchData();
-    }, []);
     
     const [bannerlist, setBannerlist] = useState([]);
     const showBanner = async () => {
-
         try{
             let url = "/banner/bannerlist";
             const bannerlist = await apiCall(url, 'get', null, null); 
             setBannerlist(bannerlist);
-            console.log('bannerlist', bannerlist);
-            showBannerImage();
+            console.log('bannerlistbannerlistbannerlistbannerlist', bannerlist);
         } catch (error) {
             console.log("bannerlist error : ", error);
-
         }
     }
 
+    useEffect(() => {
+        showBanner();
+    }, []);
+
+    useEffect(() => {
+        if(bannerlist.length > 0) {
+            showBannerImage();
+        }
+    }, [bannerlist]);
+
     // 배너 이미지 경로 요청
     const [imagePath, setImagePath] = useState('');
-    const showBannerImage = () => {
-        apiCall('/banner/bannerimages', 'get', null, null)
-            .then((response) => {
+    const showBannerImage = useCallback(() => {
+        if (bannerlist.length > 0) {
+            apiCall('/banner/bannerimages', 'get', null, null)
+                .then((response) => {
                     setImagePath(response);
                 }).catch((error) => {
                     console.log("이미지 없음 " + error);
                 })
-    }
+        }
+    }, [bannerlist]);
 
     // 배너 이미지 클릭시 디테일로 이동.
-    const goEventDetail = (eventcode) => {
+    const goEventDetail = useCallback((eventcode) => {
         try {
+            console.log("goEventDetail", eventcode);
             navigate(`/EventDetailPage?eventcode=${eventcode}`);
-            // window.scrollTo(0, 525);
+            window.scrollTo(0, 0);
         } catch (error) {
             console.log('Error eventDetail from HomeDetail : ', error);
         }
-    }
+    }, [navigate]);
 
 
 
@@ -166,12 +167,12 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout, getUserN
                     <div className='slideBox'>
                         <Slider {...settings}>
                             {bannerlist && bannerlist.map((item, index) => (
-                                <div>
+                                <div key={item.bannernum}>
                                     <img 
                                         className={`slide${index}`} 
-                                        key={item.bannernum}
+                                        
                                         src={API_BASE_URL + "/banner/bannerimages?img=" + item.bannerimage}
-                                        onClick={() => goEventDetail(item.eventcode)}
+                                        onClick={() => goEventDetail(item.event.eventcode)}
                                         alt='bannerImage' />
                                 </div>
                             ))}

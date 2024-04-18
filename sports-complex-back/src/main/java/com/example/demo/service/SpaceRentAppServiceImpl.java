@@ -29,11 +29,19 @@ public class SpaceRentAppServiceImpl implements SpaceRentAppService{
 	
 	@Override
 	public int speaceRentApplication(SpaceRentAppDTO dto) {
+		log.info("speaceRentApplication Service 접촉 성공");
 		return repository.speaceRentApplication(dto);
 	}
 	
 	@Override
 	public void runDailyTasks() {
+		log.info("runDailyTasks Service 접촉 성공");
 		repository.runDailyTasks();
+	}
+	
+	@Override
+	public List<SpaceRentApp> SpaceRentAppAll() {
+		log.info("SpaceRentAppAll Service 접촉 성공");
+		return repository.SpaceRentAppAll();
 	}
 }

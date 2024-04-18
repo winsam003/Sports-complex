@@ -1,6 +1,6 @@
 package com.example.demo.repository;
 
-import java.util.List;  
+import java.util.List;
 
 import com.example.demo.entity.Event;
 
@@ -9,12 +9,12 @@ public interface EventRepository{
 	
 	public int EventDelete(int eventcode);
 	
-	public Event EventDetail(Integer eventcode);
+	public Event EventDetail(Integer eventcode, String stfid);
 	
 	public int EventInsert(Event Entity);
 	
 	public int EventUpdate(Event Entity);
 	
 	// 조회수 용 
-	public void EventCount(Event Entity);
+//	public void EventCount(Event Entity);
 }
