@@ -35,7 +35,6 @@ export default function XStaffList() {
         setPosition('전체');
         setSearchInput('');
     };
-    // console.log(`staff =${staff}`);
 
     // 직원 선택하기
     const handleToggleCheckbox = (staffId) => {
@@ -47,15 +46,13 @@ export default function XStaffList() {
             }
         });
     };
-    // console.log(` 선택된 staffid = ${selectedStaffIds}`);
 
     // 선택된 직원정보 axios 요청 보내고 삭제하기
     const handleDeleteSelectedStaff = (() => {
         if (selectedStaffIds.length === 0) {
-            // console.log(" 선택된 직원이 없습니다 ");
             return;
         }
-        // console.log("삭제할 직원 ID 목록:", selectedStaffIds);
+        console.log("삭제할 직원 ID 목록:", selectedStaffIds);
 
         axios.get('/staff/staffDelete', {
             params: {
@@ -63,7 +60,7 @@ export default function XStaffList() {
                 stfid: selectedStaffIds.join(','),
             }
         }).then(() => {
-            // console.log("직원 삭제 성공", response.data);
+            console.log("삭제 성공");
             // 삭제 후 전직원 목록 최신화
             loadStaffList();
             // 삭제 후 선택된 목록 배열 초기화
