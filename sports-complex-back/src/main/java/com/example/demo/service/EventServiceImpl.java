@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import java.util.List;  
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -28,8 +28,8 @@ public class EventServiceImpl implements EventService{
 	}
 	
 	@Override
-	public Event EventDetail(Integer eventCode) {
-		return repository.EventDetail(eventCode);
+	public Event EventDetail(Integer eventCode, String stfid) {
+		return repository.EventDetail(eventCode, stfid);
 	}
 	
 	@Override
@@ -42,11 +42,10 @@ public class EventServiceImpl implements EventService{
 		return repository.EventUpdate(Entity);
 	}
 	
-	@Override
-	public void EventCount(Event Entity) {
-		
-		
-	}
+//	@Override
+//	public void EventCount(Event Entity) {
+//		repository.EventCount(Entity);
+//	}
 	
 }
 

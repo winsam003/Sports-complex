@@ -79,6 +79,7 @@ export default function XmainEvent() {
         const file = e.target.files[0];
 
         setBannerimg(file);
+        
     }
 
     // ================================================= 등록 버튼.
@@ -116,6 +117,7 @@ export default function XmainEvent() {
                 // 체크 리스트 초기화.
                 setEventcodeC([]);
                 // 리스트 다시 보여주고
+                console.log('등록 후 eventcodeC : ',  eventcodeC);
                 showEvent();
                 showBanner();
             }).catch((error) => {
@@ -124,6 +126,8 @@ export default function XmainEvent() {
                 setEventcodeC([]);
             })
     }
+
+    
 
     // ================================================= 배너 삭제 버튼.
     
@@ -148,11 +152,12 @@ export default function XmainEvent() {
         apiCall(url, 'post', deleteBannerCheck, null)
             .then((response) => {
                 alert(response);
-                setDeleteBannerCheck([]);
                 // 리스트 다시 보여주기.
                 showBanner();
+                setDeleteBannerCheck([]);
             }).catch((error) => {
                 console.log("delete error: ", error);
+                setDeleteBannerCheck([]);
             })
     }
 
@@ -185,6 +190,7 @@ export default function XmainEvent() {
                 <XhomeBannerEventList 
                             bannerlist={bannerlist}
                             handleBanner={handleBanner}
+                            deleteBannerCheck={deleteBannerCheck} 
                              />
                 <div className='XmainEvent_delete' >
                     <button onClick={del}>삭제</button>

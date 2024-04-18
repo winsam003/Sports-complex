@@ -52,7 +52,7 @@
     /* background-color: wheat; */
     text-align: right;
     padding-bottom: 1rem;
-    border-bottom: 3px dashed #838f4d;
+    border-bottom: 1px dashed #838f4d;
 }
 /* 삭제 버튼 버튼 */
 .XmainEvent_delete>button{

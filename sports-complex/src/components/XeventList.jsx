@@ -3,6 +3,9 @@ import React, {useState}  from 'react';
 
 export default function XeventList({eventlist, eventcodeC, checkedEvent, handleEvent}) {
 
+    const handlecheckEvent = (eventcode) => {
+        handleEvent(eventcode);
+    }
 
     return(
         <div className='XeventList'>
@@ -20,7 +23,8 @@ export default function XeventList({eventlist, eventcodeC, checkedEvent, handleE
                         <div className="XeventContentList_contents">
                             <span><input type="checkbox" 
                                         value={it.eventcode} 
-                                        onChange={(e) => handleEvent(it.eventcode)} 
+                                        checked={eventcodeC.includes(it.eventcode)}
+                                        onChange={(e) => handlecheckEvent(it.eventcode)} 
                                         /></span>
                             <span>{it.eventcode}</span>
                             <span>{it.eventname}</span>
