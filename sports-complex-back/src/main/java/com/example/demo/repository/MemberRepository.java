@@ -21,4 +21,6 @@ public interface MemberRepository {
 	public Member mfindID(Member entity);
 
 	Member getWithRoles(String id);
+	
+	public String findCar(String id);
 }

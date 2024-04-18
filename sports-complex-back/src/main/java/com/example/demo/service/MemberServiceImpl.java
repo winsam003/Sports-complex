@@ -68,5 +68,10 @@ public class MemberServiceImpl implements MemberService{
 		return repository.getWithRoles(id);
 	}
 	
+	@Override
+	public String findCar(String id) {
+		return repository.findCar(id);
+	}
+	
 	
 }

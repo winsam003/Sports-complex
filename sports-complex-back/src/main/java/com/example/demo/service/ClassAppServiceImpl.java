@@ -27,22 +27,28 @@ public class ClassAppServiceImpl implements ClassAppService {
 		return repository.isDuplicate(dto);
 	}
 
-	// clnum에 해당하는 데이터의 갯수 조회
+	// 신청 완료 건수
 	@Override
-	public int getClassCount(int clnum) {
-		return repository.getClassCount(clnum);
+	public int getCompletedCount(int clnum) {
+		return repository.getCompletedCount(clnum);
 	}
 
-	// clnum에 해당하는 수강 신청 데이터의 갯수 조회
+	// 수강 정원
 	@Override
-	public int getClassAppCount(int clnum) {
-		return repository.getClassAppCount(clnum);
+	public int getClassesClCount(int clnum) {
+		return classesRepository.getClassesClCount(clnum);
 	}
 
-	// cltype 업데이트
+	// 대기 건수
 	@Override
-	public void updateClassType(int clnum, String cltype) {
-		repository.updateClassType(clnum, cltype);
+	public int getWaitingCount(int clnum) {
+		return repository.getWaitingCount(clnum);
+	}
+
+	// 대기 정원
+	@Override
+	public int getClassesClWaiting(int clnum) {
+		return classesRepository.getClassesClWaiting(clnum);
 	}
 
 	// classes의 cltype 가져오기
@@ -51,16 +57,10 @@ public class ClassAppServiceImpl implements ClassAppService {
 		return classesRepository.getClassType(clnum);
 	}
 
-	// clnum에 해당하는 대기인 classappstate의 갯수 조회
+	// cltype 업데이트
 	@Override
-	public int getWaitingCount(int clnum) {
-		return repository.getWaitingCount(clnum);
-	}
-
-	// clnum에 해당하는 대기인 classappstate의 갯수와 일치하는 clwating의 갯수 조회
-	@Override
-	public int getClassWaitingCount(int clnum) {
-		return repository.getClassWaitingCount(clnum);
+	public void updateClassType(int clnum, String cltype) {
+		repository.updateClassType(clnum, cltype);
 	}
 
 	// 수강 신청 삭제

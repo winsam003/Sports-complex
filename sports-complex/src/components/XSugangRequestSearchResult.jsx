@@ -2,8 +2,9 @@ import './XSugangRequestSearchResult.css'
 import { useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { apiCall } from '../apiService/apiService';
+import { API_BASE_URL } from './../apiService/app-config';
 
-export default function XSugangRequestSearchResult({ clnum, classcode, clname, clrequest, clrequestend, clstart, clend, cltime, clfor, clcount, clwating, clprice, cltype, onToggleCheckbox, isChecked }) {
+export default function XSugangRequestSearchResult({ clnum, classcode, clname, clrequest, clrequestend, clstart, clend, cltime, clfor, clcount, clwaiting, clprice, cltype, classAppStatusCounts, setClassAppStatusCounts, onToggleCheckbox, isChecked }) {
     // 체크박스
     const handleCheckboxChange = (e) => {
         onToggleCheckbox(clnum);
@@ -17,7 +18,7 @@ export default function XSugangRequestSearchResult({ clnum, classcode, clname, c
     const userData = sessionUserData ? JSON.parse(sessionUserData) : 'null';
 
     // 신청할 때 필요한 데이터 상태값 관리
-    const [classAppData, setClassAppData] = useState({});
+    // const [classAppData, setClassAppData] = useState({});
 
     // 사용자 정보 및 수강 가능 여부를 확인하는 state
     const [memberCode, setMemberCode] = useState(null);
@@ -68,37 +69,14 @@ export default function XSugangRequestSearchResult({ clnum, classcode, clname, c
     // 가격 설정
     const formattedPrice = new Intl.NumberFormat('ko-KR').format(clprice);
 
-    // 클래스 상태에 따른 알림
+    // cltype 상태에 따른 수강 신청 관리
     const handleClassType = () => {
         switch (cltype) {
             case '수강 신청':
-
-                // 수강 가능 여부 확인
-                if (memberCode && memberCode.substring(4, 6) === clfor) {
-                    let url = '/classApp/classAppInsert';
-
-                    setClassAppData(prevState => ({
-                        ...prevState,
-                        id: userData.id,
-                        clnum: clnum
-                    }));
-
-                    apiCall(url, 'post', classAppData, userData.token)
-                        .then((response) => {
-                            alert("수강 신청 성공");
-                            // setClassAppStatusCounts(prevCounts => ({
-                            //     ...prevCounts,
-                            //     [clnum]: {
-                            //         completed: prevCounts[clnum]?.completed ? prevCounts[clnum].completed + 1 : 1,
-                            //         waiting: prevCounts[clnum]?.waiting || 0
-                            //     }
-                            // }));
-                        }).catch((error) => {
-                            alert("수강 신청 실패 : " + error);
-                        });
-                } else {
-                    alert('수강 대상을 확인해주세요.');
-                }
+                handleAppSubmission("수강");
+                break;
+            case '대기 신청':
+                handleAppSubmission("대기");
                 break;
             case '접수 마감':
                 alert('접수 기간을 확인해주세요.');
@@ -111,9 +89,80 @@ export default function XSugangRequestSearchResult({ clnum, classcode, clname, c
         }
     };
 
+    const handleAppSubmission = (cltype) => {
+        if (memberCode && memberCode.substring(4, 6) === clfor) {
+            let url = '/classApp/classAppInsert';
+
+            const classAppData = {
+                id: userData.id,
+                clnum, clnum
+            }
+
+            console.log(classAppData);
+
+            apiCall(url, 'post', classAppData, userData.token)
+                .then((response) => {
+                    alert(`${cltype} 신청 성공`);
+                    setClassAppStatusCounts(prevCounts => ({
+                        ...prevCounts,
+                        [clnum]: {
+                            completed: cltype === "수강" ? (prevCounts?.completed ? prevCounts.completed + 1 : 1) : prevCounts?.completed || 0,
+                            waiting: cltype === "대기" ? (prevCounts?.waiting ? prevCounts.waiting + 1 : 1) : prevCounts?.waiting || 0
+                        }
+                    }));
+                }).catch((error) => {
+                    alert(`${cltype} 신청 실패 : ${error}`);
+                });
+        } else {
+            alert('수강 대상을 확인해주세요.');
+        }
+    };
+    // const handleClassType = () => {
+    //     switch (cltype) {
+    //         case '수강 신청':
+    //         case '대기 신청':
+    //             // 수강 가능 여부 확인
+    //             if (memberCode && memberCode.substring(4, 6) === clfor) {
+    //                 let url = '/classApp/classAppInsert';
+
+    //                 const classAppData = {
+    //                     id: userData.id,
+    //                     clnum, clnum
+    //                 }
+
+    //                 console.log(classAppData);
+
+    //                 apiCall(url, 'post', classAppData, userData.token)
+    //                     .then((response) => {
+    //                         alert("수강 신청 성공");
+    //                         setClassAppStatusCounts(prevCounts => ({
+    //                             ...prevCounts,
+    //                             [clnum]: {
+    //                                 completed: prevCounts?.completed ? prevCounts.completed + 1 : 1,
+    //                                 waiting: prevCounts?.waiting || 0
+    //                             }
+    //                         }));
+    //                     }).catch((error) => {
+    //                         alert("수강 신청 실패 : " + error);
+    //                     });
+    //             } else {
+    //                 alert('수강 대상을 확인해주세요.');
+    //             }
+    //             break;
+    //         case '접수 마감':
+    //             alert('접수 기간을 확인해주세요.');
+    //             break;
+    //         case '대기 마감':
+    //             alert('대기 인원이 가득 찼습니다. 다음 기회에 신청해주세요.');
+    //             break;
+    //         default:
+    //             break;
+    //     }
+    // };
+
     // 클래스 현재원과 대기원을 비교하여 표시
-    const countRatio = `50/${clcount}`;
-    const watingRatio = `50/${clwating}`;
+    const countRatio = `${classAppStatusCounts.completed}/${clcount}`;
+    const waitingRatio = `${classAppStatusCounts.waiting}/${clwaiting}`;
 
     return (
         <div>
@@ -129,7 +178,7 @@ export default function XSugangRequestSearchResult({ clnum, classcode, clname, c
                                 <p>{cltime}</p>
                                 <p>{getTargetType(clfor)}</p>
                                 <p>{countRatio}</p>
-                                <p>{watingRatio}</p>
+                                <p>{waitingRatio}</p>
                                 <p>{formattedPrice}</p>
                                 <p onClick={handleClassType}>{cltype}</p>
                             </>
@@ -143,7 +192,7 @@ export default function XSugangRequestSearchResult({ clnum, classcode, clname, c
                                 <p>{cltime}</p>
                                 <p>{getTargetType(clfor)}</p>
                                 <p>{countRatio}</p>
-                                <p>{watingRatio}</p>
+                                <p>{waitingRatio}</p>
                                 <p>{formattedPrice}</p>
                                 <p>{cltype}</p>
                             </>

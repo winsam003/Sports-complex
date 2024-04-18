@@ -21,4 +21,6 @@ public interface MemberService {
 	Member mfindID(Member entity);
 	
 	Member getWithRoles(String id);
+	
+	String findCar(String id);
 }

@@ -2,7 +2,6 @@ package com.example.demo.entity;
 
 import java.sql.Timestamp;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,7 +29,6 @@ public class ClassApp {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer classappnum;
 	@CreationTimestamp
-	@Column(nullable = false)
 	private Timestamp classappdate;
 	private String classappstate;
 	private String payment;

@@ -672,9 +672,9 @@ CREATE TABLE `Classes` (
 `clEnd` TIMESTAMP  NOT NULL,
 `clFor` VARCHAR(10) NOT NULL,
 `clCount` INT NOT NULL,
-`clWating` INT NOT NULL,
+`clWaiting` INT NOT NULL,
 `clPrice` INT NOT NULL,
-`clType` VARCHAR(10) NULL COMMENT 'Acceptance available, Reservation waiting, Waiting list closed, Registration closed',
+`clType` VARCHAR(10) NULL DEFAULT '접수 마감' COMMENT 'Acceptance available, Reservation waiting, Waiting list closed, Registration closed',
 `teachnum` INT,
 PRIMARY KEY (`clNum`)
 );
@@ -973,7 +973,40 @@ CREATE TABLE `banner` (
 
 
 
+// 주차신청
+CREATE TABLE `parkApp` (
+	`parkAppNum` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	`ID` VARCHAR(15) NOT NULL, 
+	`parkAppDate` DATE NOT NULL,
+	`parkUseDate` DATE NOT NULL,
+	`parkAppCancel` VARCHAR(5) NOT NULL,
+	`payment` VARCHAR(10) NULL,
+	`parkPrice` INT NULL,
+	`spacecode` VARCHAR(10) NOT NULL, 
+	FOREIGN KEY (`ID`) REFERENCES `Member` (`ID`), 
+	FOREIGN KEY (`spacecode`) REFERENCES `SPACE` (`spacecode`) 
+);
 
+INSERT INTO `parkApp` (`ID`, `parkAppDate`, `parkUseDate`, `parkAppCancel`, `payment`, `parkPrice`, `spacecode`)
+VALUES ('user076', '2024-04-18', '2024-04-20', 'No', 'Cash', 20, 'FAPA1F'),;
+
+INSERT INTO `parkApp` (`ID`, `parkAppDate`, `parkUseDate`, `parkAppCancel`, `payment`, `parkPrice`, `spacecode`)
+VALUES ('winsam003', '2024-04-18', '2024-04-20', 'No', 'Cash', 2000, 'FAPA2F');
+
+INSERT INTO `parkApp` (`ID`, `parkAppDate`, `parkUseDate`, `parkAppCancel`, `payment`, `parkPrice`, `spacecode`)
+VALUES ('user123', '2024-04-18', '2024-04-20', 'No', 'Cash', 20, 'FAPA1F');
+
+INSERT INTO `parkApp` (`ID`, `parkAppDate`, `parkUseDate`, `parkAppCancel`, `payment`, `parkPrice`, `spacecode`)
+VALUES ('user095', '2024-04-18', '2024-04-20', 'No', 'Cash', 20, 'FAPA1F');
+
+INSERT INTO `parkApp` (`ID`, `parkAppDate`, `parkUseDate`, `parkAppCancel`, `payment`, `parkPrice`, `spacecode`)
+VALUES ('bamdboo11', '2024-04-18', '2024-04-20', 'No', 'Cash', 20, 'FAPA2F');
+
+INSERT INTO `parkApp` (`ID`, `parkAppDate`, `parkUseDate`, `parkAppCancel`, `payment`, `parkPrice`, `spacecode`)
+VALUES ('bamdboo12', '2024-04-18', '2024-04-20', 'No', 'Cash', 20, 'FAPA2F');
+
+INSERT INTO `parkApp` (`ID`, `parkAppDate`, `parkUseDate`, `parkAppCancel`, `payment`, `parkPrice`, `spacecode`)
+VALUES ('bamdboo13', '2024-04-18', '2024-04-20', 'No', 'Cash', 20, 'FAPA3F');
 
 
 
