@@ -86,13 +86,13 @@ export default function XSugangRequestSearchResult({ clnum, classcode, clname, c
                     apiCall(url, 'post', classAppData, userData.token)
                         .then((response) => {
                             alert("수강 신청 성공");
-                            setClassAppStatusCounts(prevCounts => ({
-                                ...prevCounts,
-                                [clnum]: {
-                                    completed: prevCounts[clnum]?.completed ? prevCounts[clnum].completed + 1 : 1,
-                                    waiting: prevCounts[clnum]?.waiting || 0
-                                }
-                            }));
+                            // setClassAppStatusCounts(prevCounts => ({
+                            //     ...prevCounts,
+                            //     [clnum]: {
+                            //         completed: prevCounts[clnum]?.completed ? prevCounts[clnum].completed + 1 : 1,
+                            //         waiting: prevCounts[clnum]?.waiting || 0
+                            //     }
+                            // }));
                         }).catch((error) => {
                             alert("수강 신청 실패 : " + error);
                         });
