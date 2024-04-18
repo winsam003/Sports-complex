@@ -61,8 +61,8 @@ export default function Xclass() {
     }, [classAppStatusCounts]);
 
     // XSugangRequestSearchResult 컴포넌트에서 사용할 각 상태의 갯수 추출
-    const completedCount = classAppStatusCounts[clnum]?.completed || 0;
-    const waitingCount = classAppStatusCounts[clnum]?.waiting || 0;
+    // const completedCount = classAppStatusCounts[clnum]?.completed || 0;
+    // const waitingCount = classAppStatusCounts[clnum]?.waiting || 0;
 
     // 강의 선택
     const handleToggleCheckbox = (clnum) => {
