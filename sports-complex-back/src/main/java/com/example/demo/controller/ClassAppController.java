@@ -67,22 +67,22 @@ public class ClassAppController {
 	}
 
 	// 신청 건수, 대기 건수 업데이트
-	@GetMapping("/classAppStatusCounts")
-	public ResponseEntity<?> classAppStatusCounts(@RequestParam("clnum") Integer clnum) {
-		try {
-			// 해당 강의(clnum)에 대한 신청 완료된 수와 대기 중인 수를 가져옵니다.
-			int completedCount = service.getCompletedCount(clnum);
-			int waitingCount = service.getWaitingCount(clnum);
-
-			// 가져온 카운트 정보를 JSON 형식으로 응답합니다.
-			return ResponseEntity.ok().body(Map.of("completed", completedCount, "waiting", waitingCount));
-		} catch (Exception e) {
-			// 예외가 발생한 경우 에러 응답을 반환합니다.
-			log.error("Failed to retrieve classApp status counts: {}", e.getMessage());
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-					.body("Failed to retrieve classApp status counts");
-		}
-	}
+//	@GetMapping("/classAppStatusCounts")
+//	public ResponseEntity<?> classAppStatusCounts(@RequestParam("clnum") Integer clnum) {
+//		try {
+//			// 해당 강의(clnum)에 대한 신청 완료된 수와 대기 중인 수를 가져옵니다.
+//			int completedCount = service.getCompletedCount(clnum);
+//			int waitingCount = service.getWaitingCount(clnum);
+//
+//			// 가져온 카운트 정보를 JSON 형식으로 응답합니다.
+//			return ResponseEntity.ok().body(Map.of("completed", completedCount, "waiting", waitingCount));
+//		} catch (Exception e) {
+//			// 예외가 발생한 경우 에러 응답을 반환합니다.
+//			log.error("Failed to retrieve classApp status counts: {}", e.getMessage());
+//			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+//					.body("Failed to retrieve classApp status counts");
+//		}
+//	}
 
 	// 수강 신청 삭제
 	@GetMapping("/classAppDelete")
