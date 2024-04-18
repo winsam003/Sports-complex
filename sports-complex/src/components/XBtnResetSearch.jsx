@@ -1,7 +1,7 @@
 import './XBtnResetSearch.css'
 
 // 초기화 조회 버튼
-export default function XBtnResetSearch(reset, handleSearch) {
+export default function XBtnResetSearch({reset, handleSearch}) {
     return (
         <div>
             <div className='XBtnResetSearch'>
