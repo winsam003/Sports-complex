@@ -1,6 +1,6 @@
 package com.example.demo.domain; 
 
-import java.sql.Date;
+import java.sql.Date; 
 import java.sql.Timestamp;
 
 import org.springframework.web.multipart.MultipartFile;

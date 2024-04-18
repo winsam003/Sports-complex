@@ -163,7 +163,7 @@ function App() {
         <Route path='/QRCodePage' element={<QRCodePage />} />
         <Route path='/PlaceRentalInfo' element={<PlaceRentalInfo roleList={roleList} />} />
         <Route path='/PlaceRental' element={<PlaceRental getUserName={getUserName} getUserID = {getUserID} />} />
-        <Route path='/ParkingRequest' element={<ParkingRequest />} />
+        <Route path='/ParkingRequest' element={<ParkingRequest getUserName={getUserName} getUserID = {getUserID}  />} />
         <Route path='/ApplicationDetailsPage' element={<ApplicationDetailsPage />} />
         <Route path='/InfoHandlingPolicyPage' element={<InfoHandlingPolicyPage />} />
         <Route path='/VideoHandlePage' element={<VideoHandlePage />} />
