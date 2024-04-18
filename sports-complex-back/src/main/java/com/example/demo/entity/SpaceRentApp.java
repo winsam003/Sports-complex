@@ -29,7 +29,7 @@ public class SpaceRentApp {
 	private Integer sprnum;
 	
 	@ManyToOne
-	@JoinColumn(name = "spacecode")
+	@JoinColumn(name = "spacecode", referencedColumnName = "spacecode")
 	private Space spacecode;
 	
 	@Column(length = 30, nullable = false)
@@ -63,4 +63,7 @@ public class SpaceRentApp {
 	@Column(length = 11, nullable = true)
 	private String appphonenum2;
 	private Integer numofpeople2;
+	
+	@Column(length = 30, nullable = false)
+	private String appdate;
 }

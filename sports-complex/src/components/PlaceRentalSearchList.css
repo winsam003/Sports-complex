@@ -30,6 +30,19 @@
     background-color: #e1e2e2;
 }
 
+.PlaceRentalSearchList_info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+
+    font-size: large;
+    font-weight: bold;
+
+}
+
 @media (max-width : 750px) {
     .PlaceRentalSearchList_div {
         overflow: auto;

@@ -89,11 +89,11 @@ export default function InquiryRegistration() {
         }
     }
 
-    // qadate에 현재 시간, 파일 추가
-    const handleQaDate = () => {
-        const currentTime = new Date().toISOString();
-        return currentTime;
-    }
+    // // qadate에 현재 시간, 파일 추가
+    // const handleQaDate = () => {
+    //     const currentTime = new Date().toISOString();
+    //     return currentTime;
+    // }
 
     // 문의게시판 새글등록 요청보내기
     const RegisterQna = (() => {

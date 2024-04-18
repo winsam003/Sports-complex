@@ -92,8 +92,6 @@ function App() {
   let token;
   let roleList;
 
-  // token =  JSON.parse(sessionStorage.getItem('userData')).token;
-
   if (sessionStorage.getItem('userData') != null) {
     const userData = JSON.parse(sessionStorage.getItem('userData'));
     if (userData.name != null) {     // 사용자일 경우 
@@ -195,7 +193,7 @@ function App() {
         <Route path='/XClassesInfoControl' element={<XClassesInfoControl />} />
         <Route path='/XNewClassUploadPage' element={<XNewClassUploadPage />} />
         <Route path='/XSugangRequestPage' element={<XSugangRequestPage />} />
-        <Route path='/XRentalPlaceRequestControllPage' element={<XRentalPlaceRequestControllPage />} />
+        <Route path='/XRentalPlaceRequestControllPage' element={<XRentalPlaceRequestControllPage token={token} />} />
         <Route path='/XStaffInfoPage' element={<XStaffInfoPage />} />
         <Route path='/XStaffRegisterPage' element={<XStaffRegisterPage token={token} />} />
         <Route path='/XBoardControllPageDetailPage' element={<XBoardControllPageDetailPage />} />
