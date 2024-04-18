@@ -1,14 +1,38 @@
 import './XSugangRequestSearchResult.css'
 import { useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { apiCall } from '../apiService/apiService';
 
 export default function XSugangRequestSearchResult({ clnum, classcode, clname, clrequest, clrequestend, clstart, clend, cltime, clfor, clcount, clwating, clprice, cltype, onToggleCheckbox, isChecked }) {
-    // 사용자 페이지 접근
-    const location = useLocation();
-
     // 체크박스
     const handleCheckboxChange = (e) => {
         onToggleCheckbox(clnum);
     }
+
+    // 사용자 페이지 접근
+    const location = useLocation();
+
+    // Session storage에 있는 userData 가져오기
+    const sessionUserData = sessionStorage.getItem('userData');
+    const userData = sessionUserData ? JSON.parse(sessionUserData) : 'null';
+
+    // 신청할 때 필요한 데이터 상태값 관리
+    const [classAppData, setClassAppData] = useState({});
+
+    // 사용자 정보 및 수강 가능 여부를 확인하는 state
+    const [memberCode, setMemberCode] = useState(null);
+
+    // membercode 가져오기
+    useEffect(() => {
+        let url = '/member/mDetail';
+
+        apiCall(url, 'post', userData, null)
+            .then((response) => {
+                setMemberCode(response.membercode);
+            }).catch((error) => {
+                console.log("membercode error : " + error);
+            })
+    }, [userData]);
 
     // date를 연월일시분 형식으로 표현
     const clstartdate = new Date(clstart).toLocaleString('ko-KR', {
@@ -44,24 +68,52 @@ export default function XSugangRequestSearchResult({ clnum, classcode, clname, c
     // 가격 설정
     const formattedPrice = new Intl.NumberFormat('ko-KR').format(clprice);
 
-    // // 클래스 상태를 나타내는 cltype 설정
-    // if (new Date() >= new Date(clrequest) && new Date() <= new Date(clrequestend)) {
-    //     if (clcount > 50) {
-    //         cltype = '수강 신청';
-    //     } else if (clwating > 50) {
-    //         cltype = '대기 신청';
-    //     } else {
-    //         cltype = '대기 마감';
-    //     }
-    // } else {
-    //     cltype = '접수 마감';
-    // }
+    // 클래스 상태에 따른 알림
+    const handleClassType = () => {
+        switch (cltype) {
+            case '수강 신청':
+
+                // 수강 가능 여부 확인
+                if (memberCode && memberCode.substring(4, 6) === clfor) {
+                    let url = '/classApp/classAppInsert';
+
+                    setClassAppData(prevState => ({
+                        ...prevState,
+                        id: userData.id,
+                        clnum: clnum
+                    }));
+
+                    apiCall(url, 'post', classAppData, userData.token)
+                        .then((response) => {
+                            alert("수강 신청 성공");
+                            // setClassAppStatusCounts(prevCounts => ({
+                            //     ...prevCounts,
+                            //     [clnum]: {
+                            //         completed: prevCounts[clnum]?.completed ? prevCounts[clnum].completed + 1 : 1,
+                            //         waiting: prevCounts[clnum]?.waiting || 0
+                            //     }
+                            // }));
+                        }).catch((error) => {
+                            alert("수강 신청 실패 : " + error);
+                        });
+                } else {
+                    alert('수강 대상을 확인해주세요.');
+                }
+                break;
+            case '접수 마감':
+                alert('접수 기간을 확인해주세요.');
+                break;
+            case '대기 마감':
+                alert('대기 인원이 가득 찼습니다. 다음 기회에 신청해주세요.');
+                break;
+            default:
+                break;
+        }
+    };
 
     // 클래스 현재원과 대기원을 비교하여 표시
     const countRatio = `50/${clcount}`;
     const watingRatio = `50/${clwating}`;
-
-    console.log(cltype);
 
     return (
         <div>
@@ -79,7 +131,7 @@ export default function XSugangRequestSearchResult({ clnum, classcode, clname, c
                                 <p>{countRatio}</p>
                                 <p>{watingRatio}</p>
                                 <p>{formattedPrice}</p>
-                                <p>{cltype}</p>
+                                <p onClick={handleClassType}>{cltype}</p>
                             </>
                             :
                             // 관리자

@@ -446,7 +446,7 @@ export default function XNewClassUpload() {
                         <tr>
                             <th>대기 정원</th>
                             <td>
-                                <input type="text" placeholder='숫자만 입력해주세요.' name='clcount'
+                                <input type="text" placeholder='숫자만 입력해주세요.' name='clwating'
                                     value={newClassesData.clwating} onChange={NewClassesContent} /> 명
                             </td>
                         </tr>

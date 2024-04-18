@@ -2,6 +2,8 @@ package com.example.demo.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.example.demo.entity.Event;
 
 public interface EventService {
@@ -10,12 +12,12 @@ public interface EventService {
 	
 	int EventDelete(int eventcode);
 	
-	Event EventDetail(Integer eventCode);
+	Event EventDetail(Integer eventCode, String stfid);
 	
 	int EventInsert(Event Entity);
 	
 	int EventUpdate(Event Entity);
 	
-	void EventCount(Event Entity); 
+//	void EventCount(Event Entity); 
 	
 }

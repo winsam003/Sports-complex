@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -11,6 +12,7 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -66,34 +68,32 @@ public class EventController {
 	} //eDelete
 	
 	// 이벤트 디테일
-	@GetMapping(value = "/eventdetail", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> eDetail(@RequestParam Integer eventcode, HttpSession session){
-
-//		Integer eventCode = requestBody.get("eventCode");
+	@PostMapping(value = "/eventdetail", produces = MediaType.APPLICATION_JSON_VALUE)
+		public ResponseEntity<?> eDetail(@RequestBody Map<String, Object> requestBody){
 		
+		// JSON 타입이라 RequestBody로 받아야한다. 
+		// 프론트에서 요청보내는 apiService를 보면 (28줄) content-type 이 JSON 타입이다. 
+		// 그러면 아래에 있는 insert는 왜 RequestParam 이 가능한가? 
+		//  => else 처리로 content-type이 JSON 타입이 아니라 Multipart타입이기 때문이다. (이건 자바 클래스 중 하나임.)
+		
+	    Integer eventcode = Integer.parseInt((String) requestBody.get("eventcode"));
+	    String stfid = (String) requestBody.get("stfid");
+	    // Map 은 <키, 값>타입. 받는 값은 여러 타입이기 때문에 Object 로 받아주면 다 받을 수 있음. 
+	    // 서버에서는 Object 타입을 스트링으로 인식한다. 그래서 스트링에서 받아서 강제 형변환 시켜줄 것. 
+	     
+	    
 		// 게시물을 보는 사람. 
+		log.info("controller stfid : " + stfid);
 		
-		Event result = service.EventDetail(eventcode);
-		log.info(result);
+		Event result = service.EventDetail(eventcode, stfid);
+		log.info("result : " + result);
 		
 		if(result != null) {
-//			result.setEventcount(result.getEventcount() + 1);
-			// 자 기억해. 여기에 업데이트. 해야됨. 그래야 count 없데이트 됨. 
-			
-			String userId = (String) session.getAttribute("id");
-			// null 나옴. 로그인해서 세션에 id 가 담겨져 있는데도 왜 안담길까잉
-			log.info("userId : " + userId);
-			
-			if(!result.getStfid().equals(userId)) {
-				log.info("여기에 들어온 Member : " + userId);
-				service.EventCount(result);
-			} 
-			
-			log.info("eventcount :  "+ result.getEventcount());
 			return ResponseEntity.status(HttpStatus.OK).body(result);
 		} else {
 			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("디테일이 없습니다.");
 		}
+		
 		
 	} // eDetail
 	
@@ -160,7 +160,7 @@ public class EventController {
 	
 	// 이벤트 이미지 경로 보내기
 	@GetMapping(value = "/eventimages")
-	public ResponseEntity<?> getImagePath(@RequestParam String img, HttpServletRequest request) throws Exception {
+	public ResponseEntity<?> getImagePath(@RequestParam String img) throws Exception {
 		
 		String realPath = "C:\\jgj\\TeamSSJ\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\eventBoard\\";
 		

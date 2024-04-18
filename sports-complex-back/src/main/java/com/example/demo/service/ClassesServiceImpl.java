@@ -54,8 +54,8 @@ public class ClassesServiceImpl implements ClassesService {
 			LocalDate classDate = c.getClrequest();
 			// 현재 날짜와 클래스의 신청 시작 날짜가 같다면
 			if (classDate.isEqual(today)) {
-				c.setCltype("신청 가능");
-				repository.updateClassesType(c.getClnum(), "신청 가능");
+				c.setCltype("수강 신청");
+				repository.updateClassesType(c.getClnum(), "수강 신청");
 			}
 		}
 	}
@@ -67,7 +67,7 @@ public class ClassesServiceImpl implements ClassesService {
 	public void updateClassesStatusEvening() {
 		LocalDate today = LocalDate.now();
 
-		List<Classes> classesToUpdate = repository.findByCltypeAndClrequestendIn("신청 가능", "대기 신청", "대기 마감", today);
+		List<Classes> classesToUpdate = repository.findByCltypeAndClrequestendIn("수강 신청", "대기 신청", "대기 마감", today);
 
 		for (Classes c : classesToUpdate) {
 			LocalDate classEndDate = c.getClrequestend();

@@ -8,7 +8,7 @@ import { apiCall } from '../apiService/apiService';
 export default function QnaDetail({ }) {
     const location = useLocation();
     const qnaData = location.state ? location.state.qnaData : null;
-
+    console.log(location.state);
     // 게시글 삭제 후 목록으로 이동
     const navigate = useNavigate();
 

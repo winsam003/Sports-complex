@@ -72,4 +72,11 @@ public class ClassesRepositoryImpl implements ClassesRepository {
 				Classes.class).setParameter("cltype1", cltype1).setParameter("cltype2", cltype2)
 				.setParameter("cltype3", cltype3).setParameter("clrequestend", clrequestend).getResultList();
 	}
+
+	// 강좌의 cltype 가져오기, classApp에서 사용
+	@Override
+	public String getClassType(int clnum) {
+		return em.createQuery("select c.cltype from Classes c where c.clnum = :clnum", String.class)
+				.setParameter("clnum", clnum).getSingleResult();
+	}
 }
