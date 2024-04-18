@@ -764,6 +764,7 @@ CREATE TABLE `spaceRentApp` (
     `spRNum` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `spaceCode` varchar(10) NOT NULL COMMENT '시설관리의 시설코드 PK',
     `spRDate` varchar(30) NOT NULL,
+    `appDate` varchar(30) NOT NULL,
     `appPhoneNum` varchar(11) NULL,
     `numOfPeople` int NULL,
     `ID` varchar(15) COMMENT '첫번째 대관신청 PK',
