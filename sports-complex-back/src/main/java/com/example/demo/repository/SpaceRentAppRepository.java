@@ -12,4 +12,6 @@ public interface SpaceRentAppRepository {
 	public int speaceRentApplication(SpaceRentAppDTO dto);
 	
 	public void runDailyTasks();
+	
+	public List<SpaceRentApp> SpaceRentAppAll();
 }

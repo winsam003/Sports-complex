@@ -59,6 +59,7 @@ export default function PlaceRentalContent({ getUserName, getUserID }) {
     // 해당 날짜, 시간 신청list 가져오기 ============================================================================
     let token = JSON.parse(sessionStorage.getItem('userData')).token;
     let sprDate = rentDate + ' ' + rentTime;
+    console.log(sprDate)
     const [spacelist, setSpaceList] = useState([]);
     useEffect(() => {
         let url = '/spaceRentApp/spaceRentApplist';
@@ -70,6 +71,7 @@ export default function PlaceRentalContent({ getUserName, getUserID }) {
             .then((response) => {
                 setSpaceList(response);
             }).catch((error) => {
+                setSpaceList(null);
                 console.log("spaceRentAppList Error Occured: " + error);
             })
     }, [rentDate, rentTime])
