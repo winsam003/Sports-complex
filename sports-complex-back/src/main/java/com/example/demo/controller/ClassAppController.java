@@ -39,9 +39,9 @@ public class ClassAppController {
 		String message = "";
 
 		// 중복 확인
-//		if (service.isDuplicateClassApp(dto)) {
-//			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("이미 신청한 강좌입니다.");
-//		}
+		if (service.isDuplicateClassApp(dto)) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("이미 신청한 강좌입니다.");
+		}
 
 		// cltype이 대기 신청인 경우엔 classappstate를 대기로 추가
 		String classType = service.getClassType(dto.getClnum());
@@ -61,6 +61,7 @@ public class ClassAppController {
 			}
 			return ResponseEntity.status(HttpStatus.OK).body(message);
 		} else {
+
 			if ("수강 신청".equals(classType)) {
 				message = "수강 신청에 실패하였습니다.";
 			} else if ("대기 신청".equals(classType)) {
@@ -80,11 +81,6 @@ public class ClassAppController {
 		int waitingCount = service.getWaitingCount(clnum);
 		// 대기 정원
 		int classesClWaiting = service.getClassesClWaiting(clnum);
-
-		log.info("신청 건수" + completedCount);
-		log.info("수강 정원" + classesClCount);
-		log.info("대기 건수" + waitingCount);
-		log.info("대기 정원" + classesClWaiting);
 
 		// cltype이 신청 가능인 경우
 		if (completedCount == classesClCount) {
@@ -111,11 +107,9 @@ public class ClassAppController {
 				countMap.put("completed", completedCount);
 				countMap.put("waiting", waitingCount);
 			}
-			// 가져온 카운트 정보를 JSON 형식으로 응답합니다.
+			// 가져온 카운트 정보를 JSON 형식으로 응답
 			return ResponseEntity.ok().body(countMap);
 		} catch (Exception e) {
-			// 예외가 발생한 경우 에러 응답을 반환합니다.
-			log.error("Failed to retrieve classApp status counts: {}", e.getMessage());
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
 					.body("Failed to retrieve classApp status counts");
 		}
@@ -135,32 +129,31 @@ public class ClassAppController {
 				// 해당 강의의 cltype
 				String cltype = service.getClassType(clnum);
 
-				System.out.println(classappnum);
+				// 수강 신청 삭제
 				service.classAppDelete(classappnum);
 
-				System.out.println(" 삭제 성공 => " + classappnum);
-
+				// 대기 마감상태에서 삭제시 강좌 신청현황 변경
 				if (cltype.equals("대기 마감")) {
 					service.updateClassType(clnum, "대기 신청");
-					System.out.println("대기마감 -> 대기 신청");
 				}
 
 				// 신청 완료, 결제 완료 인원이 취소시
 				// 대기 순번이 가장 빠른 사람 신청 완료로 변경
 				if (classApp.getClassappstate().equals("신청 완료") || classApp.getClassappstate().equals("결제 완료")) {
 					int waitingCount = service.getWaitingCount(clnum);
+
 					if (waitingCount > 0) {
 						service.updateEarliestWaitingToCompleted(clnum);
-						System.out.println("대기 순번이 가장 빠른 사람 신청 완료 변경");
 					}
 				}
 
-				// 해당 강의의 수강 신청 인원이 수강 정원보다 적어지면, cltype을 '수강 신청'으로 변경합니다.
+				// 해당 강의의 수강 신청 인원이 수강 정원보다 적어지면
+				// cltype을 수강 신청으로 변경
 				int completedCount = service.getCompletedCount(clnum);
 				int classesClCount = service.getClassesClCount(clnum);
+
 				if (completedCount < classesClCount) {
 					service.updateClassType(clnum, "수강 신청");
-					System.out.println("대기 신청 -> 수강 신청");
 				}
 			}
 		} catch (Exception e) {
