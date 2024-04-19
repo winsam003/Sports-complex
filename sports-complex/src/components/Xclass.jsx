@@ -61,6 +61,8 @@ export default function Xclass() {
         });
     };
 
+    console.log(selectedClasses)
+
     // 선택 초기화
     const handleResetSelection = () => {
         setSelectedClasses([]);
@@ -78,7 +80,7 @@ export default function Xclass() {
             .then(() => {
                 setSelectedClasses([]);
             }).catch((error) => {
-                console.error(`문의게시판 삭제 실패 : `, error);
+                console.error(`강좌 삭제 실패 : `, error);
             });
     });
 

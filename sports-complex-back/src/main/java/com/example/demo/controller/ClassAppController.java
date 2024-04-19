@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.domain.ClassAppDTO;
+import com.example.demo.entity.ClassApp;
 import com.example.demo.service.ClassAppService;
 
 import lombok.AllArgsConstructor;
@@ -25,6 +26,12 @@ import lombok.extern.log4j.Log4j2;
 @RequestMapping("/classApp")
 public class ClassAppController {
 	ClassAppService service;
+
+	// 수강 신청 목록
+	@GetMapping("/classAppList")
+	public List<ClassApp> classAppList() {
+		return service.classAppList();
+	}
 
 	// 수강 신청
 	@PostMapping("/classAppInsert")
@@ -119,9 +126,42 @@ public class ClassAppController {
 	public String classAppDelete(@RequestParam("classappnum") List<Integer> classappnumList) {
 		try {
 			for (Integer classappnum : classappnumList) {
+				// 수강 신청 정보
+				ClassApp classApp = service.getClassAppByNum(classappnum);
+
+				// 신청된 강의 번호
+				int clnum = classApp.getClasses().getClnum();
+
+				// 해당 강의의 cltype
+				String cltype = service.getClassType(clnum);
+
 				System.out.println(classappnum);
 				service.classAppDelete(classappnum);
+
 				System.out.println(" 삭제 성공 => " + classappnum);
+
+				if (cltype.equals("대기 마감")) {
+					service.updateClassType(clnum, "대기 신청");
+					System.out.println("대기마감 -> 대기 신청");
+				}
+
+				// 신청 완료, 결제 완료 인원이 취소시
+				// 대기 순번이 가장 빠른 사람 신청 완료로 변경
+				if (classApp.getClassappstate().equals("신청 완료") || classApp.getClassappstate().equals("결제 완료")) {
+					int waitingCount = service.getWaitingCount(clnum);
+					if (waitingCount > 0) {
+						service.updateEarliestWaitingToCompleted(clnum);
+						System.out.println("대기 순번이 가장 빠른 사람 신청 완료 변경");
+					}
+				}
+
+				// 해당 강의의 수강 신청 인원이 수강 정원보다 적어지면, cltype을 '수강 신청'으로 변경합니다.
+				int completedCount = service.getCompletedCount(clnum);
+				int classesClCount = service.getClassesClCount(clnum);
+				if (completedCount < classesClCount) {
+					service.updateClassType(clnum, "수강 신청");
+					System.out.println("대기 신청 -> 수강 신청");
+				}
 			}
 		} catch (Exception e) {
 			System.out.println(" classes Delete Excpetion => " + e.toString());

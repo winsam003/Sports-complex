@@ -1,5 +1,7 @@
 package com.example.demo.repository;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
@@ -7,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.domain.ClassAppDTO;
+import com.example.demo.entity.ClassApp;
 
 @Transactional
 @Repository
@@ -15,6 +18,12 @@ public class ClassAppRepositoryImpl implements ClassAppRepository {
 
 	public ClassAppRepositoryImpl(EntityManager em) {
 		this.em = em;
+	}
+
+	// 수강 신청 목록
+	@Override
+	public List<ClassApp> classAppList() {
+		return em.createQuery("select ca from ClassApp ca order by classappnum desc", ClassApp.class).getResultList();
 	}
 
 	// 수강 신청
@@ -73,5 +82,31 @@ public class ClassAppRepositoryImpl implements ClassAppRepository {
 	public void classAppDelete(Integer classappnum) {
 		em.createQuery("delete from ClassApp ca where ca.classappnum = :classappnum")
 				.setParameter("classappnum", classappnum).executeUpdate();
+	}
+
+	// 해당 수강 신청 정보
+	@Override
+	public ClassApp getClassAppByNum(int classappnum) {
+		try {
+			return em.createQuery("SELECT ca FROM ClassApp ca WHERE ca.classappnum = :classappnum", ClassApp.class)
+					.setParameter("classappnum", classappnum).getSingleResult();
+		} catch (NoResultException e) {
+			return null; // 해당 번호의 수강 신청이 없는 경우 null을 반환합니다.
+		}
+	}
+
+	// 대기 순번이 가장 빠른 경우 신청 완료로 변경
+	@Override
+	public void updateEarliestWaitingToCompleted(int clnum) {
+		// 대기 상태인 첫 번째 신청자의 classappnum을 가져옵니다.
+		Integer earliestWaitingAppNum = em.createQuery(
+				"SELECT ca.classappnum FROM ClassApp ca WHERE ca.classes.clnum = :clnum AND ca.classappstate = '대기' ORDER BY ca.classappnum ASC",
+				Integer.class).setParameter("clnum", clnum)
+				// 첫 번째 결과만 가져옵니다.
+				.setMaxResults(1).getSingleResult();
+
+		// 대기 상태인 첫 번째 신청자의 상태를 '신청 완료'로 변경합니다.
+		em.createQuery("UPDATE ClassApp ca SET ca.classappstate = '신청 완료' WHERE ca.classappnum = :classappnum")
+				.setParameter("classappnum", earliestWaitingAppNum).executeUpdate();
 	}
 }
