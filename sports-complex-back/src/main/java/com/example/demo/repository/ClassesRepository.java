@@ -27,4 +27,10 @@ public interface ClassesRepository {
 
 	// 강좌의 cltype 가져오기, classApp에서 사용
 	String getClassType(int clnum);
+
+	// 수강 정원
+	int getClassesClCount(int clnum);
+
+	// 대기 정원
+	public int getClassesClWaiting(int clnum);
 }

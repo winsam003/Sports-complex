@@ -51,7 +51,7 @@ public class Classes {
 	private Integer clcount;
 	@Column(nullable = false)
 //	대기 정원
-	private Integer clwating;
+	private Integer clwaiting;
 	@Column(nullable = false)
 	private Integer clprice;
 //	신청현황

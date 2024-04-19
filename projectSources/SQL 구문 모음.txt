@@ -672,9 +672,9 @@ CREATE TABLE `Classes` (
 `clEnd` TIMESTAMP  NOT NULL,
 `clFor` VARCHAR(10) NOT NULL,
 `clCount` INT NOT NULL,
-`clWating` INT NOT NULL,
+`clWaiting` INT NOT NULL,
 `clPrice` INT NOT NULL,
-`clType` VARCHAR(10) NULL COMMENT 'Acceptance available, Reservation waiting, Waiting list closed, Registration closed',
+`clType` VARCHAR(10) NULL DEFAULT '접수 마감' COMMENT 'Acceptance available, Reservation waiting, Waiting list closed, Registration closed',
 `teachnum` INT,
 PRIMARY KEY (`clNum`)
 );

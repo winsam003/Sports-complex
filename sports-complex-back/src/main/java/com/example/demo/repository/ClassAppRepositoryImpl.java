@@ -20,18 +20,16 @@ public class ClassAppRepositoryImpl implements ClassAppRepository {
 	// 수강 신청
 	@Override
 	public int classAppInsert(ClassAppDTO dto) {
-		System.out.println("레퍼지토리 dto 검사 : " + dto);
 		return em
 				.createNativeQuery(
-						"insert into classApp (classappdate, id, clnum)" + "value (:classappdate, :id, :clnum)")
-				.setParameter("classappdate", dto.getClassappdate()).setParameter("id", dto.getId())
-				.setParameter("clnum", dto.getClnum()).executeUpdate();
+						"insert into classApp (id, clnum, classappstate) value (:id, :clnum, :classappstate)")
+				.setParameter("id", dto.getId()).setParameter("clnum", dto.getClnum())
+				.setParameter("classappstate", dto.getClassappstate()).executeUpdate();
 	}
 
 	// 중복 확인
 	@Override
 	public boolean isDuplicate(ClassAppDTO dto) {
-		System.out.println("레퍼지토이 dto : " + dto);
 		// dto에 대한 정보를 조회하고, 결과가 있으면 true 반환
 		try {
 			Long count = em
@@ -46,28 +44,15 @@ public class ClassAppRepositoryImpl implements ClassAppRepository {
 		}
 	}
 
-	// clnum에 해당하는 데이터의 갯수 조회
+	// 신청완료 건수
 	@Override
-	public int getClassCount(int clnum) {
-		return ((Number) em.createQuery("SELECT COUNT(c) FROM Classes c WHERE c.clnum = :clnum")
+	public int getCompletedCount(int clnum) {
+		return ((Number) em.createQuery(
+				"SELECT COUNT(ca) FROM ClassApp ca WHERE ca.classes.clnum = :clnum AND ca.classappstate = '신청 완료'")
 				.setParameter("clnum", clnum).getSingleResult()).intValue();
 	}
 
-	// clnum에 해당하는 수강 정원
-	@Override
-	public int getClassAppCount(int clnum) {
-		return ((Number) em.createQuery("SELECT COUNT(ca) FROM ClassApp ca WHERE ca.classes.clnum = :clnum")
-				.setParameter("clnum", clnum).getSingleResult()).intValue();
-	}
-
-	// cltype 업데이트
-	@Override
-	public void updateClassType(int clnum, String cltype) {
-		em.createQuery("UPDATE Classes c SET c.cltype = :cltype WHERE c.clnum = :clnum").setParameter("cltype", cltype)
-				.setParameter("clnum", clnum).executeUpdate();
-	}
-
-	// 요청된 clnum과 동일한 값을 가진 classApp의 대기 수
+	// 대기건수
 	@Override
 	public int getWaitingCount(int clnum) {
 		Long count = em.createQuery(
@@ -76,12 +61,11 @@ public class ClassAppRepositoryImpl implements ClassAppRepository {
 		return count.intValue();
 	}
 
-	// 요청된 clnum의 강의의 대기 정원
+	// cltype 업데이트
 	@Override
-	public int getClassWaitingCount(int clnum) {
-		Integer waitingCount = em.createQuery("SELECT c.clwating FROM Classes c WHERE c.clnum = :clnum", Integer.class)
-				.setParameter("clnum", clnum).getSingleResult();
-		return waitingCount != null ? waitingCount : 0;
+	public void updateClassType(int clnum, String cltype) {
+		em.createQuery("UPDATE Classes c SET c.cltype = :cltype WHERE c.clnum = :clnum").setParameter("cltype", cltype)
+				.setParameter("clnum", clnum).executeUpdate();
 	}
 
 	// 수강 신청 삭제

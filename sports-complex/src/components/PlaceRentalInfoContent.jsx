@@ -5,10 +5,17 @@ import { Link, useNavigate } from 'react-router-dom';
 // 수강 신청
 export default function PlaceRentalInfoContent({ roleList }) {
 
+    let getUserID = null;
+    if(sessionStorage.getItem('userData') !== null){
+        getUserID = JSON.parse(sessionStorage.getItem('userData')).stfid;
+    }
+
 
     const navigate = useNavigate();
     const checkRole = () => {
-        if (roleList && roleList.some(item => item === "USER")){
+        if (getUserID){
+            alert("유저 아이디로만 허가 신청이 가능합니다.");
+        }else if (roleList && roleList.some(item => item === "USER")){
             navigate("/PlaceRental");
         }else{
             alert("로그인 후 이용해주세요.");
