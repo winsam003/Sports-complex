@@ -3,16 +3,21 @@ import Submenu from './Submenu'
 import HistoryClass from './HistoryClass'
 import HistoryPark from './HistoryPark'
 import HistoryRental from './HistoryRental'
+import HistoryBattle from './HistoryBattle'
 import { useState, useMemo, useEffect } from 'react';
 import { apiCall } from '../apiService/apiService';
 
 export default function ApplicationDetails({ token, getUserID }) {
 
-
-
+    const [currentPage, setCurrentPage] = useState('HistoryClass');
     const [history, setHistory] = useState([]);
     useEffect(() => {
         let url = '/spaceRentApp/historyRental';
+        // if (currentPage === 'HistoryRental') {
+        //     url = '/spaceRentApp/historyRental';
+        // } else if (currentPage === 'HistoryBattle') {
+        //     url = '/spaceRentApp/historyBattle';
+        // }
         let id = getUserID;
         apiCall(url, 'post', id, token)
             .then((response) => {
@@ -22,12 +27,9 @@ export default function ApplicationDetails({ token, getUserID }) {
             })
     }, [])
 
-    const [currentPage, setCurrentPage] = useState('HistoryClass');
     const pageHandler = (page) => {
-        setCurrentPage(page);  
+        setCurrentPage(page);
     }
-
-    console.log("렌더테스트")
 
     const selectedPage = useMemo(() => {
         switch (currentPage) {
@@ -37,6 +39,8 @@ export default function ApplicationDetails({ token, getUserID }) {
                 return <HistoryPark />
             case 'HistoryRental':
                 return <HistoryRental history={history} token={token} />
+            case 'HistoryBattle':
+                return <HistoryBattle token={token} getUserID={getUserID} />
         }
     }, [currentPage]);
 
@@ -68,6 +72,9 @@ export default function ApplicationDetails({ token, getUserID }) {
                             </li>
                             <li className={currentPage === 'HistoryRental' ? 'ApplicationDetails_ison' : ''}>
                                 <div onClick={() => pageHandler('HistoryRental')} className='ApplicationDetails_tabBtn'>대관 내역</div>
+                            </li>
+                            <li className={currentPage === 'HistoryBattle' ? 'ApplicationDetails_ison' : ''}>
+                                <div onClick={() => pageHandler('HistoryBattle')} className='ApplicationDetails_tabBtn'>경기신청 내역</div>
                             </li>
                         </ul>
 

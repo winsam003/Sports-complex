@@ -26,6 +26,8 @@ public class SpaceRentAppDTO {
 	private String payment2;
 	private String appPhoneNum2;
 	private Integer numOfPeople2;
+	private String appdate2;
+	private String appdate;
 	
     // 문자열을 인자로 받는 생성자 추가
     public SpaceRentAppDTO(String id) {

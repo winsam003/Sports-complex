@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { apiCall } from '../apiService/apiService'
 
 // 수강 신청
-export default function PlaceRentalContent({ getUserName, getUserID }) {
+export default function PlaceRentalContent({ getUserName, getUserID}) {
 
     const navigate = useNavigate();
 
@@ -152,7 +152,7 @@ export default function PlaceRentalContent({ getUserName, getUserID }) {
                         <option value="18:00:00">오후 6시</option>
                     </select>
                 </div>
-                <PlaceRentalSearchList handleRentPrice={handleRentPrice} sprNumHandler={sprNumHandler} spacelist={spacelist} />
+                <PlaceRentalSearchList handleRentPrice={handleRentPrice} sprNumHandler={sprNumHandler} spacelist={spacelist} token={token} getUserID={getUserID} />
                 <div className='PlaceRentalContent_formSet'>
                     <table>
                         <tbody>

@@ -25,4 +25,12 @@ public interface SpaceRentAppRepository {
 	
 	public int historyCancel(int sprnum);
 	
+	public int requestBattle(SpaceRentAppDTO dto);
+	
+	public int battleAgree(int sprnum);
+	
+	public List<SpaceRentApp> historyBattle(String id);
+	
+	public int battleCancel(int sprnum);
+	
 }

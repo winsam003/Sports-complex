@@ -1,7 +1,7 @@
 import { apiCall } from '../apiService/apiService';
-import './HistoryRentalContents.css'
+import './HistoryRentalBattleContents.css'
 
-export default function HistoryRentalContent({ sprnum, spacecode, sprdate, payment, id2, sprstate, token, sprstate2 }) {
+export default function HistoryRentalBattleContents({ sprnum, spacecode, sprdate, payment, sprstate, token, sprstate2 }) {
 
     const spaceRentCancel = () => {
         let url = '/spaceRentApp/historyCancel?sprnum=' + sprnum;
@@ -17,47 +17,43 @@ export default function HistoryRentalContent({ sprnum, spacecode, sprdate, payme
         }
     }
 
-    const battleAgree = () => {
-        let url = '/spaceRentApp/battleAgree?sprnum=' + sprnum;
+    const battleCancel = () => {
+        let url = '/spaceRentApp/battleCancel?sprnum=' + sprnum;
 
         apiCall(url, 'get', null, token)
             .then((response) => {
-                alert(sprnum + "번 경기가 수락되었습니다.");
+                alert(sprnum + "번 경기가 취소되었습니다.");
             }).catch((error) => {
-                console.log("battleAgree error Occured = " + error);
+                console.log("battleCancel error Occured = " + error);
             })
     }
-
+    console.log(sprstate2)
 
     return (
-        <div className="HistoryRentalContent_Box">
-            <div className="HistoryRentalContent_list">
+        <div className="HistoryRentalBattleContents_Box">
+            <div className="HistoryRentalBattleContents_list">
                 <span>{sprnum}</span>
                 <span>{spacecode.spacename}</span>
                 <span>{sprdate}</span>
                 <span>{spacecode.spaceprice}</span>
                 <span>{payment}</span>
-                {sprstate2 === '경기신청' ?
+                {sprstate2 === '접수중' ?
                     <span>
-                        경기신청 접수 <button onClick={battleAgree}>수락</button>
+                        경기신청 접수중
                     </span>
                     :
-                    sprstate === '접수만료' ?
+                    sprstate2 === '경기신청' ?
                         <span>
-                            경기신청 종료
+                            경기신청 취소 <button onClick={battleCancel}>취소</button>
                         </span>
                         :
                         <span>
-                            경기신청 접수중
+                            경기신청 만료
                         </span>
                 }
-                {sprstate === "확정" ?
-                    <span>확정 /
-                        <button className='HistoryRentalContent_button' onClick={spaceRentCancel}>취소</button>
-                    </span>
-                    :
-                    <span>{sprstate}</span>
-                }
+                <span>
+                    {sprstate === '확정'? "경기신청 접수중" : "경기신청 만료"}
+                </span>
             </div>
         </div>
     )

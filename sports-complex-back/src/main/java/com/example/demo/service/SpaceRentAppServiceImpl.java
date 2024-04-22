@@ -68,4 +68,28 @@ public class SpaceRentAppServiceImpl implements SpaceRentAppService{
 		log.info("historyCancel Service 접촉 성공");
 		return repository.historyCancel(sprnum);
 	}
+	
+	@Override
+	public int requestBattle(SpaceRentAppDTO dto) {
+		log.info("historyCancel Service 접촉 성공");
+		return repository.requestBattle(dto);
+	}
+	
+	@Override
+	public int battleAgree(int sprnum) {
+		log.info("historyCancel Service 접촉 성공");
+		return repository.battleAgree(sprnum);
+	}
+	
+	@Override
+	public List<SpaceRentApp> historyBattle(String id) {
+		log.info("historyCancel Service 접촉 성공");
+		return repository.historyBattle(id);
+	}
+	
+	@Override
+	public int battleCancel(int sprnum) {
+		log.info("battleCancel Service 접촉 성공");
+		return repository.battleCancel(sprnum);
+	}
 }
