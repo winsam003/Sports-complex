@@ -117,7 +117,7 @@ public class ClassAppController {
 
 	// 수강 신청 삭제
 	@GetMapping("/classAppDelete")
-	public String classAppDelete(@RequestParam("classappnum") List<Integer> classappnumList) {
+	public void classAppDelete(@RequestParam("classappnum") List<Integer> classappnumList) {
 		try {
 			for (Integer classappnum : classappnumList) {
 				// 수강 신청 정보
@@ -159,6 +159,5 @@ public class ClassAppController {
 		} catch (Exception e) {
 			System.out.println(" classes Delete Excpetion => " + e.toString());
 		}
-		return "redirect:classApp";
 	}
 }

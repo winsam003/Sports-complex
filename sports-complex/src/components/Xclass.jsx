@@ -61,8 +61,6 @@ export default function Xclass() {
         });
     };
 
-    console.log(selectedClasses)
-
     // 선택 초기화
     const handleResetSelection = () => {
         setSelectedClasses([]);
@@ -83,29 +81,34 @@ export default function Xclass() {
                 console.error(`강좌 삭제 실패 : `, error);
             });
     });
-
+    console.log(classes)
     // 검색
     const handleSearch = () => {
-        setSearchResult(classes.filter(classes => {
-            switch (classesSearchBTSelect) {
-                case '전체':
-                    return Object.values(classes).some(val =>
-                        String(val).toLowerCase().includes(classesSearchInput.toLowerCase())
-                    );
-                case '구기':
-                    return (classes.classcode.toLowerCase().substring(2, 4) === 'ba') && classes.clname.toLowerCase().includes(classesSearchInput.toLowerCase());
-                case '수상':
-                    return (classes.classcode.toLowerCase().substring(2, 4) === 'wa') && classes.clname.toLowerCase().includes(classesSearchInput.toLowerCase());
-                case '댄스':
-                    return (classes.classcode.toLowerCase().substring(2, 4) === 'dc') && classes.clname.toLowerCase().includes(classesSearchInput.toLowerCase());
-                case '라켓':
-                    return (classes.classcode.toLowerCase().substring(2, 4) === 'la') && classes.clname.toLowerCase().includes(classesSearchInput.toLowerCase());
-                case '웨이트':
-                    return (classes.classcode.toLowerCase().substring(2, 4) === 'we') && classes.clname.toLowerCase().includes(classesSearchInput.toLowerCase());
-                default:
-                    return true; // 전체일 경우 모든 항목을 반환합니다.
+        const filteredResult = classes.filter(classes => {
+            const { classesSearchBTSelect, classesSearchSTSelect, classesSearchDaySelect, classesSearchTargetSelect } = classes;
+
+            // 대분류, 세부종목, 요일, 대상이 모두 '전체'인 경우
+            if (classesSearchBTSelect === '전체' && classesSearchSTSelect === '전체' &&
+                classesSearchDaySelect === '전체' && classesSearchTargetSelect === '전체') {
+                return true;
             }
-        }) || []);
+            // 각 조건에 따른 필터링
+            if (classesSearchBTSelect !== '전체' && classesSearchBTSelect !== classes.classcode.substring(2, 4)) {
+                return false;
+            }
+            if (classesSearchSTSelect !== '전체' && classesSearchSTSelect !== classes.classcode.substring(4, 6)) {
+                return false;
+            }
+            if (classesSearchDaySelect !== '전체' && !classes.cldate.includes(classesSearchDaySelect)) {
+                return false;
+            }
+            if (classesSearchTargetSelect !== '전체' && classesSearchTargetSelect !== classes.clfor) {
+                return false;
+            }
+            return true;
+        });
+
+        setSearchResult(filteredResult);
     };
 
     // 검색 초기화
@@ -160,8 +163,10 @@ export default function Xclass() {
                             </>
                         }
                     </div>
-                    {searchResult && searchResult.map((item, index) => (
-                        <XSugangRequestSearchResult key={index} {...item} setClassAppStatusCounts={setClassAppStatusCounts} onToggleCheckbox={handleToggleCheckbox} isChecked={selectedClasses.includes(item.clnum)} />
+                    {searchResult && searchResult.filter((item) => (
+                        (classesSearchInput.trim() === '' || item.clname.toLowerCase().includes(classesSearchInput.toLowerCase()))
+                    )).map((item, index) => (
+                        <XSugangRequestSearchResult key={index} {...item} onToggleCheckbox={handleToggleCheckbox} isChecked={selectedClasses.includes(item.clnum)} />
                     ))}
                     <div className='XResetDeleteBtn'>
                         <button onClick={handleResetSelection}>초기화</button>
