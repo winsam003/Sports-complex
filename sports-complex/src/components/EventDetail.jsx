@@ -66,7 +66,6 @@ export default function EventDetail({ eventcode }) {
                     {
                         state: {detail : eventDetailOne}
                     });
-        
     }
     // console.log(eventDetailOne)
 

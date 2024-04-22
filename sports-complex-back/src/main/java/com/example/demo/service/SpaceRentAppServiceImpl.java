@@ -44,4 +44,9 @@ public class SpaceRentAppServiceImpl implements SpaceRentAppService{
 		log.info("SpaceRentAppAll Service 접촉 성공");
 		return repository.SpaceRentAppAll();
 	}
+	
+	@Override
+	public List<SpaceRentApp> AppUserCheck() {
+		return repository.AppUserCheck();
+	}
 }

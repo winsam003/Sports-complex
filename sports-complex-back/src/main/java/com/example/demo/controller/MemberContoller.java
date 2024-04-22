@@ -163,5 +163,21 @@ public class MemberContoller {
 			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(null);
 		}
 	}
+	
+	@PostMapping(value = "/findcar", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> findCar (@RequestBody String id) {
+		
+		log.info("controller findCar : " + id);
+		
+		String carnum = service.findCar(id);
+		if(carnum != null) {
+			log.info("controller carnum : " + carnum);
+			return ResponseEntity.status(HttpStatus.OK).body(carnum);
+		} else {
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(null);
+		}
+		
+		
+	}
 
 }

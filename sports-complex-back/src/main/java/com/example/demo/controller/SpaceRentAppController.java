@@ -2,11 +2,13 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import org.apache.catalina.connector.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,7 +34,6 @@ public class SpaceRentAppController {
 	@PostMapping(value="/spaceRentAppAll", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> SpaceRentAppAll(){
 		log.info("SpaceRentAppAll Contoller 접촉 성공");
-		
 		List<SpaceRentApp> result = service.SpaceRentAppAll();
 		
 		if(result != null && result.size() > 0) {
@@ -60,7 +61,7 @@ public class SpaceRentAppController {
 	
 	
 	// 대관신청
-	@PostMapping(value="/spaceRentApplication")
+	@PostMapping(value="/spaceRentApplication", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> spaceRentApplication(@RequestBody SpaceRentAppDTO dto){
 		log.info("spaceRentApplication Contoller 접촉 성공");
 		
@@ -71,10 +72,31 @@ public class SpaceRentAppController {
 		}
 	} // 대관신청
 	
+	@PostMapping(value="/appUserCheck")
+	public ResponseEntity<?> AppUserCheck(@RequestBody String userID){
+		log.info("AppUserCheck Contoller 접촉 성공");
+		userID = userID.replace("\"", "");
+		
+		List<SpaceRentApp> result = service.AppUserCheck();
+		
+		for(SpaceRentApp item : result) {
+			if(item.getId() != null && userID.equals(item.getId().getId())) {
+				return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("이미 신청한 내역이 있습니다.");				
+			}
+		}
+		
+		return ResponseEntity.status(HttpStatus.OK).body(null);				
+		
+	}
+	
+	
+	// 매일 10시 오늘기준 3일 이후 신청 컬럼생성
 	@Scheduled(cron = "0 0 10 * * *")
 	public void runDailyTasks() {
 		log.info("runDailyTasks Contoller 매일 10시 자동 insert 성공");
 		
 		service.runDailyTasks();
-	}
+	} // 매일 10시 오늘기준 3일 이후 신청 컬럼생성
+	
+	
 }

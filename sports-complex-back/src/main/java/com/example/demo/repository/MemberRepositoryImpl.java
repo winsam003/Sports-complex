@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.stereotype.Repository;
@@ -13,6 +14,7 @@ import com.example.demo.entity.Member;
 
 import lombok.extern.log4j.Log4j2;
 
+@Transactional
 @Repository
 @Log4j2
 public class MemberRepositoryImpl implements MemberRepository {
@@ -161,6 +163,30 @@ public class MemberRepositoryImpl implements MemberRepository {
 	    return em.createQuery("SELECT m FROM Member m LEFT JOIN FETCH m.roleList WHERE m.id = :id", Member.class)
 	             .setParameter("id", id)
 	             .getSingleResult();
+	}
+	
+	@Override
+	public String findCar(String id) {
+		log.info("findCar Repository 성공");
+		
+		id = id.replace("\"", "");
+		// JSON 형태로 받으면 "" 가 붙음. 떼주는 작업.
+		
+		try {
+			String carnum = em.createQuery("SELECT m.carnum FROM Member m where m.id = :id", String.class)
+								.setParameter("id", id)
+								.getSingleResult();
+			
+			log.info("carnum : "+ carnum);
+			return carnum;
+			
+		} catch (Exception e) {
+			log.info(e);
+			
+			return null;
+		}
+		
+		
 	}
 	
 }

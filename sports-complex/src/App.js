@@ -162,8 +162,8 @@ function App() {
         <Route path='/ModifyMemberPage' element={<ModifyMemberPage getUserID={getUserID} roleList={roleList} />} />
         <Route path='/QRCodePage' element={<QRCodePage />} />
         <Route path='/PlaceRentalInfo' element={<PlaceRentalInfo roleList={roleList} />} />
-        <Route path='/PlaceRental' element={<PlaceRental getUserName={getUserName} getUserID = {getUserID} />} />
-        <Route path='/ParkingRequest' element={<ParkingRequest />} />
+        <Route path='/PlaceRental' element={<PlaceRental getUserName={getUserName} getUserID={getUserID} />} />
+        <Route path='/ParkingRequest' element={<ParkingRequest getUserName={getUserName} getUserID = {getUserID}  />} />
         <Route path='/ApplicationDetailsPage' element={<ApplicationDetailsPage />} />
         <Route path='/InfoHandlingPolicyPage' element={<InfoHandlingPolicyPage />} />
         <Route path='/VideoHandlePage' element={<VideoHandlePage />} />
@@ -203,7 +203,7 @@ function App() {
         <Route path='/XFaqWritePage' element={<XFaqWritePage getUserID={getUserID} token={token} />} />
 
 
-        <Route path='/XEventDetailPage' element={<XEventDetailPage token ={token}/>} />
+        <Route path='/XEventDetailPage' element={<XEventDetailPage token={token} />} />
 
         <Route path='*' element={<NotFoundPage />} />
       </Routes>

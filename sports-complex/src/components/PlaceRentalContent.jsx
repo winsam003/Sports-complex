@@ -59,7 +59,6 @@ export default function PlaceRentalContent({ getUserName, getUserID }) {
     // 해당 날짜, 시간 신청list 가져오기 ============================================================================
     let token = JSON.parse(sessionStorage.getItem('userData')).token;
     let sprDate = rentDate + ' ' + rentTime;
-    console.log(sprDate)
     const [spacelist, setSpaceList] = useState([]);
     useEffect(() => {
         let url = '/spaceRentApp/spaceRentApplist';
@@ -82,29 +81,40 @@ export default function PlaceRentalContent({ getUserName, getUserID }) {
 
 
     // 대관신청 ====================================================================================================
-
     const requestApp = () => {
-        let url = '/spaceRentApp/spaceRentApplication';
+        let url = '/spaceRentApp/appUserCheck';
         let requestData = {
             sprnum: sprNum,
             id: getUserID,
             appPhoneNum: appPhoneNum,
-            NumOfPeople: numOfPeople
+            numOfPeople: numOfPeople
         }
 
+        let stfcheck = null;
+        if (sessionStorage.getItem('userData') !== null) {
+            stfcheck = JSON.parse(sessionStorage.getItem('userData')).stfid;
+        }
 
-        apiCall(url, 'post', requestData, token)
-            .then((response) => {
-                alert(response);
-                window.location.reload();
-            }).catch((error) => {
-                alert("대관 신청에 실패하였습니다. 관리자에게 문의하세요.");
-                console.log("spaceRentApplication error occured = " + error);
-            })
+        if (stfcheck) {
+            alert("유저 아이디로만 허가 신청이 가능합니다.");
+        } else {
+            apiCall(url, 'post', getUserID, token)
+                .then((response) => {
+                    url = '/spaceRentApp/spaceRentApplication';
+                    apiCall(url, 'post', requestData, token)
+                        .then((response) => {
+                            alert(response);
+                            window.location.reload();
+                        }).catch((error) => {
+                            alert("대관 신청에 실패하였습니다. 관리자에게 문의하세요.");
+                            console.log("spaceRentApplication error occured = " + error);
+                        })
+                }).catch((error) => {
+                    alert("이미 신청한 내역이 있습니다.");
+                })
+        }
+
     }
-
-
-
     // 대관신청 ====================================================================================================
 
 
@@ -115,15 +125,18 @@ export default function PlaceRentalContent({ getUserName, getUserID }) {
             <div className='board_div_div'>
                 <div className='PlaceRentalContent_infoTitleBox'>
                     <div className='PlaceRentalContent_infoTitle PlaceRentalContent_infoTitle1'>✔ 대관신청 안내</div>
-                    <div>* 대관신청을 금일 기준 3일 이후 기간의 시설을 대관하실 수 있습니다.</div>
+                    <div>
+                        &#42; 대관신청을 금일 기준 3일 이후 기간의 시설을 대관하실 수 있습니다.
+                        &#42; 금일 기준 3일 이후의 시설은 매일 10시부터 예약 가능합니다.
+                    </div>
                     <div className='PlaceRentalContent_infoTitle PlaceRentalContent_infoTitle2'>✔ 이용 절차</div>
                     <pre className='PlaceRentalContent_infoTitle_pre'>
-                        01&#41; 홈페이지 예약신청 : 홈페이지(http://rec.isdc.co.kr/)로그인(실명인증)후, 사용허가 신청<br />
+                        01&#41; 홈페이지 예약신청 : 홈페이지&#40;http://rec.isdc.co.kr/ 에서 로그인후 사용허가 신청<br />
                         02&#41; 사용허가심의 : 담당자의 사용허가 심의<br />
-                        03&#41; 허가통보 : 심의 후, 허가통보(SMS 발송 및 담당자와 통화)<br />
-                        04&#41; 전용사용료납부 : 시설 이용료 결제(홈페이지에서 결제-카드 & 계좌이체)<br />
+                        03&#41; 허가통보 : 심의 후, 허가통보&#40;SMS 발송 및 담당자와 통화&#41;<br />
+                        04&#41; 전용사용료납부 : 시설 이용료 결제&#40;홈페이지에서 결제-카드 & 계좌이체&#41;<br />
                         05&#41; 부속시설사용허가 : 행사 종료 이후, 부속시설 사용료를 정산하여 담당자가 통보<br />
-                        06&#41; 부속사용료납부 : 담당자통보 후,3일 이내에 부속시설 사용료 납부(시설 이용료 결제 방법과 동일)<br />
+                        06&#41; 부속사용료납부 : 담당자통보 후,3일 이내에 부속시설 사용료 납부&#40;시설 이용료 결제 방법과 동일&#41;<br />
                     </pre>
                 </div>
 

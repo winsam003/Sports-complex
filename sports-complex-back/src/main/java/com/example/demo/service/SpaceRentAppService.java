@@ -14,4 +14,6 @@ public interface SpaceRentAppService {
 	public void runDailyTasks();
 
 	public List<SpaceRentApp> SpaceRentAppAll();
+
+	public List<SpaceRentApp> AppUserCheck();
 }
