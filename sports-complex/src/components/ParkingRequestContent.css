@@ -14,6 +14,10 @@
 .parknotice td {
     text-align: right;
 }
+/* ParkingRequestInfo_title */
+#ParkingRequestInfo_title {
+    color: red;
+}
 /* 잔여 자리 */
 #parknoticeLast{
     color: red;
