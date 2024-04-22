@@ -27,6 +27,11 @@ public class ParkAppServiceImpl implements ParkAppService{
 	}
 	
 	@Override
+	public ParkApp myParkApp(String id) {
+		return repository.myParkApp(id);
+	}
+	
+	@Override
 	public int parkApplication(ParkAppDTO dto) {
 		return repository.parkApplication(dto);
 	}

@@ -984,30 +984,35 @@ CREATE TABLE `parkApp` (
 	`payment` VARCHAR(10) NULL,
 	`parkPrice` INT NULL,
 	`spacecode` VARCHAR(10) NOT NULL, 
+    `
 	FOREIGN KEY (`ID`) REFERENCES `Member` (`ID`), 
 	FOREIGN KEY (`spacecode`) REFERENCES `SPACE` (`spacecode`) 
 );
 
-INSERT INTO `parkApp` (`ID`, `parkAppDate`, `parkUseDate`, `parkAppCancel`, `payment`, `parkPrice`, `spacecode`)
-VALUES ('user076', '2024-04-18', '2024-04-20', 'No', 'Cash', 20, 'FAPA1F'),;
+ALTER TABLE parkapp
+ADD COLUMN parkState VARCHAR(10) DEFAULT 'Next';
+
 
 INSERT INTO `parkApp` (`ID`, `parkAppDate`, `parkUseDate`, `parkAppCancel`, `payment`, `parkPrice`, `spacecode`)
-VALUES ('winsam003', '2024-04-18', '2024-04-20', 'No', 'Cash', 2000, 'FAPA2F');
+VALUES ('user076', '2024-04-18', '2024-04-20', 'No', 'Cash', 10000, 'FAPA1F'),;
 
 INSERT INTO `parkApp` (`ID`, `parkAppDate`, `parkUseDate`, `parkAppCancel`, `payment`, `parkPrice`, `spacecode`)
-VALUES ('user123', '2024-04-18', '2024-04-20', 'No', 'Cash', 20, 'FAPA1F');
+VALUES ('winsam003', '2024-04-18', '2024-04-20', 'No', 'Cash', 10000, 'FAPA2F');
 
 INSERT INTO `parkApp` (`ID`, `parkAppDate`, `parkUseDate`, `parkAppCancel`, `payment`, `parkPrice`, `spacecode`)
-VALUES ('user095', '2024-04-18', '2024-04-20', 'No', 'Cash', 20, 'FAPA1F');
+VALUES ('user123', '2024-04-18', '2024-04-20', 'No', 'Cash', 10000, 'FAPA1F');
 
 INSERT INTO `parkApp` (`ID`, `parkAppDate`, `parkUseDate`, `parkAppCancel`, `payment`, `parkPrice`, `spacecode`)
-VALUES ('bamdboo11', '2024-04-18', '2024-04-20', 'No', 'Cash', 20, 'FAPA2F');
+VALUES ('user095', '2024-04-18', '2024-04-20', 'No', 'Cash', 10000, 'FAPA1F');
 
 INSERT INTO `parkApp` (`ID`, `parkAppDate`, `parkUseDate`, `parkAppCancel`, `payment`, `parkPrice`, `spacecode`)
-VALUES ('bamdboo12', '2024-04-18', '2024-04-20', 'No', 'Cash', 20, 'FAPA2F');
+VALUES ('bamdboo11', '2024-04-18', '2024-04-20', 'No', 'Cash', 10000, 'FAPA2F');
 
 INSERT INTO `parkApp` (`ID`, `parkAppDate`, `parkUseDate`, `parkAppCancel`, `payment`, `parkPrice`, `spacecode`)
-VALUES ('bamdboo13', '2024-04-18', '2024-04-20', 'No', 'Cash', 20, 'FAPA3F');
+VALUES ('bamdboo12', '2024-04-18', '2024-04-20', 'No', 'Cash', 10000, 'FAPA2F');
+
+INSERT INTO `parkApp` (`ID`, `parkAppDate`, `parkUseDate`, `parkAppCancel`, `payment`, `parkPrice`, `spacecode`)
+VALUES ('bamdboo13', '2024-04-18', '2024-04-20', 'No', 'Cash', 10000, 'FAPA3F');
 
 
 

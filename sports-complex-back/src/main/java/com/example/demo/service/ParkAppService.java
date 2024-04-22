@@ -9,6 +9,8 @@ public interface ParkAppService {
 	
 	List<ParkApp> parkappList();
 	
+	ParkApp myParkApp(String id);
+	
 	int parkApplication(ParkAppDTO dto);
 	
 	int spaceParking(String spacecode);

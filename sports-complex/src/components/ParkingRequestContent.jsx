@@ -14,7 +14,7 @@ export default function ParkingRequestContent({getUserName, getUserID}) {
 
         apiCall(url, 'get', null, token)
             .then((list) => {
-                console.log("list : ", list);
+                // console.log("list : ", list);
                 setSpaceList(list);
             }).catch((error) => {
                 console.log("Error: ", error);
@@ -44,9 +44,6 @@ export default function ParkingRequestContent({getUserName, getUserID}) {
 
         // *** 필터는 참인 값의 배열을 반환함. ***
     }
-    
-    // 신청자 
-
 
     // 체크박스 체크시 내 차량 번호 가져오기
     const findMyCar = () => {
@@ -102,21 +99,23 @@ export default function ParkingRequestContent({getUserName, getUserID}) {
 
         // 등록 하는거 만들기. 
         let formPlaceApp = {
-            ID : getUserID, 
-            parkPrice : 10000, 
+            id : getUserID, 
+            parkprice : 10000, 
             spacecode : spacecodeApp, 
             // parkUseDate : '2024-05',
-            carNum : myCarNum, 
+            carnum : myCarNum, 
             payment : payment 
         }
 
+        console.log(formPlaceApp);
         apiCall(url, 'post', formPlaceApp, token)
             .then((response) => {
                 alert(response);
-                console.log("VSC 요청 중 : 주차 등록 완료 ");
+                // console.log("VSC 요청 중 : 주차 등록 완료 ");
+                window.location.reload();
             }).catch((error) => {
                 alert("주차 등록 실패");
-                console.log("parkapp error : " + error);
+                console.log("parkapp error : ", error);
             })
 
     }

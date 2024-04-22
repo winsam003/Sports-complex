@@ -7,6 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,24 +29,28 @@ public class ParkApp {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int parkAppNum;
+	private int parkappnum;
 	
-	@JoinColumn(name = "id")
-	private Member Id;
+	@JoinColumn(name = "id", referencedColumnName = "id")
+	@OneToOne
+//	@OneToMany
+//	@ManyToOne
+	private Member id;
 	
 //	@Temporal(TemporalType.TIMESTAMP)
-	private Date parkAppDate;
+	private Date parkappdate;
 	// 신청한 날짜
 	
-	private Date parkUseDate;
-	private String parkAppCancel;
+	private String parkusedate;
+	private String parkappcancel;
 	private String payment;
-	private int parkPrice;
-	private String parkState;
+	private int parkprice;
+	private String parkstate;
 	
 	@JoinColumn(name = "spacecode")
+	@OneToOne
 	private Space spacecode;
-	private String carNum;
+	private String carnum;
 	
 	
 	

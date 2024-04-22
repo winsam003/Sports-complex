@@ -8,6 +8,8 @@ import com.example.demo.entity.ParkApp;
 public interface ParkAppRepository {
 	
 	public List<ParkApp> parkappList();
+	
+	public ParkApp myParkApp(String id);
 
 	public int parkApplication(ParkAppDTO dto);
 	
