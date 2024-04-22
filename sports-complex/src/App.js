@@ -164,7 +164,7 @@ function App() {
         <Route path='/PlaceRentalInfo' element={<PlaceRentalInfo roleList={roleList} />} />
         <Route path='/PlaceRental' element={<PlaceRental getUserName={getUserName} getUserID={getUserID} />} />
         <Route path='/ParkingRequest' element={<ParkingRequest getUserName={getUserName} getUserID = {getUserID}  />} />
-        <Route path='/ApplicationDetailsPage' element={<ApplicationDetailsPage />} />
+        <Route path='/ApplicationDetailsPage' element={<ApplicationDetailsPage token={token} getUserID={getUserID} />} />
         <Route path='/InfoHandlingPolicyPage' element={<InfoHandlingPolicyPage />} />
         <Route path='/VideoHandlePage' element={<VideoHandlePage />} />
         <Route path='/EmailCollectRefusal' element={<EmailCollectRefusal />} />

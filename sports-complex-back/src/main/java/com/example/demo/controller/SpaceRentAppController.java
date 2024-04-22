@@ -20,6 +20,7 @@ import com.example.demo.domain.SpaceRentAppDTO;
 import com.example.demo.entity.SpaceRentApp;
 import com.example.demo.service.SpaceRentAppServiceImpl;
 
+import io.jsonwebtoken.lang.Arrays;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -89,6 +90,45 @@ public class SpaceRentAppController {
 		
 	}
 	
+	
+	@PostMapping(value="/spaceRentAppDel")
+	public ResponseEntity<String> spaceRentAppDel(@RequestBody int[] checkedUsers) {
+		log.info("spaceRentAppDel Contoller 접촉 성공");
+		
+		if(service.spaceRentAppDel(checkedUsers) == 1) {
+			return ResponseEntity.status(HttpStatus.OK).body("신청 내역 삭제가 완료되었습니다.");				
+		}else {
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(null);
+		}
+	}
+	
+	@PostMapping(value="/historyRental")
+	public ResponseEntity<?> historyRental(@RequestBody SpaceRentAppDTO dto){
+		log.info("historyRental Contoller 접촉 성공");
+		
+		
+		String id = dto.getId();
+		
+		 List<SpaceRentApp> spaceRentApp = service.historyRental(id);
+		
+		if(spaceRentApp != null && spaceRentApp.size() > 0) {
+			return ResponseEntity.status(HttpStatus.OK).body(spaceRentApp);				
+		}else {
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(null);
+		}
+	}
+	
+	@GetMapping(value="/historyCancel")
+	public ResponseEntity<?> historyCancel(@RequestParam("sprnum") int sprnum){
+		log.info("historyCancel Contoller 접촉 성공");
+		
+		if(service.historyCancel(sprnum) > 0) {
+			return ResponseEntity.status(HttpStatus.OK).body(null);				
+		}else {
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(null);
+		}
+		
+	}
 	
 	// 매일 10시 오늘기준 3일 이후 신청 컬럼생성
 	@Scheduled(cron = "0 0 10 * * *")

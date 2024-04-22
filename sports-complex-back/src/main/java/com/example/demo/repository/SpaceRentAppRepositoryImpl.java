@@ -150,4 +150,92 @@ public class SpaceRentAppRepositoryImpl implements SpaceRentAppRepository {
 	} // 이미 대관 신청한 유저 체크
 	
 	
+	
+	@Override
+	public SpaceRentApp SpaceRentAppDetail(int sprnum) {
+		log.info("SpaceRentAppDetail Repository 접촉 성공");
+		return em.createQuery("SELECT s FROM SpaceRentApp s WHERE sprnum = :sprnum", SpaceRentApp.class)
+				.setParameter("sprnum", sprnum)
+				.getSingleResult();
+	}
+	
+	
+	@Override
+	public int spaceRentAppDel(int[] checkedUsers) {
+		log.info("spaceRentAppDel Repository 접촉 성공");
+		
+		SpaceRentApp space = new SpaceRentApp();
+		
+		// 현재 날짜 가져오기
+        LocalDate currentDate1 = LocalDate.now().plusDays(1);
+        LocalDate currentDate2 = LocalDate.now().plusDays(2);
+        LocalDate currentDate3 = LocalDate.now().plusDays(3);
+        
+        // 원하는 형식의 포맷터 설정
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        
+        // 현재 날짜를 원하는 형식으로 변환하여 출력
+        String formattedDate1 = currentDate1.format(formatter);
+        String formattedDate2 = currentDate2.format(formatter);
+        String formattedDate3 = currentDate3.format(formatter);
+        
+		for(int i=0 ; i<checkedUsers.length ; i++) {
+			space = SpaceRentAppDetail(checkedUsers[i]);
+			if(space.getSprdate().contains(formattedDate1) || space.getSprdate().contains(formattedDate2) || space.getSprdate().contains(formattedDate3)) {
+				em.createQuery("UPDATE SpaceRentApp a SET a.appdate = '' ,a.appphonenum = '', a.numofpeople = null, a.id = null, a.sprstate='접수중' WHERE sprnum = :sprnum")
+				.setParameter("sprnum", checkedUsers[i])
+				.executeUpdate();
+			}else {
+				em.createQuery("UPDATE SpaceRentApp a SET a.appdate = '' ,a.appphonenum = '', a.numofpeople = null, a.id = null, a.sprstate='접수만료' WHERE sprnum = :sprnum")
+				.setParameter("sprnum", checkedUsers[i])
+				.executeUpdate();
+			}			
+		}
+		return 1;
+	}
+	
+	@Override
+	public List<SpaceRentApp> historyRental(String id) {
+		log.info("historyRental Repository 접촉 성공");
+		
+		Member member = em.find(Member.class, id);
+		
+		return em.createQuery("SELECT a FROM SpaceRentApp a WHERE id = :id ORDER BY a.sprdate DESC", SpaceRentApp.class)
+				.setParameter("id", member)
+				.getResultList();
+	}
+	
+	@Override
+	public int historyCancel(int sprnum) {
+		log.info("historyCancel Repository 접촉 성공");
+		
+		SpaceRentApp space = new SpaceRentApp();
+		
+		// 현재 날짜 가져오기
+        LocalDate currentDate1 = LocalDate.now().plusDays(1);
+        LocalDate currentDate2 = LocalDate.now().plusDays(2);
+        LocalDate currentDate3 = LocalDate.now().plusDays(3);
+        
+        // 원하는 형식의 포맷터 설정
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        
+        // 현재 날짜를 원하는 형식으로 변환하여 출력
+        String formattedDate1 = currentDate1.format(formatter);
+        String formattedDate2 = currentDate2.format(formatter);
+        String formattedDate3 = currentDate3.format(formatter);
+        
+		space = SpaceRentAppDetail(sprnum);
+		
+		if(space.getSprdate().contains(formattedDate1) || space.getSprdate().contains(formattedDate2) || space.getSprdate().contains(formattedDate3)) {
+			return em.createQuery("UPDATE SpaceRentApp a SET a.appdate = '' ,a.appphonenum = '', a.numofpeople = null, a.id = null, a.sprstate='접수중' WHERE sprnum = :sprnum")
+			.setParameter("sprnum", sprnum)
+			.executeUpdate();
+		}else {
+			return em.createQuery("UPDATE SpaceRentApp a SET a.appdate = '' ,a.appphonenum = '', a.numofpeople = null, a.id = null, a.sprstate='접수만료' WHERE sprnum = :sprnum")
+			.setParameter("sprnum", sprnum)
+			.executeUpdate();
+		}			
+		
+	}
+	
 }
