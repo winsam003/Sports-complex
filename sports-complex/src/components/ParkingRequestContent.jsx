@@ -1,8 +1,6 @@
 import './ParkingRequestContent.css'
 import Submenu from './Submenu'
-import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import axios from 'axios';
 import { apiCall } from '../apiService/apiService';
 
 export default function ParkingRequestContent({getUserName, getUserID}) {
@@ -10,26 +8,22 @@ export default function ParkingRequestContent({getUserName, getUserID}) {
     const [spacelist, setSpaceList] = useState([]);
 
     useEffect(() => {
-        axios.get('/space/spacelist')
+
+        let token = JSON.parse(sessionStorage.getItem("userData")).token;
+        let url = "/space/spacelist";
+
+        apiCall(url, 'get', null, token)
             .then((list) => {
-                setSpaceList(list.data);
-                // console.log(`list.data: ${list.data}`);
+                // console.log("list : ", list);
+                setSpaceList(list);
             }).catch((error) => {
                 console.log("Error: ", error);
             })
+
     }, [])
 
     // 자기 차량 번호 가져오기
     const [isChecked, setIsChecked] = useState(false);
-
-    // 등록 하는거 만들기. 
-    const [formPlaceApp, setFormPlaceApp] = useState({
-        ID : getUserID, 
-        parkPrice : '', 
-        spacecode : '', 
-        parkUseDate : '2024-05',
-        carNum : ''
-    })
 
     // -> 장소
     const [spacecodeApp, setSpacecodeApp] = useState('');
@@ -50,9 +44,6 @@ export default function ParkingRequestContent({getUserName, getUserID}) {
 
         // *** 필터는 참인 값의 배열을 반환함. ***
     }
-    
-    // 신청자 
-
 
     // 체크박스 체크시 내 차량 번호 가져오기
     const findMyCar = () => {
@@ -63,13 +54,17 @@ export default function ParkingRequestContent({getUserName, getUserID}) {
             setIsChecked(false);
             setMyCarNum('');
         } else {
+            
             apiCall(url, 'post', getUserID, null)
                 .then((response) => {
-                    if(response == null){
+                    if(response === ""){
                         alert('차 번호가 없습니다.');
+                        console.log("차 번호 등록 실패 null : ", null);
                     } else {
+                        console.log("response : " , response);
                         setMyCarNum(response);
                         setIsChecked(true);
+                        console.log("차 번호 있어 : ");
                     }
                 }).catch((error) => {
                     alert('차량 등록을 실패하였습니다. ');
@@ -99,10 +94,29 @@ export default function ParkingRequestContent({getUserName, getUserID}) {
             return;
         }
 
-        let url = ""
+        let token = JSON.parse(sessionStorage.getItem("userData")).token;
+        let url = "/parkapp/parkapplication";
 
-        
+        // 등록 하는거 만들기. 
+        let formPlaceApp = {
+            id : getUserID, 
+            parkprice : 10000, 
+            spacecode : spacecodeApp, 
+            // parkUseDate : '2024-05',
+            carnum : myCarNum, 
+            payment : payment 
+        }
 
+        console.log(formPlaceApp);
+        apiCall(url, 'post', formPlaceApp, token)
+            .then((response) => {
+                alert(response);
+                // console.log("VSC 요청 중 : 주차 등록 완료 ");
+                window.location.reload();
+            }).catch((error) => {
+                alert("주차 등록 실패");
+                console.log("parkapp error : ", error);
+            })
 
     }
 
@@ -134,6 +148,11 @@ export default function ParkingRequestContent({getUserName, getUserID}) {
                             }
                         </tbody>
                     </table>
+                    <div>
+                        <p id='ParkingRequestInfo_title'>
+                            * 주차 신청은 달 기준으로 가능하며, 신청 후 이용 시작일은 매월 1일입니다. 
+                        </p>
+                    </div>
                     <div className='ParkingRequestInfo'>
                         <div className='ParkingRequest_p1'>
                             <p>주차장 위치</p>
@@ -160,7 +179,7 @@ export default function ParkingRequestContent({getUserName, getUserID}) {
                             <p>가격</p>
                         </div>
                         <div className='ParkingRequestInfo_borderbox3'>
-                            <p>{spacepriceApp.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} 원</p>
+                            <p>10,000 원</p>
                         </div>
                         <div className='ParkingRequest_p4'>
                             <p>차량번호</p>

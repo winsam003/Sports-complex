@@ -1,6 +1,5 @@
 package com.example.demo.domain;
 
-import java.time.LocalDateTime; 
 import java.sql.Date;
 
 import lombok.AllArgsConstructor;
@@ -14,14 +13,15 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ParkAppDTO {
 	private int parkAppNum;
-	private String Id;
+	private String id;
 	private Date parkAppDate;
-	private Date parkUseDate;
+	private String parkUseDate;
 	private String parkAppCancel;
 	private String payment;
-	private int parkPrice;
+	private int parkprice;
+	private String parkState;
 	private String spacecode;
-	private String carNum;
+	private String carnum;
 	
 	
 	

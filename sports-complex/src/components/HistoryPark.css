@@ -3,3 +3,7 @@
     grid-template-columns: repeat(2, 1fr) 2fr repeat(2, 1fr);
 }
 
+.HistoryPark_Nocontent{
+    display: block;
+}
+

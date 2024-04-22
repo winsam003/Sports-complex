@@ -31,12 +31,27 @@ export default function ApplicationDetails({ token, getUserID }) {
         setCurrentPage(page);
     }
 
+    // 주차 신청 
+    const [myParkapp, setMyParkapp] = useState([]);
+    useEffect(() => {
+        let url = "/parkapp/myparkapp";
+        
+        apiCall(url, 'post', { id: getUserID }, token) 
+            .then((response) => {
+                console.log(response);
+                setMyParkapp(response);
+            }).catch((error) => {
+                console.log("myparkapp : ", error);
+            })
+    }, []);
+
+
     const selectedPage = useMemo(() => {
         switch (currentPage) {
             case 'HistoryClass':
                 return <HistoryClass />
             case 'HistoryPark':
-                return <HistoryPark />
+                return <HistoryPark myParkapp={myParkapp} token={token} />
             case 'HistoryRental':
                 return <HistoryRental history={history} token={token} />
             case 'HistoryBattle':
