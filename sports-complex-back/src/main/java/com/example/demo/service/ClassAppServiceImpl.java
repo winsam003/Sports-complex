@@ -1,8 +1,11 @@
 package com.example.demo.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.example.demo.domain.ClassAppDTO;
+import com.example.demo.entity.ClassApp;
 import com.example.demo.repository.ClassAppRepository;
 import com.example.demo.repository.ClassesRepository;
 
@@ -14,13 +17,18 @@ public class ClassAppServiceImpl implements ClassAppService {
 	private final ClassAppRepository repository;
 	private final ClassesRepository classesRepository;
 
-//	수강 신청
+	@Override
+	public List<ClassApp> classAppList() {
+		return repository.classAppList();
+	}
+
+	// 수강 신청
 	@Override
 	public int classAppInsert(ClassAppDTO dto) {
 		return repository.classAppInsert(dto);
 	}
 
-//	중복 확인
+	// 중복 확인
 	@Override
 	public boolean isDuplicateClassApp(ClassAppDTO dto) {
 		// 중복이면 true를 반환
@@ -67,6 +75,18 @@ public class ClassAppServiceImpl implements ClassAppService {
 	@Override
 	public void classAppDelete(Integer classappnum) {
 		repository.classAppDelete(classappnum);
+	}
+
+	// 해당 수강 신청 정보
+	@Override
+	public ClassApp getClassAppByNum(int classappnum) {
+		return repository.getClassAppByNum(classappnum);
+	}
+
+	// 대기 순번이 가장 빠른 경우 신청 완료로 변경
+	@Override
+	public void updateEarliestWaitingToCompleted(int clnum) {
+		repository.updateEarliestWaitingToCompleted(clnum);
 	}
 
 }
