@@ -17,9 +17,6 @@ export default function XSugangRequestSearchResult({ clnum, classcode, clname, c
     const sessionUserData = sessionStorage.getItem('userData');
     const userData = sessionUserData ? JSON.parse(sessionUserData) : 'null';
 
-    // 신청할 때 필요한 데이터 상태값 관리
-    // const [classAppData, setClassAppData] = useState({});
-
     // 사용자 정보 및 수강 가능 여부를 확인하는 state
     const [memberCode, setMemberCode] = useState(null);
 
@@ -98,8 +95,6 @@ export default function XSugangRequestSearchResult({ clnum, classcode, clname, c
                 clnum, clnum
             }
 
-            console.log(classAppData);
-
             apiCall(url, 'post', classAppData, userData.token)
                 .then((response) => {
                     alert(`${cltype} 신청 성공`);
@@ -117,48 +112,6 @@ export default function XSugangRequestSearchResult({ clnum, classcode, clname, c
             alert('수강 대상을 확인해주세요.');
         }
     };
-    // const handleClassType = () => {
-    //     switch (cltype) {
-    //         case '수강 신청':
-    //         case '대기 신청':
-    //             // 수강 가능 여부 확인
-    //             if (memberCode && memberCode.substring(4, 6) === clfor) {
-    //                 let url = '/classApp/classAppInsert';
-
-    //                 const classAppData = {
-    //                     id: userData.id,
-    //                     clnum, clnum
-    //                 }
-
-    //                 console.log(classAppData);
-
-    //                 apiCall(url, 'post', classAppData, userData.token)
-    //                     .then((response) => {
-    //                         alert("수강 신청 성공");
-    //                         setClassAppStatusCounts(prevCounts => ({
-    //                             ...prevCounts,
-    //                             [clnum]: {
-    //                                 completed: prevCounts?.completed ? prevCounts.completed + 1 : 1,
-    //                                 waiting: prevCounts?.waiting || 0
-    //                             }
-    //                         }));
-    //                     }).catch((error) => {
-    //                         alert("수강 신청 실패 : " + error);
-    //                     });
-    //             } else {
-    //                 alert('수강 대상을 확인해주세요.');
-    //             }
-    //             break;
-    //         case '접수 마감':
-    //             alert('접수 기간을 확인해주세요.');
-    //             break;
-    //         case '대기 마감':
-    //             alert('대기 인원이 가득 찼습니다. 다음 기회에 신청해주세요.');
-    //             break;
-    //         default:
-    //             break;
-    //     }
-    // };
 
     // 클래스 현재원과 대기원을 비교하여 표시
     const countRatio = `${classAppStatusCounts.completed}/${clcount}`;
