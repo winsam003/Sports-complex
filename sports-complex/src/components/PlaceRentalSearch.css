@@ -12,7 +12,7 @@
 /* 대분류, 소분류, 요일선택, 교육대상 span 크기 조정 */
 .PlaceRentalSearch_div div span {
     display: inline-block;
-    width: 70px;
+    width: 100px;
     padding-left: 10px;
 }
 

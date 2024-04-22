@@ -3,18 +3,31 @@ import Submenu from './Submenu'
 import HistoryClass from './HistoryClass'
 import HistoryPark from './HistoryPark'
 import HistoryRental from './HistoryRental'
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import { apiCall } from '../apiService/apiService';
 
-export default function ApplicationDetails() {
+export default function ApplicationDetails({ token, getUserID }) {
 
-    // const tabList = document.querySelectorAll('.ApplicationDetails_list li');
-    
+
+
+    const [history, setHistory] = useState([]);
+    useEffect(() => {
+        let url = '/spaceRentApp/historyRental';
+        let id = getUserID;
+        apiCall(url, 'post', id, token)
+            .then((response) => {
+                setHistory(response);
+            }).catch((error) => {
+                console.log("HistroyRental error Occured = " + error);
+            })
+    }, [])
 
     const [currentPage, setCurrentPage] = useState('HistoryClass');
-
     const pageHandler = (page) => {
-        setCurrentPage(page);
+        setCurrentPage(page);  
     }
+
+    console.log("렌더테스트")
 
     const selectedPage = useMemo(() => {
         switch (currentPage) {
@@ -23,11 +36,11 @@ export default function ApplicationDetails() {
             case 'HistoryPark':
                 return <HistoryPark />
             case 'HistoryRental':
-                return <HistoryRental />
+                return <HistoryRental history={history} token={token} />
         }
     }, [currentPage]);
 
-    return(
+    return (
         <div className='ApplicationDetails_box'>
             <Submenu />
             <div className='ApplicationDetails_Content'>
