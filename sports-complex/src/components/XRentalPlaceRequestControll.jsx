@@ -59,98 +59,99 @@ export default function XRentalPlaceRequestControll({ token }) {
     // 검색기능 / 대분류, 소분류, 시설명검색 저장 ==============================================
 
 
-    console.log(rememberList);
+    // console.log(rememberList);
+    console.log(spaceRentAppAll);
+    console.log(spaceRentAppAll[0].sprstate);
 
     // 검색기능 / 대분류, 소분류, 시설명검색 실행 ==============================================
 
     const handleSearch = () => {
 
-        if (SearchBox.select_Big === '전체' && SearchBox.select_Small === '전체'){
+        if (SearchBox.select_Big === '전체' && SearchBox.select_Small === '전체') {
             setSpaceRentAppAll(rememberList)
-            if (SearchBox.keyword !== ''){
+            if (SearchBox.keyword !== '') {
                 setSpaceRentAppAll(rememberList.filter(item => (item.id !== null ? item.id.name.includes(SearchBox.keyword) : false)));
             }
 
-        } else if (SearchBox.select_Big === '전체' && SearchBox.select_Small === '접수중'){                                                 // 전체 이면서 접수중이라면
+        } else if (SearchBox.select_Big === '전체' && SearchBox.select_Small === '접수중') {                                                 // 전체 이면서 접수중이라면
             setSpaceRentAppAll(rememberList.filter(item => (item.sprstate === '접수중'))                                                     // 접수중 필터링
-                                            .filter(item => (item.id !== null ? item.id.name.includes(SearchBox.keyword) : false)))         // 그중에서 이름에 keyword 포함 값 필터링
-
+                .filter(item => (item.id !== null ? item.id.name.includes(SearchBox.keyword) : false)))                                     // 그중에서 이름에 keyword 포함 값 필터링
 
         } else if (SearchBox.select_Big === '전체' && SearchBox.select_Small === '확정') {
             setSpaceRentAppAll(rememberList.filter(item => (item.sprstate === '확정'))
-                                            .filter(item => (item.id !== null ? item.id.name.includes(SearchBox.keyword) : false)))
+                .filter(item => (item.id !== null ? item.id.name.includes(SearchBox.keyword) : false)))
 
 
         } else if (SearchBox.select_Big === '전체' && SearchBox.select_Small === '접수만료') {
             setSpaceRentAppAll(rememberList.filter(item => (item.sprstate === '접수만료'))
-                                            .filter(item => (item.id !== null ? item.id.name.includes(SearchBox.keyword) : false)))
+                .filter(item => (item.id !== null ? item.id.name.includes(SearchBox.keyword) : false)))
 
 
         } else if (SearchBox.select_Big === '테니스장' && SearchBox.select_Small === '전체') {
             setSpaceRentAppAll(rememberList.filter(item => (item.spacecode.spacecode.substring(2, 4) == 'TE'))
-                                            .filter(item => (item.id !== null ? item.id.name.includes(SearchBox.keyword) : false)))
+                .filter(item => (item.id !== null ? item.id.name.includes(SearchBox.keyword) : false)))
 
 
         } else if (SearchBox.select_Big === '테니스장' && SearchBox.select_Small === '접수중') {                                               // 테니스장이면서 접수중이라면
             setSpaceRentAppAll(rememberList.filter(item => (item.spacecode.spacecode.substring(2, 4) == 'TE'))                                // 전체에서 테니스장 필터링
-                                            .filter(item => (item.sprstate === '접수중'))                                                       // 그중에서 접수중 필터링
-                                            .filter(item => (item.id !== null ? item.id.name.includes(SearchBox.keyword) : false)))            // 그중에서 이름에 keyword 포함 값 필터링
+                .filter(item => (item.sprstate === '접수중'))                                                                                  // 그중에서 접수중 필터링
+                .filter(item => (item.id !== null ? item.id.name.includes(SearchBox.keyword) : false)))                                       // 그중에서 이름에 keyword 포함 값 필터링
 
         } else if (SearchBox.select_Big === '테니스장' && SearchBox.select_Small === '확정') {
             setSpaceRentAppAll(rememberList.filter(item => (item.spacecode.spacecode.substring(2, 4) == 'TE'))
-                                            .filter(item => (item.sprstate === '확정'))
-                                            .filter(item => (item.id !== null ? item.id.name.includes(SearchBox.keyword) : false)))
+                .filter(item => (item.sprstate === '확정'))
+                .filter(item => (item.id !== null ? item.id.name.includes(SearchBox.keyword) : false)))
 
 
         } else if (SearchBox.select_Big === '테니스장' && SearchBox.select_Small === '접수만료') {
             setSpaceRentAppAll(rememberList.filter(item => (item.spacecode.spacecode.substring(2, 4) == 'TE'))
-                                            .filter(item => (item.sprstate === '접수만료'))
-                                            .filter(item => (item.id !== null ? item.id.name.includes(SearchBox.keyword) : false)))
+                .filter(item => (item.sprstate === '접수만료'))
+                .filter(item => (item.id !== null ? item.id.name.includes(SearchBox.keyword) : false)))
 
 
         } else if (SearchBox.select_Big === '풋살장' && SearchBox.select_Small === '전체') {
             setSpaceRentAppAll(rememberList.filter(item => (item.spacecode.spacecode.substring(2, 4) == 'FT'))
-                                            .filter(item => (item.id !== null ? item.id.name.includes(SearchBox.keyword) : false)))
+                .filter(item => (item.id !== null ? item.id.name.includes(SearchBox.keyword) : false)))
 
 
         } else if (SearchBox.select_Big === '풋살장' && SearchBox.select_Small === '접수중') {
             setSpaceRentAppAll(rememberList.filter(item => (item.spacecode.spacecode.substring(2, 4) == 'FT'))
-                                            .filter(item => (item.sprstate === '접수중'))
-                                            .filter(item => (item.id !== null ? item.id.name.includes(SearchBox.keyword) : false)))
+                .filter(item => (item.sprstate === '접수중'))
+                .filter(item => (item.id !== null ? item.id.name.includes(SearchBox.keyword) : false)))
 
 
         } else if (SearchBox.select_Big === '풋살장' && SearchBox.select_Small === '확정') {
             setSpaceRentAppAll(rememberList.filter(item => (item.spacecode.spacecode.substring(2, 4) == 'FT'))
-                                            .filter(item => (item.sprstate === '확정'))
-                                            .filter(item => (item.id !== null ? item.id.name.includes(SearchBox.keyword) : false)))
+                .filter(item => (item.sprstate === '확정'))
+                .filter(item => (item.id !== null ? item.id.name.includes(SearchBox.keyword) : false)))
 
 
         } else if (SearchBox.select_Big === '풋살장' && SearchBox.select_Small === '접수만료') {
             setSpaceRentAppAll(rememberList.filter(item => (item.spacecode.spacecode.substring(2, 4) == 'FT'))
-                                            .filter(item => (item.sprstate === '접수만료'))
-                                            .filter(item => (item.id !== null ? item.id.name.includes(SearchBox.keyword) : false)))
+                .filter(item => (item.sprstate === '접수만료'))
+                .filter(item => (item.id !== null ? item.id.name.includes(SearchBox.keyword) : false)))
 
 
         } else if (SearchBox.select_Big === '농구장' && SearchBox.select_Small === '전체') {
             setSpaceRentAppAll(rememberList.filter(item => (item.spacecode.spacecode.substring(2, 4) == 'BK'))
-                                            .filter(item => (item.id !== null ? item.id.name.includes(SearchBox.keyword) : false)))
+                .filter(item => (item.id !== null ? item.id.name.includes(SearchBox.keyword) : false)))
 
 
         } else if (SearchBox.select_Big === '농구장' && SearchBox.select_Small === '접수중') {
             setSpaceRentAppAll(rememberList.filter(item => (item.spacecode.spacecode.substring(2, 4) == 'BK'))
-                                            .filter(item => (item.sprstate === '접수중'))
-                                            .filter(item => (item.id !== null ? item.id.name.includes(SearchBox.keyword) : false)))
+                .filter(item => (item.sprstate === '접수중'))
+                .filter(item => (item.id !== null ? item.id.name.includes(SearchBox.keyword) : false)))
 
 
         } else if (SearchBox.select_Big === '농구장' && SearchBox.select_Small === '확정') {
             setSpaceRentAppAll(rememberList.filter(item => (item.spacecode.spacecode.substring(2, 4) == 'BK'))
-                                            .filter(item => (item.sprstate === '확정'))
-                                            .filter(item => (item.id !== null ? item.id.name.includes(SearchBox.keyword) : false)))
+                .filter(item => (item.sprstate === '확정'))
+                .filter(item => (item.id !== null ? item.id.name.includes(SearchBox.keyword) : false)))
 
         } else if (SearchBox.select_Big === '농구장' && SearchBox.select_Small === '접수만료') {
             setSpaceRentAppAll(rememberList.filter(item => (item.spacecode.spacecode.substring(2, 4) == 'BK'))
-                                            .filter(item => (item.sprstate === '접수만료'))
-                                            .filter(item => (item.id !== null ? item.id.name.includes(SearchBox.keyword) : false)))
+                .filter(item => (item.sprstate === '접수만료'))
+                .filter(item => (item.id !== null ? item.id.name.includes(SearchBox.keyword) : false)))
 
         }
     }
