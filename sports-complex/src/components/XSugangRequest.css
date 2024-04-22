@@ -9,7 +9,7 @@
 /* 대표항목 */
 .XSugangRequest_index {
     display: grid;
-    grid-template-columns: 50px 2fr 2fr 2fr repeat(3, 1fr) 1fr 75px;
+    grid-template-columns: 50px repeat(7, 1fr);
     margin-top: 30px;
     border-top: 3px solid #C9EDFA;
     background-color: #ceeff250;

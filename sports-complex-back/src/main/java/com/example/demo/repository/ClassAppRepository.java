@@ -1,8 +1,14 @@
 package com.example.demo.repository;
 
+import java.util.List;
+
 import com.example.demo.domain.ClassAppDTO;
+import com.example.demo.entity.ClassApp;
 
 public interface ClassAppRepository {
+	// 수강 신청 목록
+	List<ClassApp> classAppList();
+
 	// 수강 신청
 	int classAppInsert(ClassAppDTO dto);
 
@@ -20,4 +26,10 @@ public interface ClassAppRepository {
 
 	// 수강 신청 삭제
 	void classAppDelete(Integer classappnum);
+
+	// 해당 수강 신청 정보
+	ClassApp getClassAppByNum(int classappnum);
+
+	// 대기 순번이 가장 빠른 경우 신청 완료로 변경
+	void updateEarliestWaitingToCompleted(int clnum);
 }
