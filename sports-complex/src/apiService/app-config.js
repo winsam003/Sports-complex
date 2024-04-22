@@ -32,8 +32,14 @@ const hostname = window && window.location && window.location.hostname;
 
 */
 
+// if (hostname === "localhost") {
+// }
+
+// 탄력적 ip로 변경
 if (hostname === "localhost") {
   backendHost = "http://localhost:8080";
+} else {
+  backendHost = "http://43.200.90.45:8080";
 }
 
 export const API_BASE_URL = `${backendHost}`;

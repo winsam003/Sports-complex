@@ -19,11 +19,11 @@ export default function XclassSearchBox({ onSearch, onReset, classesSearchBTSele
                 <span>대분류
                     <select value={classesSearchBTSelect} onChange={(e) => setClassesSearchBTSelect(e.target.value)} name="XclassSearchBox_MainCategory" id="XclassSearchBox_MainCategory">
                         <option value="전체">전체</option>
-                        <option value="구기">구기</option>
-                        <option value="수상">수상</option>
-                        <option value="댄스">댄스</option>
-                        <option value="라켓">라켓</option>
-                        <option value="웨이트">웨이트</option>
+                        <option value="BA">구기</option>
+                        <option value="WA">수상</option>
+                        <option value="DC">댄스</option>
+                        <option value="LA">라켓</option>
+                        <option value="WE">웨이트</option>
                     </select>
                 </span>
                 <span>세부종목
@@ -37,44 +37,44 @@ export default function XclassSearchBox({ onSearch, onReset, classesSearchBTSele
                         <select name="XclassSearchBox_SubCategory" id="XclassSearchBox_SubCategory"
                             value={classesSearchSTSelect} onChange={(e) => setClassesSearchSTSelect(e.target.value)}>
                             <option value="전체">전체</option>
-                            <option value="농구">농구</option>
-                            <option value="야구">야구</option>
-                            <option value="풋살">풋살</option>
+                            <option value="BK">농구</option>
+                            <option value="BS">야구</option>
+                            <option value="FT">풋살</option>
                         </select>
                     )}
                     {classesSearchBTSelect === '수상' && (
                         <select name="XclassSearchBox_SubCategory" id="XclassSearchBox_SubCategory"
                             value={classesSearchSTSelect} onChange={(e) => setClassesSearchSTSelect(e.target.value)}>
                             <option value="전체">전체</option>
-                            <option value="수영">수영</option>
-                            <option value="다이빙">다이빙</option>
+                            <option value="SW">수영</option>
+                            <option value="DI">다이빙</option>
                         </select>
                     )}
                     {classesSearchBTSelect === '댄스' && (
                         <select name="XclassSearchBox_SubCategory" id="XclassSearchBox_SubCategory"
                             value={classesSearchSTSelect} onChange={(e) => setClassesSearchSTSelect(e.target.value)}>
                             <option value="전체">전체</option>
-                            <option value="k-pop">k-pop</option>
-                            <option value="벨리댄스">벨리댄스</option>
+                            <option value="KP">k-pop</option>
+                            <option value="BD">벨리댄스</option>
                         </select>
                     )}
                     {classesSearchBTSelect === '라켓' && (
                         <select name="XclassSearchBox_SubCategory" id="XclassSearchBox_SubCategory"
                             value={classesSearchSTSelect} onChange={(e) => setClassesSearchSTSelect(e.target.value)}>
                             <option value="전체">전체</option>
-                            <option value="탁구">탁구</option>
-                            <option value="배드민턴">배드민턴</option>
-                            <option value="테니스">테니스</option>
-                            <option value="스쿼시">스쿼시</option>
+                            <option value="PP">탁구</option>
+                            <option value="BM">배드민턴</option>
+                            <option value="TE">테니스</option>
+                            <option value="SQ">스쿼시</option>
                         </select>
                     )}
                     {classesSearchBTSelect === '웨이트' && (
                         <select name="XclassSearchBox_SubCategory" id="XclassSearchBox_SubCategory"
                             value={classesSearchSTSelect} onChange={(e) => setClassesSearchSTSelect(e.target.value)}>
                             <option value="전체">전체</option>
-                            <option value="클라이밍">클라이밍</option>
-                            <option value="크로스핏">크로스핏</option>
-                            <option value="필라테스">필라테스</option>
+                            <option value="CL">클라이밍</option>
+                            <option value="CR">크로스핏</option>
+                            <option value="PI">필라테스</option>
                         </select>
                     )}
                 </span>
