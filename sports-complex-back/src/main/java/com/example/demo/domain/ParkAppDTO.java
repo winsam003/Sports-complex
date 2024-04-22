@@ -1,6 +1,5 @@
 package com.example.demo.domain;
 
-import java.time.LocalDateTime; 
 import java.sql.Date;
 
 import lombok.AllArgsConstructor;
@@ -20,6 +19,7 @@ public class ParkAppDTO {
 	private String parkAppCancel;
 	private String payment;
 	private int parkPrice;
+	private String parkState;
 	private String spacecode;
 	private String carNum;
 	

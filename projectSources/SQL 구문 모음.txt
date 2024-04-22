@@ -977,9 +977,9 @@ CREATE TABLE `banner` (
 CREATE TABLE `parkApp` (
 	`parkAppNum` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	`ID` VARCHAR(15) NOT NULL, 
-	`parkAppDate` DATE NOT NULL,
+	`parkAppDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	`parkUseDate` DATE NOT NULL,
-	`parkAppCancel` VARCHAR(5) NOT NULL,
+	`parkAppCancel` VARCHAR(5) NOT NULL DEFAULT 'No',
 	`payment` VARCHAR(10) NULL,
 	`parkPrice` INT NULL,
 	`spacecode` VARCHAR(10) NOT NULL, 
