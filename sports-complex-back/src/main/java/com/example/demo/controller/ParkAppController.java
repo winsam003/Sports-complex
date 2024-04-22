@@ -15,7 +15,7 @@ import lombok.extern.log4j.Log4j2;
 @RestController
 @RequestMapping("/parkapp")
 public class ParkAppController {
-	ParkAppServiceImpl service;
+//	ParkAppServiceImpl service;
 	
 	// 인서트 부터 만들기. 
 	
