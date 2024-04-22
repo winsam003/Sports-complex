@@ -47,6 +47,49 @@ public class SpaceRentAppServiceImpl implements SpaceRentAppService{
 	
 	@Override
 	public List<SpaceRentApp> AppUserCheck() {
+		log.info("AppUserCheck Service 접촉 성공");
 		return repository.AppUserCheck();
+	}
+	
+	@Override
+	public int spaceRentAppDel(int[] checkedUsers) {
+		log.info("spaceRentAppDel Service 접촉 성공");
+		return repository.spaceRentAppDel(checkedUsers);
+	}
+	
+	@Override
+	public List<SpaceRentApp> historyRental(String id) {
+		log.info("historyRental Service 접촉 성공");
+		return repository.historyRental(id);
+	}
+	
+	@Override
+	public int historyCancel(int sprnum) {
+		log.info("historyCancel Service 접촉 성공");
+		return repository.historyCancel(sprnum);
+	}
+	
+	@Override
+	public int requestBattle(SpaceRentAppDTO dto) {
+		log.info("historyCancel Service 접촉 성공");
+		return repository.requestBattle(dto);
+	}
+	
+	@Override
+	public int battleAgree(int sprnum) {
+		log.info("historyCancel Service 접촉 성공");
+		return repository.battleAgree(sprnum);
+	}
+	
+	@Override
+	public List<SpaceRentApp> historyBattle(String id) {
+		log.info("historyCancel Service 접촉 성공");
+		return repository.historyBattle(id);
+	}
+	
+	@Override
+	public int battleCancel(int sprnum) {
+		log.info("battleCancel Service 접촉 성공");
+		return repository.battleCancel(sprnum);
 	}
 }
