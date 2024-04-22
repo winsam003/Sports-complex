@@ -23,7 +23,7 @@ export default function XQnaControllContent() {
     useEffect(() => {
         const loadQnaList = async () => {
             let url = '/qna/qnaList';
-
+            console.log(apiCall(url, 'get', null, null))
             apiCall(url, 'get', null, null)
                 .then((response) => {
                     setqna(response);

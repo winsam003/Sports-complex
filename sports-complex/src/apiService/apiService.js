@@ -38,6 +38,7 @@ export async function apiCall(url, method, requestData, token) {
 
     // 1.2) axios 전송 options
     let options = {
+        // url: API_BASE_URL + url,
         url: API_BASE_URL + url,
         method: method,
         headers: headers,

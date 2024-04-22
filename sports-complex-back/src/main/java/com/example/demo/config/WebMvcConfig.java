@@ -15,21 +15,21 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/").setViewName("redirect:/home");
-	} //addViewControllers
+	} // addViewControllers
 
 	private final long MAX_AGE_SECS = 3600; // 단위:초
-
 
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
 		// 모든 경로에 대해
 		registry.addMapping("/**")
-						// Origin이 http:localhost:3000에 대해
-						.allowedOrigins("http://localhost:3000")
-						// GET, POST, PUT, PATCH, DELETE, OPTIONS 메서드를 허용한다.
-						.allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
-						.allowedHeaders("*")
-						.allowCredentials(true)
-						.maxAge(MAX_AGE_SECS);
+		// Origin이 http:localhost:3000에 대해
+//				.allowedOrigins("http://localhost:3000")
+				// 탄력적 ip주소 할당해주기
+				.allowedOrigins("http://localhost:3000",
+						"http://dbrghl-bucket.s3-website.ap-northeast-2.amazonaws.com/")
+				// GET, POST, PUT, PATCH, DELETE, OPTIONS 메서드를 허용한다.
+				.allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS").allowedHeaders("*")
+				.allowCredentials(true).maxAge(MAX_AGE_SECS);
 	}
-} //class
+} // class
