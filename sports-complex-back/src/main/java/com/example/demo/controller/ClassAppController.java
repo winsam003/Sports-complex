@@ -157,7 +157,7 @@ public class ClassAppController {
 				}
 			}
 		} catch (Exception e) {
-			System.out.println(" classes Delete Excpetion => " + e.toString());
+			System.out.println(" classes Cancel Excpetion => " + e.toString());
 		}
 	}
 
@@ -171,6 +171,16 @@ public class ClassAppController {
 			return ResponseEntity.status(HttpStatus.OK).body(classApp);
 		} else {
 			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(null);
+		}
+	}
+
+	// 결제
+	@GetMapping("/classAppPayment")
+	public void classAppPayment(@RequestParam("classappnum") Integer classappnum) {
+		try {
+			service.classAppPayment(classappnum);
+		} catch (Exception e) {
+			System.out.println(" classes Payment Excpetion => " + e.toString());
 		}
 	}
 }

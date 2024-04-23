@@ -39,7 +39,7 @@ export default function HistoryClassContent({ classappnum, classappdate, classap
             <p>{payment}</p>
             {classappstate === '신청 완료' ?
                 <div className='HistoryClassContent'>
-                    <button onClick={handlePayment}>결제</button>
+                    <button onClick={() => handlePayment(classappnum)}>결제</button>
                     <button onClick={() => handleCancel(classappnum)}>취소</button>
                 </div>
                 :

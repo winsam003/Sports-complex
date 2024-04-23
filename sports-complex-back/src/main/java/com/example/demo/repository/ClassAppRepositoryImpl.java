@@ -60,7 +60,7 @@ public class ClassAppRepositoryImpl implements ClassAppRepository {
 	@Override
 	public int getCompletedCount(int clnum) {
 		return ((Number) em.createQuery(
-				"SELECT COUNT(ca) FROM ClassApp ca WHERE ca.classes.clnum = :clnum AND ca.classappstate = '신청 완료'")
+				"SELECT COUNT(ca) FROM ClassApp ca WHERE ca.classes.clnum = :clnum AND (ca.classappstate = '신청 완료' OR ca.classappstate = '결제 완료')")
 				.setParameter("clnum", clnum).getSingleResult()).intValue();
 	}
 
@@ -126,4 +126,10 @@ public class ClassAppRepositoryImpl implements ClassAppRepository {
 				ClassApp.class).setParameter("id", id).getResultList();
 	}
 
+	// 결제
+	@Override
+	public void classAppPayment(Integer classappnum) {
+		em.createQuery("UPDATE ClassApp ca SET ca.classappstate = '결제 완료' WHERE ca.classappnum = :classappnum")
+				.setParameter("classappnum", classappnum).executeUpdate();
+	}
 }

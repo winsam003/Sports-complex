@@ -47,4 +47,7 @@ public interface ClassAppService {
 
 	// 수강 신청 내역
 	List<ClassApp> myClassAppHistory(String id);
+
+	// 결제
+	void classAppPayment(Integer classappnum);
 }

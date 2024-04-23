@@ -103,4 +103,9 @@ public class ClassAppServiceImpl implements ClassAppService {
 		return repository.myClassAppHistory(id);
 	}
 
+	// 결제
+	@Override
+	public void classAppPayment(Integer classappnum) {
+		repository.classAppPayment(classappnum);
+	}
 }

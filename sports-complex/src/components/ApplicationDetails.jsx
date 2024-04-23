@@ -64,10 +64,18 @@ export default function ApplicationDetails({ token, getUserID }) {
     };
 
     // 결제
-    const handlePayment = () => {
+    const handlePayment = (classappnum) => {
         const confirmed = window.confirm("결제를 진행하시겠습니까?");
         if (confirmed) {
-            alert("결제가 완료되었습니다.");
+            let url = '/classApp/classAppPayment';
+
+            apiCall(url + `?classappnum=${classappnum}`, 'get', null, token)
+                .then(() => {
+                    fetchClassAppHistory();
+                    alert("결제가 완료되었습니다.");
+                }).catch((error) => {
+                    console.error(`결제 실패 : `, error);
+                });
         }
     };
 
@@ -82,7 +90,7 @@ export default function ApplicationDetails({ token, getUserID }) {
                     fetchClassAppHistory();
                     alert("취소 신청이 완료되었습니다.");
                 }).catch((error) => {
-                    console.error(`수강 신청 삭제 실패 : `, error);
+                    console.error(`수강 신청 취소 실패 : `, error);
                 });
         }
     };
