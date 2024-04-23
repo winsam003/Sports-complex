@@ -33,15 +33,14 @@ public class ParkApp {
 	
 	@JoinColumn(name = "id", referencedColumnName = "id")
 	@OneToOne
-//	@OneToMany
-//	@ManyToOne
 	private Member id;
 	
-//	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	private Date parkappdate;
 	// 신청한 날짜
 	
 	private String parkusedate;
+	
 	private String parkappcancel;
 	private String payment;
 	private int parkprice;
