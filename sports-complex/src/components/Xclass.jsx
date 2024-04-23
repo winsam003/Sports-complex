@@ -84,21 +84,8 @@ export default function Xclass() {
     console.log(classes)
     // 검색
 
-    useEffect(() => {
-        handleSearch();
-    }, [classesSearchBTSelect, classesSearchSTSelect, classesSearchDaySelect, classesSearchTargetSelect, classesSearchInput]);
-
     const handleSearch = () => {
         const filteredResult = classes.filter(classes => {
-            const { classesSearchBTSelect, classesSearchSTSelect, classesSearchDaySelect, classesSearchTargetSelect } = classes;
-
-            console.log("필터에 들어강는 classes 데이터 확인 : ", classes);
-            console.log("필터에 들어강는 선택된 대분류 데이터 확인 검색창 : ", classesSearchBTSelect);
-            console.log("필터에 들어강는 선택된 대분류 데이터 확인 : ", classes.classcode.substring(2, 4));
-            console.log("필터에 들어강는 선택된 소분류 데이터 확인 검색창 : ", classesSearchSTSelect);
-            console.log("필터에 들어강는 선택된 소분류 데이터 확인 : ", classes.classcode.substring(4, 6));
-            console.log("필터에 들어강는 선택된 요일 데이터 확인 : ", classes.cldays);
-            console.log("필터에 들어강는 선택된 요일 데이터 확인 : ", classes.cldays.includes(classesSearchDaySelect));
 
             // 대분류, 세부종목, 요일, 대상이 모두 '전체'인 경우
             if (classesSearchBTSelect === '전체' && classesSearchSTSelect === '전체' &&

@@ -33,7 +33,7 @@ export default function XclassSearchBox({ onSearch, onReset, classesSearchBTSele
                             <option value="전체">전체</option>
                         </select>
                     )}
-                    {classesSearchBTSelect === '구기' && (
+                    {classesSearchBTSelect === 'BA' && (
                         <select name="XclassSearchBox_SubCategory" id="XclassSearchBox_SubCategory"
                             value={classesSearchSTSelect} onChange={(e) => setClassesSearchSTSelect(e.target.value)}>
                             <option value="전체">전체</option>
@@ -42,7 +42,7 @@ export default function XclassSearchBox({ onSearch, onReset, classesSearchBTSele
                             <option value="FT">풋살</option>
                         </select>
                     )}
-                    {classesSearchBTSelect === '수상' && (
+                    {classesSearchBTSelect === 'WA' && (
                         <select name="XclassSearchBox_SubCategory" id="XclassSearchBox_SubCategory"
                             value={classesSearchSTSelect} onChange={(e) => setClassesSearchSTSelect(e.target.value)}>
                             <option value="전체">전체</option>
@@ -50,7 +50,7 @@ export default function XclassSearchBox({ onSearch, onReset, classesSearchBTSele
                             <option value="DI">다이빙</option>
                         </select>
                     )}
-                    {classesSearchBTSelect === '댄스' && (
+                    {classesSearchBTSelect === 'DC' && (
                         <select name="XclassSearchBox_SubCategory" id="XclassSearchBox_SubCategory"
                             value={classesSearchSTSelect} onChange={(e) => setClassesSearchSTSelect(e.target.value)}>
                             <option value="전체">전체</option>
@@ -58,7 +58,7 @@ export default function XclassSearchBox({ onSearch, onReset, classesSearchBTSele
                             <option value="BD">벨리댄스</option>
                         </select>
                     )}
-                    {classesSearchBTSelect === '라켓' && (
+                    {classesSearchBTSelect === 'LA' && (
                         <select name="XclassSearchBox_SubCategory" id="XclassSearchBox_SubCategory"
                             value={classesSearchSTSelect} onChange={(e) => setClassesSearchSTSelect(e.target.value)}>
                             <option value="전체">전체</option>
@@ -68,7 +68,7 @@ export default function XclassSearchBox({ onSearch, onReset, classesSearchBTSele
                             <option value="SQ">스쿼시</option>
                         </select>
                     )}
-                    {classesSearchBTSelect === '웨이트' && (
+                    {classesSearchBTSelect === 'WE' && (
                         <select name="XclassSearchBox_SubCategory" id="XclassSearchBox_SubCategory"
                             value={classesSearchSTSelect} onChange={(e) => setClassesSearchSTSelect(e.target.value)}>
                             <option value="전체">전체</option>

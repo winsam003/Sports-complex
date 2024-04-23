@@ -43,7 +43,6 @@ public class ClassesServiceImpl implements ClassesService {
 	@Scheduled(cron = "0 0 9 * * *") // 아침 9시에 실행되도록 변경
 	@Transactional
 	public void updateClassesStatusMorning() {
-
 		LocalDate today = LocalDate.now(); // 현재 날짜 정보만 포함하는 객체 생성
 
 		// 현재 날짜와 clrequest 비교하여 cltype을 신청 가능으로 변경
