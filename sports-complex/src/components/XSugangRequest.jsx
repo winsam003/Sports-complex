@@ -1,6 +1,6 @@
 import './XSugangRequest.css'
 import Submenu from './Submenu';
-import XclassSearchBox from './XclassSearchBox';
+import SugangRequestSearchbox from './SugangRequestSearchbox';
 import XSugangRequestList from './XSugangRequestList';
 import { useState, useEffect } from 'react';
 import { apiCall } from '../apiService/apiService';
@@ -15,6 +15,7 @@ export default function XSugangRequest() {
     const [classesSearchDaySelect, setClassesSearchDaySelect] = useState('전체');
     const [classesSearchTargetSelect, setClassesSearcTargetSelect] = useState('전체');
     const [classesSearchInput, setClassesSearchInput] = useState('');
+    const [idSearchInput, setIdSearchInput] = useState('');
     // 검색 기능
     const [searchResult, setSearchResult] = useState([]);
 
@@ -37,8 +38,6 @@ export default function XSugangRequest() {
         }
         loadclassAppList();
     }, [selectedClassApp])
-
-    console.log(selectedClassApp)
 
     // 수강 신청 선택
     const handleToggleCheckbox = (classappnum) => {
@@ -74,8 +73,7 @@ export default function XSugangRequest() {
 
     // 검색
     const handleSearch = () => {
-        const filteredResult = classApp.filter(classes => {
-            const { classesSearchBTSelect, classesSearchSTSelect, classesSearchDaySelect, classesSearchTargetSelect } = classes;
+        const filteredResult = classApp.filter(classApp => {
 
             // 대분류, 세부종목, 요일, 대상이 모두 '전체'인 경우
             if (classesSearchBTSelect === '전체' && classesSearchSTSelect === '전체' &&
@@ -83,16 +81,16 @@ export default function XSugangRequest() {
                 return true;
             }
             // 각 조건에 따른 필터링
-            if (classesSearchBTSelect !== '전체' && classesSearchBTSelect !== classes.classcode.substring(2, 4)) {
+            if (classesSearchBTSelect !== '전체' && classesSearchBTSelect !== classApp.classes.classcode.substring(2, 4)) {
                 return false;
             }
-            if (classesSearchSTSelect !== '전체' && classesSearchSTSelect !== classes.classcode.substring(4, 6)) {
+            if (classesSearchSTSelect !== '전체' && classesSearchSTSelect !== classApp.classes.classcode.substring(4, 6)) {
                 return false;
             }
-            if (classesSearchDaySelect !== '전체' && !classes.cldate.includes(classesSearchDaySelect)) {
+            if (classesSearchDaySelect !== '전체' && !classApp.classes.cldays.includes(classesSearchDaySelect)) {
                 return false;
             }
-            if (classesSearchTargetSelect !== '전체' && classesSearchTargetSelect !== classes.clfor) {
+            if (classesSearchTargetSelect !== '전체' && classesSearchTargetSelect !== classApp.classes.clfor) {
                 return false;
             }
             return true;
@@ -108,33 +106,40 @@ export default function XSugangRequest() {
         setClassesSearchDaySelect('전체');
         setClassesSearcTargetSelect('전체');
         setClassesSearchInput('');
+        setIdSearchInput('');
     }
 
     return (
         <div className='XSugangRequest_div'>
             <Submenu />
             <div className='XSugangRequest_div_div'>
-                <XclassSearchBox onSearch={handleSearch} onReset={reset}
+                <SugangRequestSearchbox onSearch={handleSearch} onReset={reset}
                     classesSearchBTSelect={classesSearchBTSelect} setClassesSearchBTSelect={setClassesSearchBTSelect}
                     classesSearchSTSelect={classesSearchSTSelect} setClassesSearchSTSelect={setClassesSearchSTSelect}
                     classesSearchDaySelect={classesSearchDaySelect} setClassesSearchDaySelect={setClassesSearchDaySelect} classesSearchTargetSelect={classesSearchTargetSelect}
                     setClassesSearcTargetSelect={setClassesSearcTargetSelect}
                     classesSearchInput={classesSearchInput} setClassesSearchInput={setClassesSearchInput}
+                    idSearchInput={idSearchInput} setIdSearchInput={setIdSearchInput}
                 />
                 <div className='XSugangRequest_index_div'>
                     <div className='XSugangRequest_index'>
                         <p>선택</p>
-                        <p>수강신청번호</p>
+                        <p>신청번호</p>
                         <p>아이디</p>
                         <p>신청일자</p>
-                        <p>신청상태</p>
                         <p>강좌번호</p>
+                        <p>강좌명</p>
                         <p>금액</p>
+                        <p>신청상태</p>
                         <p>결제방법</p>
                     </div>
-                    {searchResult && searchResult.filter((item) => (
-                        (classesSearchInput.trim() === '' || item.clname.toLowerCase().includes(classesSearchInput.toLowerCase()))
-                    )).map((item, index) => (
+                    {searchResult && searchResult.filter((item) => {
+                        const isClassNameMatch = classesSearchInput.trim() === '' || item.classes.clname.toLowerCase().includes(classesSearchInput.toLowerCase());
+
+                        const isIdMatch = idSearchInput.trim() === '' || item.member.id.toLowerCase().includes(idSearchInput.toLowerCase());
+
+                        return isClassNameMatch && isIdMatch;
+                    }).map((item, index) => (
                         <XSugangRequestList key={index} {...item} onToggleCheckbox={handleToggleCheckbox} isChecked={selectedClassApp.includes(item.classappnum)} />
                     ))}
                 </div>
