@@ -76,36 +76,36 @@ public class SpaceRentAppRepositoryImpl implements SpaceRentAppRepository {
         String formattedDate = currentDate.format(formatter);
 		
 		em.createNativeQuery("INSERT INTO spaceRentApp (spaceCode, spRDate, spRState, payment, spRState2) VALUES " +
-						"('FABK1C','"+formattedDate+" 06:00:00', '접수중', 0, '접수중'), "+
-						"('FABK2C','"+formattedDate+" 06:00:00', '접수중', 0, '접수중'), "+
-						"('FAFT1C','"+formattedDate+" 06:00:00', '접수중', 0, '접수중'), "+
-						"('FAFT2C','"+formattedDate+" 06:00:00', '접수중', 0, '접수중'), "+
-						"('FATE1C','"+formattedDate+" 06:00:00', '접수중', 0, '접수중'), "+
-						"('FATE2C','"+formattedDate+" 06:00:00', '접수중', 0, '접수중'), "+
-						"('FABK1C','"+formattedDate+" 09:00:00', '접수중', 0, '접수중'), "+
-						"('FABK2C','"+formattedDate+" 09:00:00', '접수중', 0, '접수중'), "+
-						"('FAFT1C','"+formattedDate+" 09:00:00', '접수중', 0, '접수중'), "+
-						"('FAFT2C','"+formattedDate+" 09:00:00', '접수중', 0, '접수중'), "+
-						"('FATE1C','"+formattedDate+" 09:00:00', '접수중', 0, '접수중'), "+
-						"('FATE2C','"+formattedDate+" 09:00:00', '접수중', 0, '접수중'), "+
-						"('FABK1C','"+formattedDate+" 12:00:00', '접수중', 0, '접수중'), "+
-						"('FABK2C','"+formattedDate+" 12:00:00', '접수중', 0, '접수중'), "+
-						"('FAFT1C','"+formattedDate+" 12:00:00', '접수중', 0, '접수중'), "+
-						"('FAFT2C','"+formattedDate+" 12:00:00', '접수중', 0, '접수중'), "+
-						"('FATE1C','"+formattedDate+" 12:00:00', '접수중', 0, '접수중'), "+
-						"('FATE2C','"+formattedDate+" 12:00:00', '접수중', 0, '접수중'), "+
-						"('FABK1C','"+formattedDate+" 15:00:00', '접수중', 0, '접수중'), "+
-						"('FABK2C','"+formattedDate+" 15:00:00', '접수중', 0, '접수중'), "+
-						"('FAFT1C','"+formattedDate+" 15:00:00', '접수중', 0, '접수중'), "+
-						"('FAFT2C','"+formattedDate+" 15:00:00', '접수중', 0, '접수중'), "+
-						"('FATE1C','"+formattedDate+" 15:00:00', '접수중', 0, '접수중'), "+
-						"('FATE2C','"+formattedDate+" 15:00:00', '접수중', 0, '접수중'), "+
-						"('FABK1C','"+formattedDate+" 18:00:00', '접수중', 0, '접수중'), "+
-						"('FABK2C','"+formattedDate+" 18:00:00', '접수중', 0, '접수중'), "+
-						"('FAFT1C','"+formattedDate+" 18:00:00', '접수중', 0, '접수중'), "+
-						"('FAFT2C','"+formattedDate+" 18:00:00', '접수중', 0, '접수중'), "+
-						"('FATE1C','"+formattedDate+" 18:00:00', '접수중', 0, '접수중'), "+
-						"('FATE2C','"+formattedDate+" 18:00:00', '접수중', 0, '접수중') "
+						"('FABK1C','"+formattedDate+" 06:00:00', '접수중', '신용카드', '접수중'), "+
+						"('FABK2C','"+formattedDate+" 06:00:00', '접수중', '신용카드', '접수중'), "+
+						"('FAFT1C','"+formattedDate+" 06:00:00', '접수중', '신용카드', '접수중'), "+
+						"('FAFT2C','"+formattedDate+" 06:00:00', '접수중', '신용카드', '접수중'), "+
+						"('FATE1C','"+formattedDate+" 06:00:00', '접수중', '신용카드', '접수중'), "+
+						"('FATE2C','"+formattedDate+" 06:00:00', '접수중', '신용카드', '접수중'), "+
+						"('FABK1C','"+formattedDate+" 09:00:00', '접수중', '신용카드', '접수중'), "+
+						"('FABK2C','"+formattedDate+" 09:00:00', '접수중', '신용카드', '접수중'), "+
+						"('FAFT1C','"+formattedDate+" 09:00:00', '접수중', '신용카드', '접수중'), "+
+						"('FAFT2C','"+formattedDate+" 09:00:00', '접수중', '신용카드', '접수중'), "+
+						"('FATE1C','"+formattedDate+" 09:00:00', '접수중', '신용카드', '접수중'), "+
+						"('FATE2C','"+formattedDate+" 09:00:00', '접수중', '신용카드', '접수중'), "+
+						"('FABK1C','"+formattedDate+" 12:00:00', '접수중', '신용카드', '접수중'), "+
+						"('FABK2C','"+formattedDate+" 12:00:00', '접수중', '신용카드', '접수중'), "+
+						"('FAFT1C','"+formattedDate+" 12:00:00', '접수중', '신용카드', '접수중'), "+
+						"('FAFT2C','"+formattedDate+" 12:00:00', '접수중', '신용카드', '접수중'), "+
+						"('FATE1C','"+formattedDate+" 12:00:00', '접수중', '신용카드', '접수중'), "+
+						"('FATE2C','"+formattedDate+" 12:00:00', '접수중', '신용카드', '접수중'), "+
+						"('FABK1C','"+formattedDate+" 15:00:00', '접수중', '신용카드', '접수중'), "+
+						"('FABK2C','"+formattedDate+" 15:00:00', '접수중', '신용카드', '접수중'), "+
+						"('FAFT1C','"+formattedDate+" 15:00:00', '접수중', '신용카드', '접수중'), "+
+						"('FAFT2C','"+formattedDate+" 15:00:00', '접수중', '신용카드', '접수중'), "+
+						"('FATE1C','"+formattedDate+" 15:00:00', '접수중', '신용카드', '접수중'), "+
+						"('FATE2C','"+formattedDate+" 15:00:00', '접수중', '신용카드', '접수중'), "+
+						"('FABK1C','"+formattedDate+" 18:00:00', '접수중', '신용카드', '접수중'), "+
+						"('FABK2C','"+formattedDate+" 18:00:00', '접수중', '신용카드', '접수중'), "+
+						"('FAFT1C','"+formattedDate+" 18:00:00', '접수중', '신용카드', '접수중'), "+
+						"('FAFT2C','"+formattedDate+" 18:00:00', '접수중', '신용카드', '접수중'), "+
+						"('FATE1C','"+formattedDate+" 18:00:00', '접수중', '신용카드', '접수중'), "+
+						"('FATE2C','"+formattedDate+" 18:00:00', '접수중', '신용카드', '접수중') "
 						).executeUpdate(); 
 		
 		
@@ -295,7 +295,7 @@ public class SpaceRentAppRepositoryImpl implements SpaceRentAppRepository {
 	// 경기 취소
 	@Override
 	public int battleCancel(int sprnum) {
-		return em.createQuery("UPDATE SpaceRentApp a SET a.sprstate2 = '접수중' WHERE sprnum = :sprnum")
+		return em.createQuery("UPDATE SpaceRentApp a SET a.sprstate2 = '접수중', a.id2 = null, payment2 = null, appphonenum2 = null, numofpeople2 = null, appdate2 = null WHERE sprnum = :sprnum")
 				.setParameter("sprnum", sprnum)
 				.executeUpdate();
 	} // 경기 취소

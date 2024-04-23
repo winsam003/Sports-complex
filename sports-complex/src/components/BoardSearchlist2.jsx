@@ -19,18 +19,33 @@ export default function BoardSearchList2({ quest, notnum, nottitle, stfid, notda
 
     const navigate = useNavigate();
     const boardDetail = () => {
-        navigate(`/FaqControllPageDetailPage?notnum=${notnum}`, {
-            state: {
-                notnum: notnum,
-                nottitle: nottitle,
-                quest: quest,
-                stfid: stfid,
-                notdate: notdate,
-                notuploadfile: notuploadfile,
-                notcount: notcount,
-                notdetail: notdetail
-            }
-        });
+        if (window.location.pathname === '/Faq') {
+            navigate(`/FaqControllPageDetailPage?notnum=${notnum}`, {
+                state: {
+                    notnum: notnum,
+                    nottitle: nottitle,
+                    quest: quest,
+                    stfid: stfid,
+                    notdate: notdate,
+                    notuploadfile: notuploadfile,
+                    notcount: notcount,
+                    notdetail: notdetail
+                }
+            });
+        }else{
+            navigate(`/BoardControllPageDetailPage?notnum=${notnum}`, {
+                state: {
+                    notnum: notnum,
+                    nottitle: nottitle,
+                    quest: quest,
+                    stfid: stfid,
+                    notdate: notdate,
+                    notuploadfile: notuploadfile,
+                    notcount: notcount,
+                    notdetail: notdetail
+                }
+            });
+        }
     }
 
 

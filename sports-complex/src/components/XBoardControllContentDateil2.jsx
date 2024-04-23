@@ -59,11 +59,11 @@ export default function XBoardControllContentDateil2() {
     const modify = () => {
         setModifyOn(true);
     }
-    const userData = JSON.parse(sessionStorage.getItem('userData'));
-    let token = userData.token;
-
+    
     const navigate = useNavigate();
     const noticeModify = () => {
+        const userData = JSON.parse(sessionStorage.getItem('userData'));
+        let token = userData.token;
         if (window.confirm("정말 수정하시겠습니까?")) {
             let url = '/notice/noticeModify';
             const formData = new FormData();
@@ -99,7 +99,7 @@ export default function XBoardControllContentDateil2() {
             <div className="XBoardControllContentDateil2Containor">
                 <div className='XBoardControllContentDateil2_Box'>
                     
-                    {location.pathname.indexOf("/FaqControllPageDetailPage") !== -1 ?
+                    {location.pathname.indexOf("/BoardControllPageDetailPage") !== -1 || location.pathname.indexOf("/FaqControllPageDetailPage") !== -1 ?
                         ""
                     :
                         <div className='XBoardControllContentDateil2_modityBtnBox'>

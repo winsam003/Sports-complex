@@ -230,7 +230,7 @@ export const PageBannerData = [
     // 인적관리 인적관리 인적관리 인적관리 인적관리 인적관리 인적관리 인적관리 인적관리
     {
         "id": "8",
-        "parameter": 'UserInfoPage',
+        "parameter": 'XUserInfoPage',
         "page": '회원정보 관리',
         "title": '인적 관리',
         "checkMenu": "Y"

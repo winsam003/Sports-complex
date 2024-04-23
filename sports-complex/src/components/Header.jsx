@@ -13,7 +13,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { TbUserPlus } from "react-icons/tb";
 
-export default function Header({ checkAdminPage, logout, getUserName }) {
+export default function Header({ checkAdminPage, logout, getUserName, roleList }) {
 
 
 
@@ -33,6 +33,12 @@ export default function Header({ checkAdminPage, logout, getUserName }) {
                         <Link to='/JoinPage1' className='Header_join'>회원가입<TbUserPlus className='Header_Icon' /></Link>
                     </div>
                     :
+                    roleList && roleList.length > 0 && roleList.some(item => item === "ADMIN" || item === "MANAGER") ?
+                    <div>
+                        <span onClick={logout} className='noneHeader logout'>로그아웃</span>
+                        <Link to='/XStaffInfoPage' className='Header_join'>나의정보<TbUserPlus className='Header_Icon' /></Link>
+                    </div>
+                    :
                     <div>
                         <span onClick={logout} className='noneHeader logout'>로그아웃</span>
                         <Link to='/ModifyMemberPage' className='Header_join'>나의정보<TbUserPlus className='Header_Icon' /></Link>
@@ -45,7 +51,12 @@ export default function Header({ checkAdminPage, logout, getUserName }) {
                 <Link to='/BoardPage' className='Header_mainHeader Header_Header2'>고객센터</Link>
                 <Link to='/EventBoardPage' className='Header_mainHeader Header_Header3'>정보마당</Link>
                 <Link to='/Sugang' className='Header_mainHeader Header_Header4'>이용신청</Link>
-                <Link to={getUserName == null ? '/LoginPage' : '/ApplicationDetailsPage'} onClick={getUserName == null ? cehckLogin : ''} className='Header_mainHeader Header_Header5'>마이페이지</Link>
+                {
+                    roleList && roleList.length > 0 && roleList.some(item => item === "ADMIN" || item === "MANAGER") ? 
+                        <Link to='/XmanagementPage' onClick={getUserName == null ? cehckLogin : ''} className='Header_mainHeader Header_Header5'>관리페이지</Link>
+                    :
+                        <Link to={getUserName == null ? '/LoginPage' : '/ApplicationDetailsPage'} onClick={getUserName == null ? cehckLogin : ''} className='Header_mainHeader Header_Header5'>마이페이지</Link>
+                }
             </div>
             <div className='Header_mainMenu'>
                 <div>
@@ -67,12 +78,24 @@ export default function Header({ checkAdminPage, logout, getUserName }) {
                         <li className='Header_subMenu Header_Menutitle7'><Link to='/PlaceRentalInfo' >대관 신청</Link></li>
                         <li className='Header_subMenu Header_Menutitle8'><Link to='/ParkingRequest'>주차 신청</Link></li>
                     </ul>
-                    <ul>
-                        <li className='Header_subMenu Header_Menutitle9'><Link to={getUserName == null ? '/LoginPage' : '/ApplicationDetailsPage'} onClick={getUserName == null ? cehckLogin : ''} >신청내역</Link></li>
-                        <li className='Header_subMenu Header_Menutitle10'><Link to={getUserName == null ? '/LoginPage' : '/QRCodePage'} onClick={getUserName == null ? cehckLogin : ''} >QR코드</Link></li>
-                        <li className='Header_subMenu Header_Menutitle11'><Link to={getUserName == null ? '/LoginPage' : '/ModifyMemberPage'} onClick={getUserName == null ? cehckLogin : ''} >내 정보 수정</Link></li>
-                        <li className='Header_subMenu Header_Menutitle12'><Link to={getUserName == null ? '/LoginPage' : '/PasswordChangePage'} onClick={getUserName == null ? cehckLogin : ''} >비밀번호 수정</Link></li>
-                    </ul>
+                    {
+                        roleList && roleList.length > 0 && roleList.some(item => item === "ADMIN" || item === "MANAGER") ? 
+                            <ul>
+                                <li className='Header_subMenu Header_Menutitle9'><Link to='/XUserInfoPage' onClick={getUserName == null ? cehckLogin : ''} >인적관리</Link></li>
+                                <li className='Header_subMenu Header_Menutitle10'><Link to='/XClassesInfoControl' onClick={getUserName == null ? cehckLogin : ''} >강의관리</Link></li>
+                                <li className='Header_subMenu Header_Menutitle11'><Link to='/XSugangRequestPage' onClick={getUserName == null ? cehckLogin : ''} >이용신청 관리</Link></li>
+                                <li className='Header_subMenu Header_Menutitle12'><Link to='/XRentalPlaceControllPage' onClick={getUserName == null ? cehckLogin : ''} >시설관리</Link></li>
+                                <li className='Header_subMenu Header_Menutitle12'><Link to='/XBoardControllPage' onClick={getUserName == null ? cehckLogin : ''} >게시판관리</Link></li>
+                            </ul>
+                        :
+
+                            <ul>
+                                <li className='Header_subMenu Header_Menutitle9'><Link to={getUserName == null ? '/LoginPage' : '/ApplicationDetailsPage'} onClick={getUserName == null ? cehckLogin : ''} >신청내역</Link></li>
+                                <li className='Header_subMenu Header_Menutitle10'><Link to={getUserName == null ? '/LoginPage' : '/QRCodePage'} onClick={getUserName == null ? cehckLogin : ''} >QR코드</Link></li>
+                                <li className='Header_subMenu Header_Menutitle11'><Link to={getUserName == null ? '/LoginPage' : '/ModifyMemberPage'} onClick={getUserName == null ? cehckLogin : ''} >내 정보 수정</Link></li>
+                                <li className='Header_subMenu Header_Menutitle12'><Link to={getUserName == null ? '/LoginPage' : '/PasswordChangePage'} onClick={getUserName == null ? cehckLogin : ''} >비밀번호 수정</Link></li>
+                            </ul>
+                    }
                 </div>
             </div>
         </header>
