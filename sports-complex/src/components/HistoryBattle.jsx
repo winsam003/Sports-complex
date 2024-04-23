@@ -15,7 +15,6 @@ export default function HistoryBattle({ token, getUserID }) {
                 console.log("HistroyRental error Occured = " + error);
             })
     }, [])
-    console.log(history)
     return (
         <div className="HistoryBattle_box">
             <div className="HistoryBattle_index">

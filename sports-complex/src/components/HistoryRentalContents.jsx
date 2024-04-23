@@ -23,6 +23,7 @@ export default function HistoryRentalContent({ sprnum, spacecode, sprdate, payme
         apiCall(url, 'get', null, token)
             .then((response) => {
                 alert(sprnum + "번 경기가 수락되었습니다.");
+                window.location.reload();
             }).catch((error) => {
                 console.log("battleAgree error Occured = " + error);
             })
@@ -37,16 +38,22 @@ export default function HistoryRentalContent({ sprnum, spacecode, sprdate, payme
                 <span>{sprdate}</span>
                 <span>{spacecode.spaceprice}</span>
                 <span>{payment}</span>
-                {sprstate2 === '경기신청' ?
-                    <span>
-                        경기신청 접수 <button onClick={battleAgree}>수락</button>
-                    </span>
+                {
+                    sprstate2 === '경기신청' ?
+                        <span>
+                            경기신청 접수 <button onClick={battleAgree}>수락</button>
+                        </span>
                     :
                     sprstate === '접수만료' ?
                         <span>
                             경기신청 종료
                         </span>
-                        :
+                    :
+                    sprstate2 === '경기수락' ?
+                        <span>
+                            경기신청 수락
+                        </span>
+                    :
                         <span>
                             경기신청 접수중
                         </span>
