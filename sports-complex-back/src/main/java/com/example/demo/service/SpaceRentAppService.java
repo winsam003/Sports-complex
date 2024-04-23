@@ -16,4 +16,18 @@ public interface SpaceRentAppService {
 	public List<SpaceRentApp> SpaceRentAppAll();
 
 	public List<SpaceRentApp> AppUserCheck();
+	
+	public int spaceRentAppDel(int[] checkedUsers);
+	
+	public List<SpaceRentApp> historyRental(String id);
+	
+	public int historyCancel(int sprnum);
+	
+	public int requestBattle(SpaceRentAppDTO dto);
+	
+	public int battleAgree(int sprnum);
+	
+	public List<SpaceRentApp> historyBattle(String id);
+	
+	public int battleCancel(int sprnum);
 }

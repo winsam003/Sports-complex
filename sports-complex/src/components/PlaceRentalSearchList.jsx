@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import './PlaceRentalSearchList.css'
+import { apiCall } from '../apiService/apiService';
 
 
-export default function PlaceRentalSearchList({ handleRentPrice, sprNumHandler, spacelist }) {
+export default function PlaceRentalSearchList({ handleRentPrice, sprNumHandler, spacelist, token, getUserID }) {
 
     // 가격 가져가기
     // 한개만 체크하기
@@ -30,6 +31,37 @@ export default function PlaceRentalSearchList({ handleRentPrice, sprNumHandler, 
     }
 
 
+    const requestBattle = (sprnum, id) => {
+        let url = '/spaceRentApp/requestBattle';
+        let id2 = getUserID;
+
+        if (id.id !== id2) {
+            let numOfPeople2 = prompt("경기 신청할 인원을 입력해주세요", "숫자로만 입력해주세요");
+            let appPhoneNum2 = prompt("연락 가능한 연락처를 입력해주세요", "하이픈('-') 없이 숫자로만 입력해주세요");
+            let special = /^[0-9]+$/;
+            if (special.test(numOfPeople2) && special.test(appPhoneNum2)) {
+                let requestData = {
+                    sprnum: sprnum,
+                    id2 : id2,
+                    appPhoneNum2: appPhoneNum2,
+                    numOfPeople2: numOfPeople2,
+                };
+                apiCall(url, 'post', requestData, token)
+                    .then((response) => {
+                        alert("경기 접수가 완료되었습니다. 상대방이 경기를 수락한 후 경기신청이 완료됩니다.");
+                        window.location.reload();
+                    }).catch((error) => {
+                        console.log('requestBattle Error Occured = '+error);
+                    })
+            } else {
+                alert("숫자로만 입력해야합니다. 다시 신청해주세요");
+            }
+        }else{
+            alert("다른 사람의 대관신청에만 경기신청이 가능합니다.");
+        }
+
+    }
+
     return (
         <div>
             <div className='PlaceRentalSearchList_div'>
@@ -42,7 +74,7 @@ export default function PlaceRentalSearchList({ handleRentPrice, sprNumHandler, 
 
                 {spacelist ? spacelist
                     .filter(({ spacecode }) => spacecode.spacecode.substring(2, 4) !== 'PA')
-                    .map(({spacecode, sprnum, id}, index) => (
+                    .map(({ spacecode, sprnum, id, id2 }, index) => (
                         <div key={index} className='PlaceRentalSearchList_content'>
                             <span className='PlaceRentalSearchList_number'>{sprnum}</span>
                             <span><input type="checkbox"
@@ -52,14 +84,23 @@ export default function PlaceRentalSearchList({ handleRentPrice, sprNumHandler, 
                                 disabled={id !== null ? true : false} /></span>
                             <span>{spacecode.spacename}</span>
                             <span>{spacecode.spaceprice} 원</span>
-                            <span>{id !== null ? '대관 불가' : '가능'}</span>
+                            <span>
+                                {new Date().getDay() === 0 || new Date().getDay() === 1 ?
+                                    (id !== null ?
+                                        <span>대관 불가 /
+                                            <button className='PlaceRentalSearchList_battle' disabled={id2 === null ? false : true} onClick={() => requestBattle(sprnum, id)}>경기신청</button>
+                                        </span> : '가능')
+                                    :
+                                    (id !== null ? '대관 불가' : '가능')
+                                }
+                            </span>
                         </div>
                     ))
                     :
                     <div className='PlaceRentalSearchList_info'>
                         10시 이후 대관 신청이 가능합니다.
                     </div>
-                    }
+                }
 
             </div>
         </div>

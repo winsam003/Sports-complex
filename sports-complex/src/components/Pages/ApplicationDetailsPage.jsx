@@ -1,7 +1,7 @@
 import ApplicationDetails from '../ApplicationDetails';
 import PageBanner from '../PageBanner';
 
-export default function ApplicationDetailsPage() {
+export default function ApplicationDetailsPage({ token, getUserID }) {
 
 
     
@@ -9,7 +9,7 @@ export default function ApplicationDetailsPage() {
     return (
         <div>
             <PageBanner />
-            <ApplicationDetails />
+            <ApplicationDetails token={token} getUserID={getUserID} />
         </div>
     )
 

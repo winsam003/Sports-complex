@@ -3,31 +3,63 @@ import Submenu from './Submenu'
 import HistoryClass from './HistoryClass'
 import HistoryPark from './HistoryPark'
 import HistoryRental from './HistoryRental'
-import { useState, useMemo } from 'react';
+import HistoryBattle from './HistoryBattle'
+import { useState, useMemo, useEffect } from 'react';
+import { apiCall } from '../apiService/apiService';
 
-export default function ApplicationDetails() {
-
-    // const tabList = document.querySelectorAll('.ApplicationDetails_list li');
-    
+export default function ApplicationDetails({ token, getUserID }) {
 
     const [currentPage, setCurrentPage] = useState('HistoryClass');
+    const [history, setHistory] = useState([]);
+    useEffect(() => {
+        let url = '/spaceRentApp/historyRental';
+        // if (currentPage === 'HistoryRental') {
+        //     url = '/spaceRentApp/historyRental';
+        // } else if (currentPage === 'HistoryBattle') {
+        //     url = '/spaceRentApp/historyBattle';
+        // }
+        let id = getUserID;
+        apiCall(url, 'post', id, token)
+            .then((response) => {
+                setHistory(response);
+            }).catch((error) => {
+                console.log("HistroyRental error Occured = " + error);
+            })
+    }, [])
 
     const pageHandler = (page) => {
         setCurrentPage(page);
     }
+
+    // 주차 신청 
+    const [myParkapp, setMyParkapp] = useState([]);
+    useEffect(() => {
+        let url = "/parkapp/myparkapp";
+        
+        apiCall(url, 'post', { id: getUserID }, token) 
+            .then((response) => {
+                console.log(response);
+                setMyParkapp(response);
+            }).catch((error) => {
+                console.log("myparkapp : ", error);
+            })
+    }, []);
+
 
     const selectedPage = useMemo(() => {
         switch (currentPage) {
             case 'HistoryClass':
                 return <HistoryClass />
             case 'HistoryPark':
-                return <HistoryPark />
+                return <HistoryPark myParkapp={myParkapp} token={token} />
             case 'HistoryRental':
-                return <HistoryRental />
+                return <HistoryRental history={history} token={token} />
+            case 'HistoryBattle':
+                return <HistoryBattle token={token} getUserID={getUserID} />
         }
     }, [currentPage]);
 
-    return(
+    return (
         <div className='ApplicationDetails_box'>
             <Submenu />
             <div className='ApplicationDetails_Content'>
@@ -55,6 +87,9 @@ export default function ApplicationDetails() {
                             </li>
                             <li className={currentPage === 'HistoryRental' ? 'ApplicationDetails_ison' : ''}>
                                 <div onClick={() => pageHandler('HistoryRental')} className='ApplicationDetails_tabBtn'>대관 내역</div>
+                            </li>
+                            <li className={currentPage === 'HistoryBattle' ? 'ApplicationDetails_ison' : ''}>
+                                <div onClick={() => pageHandler('HistoryBattle')} className='ApplicationDetails_tabBtn'>경기신청 내역</div>
                             </li>
                         </ul>
 
