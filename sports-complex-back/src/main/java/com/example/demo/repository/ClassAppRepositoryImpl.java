@@ -11,8 +11,11 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.domain.ClassAppDTO;
 import com.example.demo.entity.ClassApp;
 
+import lombok.extern.log4j.Log4j2;
+
 @Transactional
 @Repository
+@Log4j2
 public class ClassAppRepositoryImpl implements ClassAppRepository {
 	private final EntityManager em;
 
@@ -77,6 +80,12 @@ public class ClassAppRepositoryImpl implements ClassAppRepository {
 				.setParameter("clnum", clnum).executeUpdate();
 	}
 
+	// 수강 신청 취소
+	public void classAppCancel(Integer classappnum) {
+		em.createQuery("UPDATE ClassApp ca SET ca.classappstate = '취소' WHERE ca.classappnum = :classappnum")
+				.setParameter("classappnum", classappnum).executeUpdate();
+	}
+
 	// 수강 신청 삭제
 	@Override
 	public void classAppDelete(Integer classappnum) {
@@ -109,4 +118,12 @@ public class ClassAppRepositoryImpl implements ClassAppRepository {
 		em.createQuery("UPDATE ClassApp ca SET ca.classappstate = '신청 완료' WHERE ca.classappnum = :classappnum")
 				.setParameter("classappnum", earliestWaitingAppNum).executeUpdate();
 	}
+
+	// 수강 신청 내역
+	@Override
+	public List<ClassApp> myClassAppHistory(String id) {
+		return em.createQuery("SELECT ca From ClassApp ca WHERE ca.member.id = :id ORDER BY ca.classappnum desc",
+				ClassApp.class).setParameter("id", id).getResultList();
+	}
+
 }

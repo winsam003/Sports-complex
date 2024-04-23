@@ -33,6 +33,9 @@ public interface ClassAppService {
 	// cltype 업데이트
 	void updateClassType(int clnum, String cltype);
 
+	// 수강 신청 취소
+	void classAppCancel(Integer classappnum);
+
 	// 수강 신청 삭제
 	void classAppDelete(Integer classappnum);
 
@@ -41,4 +44,7 @@ public interface ClassAppService {
 
 	// 대기 순번이 가장 빠른 경우 신청 완료로 변경
 	void updateEarliestWaitingToCompleted(int clnum);
+
+	// 수강 신청 내역
+	List<ClassApp> myClassAppHistory(String id);
 }

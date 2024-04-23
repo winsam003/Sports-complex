@@ -81,9 +81,8 @@ export default function Xclass() {
                 console.error(`강좌 삭제 실패 : `, error);
             });
     });
-    console.log(classes)
-    // 검색
 
+    // 검색
     const handleSearch = () => {
         const filteredResult = classes.filter(classes => {
 

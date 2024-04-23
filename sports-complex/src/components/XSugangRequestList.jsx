@@ -29,9 +29,10 @@ export default function XSugangRequestList({ classappnum, member, classappdate, 
                     <p>{classappnum}</p>
                     <p>{member.id}</p>
                     <p>{appdate}</p>
-                    <p>{classappstate}</p>
                     <p>{classes.clnum}</p>
+                    <p>{classes.clname}</p>
                     <p>{formattedPrice}</p>
+                    <p>{classappstate}</p>
                     <p>{payment}</p>
                 </div>
             </div>

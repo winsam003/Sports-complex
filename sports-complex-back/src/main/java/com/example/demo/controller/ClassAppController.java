@@ -115,7 +115,7 @@ public class ClassAppController {
 		}
 	}
 
-	// 수강 신청 삭제
+	// 수강 신청 취소
 	@GetMapping("/classAppDelete")
 	public void classAppDelete(@RequestParam("classappnum") List<Integer> classappnumList) {
 		try {
@@ -129,8 +129,8 @@ public class ClassAppController {
 				// 해당 강의의 cltype
 				String cltype = service.getClassType(clnum);
 
-				// 수강 신청 삭제
-				service.classAppDelete(classappnum);
+				// 수강 신청 취소
+				service.classAppCancel(classappnum);
 
 				// 대기 마감상태에서 삭제시 강좌 신청현황 변경
 				if (cltype.equals("대기 마감")) {
@@ -158,6 +158,19 @@ public class ClassAppController {
 			}
 		} catch (Exception e) {
 			System.out.println(" classes Delete Excpetion => " + e.toString());
+		}
+	}
+
+	// 수강 신청 내역
+	@PostMapping("/myClassAppHistory")
+	public ResponseEntity<?> myClassAppHistory(@RequestBody ClassAppDTO dto) {
+		String id = dto.getId();
+		List<ClassApp> classApp = service.myClassAppHistory(id);
+
+		if (classApp != null && classApp.size() > 0) {
+			return ResponseEntity.status(HttpStatus.OK).body(classApp);
+		} else {
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(null);
 		}
 	}
 }

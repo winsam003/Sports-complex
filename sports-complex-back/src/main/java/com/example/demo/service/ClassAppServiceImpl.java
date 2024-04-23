@@ -10,9 +10,11 @@ import com.example.demo.repository.ClassAppRepository;
 import com.example.demo.repository.ClassesRepository;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
 @Service
 @RequiredArgsConstructor
+@Log4j2
 public class ClassAppServiceImpl implements ClassAppService {
 	private final ClassAppRepository repository;
 	private final ClassesRepository classesRepository;
@@ -71,6 +73,12 @@ public class ClassAppServiceImpl implements ClassAppService {
 		repository.updateClassType(clnum, cltype);
 	}
 
+	// 수강 신청 취소
+	@Override
+	public void classAppCancel(Integer classappnum) {
+		repository.classAppCancel(classappnum);
+	}
+
 	// 수강 신청 삭제
 	@Override
 	public void classAppDelete(Integer classappnum) {
@@ -87,6 +95,12 @@ public class ClassAppServiceImpl implements ClassAppService {
 	@Override
 	public void updateEarliestWaitingToCompleted(int clnum) {
 		repository.updateEarliestWaitingToCompleted(clnum);
+	}
+
+	// 수강 신청 내역
+	@Override
+	public List<ClassApp> myClassAppHistory(String id) {
+		return repository.myClassAppHistory(id);
 	}
 
 }

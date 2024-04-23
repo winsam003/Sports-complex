@@ -1,23 +1,29 @@
-import './XclassSearchBox.css';
+import './SugangRequestSearchbox.css';
 import { useState } from 'react';
 
-export default function XclassSearchBox({ onSearch, onReset, classesSearchBTSelect, setClassesSearchBTSelect, classesSearchSTSelect, setClassesSearchSTSelect, classesSearchDaySelect, setClassesSearchDaySelect, classesSearchTargetSelect, setClassesSearcTargetSelect, classesSearchInput, setClassesSearchInput }) {
+export default function SugangRequestSearchbox({ onSearch, onReset, classesSearchBTSelect, setClassesSearchBTSelect, classesSearchSTSelect, setClassesSearchSTSelect, classesSearchDaySelect, setClassesSearchDaySelect, classesSearchTargetSelect, setClassesSearcTargetSelect, classesSearchInput, setClassesSearchInput, idSearchInput, setIdSearchInput }) {
 
     // 검색
     const handleSearch = () => {
-        onSearch(classesSearchBTSelect, classesSearchSTSelect, classesSearchDaySelect, classesSearchTargetSelect, classesSearchInput);
+        onSearch(classesSearchBTSelect, classesSearchSTSelect, classesSearchDaySelect, classesSearchTargetSelect, classesSearchInput, idSearchInput);
     }
+
     // 초기화
     const reset = () => {
         onReset();
     }
 
     return (
-        <div className='XclassSearchBox_box'>
-            <div className='XclassSearchBox_title'>강의정보</div>
-            <div className='XclassSearchBox_division'>
+        <div className='SugangRequestSearchbox_box'>
+            <div className='SugangRequestSearchbox_title'>강의정보</div>
+            <div className='SugangRequestSearchbox_idinputBox'>
+                <span>아이디</span>
+                <input className='SugangRequestSearchbox_input' type="search" placeholder='신청자 아이디를 입력해주세요.'
+                    value={idSearchInput} onChange={(e) => setIdSearchInput(e.target.value)} />
+            </div>
+            <div className='SugangRequestSearchbox_division'>
                 <span>대분류
-                    <select value={classesSearchBTSelect} onChange={(e) => setClassesSearchBTSelect(e.target.value)} name="XclassSearchBox_MainCategory" id="XclassSearchBox_MainCategory">
+                    <select value={classesSearchBTSelect} onChange={(e) => setClassesSearchBTSelect(e.target.value)} name="SugangRequestSearchbox_MainCategory" id="SugangRequestSearchbox_MainCategory">
                         <option value="전체">전체</option>
                         <option value="BA">구기</option>
                         <option value="WA">수상</option>
@@ -28,13 +34,13 @@ export default function XclassSearchBox({ onSearch, onReset, classesSearchBTSele
                 </span>
                 <span>세부종목
                     {classesSearchBTSelect === '전체' && (
-                        <select name="XclassSearchBox_SubCategory" id="XclassSearchBox_SubCategory"
+                        <select name="SugangRequestSearchbox_SubCategory" id="SugangRequestSearchbox_SubCategory"
                             value={classesSearchSTSelect} onChange={(e) => setClassesSearchSTSelect(e.target.value)}>
                             <option value="전체">전체</option>
                         </select>
                     )}
                     {classesSearchBTSelect === 'BA' && (
-                        <select name="XclassSearchBox_SubCategory" id="XclassSearchBox_SubCategory"
+                        <select name="SugangRequestSearchbox_SubCategory" id="SugangRequestSearchbox_SubCategory"
                             value={classesSearchSTSelect} onChange={(e) => setClassesSearchSTSelect(e.target.value)}>
                             <option value="전체">전체</option>
                             <option value="BK">농구</option>
@@ -43,7 +49,7 @@ export default function XclassSearchBox({ onSearch, onReset, classesSearchBTSele
                         </select>
                     )}
                     {classesSearchBTSelect === 'WA' && (
-                        <select name="XclassSearchBox_SubCategory" id="XclassSearchBox_SubCategory"
+                        <select name="SugangRequestSearchbox_SubCategory" id="SugangRequestSearchbox_SubCategory"
                             value={classesSearchSTSelect} onChange={(e) => setClassesSearchSTSelect(e.target.value)}>
                             <option value="전체">전체</option>
                             <option value="SW">수영</option>
@@ -51,7 +57,7 @@ export default function XclassSearchBox({ onSearch, onReset, classesSearchBTSele
                         </select>
                     )}
                     {classesSearchBTSelect === 'DC' && (
-                        <select name="XclassSearchBox_SubCategory" id="XclassSearchBox_SubCategory"
+                        <select name="SugangRequestSearchbox_SubCategory" id="SugangRequestSearchbox_SubCategory"
                             value={classesSearchSTSelect} onChange={(e) => setClassesSearchSTSelect(e.target.value)}>
                             <option value="전체">전체</option>
                             <option value="KP">k-pop</option>
@@ -59,7 +65,7 @@ export default function XclassSearchBox({ onSearch, onReset, classesSearchBTSele
                         </select>
                     )}
                     {classesSearchBTSelect === 'LA' && (
-                        <select name="XclassSearchBox_SubCategory" id="XclassSearchBox_SubCategory"
+                        <select name="SugangRequestSearchbox_SubCategory" id="SugangRequestSearchbox_SubCategory"
                             value={classesSearchSTSelect} onChange={(e) => setClassesSearchSTSelect(e.target.value)}>
                             <option value="전체">전체</option>
                             <option value="PP">탁구</option>
@@ -69,7 +75,7 @@ export default function XclassSearchBox({ onSearch, onReset, classesSearchBTSele
                         </select>
                     )}
                     {classesSearchBTSelect === 'WE' && (
-                        <select name="XclassSearchBox_SubCategory" id="XclassSearchBox_SubCategory"
+                        <select name="SugangRequestSearchbox_SubCategory" id="SugangRequestSearchbox_SubCategory"
                             value={classesSearchSTSelect} onChange={(e) => setClassesSearchSTSelect(e.target.value)}>
                             <option value="전체">전체</option>
                             <option value="CL">클라이밍</option>
@@ -79,14 +85,14 @@ export default function XclassSearchBox({ onSearch, onReset, classesSearchBTSele
                     )}
                 </span>
             </div>
-            <div className='XclassSearchBox_inputBox'>
+            <div className='SugangRequestSearchbox_inputBox'>
                 <span>강좌명 </span>
-                <input className='XclassSearchBox_input' type="search" placeholder='검색할 강의를 입력해주세요'
+                <input className='SugangRequestSearchbox_input' type="search" placeholder='검색할 강의를 입력해주세요.'
                     value={classesSearchInput} onChange={(e) => setClassesSearchInput(e.target.value)} />
             </div>
-            <div className='XclassSearchBox_target'>
+            <div className='SugangRequestSearchbox_target'>
                 <span>요일선택
-                    <select name="XclassSearchBox_classday" id="XclassSearchBox_classday"
+                    <select name="SugangRequestSearchbox_classday" id="SugangRequestSearchbox_classday"
                         value={classesSearchDaySelect} onChange={(e) => setClassesSearchDaySelect(e.target.value)}>
                         <option value="전체">전체</option>
                         <option value="월">월</option>
@@ -99,7 +105,7 @@ export default function XclassSearchBox({ onSearch, onReset, classesSearchBTSele
                     </select>
                 </span>
                 <span>교육대상
-                    <select name="XclassSearchBox_MainCategory" id="XclassSearchBox_MainCategory"
+                    <select name="SugangRequestSearchbox_MainCategory" id="SugangRequestSearchbox_MainCategory"
                         value={classesSearchTargetSelect} onChange={(e) => setClassesSearcTargetSelect(e.target.value)}>
                         <option value="전체">전체</option>
                         <option value="KI">아동</option>
