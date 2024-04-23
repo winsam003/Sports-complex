@@ -35,8 +35,8 @@ export default function ApplicationDetails({ token, getUserID }) {
     const [myParkapp, setMyParkapp] = useState([]);
     useEffect(() => {
         let url = "/parkapp/myparkapp";
-        
-        apiCall(url, 'post', { id: getUserID }, token) 
+
+        apiCall(url, 'post', { id: getUserID }, token)
             .then((response) => {
                 console.log(response);
                 setMyParkapp(response);
@@ -45,11 +45,60 @@ export default function ApplicationDetails({ token, getUserID }) {
             })
     }, []);
 
+    // 수강 신청 내역
+    const [myClassAppHistory, setMyClassAppHistory] = useState([]);
+
+    useEffect(() => {
+        fetchClassAppHistory();
+    }, []);
+
+    const fetchClassAppHistory = () => {
+        let url = "/classApp/myClassAppHistory";
+
+        apiCall(url, 'post', { id: getUserID }, token)
+            .then((response) => {
+                setMyClassAppHistory(response);
+            }).catch((error) => {
+                console.log("myClassAppHistory error : ", error);
+            });
+    };
+
+    // 결제
+    const handlePayment = (classappnum) => {
+        const confirmed = window.confirm("결제를 진행하시겠습니까?");
+        if (confirmed) {
+            let url = '/classApp/classAppPayment';
+
+            apiCall(url + `?classappnum=${classappnum}`, 'get', null, token)
+                .then(() => {
+                    fetchClassAppHistory();
+                    alert("결제가 완료되었습니다.");
+                }).catch((error) => {
+                    console.error(`결제 실패 : `, error);
+                });
+        }
+    };
+
+    // 수강 신청 취소
+    const handleCancel = (classappnum) => {
+        const confirmed = window.confirm("신청을 취소하시겠습니까?");
+        if (confirmed) {
+            let url = '/classApp/classAppDelete';
+
+            apiCall(url + `?classappnum=${classappnum}`, 'get', null, token)
+                .then(() => {
+                    fetchClassAppHistory();
+                    alert("취소 신청이 완료되었습니다.");
+                }).catch((error) => {
+                    console.error(`수강 신청 취소 실패 : `, error);
+                });
+        }
+    };
 
     const selectedPage = useMemo(() => {
         switch (currentPage) {
             case 'HistoryClass':
-                return <HistoryClass />
+                return <HistoryClass myClassAppHistory={myClassAppHistory} token={token} handlePayment={handlePayment} handleCancel={handleCancel} />
             case 'HistoryPark':
                 return <HistoryPark myParkapp={myParkapp} token={token} />
             case 'HistoryRental':
@@ -57,7 +106,7 @@ export default function ApplicationDetails({ token, getUserID }) {
             case 'HistoryBattle':
                 return <HistoryBattle token={token} getUserID={getUserID} />
         }
-    }, [currentPage]);
+    }, [currentPage, myClassAppHistory]);
 
     return (
         <div className='ApplicationDetails_box'>

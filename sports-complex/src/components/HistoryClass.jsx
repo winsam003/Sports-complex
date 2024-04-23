@@ -1,30 +1,25 @@
 import './HistoryClass.css'
+import HistoryClassContent from './HistoryClassContent';
 
-export default function HistoryClass(){
-    return(
-        <div className="HistoryClass_box">
-            <div className="HistoryClass_index">
-                <span>신청번호</span>
-                <span>기관명</span>
-                <span>강의명</span>
-                <span>신청일자</span>
-                <span>기간</span>
-                <span>금액</span>
-                <span>결제방법</span>
-                <span>상태</span>
+export default function HistoryClass({ myClassAppHistory, handlePayment, handleCancel }) {
+    return (
+        <div>
+            <div className="HistoryClass_Index">
+                <p>신청번호</p>
+                <p>신청일자</p>
+                <p>강좌번호</p>
+                <p>강좌명</p>
+                <p>기간</p>
+                <p>금액</p>
+                <p>신청상태</p>
+                <p>결제방법</p>
+                <p>결제/취소</p>
             </div>
             <div className="HistoryClass_content">
-                <span>신청번호신청번호</span>
-                <span>기관명신청번호</span>
-                <span>강의명신청번호</span>
-                <span>신청일자</span>
-                <span>기간</span>
-                <span>금액</span>
-                <span>결제방법</span>
-                <span>상태</span>
+                {myClassAppHistory.map((item, index) => (
+                    <HistoryClassContent key={index} {...item} handlePayment={handlePayment} handleCancel={handleCancel} />
+                ))}
             </div>
-
-
         </div>
     )
 }

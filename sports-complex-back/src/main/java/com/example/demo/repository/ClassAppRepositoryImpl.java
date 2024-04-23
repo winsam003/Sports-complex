@@ -11,8 +11,11 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.domain.ClassAppDTO;
 import com.example.demo.entity.ClassApp;
 
+import lombok.extern.log4j.Log4j2;
+
 @Transactional
 @Repository
+@Log4j2
 public class ClassAppRepositoryImpl implements ClassAppRepository {
 	private final EntityManager em;
 
@@ -57,7 +60,7 @@ public class ClassAppRepositoryImpl implements ClassAppRepository {
 	@Override
 	public int getCompletedCount(int clnum) {
 		return ((Number) em.createQuery(
-				"SELECT COUNT(ca) FROM ClassApp ca WHERE ca.classes.clnum = :clnum AND ca.classappstate = '신청 완료'")
+				"SELECT COUNT(ca) FROM ClassApp ca WHERE ca.classes.clnum = :clnum AND (ca.classappstate = '신청 완료' OR ca.classappstate = '결제 완료')")
 				.setParameter("clnum", clnum).getSingleResult()).intValue();
 	}
 
@@ -75,6 +78,12 @@ public class ClassAppRepositoryImpl implements ClassAppRepository {
 	public void updateClassType(int clnum, String cltype) {
 		em.createQuery("UPDATE Classes c SET c.cltype = :cltype WHERE c.clnum = :clnum").setParameter("cltype", cltype)
 				.setParameter("clnum", clnum).executeUpdate();
+	}
+
+	// 수강 신청 취소
+	public void classAppCancel(Integer classappnum) {
+		em.createQuery("UPDATE ClassApp ca SET ca.classappstate = '취소' WHERE ca.classappnum = :classappnum")
+				.setParameter("classappnum", classappnum).executeUpdate();
 	}
 
 	// 수강 신청 삭제
@@ -108,5 +117,19 @@ public class ClassAppRepositoryImpl implements ClassAppRepository {
 		// 대기 상태인 첫 번째 신청자의 상태를 '신청 완료'로 변경합니다.
 		em.createQuery("UPDATE ClassApp ca SET ca.classappstate = '신청 완료' WHERE ca.classappnum = :classappnum")
 				.setParameter("classappnum", earliestWaitingAppNum).executeUpdate();
+	}
+
+	// 수강 신청 내역
+	@Override
+	public List<ClassApp> myClassAppHistory(String id) {
+		return em.createQuery("SELECT ca From ClassApp ca WHERE ca.member.id = :id ORDER BY ca.classappnum desc",
+				ClassApp.class).setParameter("id", id).getResultList();
+	}
+
+	// 결제
+	@Override
+	public void classAppPayment(Integer classappnum) {
+		em.createQuery("UPDATE ClassApp ca SET ca.classappstate = '결제 완료' WHERE ca.classappnum = :classappnum")
+				.setParameter("classappnum", classappnum).executeUpdate();
 	}
 }
