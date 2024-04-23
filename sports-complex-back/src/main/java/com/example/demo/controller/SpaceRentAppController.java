@@ -130,6 +130,56 @@ public class SpaceRentAppController {
 		
 	}
 	
+	@PostMapping(value="/requestBattle")
+	public ResponseEntity<?> requestBattle(@RequestBody SpaceRentAppDTO dto){
+		log.info("historyCancel Contoller 접촉 성공");
+		
+		if(service.requestBattle(dto) > 0) {
+			return ResponseEntity.status(HttpStatus.OK).body(null);				
+		}else {
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(null);
+		}
+	}
+	
+	@GetMapping(value="/battleAgree")
+	public ResponseEntity<?> battleAgree(@RequestParam("sprnum") int sprnum){
+		log.info("battleAgree Contoller 접촉 성공");
+		
+		if(service.battleAgree(sprnum) > 0) {
+			return ResponseEntity.status(HttpStatus.OK).body(null);				
+		}else {
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(null);
+		}
+	}
+	
+	@PostMapping(value="/historyBattle")
+	public ResponseEntity<?> historyBattle(@RequestBody SpaceRentAppDTO dto){
+		log.info("historyRental Contoller 접촉 성공");
+		
+		
+		String id = dto.getId();
+		
+		 List<SpaceRentApp> spaceRentApp = service.historyBattle(id);
+		 log.info(spaceRentApp);
+		if(spaceRentApp != null && spaceRentApp.size() > 0) {
+			return ResponseEntity.status(HttpStatus.OK).body(spaceRentApp);				
+		}else {
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(null);
+		}
+	}
+	
+	@GetMapping(value="/battleCancel")
+	public ResponseEntity<?> battleCancel(@RequestParam("sprnum") int sprnum){
+		log.info("battleCancel Contoller 접촉 성공");
+		
+		if(service.battleCancel(sprnum) > 0) {
+			return ResponseEntity.status(HttpStatus.OK).body(null);				
+		}else {
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(null);
+		}
+	}
+	
+	
 	// 매일 10시 오늘기준 3일 이후 신청 컬럼생성
 	@Scheduled(cron = "0 0 10 * * *")
 	public void runDailyTasks() {

@@ -15,7 +15,7 @@ export default function HistoryRental({ history, token }) {
             </div>
             <div>
                 {history.map((item, index) => (
-                    <HistoryRentalContents key={index} {...item} token={token}  />
+                    <HistoryRentalContents key={index} {...item} token={token} />
                 ))}
             </div>
         </div>
