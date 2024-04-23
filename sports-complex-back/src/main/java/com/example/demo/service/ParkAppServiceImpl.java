@@ -27,7 +27,7 @@ public class ParkAppServiceImpl implements ParkAppService{
 	}
 	
 	@Override
-	public ParkApp myParkApp(String id) {
+	public List<ParkApp> myParkApp(String id) {
 		return repository.myParkApp(id);
 	}
 	
@@ -39,6 +39,16 @@ public class ParkAppServiceImpl implements ParkAppService{
 	@Override
 	public int spaceParking(String spacecode) {
 		return repository.spaceParking(spacecode);
+	}
+	
+	@Override
+	public int parkappCancel(int parkappnum) {
+		return repository.parkappCancel(parkappnum);
+	}
+	
+	@Override
+	public int minusParking(String spacecode) {
+		return repository.minusParking(spacecode);
 	}
 	
 }
