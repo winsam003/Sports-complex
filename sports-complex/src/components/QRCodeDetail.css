@@ -10,14 +10,8 @@
 }
 
 .QRCodeDetail_QRCode{
-    background-color: aqua;
-
+    /* background-color: palevioletred; */
     width: 500px;
     height: 500px;
 
-}
-
-.QRCodeDetail_QRCode>img{
-    width: 100%;
-    height: 100%;   
 }
