@@ -5,6 +5,7 @@ import XlectureSerachBox from './XlectureSerachBox';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { apiCall } from '../apiService/apiService';
+import Pagination from 'react-js-pagination'
 
 export default function XlectureInfo({ onTeacherSelect, isSingleSelection }) {
     const [lecture, setLecture] = useState([]);
@@ -104,6 +105,20 @@ export default function XlectureInfo({ onTeacherSelect, isSingleSelection }) {
             });
     });
 
+    // 현재 페이지
+    const [currentPage, setCurrentPage] = useState(1);
+    // 페이지당 아이템 수
+    const [itemsPerPage, setItemsPerPage] = useState(5);
+
+    // 페이지 변경 시 동작 설정
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
+
+    // 현재 페이지에 보여줄 아이템의 인덱스 계산
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+
     return (
         <div className='XlectureInfo_Box'>
             {location.pathname !== '/XNewClassUploadPage' && <Submenu />}
@@ -124,13 +139,14 @@ export default function XlectureInfo({ onTeacherSelect, isSingleSelection }) {
                     <span>계좌번호</span>
                 </div>
                 <div>
-                    {searchResult && searchResult.map((item, index) => (
-                        <XlectureList
-                            key={index}
-                            {...item}
-                            onToggleCheckbox={(teachnum, teachname) => handleToggleCheckbox(teachnum, item.teachname)}
-                            isChecked={selectedLecture.includes(item.teachnum)} />
-                    ))}
+                    {searchResult && searchResult.slice(indexOfFirstItem, indexOfLastItem)
+                        .map((item, index) => (
+                            <XlectureList
+                                key={index}
+                                {...item}
+                                onToggleCheckbox={(teachnum, teachname) => handleToggleCheckbox(teachnum, item.teachname)}
+                                isChecked={selectedLecture.includes(item.teachnum)} />
+                        ))}
                 </div>
                 <div className='XResetDeleteBtn'>
                     {location.pathname === '/XNewClassUploadPage' ? (
@@ -141,6 +157,20 @@ export default function XlectureInfo({ onTeacherSelect, isSingleSelection }) {
                             <button onClick={handleDeleteSelected}>삭제</button>
                         </>
                     )}
+                </div>
+                <div className='pagenationBox'>
+                    <Pagination
+                        // 현제 보고있는 페이지 
+                        activePage={currentPage}
+                        // 한페이지에 출력할 아이템 수
+                        itemsCountPerPage={5}
+                        // 총 아이템수
+                        totalItemsCount={searchResult.length}
+                        // 표시할 페이지수
+                        pageRangeDisplayed={5}
+                        // 페이지 변경 시 동작 설정
+                        onChange={handlePageChange}>
+                    </Pagination>
                 </div>
             </div>
         </div>

@@ -1,8 +1,12 @@
 package com.example.demo.service;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.domain.ClassAppDTO;
 import com.example.demo.entity.ClassApp;
@@ -19,6 +23,7 @@ public class ClassAppServiceImpl implements ClassAppService {
 	private final ClassAppRepository repository;
 	private final ClassesRepository classesRepository;
 
+	// 수강 신청 목록
 	@Override
 	public List<ClassApp> classAppList() {
 		return repository.classAppList();
@@ -107,5 +112,26 @@ public class ClassAppServiceImpl implements ClassAppService {
 	@Override
 	public void classAppPayment(Integer classappnum) {
 		repository.classAppPayment(classappnum);
+	}
+
+	// 신청 후 3일이내 미결제 취소로 변경
+	@Override
+	// 자정에 실행되도록 변경
+	@Scheduled(cron = "0 0 0 * * *")
+	@Transactional
+	public void updateClassAppStateCancel() {
+		// 현재 날짜 정보만 포함하는 객체 생성
+		LocalDateTime today = LocalDateTime.now();
+		// 신청일로부터 3일이 지난 날짜 계산
+		LocalDateTime threeDaysAgo = today.minusDays(3);
+
+		Timestamp threeDaysAgoTimestamp = Timestamp.valueOf(threeDaysAgo);
+
+		List<ClassApp> classAppsToUpdate = repository.findClassAppsBeforeDate(threeDaysAgoTimestamp);
+
+		// 찾은 신청의 classappstate를 취소로 변경
+		for (ClassApp ca : classAppsToUpdate) {
+			repository.classAppCancel(ca.getClassappnum());
+		}
 	}
 }

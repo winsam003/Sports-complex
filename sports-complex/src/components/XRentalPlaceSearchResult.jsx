@@ -1,6 +1,7 @@
 import './XRentalPlaceSearchResult.css'
 import { useEffect, useState } from 'react'
 import { apiCall } from '../apiService/apiService';
+import Pagination from 'react-js-pagination'
 
 export default function XRentalPlaceSearchResult({ checkList, setCheckList, refreshList, inputReset, setInputReset, handleReset, searchPlace }) {
 
@@ -41,6 +42,19 @@ export default function XRentalPlaceSearchResult({ checkList, setCheckList, refr
         setCheckList(updatedCheckList);
 
     }
+    // 현재 페이지
+    const [currentPage, setCurrentPage] = useState(1);
+    // 페이지당 아이템 수
+    const [itemsPerPage, setItemsPerPage] = useState(5);
+
+    // 페이지 변경 시 동작 설정
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
+
+    // 현재 페이지에 보여줄 아이템의 인덱스 계산
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
     return (
 
@@ -66,7 +80,7 @@ export default function XRentalPlaceSearchResult({ checkList, setCheckList, refr
                             ) && (
                                 searchPlace.searchValue === '' || space.spacename.includes(searchPlace.searchValue)
                             ))
-                    })
+                    }).slice(indexOfFirstItem, indexOfLastItem)
                     .map(({ spacecode, spacename, parkspace, parking }, index) => (
                         <div key={spacecode} className='XRentalPlaceSearchResult_SearchResult'>
                             <div className='XRentalPlaceSearchResult_SearchResult_input'>
@@ -82,6 +96,20 @@ export default function XRentalPlaceSearchResult({ checkList, setCheckList, refr
                             <p>{parkspace - parking == 0 ? '대관 불가' : '가능'}</p>
                         </div>
                     ))}
+                <div className='pagenationBox'>
+                    <Pagination
+                        // 현제 보고있는 페이지 
+                        activePage={currentPage}
+                        // 한페이지에 출력할 아이템 수
+                        itemsCountPerPage={5}
+                        // 총 아이템수
+                        totalItemsCount={spacelist.length}
+                        // 표시할 페이지수
+                        pageRangeDisplayed={5}
+                        // 페이지 변경 시 동작 설정
+                        onChange={handlePageChange}>
+                    </Pagination>
+                </div>
             </div>
         </div>
     )

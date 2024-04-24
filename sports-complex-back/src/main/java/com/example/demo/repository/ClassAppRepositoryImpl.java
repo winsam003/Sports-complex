@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -131,5 +132,15 @@ public class ClassAppRepositoryImpl implements ClassAppRepository {
 	public void classAppPayment(Integer classappnum) {
 		em.createQuery("UPDATE ClassApp ca SET ca.classappstate = '결제 완료' WHERE ca.classappnum = :classappnum")
 				.setParameter("classappnum", classappnum).executeUpdate();
+	}
+
+	// 신청 후 3일이내 미결제 취소로 변경
+	@Override
+	public List<ClassApp> findClassAppsBeforeDate(Timestamp date) {
+		log.info(date);
+		return em
+				.createQuery("SELECT ca FROM ClassApp ca WHERE ca.classappstate = '신청 완료' AND ca.classappdate <= :date",
+						ClassApp.class)
+				.setParameter("date", date).getResultList();
 	}
 }

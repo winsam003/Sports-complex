@@ -3,8 +3,9 @@ import Submenu from './Submenu'
 import XBtnResetDelete from './XBtnResetDelete'
 import { useEffect, useState } from 'react'
 import { apiCall } from '../apiService/apiService'
+import Pagination from 'react-js-pagination'
 
-export default function XParkingControll({token}) {
+export default function XParkingControll({ token }) {
 
     // 리스트 뽑기
     const [parkappList, setParkappList] = useState([]);
@@ -238,7 +239,21 @@ export default function XParkingControll({token}) {
                             <span>{parkstate}</span>
                         </div>
 
-                    ))}
+                        ))}
+                    <div className='pagenationBox'>
+                        <Pagination
+                            // 현제 보고있는 페이지 
+                            activePage={currentPage}
+                            // 한페이지에 출력할 아이템 수
+                            itemsCountPerPage={5}
+                            // 총 아이템수
+                            totalItemsCount={parkappList.length}
+                            // 표시할 페이지수
+                            pageRangeDisplayed={5}
+                            // 페이지 변경 시 동작 설정
+                            onChange={handlePageChange}>
+                        </Pagination>
+                    </div>
                 </div>
                 <XBtnResetDelete />
             </div>

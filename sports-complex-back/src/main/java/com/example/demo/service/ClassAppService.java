@@ -50,4 +50,7 @@ public interface ClassAppService {
 
 	// 결제
 	void classAppPayment(Integer classappnum);
+
+	// 신청 후 3일이내 미결제 취소로 변경
+	void updateClassAppStateCancel();
 }
