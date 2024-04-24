@@ -13,10 +13,10 @@ export default function XParkingControll({ token }) {
     useEffect(() => {
         parklist();
         setSearchAll({
-            parkingFloor: parkingFloor, 
-            parkingState: parkingState, 
-            parkingMonth: parkingMonth, 
-            searchSelect: searchSelect, 
+            parkingFloor: parkingFloor,
+            parkingState: parkingState,
+            parkingMonth: parkingMonth,
+            searchSelect: searchSelect,
             searchText: searchText
         })
     }, []);
@@ -26,7 +26,7 @@ export default function XParkingControll({ token }) {
         let url = "/parkapp/parkapplist";
 
         apiCall(url, 'get', null, token)
-        .then((list) => {
+            .then((list) => {
                 if (!list || list.length === 0) {
                     setParkappList(['리스트없음']);
                 } else {
@@ -73,16 +73,16 @@ export default function XParkingControll({ token }) {
     const [searchAll, setSearchAll] = useState({});
 
     // 검색 버튼 : 검색 사항들 searAll에 담아주기.
-    const handleSearch =() => {
+    const handleSearch = () => {
         setSearchAll({
-            parkingFloor: parkingFloor, 
-            parkingState: parkingState, 
-            parkingMonth: parkingMonth, 
-            searchSelect: searchSelect, 
+            parkingFloor: parkingFloor,
+            parkingState: parkingState,
+            parkingMonth: parkingMonth,
+            searchSelect: searchSelect,
             searchText: searchText
         })
     }
-    
+
     // 초기화 버튼
     const handleReset = () => {
         setParkingFloor('all');
@@ -98,40 +98,64 @@ export default function XParkingControll({ token }) {
             return (
                 searchAll.parkingFloor === park.spacecode.spacename || searchAll.parkingFloor === 'all'
             ) && (
-                searchAll.parkingState === park.parkstate || searchAll.parkingState === 'all'
-            ) && (
-                searchAll.parkingMonth === park.parkusedate || searchAll.parkingMonth === ''
-            );
+                    searchAll.parkingState === park.parkstate || searchAll.parkingState === 'all'
+                ) && (
+                    searchAll.parkingMonth === park.parkusedate || searchAll.parkingMonth === ''
+                );
         } else if (searchAll.searchSelect === 'name') {
             return (
                 searchAll.parkingFloor === park.spacecode.spacename || searchAll.parkingFloor === 'all'
             ) && (
-                searchAll.parkingState === park.parkstate || searchAll.parkingState === 'all'
-            ) && (
-                searchAll.parkingMonth === park.parkusedate || searchAll.parkingMonth === ''
-            ) && (
-                park.id.name && park.id.name.toString().includes(searchAll.searchText)
-            );
+                    searchAll.parkingState === park.parkstate || searchAll.parkingState === 'all'
+                ) && (
+                    searchAll.parkingMonth === park.parkusedate || searchAll.parkingMonth === ''
+                ) && (
+                    park.id.name && park.id.name.toString().includes(searchAll.searchText)
+                );
         } else {
             return (
                 searchAll.parkingFloor === park.spacecode.spacename || searchAll.parkingFloor === 'all'
             ) && (
-                searchAll.parkingState === park.parkstate || searchAll.parkingState === 'all'
-            ) && (
-                searchAll.parkingMonth === park.parkusedate || searchAll.parkingMonth === ''
-            ) && (
-                park.carnum && park.carnum.toString().includes(searchAll.searchText)
-            );
+                    searchAll.parkingState === park.parkstate || searchAll.parkingState === 'all'
+                ) && (
+                    searchAll.parkingMonth === park.parkusedate || searchAll.parkingMonth === ''
+                ) && (
+                    park.carnum && park.carnum.toString().includes(searchAll.searchText)
+                );
         }
     });
 
-    // 체크
-    const handlecheckPark = () => {
-        
-    }
+    // ==========================================================================
+    // 페이지네이션
 
+    // 현재 페이지
+    const [currentPage, setCurrentPage] = useState(1);
+    // 페이지당 아이템 수
+    const [itemsPerPage, setItemsPerPage] = useState(5);
+
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
+
+    // 현재 페이지에 보여줄 아이템의 인덱스 계산
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
     // ==========================================================================
+
+    // 체크
+    const [checkPark, setCheckPark] = useState([]);
+    
+    const handlecheckPark = (event) => {
+        const deletevalue = event.target.value.toString();
+        if(!checkPark.includes(deletevalue)) {
+            setCheckPark(preCheck => [...preCheck, deletevalue]);
+        } else {
+            setCheckPark(preCheck => preCheck.filter(value => value !== deletevalue));
+
+        }
+    }
+
 
     return (
         <div className='XParkingControll_div'>
@@ -141,40 +165,40 @@ export default function XParkingControll({ token }) {
                     <p className='XParkingControll_searchblock'>
                         <span className='XParkingControll_searchTitle'>주차장</span>
                         <span className='XParkingControll_inputbox'>
-                            <input type="radio" id='all' name="floor" 
-                                    value='all'
-                                    checked={parkingFloor === 'all'}
-                                    onChange={handleFloorChange} /> <span><label htmlFor='all'>전체</label></span>
-                            <input type="radio" id='1Floor' name="floor" 
-                                    value='주차장 지하 1층'
-                                    onChange={handleFloorChange} /> <span><label htmlFor='1Floor'>지하 1층</label></span>
-                            <input type="radio" id='2Floor' name="floor" 
-                                    value='주차장 지하 2층'
-                                    onChange={handleFloorChange} /> <span><label htmlFor='2Floor'>지하 2층</label></span>
-                            <input type="radio" id='3Floor' name="floor" 
-                                    value='주차장 지하 3층'
-                                    onChange={handleFloorChange} /> <span><label htmlFor='3Floor'>지하 3층</label></span>
+                            <input type="radio" id='all' name="floor"
+                                value='all'
+                                checked={parkingFloor === 'all'}
+                                onChange={handleFloorChange} /> <span><label htmlFor='all'>전체</label></span>
+                            <input type="radio" id='1Floor' name="floor"
+                                value='주차장 지하 1층'
+                                onChange={handleFloorChange} /> <span><label htmlFor='1Floor'>지하 1층</label></span>
+                            <input type="radio" id='2Floor' name="floor"
+                                value='주차장 지하 2층'
+                                onChange={handleFloorChange} /> <span><label htmlFor='2Floor'>지하 2층</label></span>
+                            <input type="radio" id='3Floor' name="floor"
+                                value='주차장 지하 3층'
+                                onChange={handleFloorChange} /> <span><label htmlFor='3Floor'>지하 3층</label></span>
                         </span>
                     </p>
                     <p className='XParkingControll_searchblock'>
                         <span className='XParkingControll_searchTitle'>상태</span>
                         <span className='XParkingControll_inputbox'>
                             <input type="radio" id='allstate' name="usePark"
-                                    value='all'
-                                    checked={parkingState === 'all'}
-                                    onChange={handleState} /> <span><label htmlFor='allstate'>전체</label></span>
+                                value='all'
+                                checked={parkingState === 'all'}
+                                onChange={handleState} /> <span><label htmlFor='allstate'>전체</label></span>
                             <input type="radio" id='Next' name="usePark"
-                                    value='Next'
-                                    onChange={handleState} /> <span><label htmlFor='Next'>이용 예정</label></span>
+                                value='Next'
+                                onChange={handleState} /> <span><label htmlFor='Next'>이용 예정</label></span>
                             <input type="radio" id='ing' name="usePark"
-                                    value='ing'
-                                    onChange={handleState} /> <span><label htmlFor='ing'>이용중</label></span>
+                                value='ing'
+                                onChange={handleState} /> <span><label htmlFor='ing'>이용중</label></span>
                             <input type="radio" id='end' name="usePark"
-                                    value='end'
-                                    onChange={handleState} /> <span><label htmlFor='end'>이용 종료</label></span>
+                                value='end'
+                                onChange={handleState} /> <span><label htmlFor='end'>이용 종료</label></span>
                             <input type="radio" id='cancel' name="usePark"
-                                    value='cancel'
-                                    onChange={handleState} /> <span><label htmlFor='cancel'>취소</label></span>
+                                value='cancel'
+                                onChange={handleState} /> <span><label htmlFor='cancel'>취소</label></span>
                         </span>
                     </p>
                     <p className='XParkingControll_searchblock'>
@@ -187,26 +211,26 @@ export default function XParkingControll({ token }) {
                         <span className='XParkingControll_searchTitle'>검색</span>
                         <span className='XParkingControll_inputbox'>
                             <select value={searchSelect}
-                                    onChange={handleSearchSelect}>
+                                onChange={handleSearchSelect}>
                                 <option value="">전체</option>
                                 <option value="name">이름</option>
                                 <option value="carnum">차량번호</option>
                             </select>
                             <input type='text'
-                                    value={searchText}
-                                    onChange={handleSearchText}
-                                    disabled={!searchSelect} ></input>
+                                value={searchText}
+                                onChange={handleSearchText}
+                                disabled={!searchSelect} ></input>
                         </span>
                     </p>
-                        <div className='XRentalPlaceSearchBox_bottondiv'>
-                            <button className='XRentalPlaceSearchBox_botton' 
-                                    onClick={handleReset}> 검색 초기화</button>
-                            <button className='XRentalPlaceSearchBox_botton' 
-                                    onClick={handleSearch}>검색 조회</button>
-                        </div>
+                    <div className='XRentalPlaceSearchBox_bottondiv'>
+                        <button className='XRentalPlaceSearchBox_botton'
+                            onClick={handleReset}> 검색 초기화</button>
+                        <button className='XRentalPlaceSearchBox_botton'
+                            onClick={handleSearch}>검색 조회</button>
+                    </div>
                 </div>
 
-            {/* ====== ======= ======= 리스트 ====== ======== ====== */}
+                {/* ====== ======= ======= 리스트 ====== ======== ====== */}
 
                 <div className='XParkingControllSearchResult_div'>
                     <div className='XParkingControllSearchResult_index'>
@@ -221,23 +245,24 @@ export default function XParkingControll({ token }) {
                         <span>상태</span>
                     </div>
                     {filteredParkappList.length === 0 && <div id='XParkingControll_nolist'>목록이 없습니다</div>}
-                    {filteredParkappList
-                    .map(({parkappnum, parkappdate, parkusedate, carnum, parkstate, id, spacecode}, index) => (
-                        <div className='XParkingControllSearchResult_content' key={index}>
-                            <div>
-                                <input type='checkbox' 
+                    {filteredParkappList.slice(indexOfFirstItem, indexOfLastItem)
+                        .map(({ parkappnum, parkappdate, parkusedate, carnum, parkstate, id, spacecode }, index) => (
+                            <div className='XParkingControllSearchResult_content' key={index}>
+                                <div>
+                                    <input type='checkbox'
                                         value={parkappnum}
-                                        onChange={handlecheckPark}></input>
+                                        onChange={handlecheckPark}
+                                        checked={checkPark.includes(parkappnum.toString())}></input>
+                                </div>
+                                <span>{parkappnum}</span>
+                                <span>{parkappdate}</span>
+                                <span>{parkusedate}</span>
+                                <span>{spacecode.spacename.substring(4)}</span>
+                                <span>{id.name}</span>
+                                <span>{id.phonenum.substring(0, 3) + "-" + id.phonenum.substring(3, 7) + "-" + id.phonenum.substring(7)}</span>
+                                <span>{carnum}</span>
+                                <span>{parkstate}</span>
                             </div>
-                            <span>{parkappnum}</span>
-                            <span>{parkappdate}</span>
-                            <span>{parkusedate}</span>
-                            <span>{spacecode.spacename.substring(4)}</span>
-                            <span>{id.name}</span>
-                            <span>{id.phonenum.substring(0, 3) + "-" + id.phonenum.substring(3, 7) + "-" + id.phonenum.substring(7)}</span>
-                            <span>{carnum}</span>
-                            <span>{parkstate}</span>
-                        </div>
 
                         ))}
                     <div className='pagenationBox'>
@@ -247,7 +272,7 @@ export default function XParkingControll({ token }) {
                             // 한페이지에 출력할 아이템 수
                             itemsCountPerPage={5}
                             // 총 아이템수
-                            totalItemsCount={parkappList.length}
+                            totalItemsCount={filteredParkappList.length}
                             // 표시할 페이지수
                             pageRangeDisplayed={5}
                             // 페이지 변경 시 동작 설정
