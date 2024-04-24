@@ -125,10 +125,8 @@ export default function XParkingControll({ token }) {
         }
     });
 
-    // 체크
-    const handlecheckPark = () => {
-
-    }
+    // ==========================================================================
+    // 페이지네이션
 
     // 현재 페이지
     const [currentPage, setCurrentPage] = useState(1);
@@ -144,6 +142,20 @@ export default function XParkingControll({ token }) {
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
     // ==========================================================================
+
+    // 체크
+    const [checkPark, setCheckPark] = useState([]);
+    
+    const handlecheckPark = (event) => {
+        const deletevalue = event.target.value.toString();
+        if(!checkPark.includes(deletevalue)) {
+            setCheckPark(preCheck => [...preCheck, deletevalue]);
+        } else {
+            setCheckPark(preCheck => preCheck.filter(value => value !== deletevalue));
+
+        }
+    }
+
 
     return (
         <div className='XParkingControll_div'>
@@ -239,7 +251,8 @@ export default function XParkingControll({ token }) {
                                 <div>
                                     <input type='checkbox'
                                         value={parkappnum}
-                                        onChange={handlecheckPark}></input>
+                                        onChange={handlecheckPark}
+                                        checked={checkPark.includes(parkappnum.toString())}></input>
                                 </div>
                                 <span>{parkappnum}</span>
                                 <span>{parkappdate}</span>
