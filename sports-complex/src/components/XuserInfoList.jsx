@@ -1,9 +1,9 @@
-import axios from 'axios';
 import './XuserInfoList.css';
 import XuserInfoListContents from './XuserInfoListContents';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { apiCall } from '../apiService/apiService';
+import emailjs from 'emailjs-com';
 
 
 export default function XuserInfoList({ token }) {
@@ -34,7 +34,7 @@ export default function XuserInfoList({ token }) {
 
         let url = "/member/mdelete";
 
-        apiCall(url, 'post', checkedUsers, null)
+        apiCall(url, 'post', checkedUsers, token)
             .then((response) => {
                 alert(response);
                 setUserInfoList([]);
@@ -67,7 +67,6 @@ export default function XuserInfoList({ token }) {
             });
     }, [deleteRequest])
     //******************************* UserList 불러오기 요청 끝 *********************************//
-
 
 
 
@@ -148,6 +147,65 @@ export default function XuserInfoList({ token }) {
     //******************************* 회원 정보 조회 엔터 키 누를 시 조회 *********************************//
 
 
+
+
+
+    //******************************* 메일보내기 API 실행 *********************************//
+
+    const [emailContents, setEmailContents] = useState('')
+    const emailDetail = (e) => {
+        setEmailContents(e.target.value);
+    }
+
+    const sendVerificationEmail = () => {
+        const checkedUserEmails = rememberList.filter(item => checkedUsers.some(it => item.id === it));         // 체크된 유저의 email
+
+
+        for (let i = 0; i < checkedUserEmails.length; i++) {
+            if (checkedUserEmails[i].emailagr) {
+                // 이메일 보내기
+                // 여기서 정의해야하는 것은 위에서 만든 메일 템플릿에 지정한 변수({{ }})에 대한 값을 담아줘야한다.
+                const templateParams = {
+                    to_email: checkedUserEmails[i].email,
+                    from_name: "FitNest Admin",
+                    from_email: "winsam003@gmail.com",
+                    message: emailContents,
+                };
+                emailjs
+                    .send(
+                        'winsam003', // 서비스 ID
+                        'SportsComplexAdmin', // 템플릿 ID
+                        templateParams,
+                        'Bp7cuWpudSqND8q5G', // public-key
+                    )
+                    .then((response) => {
+                        alert('이메일이 성공적으로 보내졌습니다');
+                        console.log('이메일이 성공적으로 보내졌습니다:', response);
+                        // 이메일 전송 성공 처리 로직 추가
+                    })
+                    .catch((error) => {
+                        alert('이메일 보내기 실패, 관리자에게 문의하세요.');
+                        console.error('이메일 보내기 실패:', error);
+                        // 이메일 전송 실패 처리 로직 추가
+                    });
+            } else{
+                console.log('이메일 수신 거부 유저입니다.');
+            }
+        };
+
+    }
+    //******************************* 메일보내기 API 실행 *********************************//
+
+
+    //******************************* 이메일 초기화 실행 *********************************//
+
+    const emailRefresh = () => {
+        setEmailContents('');
+    }
+
+    //******************************* 이메일 초기화 실행 *********************************//
+
+
     return (
         <div className='XuserInfoList_Box'>
             <div className='XuserInfoList_searchTitle'>회원 정보 조회</div>
@@ -193,13 +251,13 @@ export default function XuserInfoList({ token }) {
                     <button onClick={deleteReq}>삭제</button>
                 </div>
             </div>
-            <div className='XuserInfoList_searchTitle'>문자메세지 발송</div>
+            <div className='XuserInfoList_searchTitle'>이메일 발송</div>
             <div className='XuserInfoList_textMessage'>
-                <input type='text' name='textMessage' id='textMessage' placeholder='문자 내용 입력' />
+                <textarea name='textMessage' id='textMessage' placeholder='문자 내용 입력' onChange={emailDetail} value={emailContents} style={{ resize: 'none' }} />
             </div>
             <div className='XuserInfoList_UserButton'>
-                <button>초기화</button>
-                <button>발송</button>
+                <button onClick={emailRefresh}>초기화</button>
+                <button onClick={sendVerificationEmail}>발송</button>
             </div>
         </div>
     )

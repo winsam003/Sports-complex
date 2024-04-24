@@ -109,6 +109,7 @@ function App() {
   const [isAdminPage, setIsAdminPage] = useState(window.location.pathname.includes('X'));
   const checkAdminPage = (e) => {
     if (!(roleList && roleList.length > 0 && roleList.some(item => item === "ADMIN" || item === "MANAGER"))){
+      console.log("TEST");
       alert("관리자 계정으로 로그인이 되어야 이용 가능합니다.");
       e.preventDefault();
     } else if (window.location.pathname.includes('X')) {
@@ -152,7 +153,7 @@ function App() {
         <Route path='/PasswordChangePage' element={<PasswordChangePage getUserID={getUserID} />} />
         <Route path='/PasswordChangePage2' element={<PasswordChangePage2 />} />
         <Route path='/ModifyMemberPage' element={<ModifyMemberPage getUserID={getUserID} roleList={roleList} />} />
-        <Route path='/QRCodePage' element={<QRCodePage />} />
+        <Route path='/QRCodePage' element={<QRCodePage getUserID={getUserID} />} />
         <Route path='/PlaceRentalInfo' element={<PlaceRentalInfo roleList={roleList} />} />
         <Route path='/PlaceRental' element={<PlaceRental getUserName={getUserName} getUserID={getUserID} token={token} />} />
         <Route path='/ParkingRequest' element={<ParkingRequest getUserName={getUserName} getUserID = {getUserID}  />} />
