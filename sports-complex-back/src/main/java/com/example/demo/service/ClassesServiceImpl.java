@@ -40,7 +40,8 @@ public class ClassesServiceImpl implements ClassesService {
 
 	// 신청 가능 상태로 변경
 	@Override
-	@Scheduled(cron = "0 0 9 * * *") // 아침 9시에 실행되도록 변경
+	// 아침 9시에 실행되도록 변경
+	@Scheduled(cron = "0 0 9 * * *")
 	@Transactional
 	public void updateClassesStatusMorning() {
 		LocalDate today = LocalDate.now(); // 현재 날짜 정보만 포함하는 객체 생성

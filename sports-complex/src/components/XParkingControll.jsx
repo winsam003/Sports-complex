@@ -3,8 +3,9 @@ import Submenu from './Submenu'
 import XBtnResetDelete from './XBtnResetDelete'
 import { useEffect, useState } from 'react'
 import { apiCall } from '../apiService/apiService'
+import Pagination from 'react-js-pagination'
 
-export default function XParkingControll({token}) {
+export default function XParkingControll({ token }) {
 
     const [parkappList, setParkappList] = useState([]);
 
@@ -18,14 +19,22 @@ export default function XParkingControll({token}) {
             }).catch((error) => {
                 console.log("Error: ", error);
             })
-            // console.log("parkappList : ", parkappList);
+        // console.log("parkappList : ", parkappList);
     })
 
+    // 현재 페이지
+    const [currentPage, setCurrentPage] = useState(1);
+    // 페이지당 아이템 수
+    const [itemsPerPage, setItemsPerPage] = useState(5);
 
+    // 페이지 변경 시 동작 설정
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
 
-
-
-
+    // 현재 페이지에 보여줄 아이템의 인덱스 계산
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
     return (
         <div className='XParkingControll_div'>
@@ -75,22 +84,37 @@ export default function XParkingControll({token}) {
                         <span>차량번호</span>
                         <span>상태</span>
                     </div>
-                    {parkappList.map(({parkappnum, parkappdate, parkusedate, carnum, parkstate, id, spacecode}, index) => (
-                        <div className='XParkingControllSearchResult_content' key={index}>
-                            <div>
-                                <input type='checkbox'></input>
+                    {parkappList.slice(indexOfFirstItem, indexOfLastItem)
+                        .map(({ parkappnum, parkappdate, parkusedate, carnum, parkstate, id, spacecode }, index) => (
+                            <div className='XParkingControllSearchResult_content' key={index}>
+                                <div>
+                                    <input type='checkbox'></input>
+                                </div>
+                                <span>{parkappnum}</span>
+                                <span>{parkappdate}</span>
+                                <span>{parkusedate}</span>
+                                <span>{spacecode.spacename.substring(4)}</span>
+                                <span>{id.name}</span>
+                                <span>{id.phonenum.substring(0, 3) + "-" + id.phonenum.substring(3, 7) + "-" + id.phonenum.substring(7)}</span>
+                                <span>{carnum}</span>
+                                <span>{parkstate}</span>
                             </div>
-                            <span>{parkappnum}</span>
-                            <span>{parkappdate}</span>
-                            <span>{parkusedate}</span>
-                            <span>{spacecode.spacename.substring(4)}</span>
-                            <span>{id.name}</span>
-                            <span>{id.phonenum.substring(0, 3) + "-" + id.phonenum.substring(3, 7) + "-" + id.phonenum.substring(7)}</span>
-                            <span>{carnum}</span>
-                            <span>{parkstate}</span>
-                        </div>
 
-                    ))}
+                        ))}
+                    <div className='pagenationBox'>
+                        <Pagination
+                            // 현제 보고있는 페이지 
+                            activePage={currentPage}
+                            // 한페이지에 출력할 아이템 수
+                            itemsCountPerPage={5}
+                            // 총 아이템수
+                            totalItemsCount={parkappList.length}
+                            // 표시할 페이지수
+                            pageRangeDisplayed={5}
+                            // 페이지 변경 시 동작 설정
+                            onChange={handlePageChange}>
+                        </Pagination>
+                    </div>
                 </div>
                 <XBtnResetDelete />
             </div>
