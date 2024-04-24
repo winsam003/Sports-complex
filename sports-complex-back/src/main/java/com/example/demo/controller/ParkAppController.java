@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -10,11 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.domain.ParkAppDTO;
-import com.example.demo.entity.Member;
 import com.example.demo.entity.ParkApp;
 import com.example.demo.service.ParkAppServiceImpl;
 
@@ -42,12 +41,13 @@ public class ParkAppController {
 	}
 	
 	@PostMapping(value = "/myparkapp")
-	public ResponseEntity<?> myParkApp(@RequestBody ParkAppDTO dto) {
-		String id = dto.getId();
+	public ResponseEntity<?> myParkApp(@RequestBody Map<String, Object> RequestBody) {
+		String id = (String) RequestBody.get("id");
 		log.info("내 주차 신청 : id : " + id);
 		
-		ParkApp result = service.myParkApp(id);
-		if(result != null) {
+		List<ParkApp> result = service.myParkApp(id);
+		
+		if(result != null && result.size() > 0) {
 			log.info("result : " + result);
 			return ResponseEntity.status(HttpStatus.OK).body(result);
 		}else {
@@ -76,7 +76,26 @@ public class ParkAppController {
 		
 	}
 									 
-	
+	// 주차 신청 취소
+	@PostMapping(value = "/parkappcancel")
+	public ResponseEntity<?> parkappCancel(@RequestBody ParkAppDTO dto) {
+		log.info("Controller parkappCancel");
+		int parkappnum = dto.getParkAppNum();
+		String spacecode = dto.getSpacecode();
+		log.info("parkappnum : " + parkappnum );
+		log.info("spacecode : " + spacecode );
+		
+		int cancelPark = service.parkappCancel(parkappnum);
+		
+		if(cancelPark > 0) {
+			service.minusParking(spacecode);
+			return ResponseEntity.status(HttpStatus.OK).body("주차 신청이 삭제되었습니다. ");
+		} else {
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("주차 신청 취소 중 오류가 발생했습니다. ");
+		}
+		
+		
+	}
 	
 	
 }

@@ -6,6 +6,8 @@ import { apiCall } from '../apiService/apiService';
 export default function ParkingRequestContent({getUserName, getUserID}) {
 
     const [spacelist, setSpaceList] = useState([]);
+    // 내 주차 리스트
+    const [myparklist, setMyparklist] = useState([]);
 
     useEffect(() => {
 
@@ -19,16 +21,24 @@ export default function ParkingRequestContent({getUserName, getUserID}) {
             }).catch((error) => {
                 console.log("Error: ", error);
             })
+        
+        
+        let myparkurl = "/parkapp/myparkapp";
+
+        apiCall(myparkurl, 'post', { id: getUserID }, token)
+            .then((mypark) => {
+                console.log("mypark : ", mypark);
+                setMyparklist(mypark);
+            }).catch((error) => {
+                console.log("mypark error", error);
+            })
 
     }, [])
 
     // 자기 차량 번호 가져오기
     const [isChecked, setIsChecked] = useState(false);
-
     // -> 장소
     const [spacecodeApp, setSpacecodeApp] = useState('');
-    // -> 가격
-    const [spacepriceApp, setSpacepriceApp] = useState('');
     // -> 차번호
     const [myCarNum, setMyCarNum] = useState('');
     // -> 결제 수단
@@ -38,9 +48,8 @@ export default function ParkingRequestContent({getUserName, getUserID}) {
         console.log(e);
         setSpacecodeApp(e);
 
-        // console.log(spacelist.filter(({ spacecode }) => spacecode === e)[0].spaceprice);
         // 장소에 맞는 가격 넣기.
-        setSpacepriceApp(spacelist.filter(({ spacecode }) => spacecode === e)[0].spaceprice);
+        // setSpacepriceApp(spacelist.filter(({ spacecode }) => spacecode === e)[0].spaceprice);
 
         // *** 필터는 참인 값의 배열을 반환함. ***
     }
@@ -70,7 +79,6 @@ export default function ParkingRequestContent({getUserName, getUserID}) {
                     alert('차량 등록을 실패하였습니다. ');
                     console.log("차 번호 등록 실패 error : ", error);
                 })
-            
         }
     }
 
@@ -94,34 +102,73 @@ export default function ParkingRequestContent({getUserName, getUserID}) {
             return;
         }
 
-        let token = JSON.parse(sessionStorage.getItem("userData")).token;
-        let url = "/parkapp/parkapplication";
+        
+        // 만약 리스트가 있다면
+        if(myparklist.length > 0) {
+            console.log("myparklist : ", myparklist[0].parkstate);
 
-        // 등록 하는거 만들기. 
-        let formPlaceApp = {
-            id : getUserID, 
-            parkprice : 10000, 
-            spacecode : spacecodeApp, 
-            // parkUseDate : '2024-05',
-            carnum : myCarNum, 
-            payment : payment 
+            if(myparklist.every(item => item.parkstate !== "Next")) {
+                // 상태가 Next가 없다면 등록.
+                let formPlaceApp = {
+                    id : getUserID, 
+                    parkprice : 10000, 
+                    spacecode : spacecodeApp, 
+                    carnum : myCarNum, 
+                    payment : payment 
+                }
+        
+                let token = JSON.parse(sessionStorage.getItem("userData")).token;
+                let url = "/parkapp/parkapplication";
+        
+                console.log(formPlaceApp);
+                apiCall(url, 'post', formPlaceApp, token)
+                    .then((response) => {
+                        alert(response);
+                        window.location.reload();
+                    }).catch((error) => {
+                        alert("주차 등록 실패");
+                        console.log("parkapp error : ", error);
+                    })
+            } else {
+                // 상태에 Next가 있다면 이미 있다고 알려주기. 
+                alert('주차 신청이 이미 있습니다. ');
+            }
+
+        } else {
+            // 리스트가 없다면 그냥 등록하기.
+            let formPlaceApp = {
+                id : getUserID, 
+                parkprice : 10000, 
+                spacecode : spacecodeApp, 
+                carnum : myCarNum, 
+                payment : payment 
+            }
+    
+            let token = JSON.parse(sessionStorage.getItem("userData")).token;
+            let url = "/parkapp/parkapplication";
+    
+            console.log(formPlaceApp);
+            apiCall(url, 'post', formPlaceApp, token)
+                .then((response) => {
+                    alert(response);
+                    window.location.reload();
+                }).catch((error) => {
+                    alert("주차 등록 실패");
+                    console.log("parkapp error : ", error);
+                })
         }
-
-        console.log(formPlaceApp);
-        apiCall(url, 'post', formPlaceApp, token)
-            .then((response) => {
-                alert(response);
-                // console.log("VSC 요청 중 : 주차 등록 완료 ");
-                window.location.reload();
-            }).catch((error) => {
-                alert("주차 등록 실패");
-                console.log("parkapp error : ", error);
-            })
-
+        
     }
 
+    // 초기화버튼
+    const parkAppReset = () => {
+        setSpacecodeApp('');
+        setMyCarNum('');
+        setPayment('');
+        setIsChecked(false);
+    }
 
-
+    
     return (
         <div>
             <div className='board_div'>
@@ -159,10 +206,13 @@ export default function ParkingRequestContent({getUserName, getUserID}) {
                         </div>
                         <div className='ParkingRequestInfo_content_div'>
                             <select name='spacecode'
-                                    onChange={(e) => {selectSpacecode(e.target.value)}} >
-                                        <option value=" - ">선택</option>
+                                    onChange={(e) => {selectSpacecode(e.target.value)}}
+                                    value={spacecodeApp} >
+                                        <option value="">선택</option>
                                 {spacelist
-                                    .filter(({spacecode}) => spacecode.substring(2, 4) === 'PA')
+                                    .filter(({ spacecode, parkspace, parking }) => (
+                                                spacecode.substring(2, 4) === 'PA' && parkspace - parking >= 1
+                                            ))
                                     .map(({spacename, spacecode}, index) => (
                                         <option value={spacecode} key={index}>{spacename}</option>
                                     ))
@@ -202,7 +252,9 @@ export default function ParkingRequestContent({getUserName, getUserID}) {
                         </div>
                         <div className='ParkingRequestInfo_borderbox3'>
                             <select name='parkingPayment'
-                                    onChange={(e) => {selectPayment(e.target.value)}} >
+                                    onChange={(e) => {selectPayment(e.target.value)}} 
+                                    value={payment} >
+                                <option value="" key="">선택</option>
                                 <option value="card" key="card">카드</option>
                                 <option value="cash" key="cash">현금</option>
                             </select>
@@ -210,7 +262,7 @@ export default function ParkingRequestContent({getUserName, getUserID}) {
                     </div>
                     <div className='ParkingRequestButton'>
                         <button onClick={parkAppSubmit}>신청</button>
-                        <button>초기화</button>
+                        <button onClick={parkAppReset}>초기화</button>
                     </div>
                 </div>
             </div>

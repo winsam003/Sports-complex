@@ -38,7 +38,7 @@ export default function ApplicationDetails({ token, getUserID }) {
 
         apiCall(url, 'post', { id: getUserID }, token)
             .then((response) => {
-                console.log(response);
+                console.log("response parkapp : ",response);
                 setMyParkapp(response);
             }).catch((error) => {
                 console.log("myparkapp : ", error);
