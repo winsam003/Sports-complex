@@ -42,11 +42,6 @@ export default function XRentalPlaceSearchResult({ checkList, setCheckList, refr
 
     }
 
-    // const handleSelectedChange = (selectedList) => {
-    //     setCheckList(selectedList);
-    // }
-
-
     return (
 
 
@@ -66,9 +61,8 @@ export default function XRentalPlaceSearchResult({ checkList, setCheckList, refr
                     .filter(space => {
                         return ((
                             (searchPlace.mainCategory === (space.spacecode.substring(2, 4) === 'PA' ? '주차장' : '경기장')) || searchPlace.mainCategory === '전체'
-                        ) && (
+                            ) && (
                                 searchPlace.subCategory === '전체' || (space.spacename).includes(searchPlace.subCategory)
-
                             ) && (
                                 searchPlace.searchValue === '' || space.spacename.includes(searchPlace.searchValue)
                             ))

@@ -3,28 +3,9 @@ import { apiCall } from '../apiService/apiService';
 import './HistoryPark.css'
 import HistoryParkContent from './HistoryParkContent';
 
-export default function HistoryPark({myParkapp, token}) {
+export default function HistoryPark({myParkapp, cancelParkapp, token}) {
 
-    const cancelParkapp = (parkappnum, spacecode) => {
-        let url = "/parkapp/parkappcancel";
-        console.log("parkappnum : " , parkappnum);
-
-        // 취소할 때 내 등록번호랑 공간 spacecode  가져가기
-        let cancelForm = {
-            parkAppNum : parkappnum, 
-            spacecode : spacecode
-        }
-
-        if(window.confirm("주차 신청을 취소하시겠습니까?")) {
-            apiCall(url, 'post', cancelForm, token)
-                .then((response) => {
-                    alert(response);
-                    window.location.reload();
-                }).catch((error) => {
-                    alert(error);
-                })
-        }
-    }
+   
 
 
     return (
