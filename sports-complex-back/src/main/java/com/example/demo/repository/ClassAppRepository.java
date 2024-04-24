@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import com.example.demo.domain.ClassAppDTO;
@@ -41,4 +42,7 @@ public interface ClassAppRepository {
 
 	// 결제
 	void classAppPayment(Integer classappnum);
+
+	// 신청 후 3일이내 미결제 취소로 변경
+	List<ClassApp> findClassAppsBeforeDate(Timestamp date);
 }

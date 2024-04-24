@@ -1,7 +1,9 @@
 import './XBoardSearchResult.css'
 import EventDetail from './EventDetail';
 import { Navigate, useLocation, useNavigate } from 'react-router';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Pagination from 'react-js-pagination'
 
 export default function XBoardSearchResult({ eventlist, searchEvent, handleEventDelete, checkEvent, setCheckEvent }) {
 
@@ -18,10 +20,10 @@ export default function XBoardSearchResult({ eventlist, searchEvent, handleEvent
 
     const handleEventClick = (eventcode) => {
         try {
-            if(location.pathname == '/EventBoardPage' ){
+            if (location.pathname == '/EventBoardPage') {
                 navigate(`/EventDetailPage?eventcode=${eventcode}`);
                 window.scrollTo(0, 525);
-            } else{
+            } else {
                 navigate(`/XEventDetailPage?eventcode=${eventcode}`);
                 window.scrollTo(0, 525);
             }
@@ -30,6 +32,21 @@ export default function XBoardSearchResult({ eventlist, searchEvent, handleEvent
         }
 
     }
+
+    // 현재 페이지
+    const [currentPage, setCurrentPage] = useState(1);
+    // 페이지당 아이템 수
+    const [itemsPerPage, setItemsPerPage] = useState(5);
+
+    // 페이지 변경 시 동작 설정
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
+
+    // 현재 페이지에 보여줄 아이템의 인덱스 계산
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+
 
     // =============================================================================================
     return (
@@ -46,7 +63,7 @@ export default function XBoardSearchResult({ eventlist, searchEvent, handleEvent
                     <p>조회수</p>
                 </div>
                 :
-                <div className='indexEvent XBoardControllContent_SearchResult_index'> 
+                <div className='indexEvent XBoardControllContent_SearchResult_index'>
                     <p>선택</p>
                     <p>번호</p>
                     <p>제목</p>
@@ -77,12 +94,12 @@ export default function XBoardSearchResult({ eventlist, searchEvent, handleEvent
                             // searchType이 존재하면 해당 컬럼을 대상으로 검색
                             return event[searchEvent.searchType] && event[searchEvent.searchType].toString().includes(searchEvent.searchKeyWord);
                         }
-                    })
+                    }).slice(indexOfFirstItem, indexOfLastItem)
                     .map(({ eventcode, eventname, eventdetail, eventfacility, eventtime, eventfor, eventtype, eventcount, eventuploadfile, stfid, eventdate }, index) => (
 
                         <div className='listEvent XBoardControllContent_SearchResult_User' key={eventcode}>
                             <p>{eventcode}</p>
-                            <p onClick={() => handleEventClick(eventcode)} 
+                            <p onClick={() => handleEventClick(eventcode)}
                                 className='XBoardControllContent_clickDetail' >{eventname}</p>
                             {/* <p>{eventfacility}</p> */}
                             <p>{eventfor}</p>
@@ -107,14 +124,14 @@ export default function XBoardSearchResult({ eventlist, searchEvent, handleEvent
                             // searchType이 존재하면 해당 컬럼을 대상으로 검색
                             return event[searchEvent.searchType] && event[searchEvent.searchType].toString().includes(searchEvent.searchKeyWord);
                         }
-                    })
+                    }).slice(indexOfFirstItem, indexOfLastItem)
                     .map(({ eventcode, eventname, eventdetail, eventfacility, eventtime, eventfor, eventtype, eventcount, eventuploadfile, stfid, eventdate }, index) => (
                         <div className='listEvent XBoardControllContent_SearchResult' key={eventcode}>
                             <p><input type='checkbox'
-                                    value={eventcode}
-                                    onChange={(e) => handleEventDelete(e.target.value)}
-                                    //   checked={checkEvent[eventcode]}
-                                    checked={checkEvent.includes(eventcode.toString())}
+                                value={eventcode}
+                                onChange={(e) => handleEventDelete(e.target.value)}
+                                //   checked={checkEvent[eventcode]}
+                                checked={checkEvent.includes(eventcode.toString())}
                             /></p>
                             <p>{eventcode}</p>
                             <p onClick={() => handleEventClick(eventcode)}
@@ -129,6 +146,20 @@ export default function XBoardSearchResult({ eventlist, searchEvent, handleEvent
 
                     )))
             }
+            <div className='pagenationBox'>
+                <Pagination
+                    // 현제 보고있는 페이지 
+                    activePage={currentPage}
+                    // 한페이지에 출력할 아이템 수
+                    itemsCountPerPage={5}
+                    // 총 아이템수
+                    totalItemsCount={eventlist.length}
+                    // 표시할 페이지수
+                    pageRangeDisplayed={5}
+                    // 페이지 변경 시 동작 설정
+                    onChange={handlePageChange}>
+                </Pagination>
+            </div>
         </div>
     )
 }

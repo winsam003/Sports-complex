@@ -34,6 +34,10 @@ export default function ApplicationDetails({ token, getUserID }) {
     // 주차 신청 
     const [myParkapp, setMyParkapp] = useState([]);
     useEffect(() => {
+        park();
+    }, []);
+
+    const park = () => {
         let url = "/parkapp/myparkapp";
 
         apiCall(url, 'post', { id: getUserID }, token)
@@ -43,7 +47,29 @@ export default function ApplicationDetails({ token, getUserID }) {
             }).catch((error) => {
                 console.log("myparkapp : ", error);
             })
-    }, []);
+    }
+
+    const cancelParkapp = (parkappnum, spacecode) => {
+        let url = "/parkapp/parkappcancel";
+        console.log("parkappnum : " , parkappnum);
+
+        // 취소할 때 내 등록번호랑 공간 spacecode  가져가기
+        let cancelForm = {
+            parkAppNum : parkappnum, 
+            spacecode : spacecode
+        }
+
+        if(window.confirm("주차 신청을 취소하시겠습니까?")) {
+            apiCall(url, 'post', cancelForm, token)
+                .then((response) => {
+                    alert(response);
+                    park();
+                    // window.location.reload();
+                }).catch((error) => {
+                    alert(error);
+                })
+        }
+    }
 
     // 수강 신청 내역
     const [myClassAppHistory, setMyClassAppHistory] = useState([]);
@@ -100,13 +126,13 @@ export default function ApplicationDetails({ token, getUserID }) {
             case 'HistoryClass':
                 return <HistoryClass myClassAppHistory={myClassAppHistory} token={token} handlePayment={handlePayment} handleCancel={handleCancel} />
             case 'HistoryPark':
-                return <HistoryPark myParkapp={myParkapp} token={token} />
+                return <HistoryPark myParkapp={myParkapp} cancelParkapp={cancelParkapp} token={token} />
             case 'HistoryRental':
                 return <HistoryRental history={history} token={token} />
             case 'HistoryBattle':
                 return <HistoryBattle token={token} getUserID={getUserID} />
         }
-    }, [currentPage, myClassAppHistory]);
+    }, [currentPage, myClassAppHistory, myParkapp]);
 
     return (
         <div className='ApplicationDetails_box'>

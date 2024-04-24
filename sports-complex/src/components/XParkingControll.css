@@ -4,27 +4,19 @@
 
 .XParkingControll_div_div {
     flex-grow: 1;
+    margin-top: 2rem;
 }
 .XParkingControllSearchBox_div {
     margin-top: 40px;
-
 }
 
 /* 검색창 */
-.XParkingControllSearchBox_div {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    margin-right: 20px;
-}
-
 .XParkingControllSearchBox_div select {
-    height: 26px;
+    margin: 0 10px;
 }
 
 .XParkingControllSearchBox_div input {
     padding: 0;
-    height: 22px;
 }
 
 .XParkingControllSearchBox_div button {
@@ -47,6 +39,7 @@
     text-align: center;
     line-height: 40px;
 }
+.XParkingControll_inputbox > select,
 .XParkingControll_inputbox > input{
     margin-left: 20px;
     display: inline-block;
@@ -59,6 +52,10 @@
 /* 조회결과 */
 .XParkingControllSearchResult_div {
     margin-top: 10px;
+}
+#XParkingControll_nolist{
+    text-align: center;
+    margin: 1rem;
 }
 
 /* 대표항목 */
@@ -83,13 +80,6 @@
     padding: 10px 0;
     
 }
-/* .XParkingControllSearchResult_content div>input{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    word-break: keep-all;
-} */
 
 .XParkingControllSearchResult_content div,
 .XParkingControllSearchResult_content span {
