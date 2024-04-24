@@ -1,7 +1,7 @@
 import './XBtnResetDelete.css'
 
 // 초기화 삭제 버튼
-export default function XResetDeleteBtn({ del, handleReset,}) {
+export default function XResetDeleteBtn({ del, handleReset}) {
 
     return (
         <div>
