@@ -42,11 +42,6 @@ export default function XRentalPlaceSearchResult({ checkList, setCheckList, refr
         setCheckList(updatedCheckList);
 
     }
-
-    // const handleSelectedChange = (selectedList) => {
-    //     setCheckList(selectedList);
-    // }
-
     // 현재 페이지
     const [currentPage, setCurrentPage] = useState(1);
     // 페이지당 아이템 수
@@ -80,9 +75,8 @@ export default function XRentalPlaceSearchResult({ checkList, setCheckList, refr
                     .filter(space => {
                         return ((
                             (searchPlace.mainCategory === (space.spacecode.substring(2, 4) === 'PA' ? '주차장' : '경기장')) || searchPlace.mainCategory === '전체'
-                        ) && (
+                            ) && (
                                 searchPlace.subCategory === '전체' || (space.spacename).includes(searchPlace.subCategory)
-
                             ) && (
                                 searchPlace.searchValue === '' || space.spacename.includes(searchPlace.searchValue)
                             ))
