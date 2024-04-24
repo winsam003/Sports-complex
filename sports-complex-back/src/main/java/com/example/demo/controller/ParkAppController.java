@@ -78,21 +78,28 @@ public class ParkAppController {
 									 
 	// 주차 신청 취소
 	@PostMapping(value = "/parkappcancel")
-	public ResponseEntity<?> parkappCancel(@RequestBody ParkAppDTO dto) {
+	public ResponseEntity<?> parkappCancel(@RequestBody List<ParkAppDTO> dtolist) {
 		log.info("Controller parkappCancel");
-		int parkappnum = dto.getParkAppNum();
-		String spacecode = dto.getSpacecode();
-		log.info("parkappnum : " + parkappnum );
-		log.info("spacecode : " + spacecode );
 		
-		int cancelPark = service.parkappCancel(parkappnum);
-		
-		if(cancelPark > 0) {
-			service.minusParking(spacecode);
-			return ResponseEntity.status(HttpStatus.OK).body("주차 신청이 삭제되었습니다. ");
-		} else {
-			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("주차 신청 취소 중 오류가 발생했습니다. ");
+		for(ParkAppDTO dto : dtolist) {
+			
+			int parkappnum = dto.getParkAppNum();
+			String spacecode = dto.getSpacecode();
+			
+			log.info("parkappnum : " + parkappnum );
+			log.info("spacecode : " + spacecode );
+			
+			int cancelPark = service.parkappCancel(parkappnum);
+			
+			if(cancelPark > 0) {
+				service.minusParking(spacecode);
+				return ResponseEntity.status(HttpStatus.OK).body("주차 신청이 취소되었습니다. ");
+			} else {
+				return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("주차 신청 취소 중 오류가 발생했습니다. ");
+			}
+						
 		}
+		return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("삭제할 주차 가 없습니다.");
 		
 		
 	}

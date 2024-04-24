@@ -84,7 +84,7 @@ export default function XParkingControll({ token }) {
     }
 
     // 초기화 버튼
-    const handleReset = () => {
+    const handleResetSearchPark = () => {
         setParkingFloor('all');
         setParkingState('all');
         setParkingMonth('');
@@ -148,12 +148,38 @@ export default function XParkingControll({ token }) {
     
     const handlecheckPark = (event) => {
         const deletevalue = event.target.value.toString();
+
+        let cancelParkForm = {
+            parkAppNum : deletevalue, 
+            spacecode : spacecode
+        }
+
+// 저기 죄송한데 내일 할래요 ㅂㅇ 머리가ㅡ 멈춤요 그니까 이거 두개 담아서 배열로 전송해야됨. 
         if(!checkPark.includes(deletevalue)) {
             setCheckPark(preCheck => [...preCheck, deletevalue]);
         } else {
             setCheckPark(preCheck => preCheck.filter(value => value !== deletevalue));
 
         }
+    }
+
+    const del = () => {
+        let url = "/parkapp/parkappcancel";
+        let token = JSON.parse(sessionStorage.getItem("userData")).token;
+
+        apiCall(url, 'post', checkPark, token)
+            .then((response) => {
+                alert(response);
+                setCheckPark([]);
+                // fetchEventList();
+            }).catch((error) => {
+                console.log("delete error: ", error);
+                alert('관리자가 취소할 수 없는 주차 신청 입니다. ');
+            })
+    }
+
+    const handleReset = () => {
+        setCheckPark([]);
     }
 
 
@@ -224,7 +250,7 @@ export default function XParkingControll({ token }) {
                     </p>
                     <div className='XRentalPlaceSearchBox_bottondiv'>
                         <button className='XRentalPlaceSearchBox_botton'
-                            onClick={handleReset}> 검색 초기화</button>
+                            onClick={handleResetSearchPark}> 검색 초기화</button>
                         <button className='XRentalPlaceSearchBox_botton'
                             onClick={handleSearch}>검색 조회</button>
                     </div>
@@ -261,7 +287,9 @@ export default function XParkingControll({ token }) {
                                 <span>{id.name}</span>
                                 <span>{id.phonenum.substring(0, 3) + "-" + id.phonenum.substring(3, 7) + "-" + id.phonenum.substring(7)}</span>
                                 <span>{carnum}</span>
-                                <span>{parkstate}</span>
+                                <span>
+                                    {parkstate === 'Next' ? '이용 예정' : (parkstate === 'ing' ? '이용 중' : (parkstate === 'end' ? '이용 종료' : '취소'))} 
+                                </span>
                             </div>
 
                         ))}
@@ -280,7 +308,7 @@ export default function XParkingControll({ token }) {
                         </Pagination>
                     </div>
                 </div>
-                <XBtnResetDelete />
+                <XBtnResetDelete del={del} handleReset={handleReset} />
             </div>
         </div>
     )
