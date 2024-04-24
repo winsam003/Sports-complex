@@ -167,7 +167,32 @@ export default function XuserInfoList({ token }) {
 
     //******************************* 메일보내기 API 실행 *********************************//
 
-    const [emailContents, setEmailContents] = useState('')
+    const [emailContents, setEmailContents] = useState(`
+
+     1. ** 이용 시간 변경 안내 **
+    - 특정 날짜에 따른 이용 시간 변경 사항을 안내드립니다. 
+    - 변경된 이용 시간에 맞춰서 이용해 주시기 바랍니다. 변경된 시간에 대한 자세한 내용은 별도로 공지될 예정입니다.
+
+    2. ** 시설 점검 일정 안내 **
+    - 점검 일정 및 관련 안내 사항에 대해 안내드립니다. 이용 시 불편함이 없도록 참고해 주시기 바랍니다. 
+    - 점검 일정은 미리 예고되며, 이용 시설에 불편함이 발생하지 않도록 최선을 다하겠습니다.
+
+    3. ** 프로그램 및 이벤트 안내 **
+    - 다가오는 프로그램 및 이벤트에 대한 안내를 드립니다. 참여하실 분은 미리 신청해주시기 바랍니다. 
+    - 다양한 프로그램과 이벤트를 통해 즐거운 시간을 보내실 수 있습니다.
+
+    4. ** 시설 이용 안내 **
+    - 체육시설 이용에 관한 주요 안내사항을 안내드립니다. 시설 이용 시 유의사항을 숙지하고 이용해 주시기 바랍니다. 
+    - 모든 이용자 분들이 안전하고 쾌적하게 이용할 수 있도록 최선을 다하겠습니다.
+
+    5. ** 기타 공지사항 **
+    - 기타 중요한 공지사항이나 안내사항을 안내드립니다. 꼭 확인해주시기 바랍니다. 
+    - 더 많은 정보는 저희 웹사이트나 공지판을 통해 확인하실 수 있습니다.
+
+    6. ** 모두 정말 고생하셨습니다. **
+    - 마지막 프로젝트까지 재미있었어요! 반 분위기가 좋아서 재미있게 공부했습니다! 다들 취뽀 빨리 성공하길 빌어요~~!
+
+    `)
     const emailDetail = (e) => {
         setEmailContents(e.target.value);
     }
@@ -182,6 +207,7 @@ export default function XuserInfoList({ token }) {
                 // 여기서 정의해야하는 것은 위에서 만든 메일 템플릿에 지정한 변수({{ }})에 대한 값을 담아줘야한다.
                 const templateParams = {
                     to_email: checkedUserEmails[i].email,
+                    to_name: checkedUserEmails[i].name,
                     from_name: "FitNest Admin",
                     from_email: "winsam003@gmail.com",
                     message: emailContents,
@@ -196,6 +222,7 @@ export default function XuserInfoList({ token }) {
                     .then((response) => {
                         alert('이메일이 성공적으로 보내졌습니다');
                         console.log('이메일이 성공적으로 보내졌습니다:', response);
+                        setEmailContents('');
                         // 이메일 전송 성공 처리 로직 추가
                     })
                     .catch((error) => {
@@ -283,7 +310,7 @@ export default function XuserInfoList({ token }) {
             </div>
             <div className='XuserInfoList_searchTitle'>이메일 발송</div>
             <div className='XuserInfoList_textMessage'>
-                <textarea name='textMessage' id='textMessage' placeholder='문자 내용 입력' onChange={emailDetail} value={emailContents} style={{ resize: 'none' }} />
+                <textarea name='textMessage' id='textMessage' placeholder='메일 내용 입력' onChange={emailDetail} value={emailContents} style={{ resize: 'none' }} />
             </div>
             <div className='XuserInfoList_UserButton'>
                 <button onClick={emailRefresh}>초기화</button>
