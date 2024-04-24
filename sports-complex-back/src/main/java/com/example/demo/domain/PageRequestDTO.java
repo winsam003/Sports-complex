@@ -29,7 +29,6 @@ public class PageRequestDTO {
 
 	// => Pageable
 	// 스프링 데이터 JPA에서 제공하는 강력한 페이징 & 정렬 기능을 정의한 interface
-
 	// => PageRequest ( Pageable interface의 구현클래스 )
 	// - Sort type 을 인자로 전달 할 수 있음
 	// - Sort 객체는 한개 이상의 컬럼값을 이용해서 정렬을 지정할수 있음.

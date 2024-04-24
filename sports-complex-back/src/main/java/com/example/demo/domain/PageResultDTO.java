@@ -11,16 +11,11 @@ import org.springframework.data.domain.Pageable;
 import lombok.Data;
 
 //** PageList 결과 처리 DTO
-
 //=> JPA를 사용하는 Repository에서는 Page 처리결과를 
 //  Page<Entity> Type으로 return하기 때문에 서비스계층에서 
 // 이를 처리할 수 있도록 하는 DTO클래스가 필요함.
-//=> 주요기능
 // - Page<Entity> 객체들을 DTO 객체로 변환해서 List에 담아줌
 // - 화면출력을 위한 페이지 정보들 구성
-
-//** interface Collector
-//=> 스트림의 collect() 메서드에서 사용될 메서드를 정의해놓은 인터페이스
 
 @Data
 public class PageResultDTO<DTO, EN> {
