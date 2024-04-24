@@ -74,9 +74,9 @@ export default function Header({ checkAdminPage, logout, getUserName, roleList }
                         <li className='Header_subMenu Header_Menutitle5'><Link to='/ClassSchedulePage' >수업 일정표</Link></li>
                     </ul>
                     <ul>
-                        <li className='Header_subMenu Header_Menutitle6'><Link to={getUserName == null ? '/LoginPage' : '/ApplicationDetailsPage'} onClick={getUserName == null ? checkLogin : ''} >수강 신청</Link></li>
-                        <li className='Header_subMenu Header_Menutitle7'><Link to={getUserName == null ? '/LoginPage' : '/ApplicationDetailsPage'} onClick={getUserName == null ? checkLogin : ''} >대관 신청</Link></li>
-                        <li className='Header_subMenu Header_Menutitle8'><Link to={getUserName == null ? '/LoginPage' : '/ApplicationDetailsPage'} onClick={getUserName == null ? checkLogin : ''}>주차 신청</Link></li>
+                        <li className='Header_subMenu Header_Menutitle6'><Link to={getUserName == null ? '/LoginPage' : '/Sugang'} onClick={getUserName == null ? checkLogin : ''} >수강 신청</Link></li>
+                        <li className='Header_subMenu Header_Menutitle7'><Link to={getUserName == null ? '/LoginPage' : '/PlaceRental'} onClick={getUserName == null ? checkLogin : ''} >대관 신청</Link></li>
+                        <li className='Header_subMenu Header_Menutitle8'><Link to={getUserName == null ? '/LoginPage' : '/ParkingRequest'} onClick={getUserName == null ? checkLogin : ''}>주차 신청</Link></li>
                     </ul>
                     {
                         roleList && roleList.length > 0 && roleList.some(item => item === "ADMIN" || item === "MANAGER") ? 
