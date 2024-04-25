@@ -67,17 +67,17 @@ export default function ParkingRequestContent({getUserName, getUserID}) {
             apiCall(url, 'post', getUserID, null)
                 .then((response) => {
                     if(response === ""){
-                        alert('차 번호가 없습니다.');
-                        console.log("차 번호 등록 실패 null : ", null);
+                        alert('등록된 차량 번호가 없습니다.');
+                        // console.log("차 번호 등록 실패 null : ", null);
                     } else {
                         console.log("response : " , response);
                         setMyCarNum(response);
                         setIsChecked(true);
-                        console.log("차 번호 있어 : ");
+                        // console.log("차 번호 있어 : ");
                     }
                 }).catch((error) => {
                     alert('차량 등록을 실패하였습니다. ');
-                    console.log("차 번호 등록 실패 error : ", error);
+                    // console.log("차 번호 등록 실패 error : ", error);
                 })
         }
     }
@@ -126,7 +126,7 @@ export default function ParkingRequestContent({getUserName, getUserID}) {
                         alert(response);
                         window.location.reload();
                     }).catch((error) => {
-                        alert("주차 등록 실패");
+                        alert("시스템 오류로 주차 신청을 실패하였습니다.");
                         console.log("parkapp error : ", error);
                     })
             } else {
@@ -153,7 +153,7 @@ export default function ParkingRequestContent({getUserName, getUserID}) {
                     alert(response);
                     window.location.reload();
                 }).catch((error) => {
-                    alert("주차 등록 실패");
+                    alert("시스템 오류로 주차 신청을 실패하였습니다.");
                     console.log("parkapp error : ", error);
                 })
         }
@@ -250,7 +250,7 @@ export default function ParkingRequestContent({getUserName, getUserID}) {
                         <div className='ParkingRequest_p5'>
                             <p>결제방식</p>
                         </div>
-                        <div className='ParkingRequestInfo_borderbox3'>
+                        <div className='ParkingRequestInfo_content_div'>
                             <select name='parkingPayment'
                                     onChange={(e) => {selectPayment(e.target.value)}} 
                                     value={payment} >

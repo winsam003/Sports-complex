@@ -9,6 +9,9 @@ export default function XParkingControll({ token }) {
 
     // 리스트 뽑기
     const [parkappList, setParkappList] = useState([]);
+    // 체크
+    const [checkPark, setCheckPark] = useState([]);
+
 
     useEffect(() => {
         parklist();
@@ -19,7 +22,7 @@ export default function XParkingControll({ token }) {
             searchSelect: searchSelect,
             searchText: searchText
         })
-    }, []);
+    }, [checkPark]);
 
     const parklist = () => {
         let token = JSON.parse(sessionStorage.getItem("userData")).token;
@@ -37,7 +40,7 @@ export default function XParkingControll({ token }) {
             })
     }
 
-    console.log("parkappList : ", parkappList);
+    // console.log("parkappList : ", parkappList);
 
     // ==========================================================================
 
@@ -69,6 +72,12 @@ export default function XParkingControll({ token }) {
     const handleSearchText = (event) => {
         setSearchText(event.target.value);
     }
+
+    useEffect(() => {
+        if (!searchSelect) {
+            setSearchText('');
+        }
+    }, [searchSelect]);
 
     const [searchAll, setSearchAll] = useState({});
 
@@ -144,17 +153,10 @@ export default function XParkingControll({ token }) {
     // ==========================================================================
 
     // 체크
-    const [checkPark, setCheckPark] = useState([]);
     
     const handlecheckPark = (event) => {
         const deletevalue = event.target.value.toString();
-
-        let cancelParkForm = {
-            parkAppNum : deletevalue, 
-            spacecode : spacecode
-        }
-
-// 저기 죄송한데 내일 할래요 ㅂㅇ 머리가ㅡ 멈춤요 그니까 이거 두개 담아서 배열로 전송해야됨. 
+ 
         if(!checkPark.includes(deletevalue)) {
             setCheckPark(preCheck => [...preCheck, deletevalue]);
         } else {
@@ -164,18 +166,39 @@ export default function XParkingControll({ token }) {
     }
 
     const del = () => {
-        let url = "/parkapp/parkappcancel";
-        let token = JSON.parse(sessionStorage.getItem("userData")).token;
-
-        apiCall(url, 'post', checkPark, token)
-            .then((response) => {
-                alert(response);
-                setCheckPark([]);
-                // fetchEventList();
-            }).catch((error) => {
-                console.log("delete error: ", error);
-                alert('관리자가 취소할 수 없는 주차 신청 입니다. ');
+        if(checkPark.length === 0){
+            alert('취소할 신청을 선택해주세요.');
+        } else{
+            
+            let url = "/parkapp/parkappcancel";
+            let token = JSON.parse(sessionStorage.getItem("userData")).token;
+            console.log('checkPark : ', checkPark);
+    
+            let cancelParkForm = checkPark.map(parkappnum => {
+                let pakrItem = filteredParkappList.find(park => park.parkappnum.toString() === parkappnum);
+                // console.log('pakrItem: ', pakrItem);
+                return {
+                    parkAppNum : pakrItem.parkappnum, 
+                    spacecode : pakrItem.spacecode.spacecode
+                }
             })
+    
+            console.log('cancelParkForm : ', cancelParkForm);
+        
+            if(window.confirm("주차 신청을 취소하시겠습니까?")){
+                apiCall(url, 'post', cancelParkForm, token)
+                    .then((response) => {
+                        alert(response);
+                        setCheckPark([]);
+                        // fetchEventList();
+                    }).catch((error) => {
+                        console.log("delete error: ", error);
+                        alert('관리자가 취소할 수 없는 주차 신청 입니다. ');
+                    })
+            }
+        }
+        
+
     }
 
     const handleReset = () => {
@@ -238,7 +261,7 @@ export default function XParkingControll({ token }) {
                         <span className='XParkingControll_inputbox'>
                             <select value={searchSelect}
                                 onChange={handleSearchSelect}>
-                                <option value="">전체</option>
+                                <option value="">선택</option>
                                 <option value="name">이름</option>
                                 <option value="carnum">차량번호</option>
                             </select>
@@ -254,6 +277,7 @@ export default function XParkingControll({ token }) {
                         <button className='XRentalPlaceSearchBox_botton'
                             onClick={handleSearch}>검색 조회</button>
                     </div>
+                    <p id='XParkingControll_result'>[ 검색 결과 : {filteredParkappList.length} ] </p>
                 </div>
 
                 {/* ====== ======= ======= 리스트 ====== ======== ====== */}
@@ -278,7 +302,8 @@ export default function XParkingControll({ token }) {
                                     <input type='checkbox'
                                         value={parkappnum}
                                         onChange={handlecheckPark}
-                                        checked={checkPark.includes(parkappnum.toString())}></input>
+                                        checked={checkPark.includes(parkappnum.toString())}
+                                        disabled={!(parkstate === 'Next')}></input>
                                 </div>
                                 <span>{parkappnum}</span>
                                 <span>{parkappdate}</span>

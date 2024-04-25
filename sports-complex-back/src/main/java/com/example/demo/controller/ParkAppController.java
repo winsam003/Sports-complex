@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -67,7 +68,7 @@ public class ParkAppController {
 		if(service.parkApplication(dto) > 0) {
 			// 주차 신청 완료. 
 			service.spaceParking(spacecode);
-			return ResponseEntity.status(HttpStatus.OK).body("주차 신청 완료 하고 파킹 자리도 하나 플러스함.");
+			return ResponseEntity.status(HttpStatus.OK).body("주차 신청 완료");
 
 		} else {
 			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("주차 신청 실패. ");
@@ -81,6 +82,8 @@ public class ParkAppController {
 	public ResponseEntity<?> parkappCancel(@RequestBody List<ParkAppDTO> dtolist) {
 		log.info("Controller parkappCancel");
 		
+		int result = 0;
+		
 		for(ParkAppDTO dto : dtolist) {
 			
 			int parkappnum = dto.getParkAppNum();
@@ -90,16 +93,24 @@ public class ParkAppController {
 			log.info("spacecode : " + spacecode );
 			
 			int cancelPark = service.parkappCancel(parkappnum);
+			result += service.minusParking(spacecode);
 			
-			if(cancelPark > 0) {
-				service.minusParking(spacecode);
-				return ResponseEntity.status(HttpStatus.OK).body("주차 신청이 취소되었습니다. ");
-			} else {
-				return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("주차 신청 취소 중 오류가 발생했습니다. ");
-			}
+//			if(cancelPark > 0) {
+//				responses.add("주차 신청이 취소되었습니다. ");
+//				return ResponseEntity.status(HttpStatus.OK).body("주차 신청이 취소되었습니다. ");
+//			} 
+//			else {
+//				return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("주차 신청 취소 중 오류가 발생했습니다. ");
+//			}
 						
 		}
-		return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("삭제할 주차 가 없습니다.");
+		
+		if(result > 0) {
+			return ResponseEntity.status(HttpStatus.OK).body("주차 신청이 취소되었습니다. ");
+		} else {
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("주차 신청 취소 중 오류가 발생했습니다. ");		
+		}
+		
 		
 		
 	}

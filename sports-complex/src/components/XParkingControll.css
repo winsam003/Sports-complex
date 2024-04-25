@@ -28,6 +28,9 @@
     border-radius: 5%;
     border: none;
 }
+#XParkingControll_result{
+    margin-top: 0;
+}
 
 /* 왼쪽 검색 */
 .XParkingControll_searchTitle{

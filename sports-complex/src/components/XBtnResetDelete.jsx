@@ -5,9 +5,6 @@ import './XBtnResetDelete.css'
 export default function XResetDeleteBtn({ del, handleReset}) {
 
     const location = useLocation();
-    console.log(location);
-
-
     return (
         <div>
             <div className='XResetDeleteBtn'>

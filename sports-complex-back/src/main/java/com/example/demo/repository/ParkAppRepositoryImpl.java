@@ -109,7 +109,7 @@ public class ParkAppRepositoryImpl implements ParkAppRepository {
 	}
 	
 	// 매월 1일 parkState 변하게 하기. ing는 end, next는 ing로 바꾸게 하기
-	@Scheduled(cron = "0 20 * * * *")
+	@Scheduled(cron = "0 26 * * * *")
 //	@Scheduled(cron = "0 0 0 1 * ?")
 	@Transactional
 	public void updateParkState() {
