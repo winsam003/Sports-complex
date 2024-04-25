@@ -10,30 +10,33 @@ export default function XStaffRegisterContent() {
     const location = useLocation();
     const receivedInfo = location.state;
 
-
+    // Session storage에 있는 userData 가져오기
+    const sessionUserData = sessionStorage.getItem('userData');
+    const userData = sessionUserData ? JSON.parse(sessionUserData) : 'null';
     // 아이디 중복확인
     const [idDuplication, setIdDuplication] = useState(false);
 
     // 서버에서 staff정보를 받아옴
     const duplication = () => {
-        axios.get('/staff/staffList'
-        ).then((response) => {
-            const stafflist = response.data;
+        let url = '/staff/staffList';
 
-            // 입력한 아이디와 staff id를 비교해 같은 id인지 확인
-            const idDuplicationCheck = stafflist.filter((list) => list.stfid === staffData.stfid);
+        apiCall(url, 'get', null, userData.token)
+            .then((response) => {
+                const stafflist = response;
+                // 입력한 아이디와 staff id를 비교해 같은 id인지 확인
+                const idDuplicationCheck = stafflist.filter((list) => list.stfid === staffData.stfid);
 
-            if (idDuplicationCheck.length > 0) {
-                alert("중복된 ID입니다. 다른 아이디를 사용해주세요.");
-                setIdMessage("중복된 ID입니다. 다른 아이디를 사용해주세요.");
-            } else {
-                alert("사용가능한 ID입니다.");
-                setIdMessage("사용가능한 ID입니다.");
-                setIdDuplication(true);
-            }
-        }).catch((error) => {
-            console.log(`ID중복체크 error = ${error}`);
-        })
+                if (idDuplicationCheck.length > 0) {
+                    alert("중복된 ID입니다. 다른 아이디를 사용해주세요.");
+                    setIdMessage("중복된 ID입니다. 다른 아이디를 사용해주세요.");
+                } else {
+                    alert("사용가능한 ID입니다.");
+                    setIdMessage("사용가능한 ID입니다.");
+                    setIdDuplication(true);
+                }
+            }).catch((error) => {
+                console.log(`ID중복체크 error = ${error}`);
+            })
     }
 
     // 직원등록 데이터 전송
@@ -163,7 +166,7 @@ export default function XStaffRegisterContent() {
         }
 
 
-        if (location.pathname.indexOf("/XStaffModifyPage") !== -1){
+        if (location.pathname.indexOf("/XStaffModifyPage") !== -1) {
             if (idcheck && pwcheck && nameCheck && phoneNumCheck) {
                 if (window.confirm("직원 정보를 수정하시겠습니까?")) {
                     let url = '/staff/staffModify';
@@ -183,11 +186,11 @@ export default function XStaffRegisterContent() {
             } else {
                 alert("입력정보를 확인해주세요.");
             }
-        }else{
+        } else {
             if (idcheck && pwcheck && nameCheck && phoneNumCheck) {
                 if (window.confirm("직원을 등록하시겠습니까?")) {
                     let url = '/staff/staffInsert';
-    
+
                     apiCall(url, 'post', staffData, token)
                         .then((response) => {
                             alert("직원 등록에 성공하였습니다.");
@@ -208,7 +211,7 @@ export default function XStaffRegisterContent() {
     };
 
     useEffect(() => {
-        if (receivedInfo !== null){
+        if (receivedInfo !== null) {
             setstaffData({
                 stfid: receivedInfo.stfid,
                 stfdmp: receivedInfo.stfdmp,
@@ -334,12 +337,12 @@ export default function XStaffRegisterContent() {
                 <div className='JoinStaff_submitBox' >
                     <input className="JoinStaff_submitInput" type="button" value={"정보수정"} onClick={joinStaff} />
                 </div>
-            :
+                :
                 <div className='JoinStaff_submitBox' >
                     <input className="JoinStaff_submitInput" type="button" value={"직원등록"} onClick={joinStaff} />
                 </div>
             }
-            
+
         </div>
     )
 }

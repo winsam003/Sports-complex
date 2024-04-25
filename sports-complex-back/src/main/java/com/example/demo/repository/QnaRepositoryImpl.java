@@ -41,7 +41,7 @@ public class QnaRepositoryImpl implements QnaRepository {
 	@Override
 	public int qnainsert(QnaDTO dto) {
 		return em.createNativeQuery(
-				"insert into Qna (qatitle, qacontent, qatype, qadate, qaopen, qapassword, qacount, qafile, id) "
+				"insert into qna (qatitle, qacontent, qatype, qadate, qaopen, qapassword, qacount, qafile, id) "
 						+ "values (:qatitle, :qacontent, :qatype, :qadate, :qaopen, :qapassword, :qacount, :qafile, :id)")
 				.setParameter("qatitle", dto.getQatitle()).setParameter("qacontent", dto.getQacontent())
 				.setParameter("qatype", dto.getQatype()).setParameter("qadate", dto.getQadate())
@@ -53,7 +53,7 @@ public class QnaRepositoryImpl implements QnaRepository {
 //	문의 게시글 답변 등록
 	public int qnareplyinsert(QnaDTO dto) {
 		return em.createNativeQuery(
-				"Update Qna set qareply = :qareply, qareplytime = :qareplytime, stfid = :stfid where qanum =:qanum")
+				"Update qna set qareply = :qareply, qareplytime = :qareplytime, stfid = :stfid where qanum =:qanum")
 				.setParameter("qareply", dto.getQareply()).setParameter("qareplytime", dto.getQareplytime())
 				.setParameter("stfid", dto.getStfid()).setParameter("qanum", dto.getQanum()).executeUpdate();
 	}

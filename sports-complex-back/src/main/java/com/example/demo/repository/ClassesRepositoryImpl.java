@@ -50,7 +50,7 @@ public class ClassesRepositoryImpl implements ClassesRepository {
 	// 강의 현황 변경
 	@Override
 	public void updateClassesType(Integer clnum, String cltype) {
-		em.createQuery("update Classes c set c.cltype = :cltype where c.clnum = :clnum").setParameter("cltype", cltype)
+		em.createQuery("update classes c set c.cltype = :cltype where c.clnum = :clnum").setParameter("cltype", cltype)
 				.setParameter("clnum", clnum).executeUpdate();
 	}
 
