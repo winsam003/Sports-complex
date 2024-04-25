@@ -93,12 +93,13 @@ public class ParkAppController {
 			log.info("spacecode : " + spacecode );
 			
 			int cancelPark = service.parkappCancel(parkappnum);
-			result += service.minusParking(spacecode);
 			
-//			if(cancelPark > 0) {
+			if(cancelPark > 0) {
+				result += service.minusParking(spacecode);
+
 //				responses.add("주차 신청이 취소되었습니다. ");
 //				return ResponseEntity.status(HttpStatus.OK).body("주차 신청이 취소되었습니다. ");
-//			} 
+			} 
 //			else {
 //				return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("주차 신청 취소 중 오류가 발생했습니다. ");
 //			}

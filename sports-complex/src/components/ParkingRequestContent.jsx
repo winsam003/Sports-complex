@@ -3,14 +3,48 @@ import Submenu from './Submenu'
 import { useEffect, useState } from 'react'
 import { apiCall } from '../apiService/apiService';
 
-export default function ParkingRequestContent({getUserName, getUserID}) {
+// import * as PortOne from "@portone/browser-sdk/v2";
+import PortOne from "@portone/browser-sdk/v2";
 
+export default function ParkingRequestContent({getUserName, getUserID}) {
+    
     const [spacelist, setSpaceList] = useState([]);
     // 내 주차 리스트
     const [myparklist, setMyparklist] = useState([]);
-
+    
+    const IMP = window.IMP;
+    
     useEffect(() => {
+        fetchData();
 
+
+        // 외부 스크립트 로드 함수
+        const loadScript = (src, callback) => {
+        const script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = src;
+        script.onload = callback;
+        document.head.appendChild(script);
+        };
+
+        // 스크립트 로드 후 실행
+        loadScript('https://code.jquery.com/jquery-1.12.4.min.js', () => {
+        loadScript('https://cdn.iamport.kr/js/iamport.payment-1.2.0.js', () => {
+            const IMP = window.IMP;
+            // 가맹점 식별코드
+            IMP.init("imp64077750");
+        });
+        });
+
+        // 컴포넌트가 언마운트될 때 스크립트를 제거하기 위한 정리 함수
+        return () => {
+            const scripts = document.querySelectorAll('script[src^="https://"]');
+            scripts.forEach((script) => script.remove());
+        };
+    }, []);
+
+
+    const fetchData = () => {
         let token = JSON.parse(sessionStorage.getItem("userData")).token;
         let url = "/space/spacelist";
 
@@ -27,13 +61,12 @@ export default function ParkingRequestContent({getUserName, getUserID}) {
 
         apiCall(myparkurl, 'post', { id: getUserID }, token)
             .then((mypark) => {
-                console.log("mypark : ", mypark);
+                // console.log("mypark : ", mypark);
                 setMyparklist(mypark);
             }).catch((error) => {
                 console.log("mypark error", error);
             })
-
-    }, [])
+    };
 
     // 자기 차량 번호 가져오기
     const [isChecked, setIsChecked] = useState(false);
@@ -47,9 +80,6 @@ export default function ParkingRequestContent({getUserName, getUserID}) {
     const selectSpacecode = (e) => {
         console.log(e);
         setSpacecodeApp(e);
-
-        // 장소에 맞는 가격 넣기.
-        // setSpacepriceApp(spacelist.filter(({ spacecode }) => spacecode === e)[0].spaceprice);
 
         // *** 필터는 참인 값의 배열을 반환함. ***
     }
@@ -87,8 +117,16 @@ export default function ParkingRequestContent({getUserName, getUserID}) {
         setPayment(e);
     }
 
+    // ===============================
+
+    
+    
+    
+    
+
     // 등록 
-    const parkAppSubmit = () => {
+    const parkAppSubmit = async () => {
+        console.log(myparklist[0].parkstate);
         if(!spacecodeApp){
             alert('주차장을 선택해주세요.');
             return;
@@ -102,63 +140,54 @@ export default function ParkingRequestContent({getUserName, getUserID}) {
             return;
         }
 
-        
-        // 만약 리스트가 있다면
-        if(myparklist.length > 0) {
-            console.log("myparklist : ", myparklist[0].parkstate);
-
-            if(myparklist.every(item => item.parkstate !== "Next")) {
-                // 상태가 Next가 없다면 등록.
-                let formPlaceApp = {
-                    id : getUserID, 
-                    parkprice : 10000, 
-                    spacecode : spacecodeApp, 
-                    carnum : myCarNum, 
-                    payment : payment 
+        if(myparklist.length > 0 && myparklist.some(item => item.parkstate === "Next")){
+            // 리스트가 있는데 상태에 Next가 있다면 -> 이미 있다고 알려주기. 
+            alert('주차 신청이 이미 있습니다. ');
+            return;
+        } else{
+            // window.IMP.init("imp64077750");
+            IMP.request_pay({
+                pg: "kakaopay",
+                pay_method: "card",
+                amount: "100",
+                name: spacecodeApp,
+                buyer_name: getUserID
+            }, rsp => {
+                if(rsp.success) {
+                    console.log("myparklist : ", myparklist[0].parkstate);
+                    
+                    let formPlaceApp = {
+                        id : getUserID, 
+                        parkprice : 10000, 
+                        spacecode : spacecodeApp, 
+                        carnum : myCarNum, 
+                        payment : payment 
+                    }
+            
+                    let token = JSON.parse(sessionStorage.getItem("userData")).token;
+                    let url = "/parkapp/parkapplication";
+            
+                    console.log(formPlaceApp);
+                    apiCall(url, 'post', formPlaceApp, token)
+                        .then((response) => {
+                            alert(response);
+                            window.location.reload();
+                        }).catch((error) => {
+                            alert("시스템 오류로 주차 신청을 실패하였습니다.");
+                            console.log("parkapp error : ", error);
+                        })
+                    console.log('성공');
+                } else {
+                    console.log('실패');
+    
                 }
-        
-                let token = JSON.parse(sessionStorage.getItem("userData")).token;
-                let url = "/parkapp/parkapplication";
-        
-                console.log(formPlaceApp);
-                apiCall(url, 'post', formPlaceApp, token)
-                    .then((response) => {
-                        alert(response);
-                        window.location.reload();
-                    }).catch((error) => {
-                        alert("시스템 오류로 주차 신청을 실패하였습니다.");
-                        console.log("parkapp error : ", error);
-                    })
-            } else {
-                // 상태에 Next가 있다면 이미 있다고 알려주기. 
-                alert('주차 신청이 이미 있습니다. ');
-            }
+            } );
 
-        } else {
-            // 리스트가 없다면 그냥 등록하기.
-            let formPlaceApp = {
-                id : getUserID, 
-                parkprice : 10000, 
-                spacecode : spacecodeApp, 
-                carnum : myCarNum, 
-                payment : payment 
-            }
-    
-            let token = JSON.parse(sessionStorage.getItem("userData")).token;
-            let url = "/parkapp/parkapplication";
-    
-            console.log(formPlaceApp);
-            apiCall(url, 'post', formPlaceApp, token)
-                .then((response) => {
-                    alert(response);
-                    window.location.reload();
-                }).catch((error) => {
-                    alert("시스템 오류로 주차 신청을 실패하였습니다.");
-                    console.log("parkapp error : ", error);
-                })
         }
-        
-    }
+
+
+
+    }         
 
     // 초기화버튼
     const parkAppReset = () => {
@@ -167,7 +196,12 @@ export default function ParkingRequestContent({getUserName, getUserID}) {
         setPayment('');
         setIsChecked(false);
     }
-
+            
+            
+            // =====================================================
+            
+            
+        
     
     return (
         <div>

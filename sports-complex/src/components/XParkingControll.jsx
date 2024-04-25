@@ -175,11 +175,11 @@ export default function XParkingControll({ token }) {
             console.log('checkPark : ', checkPark);
     
             let cancelParkForm = checkPark.map(parkappnum => {
-                let pakrItem = filteredParkappList.find(park => park.parkappnum.toString() === parkappnum);
+                let parkItem = filteredParkappList.find(park => park.parkappnum.toString() === parkappnum);
                 // console.log('pakrItem: ', pakrItem);
                 return {
-                    parkAppNum : pakrItem.parkappnum, 
-                    spacecode : pakrItem.spacecode.spacecode
+                    parkAppNum : parkItem.parkappnum, 
+                    spacecode : parkItem.spacecode.spacecode
                 }
             })
     
