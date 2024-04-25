@@ -74,7 +74,7 @@ public class SecurityConfig {
 				.antMatchers("/staff/staffModify").hasRole("ADMIN")
 				.antMatchers("/spaceRentApp/**", "/parkapp/parkapplication").hasRole("USER")
 				.antMatchers("/", "/event/**", "/member/**", "/qna/**", "/staff/**", "/classes/**", "/notice/**",
-						"/space/**", "/SpaceRentAppRepository/**", "/banner/**", "/classApp/**", "/parkapp/**")
+						"/space/**", "/SpaceRentAppRepository/**", "/banner/**", "/classApp/**", "/parkapp/**", "/search/**")
 				.permitAll()
 				// => "/", "/home", "/resources/**", "/uploadImage/**", "/member/**" 등의 경로는 인증
 				// 안해도 됨.

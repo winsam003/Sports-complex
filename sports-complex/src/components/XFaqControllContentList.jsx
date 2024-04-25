@@ -33,7 +33,7 @@ export default function XFaqControllContentList({ noticeList, userDelete, checke
                     <p>조회수</p>
                 </div>
                 <div>
-                    {noticeList.slice(indexOfFirstItem, indexOfLastItem)
+                    {noticeList && noticeList.slice(indexOfFirstItem, indexOfLastItem)
                         .map((item, index) => (
                             <XFaqControllContentListContents key={index} userDelete={userDelete} isChecked={checkedUsers.includes(item.notnum)} {...item} />
                         ))}

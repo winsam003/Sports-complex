@@ -1,13 +1,13 @@
 import './XeventList.css'
-import React, {useState}  from 'react';
+import React, { useState } from 'react';
 
-export default function XeventList({eventlist, eventcodeC, checkedEvent, handleEvent}) {
+export default function XeventList({ eventlist, eventcodeC, checkedEvent, handleEvent }) {
 
     const handlecheckEvent = (eventcode) => {
         handleEvent(eventcode);
     }
 
-    return(
+    return (
         <div className='XeventList'>
             <div className='XeventList_div'>
                 <span>선택</span>
@@ -21,11 +21,11 @@ export default function XeventList({eventlist, eventcodeC, checkedEvent, handleE
                 {eventlist.map((it, index) => (
                     <div key={index} className="XeventContentList_Box">
                         <div className="XeventContentList_contents">
-                            <span><input type="checkbox" 
-                                        value={it.eventcode} 
-                                        checked={eventcodeC.includes(it.eventcode)}
-                                        onChange={(e) => handlecheckEvent(it.eventcode)} 
-                                        /></span>
+                            <span><input type="checkbox"
+                                value={it.eventcode}
+                                checked={eventcodeC.includes(it.eventcode)}
+                                onChange={(e) => handlecheckEvent(it.eventcode)}
+                            /></span>
                             <span>{it.eventcode}</span>
                             <span>{it.eventname}</span>
                             <span>{it.stfid}</span>

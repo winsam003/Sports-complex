@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import com.example.demo.domain.NoticeBoardDTO;
 import com.example.demo.entity.Notice;
 import com.example.demo.service.NoticeBoardServiceImpl;
 
@@ -230,6 +231,18 @@ public class NoticeBoardContoller {
                 .body(resource);
 	}
 	
+	
+	@GetMapping(value="/noticeDetail")
+	public ResponseEntity<?> noticeDetail(@RequestParam("notnum") int notnum){
+		log.info("Contoller noticeDetail 접촉 성공");
+		
+		Notice dto = service.noticeDetail(notnum);
+		if(dto != null) {
+			return ResponseEntity.status(HttpStatus.OK).body(dto);
+		}else {
+			return ResponseEntity.status(HttpStatus.OK).body(null);			
+		}
+	}
 	
 	
 	//아래는 자주하는 질문 *********************************************************************************************************

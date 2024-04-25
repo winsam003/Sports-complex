@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.domain.QnaDTO;
+import com.example.demo.entity.Notice;
 import com.example.demo.entity.Qna;
 
 @Transactional
@@ -62,6 +63,14 @@ public class QnaRepositoryImpl implements QnaRepository {
 	@Override
 	public void qnadelete(Integer qanum) {
 		em.createQuery("delete from Qna q where q.qanum = :qanum").setParameter("qanum", qanum).executeUpdate();
+	}
+	
+//	문의 게시글 전체 검색
+	@Override
+	public List<Qna> searchKeyword(String keyword) {
+		return em.createQuery("SELECT q FROM Qna q WHERE q.qaopen <> 0 AND (q.qatitle LIKE :keyword OR q.qacontent LIKE :keyword)", Qna.class)
+				.setParameter("keyword", "%" + keyword + "%")
+				.getResultList();
 	}
 
 }
