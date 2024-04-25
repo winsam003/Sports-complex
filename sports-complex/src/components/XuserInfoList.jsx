@@ -197,10 +197,12 @@ export default function XuserInfoList({ token }) {
         setEmailContents(e.target.value);
     }
 
+
+
     const sendVerificationEmail = () => {
         const checkedUserEmails = rememberList.filter(item => checkedUsers.some(it => item.id === it));         // 체크된 유저의 email
 
-
+        const emailToken = process.env.REACT_APP_EMAIL_KEY
         for (let i = 0; i < checkedUserEmails.length; i++) {
             if (checkedUserEmails[i].emailagr) {
                 // 이메일 보내기
@@ -217,7 +219,7 @@ export default function XuserInfoList({ token }) {
                         'winsam003', // 서비스 ID
                         'SportsComplexAdmin', // 템플릿 ID
                         templateParams,
-                        'Bp7cuWpudSqND8q5G', // public-key
+                        emailToken, // public-key
                     )
                     .then((response) => {
                         alert('이메일이 성공적으로 보내졌습니다');
@@ -230,7 +232,7 @@ export default function XuserInfoList({ token }) {
                         console.error('이메일 보내기 실패:', error);
                         // 이메일 전송 실패 처리 로직 추가
                     });
-            } else{
+            } else {
                 console.log('이메일 수신 거부 유저입니다.');
             }
         };

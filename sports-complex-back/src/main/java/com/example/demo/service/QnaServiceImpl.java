@@ -45,5 +45,10 @@ public class QnaServiceImpl implements QnaService {
 	public void qnadelete(Integer qanum) {
 		repository.qnadelete(qanum);
 	}
-
+	
+//  문의 게시글 전체 검색
+	@Override
+	public List<Qna> searchKeyword(String keyword) {
+		return repository.searchKeyword(keyword);
+	}
 }

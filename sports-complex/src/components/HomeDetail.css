@@ -7,6 +7,9 @@
     /* background-color: chartreuse; */
 }
 
+.searchbtn{
+    cursor: pointer;
+}
 
 /* 디테일 메뉴 왼쪽 div (검색/월간일정/이벤트 광고)*/
 .homeDetail_items1 {

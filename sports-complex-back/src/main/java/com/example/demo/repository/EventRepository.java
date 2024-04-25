@@ -15,6 +15,8 @@ public interface EventRepository{
 	
 	public int EventUpdate(Event Entity);
 	
+	public List<Event> searchKeyword(String keyword);
+	
 	// 조회수 용 
 //	public void EventCount(Event Entity);
 }
