@@ -65,9 +65,10 @@ export default function XEventControllContent() {
     // 삭제 ===============================================================
     const del = () => {
         let url = "/event/eventdelete"
+        let token = JSON.parse(sessionStorage.getItem("userData")).token;
 
         // window.scrollTo(0, 0);
-        apiCall(url, 'post', checkEvent, null)
+        apiCall(url, 'post', checkEvent, token)
             .then((checkEvent) => {
                 alert(`${checkEvent}`);
                 setCheckEvent([]);
