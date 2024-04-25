@@ -15,7 +15,7 @@ export default function HistoryPark({myParkapp, cancelParkapp, token}) {
                     {/* <span>주차신청번호</span> */}
                     <span>신청일자</span>
                     <span>이용 달</span>
-                    <span>차 번호</span>
+                    <span>차량 번호</span>
                     <span>주차장</span>
                     <span>결제방법</span>
                     <span>상태</span>

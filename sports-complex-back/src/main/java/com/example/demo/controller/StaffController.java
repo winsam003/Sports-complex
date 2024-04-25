@@ -33,7 +33,7 @@ public class StaffController {
 	TokenProvider tokenProvider;
 
 	@GetMapping("/staffList")
-	public List<Staff> stafflist() {
+	public List<Staff> staffList() {
 		return service.StaffList();
 	}
 

@@ -1,7 +1,7 @@
 import './XStaffList.css';
 import XStaffdetail from './XStaffdetail';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { apiCall } from '../apiService/apiService';
 import Pagination from 'react-js-pagination'
 
 export default function XStaffList() {
@@ -15,11 +15,17 @@ export default function XStaffList() {
     // 직원 검색창
     const [searchInput, setSearchInput] = useState('');
 
+    // Session storage에 있는 userData 가져오기
+    const sessionUserData = sessionStorage.getItem('userData');
+    const userData = sessionUserData ? JSON.parse(sessionUserData) : 'null';
+
     // 전직원 불러오기, 최초에만
     const loadStaffList = (() => {
-        axios.get('/staff/staffList')
+        let url = '/staff/staffList';
+
+        apiCall(url, 'get', null, userData.token)
             .then((response) => {
-                setstaff(response.data);
+                setstaff(response);
             }).catch((error) => {
                 console.error(" 스태프 목록 불러오기 실패 ", error);
             });
@@ -48,27 +54,23 @@ export default function XStaffList() {
         });
     };
 
-    // 선택된 직원정보 axios 요청 보내고 삭제하기
+    // 선택된 직원정보 요청 보내고 삭제하기
     const handleDeleteSelectedStaff = (() => {
         if (selectedStaffIds.length === 0) {
             return;
         }
         console.log("삭제할 직원 ID 목록:", selectedStaffIds);
 
-        axios.get('/staff/staffDelete', {
-            params: {
-                // 값이 전달됐을 때 []표시를 제거하기위해 join으로 , 구분자 이용
-                stfid: selectedStaffIds.join(','),
-            }
-        }).then(() => {
-            console.log("삭제 성공");
-            // 삭제 후 전직원 목록 최신화
-            loadStaffList();
-            // 삭제 후 선택된 목록 배열 초기화
-            setselectedStaffIds([]);
-        }).catch((error) => {
-            console.error(`직원 삭제 실패 `, error);
-        });
+        let url = '/staff/staffDelete';
+
+        apiCall(url + `?stfid=${selectedStaffIds.join('&stfid=')}`, 'get', null, userData.token)
+            .then(() => {
+                loadStaffList();
+                // 삭제 후 선택된 목록 배열 초기화
+                setselectedStaffIds([]);
+            }).catch((error) => {
+                console.error(`직원 삭제 실패 `, error);
+            });
     });
 
     // 선택된 직원 초기화

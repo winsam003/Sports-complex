@@ -9,6 +9,9 @@ export default function XParkingControll({ token }) {
 
     // 리스트 뽑기
     const [parkappList, setParkappList] = useState([]);
+    // 체크
+    const [checkPark, setCheckPark] = useState([]);
+
 
     useEffect(() => {
         parklist();
@@ -19,7 +22,7 @@ export default function XParkingControll({ token }) {
             searchSelect: searchSelect,
             searchText: searchText
         })
-    }, []);
+    }, [checkPark]);
 
     const parklist = () => {
         let token = JSON.parse(sessionStorage.getItem("userData")).token;
@@ -37,7 +40,7 @@ export default function XParkingControll({ token }) {
             })
     }
 
-    console.log("parkappList : ", parkappList);
+    // console.log("parkappList : ", parkappList);
 
     // ==========================================================================
 
@@ -70,6 +73,12 @@ export default function XParkingControll({ token }) {
         setSearchText(event.target.value);
     }
 
+    useEffect(() => {
+        if (!searchSelect) {
+            setSearchText('');
+        }
+    }, [searchSelect]);
+
     const [searchAll, setSearchAll] = useState({});
 
     // 검색 버튼 : 검색 사항들 searAll에 담아주기.
@@ -84,7 +93,7 @@ export default function XParkingControll({ token }) {
     }
 
     // 초기화 버튼
-    const handleReset = () => {
+    const handleResetSearchPark = () => {
         setParkingFloor('all');
         setParkingState('all');
         setParkingMonth('');
@@ -144,16 +153,56 @@ export default function XParkingControll({ token }) {
     // ==========================================================================
 
     // 체크
-    const [checkPark, setCheckPark] = useState([]);
     
     const handlecheckPark = (event) => {
         const deletevalue = event.target.value.toString();
+ 
         if(!checkPark.includes(deletevalue)) {
             setCheckPark(preCheck => [...preCheck, deletevalue]);
         } else {
             setCheckPark(preCheck => preCheck.filter(value => value !== deletevalue));
 
         }
+    }
+
+    const del = () => {
+        if(checkPark.length === 0){
+            alert('취소할 신청을 선택해주세요.');
+        } else{
+            
+            let url = "/parkapp/parkappcancel";
+            let token = JSON.parse(sessionStorage.getItem("userData")).token;
+            console.log('checkPark : ', checkPark);
+    
+            let cancelParkForm = checkPark.map(parkappnum => {
+                let parkItem = filteredParkappList.find(park => park.parkappnum.toString() === parkappnum);
+                // console.log('pakrItem: ', pakrItem);
+                return {
+                    parkAppNum : parkItem.parkappnum, 
+                    spacecode : parkItem.spacecode.spacecode
+                }
+            })
+    
+            console.log('cancelParkForm : ', cancelParkForm);
+        
+            if(window.confirm("주차 신청을 취소하시겠습니까?")){
+                apiCall(url, 'post', cancelParkForm, token)
+                    .then((response) => {
+                        alert(response);
+                        setCheckPark([]);
+                        // fetchEventList();
+                    }).catch((error) => {
+                        console.log("delete error: ", error);
+                        alert('관리자가 취소할 수 없는 주차 신청 입니다. ');
+                    })
+            }
+        }
+        
+
+    }
+
+    const handleReset = () => {
+        setCheckPark([]);
     }
 
 
@@ -212,7 +261,7 @@ export default function XParkingControll({ token }) {
                         <span className='XParkingControll_inputbox'>
                             <select value={searchSelect}
                                 onChange={handleSearchSelect}>
-                                <option value="">전체</option>
+                                <option value="">선택</option>
                                 <option value="name">이름</option>
                                 <option value="carnum">차량번호</option>
                             </select>
@@ -224,10 +273,11 @@ export default function XParkingControll({ token }) {
                     </p>
                     <div className='XRentalPlaceSearchBox_bottondiv'>
                         <button className='XRentalPlaceSearchBox_botton'
-                            onClick={handleReset}> 검색 초기화</button>
+                            onClick={handleResetSearchPark}> 검색 초기화</button>
                         <button className='XRentalPlaceSearchBox_botton'
                             onClick={handleSearch}>검색 조회</button>
                     </div>
+                    <p id='XParkingControll_result'>[ 검색 결과 : {filteredParkappList.length} ] </p>
                 </div>
 
                 {/* ====== ======= ======= 리스트 ====== ======== ====== */}
@@ -252,7 +302,8 @@ export default function XParkingControll({ token }) {
                                     <input type='checkbox'
                                         value={parkappnum}
                                         onChange={handlecheckPark}
-                                        checked={checkPark.includes(parkappnum.toString())}></input>
+                                        checked={checkPark.includes(parkappnum.toString())}
+                                        disabled={!(parkstate === 'Next')}></input>
                                 </div>
                                 <span>{parkappnum}</span>
                                 <span>{parkappdate}</span>
@@ -261,7 +312,9 @@ export default function XParkingControll({ token }) {
                                 <span>{id.name}</span>
                                 <span>{id.phonenum.substring(0, 3) + "-" + id.phonenum.substring(3, 7) + "-" + id.phonenum.substring(7)}</span>
                                 <span>{carnum}</span>
-                                <span>{parkstate}</span>
+                                <span>
+                                    {parkstate === 'Next' ? '이용 예정' : (parkstate === 'ing' ? '이용 중' : (parkstate === 'end' ? '이용 종료' : '취소'))} 
+                                </span>
                             </div>
 
                         ))}
@@ -280,7 +333,7 @@ export default function XParkingControll({ token }) {
                         </Pagination>
                     </div>
                 </div>
-                <XBtnResetDelete />
+                <XBtnResetDelete del={del} handleReset={handleReset} />
             </div>
         </div>
     )

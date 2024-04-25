@@ -6,6 +6,7 @@ import { TbLock } from "react-icons/tb";
 import { TbKeyframe } from "react-icons/tb";
 import { useState } from "react";
 import { apiCall } from '../apiService/apiService';
+import KakaoLogin from "./kakaoLogin";
 
 export default function Login({ setLogincheck, loginCheck }) {
 
@@ -111,6 +112,7 @@ export default function Login({ setLogincheck, loginCheck }) {
                                 <span><TbKeyframe className='login_Icon' id="login_iconnone" /></span>
                                 <input type="button" onClick={requestLogin} value={"로그인"} /> &nbsp;&nbsp;
                                 <input type="button" value={"초기화"} onClick={loginRefresh} />
+                                <KakaoLogin />
                             </div>
                             <div className="login_Box_div">
                                 <input type="checkbox" id="rememberMe" name="rememberMe" />
