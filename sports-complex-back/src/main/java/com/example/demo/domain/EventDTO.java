@@ -16,10 +16,10 @@ import lombok.NoArgsConstructor;
 @Data
 public class EventDTO {
 	public int eventcode;
-	public String eventname;
-	public String eventdetail;
+	public String eventname;		// 제목
+	public String eventdetail;		// 내용
 	public String eventfacility;
-	public String eventtime;
+	public String eventtime;		// 작성날짜
 	public String eventfor;
 	public String eventtype;
 	public int eventcount;
@@ -28,7 +28,7 @@ public class EventDTO {
 	public MultipartFile eventfilef;
 	
 	public String stfid;
-	public Date eventdate;
+	public Date eventdate;		// 행사일시
 	
 	
 }

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.entity.Event;
+import com.example.demo.entity.Notice;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -168,11 +169,16 @@ public class EventRepositoryImpl implements EventRepository {
 			return query.executeUpdate();
 			
 		}
-		
-		
-		
 	}
 	
+	
+	
+	@Override
+	public List<Event> searchKeyword(String keyword) {
+		return em.createQuery("SELECT e FROM Event e WHERE e.eventname LIKE :keyword OR e.eventdetail LIKE :keyword", Event.class)
+				.setParameter("keyword", "%" + keyword + "%")
+				.getResultList();
+	}
 	
 	
 }

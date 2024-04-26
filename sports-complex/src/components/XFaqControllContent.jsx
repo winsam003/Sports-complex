@@ -113,9 +113,9 @@ export default function XFaqControllContent() {
     useEffect(() => {
         let url = "/notice/fnqList";
 
-        let token = JSON.parse(sessionStorage.getItem("userData")).token;
+        // let token = JSON.parse(sessionStorage.getItem("userData")).token;
 
-        apiCall(url, 'get', null, token)
+        apiCall(url, 'get', null, null)
             .then((response) => {
                 setNoticeList(response);
                 setRememberList(response);

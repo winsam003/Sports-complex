@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.example.demo.domain.NoticeBoardDTO;
 import com.example.demo.entity.Notice;
 import com.example.demo.repository.NoticeBoardRepositoryImpl;
 
@@ -43,6 +44,18 @@ public class NoticeBoardServiceImpl implements NoticeBoardService {
 	public int noticeModify(Notice entity) {
 		log.info("Service noticeSubmit 접촉 성공");
 		return repository.noticeModify(entity);
+	}
+	
+	@Override
+	public List<Notice> searchKeyword(String keyword) {
+		log.info("Service searchKeyword 접촉 성공");
+		return repository.searchKeyword(keyword);
+	}
+	
+	@Override
+	public Notice noticeDetail(int notnum) {
+		log.info("Service noticeDetail 접촉 성공");
+		return repository.noticeDetail(notnum);
 	}
 	
 	
