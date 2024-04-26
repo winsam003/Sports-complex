@@ -1,11 +1,18 @@
 package com.example.demo.entity;
 
-import java.util.Date;
+import java.util.Date; 
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,19 +28,28 @@ import lombok.NoArgsConstructor;
 public class ParkApp {
 	
 	@Id
-	private int parkAppNum;
-	@JoinColumn(name = "id")
-	private String Id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int parkappnum;
 	
-	private Date parkAppDate;
-	private Date parkUseDate;
-	private String parkAppCancel;
+	@JoinColumn(name = "id", referencedColumnName = "id")
+	@OneToOne
+	private Member id;
+	
+	@Temporal(TemporalType.DATE)
+	private Date parkappdate;
+	// 신청한 날짜
+	
+	private String parkusedate;
+	
+	private String parkappcancel;
 	private String payment;
-	private int parkPrice;
+	private int parkprice;
+	private String parkstate;
 	
-	
-	private String spacecode;
-	private String carNum;
+	@JoinColumn(name = "spacecode")
+	@OneToOne
+	private Space spacecode;
+	private String carnum;
 	
 	
 	

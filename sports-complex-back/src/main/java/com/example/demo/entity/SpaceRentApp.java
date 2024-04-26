@@ -66,4 +66,7 @@ public class SpaceRentApp {
 	
 	@Column(length = 30, nullable = false)
 	private String appdate;
+	
+	@Column(length = 30, nullable = false)
+	private String appdate2;
 }

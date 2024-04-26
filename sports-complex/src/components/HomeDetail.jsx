@@ -73,8 +73,14 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout, getUserN
 
     // 비밀번호에서 enter키 누르면 로그인 요청
     const handleKeypress = (e) => {
-        if (e.key === 'Enter') {
-            requestLogin();
+        if(e.target.name === 'password'){
+            if (e.key === 'Enter') {
+                requestLogin();
+            }
+        }else{
+            if (e.key === 'Enter') {
+                SearchAll(e);
+            }
         }
     }
 
@@ -138,13 +144,31 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout, getUserN
     }, [navigate]);
 
 
+    // 전체 게시판 검색 ======================================================================================
+    
+    // 전체 게시판 이동
+    
+    // 검색내용 저장
+    const [keyword, SetKeyword] = useState()
+    const search = (e) => {
+        SetKeyword(e.target.value)
+    }
+    
+    const SearchAll = () => {
+        if(keyword != null){
+            navigate("/SearchAllPage", { state: { keyword }});
+        }else{
+            alert("검색내용을 입력해주세요.")
+        }
+    }
+    // 전체 게시판 검색 ======================================================================================
 
     return (
         <div className='homeDetail_container'>
             <div className='homeDetail_items1'>
                 <div>
-                    <input id='search' name='search' type="text" placeholder='검색어를 입력해주세요.' />
-                    <input id='search' name='search' type="submit" value='검색' />
+                    <input id='search' name='search' type="text" placeholder='검색어를 입력해주세요.' onChange={search} onKeyPress={handleKeypress} />
+                    <input className='searchbtn' id='search' name='search' type="submit" value='검색' onClick={SearchAll} />
                 </div>
                 <div>
                     <div className='homeDetail_Calenderbox'>

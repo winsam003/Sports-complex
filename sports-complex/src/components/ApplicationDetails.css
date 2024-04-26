@@ -92,42 +92,32 @@ li.ApplicationDetails_ison .ApplicationDetails_tabBtn {
 
 .ApplicationDetails_showHistory span {
     display: inline-block;
-    /* height: 50px; */
     align-items: center;
 
 }
-
 
 /* grid 표 내용물 공통 사항 >>index<< */
 .ApplicationDetails_showHistory>div>div:nth-child(1) {
     width: 100%;
     text-align: center;
     border-top: 1px solid black;
-    border-right: 1px solid black;
     background-color: #E8E3F1;
 }
 
-.ApplicationDetails_showHistory>div>div:nth-child(1) span {
+.ApplicationDetails_showHistory>div>div span {
     border-bottom: 1px solid black;
     border-left: 1px solid black;
-    font-weight: 600;
     line-height: 50px;
+}
+.ApplicationDetails_showHistory>div>div span:last-child{
+    border-right: 1px solid black;
+
 }
 
 /* grid 표 내용물 공통 사항 >>content<< */
-.ApplicationDetails_showHistory>div>div:nth-child(2) {
-    width: 100%;
+.ApplicationDetails_showHistory>div>div {
     text-align: center;
-    border-bottom: 1px solid black;
-    border-left: 1px solid black;
 }
-
-.ApplicationDetails_showHistory>div>div:nth-child(2) span {
-    border-right: 1px solid black;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
 
 @media(max-width : 1200px) {
     .ApplicationDetails_showHistory>div {

@@ -20,4 +20,7 @@ public interface QnaRepository {
 
 //	문의 게시글 삭제
 	void qnadelete(Integer qanum);
+	
+//	문의 게시글 전체 검색
+	List<Qna> searchKeyword(String keyword);
 }

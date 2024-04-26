@@ -41,7 +41,7 @@ export default function XBoardControllContentDateil2() {
             })
     }
 
-    
+
 
     const [noticeContent, setNoticeContent] = useState('');
     const noticeContentHandler = (e) => {
@@ -59,11 +59,11 @@ export default function XBoardControllContentDateil2() {
     const modify = () => {
         setModifyOn(true);
     }
-    const userData = JSON.parse(sessionStorage.getItem('userData'));
-    let token = userData.token;
 
     const navigate = useNavigate();
     const noticeModify = () => {
+        const userData = JSON.parse(sessionStorage.getItem('userData'));
+        let token = userData.token;
         if (window.confirm("정말 수정하시겠습니까?")) {
             let url = '/notice/noticeModify';
             const formData = new FormData();
@@ -85,23 +85,23 @@ export default function XBoardControllContentDateil2() {
                     alert("게시글 수정에 실패하였습니다. 관리자에게 문의해주세요.");
                     console.log('modify error occured = ' + error)
                 })
-            }
+        }
     }
 
 
     useEffect(() => {
         setNoticeContent(receivedInfo.notdetail);
         setSelectedFile(receivedInfo.notuploadfile);
-    },[])
+    }, [])
 
     return (
         <div className='XBoardControllContentDateil2_div'>
             <div className="XBoardControllContentDateil2Containor">
                 <div className='XBoardControllContentDateil2_Box'>
-                    
-                    {location.pathname.indexOf("/FaqControllPageDetailPage") !== -1 ?
+
+                    {location.pathname.indexOf("/BoardControllPageDetailPage") !== -1 || location.pathname.indexOf("/FaqControllPageDetailPage") !== -1 ?
                         ""
-                    :
+                        :
                         <div className='XBoardControllContentDateil2_modityBtnBox'>
                             <button className='XBoardControllContentDateil2_modityBtn' onClick={modify}>수정하기</button>
                         </div>
@@ -140,12 +140,12 @@ export default function XBoardControllContentDateil2() {
                         <div className="XBoardControllContentDateil2_menu">
                             <p>파일</p>
                             {modifyOn ?
-                            <span>
+                                <span>
                                     <span className='XBoardControllContentDateil2_selectedFile'>{receivedInfo.notuploadfile ? receivedInfo.notuploadfile : ""}</span>
-                                <input className='test' type="file" name='uploadfilef' id='uploadfilef' onChange={handleFileChange} />
-                            </span>
+                                    <input className='test' type="file" name='uploadfilef' id='uploadfilef' onChange={handleFileChange} />
+                                </span>
                                 :
-                                <p className= 'XBoardControllContentDetail2_title2 XBoardControllContentDateil2_file' onClick={fileDownloadLink}>{receivedInfo.notuploadfile}</p>
+                                <p className='XBoardControllContentDetail2_title2 XBoardControllContentDateil2_file' onClick={fileDownloadLink}>{receivedInfo.notuploadfile}</p>
                             }
                         </div>
                         <div className="XBoardControllContentDateil2_menu">

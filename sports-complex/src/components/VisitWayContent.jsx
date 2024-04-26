@@ -1,14 +1,42 @@
-import './VisitWayContent.css'
+import { useEffect } from 'react';
+import './VisitWayContent.css';
+const { kakao } = window;
 
-// 영상정보처리기운영방침
+// 찾아오시는길
 export default function VisitWayContent() {
+    useEffect(() => {
+        const container = document.getElementById('map');
+        const options = {
+            center: new kakao.maps.LatLng(37.49279603423343, 127.03174714702843),
+            levet: 3
+        };
+        const map = new kakao.maps.Map(container, options);
+
+        const content1 = '<div>📍</div>';
+        const position1 = new kakao.maps.LatLng(37.492910, 127.031720);
+        const customOverlay1 = new kakao.maps.CustomOverlay({
+            position: position1,
+            content: content1,
+            map: map,
+        });
+
+        const content2 = '<div class="custom-marker">Here!</div>';
+        const position2 = new kakao.maps.LatLng(37.492910, 127.031720);
+        const customOverlay2 = new kakao.maps.CustomOverlay({
+            position: position2,
+            content: content2,
+            map: map,
+            xAnchor: 0.5,
+            yAnchor: 1.35
+        });
+    }, [])
+
     return (
         <div>
             <p className='VisitWayContent_subtitle'>찾아오시는 길</p>
             <div className='VisitWayContent_map'>
                 <p>지도</p>
-                <div className='VisitWayContent_map_img'>
-                    <img src=''></img>
+                <div id="map">
                 </div>
             </div>
             <div className='VisitWayContent_info'>

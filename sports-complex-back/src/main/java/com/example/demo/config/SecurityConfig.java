@@ -72,9 +72,9 @@ public class SecurityConfig {
 				// => session 기반이 아님을 선언
 				.authorizeRequests().antMatchers("/staff/staffInsert").hasRole("ADMIN")
 				.antMatchers("/staff/staffModify").hasRole("ADMIN")
-				.antMatchers("/spaceRentApp/**").hasRole("USER")
+				.antMatchers("/spaceRentApp/**", "/parkapp/parkapplication").hasRole("USER")
 				.antMatchers("/", "/event/**", "/member/**", "/qna/**", "/staff/**", "/classes/**", "/notice/**",
-						"/space/**", "/SpaceRentAppRepository/**", "/banner/**", "/classApp/**")
+						"/space/**", "/SpaceRentAppRepository/**", "/banner/**", "/classApp/**", "/parkapp/**", "/search/**")
 				.permitAll()
 				// => "/", "/home", "/resources/**", "/uploadImage/**", "/member/**" 등의 경로는 인증
 				// 안해도 됨.

@@ -1,9 +1,10 @@
-import axios from 'axios';
 import './XuserInfoList.css';
 import XuserInfoListContents from './XuserInfoListContents';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { apiCall } from '../apiService/apiService';
+import Pagination from 'react-js-pagination'
+import emailjs from 'emailjs-com';
 
 
 export default function XuserInfoList({ token }) {
@@ -34,7 +35,7 @@ export default function XuserInfoList({ token }) {
 
         let url = "/member/mdelete";
 
-        apiCall(url, 'post', checkedUsers, null)
+        apiCall(url, 'post', checkedUsers, token)
             .then((response) => {
                 alert(response);
                 setUserInfoList([]);
@@ -67,7 +68,6 @@ export default function XuserInfoList({ token }) {
             });
     }, [deleteRequest])
     //******************************* UserList 불러오기 요청 끝 *********************************//
-
 
 
 
@@ -147,6 +147,108 @@ export default function XuserInfoList({ token }) {
 
     //******************************* 회원 정보 조회 엔터 키 누를 시 조회 *********************************//
 
+    // 현재 페이지
+    const [currentPage, setCurrentPage] = useState(1);
+    // 페이지당 아이템 수
+    const [itemsPerPage, setItemsPerPage] = useState(5);
+
+    // 페이지 변경 시 동작 설정
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
+
+    // 현재 페이지에 보여줄 아이템의 인덱스 계산
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+
+
+
+
+
+    //******************************* 메일보내기 API 실행 *********************************//
+
+    const [emailContents, setEmailContents] = useState(`
+
+     1. ** 이용 시간 변경 안내 **
+    - 특정 날짜에 따른 이용 시간 변경 사항을 안내드립니다. 
+    - 변경된 이용 시간에 맞춰서 이용해 주시기 바랍니다. 변경된 시간에 대한 자세한 내용은 별도로 공지될 예정입니다.
+
+    2. ** 시설 점검 일정 안내 **
+    - 점검 일정 및 관련 안내 사항에 대해 안내드립니다. 이용 시 불편함이 없도록 참고해 주시기 바랍니다. 
+    - 점검 일정은 미리 예고되며, 이용 시설에 불편함이 발생하지 않도록 최선을 다하겠습니다.
+
+    3. ** 프로그램 및 이벤트 안내 **
+    - 다가오는 프로그램 및 이벤트에 대한 안내를 드립니다. 참여하실 분은 미리 신청해주시기 바랍니다. 
+    - 다양한 프로그램과 이벤트를 통해 즐거운 시간을 보내실 수 있습니다.
+
+    4. ** 시설 이용 안내 **
+    - 체육시설 이용에 관한 주요 안내사항을 안내드립니다. 시설 이용 시 유의사항을 숙지하고 이용해 주시기 바랍니다. 
+    - 모든 이용자 분들이 안전하고 쾌적하게 이용할 수 있도록 최선을 다하겠습니다.
+
+    5. ** 기타 공지사항 **
+    - 기타 중요한 공지사항이나 안내사항을 안내드립니다. 꼭 확인해주시기 바랍니다. 
+    - 더 많은 정보는 저희 웹사이트나 공지판을 통해 확인하실 수 있습니다.
+
+    6. ** 모두 정말 고생하셨습니다. **
+    - 마지막 프로젝트까지 재미있었어요! 반 분위기가 좋아서 재미있게 공부했습니다! 다들 취뽀 빨리 성공하길 빌어요~~!
+
+    `)
+    const emailDetail = (e) => {
+        setEmailContents(e.target.value);
+    }
+
+
+
+    const sendVerificationEmail = () => {
+        const checkedUserEmails = rememberList.filter(item => checkedUsers.some(it => item.id === it));         // 체크된 유저의 email
+
+        const emailToken = process.env.REACT_APP_EMAIL_KEY
+        for (let i = 0; i < checkedUserEmails.length; i++) {
+            if (checkedUserEmails[i].emailagr) {
+                // 이메일 보내기
+                // 여기서 정의해야하는 것은 위에서 만든 메일 템플릿에 지정한 변수({{ }})에 대한 값을 담아줘야한다.
+                const templateParams = {
+                    to_email: checkedUserEmails[i].email,
+                    to_name: checkedUserEmails[i].name,
+                    from_name: "FitNest Admin",
+                    from_email: "winsam003@gmail.com",
+                    message: emailContents,
+                };
+                emailjs
+                    .send(
+                        'winsam003', // 서비스 ID
+                        'SportsComplexAdmin', // 템플릿 ID
+                        templateParams,
+                        emailToken, // public-key
+                    )
+                    .then((response) => {
+                        alert('이메일이 성공적으로 보내졌습니다');
+                        console.log('이메일이 성공적으로 보내졌습니다:', response);
+                        setEmailContents('');
+                        // 이메일 전송 성공 처리 로직 추가
+                    })
+                    .catch((error) => {
+                        alert('이메일 보내기 실패, 관리자에게 문의하세요.');
+                        console.error('이메일 보내기 실패:', error);
+                        // 이메일 전송 실패 처리 로직 추가
+                    });
+            } else {
+                console.log('이메일 수신 거부 유저입니다.');
+            }
+        };
+
+    }
+    //******************************* 메일보내기 API 실행 *********************************//
+
+
+    //******************************* 이메일 초기화 실행 *********************************//
+
+    const emailRefresh = () => {
+        setEmailContents('');
+    }
+
+    //******************************* 이메일 초기화 실행 *********************************//
+
 
     return (
         <div className='XuserInfoList_Box'>
@@ -184,23 +286,39 @@ export default function XuserInfoList({ token }) {
                     {/* <span>강사등록</span> */}
                 </div>
                 <div>
-                    {userInfoList.map((it, index) => (
-                        <XuserInfoListContents key={index} {...it} userDelete={userDelete} isChecked={checkedUsers.includes(it.id)} />
-                    ))}
+                    {userInfoList.slice(indexOfFirstItem, indexOfLastItem)
+                        .map((it, index) => (
+                            <XuserInfoListContents key={index} {...it} userDelete={userDelete} isChecked={checkedUsers.includes(it.id)} />
+                        ))}
+                </div>
+                <div className='pagenationBox'>
+                    <Pagination
+                        // 현제 보고있는 페이지 
+                        activePage={currentPage}
+                        // 한페이지에 출력할 아이템 수
+                        itemsCountPerPage={5}
+                        // 총 아이템수
+                        totalItemsCount={userInfoList.length}
+                        // 표시할 페이지수
+                        pageRangeDisplayed={5}
+                        // 페이지 변경 시 동작 설정
+                        onChange={handlePageChange}>
+                    </Pagination>
                 </div>
                 <div className='XuserInfoList_UserButton'>
                     <button onClick={checkBoxRefresh}>초기화</button>
                     <button onClick={deleteReq}>삭제</button>
                 </div>
             </div>
-            <div className='XuserInfoList_searchTitle'>문자메세지 발송</div>
+            <div className='XuserInfoList_searchTitle'>이메일 발송</div>
             <div className='XuserInfoList_textMessage'>
-                <input type='text' name='textMessage' id='textMessage' placeholder='문자 내용 입력' />
+                <textarea name='textMessage' id='textMessage' placeholder='메일 내용 입력' onChange={emailDetail} value={emailContents} style={{ resize: 'none' }} />
             </div>
             <div className='XuserInfoList_UserButton'>
-                <button>초기화</button>
-                <button>발송</button>
+                <button onClick={emailRefresh}>초기화</button>
+                <button onClick={sendVerificationEmail}>발송</button>
             </div>
+
         </div>
     )
 }

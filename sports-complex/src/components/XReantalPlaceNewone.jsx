@@ -186,7 +186,7 @@ export default function XReantalPlaceNewone() {
             </div>
             <div className='XBtnInsertPrev'>
                 <button name='submit' id='submit' onClick={spaceInsert}>등록</button>
-                <button>목록</button>
+                <button>목록</button> 
             </div>
         </div>
     )

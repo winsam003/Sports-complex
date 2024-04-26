@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 
 import org.springframework.stereotype.Repository;
 
+import com.example.demo.domain.NoticeBoardDTO;
 import com.example.demo.entity.Notice;
 import javax.persistence.Query;
 
@@ -90,6 +91,24 @@ public class NoticeBoardRepositoryImpl implements NoticeBoardRepository {
 			return query.executeUpdate();
 		}
 	}
+	
+	
+	// 검색
+	@Override
+	public List<Notice> searchKeyword(String keyword) {
+		return em.createQuery("SELECT n FROM Notice n WHERE n.nottitle LIKE :keyword OR n.notdetail LIKE :keyword", Notice.class)
+				.setParameter("keyword", "%" + keyword + "%")
+				.getResultList();
+	} // 검색
+	
+	
+	// 1개만 데이터 불러오기
+	@Override
+	public Notice noticeDetail(int notnum) {
+		return em.createQuery("SELECT n FROM Notice n WHERE n.notnum = :notnum ", Notice.class)
+		.setParameter("notnum", notnum)
+		.getSingleResult();
+	} // 1개만 데이터 불러오기
 	
 	
 	// 아래부터는 자주하는 질문 **********************************************************************************

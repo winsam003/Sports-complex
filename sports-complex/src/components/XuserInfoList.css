@@ -115,7 +115,7 @@
     height: 20rem;
 }
 
-.XuserInfoList_textMessage>input{
+.XuserInfoList_textMessage>textarea{
     width: 50rem;
 }
 

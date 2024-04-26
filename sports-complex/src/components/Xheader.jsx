@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { TbUserPlus } from "react-icons/tb";
 
-export default function Xheader({ checkAdminPage, logout, getUserName }) {
+export default function Xheader({ checkAdminPage, logout, getUserName, roleList }) {
 
 
     return (
@@ -17,6 +17,12 @@ export default function Xheader({ checkAdminPage, logout, getUserName }) {
                         <Link to='/JoinPage1' className='Header_join'>회원가입<TbUserPlus className='Header_Icon' /></Link>
                     </div>
                     :
+                    roleList && roleList.length > 0 && roleList.some(item => item === "ADMIN" || item === "MANAGER") ?
+                    <div>
+                        <span onClick={logout} className='noneHeader logout'>로그아웃</span>
+                        <Link to='/XStaffInfoPage' className='Header_join'>나의정보<TbUserPlus className='Header_Icon' /></Link>
+                    </div>
+                    :
                     <div>
                         <span onClick={logout} className='noneHeader logout'>로그아웃</span>
                         <Link to='/ModifyMemberPage' className='Header_join'>나의정보<TbUserPlus className='Header_Icon' /></Link>
@@ -26,7 +32,7 @@ export default function Xheader({ checkAdminPage, logout, getUserName }) {
             <div className='Header_clickMenu'>
                 <div className='Header_logo'><Link to="/XmanagementPage">홈으로</Link></div>
                 <Link to='/XmanagementPage' className='Header_mainHeader Header_Header1'>홈 화면 관리</Link>
-                <Link to='/UserInfoPage' className='Header_mainHeader Header_Header2'>인적 관리</Link>
+                <Link to='/XUserInfoPage' className='Header_mainHeader Header_Header2'>인적 관리</Link>
                 <Link to='/XClassesInfoControl' className='Header_mainHeader Header_Header3'>강의 관리</Link>
                 <Link to='/XSugangRequestPage' className='Header_mainHeader Header_Header4'>이용신청 관리</Link>
                 <Link to='/XRentalPlaceControllPage' className='Header_mainHeader Header_Header4'>시설 관리</Link>
@@ -39,7 +45,7 @@ export default function Xheader({ checkAdminPage, logout, getUserName }) {
                         <li></li>
                     </ul>
                     <ul>
-                        <li className='Header_subMenu Header_Menutitle1'><Link to='/UserInfoPage' >회원정보 관리</Link></li>
+                        <li className='Header_subMenu Header_Menutitle1'><Link to='/XUserInfoPage' >회원정보 관리</Link></li>
                         <li className='Header_subMenu Header_Menutitle2'><Link to='/XStaffInfoPage' >직원정보 관리</Link></li>
                         <li className='Header_subMenu Header_Menutitle3'><Link to='/XStaffRegisterPage' >직원 등록</Link></li>
                         <li className='Header_subMenu Header_Menutitle4'><Link to='/XlecturePage' >강사정보 관리</Link></li>

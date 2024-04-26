@@ -34,6 +34,7 @@ import EmailCollectRefusal from './components/Pages/EmailCollectRefusal';
 import VisitWayPage from './components/Pages/VisitWayPage';
 import BoardControllPageDetailPage from './components/Pages/BoardControllPageDetailPage';
 import FaqControllPageDetailPage from './components/Pages/FaqControllPageDetailPage';
+import SearchAllPage from './components/Pages/SearchAllPage';
 import NotFoundPage from './components/Pages/NotFoundPage';
 
 import XmanagementPage from './components/Pages/XmanagementPage';
@@ -41,7 +42,7 @@ import XBoardWritePage from './components/Pages/XBoardWritePage';
 import XEventBoardWritePage from './components/Pages/XEventBoardWritePage';
 import XFaqBoardWritePage from './components/Pages/XFaqBoardWritePage';
 import XQnaBoardAnswerPage from './components/Pages/XQnaBoardAnswerPage';
-import UserInfoPage from './components/Pages/XuserInfoPage';
+import XUserInfoPage from './components/Pages/XuserInfoPage';
 import XmainEvent from './components/XmainEvent';
 import XBoardControllPage from './components/Pages/XBoardControllPage';
 import XEventBoardControllPage from './components/Pages/XEventBoardControllPage';
@@ -76,9 +77,7 @@ function App() {
 
   const [loginCheck, setLogincheck] = useState(false);
 
-
   // 로그인 / 로그아웃
-  const [isLogin, setIsLogin] = useState(false);
   const navigate = useNavigate();
   const logout = () => {
     sessionStorage.clear();
@@ -106,31 +105,26 @@ function App() {
       roleList = userData.roleList
     }
   }
+  // roleList && roleList.length > 0 && roleList.some(item => item === "ADMIN" || item === "MANAGER"
 
-  // admin 모드, 사용자 모드를 확인하고 header를 바꿔주기 위한 hook
-  const [isAdminPage, setIsAdminPage] = useState(false);
+  const [isAdminPage, setIsAdminPage] = useState(window.location.pathname.includes('X'));
   const checkAdminPage = (e) => {
-
-    if (roleList && roleList.length > 0) {
-      if (roleList.some(item => item === "ADMIN" || item === "MANAGER")) {
-        setIsAdminPage(!isAdminPage);
-      } else {
-        e.preventDefault();
-        alert("관리자 권한이 없습니다.");
-      }
-    } else {
+    if (!(roleList && roleList.length > 0 && roleList.some(item => item === "ADMIN" || item === "MANAGER"))){
+      console.log("TEST");
+      alert("관리자 계정으로 로그인이 되어야 이용 가능합니다.");
       e.preventDefault();
-      alert("관리자 로그인을 해야 이용하실 수 있습니다.");
+    } else if (window.location.pathname.includes('X')) {
+      setIsAdminPage(true);
+    } else {
+      setIsAdminPage(false);
     }
-
-
   }
 
   return (
     <div>
 
 
-      {isAdminPage ?
+      {window.location.pathname.includes('X') ?
         <Xheader checkAdminPage={checkAdminPage} logout={logout} getUserName={getUserName} roleList={roleList} />
         :
         <Header checkAdminPage={checkAdminPage} logout={logout} getUserName={getUserName} roleList={roleList} />}
@@ -160,23 +154,24 @@ function App() {
         <Route path='/PasswordChangePage' element={<PasswordChangePage getUserID={getUserID} />} />
         <Route path='/PasswordChangePage2' element={<PasswordChangePage2 />} />
         <Route path='/ModifyMemberPage' element={<ModifyMemberPage getUserID={getUserID} roleList={roleList} />} />
-        <Route path='/QRCodePage' element={<QRCodePage />} />
+        <Route path='/QRCodePage' element={<QRCodePage getUserID={getUserID} />} />
         <Route path='/PlaceRentalInfo' element={<PlaceRentalInfo roleList={roleList} />} />
-        <Route path='/PlaceRental' element={<PlaceRental getUserName={getUserName} getUserID={getUserID} />} />
+        <Route path='/PlaceRental' element={<PlaceRental getUserName={getUserName} getUserID={getUserID} token={token} />} />
         <Route path='/ParkingRequest' element={<ParkingRequest getUserName={getUserName} getUserID = {getUserID}  />} />
-        <Route path='/ApplicationDetailsPage' element={<ApplicationDetailsPage />} />
+        <Route path='/ApplicationDetailsPage' element={<ApplicationDetailsPage token={token} getUserID={getUserID} />} />
         <Route path='/InfoHandlingPolicyPage' element={<InfoHandlingPolicyPage />} />
         <Route path='/VideoHandlePage' element={<VideoHandlePage />} />
         <Route path='/EmailCollectRefusal' element={<EmailCollectRefusal />} />
         <Route path='/VisitWayPage' element={<VisitWayPage />} />
         <Route path='/FaqControllPageDetailPage' element={<FaqControllPageDetailPage />} />
+        <Route path='/SearchAllPage' element={<SearchAllPage />} />
 
         <Route path='/XmanagementPage' element={<XmanagementPage />} />
         <Route path='/XBoardWritePage' element={<XBoardWritePage getUserID={getUserID} token={token} />} />
         <Route path='/XEventBoardWritePage' element={<XEventBoardWritePage getUserID={getUserID} />} />
         <Route path='/XFaqBoardWritePage' element={<XFaqBoardWritePage />} />
         <Route path='/XQnaBoardAnswerPage' element={<XQnaBoardAnswerPage />} />
-        <Route path='/UserInfoPage' element={<UserInfoPage token={token} />} />
+        <Route path='/XUserInfoPage' element={<XUserInfoPage token={token} />} />
         <Route path='/XmainEvent' element={<XmainEvent />} />
         <Route path='/XBoardControllPage' element={<XBoardControllPage />} />
         <Route path='/XEventBoardControllPage' element={<XEventBoardControllPage />} />
@@ -189,7 +184,7 @@ function App() {
         <Route path='/XlectureDetailPage' element={<XlectureDetailPage />} />
         <Route path='/XlectureModifyPage' element={<XlectureModifyPage />} />
         <Route path='/XlecturerRegisterPage' element={<XlecturerRegisterPage />} />
-        <Route path='/XParkingControllPage' element={<XParkingControllPage />} />
+        <Route path='/XParkingControllPage' element={<XParkingControllPage token={token} />} />
         <Route path='/XClassesInfoControl' element={<XClassesInfoControl />} />
         <Route path='/XNewClassUploadPage' element={<XNewClassUploadPage />} />
         <Route path='/XSugangRequestPage' element={<XSugangRequestPage />} />

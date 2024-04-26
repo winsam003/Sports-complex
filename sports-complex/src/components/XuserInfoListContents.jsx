@@ -6,7 +6,6 @@ export default function XuserInfoListContents({ id, name, birth, phonenum, addre
         userDelete(id, e.target.checked);
     }
 
-
     return (
         <div className='XuserInfoListContents_Box'>
             <div className='XuserInfoListContents_contents'>

@@ -36,6 +36,13 @@ export const PageBannerData = [
     },
     {
         "id": "1",
+        "parameter": "SearchAllPage",
+        "page": "전체검색",
+        "title": "전체 게시판을 검색할 수 있습니다.",
+        "checkMenu": "Y"
+    },
+    {
+        "id": "1",
         "parameter": "LoginPage",
         "page": "로그인",
         "title": "더 다양한 서비스를 이용하실 수 있습니다.",
@@ -230,7 +237,7 @@ export const PageBannerData = [
     // 인적관리 인적관리 인적관리 인적관리 인적관리 인적관리 인적관리 인적관리 인적관리
     {
         "id": "8",
-        "parameter": 'UserInfoPage',
+        "parameter": 'XUserInfoPage',
         "page": '회원정보 관리',
         "title": '인적 관리',
         "checkMenu": "Y"

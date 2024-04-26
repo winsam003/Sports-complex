@@ -18,6 +18,8 @@ public interface EventService {
 	
 	int EventUpdate(Event Entity);
 	
+	List<Event> searchKeyword(String keyword);
+	
 //	void EventCount(Event Entity); 
 	
 }
