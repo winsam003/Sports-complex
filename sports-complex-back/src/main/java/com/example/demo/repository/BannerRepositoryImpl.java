@@ -52,7 +52,7 @@ public class BannerRepositoryImpl implements BannerRepository {
 	public int BannerInsert(BannerDTO entity) {
 		
 		log.info("BannerInsert Repository 성공");
-		String jpql = "INSERT INTO Banner (eventcode, bannerimage) "
+		String jpql = "INSERT INTO banner (eventcode, bannerimage) "
 					+ "VALUES (:eventcode, :bannerimage)";
 		
 		Query query = em.createNativeQuery(jpql);
