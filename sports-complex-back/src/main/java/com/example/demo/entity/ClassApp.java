@@ -2,6 +2,7 @@ package com.example.demo.entity;
 
 import java.sql.Timestamp;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,6 +31,7 @@ public class ClassApp {
 	private Integer classappnum;
 	@CreationTimestamp
 	private Timestamp classappdate;
+	@Column(length = 10, columnDefinition = "VARCHAR(10) DEFAULT '신청 완료'")
 	private String classappstate;
 	private String payment;
 	@OneToOne

@@ -68,7 +68,6 @@ export default function XSugangRequestSearchResult({ clnum, classcode, clname, c
 
     // cltype 상태에 따른 수강 신청 관리
     const handleClassType = () => {
-        console.log(cltype);
         switch (cltype) {
             case '신청 가능':
                 handleAppSubmission("신청");
@@ -98,7 +97,7 @@ export default function XSugangRequestSearchResult({ clnum, classcode, clname, c
 
             apiCall(url, 'post', classAppData, userData.token)
                 .then((response) => {
-                    alert(`${cltype} 신청 성공`);
+                    alert(`${cltype} 성공`);
                     setClassAppStatusCounts(prevCounts => ({
                         ...prevCounts,
                         [clnum]: {
@@ -107,7 +106,7 @@ export default function XSugangRequestSearchResult({ clnum, classcode, clname, c
                         }
                     }));
                 }).catch((error) => {
-                    alert(`${cltype} 신청 실패 : ${error}`);
+                    alert(`${cltype} 실패 : ${error}`);
                 });
         } else {
             alert('수강 대상을 확인해주세요.');
