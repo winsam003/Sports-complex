@@ -1,5 +1,6 @@
 /* 초기화 삭제 */
 .XResetDeleteBtn {
+    display: flex;
     margin-top: 10px;
     margin-left: 20px;
 }
