@@ -777,7 +777,7 @@ INSERT INTO teach (teachcode, teachaccount, teachrdate, teachbirth, teachlicense
 
 대관 신청 테이블 생성
 =======================================================================================================================================
-CREATE TABLE `spaceRentApp` (
+CREATE TABLE `spacerentapp` (
     `spRNum` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `spaceCode` varchar(10) NOT NULL COMMENT '시설관리의 시설코드 PK',
     `spRDate` varchar(30) NOT NULL,
@@ -806,7 +806,7 @@ ALTER TABLE `space` ADD INDEX `idx_spaceCode` (`spaceCode`);
 
 대관 신청 테스트용 insert문
 =======================================================================================================================================
-INSERT INTO spaceRentApp (spRNum, spaceCode, spRDate, spRState, payment, spRState2) 
+INSERT INTO spacerentapp (spRNum, spaceCode, spRDate, spRState, payment, spRState2) 
 VALUES 
 (1, 'FABK1C', '2024-04-30 06:00:00', '접수중', '신용카드', '접수중'),
 (2, 'FABK2C', '2024-04-30 06:00:00', '접수중', '신용카드', '접수중'),
