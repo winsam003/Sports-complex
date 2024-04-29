@@ -152,7 +152,7 @@ function App() {
         <Route path='/Sugang' element={<Sugang />} />
         <Route path='/ClassSchedulePage' element={<ClassSchedulePage />} />
         <Route path='/PasswordChangePage' element={<PasswordChangePage getUserID={getUserID} />} />
-        <Route path='/PasswordChangePage2' element={<PasswordChangePage2 />} />
+        <Route path='/PasswordChangePage2' element={<PasswordChangePage2 token={token}/>} />
         <Route path='/ModifyMemberPage' element={<ModifyMemberPage getUserID={getUserID} roleList={roleList} token={token} />} />
         <Route path='/QRCodePage' element={<QRCodePage getUserID={getUserID} />} />
         <Route path='/PlaceRentalInfo' element={<PlaceRentalInfo roleList={roleList} />} />
