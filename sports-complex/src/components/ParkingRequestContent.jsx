@@ -154,7 +154,7 @@ export default function ParkingRequestContent({getUserName, getUserID}) {
                 buyer_name: getUserID
             }, rsp => {
                 if(rsp.success) {
-                    console.log("myparklist : ", myparklist[0].parkstate);
+                    console.log("myparklist : ", myparklist);
                     
                     let formPlaceApp = {
                         id : getUserID, 

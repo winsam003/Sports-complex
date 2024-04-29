@@ -47,7 +47,7 @@ public class EventRepositoryImpl implements EventRepository {
 	public Event EventDetail(Integer eventcode, String stfid) {
 		log.info("EventDetail Repository 성공");
 		String jpql = "select e from Event e where eventcode = :eventcode";
-		String jpqlU = "update event "
+		String jpqlU = "update Event "
 						+ "set eventcount = eventcount + 1 "
 						+ "where eventcode = :eventcode";
 		
