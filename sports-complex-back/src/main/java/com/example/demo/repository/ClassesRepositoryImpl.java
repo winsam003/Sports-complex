@@ -14,6 +14,7 @@ import com.example.demo.entity.Classes;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
+
 @Transactional
 @Repository
 public class ClassesRepositoryImpl implements ClassesRepository {
