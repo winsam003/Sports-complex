@@ -28,7 +28,7 @@ public class EventRepositoryImpl implements EventRepository {
 	@Override
 	public List<Event> EventList() {
 		log.info("EventList Repository 성공");
-		return em.createQuery("select e from event e order by eventcode desc", Event.class).getResultList();
+		return em.createQuery("select e from Event e order by eventcode desc", Event.class).getResultList();
 		
 	}
 	
