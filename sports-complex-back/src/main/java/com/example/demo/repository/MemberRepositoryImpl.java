@@ -27,7 +27,7 @@ public class MemberRepositoryImpl implements MemberRepository {
 
 	public List<Member> MemberListAll() {
 		log.info("MemberListAll Repository 접촉 성공");
-		return em.createQuery("select m from Member m", Member.class).getResultList();
+		return em.createQuery("select m from member m", Member.class).getResultList();
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class MemberRepositoryImpl implements MemberRepository {
 		log.info("MemberJoin Repository 접촉 성공");
 
 		// INSERT 쿼리 작성
-		String jpql = "INSERT INTO Member (id, membercode, name, password, birth, phonenum, homenum, address, address1, address2, email, snsagr, emailagr, carnum, parkuse) "
+		String jpql = "INSERT INTO member (id, membercode, name, password, birth, phonenum, homenum, address, address1, address2, email, snsagr, emailagr, carnum, parkuse) "
 				+ "VALUES (:id, :membercode, :name, :password, :birth, :phonenum, :homenum, :address, :address1, :address2, :email, :snsagr, :emailagr, :carnum, :parkuse)";
 
 		// 쿼리 객체 생성
@@ -87,7 +87,7 @@ public class MemberRepositoryImpl implements MemberRepository {
 		// TODO Auto-generated method stub
 		log.info("MemberDelete Repository 접촉 성공");
 
-		String query = "delete from Member where id IN (:ids)";
+		String query = "delete from member where id IN (:ids)";
 
 		int deleteCount = em.createQuery(query).setParameter("ids", Arrays.asList(deleteId)).executeUpdate();
 
@@ -107,7 +107,7 @@ public class MemberRepositoryImpl implements MemberRepository {
 		log.info("mUpdate Repository 접촉 성공");
 
 		// INSERT 쿼리 작성
-		String jpql = "UPDATE Member SET membercode = :membercode, name = :name, birth = :birth, phonenum = :phonenum, homenum = :homenum, address = :address, address1 = :address1, address2 = :address2, email = :email, snsagr = :snsagr, emailagr = :emailagr, carnum = :carnum WHERE id = :id";
+		String jpql = "UPDATE member SET membercode = :membercode, name = :name, birth = :birth, phonenum = :phonenum, homenum = :homenum, address = :address, address1 = :address1, address2 = :address2, email = :email, snsagr = :snsagr, emailagr = :emailagr, carnum = :carnum WHERE id = :id";
 
 		// 쿼리 객체 생성
 		Query query = em.createNativeQuery(jpql);
