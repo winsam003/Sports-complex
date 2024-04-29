@@ -33,11 +33,8 @@ public class ClassAppRepositoryImpl implements ClassAppRepository {
 	// 수강 신청
 	@Override
 	public int classAppInsert(ClassAppDTO dto) {
-		return em
-				.createNativeQuery(
-						"insert into classapp (id, clnum, classappstate) value (:id, :clnum, :classappstate)")
-				.setParameter("id", dto.getId()).setParameter("clnum", dto.getClnum())
-				.setParameter("classappstate", dto.getClassappstate()).executeUpdate();
+		return em.createNativeQuery("insert into classapp (id, clnum) value (:id, :clnum)")
+				.setParameter("id", dto.getId()).setParameter("clnum", dto.getClnum()).executeUpdate();
 	}
 
 	// 중복 확인
