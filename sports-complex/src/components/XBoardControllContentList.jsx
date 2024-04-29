@@ -29,7 +29,7 @@ export default function XBoardControllContentList({ searchValue, noticeList, set
                 <p>조회수</p>
             </div>
             <div>
-                {noticeList.slice(indexOfFirstItem, indexOfLastItem)
+                {noticeList && noticeList.slice(indexOfFirstItem, indexOfLastItem)
                     .map((item, index) => (
                         <XBoardControllContentListContents key={index} userDelete={userDelete} isChecked={checkedUsers.includes(item.notnum)} {...item} />
                     ))}

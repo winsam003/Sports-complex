@@ -80,7 +80,11 @@ export default function XBoardControllContentDateil2() {
                 .then((response) => {
                     alert(response);
                     setModifyOn(false);
-                    navigate(`/XBoardControllPage`);
+                    if (window, location.pathname.includes('XBoardControllPageDetailPage')){
+                        navigate(`/XBoardControllPage`);
+                    }else{
+                        navigate(`/XFaqBoardControllPage`);
+                    }
                 }).catch((error) => {
                     alert("게시글 수정에 실패하였습니다. 관리자에게 문의해주세요.");
                     console.log('modify error occured = ' + error)
