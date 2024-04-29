@@ -153,7 +153,7 @@ export default function PlaceRentalContent({ getUserName, getUserID}) {
                         <option value="18:00:00">오후 6시</option>
                     </select>
                 </div>
-                <PlaceRentalSearchList handleRentPrice={handleRentPrice} sprNumHandler={sprNumHandler} spacelist={spacelist} token={token} getUserID={getUserID} />
+                <PlaceRentalSearchList handleRentPrice={handleRentPrice} sprNumHandler={sprNumHandler} spacelist={spacelist} getUserID={getUserID} />
                 <div className='PlaceRentalContent_formSet'>
                     <table>
                         <tbody>
