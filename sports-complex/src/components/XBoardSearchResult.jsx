@@ -22,10 +22,10 @@ export default function XBoardSearchResult({ eventlist, searchEvent, handleEvent
         try {
             if (location.pathname == '/EventBoardPage') {
                 navigate(`/EventDetailPage?eventcode=${eventcode}`);
-                window.scrollTo(0, 525);
+                // window.scrollTo(0, 525);
             } else {
                 navigate(`/XEventDetailPage?eventcode=${eventcode}`);
-                window.scrollTo(0, 525);
+                // window.scrollTo(0, 525);
             }
         } catch (error) {
             console.log('Error eventDetail : ', error);
