@@ -4,7 +4,7 @@ import './ModifyMember.css'
 import { useEffect, useState } from 'react'
 import { apiCall } from '../apiService/apiService';
 
-export default function ModifyMember({ getUserID, roleList }) {
+export default function ModifyMember({ getUserID, roleList, token }) {
 
 
     // *********************************내정보 detail 불러오기 시작************************************ //
@@ -233,8 +233,8 @@ export default function ModifyMember({ getUserID, roleList }) {
 
     const modifyData = () => {
         if (phone1check && phone2check) {
-            axios.post('/member/mUpdate', {
-
+            let url = '/member/mUpdate';
+            let requestDate = {
                 membercode: userData.membercode,
                 name: userData.name,
                 birth: userData.birth,
@@ -247,10 +247,28 @@ export default function ModifyMember({ getUserID, roleList }) {
                 emailagr: userData.emailagr,
                 phonenum: userData.firstPhone + userData.middlePhone + userData.lastPhone,
                 snsagr: userData.snsagr,
+            }
+
+            apiCall(url, 'post', requestDate, token)
+
+            // axios.post('/member/mUpdate', {
+
+            //     membercode: userData.membercode,
+            //     name: userData.name,
+            //     birth: userData.birth,
+            //     id: userData.id,
+            //     address: userData.address,
+            //     address1: userData.address1,
+            //     address2: userData.address2,
+            //     carnum: userData.carnum,
+            //     email: userData.email + userData.email2,
+            //     emailagr: userData.emailagr,
+            //     phonenum: userData.firstPhone + userData.middlePhone + userData.lastPhone,
+            //     snsagr: userData.snsagr,
 
 
 
-            }).then((response) => {
+            .then((response) => {
                 alert(response.data);
                 setReset(!reset);
 
