@@ -77,21 +77,20 @@ public class ClassAppRepositoryImpl implements ClassAppRepository {
 	// cltype 업데이트
 	@Override
 	public void updateClassType(int clnum, String cltype) {
-		em.createQuery("UPDATE classes c SET c.cltype = :cltype WHERE c.clnum = :clnum").setParameter("cltype", cltype)
+		em.createQuery("UPDATE Classes c SET c.cltype = :cltype WHERE c.clnum = :clnum").setParameter("cltype", cltype)
 				.setParameter("clnum", clnum).executeUpdate();
 	}
 
 	// 수강 신청 취소
-//	native인지 i,u s,d의 문제인지 확인가능한부분임
 	public void classAppCancel(Integer classappnum) {
-		em.createQuery("UPDATE classapp ca SET ca.classappstate = '취소' WHERE ca.classappnum = :classappnum")
+		em.createQuery("UPDATE ClassApp ca SET ca.classappstate = '취소' WHERE ca.classappnum = :classappnum")
 				.setParameter("classappnum", classappnum).executeUpdate();
 	}
 
 	// 수강 신청 삭제
 	@Override
 	public void classAppDelete(Integer classappnum) {
-		em.createQuery("delete from Classapp ca where ca.classappnum = :classappnum")
+		em.createQuery("delete from ClassApp ca where ca.classappnum = :classappnum")
 				.setParameter("classappnum", classappnum).executeUpdate();
 	}
 
