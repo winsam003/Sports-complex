@@ -68,7 +68,7 @@ public class ParkAppRepositoryImpl implements ParkAppRepository {
 	public int parkApplication(ParkAppDTO dto) {
 		log.info("parkApplication Repository 성공");
 				
-		String jpql = "INSERT INTO ParkApp ( id, parkUseDate, payment, parkprice, spacecode, carnum, parkappdate, parkstate) "
+		String jpql = "INSERT INTO parkapp ( id, parkUseDate, payment, parkprice, spacecode, carnum, parkappdate, parkstate) "
 					+ "VALUES (:id, :parkUseDate, :payment, :parkprice, :spacecode, :carnum, :parkappdate, 'Next') " ;
 		
 		Query query = em.createNativeQuery(jpql);
@@ -129,7 +129,7 @@ public class ParkAppRepositoryImpl implements ParkAppRepository {
 	public int parkappCancel(int parkappnum) {
 		log.info("주차 신청 취소하기 .");
 		
-		String jpql = "UPDATE ParkApp p "
+		String jpql = "UPDATE parkapp p "
 					+ "SET p.parkstate = 'cancel' "
 					+ "WHERE parkappnum = :parkappnum";
 		
