@@ -49,7 +49,7 @@ export default function Xclass() {
                 });
         }
         loadClassesList();
-    }, [classAppStatusCounts])
+    }, [classAppStatusCounts, selectedClasses])
 
     // 강의 선택
     const handleToggleCheckbox = (clnum) => {
