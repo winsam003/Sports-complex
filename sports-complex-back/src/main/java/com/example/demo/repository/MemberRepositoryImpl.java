@@ -84,14 +84,15 @@ public class MemberRepositoryImpl implements MemberRepository {
 
 	@Override
 	public int MemberDelete(String[] deleteId) {
-		// TODO Auto-generated method stub
-		log.info("MemberDelete Repository 접촉 성공");
+	    log.info("MemberDelete Repository 접촉 성공");
 
-		String query = "delete from Member where id IN (:ids)";
+	    String query = "delete from member where id IN (:ids)";
 
-		int deleteCount = em.createQuery(query, Member.class).setParameter("ids", Arrays.asList(deleteId)).executeUpdate();
+	    int deleteCount = em.createNativeQuery(query)
+	                         .setParameter("ids", Arrays.asList(deleteId))
+	                         .executeUpdate();
 
-		return deleteCount;
+	    return deleteCount;
 	}
 
 	@Override
@@ -139,7 +140,7 @@ public class MemberRepositoryImpl implements MemberRepository {
 	    Query query = em.createQuery(sql)
 	        .setParameter("password", entity.getPassword())
 	        .setParameter("id", entity.getId());
-
+	    log.info(entity);
 	    
 	    return query.executeUpdate();
 	}

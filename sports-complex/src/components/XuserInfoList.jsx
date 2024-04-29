@@ -44,7 +44,7 @@ export default function XuserInfoList({ token }) {
                 setMemberAge('');
                 setKeyword('');
             }).catch((error) => {
-                console.log('deleteError => ' + error)
+                console.log('deleteError => ', error)
             })
     }
     //******************************* 체크된 유저 삭제 끝 *********************************//
