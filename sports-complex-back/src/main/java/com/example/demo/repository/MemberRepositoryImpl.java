@@ -87,7 +87,7 @@ public class MemberRepositoryImpl implements MemberRepository {
 		// TODO Auto-generated method stub
 		log.info("MemberDelete Repository 접촉 성공");
 
-		String query = "delete from member where id IN (:ids)";
+		String query = "delete from Member where id IN (:ids)";
 
 		int deleteCount = em.createQuery(query, Member.class).setParameter("ids", Arrays.asList(deleteId)).executeUpdate();
 
