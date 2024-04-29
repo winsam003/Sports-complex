@@ -70,7 +70,7 @@ export default function XEventBoardWriteContent({getUserID, detail}) {
     // 이벤트 내용
     const [eventDetail, setEventDetail] = useState("");
     const makeEventDetail = (e) => {
-        setEventDetail(e);
+        setEventDetail(e.replace(/(?:\r\n|\r|\n)/g, '<br>'));
     }
 
     // ++이벤트 사진 등록 안했을 때의 기본 이미지. 
@@ -314,6 +314,7 @@ export default function XEventBoardWriteContent({getUserID, detail}) {
                                         <textarea type="text" name='content' id='content' 
                                                 defaultValue={eventDetail}
                                                 onChange={(e) => makeEventDetail(e.target.value)}
+                                                placeholder='1000자 이내로 작성해주세요. '
                                                 ref={detailInputRef} />
                                     </td>
                                 </tr>
