@@ -173,7 +173,7 @@ public class MemberRepositoryImpl implements MemberRepository {
 		// JSON 형태로 받으면 "" 가 붙음. 떼주는 작업.
 		
 		try {
-			String carnum = em.createQuery("SELECT m.carnum FROM member m where m.id = :id", String.class)
+			String carnum = em.createQuery("SELECT m.carnum FROM Member m where m.id = :id", String.class)
 								.setParameter("id", id)
 								.getSingleResult();
 			
