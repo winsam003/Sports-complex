@@ -51,7 +51,7 @@ public class SpaceRentAppRepositoryImpl implements SpaceRentAppRepository {
 		
 		Member member = em.find(Member.class, dto.getId());
 		
-		return em.createQuery("UPDATE spaceRentApp a SET a.appdate = :appdate ,a.appphonenum = :appphonenum, a.numofpeople = :numofpeople, a.id = :id, a.sprstate='확정' WHERE sprnum = :sprnum")
+		return em.createQuery("UPDATE SpaceRentApp a SET a.appdate = :appdate ,a.appphonenum = :appphonenum, a.numofpeople = :numofpeople, a.id = :id, a.sprstate='확정' WHERE sprnum = :sprnum")
 				.setParameter("appphonenum", dto.getAppPhoneNum())
 				.setParameter("numofpeople", dto.getNumOfPeople())
 				.setParameter("appdate", formattedDateTime)
@@ -75,7 +75,7 @@ public class SpaceRentAppRepositoryImpl implements SpaceRentAppRepository {
         // 현재 날짜를 원하는 형식으로 변환하여 출력
         String formattedDate = currentDate.format(formatter);
 		
-		em.createNativeQuery("INSERT INTO spaceRentApp (spaceCode, spRDate, spRState, payment, spRState2) VALUES " +
+		em.createNativeQuery("INSERT INTO spacerentapp (spaceCode, spRDate, spRState, payment, spRState2) VALUES " +
 						"('FABK1C','"+formattedDate+" 06:00:00', '접수중', '신용카드', '접수중'), "+
 						"('FABK2C','"+formattedDate+" 06:00:00', '접수중', '신용카드', '접수중'), "+
 						"('FAFT1C','"+formattedDate+" 06:00:00', '접수중', '신용카드', '접수중'), "+
@@ -109,7 +109,7 @@ public class SpaceRentAppRepositoryImpl implements SpaceRentAppRepository {
 						).executeUpdate(); 
 		
 		
-		em.createNativeQuery("UPDATE SpaceRentApp SET sprstate = '접수만료', sprstate2 = '접수만료' WHERE DATE(sprdate) = CURDATE()").executeUpdate();
+		em.createNativeQuery("UPDATE spacerentapp SET sprstate = '접수만료', sprstate2 = '접수만료' WHERE DATE(sprdate) = CURDATE()").executeUpdate();
 	} // 매일 10시 금일 기준 3일 이후 신청데이터 자동 입력
 	
 	
@@ -185,11 +185,11 @@ public class SpaceRentAppRepositoryImpl implements SpaceRentAppRepository {
 		for(int i=0 ; i<checkedUsers.length ; i++) {
 			space = SpaceRentAppDetail(checkedUsers[i]);
 			if(space.getSprdate().contains(formattedDate1) || space.getSprdate().contains(formattedDate2) || space.getSprdate().contains(formattedDate3)) {
-				em.createQuery("UPDATE spaceRentApp a SET a.appdate = '' ,a.appphonenum = '', a.numofpeople = null, a.id = null, a.sprstate='접수중' WHERE sprnum = :sprnum")
+				em.createQuery("UPDATE SpaceRentApp a SET a.appdate = '' ,a.appphonenum = '', a.numofpeople = null, a.id = null, a.sprstate='접수중' WHERE sprnum = :sprnum")
 				.setParameter("sprnum", checkedUsers[i])
 				.executeUpdate();
 			}else {
-				em.createQuery("UPDATE spaceRentApp a SET a.appdate = '' ,a.appphonenum = '', a.numofpeople = null, a.id = null, a.sprstate='접수만료' WHERE sprnum = :sprnum")
+				em.createQuery("UPDATE SpaceRentApp a SET a.appdate = '' ,a.appphonenum = '', a.numofpeople = null, a.id = null, a.sprstate='접수만료' WHERE sprnum = :sprnum")
 				.setParameter("sprnum", checkedUsers[i])
 				.executeUpdate();
 			}			
@@ -234,11 +234,11 @@ public class SpaceRentAppRepositoryImpl implements SpaceRentAppRepository {
 		space = SpaceRentAppDetail(sprnum);
 		
 		if(space.getSprdate().contains(formattedDate1) || space.getSprdate().contains(formattedDate2) || space.getSprdate().contains(formattedDate3)) {
-			return em.createQuery("UPDATE spaceRentApp a SET a.appdate = '' ,a.appphonenum = '', a.numofpeople = null, a.id = null, a.sprstate='접수중', a.appdate2 = null ,a.appphonenum2 = null, a.numofpeople2 = null, a.id2 = null, a.sprstate2='접수중' WHERE sprnum = :sprnum")
+			return em.createQuery("UPDATE SpaceRentApp a SET a.appdate = '' ,a.appphonenum = '', a.numofpeople = null, a.id = null, a.sprstate='접수중', a.appdate2 = null ,a.appphonenum2 = null, a.numofpeople2 = null, a.id2 = null, a.sprstate2='접수중' WHERE sprnum = :sprnum")
 			.setParameter("sprnum", sprnum)
 			.executeUpdate();
 		}else {
-			return em.createQuery("UPDATE spaceRentApp a SET a.appdate = '' ,a.appphonenum = '', a.numofpeople = null, a.id = null, a.sprstate='접수만료', a.appdate2 = null ,a.appphonenum2 = null, a.numofpeople2 = null, a.id2 = null, a.sprstate2='접수중' WHERE sprnum = :sprnum")
+			return em.createQuery("UPDATE SpaceRentApp a SET a.appdate = '' ,a.appphonenum = '', a.numofpeople = null, a.id = null, a.sprstate='접수만료', a.appdate2 = null ,a.appphonenum2 = null, a.numofpeople2 = null, a.id2 = null, a.sprstate2='접수중' WHERE sprnum = :sprnum")
 			.setParameter("sprnum", sprnum)
 			.executeUpdate();
 		}			
@@ -259,7 +259,7 @@ public class SpaceRentAppRepositoryImpl implements SpaceRentAppRepository {
 		
 		Member member = em.find(Member.class, dto.getId2());
 		
-		return em.createQuery("UPDATE spaceRentApp a SET a.appdate2 = :appdate2 ,a.appphonenum2 = :appphonenum2, a.numofpeople2 = :numofpeople2, a.id2 = :id2, a.sprstate2='경기신청', a.payment2='신용카드' WHERE sprnum = :sprnum")
+		return em.createQuery("UPDATE SpaceRentApp a SET a.appdate2 = :appdate2 ,a.appphonenum2 = :appphonenum2, a.numofpeople2 = :numofpeople2, a.id2 = :id2, a.sprstate2='경기신청', a.payment2='신용카드' WHERE sprnum = :sprnum")
 				.setParameter("appphonenum2", dto.getAppPhoneNum2())
 				.setParameter("numofpeople2", dto.getNumOfPeople2())
 				.setParameter("appdate2", formattedDateTime)
@@ -274,7 +274,7 @@ public class SpaceRentAppRepositoryImpl implements SpaceRentAppRepository {
 	// 경기 수락
 	@Override
 	public int battleAgree(int sprnum) {
-		return em.createQuery("UPDATE spaceRentApp a SET a.sprstate2='경기수락' WHERE sprnum = :sprnum")
+		return em.createQuery("UPDATE SpaceRentApp a SET a.sprstate2='경기수락' WHERE sprnum = :sprnum")
 				.setParameter("sprnum", sprnum)
 				.executeUpdate();
 	} // 경기 수락
@@ -295,7 +295,7 @@ public class SpaceRentAppRepositoryImpl implements SpaceRentAppRepository {
 	// 경기 취소
 	@Override
 	public int battleCancel(int sprnum) {
-		return em.createQuery("UPDATE spaceRentApp a SET a.sprstate2 = '접수중', a.id2 = null, payment2 = null, appphonenum2 = null, numofpeople2 = null, appdate2 = null WHERE sprnum = :sprnum")
+		return em.createQuery("UPDATE SpaceRentApp a SET a.sprstate2 = '접수중', a.id2 = null, payment2 = null, appphonenum2 = null, numofpeople2 = null, appdate2 = null WHERE sprnum = :sprnum")
 				.setParameter("sprnum", sprnum)
 				.executeUpdate();
 	} // 경기 취소

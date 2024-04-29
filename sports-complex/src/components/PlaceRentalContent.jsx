@@ -57,10 +57,11 @@ export default function PlaceRentalContent({ getUserName, getUserID}) {
     }
 
     // 해당 날짜, 시간 신청list 가져오기 ============================================================================
-    let token = JSON.parse(sessionStorage.getItem('userData')).token;
+    let token = null
     let sprDate = rentDate + ' ' + rentTime;
     const [spacelist, setSpaceList] = useState([]);
     useEffect(() => {
+        token = (sessionStorage.getItem('userData') && JSON.parse(sessionStorage.getItem('userData')).token);
         let url = '/spaceRentApp/spaceRentApplist';
         let requestData = {
             sprDate: sprDate,

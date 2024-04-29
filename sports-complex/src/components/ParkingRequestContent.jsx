@@ -126,7 +126,7 @@ export default function ParkingRequestContent({getUserName, getUserID}) {
 
     // 등록 
     const parkAppSubmit = async () => {
-        console.log(myparklist[0].parkstate);
+        // console.log(myparklist[0].parkstate);
         if(!spacecodeApp){
             alert('주차장을 선택해주세요.');
             return;
@@ -154,7 +154,7 @@ export default function ParkingRequestContent({getUserName, getUserID}) {
                 buyer_name: getUserID
             }, rsp => {
                 if(rsp.success) {
-                    console.log("myparklist : ", myparklist[0].parkstate);
+                    console.log("myparklist : ", myparklist);
                     
                     let formPlaceApp = {
                         id : getUserID, 

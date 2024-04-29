@@ -87,7 +87,7 @@ public class MemberRepositoryImpl implements MemberRepository {
 		// TODO Auto-generated method stub
 		log.info("MemberDelete Repository 접촉 성공");
 
-		String query = "delete from member where id IN (:ids)";
+		String query = "delete from Member where id IN (:ids)";
 
 		int deleteCount = em.createQuery(query, Member.class).setParameter("ids", Arrays.asList(deleteId)).executeUpdate();
 
@@ -133,13 +133,14 @@ public class MemberRepositoryImpl implements MemberRepository {
 
 	@Override
 	public int mPWChange(Member entity) {
-		log.info("mPWChange Repository 접촉 성공");
+	    log.info("mPWChange Repository 접촉 성공");
 
-		Query query = em.createQuery("UPDATE Member SET password = :password WHERE id = :id");
-		query.setParameter("password", entity.getPassword());
-		query.setParameter("id", entity.getId());
+	    String sql = "UPDATE member SET password = :password WHERE id = :id";
+	    Query query = em.createNativeQuery(sql)
+	        .setParameter("password", entity.getPassword())
+	        .setParameter("id", entity.getId());
 
-		return query.executeUpdate();
+	    return query.executeUpdate();
 	}
 
 	@Override
@@ -173,7 +174,7 @@ public class MemberRepositoryImpl implements MemberRepository {
 		// JSON 형태로 받으면 "" 가 붙음. 떼주는 작업.
 		
 		try {
-			String carnum = em.createQuery("SELECT m.carnum FROM member m where m.id = :id", String.class)
+			String carnum = em.createQuery("SELECT m.carnum FROM Member m where m.id = :id", String.class)
 								.setParameter("id", id)
 								.getSingleResult();
 			
