@@ -101,7 +101,7 @@ public class ParkAppRepositoryImpl implements ParkAppRepository {
 	public int spaceParking(String spacecode) {
 		log.info("주차장 사용하는 자리 하나 더하기.");
 		
-		String jpql = "UPDATE Space SET parking = parking + 1 where spacecode = :spacecode";
+		String jpql = "UPDATE space SET parking = parking + 1 where spacecode = :spacecode";
 				
 		return em.createNativeQuery(jpql, Space.class)
 				 .setParameter("spacecode", spacecode)
