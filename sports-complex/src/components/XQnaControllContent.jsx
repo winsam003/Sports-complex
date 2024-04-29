@@ -132,7 +132,7 @@ export default function XQnaControllContent() {
                         {searchResult && searchResult
                             .slice(indexOfFirstItem, indexOfLastItem)
                             .map((item, index) => (
-                                <XQnaSearchResult key={index} {...item} onToggleCheckbox={handleToggleCheckbox} isChecked={selectedQnaBoard.includes(item.qanum)} />
+                                <XQnaSearchResult key={index} {...item} onToggleCheckbox={handleToggleCheckbox} isChecked={selectedQnaBoard.includes(item.qanum)} userData={userData} />
                             ))}
                     </div>
                 </div>
