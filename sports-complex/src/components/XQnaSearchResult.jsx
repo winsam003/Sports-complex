@@ -31,7 +31,8 @@ export default function XQnaSearchResult({ qanum, qaopen, qapassword, qatype, qa
 
     // 비밀글 여부 확인
     const handleQnaResultClick = async () => {
-        if (qaopen == '0') {
+        const isAdminOrManager = userData.roleList.includes('ADMIN') || userData.roleList.includes('MANAGER');
+        if (qaopen === '0' && !isAdminOrManager) {
             setShowModal(true);
         } else {
             try {
