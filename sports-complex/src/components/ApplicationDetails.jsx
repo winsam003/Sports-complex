@@ -51,17 +51,17 @@ export default function ApplicationDetails({ token, getUserID }) {
 
     const cancelParkapp = (parkappnum, spacecode) => {
         let url = "/parkapp/parkappcancel";
-        // console.log("parkappnum : " , parkappnum);
         const parkItem = myParkapp.find(item => item.parkappnum === parkappnum);
 
         // 취소할 때 내 등록번호랑 공간 spacecode  가져가기
 
         if(parkItem) {
             const spacecode = parkItem.spacecode;
+            console.log(parkappnum);
 
             const cancelFormData = [{
                 parkAppNum : parkappnum, 
-                spacecode : spacecode
+                spacecode : spacecode.spacecode
             }];
 
             if(window.confirm("주차 신청을 취소하시겠습니까?")) {

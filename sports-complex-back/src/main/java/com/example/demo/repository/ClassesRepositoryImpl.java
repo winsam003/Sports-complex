@@ -31,13 +31,13 @@ public class ClassesRepositoryImpl implements ClassesRepository {
 	@Override
 	public int classesInsert(ClassesDTO dto) {
 		return em.createNativeQuery(
-				"insert into classes (classcode, clname, clrequest, clrequestend, clstart, clend, clfor, clcount, clwating, clprice, teachnum)"
-						+ "value (:classcode, :clname, :clrequest, :clrequestend, :clstart, :clend, :clfor, :clcount, :clwating, :clprice, :teachnum)")
+				"insert into classes (classcode, clname, clrequest, clrequestend, clstart, clend, clfor, clcount, clwaiting, clprice, teachnum)"
+						+ "value (:classcode, :clname, :clrequest, :clrequestend, :clstart, :clend, :clfor, :clcount, :clwaiting, :clprice, :teachnum)")
 				.setParameter("classcode", dto.getClasscode()).setParameter("clname", dto.getClname())
 				.setParameter("clrequest", dto.getClrequest()).setParameter("clrequestend", dto.getClrequestend())
 				.setParameter("clstart", dto.getClstart()).setParameter("clend", dto.getClend())
 				.setParameter("clfor", dto.getClfor()).setParameter("clcount", dto.getClcount())
-				.setParameter("clwating", dto.getClwating()).setParameter("clprice", dto.getClprice())
+				.setParameter("clwaiting", dto.getClwaiting()).setParameter("clprice", dto.getClprice())
 				.setParameter("teachnum", dto.getTeachnum()).executeUpdate();
 	}
 
