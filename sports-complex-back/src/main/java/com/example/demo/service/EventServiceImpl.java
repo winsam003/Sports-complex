@@ -42,6 +42,12 @@ public class EventServiceImpl implements EventService{
 		return repository.EventUpdate(Entity);
 	}
 	
+	
+	@Override
+	public List<Event> searchKeyword(String keyword) {
+		return repository.searchKeyword(keyword);
+	}
+	
 //	@Override
 //	public void EventCount(Event Entity) {
 //		repository.EventCount(Entity);

@@ -34,6 +34,7 @@ import EmailCollectRefusal from './components/Pages/EmailCollectRefusal';
 import VisitWayPage from './components/Pages/VisitWayPage';
 import BoardControllPageDetailPage from './components/Pages/BoardControllPageDetailPage';
 import FaqControllPageDetailPage from './components/Pages/FaqControllPageDetailPage';
+import SearchAllPage from './components/Pages/SearchAllPage';
 import NotFoundPage from './components/Pages/NotFoundPage';
 
 import XmanagementPage from './components/Pages/XmanagementPage';
@@ -163,6 +164,7 @@ function App() {
         <Route path='/EmailCollectRefusal' element={<EmailCollectRefusal />} />
         <Route path='/VisitWayPage' element={<VisitWayPage />} />
         <Route path='/FaqControllPageDetailPage' element={<FaqControllPageDetailPage />} />
+        <Route path='/SearchAllPage' element={<SearchAllPage />} />
 
         <Route path='/XmanagementPage' element={<XmanagementPage />} />
         <Route path='/XBoardWritePage' element={<XBoardWritePage getUserID={getUserID} token={token} />} />

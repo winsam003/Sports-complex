@@ -32,7 +32,7 @@ export default function BoardSearchList2({ quest, notnum, nottitle, stfid, notda
                     notdetail: notdetail
                 }
             });
-        }else{
+        } else {
             navigate(`/BoardControllPageDetailPage?notnum=${notnum}`, {
                 state: {
                     notnum: notnum,

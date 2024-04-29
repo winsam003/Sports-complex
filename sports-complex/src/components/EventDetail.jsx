@@ -8,8 +8,11 @@ import { Link, useNavigate } from 'react-router-dom';
 
 export default function EventDetail({ eventcode }) {
 
+    const location = useLocation();
+    const navigate = useNavigate();
+
     // 디테일 정보 가져오기 ====================================================
-    const [eventDetailOne, setEventDetailOne] = useState('');
+    const [eventDetailOne, setEventDetailOne] = useState(location.state ? location.state : "");
     const [imagePath, setImagePath] = useState('');
     // console.log(`EventDetail 에서의 eventcode : `, eventcode);
 
@@ -31,41 +34,39 @@ export default function EventDetail({ eventcode }) {
         if (sessionStorage.getItem('userData') != null) {
             token = JSON.parse(sessionStorage.getItem("userData")).token;
             const userData = sessionStorage.getItem("userData");
-            if(JSON.parse(userData).stfid){
+            if (JSON.parse(userData).stfid) {
                 stfid = JSON.parse(userData).stfid;
             } else {
                 stfid = null;
             }
         }
-        
-        console.log("eventcode : ",  eventcode); 
-        console.log("stfid : ",  stfid); 
-        
+
+        console.log("eventcode : ", eventcode);
+        console.log("stfid : ", stfid);
+
         let formDetail = {
-            eventcode : eventcode, 
-            stfid : stfid
+            eventcode: eventcode,
+            stfid: stfid
         }
-        console.log("token : ",  token); 
-            apiCall(url, 'post', formDetail, token)
-                .then((eventDetailOne) => {
-                    setEventDetailOne(eventDetailOne);
-                }).catch((error) => {
-                    console.log("eventDetail error : ", error);
-                })
-             
-        
+        console.log("token : ", token);
+        apiCall(url, 'post', formDetail, token)
+            .then((eventDetailOne) => {
+                setEventDetailOne(eventDetailOne);
+            }).catch((error) => {
+                console.log("eventDetail error : ", error);
+            })
+
+
     }, []);
 
-    const location = useLocation();
 
-    const navigate = useNavigate();
     // 수정버튼 이벤트
     const updateEventPage = () => {
         // console.log(eventDetailOne);
-        navigate(`/XEventBoardWritePage?eventcode=${eventDetailOne.eventcode}`, 
-                    {
-                        state: {detail : eventDetailOne}
-                    });
+        navigate(`/XEventBoardWritePage?eventcode=${eventDetailOne.eventcode}`,
+            {
+                state: { detail: eventDetailOne }
+            });
     }
     // console.log(eventDetailOne)
 
@@ -91,8 +92,8 @@ export default function EventDetail({ eventcode }) {
                         <p>{eventDetailOne.eventtype}</p>
                     </div>
                 </div>
-                
-                <div  className='EventDetail_twin'>
+
+                <div className='EventDetail_twin'>
                     <div className="EventDetail_menu">
                         <p>대상</p>
                         <p>{eventDetailOne.eventfor}</p>
@@ -115,28 +116,28 @@ export default function EventDetail({ eventcode }) {
                     </div>
                 </div>
                 {/* 내용이랑 사진 */}
-                <div  className='EventDetail_content'>
+                <div className='EventDetail_content'>
                     <div>
                         <p>{eventDetailOne.eventdetail}</p>
                     </div>
-                    {(eventDetailOne.eventuploadfile) ? 
+                    {(eventDetailOne.eventuploadfile) ?
                         <div>
                             <img src={API_BASE_URL + "/event/eventimages?img=" + eventDetailOne.eventuploadfile} alt="이벤트 이미지" />
                         </div>
-                    :
-                    <div></div>
-                }
-                <p className='EventDetail_stfid'>작성자 : {eventDetailOne.stfid}</p>
+                        :
+                        <div></div>
+                    }
+                    <p className='EventDetail_stfid'>작성자 : {eventDetailOne.stfid}</p>
                 </div>
             </div>
             <div className='EventDetail_buttonBox'>
                 {location.pathname == '/XEventDetailPage' ?
-                // <button className='EventDetail_update'>수정</button>
-                <button className='EventDetail_update'
+                    // <button className='EventDetail_update'>수정</button>
+                    <button className='EventDetail_update'
                         onClick={updateEventPage} >수정</button>
 
-                :
-                <span></span>}
+                    :
+                    <span></span>}
 
                 {/* <button className='EventDetail_button'  onClick={() => window.history.back()} >목록</button> */}
                 <Link to="/XEventBoardControllPage" className='EventDetail_button' >목록</Link>

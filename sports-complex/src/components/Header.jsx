@@ -71,7 +71,7 @@ export default function Header({ checkAdminPage, logout, getUserName, roleList }
                     </ul>
                     <ul>
                         <li className='Header_subMenu Header_Menutitle4'><Link to='/EventBoardPage' >이벤트</Link></li>
-                        <li className='Header_subMenu Header_Menutitle5'><Link to='/ClassSchedulePage' >수업 일정표</Link></li>
+                        {/* <li className='Header_subMenu Header_Menutitle5'><Link to='/ClassSchedulePage' >수업 일정표</Link></li> */}
                     </ul>
                     <ul>
                         <li className='Header_subMenu Header_Menutitle6'><Link to={getUserName == null ? '/LoginPage' : '/Sugang'} onClick={getUserName == null ? checkLogin : ''} >수강 신청</Link></li>

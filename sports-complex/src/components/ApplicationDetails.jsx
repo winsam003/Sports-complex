@@ -51,24 +51,35 @@ export default function ApplicationDetails({ token, getUserID }) {
 
     const cancelParkapp = (parkappnum, spacecode) => {
         let url = "/parkapp/parkappcancel";
-        console.log("parkappnum : " , parkappnum);
+        const parkItem = myParkapp.find(item => item.parkappnum === parkappnum);
 
         // 취소할 때 내 등록번호랑 공간 spacecode  가져가기
-        let cancelForm = {
-            parkAppNum : parkappnum, 
-            spacecode : spacecode
-        }
 
-        if(window.confirm("주차 신청을 취소하시겠습니까?")) {
-            apiCall(url, 'post', cancelForm, token)
-                .then((response) => {
-                    alert(response);
-                    park();
-                    // window.location.reload();
-                }).catch((error) => {
-                    alert(error);
-                })
+        if(parkItem) {
+            const spacecode = parkItem.spacecode;
+            console.log(parkappnum);
+
+            const cancelFormData = [{
+                parkAppNum : parkappnum, 
+                spacecode : spacecode.spacecode
+            }];
+
+            if(window.confirm("주차 신청을 취소하시겠습니까?")) {
+
+                apiCall(url, 'post', cancelFormData, token)
+                    .then((response) => {
+                        alert(response);
+                        park();
+                        // window.location.reload();
+                    }).catch((error) => {
+                        alert(error);
+                    })
+            }
+            
+        } else {
+            console.error("Park item not found for parkappnum:", parkappnum);
         }
+        
     }
 
     // 수강 신청 내역

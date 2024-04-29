@@ -73,8 +73,14 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout, getUserN
 
     // 비밀번호에서 enter키 누르면 로그인 요청
     const handleKeypress = (e) => {
-        if (e.key === 'Enter') {
-            requestLogin();
+        if (e.target.name === 'password') {
+            if (e.key === 'Enter') {
+                requestLogin();
+            }
+        } else {
+            if (e.key === 'Enter') {
+                SearchAll(e);
+            }
         }
     }
 
@@ -90,12 +96,12 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout, getUserN
 
     // ============================================배너
     // 배너 요청
-    
+
     const [bannerlist, setBannerlist] = useState([]);
     const showBanner = async () => {
-        try{
+        try {
             let url = "/banner/bannerlist";
-            const bannerlist = await apiCall(url, 'get', null, null); 
+            const bannerlist = await apiCall(url, 'get', null, null);
             setBannerlist(bannerlist);
             console.log('bannerlistbannerlistbannerlistbannerlist', bannerlist);
         } catch (error) {
@@ -108,7 +114,7 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout, getUserN
     }, []);
 
     useEffect(() => {
-        if(bannerlist.length > 0) {
+        if (bannerlist.length > 0) {
             showBannerImage();
         }
     }, [bannerlist]);
@@ -138,16 +144,34 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout, getUserN
     }, [navigate]);
 
 
+    // 전체 게시판 검색 ======================================================================================
+
+    // 전체 게시판 이동
+
+    // 검색내용 저장
+    const [keyword, SetKeyword] = useState()
+    const search = (e) => {
+        SetKeyword(e.target.value)
+    }
+
+    const SearchAll = () => {
+        if (keyword != null) {
+            navigate("/SearchAllPage", { state: { keyword } });
+        } else {
+            alert("검색내용을 입력해주세요.")
+        }
+    }
+    // 전체 게시판 검색 ======================================================================================
 
     return (
         <div className='homeDetail_container'>
             <div className='homeDetail_items1'>
                 <div>
-                    <input id='search' name='search' type="text" placeholder='검색어를 입력해주세요.' />
-                    <input id='search' name='search' type="submit" value='검색' />
+                    <input id='search' name='search' type="text" placeholder='검색어를 입력해주세요.' onChange={search} onKeyPress={handleKeypress} />
+                    <input className='searchbtn' id='search' name='search' type="submit" value='검색' onClick={SearchAll} />
                 </div>
                 <div>
-                    <div className='homeDetail_Calenderbox'>
+                    {/* <div className='homeDetail_Calenderbox'>
                         <div className='homeDetail_CalendarCaption'>월간일정<TbCalendar className='homeDetail_Icon' /></div>
                         <div className='homeDetail_Calendar'>
                             <div>1월</div>
@@ -163,14 +187,14 @@ export default function HomeDetail({ setLogincheck, loginCheck, logout, getUserN
                             <div>11월</div>
                             <div>12월</div>
                         </div>
-                    </div>
+                    </div> */}
                     <div className='slideBox'>
                         <Slider {...settings}>
                             {bannerlist && bannerlist.map((item, index) => (
                                 <div key={item.bannernum}>
-                                    <img 
-                                        className={`slide${index}`} 
-                                        
+                                    <img
+                                        className={`slide${index}`}
+
                                         src={API_BASE_URL + "/banner/bannerimages?img=" + item.bannerimage}
                                         onClick={() => goEventDetail(item.event.eventcode)}
                                         alt='bannerImage' />
