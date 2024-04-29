@@ -269,7 +269,7 @@ export default function ModifyMember({ getUserID, roleList, token }) {
 
 
             .then((response) => {
-                alert(response.data);
+                alert(response);
                 setReset(!reset);
 
             }).catch((error) => {

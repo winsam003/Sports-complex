@@ -89,7 +89,7 @@ public class MemberRepositoryImpl implements MemberRepository {
 
 		String query = "delete from member where id IN (:ids)";
 
-		int deleteCount = em.createQuery(query).setParameter("ids", Arrays.asList(deleteId)).executeUpdate();
+		int deleteCount = em.createQuery(query, Member.class).setParameter("ids", Arrays.asList(deleteId)).executeUpdate();
 
 		return deleteCount;
 	}
