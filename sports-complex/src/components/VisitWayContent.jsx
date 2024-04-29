@@ -8,7 +8,7 @@ export default function VisitWayContent() {
         const container = document.getElementById('map');
         const options = {
             center: new kakao.maps.LatLng(37.49279603423343, 127.03174714702843),
-            levet: 3
+            level: 3
         };
         const map = new kakao.maps.Map(container, options);
 
@@ -29,7 +29,7 @@ export default function VisitWayContent() {
             xAnchor: 0.5,
             yAnchor: 1.35
         });
-    }, [])
+    }, [kakao])
 
     return (
         <div>
