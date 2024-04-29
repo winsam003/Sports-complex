@@ -68,9 +68,10 @@ export default function XSugangRequestSearchResult({ clnum, classcode, clname, c
 
     // cltype 상태에 따른 수강 신청 관리
     const handleClassType = () => {
+        console.log(cltype);
         switch (cltype) {
-            case '수강 신청':
-                handleAppSubmission("수강");
+            case '신청 가능':
+                handleAppSubmission("신청");
                 break;
             case '대기 신청':
                 handleAppSubmission("대기");
@@ -101,7 +102,7 @@ export default function XSugangRequestSearchResult({ clnum, classcode, clname, c
                     setClassAppStatusCounts(prevCounts => ({
                         ...prevCounts,
                         [clnum]: {
-                            completed: cltype === "수강" ? (prevCounts?.completed ? prevCounts.completed + 1 : 1) : prevCounts?.completed || 0,
+                            completed: cltype === "신청" ? (prevCounts?.completed ? prevCounts.completed + 1 : 1) : prevCounts?.completed || 0,
                             waiting: cltype === "대기" ? (prevCounts?.waiting ? prevCounts.waiting + 1 : 1) : prevCounts?.waiting || 0
                         }
                     }));
