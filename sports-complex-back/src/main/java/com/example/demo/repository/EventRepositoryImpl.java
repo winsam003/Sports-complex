@@ -5,13 +5,10 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.entity.Event;
-import com.example.demo.entity.Notice;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -35,7 +32,7 @@ public class EventRepositoryImpl implements EventRepository {
 	@Override
 	public int EventDelete(int eventcode) {
 		log.info("EventDelete Repository 성공");
-		String jpql = "DELETE FROM Event where eventcode = :eventcode";
+		String jpql = "DELETE FROM event where eventcode = :eventcode";
 		
 		// delete는 
 		return em.createNativeQuery(jpql, Event.class)
@@ -68,29 +65,11 @@ public class EventRepositoryImpl implements EventRepository {
 		
 	}
 	
-//	@Override
-//	public void EventCount(Event Entity) {
-//		log.info("이벤트 조회수 하나 올라라. ");
-//		
-//		String jpql = "update event "
-//					  + "set eventcount = eventcount + 1 "
-//					  + "where eventcode = :eventcode";
-//				
-//		Query query = em.createNativeQuery(jpql);
-//		
-////		query.setParameter("eventcount", Entity.getEventcount());
-//		log.info("Entity.getEventcode" + Entity.getEventcode());	
-//		query.setParameter("eventcode", Entity.getEventcode());
-//		
-//		query.executeUpdate();
-//		
-//	}
-	
 	@Override
 	public int EventInsert(Event Entity) {
 		log.info("EventInsert Repository 성공");	
 		
-		String jpql = "INSERT INTO Event (eventname, eventdetail, eventfacility, eventtime, eventfor, eventtype, eventuploadfile, stfid, eventdate, eventcount)"
+		String jpql = "INSERT INTO event (eventname, eventdetail, eventfacility, eventtime, eventfor, eventtype, eventuploadfile, stfid, eventdate, eventcount)"
 					+ "VALUES (:eventname, :eventdetail, :eventfacility, :eventtime, :eventfor, :eventtype, :eventuploadfile, :stfid, :eventdate, 0)";
 		
 		Query query = em.createNativeQuery(jpql);

@@ -41,7 +41,7 @@ public class BannerRepositoryImpl implements BannerRepository {
 	public int BannerDelete(Integer bannernum) {
 		
 		log.info("EventDelete Repository 성공");
-		String jpql = "DELETE FROM Banner where bannernum = :bannernum";
+		String jpql = "DELETE FROM banner where bannernum = :bannernum";
 		
 		return em.createNativeQuery(jpql, Banner.class)
 				 .setParameter("bannernum", bannernum)
