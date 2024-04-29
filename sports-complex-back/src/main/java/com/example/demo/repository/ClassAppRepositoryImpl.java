@@ -45,11 +45,9 @@ public class ClassAppRepositoryImpl implements ClassAppRepository {
 	public boolean isDuplicate(ClassAppDTO dto) {
 		// dto에 대한 정보를 조회하고, 결과가 있으면 true 반환
 		try {
-			Long count = em
-					.createQuery(
-							"SELECT COUNT(ca) FROM ClassApp ca WHERE ca.member.id = :id AND ca.classes.clnum = :clnum",
-							Long.class)
-					.setParameter("id", dto.getId()).setParameter("clnum", dto.getClnum()).getSingleResult();
+			Long count = em.createQuery(
+					"SELECT COUNT(ca) FROM ClassApp ca WHERE ca.member.id = :id AND ca.classes.clnum = :clnum AND ca.classappstate != '취소'",
+					Long.class).setParameter("id", dto.getId()).setParameter("clnum", dto.getClnum()).getSingleResult();
 
 			return count > 0;
 		} catch (NoResultException e) {
