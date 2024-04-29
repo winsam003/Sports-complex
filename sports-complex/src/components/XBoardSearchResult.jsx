@@ -1,8 +1,6 @@
 import './XBoardSearchResult.css'
-import EventDetail from './EventDetail';
-import { Navigate, useLocation, useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import Pagination from 'react-js-pagination'
 
 export default function XBoardSearchResult({ eventlist, searchEvent, handleEventDelete, checkEvent, setCheckEvent }) {
