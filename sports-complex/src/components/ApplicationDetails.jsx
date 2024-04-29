@@ -68,7 +68,7 @@ export default function ApplicationDetails({ token, getUserID }) {
 
                 apiCall(url, 'post', cancelFormData, token)
                     .then((response) => {
-                        alert(response);
+                        alert("주차 신청 취소가 되었습니다. ");
                         park();
                         // window.location.reload();
                     }).catch((error) => {
