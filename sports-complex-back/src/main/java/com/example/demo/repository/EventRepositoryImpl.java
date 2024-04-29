@@ -28,14 +28,14 @@ public class EventRepositoryImpl implements EventRepository {
 	@Override
 	public List<Event> EventList() {
 		log.info("EventList Repository 성공");
-		return em.createQuery("select e from Event e order by eventcode desc", Event.class).getResultList();
+		return em.createQuery("select e from event e order by eventcode desc", Event.class).getResultList();
 		
 	}
 	
 	@Override
 	public int EventDelete(int eventcode) {
 		log.info("EventDelete Repository 성공");
-		String jpql = "DELETE FROM Event where eventcode = :eventcode";
+		String jpql = "DELETE FROM event where eventcode = :eventcode";
 		
 		// delete는 
 		return em.createNativeQuery(jpql, Event.class)
@@ -46,8 +46,8 @@ public class EventRepositoryImpl implements EventRepository {
 	@Override
 	public Event EventDetail(Integer eventcode, String stfid) {
 		log.info("EventDetail Repository 성공");
-		String jpql = "select e from Event e where eventcode = :eventcode";
-		String jpqlU = "update Event "
+		String jpql = "select e from event e where eventcode = :eventcode";
+		String jpqlU = "update event "
 						+ "set eventcount = eventcount + 1 "
 						+ "where eventcode = :eventcode";
 		
@@ -90,7 +90,7 @@ public class EventRepositoryImpl implements EventRepository {
 	public int EventInsert(Event Entity) {
 		log.info("EventInsert Repository 성공");	
 		
-		String jpql = "INSERT INTO Event (eventname, eventdetail, eventfacility, eventtime, eventfor, eventtype, eventuploadfile, stfid, eventdate, eventcount)"
+		String jpql = "INSERT INTO event (eventname, eventdetail, eventfacility, eventtime, eventfor, eventtype, eventuploadfile, stfid, eventdate, eventcount)"
 					+ "VALUES (:eventname, :eventdetail, :eventfacility, :eventtime, :eventfor, :eventtype, :eventuploadfile, :stfid, :eventdate, 0)";
 		
 		Query query = em.createNativeQuery(jpql);
@@ -115,7 +115,7 @@ public class EventRepositoryImpl implements EventRepository {
 		
 		
 		if(Entity.getEventfilef() != null) {
-			String jpql = "UPDATE Event "
+			String jpql = "UPDATE event "
 						+ "SET eventname = :eventname, "
 						+ "	   eventdetail = :eventdetail, "
 						+ "	   eventfacility = :eventfacility, "
@@ -143,7 +143,7 @@ public class EventRepositoryImpl implements EventRepository {
 			return query.executeUpdate();
 			
 		}else {
-			String jpql = "UPDATE Event "
+			String jpql = "UPDATE event "
 						+ "SET eventname = :eventname, "
 						+ "	   eventdetail = :eventdetail, "
 						+ "	   eventfacility = :eventfacility, "
@@ -175,7 +175,7 @@ public class EventRepositoryImpl implements EventRepository {
 	
 	@Override
 	public List<Event> searchKeyword(String keyword) {
-		return em.createQuery("SELECT e FROM Event e WHERE e.eventname LIKE :keyword OR e.eventdetail LIKE :keyword", Event.class)
+		return em.createQuery("SELECT e FROM event e WHERE e.eventname LIKE :keyword OR e.eventdetail LIKE :keyword", Event.class)
 				.setParameter("keyword", "%" + keyword + "%")
 				.getResultList();
 	}
