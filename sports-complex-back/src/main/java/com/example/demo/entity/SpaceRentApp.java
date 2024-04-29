@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Builder
-@Table(name="spacerentapp")
+@Table(name="spaceRentApp")
 public class SpaceRentApp {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
