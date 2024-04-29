@@ -23,7 +23,7 @@ public class ClassesDTO {
 	private Timestamp clend;
 	private String clfor;
 	private Integer clcount;
-	private Integer clwating;
+	private Integer clwaiting;
 	private Integer clprice;
 	private String cltype;
 	private String teachnum;
