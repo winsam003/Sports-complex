@@ -161,7 +161,7 @@ export const PageBannerData = [
         "parameter": 'ClassSchedulePage',
         "page": '수업일정표',
         "title": '시민과 함께하는 건강하고 행복한 삶',
-        "checkMenu": "Y"
+        "checkMenu": "N"
     },
     {
         "id": "5",
