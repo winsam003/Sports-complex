@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name="Event")
+@Table(name="event")
 public class Event {
 	@Id
 	public int eventcode;

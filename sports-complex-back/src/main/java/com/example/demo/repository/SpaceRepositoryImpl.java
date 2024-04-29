@@ -43,7 +43,7 @@ public class SpaceRepositoryImpl implements SpaceRepository {
 		log.info("SpaceInsert Repository 성공");
 		log.info(dto);
 		
-		String jpql = "INSERT INTO Space (spacecode, spacename, spaceprice, parkspace)"
+		String jpql = "INSERT INTO space (spacecode, spacename, spaceprice, parkspace)"
 					+ "VALUES (:spacecode, :spacename, :spaceprice, :parkspace)";
 		
 		Query query = em.createNativeQuery(jpql);
