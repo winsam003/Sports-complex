@@ -2,6 +2,7 @@
 .XQnaSearchResult_SearchResult_user {
     display: grid;
     grid-template-columns: 1fr 1fr 5fr 1fr 2fr 1fr 1fr;
+    height: 56px;
 }
 
 /* 관리자 문의게시판 index */

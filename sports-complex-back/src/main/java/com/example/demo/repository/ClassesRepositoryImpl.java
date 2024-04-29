@@ -11,6 +11,9 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.domain.ClassesDTO;
 import com.example.demo.entity.Classes;
 
+import lombok.extern.log4j.Log4j2;
+
+@Log4j2
 @Transactional
 @Repository
 public class ClassesRepositoryImpl implements ClassesRepository {
@@ -30,10 +33,13 @@ public class ClassesRepositoryImpl implements ClassesRepository {
 	// 강의 등록
 	@Override
 	public int classesInsert(ClassesDTO dto) {
+		String cldaysString = String.join(",", dto.getCldays());
+
 		return em.createNativeQuery(
-				"insert into classes (classcode, clname, clrequest, clrequestend, clstart, clend, clfor, clcount, clwaiting, clprice, teachnum)"
-						+ "value (:classcode, :clname, :clrequest, :clrequestend, :clstart, :clend, :clfor, :clcount, :clwaiting, :clprice, :teachnum)")
-				.setParameter("classcode", dto.getClasscode()).setParameter("clname", dto.getClname())
+				"insert into classes (classcode, cldays, cltime, clname, clrequest, clrequestend, clstart, clend, clfor, clcount, clwaiting, clprice, teachnum)"
+						+ "value (:classcode, :cldays, :cltime, :clname, :clrequest, :clrequestend, :clstart, :clend, :clfor, :clcount, :clwaiting, :clprice, :teachnum)")
+				.setParameter("classcode", dto.getClasscode()).setParameter("cldays", cldaysString)
+				.setParameter("cltime", dto.getCltime()).setParameter("clname", dto.getClname())
 				.setParameter("clrequest", dto.getClrequest()).setParameter("clrequestend", dto.getClrequestend())
 				.setParameter("clstart", dto.getClstart()).setParameter("clend", dto.getClend())
 				.setParameter("clfor", dto.getClfor()).setParameter("clcount", dto.getClcount())
