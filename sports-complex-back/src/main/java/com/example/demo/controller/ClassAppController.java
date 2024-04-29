@@ -54,7 +54,7 @@ public class ClassAppController {
 		if (service.classAppInsert(dto) > 0) {
 			handleClassType(dto.getClnum());
 
-			if ("수강 신청".equals(classType)) {
+			if ("신청 가능".equals(classType)) {
 				message = "수강 신청에 성공하였습니다.";
 			} else if ("대기 신청".equals(classType)) {
 				message = "대기 신청에 성공하였습니다.";
@@ -62,7 +62,7 @@ public class ClassAppController {
 			return ResponseEntity.status(HttpStatus.OK).body(message);
 		} else {
 
-			if ("수강 신청".equals(classType)) {
+			if ("신청 가능".equals(classType)) {
 				message = "수강 신청에 실패하였습니다.";
 			} else if ("대기 신청".equals(classType)) {
 				message = "대기 신청에 실패하였습니다.";
