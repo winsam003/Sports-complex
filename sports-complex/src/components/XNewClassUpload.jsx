@@ -47,7 +47,7 @@ export default function XNewClassUpload() {
         clend: '',
         clfor: 'KI',
         clcount: '50',
-        clwating: '75',
+        clwaiting: '75',
         clprice: '25000'
     });
 
@@ -446,8 +446,8 @@ export default function XNewClassUpload() {
                         <tr>
                             <th>대기 정원</th>
                             <td>
-                                <input type="text" placeholder='숫자만 입력해주세요.' name='clwating'
-                                    value={newClassesData.clwating} onChange={NewClassesContent} /> 명
+                                <input type="text" placeholder='숫자만 입력해주세요.' name='clwaiting'
+                                    value={newClassesData.clwaiting} onChange={NewClassesContent} /> 명
                             </td>
                         </tr>
                         <tr>
