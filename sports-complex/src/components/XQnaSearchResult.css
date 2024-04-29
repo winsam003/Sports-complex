@@ -9,6 +9,7 @@
 .XQnaSearchResult_SearchResult_admin {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 5fr 1fr 2fr 1fr 1fr;
+    height: 56px;
 }
 
 .XQnaSearchResult_SearchResult_user p,

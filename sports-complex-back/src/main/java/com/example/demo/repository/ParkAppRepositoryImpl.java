@@ -145,7 +145,7 @@ public class ParkAppRepositoryImpl implements ParkAppRepository {
 		
 		log.info("주차장 사용하는 자리 하나 빼기.");
 
-		String jpql = "UPDATE Space "
+		String jpql = "UPDATE space "
 					+ "SET parking = parking - 1 "
 					+ "where spacecode = :spacecode";
 		
