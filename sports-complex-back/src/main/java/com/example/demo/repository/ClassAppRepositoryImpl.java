@@ -33,8 +33,11 @@ public class ClassAppRepositoryImpl implements ClassAppRepository {
 	// 수강 신청
 	@Override
 	public int classAppInsert(ClassAppDTO dto) {
-		return em.createNativeQuery("insert into classapp (id, clnum) value (:id, :clnum)")
-				.setParameter("id", dto.getId()).setParameter("clnum", dto.getClnum()).executeUpdate();
+		return em
+				.createNativeQuery(
+						"insert into classapp (id, clnum, classappstate) value (:id, :clnum, :classappstate)")
+				.setParameter("id", dto.getId()).setParameter("clnum", dto.getClnum())
+				.setParameter("classappstate", dto.getClassappstate()).executeUpdate();
 	}
 
 	// 중복 확인
@@ -74,13 +77,14 @@ public class ClassAppRepositoryImpl implements ClassAppRepository {
 	// cltype 업데이트
 	@Override
 	public void updateClassType(int clnum, String cltype) {
-		em.createQuery("UPDATE Classes c SET c.cltype = :cltype WHERE c.clnum = :clnum").setParameter("cltype", cltype)
+		em.createQuery("UPDATE classes c SET c.cltype = :cltype WHERE c.clnum = :clnum").setParameter("cltype", cltype)
 				.setParameter("clnum", clnum).executeUpdate();
 	}
 
 	// 수강 신청 취소
+//	native인지 i,u s,d의 문제인지 확인가능한부분임
 	public void classAppCancel(Integer classappnum) {
-		em.createQuery("UPDATE Classapp ca SET ca.classappstate = '취소' WHERE ca.classappnum = :classappnum")
+		em.createQuery("UPDATE classapp ca SET ca.classappstate = '취소' WHERE ca.classappnum = :classappnum")
 				.setParameter("classappnum", classappnum).executeUpdate();
 	}
 
@@ -113,7 +117,7 @@ public class ClassAppRepositoryImpl implements ClassAppRepository {
 				.setMaxResults(1).getSingleResult();
 
 		// 대기 상태인 첫 번째 신청자의 상태를 '신청 완료'로 변경합니다.
-		em.createQuery("UPDATE Classapp ca SET ca.classappstate = '신청 완료' WHERE ca.classappnum = :classappnum")
+		em.createQuery("UPDATE ClassApp ca SET ca.classappstate = '신청 완료' WHERE ca.classappnum = :classappnum")
 				.setParameter("classappnum", earliestWaitingAppNum).executeUpdate();
 	}
 
@@ -127,7 +131,7 @@ public class ClassAppRepositoryImpl implements ClassAppRepository {
 	// 결제
 	@Override
 	public void classAppPayment(Integer classappnum) {
-		em.createQuery("UPDATE Classapp ca SET ca.classappstate = '결제 완료' WHERE ca.classappnum = :classappnum")
+		em.createQuery("UPDATE ClassApp ca SET ca.classappstate = '결제 완료' WHERE ca.classappnum = :classappnum")
 				.setParameter("classappnum", classappnum).executeUpdate();
 	}
 

@@ -182,7 +182,8 @@ export default function Xclass() {
                         (classesSearchInput.trim() === '' || item.clname.toLowerCase().includes(classesSearchInput.toLowerCase()))
                     )).slice(indexOfFirstItem, indexOfLastItem)
                         .map((item, index) => (
-                            <XSugangRequestSearchResult key={index} {...item} onToggleCheckbox={handleToggleCheckbox} isChecked={selectedClasses.includes(item.clnum)} />
+                            <XSugangRequestSearchResult key={index} {...item} onToggleCheckbox={handleToggleCheckbox} isChecked={selectedClasses.includes(item.clnum)}
+                                setClassAppStatusCounts={setClassAppStatusCounts} />
                         ))}
                     <div className='XResetDeleteBtn'>
                         <button onClick={handleResetSelection}>초기화</button>
