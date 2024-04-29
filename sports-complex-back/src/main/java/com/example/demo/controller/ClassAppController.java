@@ -44,27 +44,27 @@ public class ClassAppController {
 		}
 
 		// cltype이 대기 신청인 경우엔 classappstate를 대기로 추가
-		String classType = service.getClassType(dto.getClnum());
-		if ("수강 신청".equals(classType)) {
+		String cltype = service.getClassType(dto.getClnum());
+		if ("신청 가능".equals(cltype)) {
 			dto.setClassappstate("신청 완료");
-		} else if ("대기 신청".equals(classType)) {
+		} else if ("대기 신청".equals(cltype)) {
 			dto.setClassappstate("대기");
 		}
 
 		if (service.classAppInsert(dto) > 0) {
 			handleClassType(dto.getClnum());
 
-			if ("신청 가능".equals(classType)) {
+			if ("신청 가능".equals(cltype)) {
 				message = "수강 신청에 성공하였습니다.";
-			} else if ("대기 신청".equals(classType)) {
+			} else if ("대기 신청".equals(cltype)) {
 				message = "대기 신청에 성공하였습니다.";
 			}
 			return ResponseEntity.status(HttpStatus.OK).body(message);
 		} else {
 
-			if ("신청 가능".equals(classType)) {
+			if ("신청 가능".equals(cltype)) {
 				message = "수강 신청에 실패하였습니다.";
-			} else if ("대기 신청".equals(classType)) {
+			} else if ("대기 신청".equals(cltype)) {
 				message = "대기 신청에 실패하였습니다.";
 			}
 			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(message);
@@ -153,7 +153,7 @@ public class ClassAppController {
 				int classesClCount = service.getClassesClCount(clnum);
 
 				if (completedCount < classesClCount) {
-					service.updateClassType(clnum, "수강 신청");
+					service.updateClassType(clnum, "신청 가능");
 				}
 			}
 		} catch (Exception e) {
