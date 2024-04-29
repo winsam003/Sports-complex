@@ -34,7 +34,8 @@ export default function BoardSearchList({ noticeList }) {
                 {noticeList && noticeList
                     .slice(indexOfFirstItem, indexOfLastItem)
                     .map((it, index) => (
-                    <BoardSearchList2 key={index} {...it} />))}
+                    <BoardSearchList2 key={index} {...it} />))
+                }
 
             </div>
             <div className='pagenationBox'>
