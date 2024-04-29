@@ -1,8 +1,12 @@
 import PageBanner from "../PageBanner";
 import Submenu from "../Submenu";
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export default function XlectureDetailPage() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     // 사용자 페이지 접근
     const location = useLocation();
     const { teachData } = location.state;

@@ -135,11 +135,12 @@ public class MemberRepositoryImpl implements MemberRepository {
 	public int mPWChange(Member entity) {
 	    log.info("mPWChange Repository 접촉 성공");
 
-	    String sql = "UPDATE member SET password = :password WHERE id = :id";
-	    Query query = em.createNativeQuery(sql)
+	    String sql = "UPDATE Member SET password = :password WHERE id = :id";
+	    Query query = em.createQuery(sql)
 	        .setParameter("password", entity.getPassword())
 	        .setParameter("id", entity.getId());
 
+	    
 	    return query.executeUpdate();
 	}
 

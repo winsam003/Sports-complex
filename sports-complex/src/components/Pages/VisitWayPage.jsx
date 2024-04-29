@@ -1,8 +1,13 @@
+import { useEffect } from 'react';
 import PageBanner from '../PageBanner';
 import VisitWayContent from '../VisitWayContent';
 
-// 영상정보처리기운영방침
+// 찾아오시는길
 export default function VisitWayPage() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
         <div>
             <PageBanner />

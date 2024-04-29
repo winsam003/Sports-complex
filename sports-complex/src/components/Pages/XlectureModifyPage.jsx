@@ -5,6 +5,9 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { apiCall } from '../../apiService/apiService';
 
 export default function XlectureModifyPage() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     // 사용자 페이지 접근
     const location = useLocation();
     const { teachData } = location.state;

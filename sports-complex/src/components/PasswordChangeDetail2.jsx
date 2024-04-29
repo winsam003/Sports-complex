@@ -5,7 +5,7 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { apiCall } from '../apiService/apiService';
 import { useNavigate } from 'react-router';
 
-export default function PasswordChangeDetail2() {
+export default function PasswordChangeDetail2({ token }) {
 
     const [password1Save, setPassword1Save] = useState();
     const [passwordCheckMessage, setPasswordCheckMessage] = useState("");
@@ -38,8 +38,7 @@ export default function PasswordChangeDetail2() {
             id: JSON.parse(sessionStorage.getItem('userData')).userID,
             password: password1Save
         }
-
-        apiCall(url, 'post', requestData, null)
+        apiCall(url, 'post', requestData, token)
         .then((response)=>{
             alert(response);
             navigate('/');
