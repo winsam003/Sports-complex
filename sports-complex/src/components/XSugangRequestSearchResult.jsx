@@ -75,11 +75,11 @@ export default function XSugangRequestSearchResult({ clnum, classcode, clname, c
             case '대기 신청':
                 handleAppSubmission("대기");
                 break;
-            case '접수 마감':
-                alert('접수 기간을 확인해주세요.');
-                break;
             case '대기 마감':
                 alert('대기 인원이 가득 찼습니다. 다음 기회에 신청해주세요.');
+                break;
+            case '접수 마감':
+                alert('접수 기간을 확인해주세요.');
                 break;
             default:
                 break;
