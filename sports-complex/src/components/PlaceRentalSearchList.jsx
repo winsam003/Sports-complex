@@ -30,10 +30,10 @@ export default function PlaceRentalSearchList({ handleRentPrice, sprNumHandler, 
         }
     }
 
-
     const requestBattle = (sprnum, id) => {
         let url = '/spaceRentApp/requestBattle';
         let id2 = getUserID;
+        token = (sessionStorage.getItem('userData') && JSON.parse(sessionStorage.getItem('userData')).token);
 
         if (id.id !== id2) {
             let numOfPeople2 = prompt("경기 신청할 인원을 입력해주세요", "숫자로만 입력해주세요");

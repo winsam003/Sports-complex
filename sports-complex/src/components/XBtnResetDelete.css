@@ -1,5 +1,6 @@
 /* 초기화 삭제 */
 .XResetDeleteBtn {
+    display: flex;
     margin-top: 10px;
     margin-left: 20px;
 }
@@ -14,4 +15,10 @@
     border-radius: 0.5em;
     border: none;
     cursor: pointer;
+}
+
+/* 경고 메세지 */
+#XResetDeleteBtn_red {
+    color: red;
+    padding-left: 1rem;
 }

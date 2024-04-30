@@ -1,8 +1,6 @@
 import './XBoardSearchResult.css'
-import EventDetail from './EventDetail';
-import { Navigate, useLocation, useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import Pagination from 'react-js-pagination'
 
 export default function XBoardSearchResult({ eventlist, searchEvent, handleEventDelete, checkEvent, setCheckEvent }) {
@@ -22,10 +20,10 @@ export default function XBoardSearchResult({ eventlist, searchEvent, handleEvent
         try {
             if (location.pathname == '/EventBoardPage') {
                 navigate(`/EventDetailPage?eventcode=${eventcode}`);
-                window.scrollTo(0, 525);
+                // window.scrollTo(0, 525);
             } else {
                 navigate(`/XEventDetailPage?eventcode=${eventcode}`);
-                window.scrollTo(0, 525);
+                // window.scrollTo(0, 525);
             }
         } catch (error) {
             console.log('Error eventDetail : ', error);

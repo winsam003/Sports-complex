@@ -70,6 +70,7 @@ export default function XEventBoardWriteContent({getUserID, detail}) {
     // 이벤트 내용
     const [eventDetail, setEventDetail] = useState("");
     const makeEventDetail = (e) => {
+        // setEventDetail(e.replace(/(?:\r\n|\r|\n)/g, `&#10;` ));
         setEventDetail(e);
     }
 
@@ -314,6 +315,7 @@ export default function XEventBoardWriteContent({getUserID, detail}) {
                                         <textarea type="text" name='content' id='content' 
                                                 defaultValue={eventDetail}
                                                 onChange={(e) => makeEventDetail(e.target.value)}
+                                                placeholder='1000자 이내로 작성해주세요. '
                                                 ref={detailInputRef} />
                                     </td>
                                 </tr>

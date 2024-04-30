@@ -5,7 +5,7 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { apiCall } from '../apiService/apiService';
 import { useNavigate } from 'react-router';
 
-export default function PasswordChangeDetail2() {
+export default function PasswordChangeDetail2({ token }) {
 
     const [password1Save, setPassword1Save] = useState();
     const [passwordCheckMessage, setPasswordCheckMessage] = useState("");
@@ -30,21 +30,21 @@ export default function PasswordChangeDetail2() {
             requestCheckPW();
         }
     }
-
+    console.log(JSON.parse(sessionStorage.getItem('userData')).id)
+    console.log("password1Save=", password1Save)
     const requestCheckPW = () => {
 
         let url = '/member/mPWChange';
         let requestData = {
-            id: JSON.parse(sessionStorage.getItem('userData')).userID,
+            id: JSON.parse(sessionStorage.getItem('userData')).id,
             password: password1Save
         }
-
-        apiCall(url, 'post', requestData, null)
+        apiCall(url, 'post', requestData, token)
         .then((response)=>{
             alert(response);
             navigate('/');
         }).catch((error)=>{
-            console.log("passwordChange Error Occured = " + error)
+            console.log("passwordChange Error Occured = ", error)
         })
     }
 
