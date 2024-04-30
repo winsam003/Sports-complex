@@ -185,10 +185,15 @@ export default function Xclass() {
                             <XSugangRequestSearchResult key={index} {...item} onToggleCheckbox={handleToggleCheckbox} isChecked={selectedClasses.includes(item.clnum)}
                                 setClassAppStatusCounts={setClassAppStatusCounts} />
                         ))}
-                    <div className='XResetDeleteBtn'>
-                        <button onClick={handleResetSelection}>초기화</button>
-                        <button onClick={handleDeleteSelectedClasses}>삭제</button>
-                    </div>
+                    {
+                        location.pathname == '/Sugang' ?
+                            ''
+                            :
+                            <div className='XResetDeleteBtn'>
+                                <button onClick={handleResetSelection}>초기화</button>
+                                <button onClick={handleDeleteSelectedClasses}>삭제</button>
+                            </div>
+                    }
                     <div className='pagenationBox'>
                         <Pagination
                             // 현제 보고있는 페이지 

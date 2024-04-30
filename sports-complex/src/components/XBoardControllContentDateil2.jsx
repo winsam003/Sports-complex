@@ -3,6 +3,7 @@ import './XBoardControllContentDateil2.css'
 import { MdFestival } from "react-icons/md";
 import { apiCall } from "../apiService/apiService";
 import { useEffect, useState } from 'react';
+import React from 'react';
 
 
 export default function XBoardControllContentDateil2() {
@@ -80,9 +81,9 @@ export default function XBoardControllContentDateil2() {
                 .then((response) => {
                     alert(response);
                     setModifyOn(false);
-                    if (window, location.pathname.includes('XBoardControllPageDetailPage')){
+                    if (window, location.pathname.includes('XBoardControllPageDetailPage')) {
                         navigate(`/XBoardControllPage`);
-                    }else{
+                    } else {
                         navigate(`/XFaqBoardControllPage`);
                     }
                 }).catch((error) => {
@@ -161,7 +162,15 @@ export default function XBoardControllContentDateil2() {
                         {modifyOn ?
                             <textarea className='XBoardControllContentDateil2_modifiedContents' type="text" name='content' id='content' value={noticeContent} onChange={noticeContentHandler}></textarea>
                             :
-                            receivedInfo.notdetail
+
+                            <div>
+                                {receivedInfo.notdetail.split('\n').map((line, index) => (
+                                    <React.Fragment key={index}>
+                                        {index === 0 ? line : <>{'\n'}<br />{line}</>}
+                                    </React.Fragment>
+                                ))}
+                            </div>
+
                         }
                     </div>
                     <div>
