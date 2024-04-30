@@ -82,8 +82,8 @@ public class BannerController {
 		if(bannerfilef != null && !bannerfilef.isEmpty()) {
 			dto.setBannerImage(bannerfilef.getOriginalFilename());
 			
-			String realPath = "C:\\jgj\\TeamSSJ\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\mainBanner\\";
-//			String realPath = "E:\\Sam\\project\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\mainBanner";
+//			String realPath = "C:\\jgj\\TeamSSJ\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\mainBanner\\";
+			String realPath = "E:\\Sam\\project\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\mainBanner\\";
 						
 			// 1.1. 해당 위치에 폴더가 존재하지 않다면 만들기
 			File file1 = new File(realPath);
@@ -114,7 +114,8 @@ public class BannerController {
 	
 	@GetMapping(value = "/bannerimages")
 	public ResponseEntity<?> getImagePath(@RequestParam String img) throws Exception {
-		String realPath = "C:\\jgj\\TeamSSJ\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\mainBanner\\";
+//		String realPath = "C:\\jgj\\TeamSSJ\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\mainBanner\\";
+		String realPath = "E:\\Sam\\project\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\mainBanner\\";
 		
 		FileSystemResource resource = new FileSystemResource(realPath + "\\" + img);
 		
