@@ -31,8 +31,11 @@ export default function XQnaSearchResult({ qanum, qaopen, qapassword, qatype, qa
 
     // 비밀글 여부 확인
     const handleQnaResultClick = async () => {
+        // Session storage에 있는 userData 가져오기
+        const sessionUserData = sessionStorage.getItem('userData');
+        const userData = sessionUserData ? JSON.parse(sessionUserData) : 'null';
         const isAdminOrManager = userData.roleList.includes('ADMIN') || userData.roleList.includes('MANAGER');
-        if (qaopen === '0' && !isAdminOrManager) {
+        if (qaopen == '0' && !isAdminOrManager) {
             setShowModal(true);
         } else {
             try {

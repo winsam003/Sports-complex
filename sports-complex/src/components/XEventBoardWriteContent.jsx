@@ -70,7 +70,8 @@ export default function XEventBoardWriteContent({getUserID, detail}) {
     // 이벤트 내용
     const [eventDetail, setEventDetail] = useState("");
     const makeEventDetail = (e) => {
-        setEventDetail(e.replace(/(?:\r\n|\r|\n)/g, `<br>`));
+        // setEventDetail(e.replace(/(?:\r\n|\r|\n)/g, `&#10;` ));
+        setEventDetail(e);
     }
 
     // ++이벤트 사진 등록 안했을 때의 기본 이미지. 
