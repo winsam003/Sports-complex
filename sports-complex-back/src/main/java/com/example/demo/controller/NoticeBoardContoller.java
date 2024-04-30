@@ -123,14 +123,15 @@ public class NoticeBoardContoller {
 			entity.setNotuploadfile(file.getOriginalFilename());
 			
 			// 1. 배포 전, 배포 후 물리적 위치 저장
-			String realPath = "E:\\Sam\\project\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\noticeBoard\\";
+//			String realPath = "E:\\Sam\\project\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\noticeBoard\\";
+			String realPath = "E:\\Sam\\project\\Sports-complex\\sports-complex\\public\\img\\";
 			
 			
 			// 솔직히 무슨 기준으로 배포 전, 후 를 나눠야할지 모르겠음 일단 같은 폴더로 지정했음
-			if(realPath.contains(".project."))
-				realPath = "E:\\Sam\\project\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\noticeBoard\\";
-			else 
-				realPath = "E:\\Sam\\project\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\noticeBoard\\";
+//			if(realPath.contains(".project."))
+//				realPath = "E:\\Sam\\project\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\noticeBoard\\";
+//			else 
+//				realPath = "E:\\Sam\\project\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\noticeBoard\\";
 			
 			
 			// 1.1. 해당 위치에 폴더가 존재하지 않다면 만들기
