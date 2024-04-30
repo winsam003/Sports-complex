@@ -5,6 +5,7 @@ import SugangReciptInfo from './SugangReciptInfo';
 import XclassSearchBox from './XclassSearchBox';
 import SugangSearchList from './SugangSearchList';
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { apiCall } from '../apiService/apiService';
 
 export default function SugangContent() {
@@ -19,6 +20,8 @@ export default function SugangContent() {
     const [classesSearchInput, setClassesSearchInput] = useState('');
     // 검색 기능
     const [searchResult, setSearchResult] = useState([]);
+
+    const location = useLocation();
 
     // Session storage에 있는 userData 가져오기
     const sessionUserData = sessionStorage.getItem('userData');
@@ -137,10 +140,15 @@ export default function SugangContent() {
                         ))}
                     </div>
                 </div>
-                <div className='XResetDeleteBtn'>
-                    <button onClick={handleResetSelection}>초기화</button>
-                    <button onClick={handleDeleteSelectedClasses}>삭제</button>
-                </div>
+                {
+                    location.pathname == '/Sugang' ?
+                        ''
+                        :
+                        <div className='XResetDeleteBtn'>
+                            <button onClick={handleResetSelection}>초기화</button>
+                            <button onClick={handleDeleteSelectedClasses}>삭제</button>
+                        </div>
+                }
             </div>
         </div>
     )
