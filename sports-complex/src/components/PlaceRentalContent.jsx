@@ -119,7 +119,6 @@ export default function PlaceRentalContent({ getUserName, getUserID}) {
     // 대관신청 ====================================================================================================
 
 
-
     return (
         <div className='board_div'>
             <Submenu />
