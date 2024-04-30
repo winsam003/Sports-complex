@@ -61,10 +61,11 @@
 
 /* 게시글 내용 작성box */
 .XEventBoardContent_form #content {
+    /* textarea로 수정함. */
     height: 300px;
     width: 95%;
-    /* textarea로 수정함. */
     resize: none;
+    white-space:pre;
 }
 /* 사진 */
 .XEventBoardContent_upload input {
