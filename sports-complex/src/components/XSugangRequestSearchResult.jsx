@@ -97,7 +97,8 @@ export default function XSugangRequestSearchResult({ clnum, classcode, clname, c
 
             apiCall(url, 'post', classAppData, userData.token)
                 .then((response) => {
-                    alert(`${cltype} 성공`);
+                    // alert(`${cltype} 성공`);
+                    alert(`${cltype === "신청" ? "수강 신청 성공" : "대기 신청 성공"}`);
                     setClassAppStatusCounts(prevCounts => ({
                         ...prevCounts,
                         [clnum]: {
@@ -106,7 +107,8 @@ export default function XSugangRequestSearchResult({ clnum, classcode, clname, c
                         }
                     }));
                 }).catch((error) => {
-                    alert(`${cltype} 실패 : ${error}`);
+                    console.log(cltype)
+                    alert(`${cltype === "신청" ? "수강 신청 실패" : "대기 신청 실패"} : ${error}`);
                 });
         } else {
             alert('수강 대상을 확인해주세요.');
