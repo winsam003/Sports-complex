@@ -122,6 +122,7 @@ export default function EventDetail({ eventcode }) {
                     </div>
                     {(eventDetailOne.eventuploadfile) ?
                         <div>
+                            {/* <img src={API_BASE_URL + "/event/eventimages?img=" + eventDetailOne.eventuploadfile} alt="이벤트 이미지" /> */}
                             <img src={API_BASE_URL + "/event/eventimages?img=" + eventDetailOne.eventuploadfile} alt="이벤트 이미지" />
                         </div>
                         :
