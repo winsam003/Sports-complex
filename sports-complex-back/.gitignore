@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+/.apt_generated_tests/
+
+### Security ###
+application-aws.properties
