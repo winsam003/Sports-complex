@@ -17,6 +17,7 @@
     font-weight: bold;
 }
 
+.XReantalPlaceNewone #placeType,
 .XReantalPlaceNewone input {
     display: flex;
     justify-content: center;
