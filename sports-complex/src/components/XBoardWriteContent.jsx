@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { apiCall } from '../apiService/apiService';
 import { useLocation, useNavigate } from 'react-router';
 
+
 // 공지사항
 export default function XBoardWriteContent({ getUserID, token }) {
 
@@ -26,6 +27,7 @@ export default function XBoardWriteContent({ getUserID, token }) {
     const noticeContentHandler = (e) => {
         setNoticeContent(e.target.value);
     }
+
 
     const [selectedFile, setSelectedFile] = useState(null);
     const handleFileChange = (e) => {
@@ -51,7 +53,7 @@ export default function XBoardWriteContent({ getUserID, token }) {
                 nottype: 'A',
                 notcount: 0
             }
-        } else {         
+        } else {
             url = "/notice/noticeSubmit";
             const formData = new FormData();
             formData.append('file', selectedFile);

@@ -181,7 +181,7 @@ public class SpaceRentAppController {
 	
 	
 	// 매일 10시 오늘기준 3일 이후 신청 컬럼생성
-	@Scheduled(cron = "0 0 11 * * *")
+	@Scheduled(cron = "0 0 10 * * *")
 	public void runDailyTasks() {
 		log.info("runDailyTasks Contoller 매일 10시 자동 insert 성공");
 		
