@@ -1,5 +1,5 @@
-.HistoryRental_box div{
+.HistoryRental_index{
     display: grid;
-    grid-template-columns: 2fr repeat(2, 3fr) repeat(2, 2fr) 1.5fr 2fr 2fr;
+    grid-template-columns: 2fr 3fr repeat(2, 2fr) 1.5fr 2fr 2fr;
 }
 

@@ -1,85 +1,113 @@
-/* .EventDetailContainor1{
-    width: calc(100% - 200px);
-} */
-
 .EventDetailContainor{
-    background-color: #F6F6F6;
-
-    position: absolute;
-    right: 0;
-    top: 0;
-
-    width: calc(100% - 200px);
-    height: 800px;
+    /* background-color: #F6F6F6; */
+    width: 100%;
 
     display: block;
+    position: relative;
     align-items: center;
+    padding: 3rem;
+}
+/* 타이틀 */
+.EventDetail_title{
+    font-size: 2.5rem;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+.EventDetail_title>*{
+    vertical-align: middle;
+    display: inline-block;
+}
+.EventDetail_icon{
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
-.EventDetail_Box{
-    margin-top: 10rem;
-    margin-left: 10rem;
-}
-
+/* 아래 정보 */
 .EventDetail_menu{
     display: flex;
-    margin-top: 2rem;
+    /* margin-top: 2rem; */
+    border-bottom: 1px solid #ccc;
+    
+}
+.EventDetail_menu>*{
+    margin: 0;
+    padding: 1rem;
+    /* width: ; */
 }
 
 .EventDetail_menu>:first-child{
-    flex: 1;
+    width: 150px;
     font-weight: bold;
 
     border-right: 1px solid #ccc;
+    background-color: rgb(209, 238, 241);
 }
 
-.EventDetail_menu>:last-child {
-    flex: 8;
 
-    margin-left: 3rem;
+/* 오른쪽 정보 */
+.EventDetail_twin{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    
 }
 
+/* 아래 내용 */
+.EventDetail_content{
+    padding: 1rem;
+}
+.EventDetail_content>:nth-child(2) {
+    text-align: center;
+    margin: 3rem;
+}
+/* 사진 */
+.EventDetail_content img{
+    width: 700px;
+}
+
+
+/* 버튼 */
 .EventDetail_buttonBox{
     display: flex;
 
-    justify-content: center;
+    justify-content: end;
 
-    margin-top: 7rem;
+    padding-top: 5rem;
+    border-top: 1px solid rgb(194, 191, 191);
+}
+.EventDetail_update{
+    margin-right: 20px;
+    width: 100px;
+    height: 50px;
+    font-size: large;
+    background-color: #db4c4c;
+    color: white;
+    border-radius: 0.5em;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    line-height: 50px;
+
 }
 
 .EventDetail_button{
     width: 100px;
     height: 50px;
-
-    background-color: #808080;
+    margin-right: 30px;
+    font-size: large;
+    background-color: #a5a6a7;
+    border-radius: 0.5em;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    line-height: 50px;
 }
 
 
-/* .EventDetail_title{
-    display: block;
-    text-align: center;
-
-    background-color: aquamarine;
-    width: 5rem;
-    height: 5rem;
-
-    margin-left: 10rem;
-} */
 .EventDetail_title>:first-child{
     height: 100%;
     font-weight: bold;
 
-    /* display: block; */
-
 }
-
-/* .EventDetail_detail{
-    display: flex;
-
-    width: 100vh;
-
-    margin-left: 5rem;
-} */
 
 .EventDetail_goBack{
     display: flex;
@@ -90,6 +118,17 @@
 @media(max-width: 1200px) {
     .EventDetailContainor {
         width: 100%;
-        height: 100vh;
+        padding: 0;
     }
+    .EventDetail_content img{
+        width: 350px;
+    }
+    .EventDetail_title {
+        font-size: 1.6rem;
+    }
+    .EventDetail_twin{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+    
 }

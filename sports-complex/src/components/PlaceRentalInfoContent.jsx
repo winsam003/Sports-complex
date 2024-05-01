@@ -1,9 +1,28 @@
 import './PlaceRentalInfoContent.css'
 import Submenu from './Submenu'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 // 수강 신청
-export default function PlaceRentalInfoContent() {
+export default function PlaceRentalInfoContent({ roleList }) {
+
+    let getUserID = null;
+    if(sessionStorage.getItem('userData') !== null){
+        getUserID = JSON.parse(sessionStorage.getItem('userData')).stfid;
+    }
+
+
+    const navigate = useNavigate();
+    const checkRole = () => {
+        if (getUserID){
+            alert("유저 아이디로만 허가 신청이 가능합니다.");
+        }else if (roleList && roleList.some(item => item === "USER")){
+            navigate("/PlaceRental");
+        }else{
+            alert("로그인 후 이용해주세요.");
+            navigate("/LoginPage");
+        }
+    }
+
     return (
         <div className='board_div'>
             <Submenu />
@@ -250,7 +269,7 @@ export default function PlaceRentalInfoContent() {
                 </div>
                 <div className='RentalInfoSearchButton'>
                     <button>신청서 다운로드</button>
-                    <button><Link to='/PlaceRental'>사용허가신청</Link></button>
+                    <button onClick={checkRole}>사용허가신청</button>
                 </div>
             </div>
         </div >

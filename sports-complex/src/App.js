@@ -1,6 +1,6 @@
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
 import HomePage from './components/Pages/HomePage';
 import LoginPage from './components/Pages/LoginPage';
 import FindIDPage from './components/Pages/FindIDPage';
@@ -17,6 +17,7 @@ import EventBoardPage from './components/Pages/EventBoardPage';
 import EventDetailPage from './components/Pages/EventDetailPage';
 import Faq from './components/Pages/Faq';
 import Qna from './components/Pages/Qna';
+import QnaDetailPage from './components/Pages/QnaDetailPage';
 import Sugang from './components/Pages/Sugang';
 import ClassSchedulePage from './components/Pages/ClassSchedulePage';
 import PasswordChangePage from './components/Pages/PasswordChangePage';
@@ -31,6 +32,9 @@ import InfoHandlingPolicyPage from './components/Pages/InfoHandlingPolicyPage';
 import VideoHandlePage from './components/Pages/VideoHandlePage';
 import EmailCollectRefusal from './components/Pages/EmailCollectRefusal';
 import VisitWayPage from './components/Pages/VisitWayPage';
+import BoardControllPageDetailPage from './components/Pages/BoardControllPageDetailPage';
+import FaqControllPageDetailPage from './components/Pages/FaqControllPageDetailPage';
+import SearchAllPage from './components/Pages/SearchAllPage';
 import NotFoundPage from './components/Pages/NotFoundPage';
 
 import XmanagementPage from './components/Pages/XmanagementPage';
@@ -38,7 +42,7 @@ import XBoardWritePage from './components/Pages/XBoardWritePage';
 import XEventBoardWritePage from './components/Pages/XEventBoardWritePage';
 import XFaqBoardWritePage from './components/Pages/XFaqBoardWritePage';
 import XQnaBoardAnswerPage from './components/Pages/XQnaBoardAnswerPage';
-import UserInfoPage from './components/Pages/XuserInfoPage';
+import XUserInfoPage from './components/Pages/XuserInfoPage';
 import XmainEvent from './components/XmainEvent';
 import XBoardControllPage from './components/Pages/XBoardControllPage';
 import XEventBoardControllPage from './components/Pages/XEventBoardControllPage';
@@ -48,54 +52,95 @@ import XRentalPlaceControllPage from './components/Pages/XRentalPlaceControllPag
 import XReantalPlaceNewonePage from './components/Pages/XReantalPlaceNewonePage';
 import XReantalPlaceDetailPage from './components/Pages/XReantalPlaceDetailPage';
 import XlecturePage from './components/Pages/XlecturePage';
+import XlectureDetailPage from './components/Pages/XlectureDetailPage';
+import XlectureModifyPage from './components/Pages/XlectureModifyPage';
 import XlecturerRegisterPage from './components/Pages/XlecturerRegisterPage';
 import XParkingControllPage from './components/Pages/XParkingControllPage';
-import XlectureInfoPage from './components/Pages/XlectureInfoPage';
+import XClassesInfoControl from './components/Pages/XClassesInfoControl';
 import XNewClassUploadPage from './components/Pages/XNewClassUploadPage';
 import XSugangRequestPage from './components/Pages/XSugangRequestPage';
 import XRentalPlaceRequestControllPage from './components/Pages/XRentalPlaceRequestControllPage';
+import XStaffInfoPage from './components/Pages/XStaffInfoPage';
+import XStaffRegisterPage from './components/Pages/XStaffRegisterPage';
+import XBoardControllPageDetailPage from './components/Pages/XBoardControllPageDetailPage';
+import XBoardControllInsertPage from './components/Pages/XBoardControllInsertPage';
+import XFnqControllPageDetailPage from './components/Pages/XFnqControllPageDetailPage';
+import XFaqWritePage from './components/Pages/XFaqWritePage';
+import XStaffModifyPage from './components/Pages/XStaffModifyPage';
+
 import Footer from './components/Footer';
 import Xheader from './components/Xheader';
 import Header from './components/Header';
-
-import axios from "axios";
+import XEventDetailPage from './components/Pages/XEventDetailPage';
 
 function App() {
 
-  const [isAdminPage, setIsAdminPage] = useState(false);
+  const [loginCheck, setLogincheck] = useState(false);
 
-  const checkAdminPage = () => {
-    setIsAdminPage(!isAdminPage);
+  // 로그인 / 로그아웃
+  const navigate = useNavigate();
+  const logout = () => {
+    sessionStorage.clear();
+    alert("로그아웃 되었습니다.");
+    navigate('/'); // 기본 홈 페이지로 이동
+    window.location.reload(); // 현재 페이지 새로 고침
   }
 
+  let getUserName;
+  let getUserID;
+  let token;
+  let roleList;
 
-  const [message, setMessage] = useState("");
+  if (sessionStorage.getItem('userData') != null) {
+    const userData = JSON.parse(sessionStorage.getItem('userData'));
+    if (userData.name != null) {     // 사용자일 경우 
+      getUserName = userData.name;
+      getUserID = userData.id;
+      token = userData.token;
+      roleList = userData.roleList
+    } else {                          // 직원일 경우
+      getUserName = userData.stfname;
+      getUserID = userData.stfid;
+      token = userData.token;
+      roleList = userData.roleList
+    }
+  }
+  // roleList && roleList.length > 0 && roleList.some(item => item === "ADMIN" || item === "MANAGER"
 
-  useEffect(() => {
-    axios.get('/test/hello')
-      .then((res) => {
-        setMessage(res.data);
-      })
-  }, []);
-
-  console.log(`백엔드 message: ${message}`);
+  const [isAdminPage, setIsAdminPage] = useState(window.location.pathname.includes('X'));
+  const checkAdminPage = (e) => {
+    if (!(roleList && roleList.length > 0 && roleList.some(item => item === "ADMIN" || item === "MANAGER"))){
+      console.log("TEST");
+      alert("관리자 계정으로 로그인이 되어야 이용 가능합니다.");
+      e.preventDefault();
+    } else if (window.location.pathname.includes('X')) {
+      setIsAdminPage(true);
+    } else {
+      setIsAdminPage(false);
+    }
+  }
 
   return (
     <div>
 
 
-      {isAdminPage ? <Xheader checkAdminPage={checkAdminPage} /> : <Header checkAdminPage={checkAdminPage} />}
+      {window.location.pathname.includes('X') ?
+        <Xheader checkAdminPage={checkAdminPage} logout={logout} getUserName={getUserName} roleList={roleList} />
+        :
+        <Header checkAdminPage={checkAdminPage} logout={logout} getUserName={getUserName} roleList={roleList} />}
 
       <Routes>
-        <Route path='/' element={<HomePage />} />
+        <Route path='/' element={<HomePage setLogincheck={setLogincheck} loginCheck={loginCheck} logout={logout} getUserName={getUserName} roleList={roleList} />} />
+        <Route path='/JoinPage1' element={<JoinPage1 />} />
         <Route path='/JoinPage1' element={<JoinPage1 />} />
         <Route path='/JoinPage2' element={<JoinPage2 />} />
         <Route path='/JoinPage3' element={<JoinPage3 />} />
         <Route path='/JoinPage4' element={<JoinPage4 />} />
         <Route path='/BoardPage' element={<BoardPage />} />
+        <Route path='/BoardControllPageDetailPage' element={<BoardControllPageDetailPage />} />
         <Route path='/FacilityInformationPage' element={<FacilityInformationPage />} />
         <Route path='/FrequentlyAskedPage' element={<FrequentlyAskedPage />} />
-        <Route path='/LoginPage' element={<LoginPage />} />
+        <Route path='/LoginPage' element={<LoginPage setLogincheck={setLogincheck} loginCheck={loginCheck} />} />
         <Route path='/FindPasswordPage' element={<FindPasswordPage />} />
         <Route path='/FindIDPage' element={<FindIDPage />} />
         <Route path='/Inquiry' element={<Inquiry />} />
@@ -103,27 +148,30 @@ function App() {
         <Route path='/EventDetailPage' element={<EventDetailPage />} />
         <Route path='/Faq' element={<Faq />} />
         <Route path='/Qna' element={<Qna />} />
+        <Route path='/QnaDetailPage' element={<QnaDetailPage />} />
         <Route path='/Sugang' element={<Sugang />} />
         <Route path='/ClassSchedulePage' element={<ClassSchedulePage />} />
-        <Route path='/PasswordChangePage' element={<PasswordChangePage />} />
-        <Route path='/PasswordChangePage2' element={<PasswordChangePage2 />} />
-        <Route path='/ModifyMemberPage' element={<ModifyMemberPage />} />
-        <Route path='/QRCodePage' element={<QRCodePage />} />
-        <Route path='/PlaceRentalInfo' element={<PlaceRentalInfo />} />
-        <Route path='/PlaceRental' element={<PlaceRental />} />
-        <Route path='/ParkingRequest' element={<ParkingRequest />} />
-        <Route path='/ApplicationDetailsPage' element={<ApplicationDetailsPage />} />
+        <Route path='/PasswordChangePage' element={<PasswordChangePage getUserID={getUserID} />} />
+        <Route path='/PasswordChangePage2' element={<PasswordChangePage2 token={token}/>} />
+        <Route path='/ModifyMemberPage' element={<ModifyMemberPage getUserID={getUserID} roleList={roleList} token={token} />} />
+        <Route path='/QRCodePage' element={<QRCodePage getUserID={getUserID} />} />
+        <Route path='/PlaceRentalInfo' element={<PlaceRentalInfo roleList={roleList} />} />
+        <Route path='/PlaceRental' element={<PlaceRental getUserName={getUserName} getUserID={getUserID} token={token} />} />
+        <Route path='/ParkingRequest' element={<ParkingRequest getUserName={getUserName} getUserID = {getUserID}  />} />
+        <Route path='/ApplicationDetailsPage' element={<ApplicationDetailsPage token={token} getUserID={getUserID} />} />
         <Route path='/InfoHandlingPolicyPage' element={<InfoHandlingPolicyPage />} />
         <Route path='/VideoHandlePage' element={<VideoHandlePage />} />
         <Route path='/EmailCollectRefusal' element={<EmailCollectRefusal />} />
         <Route path='/VisitWayPage' element={<VisitWayPage />} />
+        <Route path='/FaqControllPageDetailPage' element={<FaqControllPageDetailPage />} />
+        <Route path='/SearchAllPage' element={<SearchAllPage />} />
 
         <Route path='/XmanagementPage' element={<XmanagementPage />} />
-        <Route path='/XBoardWritePage' element={<XBoardWritePage />} />
-        <Route path='/XEventBoardWritePage' element={<XEventBoardWritePage />} />
+        <Route path='/XBoardWritePage' element={<XBoardWritePage getUserID={getUserID} token={token} />} />
+        <Route path='/XEventBoardWritePage' element={<XEventBoardWritePage getUserID={getUserID} />} />
         <Route path='/XFaqBoardWritePage' element={<XFaqBoardWritePage />} />
         <Route path='/XQnaBoardAnswerPage' element={<XQnaBoardAnswerPage />} />
-        <Route path='/UserInfoPage' element={<UserInfoPage />} />
+        <Route path='/XUserInfoPage' element={<XUserInfoPage token={token} />} />
         <Route path='/XmainEvent' element={<XmainEvent />} />
         <Route path='/XBoardControllPage' element={<XBoardControllPage />} />
         <Route path='/XEventBoardControllPage' element={<XEventBoardControllPage />} />
@@ -133,12 +181,24 @@ function App() {
         <Route path='/XReantalPlaceNewonePage' element={<XReantalPlaceNewonePage />} />
         <Route path='/XReantalPlaceDetailPage' element={<XReantalPlaceDetailPage />} />
         <Route path='/XlecturePage' element={<XlecturePage />} />
+        <Route path='/XlectureDetailPage' element={<XlectureDetailPage />} />
+        <Route path='/XlectureModifyPage' element={<XlectureModifyPage />} />
         <Route path='/XlecturerRegisterPage' element={<XlecturerRegisterPage />} />
-        <Route path='/XParkingControllPage' element={<XParkingControllPage />} />
-        <Route path='/XlectureInfoPage' element={<XlectureInfoPage />} />
-        <Route path='XNewClassUploadPage' element={<XNewClassUploadPage />} />
+        <Route path='/XParkingControllPage' element={<XParkingControllPage token={token} />} />
+        <Route path='/XClassesInfoControl' element={<XClassesInfoControl />} />
+        <Route path='/XNewClassUploadPage' element={<XNewClassUploadPage />} />
         <Route path='/XSugangRequestPage' element={<XSugangRequestPage />} />
-        <Route path='/XRentalPlaceRequestControllPage' element={<XRentalPlaceRequestControllPage />} />
+        <Route path='/XRentalPlaceRequestControllPage' element={<XRentalPlaceRequestControllPage token={token} />} />
+        <Route path='/XStaffInfoPage' element={<XStaffInfoPage />} />
+        <Route path='/XStaffRegisterPage' element={<XStaffRegisterPage token={token} />} />
+        <Route path='/XBoardControllPageDetailPage' element={<XBoardControllPageDetailPage />} />
+        <Route path='/XBoardControllInsertPage' element={<XBoardControllInsertPage />} />
+        <Route path='/XFnqControllPageDetailPage' element={<XFnqControllPageDetailPage />} />
+        <Route path='/XStaffModifyPage' element={<XStaffModifyPage />} />
+        <Route path='/XFaqWritePage' element={<XFaqWritePage getUserID={getUserID} token={token} />} />
+
+
+        <Route path='/XEventDetailPage' element={<XEventDetailPage token={token} />} />
 
         <Route path='*' element={<NotFoundPage />} />
       </Routes>

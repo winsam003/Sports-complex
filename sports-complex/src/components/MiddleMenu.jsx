@@ -9,7 +9,7 @@ export default function MiddleMenu() {
             <Link to='/ClassSchedulePage'><span>수업 일정표</span></Link>
             <Link to='/BoardPage'><span>공지사항</span></Link>
             <Link to='/EventBoardPage'><span>이벤트</span></Link>
-            <Link to='/JoinPage1'><span>회원가입</span></Link>
+            <Link to='/Sugang'><span>수강신청</span></Link>
         </div>
     )
 }

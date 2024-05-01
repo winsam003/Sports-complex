@@ -1,35 +1,42 @@
 package com.example.demo.service;
 
-import java.util.List;
+import java.util.List; 
+
+import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Space;
-import com.example.demo.repository.SpaceRepository;
-//import com.example.demo.repository.SpaceRepositoryImpl;
+import com.example.demo.repository.SpaceRepositoryImpl;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 
-@Log4j2
 @RequiredArgsConstructor
 @Service
+@Transactional
 public class SpaceServiceImpl implements SpaceService{
-	private final SpaceRepository repository;
-//	private final SpaceRepositoryImpl emrepository;
+	private final SpaceRepositoryImpl repository;
 	
 	@Override
 	public List<Space> SpaceList() {
-		log.info("ServiceTEST");
-		return repository.findAll();
+		return repository.SpaceList();
 	}
 
-//	@Override
-//	public Space parkList(String spaceCode) {
-//		
-//		return emrepository.parkList(spaceCode);
-//	}
+	@Override
+	public int SpaceDelete(String spaceCode) {
+		
+		return repository.SpaceDelete(spaceCode);
+	}
+
+	@Override
+	public int SpaceInsert(Space dto) {
+		return repository.SpaceInsert(dto);
+	}
 	
+	
+	
+	
+
 	
 	
 	

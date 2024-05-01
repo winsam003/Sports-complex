@@ -2,168 +2,207 @@ import './XmainEvent.css'
 
 import Submenu from './Submenu'
 import XeventList from './XeventList'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import XhomeBannerEventList from './XhomeBannerEventList'
 import HomeDetail from './HomeDetail'
 import App from './../App';
+import { apiCall } from '../apiService/apiService'
+import { API_BASE_URL } from '../apiService/app-config'
 
 export default function XmainEvent() {
     
-    // 테스트용 객체입니다 테이블 연결 후 테이블 데이터로 교체할 예정입니다.
-    const data = [
-    {
-        "eventCode" : "00001",
-        "eventName" : "김수한무두루미 생일잔치",
-        "cpCode" : "1",
-        "eventUpload" : "24.03.19",
-        "eventUploadfile" : "",
-    },
-    {
-        "eventCode" : "00002",
-        "eventName" : "장근정 파티",
-        "cpCode" : "2",
-        "eventUpload" : "24.03.20",
-        "eventUploadfile" : "",
-    },
-    {
-        "eventCode" : "00003",
-        "eventName" : "리액트리액트 공연",
-        "cpCode" : "3",
-        "eventUpload" : "24.03.21",
-        "eventUploadfile" : "",
-    },
-    {
-        "eventCode" : "00004",
-        "eventName" : "이거바이거이거이거",
-        "cpCode" : "ㄱㅈ",
-        "eventUpload" : "23.03.09",
-        "eventUploadfile" : "",
-    }
-    ]
+    const [eventlist, setEventlist] = useState([]);
+    const [bannerlist, setBannerlist] = useState([]);
 
-    // 이미지 있는 더미 데이터
+    // 리스트 출력
+    useEffect(() => {
+        showEvent();
+        showBanner();
+        showBannerImage();
+    }, []);
+
+    const showEvent = () => {
+        let url = "/event/eventlist";
     
-    const data2 = [
-        {
-            "bannerNum" : "11111",
-            "eventCode" : "00001",
-            "bannerImage" : "img/moon.jpg",
+        apiCall(url, 'get', null, null)
+            .then((eventlist) => {
+                setEventlist(eventlist);
+            }).catch((error) => {
+                console.log("eventlist error: ", error);
+            })
+    }
 
-            "eventName" : "김수한무두루미 생일잔치",
-            "eventFacility" : "대강당"
-        },
-        {
-            "bannerNum" : "22222",
-            "eventCode" : "00002",
-            "bannerImage" : "img/zzanggu.jpg",
+    const showBanner = () => {
+        let url = "/banner/bannerlist";
+        
+        apiCall(url, 'get', null, null) 
+        .then((bannerlist)=> {
+            setBannerlist(bannerlist);
+        }).catch((error) => {
+            console.log("bannerlist error : ", error);
+        })
+    }
+    
+    const [imagePath, setImagePath] = useState('');
+    const showBannerImage = () => {
+        apiCall('/banner/bannerimages', 'get', null, null)
+            .then((response) => {
+                    setImagePath(response);
+                }).catch((error) => {
+                    console.log("이미지 없음 " + error);
+                })
+    }
 
-            "eventName" : "장근정 파티",
-            "eventFacility" : "운동장"
-        },
-        {
-            "bannerNum" : "33333",
-            "eventCode" : "00003",
-            "bannerImage" : "img/jumuk.jpg",
+    
+    // ======================================================================== 리스트
 
-            "eventName" : "리액트리액트 공연",
-            "eventFacility" : "그린학원"
-        },
-        {
-            "bannerNum" : "44444",
-            "eventCode" : "00004",
-            "bannerImage" : "img/ddoddo.gif",
+    const [eventcodeC, setEventcodeC] = useState([]);
+    
+    const handleEvent = (eventcode) => {
+        const isChecked = eventcodeC.includes(eventcode);
 
-            "eventName" : "리액트리액트 공연",
-            "eventFacility" : "그린학원"
-        },
-        {
-            "bannerNum" : "55555",
-            "eventCode" : "00005",
-            "bannerImage" : "img/jumuk.jpg",
+        if (isChecked) {
+            setEventcodeC(eventcodeC.filter(code => code !== eventcode));
+        } else {
+            setEventcodeC([...eventcodeC, eventcode]);
+        }
+        
+    }
+    
+    // console.log('eventcodeC : ', eventcodeC);
 
-            "eventName" : "리액트리액트 공연",
-            "eventFacility" : "그린학원"
-        },
-        {
-            "bannerNum" : "66666",
-            "eventCode" : "00006",
-            "bannerImage" : "img/jumuk.jpg",
+    // ================================================= 사진 등록하기. 
+    
+    const [bannerimg, setBannerimg] = useState(null);
+    
+    const makeBannerfile = (e) => {
+        const file = e.target.files[0];
 
-            "eventName" : "리액트리액트 공연",
-            "eventFacility" : "그린학원"
-        },
-        {
-            "bannerNum" : "77777",
-            "eventCode" : "00007",
-            "bannerImage" : "img/jumuk.jpg",
+        setBannerimg(file);
+        
+    }
 
-            "eventName" : "리액트리액트 공연",
-            "eventFacility" : "그린학원"
-        },
-        {
-            "bannerNum" : "-",
-            "eventCode" : "-",
-            "bannerImage" : "img/noImage.jpg",
+    // ================================================= 등록 버튼.
 
-            "eventName" : "-",
-            "eventFacility" : "-"
-        },
-        {
-            "bannerNum" : "-",
-            "eventCode" : "-",
-            "bannerImage" : "img/noImage.jpg",
+    const uploadBanner = () => {
 
-            "eventName" : "-",
-            "eventFacility" : "-"
-        },
-        {
-            "bannerNum" : "-",
-            "eventCode" : "-",
-            "bannerImage" : "img/noImage.jpg",
+        if(eventcodeC.length != 1) {
+            alert('이벤트를 하나만 선택해주세요.');
+            return;
+        } 
+        
+        const uploadEventCode = eventcodeC[0];
 
-            "eventName" : "-",
-            "eventFacility" : "-"
-        },
-    ]
+        if(!bannerimg) {
+            alert('이미지를 선택해주세요.');
+            return;
+        }
 
+        const formData = new FormData();
+        formData.append('bannerfilef', bannerimg);
 
+        let url = "/banner/bannerinsert";
 
-    const [isChecked, setIsChecked] = useState([]);
+        let formBanner = {
+            eventcode : uploadEventCode,
+            bannerfilef : bannerimg
+        }
 
-    const insertMainPic = (eventCode, checked) => {
-        if(checked) {
-            setIsChecked([...isChecked, eventCode]);
-        }else {
-            setIsChecked(isChecked.filter(code => code !== eventCode ))
+        let token = JSON.parse(sessionStorage.getItem("userData")).token;
+        console.log('등록 formBanner : ',  formBanner);
+
+        apiCall(url, 'post', formBanner, token)
+            .then((response) => {
+                alert((response));
+                // 체크 리스트 초기화.
+                setEventcodeC([]);
+                // 리스트 다시 보여주고
+                console.log('등록 후 eventcodeC : ',  eventcodeC);
+                showEvent();
+                showBanner();
+            }).catch((error) => {
+                alert('배너 등록 실패');
+                console.log("banner error : " + error);
+                setEventcodeC([]);
+            })
+    }
+
+    
+
+    // ================================================= 배너 삭제 버튼.
+    
+    const [deleteBannerCheck, setDeleteBannerCheck] = useState([]);
+
+    const handleBanner = (bannerNum) => {
+        const isChecked = deleteBannerCheck.includes(bannerNum);
+
+        if(isChecked) {
+            setDeleteBannerCheck(deleteBannerCheck.filter(num => num !== bannerNum));
+        } else {
+            setDeleteBannerCheck([...deleteBannerCheck, bannerNum]);
         }
     }
 
+    // console.log('deleteBannerCheck : ', deleteBannerCheck);
+
+    // 삭제 요청
+    const del = () => {
+        let url = "/banner/bannerdelete";
+
+        apiCall(url, 'post', deleteBannerCheck, null)
+            .then((response) => {
+                alert(response);
+                // 리스트 다시 보여주기.
+                showBanner();
+                setDeleteBannerCheck([]);
+            }).catch((error) => {
+                console.log("delete error: ", error);
+                setDeleteBannerCheck([]);
+            })
+    }
+
+
+
+    // ========================================================================
     return(
         <div className='XmainEvent_box'>
             <Submenu />
             <div className='XmainEvent_main'>
                 <div className='XmainEvent_listTitle'>이벤트 게시물 목록 </div>
-                < XeventList insertMainPic={insertMainPic} data={data} />
+                < XeventList eventlist={eventlist} 
+                            handleEvent={handleEvent}
+                            eventcodeC={eventcodeC} />
+                {/* 여기서 사진 등록 */}
                 <div className='XmainEvent_upload'>
-                    <form action="post">
-                        <input type="file" />
-                        <input type="submit" value={'제출'} 
-                        // onClick={'insertMainPic'} 
-                        />
-                    </form>
+                    <input type="file" 
+                            name='bannerfilef'
+                            id='bannerfilef'
+                            onChange={makeBannerfile}
+                            // defaultValue={bannerfilef}
+                            />
+
+                    <button onClick={uploadBanner}>등록</button>        
                 </div>
+
+                {/* ============================================= */}
+
                 <div className='XmainEvent_listTitle'>홈 배너 광고 리스트 </div>
-                <XhomeBannerEventList data2={data2} />
+                <XhomeBannerEventList 
+                            bannerlist={bannerlist}
+                            handleBanner={handleBanner}
+                            deleteBannerCheck={deleteBannerCheck} 
+                             />
                 <div className='XmainEvent_delete' >
-                    <button >삭제</button>
+                    <button onClick={del}>삭제</button>
                 </div>
 
                 <div className='XmainEvent_listTitle'>광고 사진 </div>
                 <div className='XmainEvent_adPics'>
-                    {data2.map((item, index) => (
-                        <div>
+                    {bannerlist.map((item, index) => (
+                        <div key={item.bannernum}>
                             <p>{index+1} 번</p>
-                            <img src={item.bannerImage} alt="bannerImage" />
+                            <img src={API_BASE_URL + "/banner/bannerimages?img=" + item.bannerimage} 
+                                 alt="bannerImage" />
                         </div>
                     ))}
                     {/* erd 뽑아오는거. 테이블에 없으면.  */}

@@ -1,78 +1,72 @@
 import './XlecturerList.css';
-import XlecturerListButton from './XlecturerListButton';
-import XlecturerListContents from './XlecturerListContents';
-import { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { apiCall } from '../apiService/apiService';
 
-export default function XlecturerList() {
+export default function XlectureList({ teachnum, teachcode, teachname, teachbirth, teachphone, teachadress, teachadress1, teachadress2, teachlicense, teachaccount, onToggleCheckbox, isChecked }) {
+    // 상세페이지로 이동하기
+    const navigate = useNavigate();
 
-    // 테스트용 객체입니다 테이블 연결 후 테이블 데이터로 교체할 예정입니다.
-    const data = [
-        {
+    //    체크박스 상태
+    const handleCheckboxChange = (e) => {
+        onToggleCheckbox(teachnum);
+    }
 
-            "lectureNum": "1",
-            "lectureName": "이정혁",
-            "lectureBirth": "1992.10.22",
-            "lecturePhone": "01045841121",
-            "lectureAddress": "경기도 용인시 처인구 행복동 2-2",
-            "license": "정보처리기사",
-        },
-        {
+    // Session storage에 있는 userData 가져오기
+    const sessionUserData = sessionStorage.getItem('userData');
+    const userData = sessionUserData ? JSON.parse(sessionUserData) : 'null';
 
-            "lectureNum": "2",
-            "lectureName": "김수옥",
-            "lectureBirth": "1995.11.25",
-            "lecturePhone": "01045843334",
-            "lectureAddress": "경기도 용인시 처인구 즐겁동 2-2",
-            "license": "SQLD",
-        },
-        {
+    // 강사 생일 출력 양식
+    const formatDate = (teachbirth) => {
+        const date = new Date(teachbirth);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}.${month}.${day}`;
+    };
 
-            "lectureNum": "3",
-            "lectureName": "김수미",
-            "lectureBirth": "1995.01.02",
-            "lecturePhone": "01045843221",
-            "lectureAddress": "경기도 성남시 분당구 야탑동 2-2",
-            "license": "",
-        },
-    ]
+    // detail 페이지 데이터 요청
+    const fetchTeachData = async (teachnum) => {
+        try {
+            let url = '/teach/teachDetail';
+            
+            const response = await
+                apiCall(url + `/${teachnum}`, 'get', null, userData.token)
+            return response;
+        } catch (error) {
+            console.error('Error fetching teach data:', error);
+            throw error;
+        }
+    };
 
-    const [checkelecture, setCheckedlecture] = useState([]);
-
-    const lectureDelete = (lectureNum, checked) => {
-        if (checked) {
-            setCheckedlecture([...checkelecture, lectureNum]);
-        } else {
-            setCheckedlecture(checkelecture.filter(num => num !== lectureNum));
+    const handleTeachResultClick = async () => {
+        try {
+            const teachData = await fetchTeachData(teachnum);
+            navigate('/XlectureDetailPage', { state: { teachData } });
+        } catch (error) {
+            console.log('Error fetching Teach data : ', error);
         }
     };
 
     return (
-        <div className='XlectureInfoList_Box'>
-            <div className='XlectureInfoList_searchTitle'>강사 검색</div>
-            <div className='XlectureInfoList_userSearchBox'>
-                <input type='text' name='lectureSearch' id='lectureSearch' placeholder='강사 검색' />
+        <div>
+            <div className='XlectureInfoList_content'
+                onClick={(e) => {
+                    // 페이지 이동 이벤트에서 체크박스 제외
+                    if (e.target.tagName.toLowerCase() !== 'input' && e.target.tagName.toLowerCase() === 'span') {
+                        if (!e.target.querySelector('input')) {
+                            handleTeachResultClick();
+                        }
+                    }
+                }}>
+                <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} />
+                <span>{teachnum}</span>
+                <span>{teachcode}</span>
+                <span>{teachname}</span>
+                <span>{formatDate(teachbirth)}</span>
+                <span>{teachphone}</span>
+                <span>{teachlicense}</span>
+                <span>{teachaccount}</span>
             </div>
-            <div>
-                <button>초기화</button>
-                <button>조회</button>
-            </div>
-            <div>
-                <div className='XlectureInfoList_SearchedUser'>
-                    <span>체크</span>
-                    <span>강사번호</span>
-                    <span>이름</span>
-                    <span>생년월일</span>
-                    <span>연락처</span>
-                    <span>주소</span>
-                    <span>자격증</span>
-                </div>
-                <div>
-                    {data.map((it, index) => (
-                        <XlecturerListContents key={index} {...it} lectureDelete={lectureDelete} />
-                    ))}
-                </div>
-                {/* <XlecturerListButton /> */}
-            </div>
-        </div>
+        </div >
     )
 }

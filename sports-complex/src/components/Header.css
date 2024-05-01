@@ -303,7 +303,9 @@ header>:last-child>div>ul>li {
   color: white;
 }
 
-
+.logout{
+  cursor: pointer;
+}
 
 
 
@@ -363,6 +365,12 @@ header>:last-child>div>ul>li {
 
   header>:last-child>div>:first-child {
     display: none;
+  }
+
+  /* 폰트 크기  */
+  .Header_clickMenu a, 
+  .Header_mainMenu a{
+    font-size: 1rem;
   }
 }
 

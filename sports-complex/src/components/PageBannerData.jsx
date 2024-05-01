@@ -36,6 +36,13 @@ export const PageBannerData = [
     },
     {
         "id": "1",
+        "parameter": "SearchAllPage",
+        "page": "전체검색",
+        "title": "전체 게시판을 검색할 수 있습니다.",
+        "checkMenu": "Y"
+    },
+    {
+        "id": "1",
         "parameter": "LoginPage",
         "page": "로그인",
         "title": "더 다양한 서비스를 이용하실 수 있습니다.",
@@ -95,6 +102,13 @@ export const PageBannerData = [
     },
     {
         "id": "3",
+        "parameter": "BoardControllPageDetailPage",
+        "page": "공지사항",
+        "title": "고객의 소리에 귀 기울여 발전하겠습니다.",
+        "checkMenu": "N"
+    },
+    {
+        "id": "3",
         "parameter": "Faq",
         "page": "자주하는 질문",
         "title": "고객의 소리에 귀 기울여 발전하겠습니다.",
@@ -102,10 +116,24 @@ export const PageBannerData = [
     },
     {
         "id": "3",
+        "parameter": "FaqControllPageDetailPage",
+        "page": "자주하는 질문",
+        "title": "고객의 소리에 귀 기울여 발전하겠습니다.",
+        "checkMenu": "N"
+    },
+    {
+        "id": "3",
         "parameter": "Qna",
         "page": "문의게시판",
         "title": "고객의 소리에 귀 기울여 발전하겠습니다.",
         "checkMenu": "Y"
+    },
+    {
+        "id": "3",
+        "parameter": "QnaDetailPage",
+        "page": "문의게시판",
+        "title": "고객의 소리에 귀 기울여 발전하겠습니다.",
+        "checkMenu": "N"
     },
     {
         "id": "3",
@@ -133,7 +161,7 @@ export const PageBannerData = [
         "parameter": 'ClassSchedulePage',
         "page": '수업일정표',
         "title": '시민과 함께하는 건강하고 행복한 삶',
-        "checkMenu": "Y"
+        "checkMenu": "N"
     },
     {
         "id": "5",
@@ -191,7 +219,14 @@ export const PageBannerData = [
         "title": '더 다양한 서비스를 이용하실 수 있습니다.',
         "checkMenu": "Y"
     },
-    // 관리자 관리자 관리자 관리자 관리자 관리자 관리자 관리자 관리자 관리자
+    {
+        "id": "6",
+        "parameter": 'PasswordChangePage2',
+        "page": '비밀번호 수정',
+        "title": '더 다양한 서비스를 이용하실 수 있습니다.',
+        "checkMenu": "N"
+    },
+    // 관리자 관리자 관리자 관리자 관리자 관리자 관리자 관리자 관리자 관리자 
     {
         "id": "7",
         "parameter": 'XmanagementPage',
@@ -202,8 +237,29 @@ export const PageBannerData = [
     // 인적관리 인적관리 인적관리 인적관리 인적관리 인적관리 인적관리 인적관리 인적관리
     {
         "id": "8",
-        "parameter": 'UserInfoPage',
+        "parameter": 'XUserInfoPage',
         "page": '회원정보 관리',
+        "title": '인적 관리',
+        "checkMenu": "Y"
+    },
+    {
+        "id": "8",
+        "parameter": 'XStaffInfoPage',
+        "page": '직원정보 관리',
+        "title": '인적 관리',
+        "checkMenu": "Y"
+    },
+    {
+        "id": "8",
+        "parameter": 'XStaffModifyPage',
+        "page": '직원정보 관리',
+        "title": '인적 관리',
+        "checkMenu": "N"
+    },
+    {
+        "id": "8",
+        "parameter": 'XStaffRegisterPage',
+        "page": '직원 등록',
         "title": '인적 관리',
         "checkMenu": "Y"
     },
@@ -216,6 +272,20 @@ export const PageBannerData = [
     },
     {
         "id": "8",
+        "parameter": 'XlectureDetailPage',
+        "page": '강사정보 관리',
+        "title": '인적 관리',
+        "checkMenu": "N"
+    },
+    {
+        "id": "8",
+        "parameter": 'XlectureModifyPage',
+        "page": '강사정보 관리',
+        "title": '인적 관리',
+        "checkMenu": "N"
+    },
+    {
+        "id": "8",
         "parameter": 'XlecturerRegisterPage',
         "page": '강사등록',
         "title": '인적 관리',
@@ -224,7 +294,7 @@ export const PageBannerData = [
     // 강의관리 강의관리 강의관리 강의관리 강의관리 강의관리 강의관리 강의관리 
     {
         "id": "9",
-        "parameter": 'XlectureInfoPage',
+        "parameter": 'XClassesInfoControl',
         "page": '강의정보 관리',
         "title": '강의 관리',
         "checkMenu": "Y"
@@ -262,7 +332,7 @@ export const PageBannerData = [
     {
         "id": "11",
         "parameter": 'XRentalPlaceControllPage',
-        "page": '대관 시설 관리',
+        "page": '시설 관리',
         "title": '대관 시설을 관리할 수 있습니다 ',
         "checkMenu": "Y"
     },
@@ -283,7 +353,7 @@ export const PageBannerData = [
     {
         "id": "11",
         "parameter": 'XReantalPlaceNewonePage',
-        "page": '대관 시설 등록',
+        "page": '신규 시설 등록',
         "title": '대관 시설을 등록할 수 있습니다 ',
         "checkMenu": "Y"
     },
@@ -297,9 +367,30 @@ export const PageBannerData = [
     },
     {
         "id": "12",
+        "parameter": 'XBoardControllPageDetailPage',
+        "page": '공지사항 관리',
+        "title": '공지사항을 관리할 수 있습니다 ',
+        "checkMenu": "N"
+    },
+    {
+        "id": "12",
+        "parameter": 'XBoardControllInsertPage',
+        "page": '공지사항 관리',
+        "title": '공지사항을 관리할 수 있습니다 ',
+        "checkMenu": "N"
+    },
+    {
+        "id": "12",
         "parameter": 'XBoardWritePage',
         "page": '공지사항 등록',
         "title": '공지사항을 등록할 수 있습니다 ',
+        "checkMenu": "N"
+    },
+    {
+        "id": "12",
+        "parameter": 'XEventDetailPage',
+        "page": '이벤트 게시판 관리',
+        "title": '이벤트 게시판을 관리할 수 있습니다 ',
         "checkMenu": "N"
     },
     {
@@ -328,6 +419,20 @@ export const PageBannerData = [
         "parameter": 'XFaqBoardWritePage',
         "page": '자주하는 질문 등록',
         "title": '자주하는 질문을 등록할 수 있습니다 ',
+        "checkMenu": "N"
+    },
+    {
+        "id": "12",
+        "parameter": 'XFnqControllPageDetailPage',
+        "page": '자주하는 질문 관리',
+        "title": '자주하는 질문을 관리할 수 있습니다 ',
+        "checkMenu": "N"
+    },
+    {
+        "id": "12",
+        "parameter": 'XFaqWritePage',
+        "page": '자주하는 질문 관리',
+        "title": '자주하는 질문을 관리할 수 있습니다 ',
         "checkMenu": "N"
     },
     {

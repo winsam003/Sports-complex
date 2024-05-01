@@ -60,13 +60,19 @@
     cursor: pointer;
 }
 .ClassSchedule_Calendar>div:hover{
-    background-color: rgb(76, 141, 161);
+    background-color: rgb(156, 208, 224);
 }
 .ClassSchedule_Calendar div:not(:nth-child(4n)) {
     border-right: 1px solid white;
 }
 .ClassSchedule_Calendar div:nth-child(-n+8){
     border-bottom: 1px solid white;
+}
+.ClassSchedule_Calendar div:nth-child(1){
+    border-top-left-radius: 1em;
+}
+.ClassSchedule_Calendar div:nth-child(4){
+    border-top-right-radius: 1em;
 }
 .ClassSchedule_Calendar div:nth-child(9){
     border-bottom-left-radius: 1em;

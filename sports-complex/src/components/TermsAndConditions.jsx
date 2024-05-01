@@ -1,8 +1,13 @@
 // 회원가입 이용약관
 import './TermsAndConditions.css'
 import RegistrationFlow from './RegistrationFlow'
+import { useState } from 'react';
 
-export default function TermsAndConditions() {
+export default function TermsAndConditions({ isCheckbox1Checked, isCheckbox2Checked, isCheckbox3Checked, agreeCheck1, agreeCheck2, agreeCheck3 }) {
+
+
+
+
     return (
         <div>
             <RegistrationFlow />
@@ -164,8 +169,9 @@ export default function TermsAndConditions() {
                     </div>
                 </div>
                 <div className='TermsAndConditions_input_div'>
-                    <input type='checkbox'></input>
-                    <span> (필수) 약관에 동의합니다</span>
+                    <input id="agree1" type='checkbox' onClick={agreeCheck1}></input>
+                    <label htmlFor="agree1"><span> (필수) 약관에 동의합니다</span></label>
+                   <p className='checkbox1confirm' style={isCheckbox1Checked ? {} : { display: 'none' }}> * 약관에 동의가 필요합니다.</p>
                 </div>
             </div>
             <div className='TermsAndConditions_div'>
@@ -200,8 +206,9 @@ export default function TermsAndConditions() {
                     </div>
                 </div>
                 <div className='TermsAndConditions_input_div'>
-                    <input type='checkbox'></input>
-                    <span> (필수) 개인정보 수집 및 이용안내를 숙지하였습니다</span>
+                    <input id='agree2' type='checkbox' onClick={agreeCheck2}></input>
+                    <label htmlFor="agree2"><span> (필수) 개인정보 수집 및 이용안내를 숙지하였습니다</span></label>
+                    <p className='checkbox2confirm' style={isCheckbox2Checked ? {} : {display: 'none'} }> * 약관에 동의가 필요합니다.</p>
                 </div>
             </div>
             <div className='TermsAndConditions_div'>
@@ -232,8 +239,9 @@ export default function TermsAndConditions() {
                     </div>
                 </div>
                 <div className='TermsAndConditions_input_div'>
-                    <input type='checkbox'></input>
-                    <span> (필수) 개인정보 제3자 제공에 동의합니다</span>
+                    <input id="agree3" type='checkbox' onClick={agreeCheck3}></input>
+                    <label htmlFor="agree3"><span> (필수) 개인정보 제3자 제공에 동의합니다</span></label>
+                    <p className='checkbox3confirm' style={isCheckbox3Checked ? {} : { display: 'none' } }> * 약관에 동의가 필요합니다.</p>
                 </div>
             </div>
         </div>

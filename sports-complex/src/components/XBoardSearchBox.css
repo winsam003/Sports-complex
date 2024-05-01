@@ -2,10 +2,31 @@
 .XBoardSearchBox_div {
     margin-top: 30px;
     margin-right: 20px;
-    height: 50px;
-    display: flex;
-    justify-content: flex-end;
+    height: 70px;
     align-items: center;
+}
+
+.XBoardSearchBox_SearchBox {
+    display: flex;
+    justify-content: space-between;
+}
+
+.XBoardSearchBox_SearchBoxSpan1 {
+    display: block;
+    height: 100%;
+
+}
+
+.XBoardSearchBox_insertBtn {
+    margin-left: 20px;
+    width: 100px;
+    height: 50px;
+    font-size: large;
+    background-color: #059da5;
+    color: white;
+    border-radius: 0.5em;
+    border: none;
+    cursor: pointer;
 }
 
 /* 검색 select */
@@ -14,7 +35,7 @@
 }
 
 /* 검색 버튼 */
-.XBoardSearchBox_div button {
+.XBoardSearchBox_SearchBtn {
     margin-left: 10px;
     height: 26px;
     width: 60px;
@@ -22,4 +43,6 @@
     color: white;
     border-radius: 5%;
     border: none;
+
+    cursor: pointer;
 }

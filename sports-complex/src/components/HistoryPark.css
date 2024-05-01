@@ -1,5 +1,8 @@
-.HistoryPark_box>div{
+/* 안에 내용들 */
+.HistoryPark_index,
+.HistoryPark_box>div>div{
     display: grid;
-    grid-template-columns: repeat(2, 1fr) 2fr repeat(2, 1fr);
+    grid-template-columns: 1.5fr 1fr repeat(2, 2fr) repeat(3, 1fr);
 }
+
 

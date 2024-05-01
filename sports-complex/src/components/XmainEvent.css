@@ -14,14 +14,14 @@
     padding: 1rem;
 }
 
-/* 광고사진 등록 버튼 form */
-.XmainEvent_upload>form {
+/* 광고사진 등록 버튼 */
+.XmainEvent_upload{
     /* background-color: wheat; */
     text-align: right;
     padding: 1rem;
     border-bottom: 1px solid #27979d;
 }
-.XmainEvent_upload>form input:nth-child(2) {
+.XmainEvent_upload>input:nth-child(2) {
     
     height: 3rem;
     width: 6rem;
@@ -52,7 +52,7 @@
     /* background-color: wheat; */
     text-align: right;
     padding-bottom: 1rem;
-    border-bottom: 3px dashed #838f4d;
+    border-bottom: 1px dashed #838f4d;
 }
 /* 삭제 버튼 버튼 */
 .XmainEvent_delete>button{

@@ -1,11 +1,11 @@
 import PageBanner from '../PageBanner';
 import QRCode from '../QRCode';
 
-export default function QRCodePage(){
+export default function QRCodePage({ getUserID }){
     return (
         <div>
             <PageBanner />
-            <QRCode />
+            <QRCode getUserID={getUserID}/>
         </div>
     )
 }

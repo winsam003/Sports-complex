@@ -1,24 +1,18 @@
-.HistoryClass_box>div {
+.HistoryClass_Index {
     display: grid;
-    grid-template-columns: repeat(2, 2fr) 3fr 2fr 4fr 2fr 1.5fr 2fr;
+    grid-template-columns: repeat(3, 1fr) 2fr repeat(5, 1fr);
+    margin-top: 30px;
+    border-top: 3px solid #C9EDFA !important;
+    border-right: none !important;
+    border-bottom: none !important;
+    background-color: #ceeff250 !important;
+    text-align: center;
 }
 
-@media (max-width : 1200px) {
-    .HistoryClass_box {
-        /* white-space: nowrap; */
-    }
+.HistoryClass_Index p {
+    font-weight: bold;
+}
 
-    .HistoryClass_index {
-        display: grid;
-        grid-template-columns: 100px 100px 120px 80px 160px 80px 120px 80px;
-        /* grid-template-rows: repeat(2, minmax(100%, auto)); */
-        /* min-width: 890px; */
-        /* overflow: auto; */
-        /* white-space: nowrap; */
-    }
-
-    .HistoryClass_content {
-        display: grid;
-        grid-template-columns: 80px 80px 120px 80px 160px 80px 120px 80px;
-    }
+.HistoryClass_content {
+    border: none !important;
 }

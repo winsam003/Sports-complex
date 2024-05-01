@@ -1,5 +1,5 @@
 import './PageBanner.css'
-import {PageBannerData as PageInfo} from './PageBannerData';
+import { PageBannerData as PageInfo } from './PageBannerData';
 
 export default function PageBanner() {
 

@@ -1,12 +1,12 @@
 import PageBanner from '../PageBanner';
 import ModifyMemberAndSubMenu from '../ModifyMemberAndSubMenu';
 
-export default function JoinPage4() {
+export default function ModifyMemberPage({ getUserID, roleList, token }) {
     
     return (
         <div>
             <PageBanner />
-            <ModifyMemberAndSubMenu />
+            <ModifyMemberAndSubMenu getUserID={getUserID} roleList={roleList} token={token} />
         </div>
     )
 }

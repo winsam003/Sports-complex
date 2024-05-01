@@ -1,6 +1,3 @@
-
-
-
 /* 관리자 페이지 전환, 로그아웃 */
 header>:first-child {
   display: flex;
@@ -20,19 +17,20 @@ header>:first-child {
 
 
 /* 관리자페이지전환 로그인/로그아웃 마진 */
-.noneHeader{
+.noneHeader {
   margin-right: 0.8rem;
   text-decoration: none;
 }
 
 /* 회원가입 마진 */
-.Header_join{
+.Header_join {
   margin-right: 25rem;
 }
-.Header_Icon{
-    font-size: 1.2rem;
-    vertical-align: middle;
-    padding-left: 5px;
+
+.Header_Icon {
+  font-size: 1.2rem;
+  vertical-align: middle;
+  padding-left: 5px;
 }
 
 
@@ -43,9 +41,9 @@ header>:nth-child(2) {
   justify-content: space-around;
   align-items: center;
   position: relative;
-  
+
   height: 8.6rem;
-  
+
   margin-top: 1rem;
   margin-right: 1rem;
   margin-bottom: 1rem;
@@ -54,7 +52,7 @@ header>:nth-child(2) {
 /* 해더의 모든 Link 색상, 언더라인 제거 */
 a {
   text-decoration: none;
-  
+
   color: black;
 }
 
@@ -102,7 +100,7 @@ header>:last-child:hover {
 
 /* 호버 전 드랍다운 메뉴 */
 header>:last-child {
-  
+
   margin-top: 10px;
   width: 100%;
   /* margin-left: calc((100% - 100vw) / 2); */
@@ -123,7 +121,7 @@ header>:last-child>div {
   margin-top: -10px;
 
   background-color: azure;
-  
+
 }
 
 header>:last-child>div>:first-child {
@@ -303,6 +301,38 @@ header>:last-child>div>ul>li {
 .Header_Menutitle12>a:hover {
   color: white;
 }
+.Header_Menutitle13:hover {
+  background-color: DodgerBlue;
+  border-radius: 15px;
+}
+
+.Header_Menutitle13>a:hover {
+  color: white;
+}
+.Header_Menutitle14:hover {
+  background-color: DodgerBlue;
+  border-radius: 15px;
+}
+
+.Header_Menutitle14>a:hover {
+  color: white;
+}
+.Header_Menutitle15:hover {
+  background-color: DodgerBlue;
+  border-radius: 15px;
+}
+
+.Header_Menutitle15>a:hover {
+  color: white;
+}
+.Header_Menutitle16:hover {
+  background-color: DodgerBlue;
+  border-radius: 15px;
+}
+
+.Header_Menutitle16>a:hover {
+  color: white;
+}
 
 
 
@@ -311,12 +341,13 @@ header>:last-child>div>ul>li {
 
 /* 반응형 */
 @media(max-width: 1200px) {
+
   .Header_clickMenu a,
-  .Header_mainMenu a{
+  .Header_mainMenu a {
     word-break: keep-all;
   }
 
-  .Header_join{
+  .Header_join {
     /* display: none; */
   }
 
@@ -347,7 +378,7 @@ header>:last-child>div>ul>li {
 
   .noneHeader {
     /* display: none; */
-    
+
   }
 
   header>:nth-child(2)>:first-child {
