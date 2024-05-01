@@ -164,7 +164,8 @@ public class EventController {
 	@GetMapping(value = "/eventimages")
 	public ResponseEntity<?> getImagePath(@RequestParam String img) throws Exception {
 		
-		String realPath = "C:\\jgj\\TeamSSJ\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\eventBoard\\";
+//		String realPath = "C:\\jgj\\TeamSSJ\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\eventBoard\\";
+		String realPath = "E:\\Sam\\project\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\eventBanner\\\\";
 		
 		FileSystemResource resource = new FileSystemResource(realPath + "\\" + img);
 		

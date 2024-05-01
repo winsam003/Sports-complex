@@ -56,7 +56,6 @@ export default function XFaqControllContent() {
 
     // input에서 엔터누를 시 검색 실행
     const KeyPressHandler = (e) => {
-        console.log("TEST");
         if (e.key === 'Enter') {
             setSearch(true);
         }
@@ -90,7 +89,7 @@ export default function XFaqControllContent() {
     const [deleteRequest, setDeleteRequest] = useState(false);
     const del = () => {
 
-        let url = "/notice/fnqList";
+        let url = "/notice/noticeDel";
 
         apiCall(url, 'post', checkedUsers, null)
             .then((response) => {
@@ -160,7 +159,7 @@ export default function XFaqControllContent() {
                 <XBoardSearchBox enterInsertPage={enterInsertPage} searchValueHandler={searchValueHandler} searchKeywordHandler={searchKeywordHandler} searchHandler={searchHandler} KeyPressHandler={KeyPressHandler} />
                 <XFaqControllContentList searchValue={searchValue} noticeList={noticeList} setNoticeList={setNoticeList}
                     setSearch={setSearch} search={search} userDelete={userDelete} checkedUsers={checkedUsers} />
-                <XResetDeleteBtn />
+                <XResetDeleteBtn del={del} handleReset={handleReset}/>
             </div>
         </div>
     )
