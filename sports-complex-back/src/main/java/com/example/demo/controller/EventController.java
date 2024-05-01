@@ -133,7 +133,7 @@ public class EventController {
 			if(realPath.contains(".TeamSSJ."))
 				realPath = "C:\\jgj\\TeamSSJ\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\eventBoard\\";
 			else 
-				realPath = "C:\\jgj\\TeamSSJ\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\eventBoard\\";
+				realPath = "s3://dbrghl-bucket/img/";
 			
 			// 1.1. 해당 위치에 폴더가 존재하지 않다면 만들기
 			File file1 = new File(realPath);
@@ -164,8 +164,9 @@ public class EventController {
 	@GetMapping(value = "/eventimages")
 	public ResponseEntity<?> getImagePath(@RequestParam String img) throws Exception {
 		
+		String realPath = "s3://dbrghl-bucket/img/";
 //		String realPath = "C:\\jgj\\TeamSSJ\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\eventBoard\\";
-		String realPath = "E:\\Sam\\project\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\eventBanner\\\\";
+		// String realPath = "E:\\Sam\\project\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\eventBanner\\\\";
 		
 		FileSystemResource resource = new FileSystemResource(realPath + "\\" + img);
 		
@@ -214,7 +215,7 @@ public class EventController {
 			if(realPath.contains(".TeamSSJ."))
 				realPath = "C:\\jgj\\TeamSSJ\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\eventBoard\\";
 			else 
-				realPath = "C:\\jgj\\TeamSSJ\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\eventBoard\\";
+				realPath = "s3://dbrghl-bucket/img/";
 			
 			// 1.1. 해당 위치에 폴더가 존재하지 않다면 만들기
 			File file1 = new File(realPath);

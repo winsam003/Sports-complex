@@ -15,6 +15,7 @@ export default function EventBoardPage() {
     const [eventlist, seteventlist] = useState([]);
 
     useEffect(() => {
+        
         fetchEventList();
         // 배열로 나오는것 확인, 
         console.log(checkEvent);
