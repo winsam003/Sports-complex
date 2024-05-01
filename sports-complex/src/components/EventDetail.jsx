@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { apiCall } from '../apiService/apiService';
 import './EventDetail.css'
 import { MdFestival } from "react-icons/md";
@@ -68,7 +68,7 @@ export default function EventDetail({ eventcode }) {
                 state: { detail: eventDetailOne }
             });
     }
-    // console.log(eventDetailOne)
+    console.log(eventDetailOne.eventdetail)
 
     return (
         <div className="EventDetailContainor">
@@ -117,8 +117,15 @@ export default function EventDetail({ eventcode }) {
                 </div>
                 {/* 내용이랑 사진 */}
                 <div className='EventDetail_content'>
-                    <div>
+                    {/* <div>
                         <p>{eventDetailOne.eventdetail}</p>
+                    </div> */}
+                    <div>
+                        {eventDetailOne && eventDetailOne.eventdetail.split('\n').map((line, index) => (
+                            <React.Fragment key={index}>
+                                {index === 0 ? line : <>{'\n'}<br />{line}</>}
+                            </React.Fragment>
+                        ))}
                     </div>
                     {(eventDetailOne.eventuploadfile) ?
                         <div>

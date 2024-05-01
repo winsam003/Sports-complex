@@ -118,10 +118,6 @@ export default function ParkingRequestContent({getUserName, getUserID}) {
     }
 
     // ===============================
-
-    
-    
-    
     
 
     // 등록 
