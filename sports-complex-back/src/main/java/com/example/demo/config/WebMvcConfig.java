@@ -12,17 +12,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
-	
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry
-            .addResourceHandler("/banner/bannerinsert")
-            .addResourceLocations("file:///home/ubuntu/app/");
-        registry
-        	.addResourceHandler("/banner/bannerimages"
+
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/banner/bannerinsert").addResourceLocations("file:///home/ubuntu/app/");
+		registry.addResourceHandler("/banner/bannerimages"
 //        		, "/event/eventinsert", "/event/eventimages", "/event/eventupdate"
-        		)
-        	.addResourceLocations("file:///home/ubuntu/app/");
+		)	.addResourceLocations("file:///home/ubuntu/app/");
         registry
         	.addResourceHandler("/notice/noticeSubmit")
         	.addResourceLocations("file:///home/ubuntu/app/");
@@ -32,9 +28,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry
     	.addResourceHandler("/notice/downloadFile")
     	.addResourceLocations("file:///home/ubuntu/app/");
-    }
-	
-	
+		registry.addResourceHandler("/qna/qnaInsert").addResourceLocations("file:///home/ubuntu/resource/qna/");
+		registry.addResourceHandler("/qna/downloadFile").addResourceLocations("file:///home/ubuntu/resource/qna/");
+	}
 
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
