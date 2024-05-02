@@ -92,7 +92,7 @@ export default function PlaceRentalSearchList({ handleRentPrice, sprNumHandler, 
                             <span>{spacecode.spacename}</span>
                             <span>{spacecode.spaceprice} 원</span>
                             <span>
-                                {new Date().getDay() === 1 || new Date().getDay() === 2 ?
+                                {new Date().getDay() === 1 || new Date().getDay() === 4 ?
                                     (id !== null ?
                                         <span>대관 불가 /
                                             <button className='PlaceRentalSearchList_battle' disabled={id2 === null ? false : true} onClick={() => requestBattle(sprnum, id)}>경기신청</button>
