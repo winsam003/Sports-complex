@@ -15,30 +15,36 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/banner/bannerinsert").addResourceLocations("file:///home/ubuntu/app/");
-		registry.addResourceHandler("/banner/bannerimages"
-//        		, "/event/eventinsert", "/event/eventimages", "/event/eventupdate"
-		)	.addResourceLocations("file:///home/ubuntu/app/");
+		registry
+			.addResourceHandler("/banner/bannerinsert")
+			.addResourceLocations("file:///home/ubuntu/app/resources/banner/");
+		registry
+			.addResourceHandler("/banner/bannerimages")
+			.addResourceLocations("file:///home/ubuntu/app/resources/banner/");				// banner
         registry
         	.addResourceHandler("/notice/noticeSubmit")
         	.addResourceLocations("file:///home/ubuntu/app/resources/notice/");
         registry
-    	.addResourceHandler("/notice/noticeModify")
-    	.addResourceLocations("file:///home/ubuntu/app/resources/banner/");
+        	.addResourceHandler("/notice/downloadFile")
+        	.addResourceLocations("file:///home/ubuntu/app/resources/notice/");
         registry
-        .addResourceHandler("/banner/bannerimages")
-        .addResourceLocations("file:///home/ubuntu/app/resources/banner/");
+    		.addResourceHandler("/notice/noticeModify")
+    		.addResourceLocations("file:///home/ubuntu/app/resources/banner/");				// notice
         registry
-        .addResourceHandler("/event/eventinsert")
-        .addResourceLocations("file:///home/ubuntu/app/resources/event/");
+        	.addResourceHandler("/event/eventinsert")
+        	.addResourceLocations("file:///home/ubuntu/app/resources/event/");
         registry
-        .addResourceHandler("/event/eventimages")
-        .addResourceLocations("file:///home/ubuntu/app/resources/event/resources/notice/");
+        	.addResourceHandler("/event/eventimages")
+        	.addResourceLocations("file:///home/ubuntu/app/resources/event/");
         registry
-    	.addResourceHandler("/notice/downloadFile")
-    	.addResourceLocations("file:///home/ubuntu/app/resources/notice/");
-		registry.addResourceHandler("/qna/qnaInsert").addResourceLocations("file:///home/ubuntu/app/resources/qna/");
-		registry.addResourceHandler("/qna/downloadFile").addResourceLocations("file:///home/ubuntu/app/resources/qna/");
+        	.addResourceHandler("/event/eventupdate")
+        	.addResourceLocations("file:///home/ubuntu/app/resources/event/");				// event
+		registry
+			.addResourceHandler("/qna/qnaInsert")
+			.addResourceLocations("file:///home/ubuntu/app/resources/qna/");
+		registry
+			.addResourceHandler("/qna/downloadFile")
+			.addResourceLocations("file:///home/ubuntu/app/resources/qna/");				// qna
 	}
 
 	@Override
