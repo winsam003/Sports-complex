@@ -21,15 +21,15 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		)	.addResourceLocations("file:///home/ubuntu/app/");
         registry
         	.addResourceHandler("/notice/noticeSubmit")
-        	.addResourceLocations("file:///home/ubuntu/app/");
+        	.addResourceLocations("file:///home/ubuntu/app/resources/notice/");
         registry
     	.addResourceHandler("/notice/noticeModify")
-    	.addResourceLocations("file:///home/ubuntu/app/");
+    	.addResourceLocations("file:///home/ubuntu/app/resources/notice/");
         registry
     	.addResourceHandler("/notice/downloadFile")
-    	.addResourceLocations("file:///home/ubuntu/app/");
-		registry.addResourceHandler("/qna/qnaInsert").addResourceLocations("file:///home/ubuntu/resource/qna/");
-		registry.addResourceHandler("/qna/downloadFile").addResourceLocations("file:///home/ubuntu/resource/qna/");
+    	.addResourceLocations("file:///home/ubuntu/app/resources/notice/");
+		registry.addResourceHandler("/qna/qnaInsert").addResourceLocations("file:///home/ubuntu/app/resources/qna/");
+		registry.addResourceHandler("/qna/downloadFile").addResourceLocations("file:///home/ubuntu/app/resources/qna/");
 	}
 
 	@Override
