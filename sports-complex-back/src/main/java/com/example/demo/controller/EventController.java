@@ -130,13 +130,13 @@ public class EventController {
 			
 //			String realPath = "C:\\jgj\\TeamSSJ\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\eventBoard\\";
 //			String realPath = "/home/ubuntu/server/"; 요러케 폴더를 만들어야 되나
-			String realPath = "/home/ubuntu/app/img/";
+			String realPath = "/home/ubuntu/app/resources/event/";
 			
 			if(realPath.contains(".TeamSSJ."))
 				realPath = "C:\\jgj\\TeamSSJ\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\eventBoard\\";
 			else 
 //				realPath = "C:\\jgj\\TeamSSJ\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\eventBoard\\";
-				realPath = "/home/ubuntu/app/img/";
+				realPath = "/home/ubuntu/app/resources/event/";
 			
 			// 1.1. 해당 위치에 폴더가 존재하지 않다면 만들기
 			File file1 = new File(realPath);
@@ -167,7 +167,7 @@ public class EventController {
 	@GetMapping(value = "/eventimages")
 	public ResponseEntity<?> getImagePath(@RequestParam String img) throws Exception {
 		
-		String realPath = "/home/ubuntu/app/img/";
+		String realPath = "/home/ubuntu/app/resources/event/";
 //		String realPath = "C:\\jgj\\TeamSSJ\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\eventBoard\\";
 		// String realPath = "E:\\Sam\\project\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\eventBanner\\\\";
 		
@@ -213,12 +213,12 @@ public class EventController {
 			
 			entity.setEventuploadfile(eventfilef.getOriginalFilename());
 			
-			String realPath = "/home/ubuntu/app/img/";
+			String realPath = "/home/ubuntu/app/resources/banner/";
 			
 			if(realPath.contains(".TeamSSJ."))
 				realPath = "C:\\jgj\\TeamSSJ\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\eventBoard\\";
 			else 
-				realPath = "/home/ubuntu/app/img/";
+				realPath = "/home/ubuntu/app/resources/event/";
 			
 			// 1.1. 해당 위치에 폴더가 존재하지 않다면 만들기
 			File file1 = new File(realPath);
