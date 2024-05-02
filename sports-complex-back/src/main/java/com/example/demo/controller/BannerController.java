@@ -83,7 +83,7 @@ public class BannerController {
 			dto.setBannerImage(bannerfilef.getOriginalFilename());
 			
 //			String realPath = "C:\\jgj\\TeamSSJ\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\mainBanner\\";
-			String realPath = "/home/ubuntu/app/img/";
+			String realPath = "/home/ubuntu/app/resources/banner/";
 						
 			// 1.1. 해당 위치에 폴더가 존재하지 않다면 만들기
 			File file1 = new File(realPath);
@@ -97,7 +97,7 @@ public class BannerController {
 				String f2 = realPath + uploadfilef.getOriginalFilename();
 				File f1 = new File(f2);
 				uploadfilef.transferTo(f1);
-				log.info("애프투다 : " + f2);
+//				log.info("애프투다 : " + f2);
 			}
 			
 			
@@ -116,7 +116,7 @@ public class BannerController {
 	public ResponseEntity<?> getImagePath(@RequestParam String img) throws Exception {
 //		String realPath = "C:\\jgj\\TeamSSJ\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\mainBanner\\";
 //		String realPath = "E:\\Sam\\project\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\mainBanner\\";
-		String realPath = "/home/ubuntu/app/img/";
+		String realPath = "/home/ubuntu/app/resources/banner/";
 		
 		FileSystemResource resource = new FileSystemResource(realPath + img);
 		
