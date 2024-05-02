@@ -213,7 +213,7 @@ public class EventController {
 			
 			entity.setEventuploadfile(eventfilef.getOriginalFilename());
 			
-			String realPath = "/home/ubuntu/app/resources/banner/";
+			String realPath = "/home/ubuntu/app/resources/event/";
 			
 			if(realPath.contains(".TeamSSJ."))
 				realPath = "C:\\jgj\\TeamSSJ\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\eventBoard\\";
