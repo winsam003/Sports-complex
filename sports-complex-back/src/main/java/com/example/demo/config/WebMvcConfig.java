@@ -29,7 +29,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         	.addResourceLocations("file:///home/ubuntu/app/resources/notice/");
         registry
     		.addResourceHandler("/notice/noticeModify")
-    		.addResourceLocations("file:///home/ubuntu/app/resources/banner/");				// notice
+    		.addResourceLocations("file:///home/ubuntu/app/resources/notice/");				// notice
         registry
         	.addResourceHandler("/event/eventinsert")
         	.addResourceLocations("file:///home/ubuntu/app/resources/event/");
