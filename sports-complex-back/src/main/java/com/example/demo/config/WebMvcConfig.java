@@ -16,13 +16,22 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry
-                .addResourceHandler("/banner/bannerinsert")
-        .addResourceLocations("file:///home/ubuntu/app/");
+            .addResourceHandler("/banner/bannerinsert")
+            .addResourceLocations("file:///home/ubuntu/app/");
         registry
-        .addResourceHandler("/banner/bannerimages"
+        	.addResourceHandler("/banner/bannerimages"
 //        		, "/event/eventinsert", "/event/eventimages", "/event/eventupdate"
         		)
-        .addResourceLocations("file:///home/ubuntu/app/");
+        	.addResourceLocations("file:///home/ubuntu/app/");
+        registry
+        	.addResourceHandler("/notice/noticeSubmit")
+        	.addResourceLocations("file:///home/ubuntu/app/");
+        registry
+    	.addResourceHandler("/notice/noticeModify")
+    	.addResourceLocations("file:///home/ubuntu/app/");
+        registry
+    	.addResourceHandler("/notice/downloadFile")
+    	.addResourceLocations("file:///home/ubuntu/app/");
     }
 	
 	
