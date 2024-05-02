@@ -39,7 +39,7 @@ import lombok.extern.log4j.Log4j2;
 public class QnaController {
 	QnaService service;
 	PasswordEncoder passwordEncoder;
-	private static final String DOWNLOAD_DIR = "/home/ubuntu/resource/qna/";
+	private static final String DOWNLOAD_DIR = "/home/ubuntu/app/resources/qna/";
 
 //	문의게시글 목록 조회
 	@GetMapping("/qnaList")
@@ -82,7 +82,7 @@ public class QnaController {
 					realPath = "C:\\TP\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\Qna";
 				// 배포중
 				else
-					realPath = "/home/ubuntu/resource/qna/";
+					realPath = "/home/ubuntu/app/resources/qna/";
 
 				// 폴더가 없으면 생성
 				File file1 = new File(realPath);
