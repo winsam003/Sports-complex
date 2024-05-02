@@ -47,7 +47,8 @@ import java.nio.file.Path;
 @RequestMapping("/notice")
 public class NoticeBoardContoller {
 	NoticeBoardServiceImpl service;
-	private static final String DOWNLOAD_DIR = "E:\\Sam\\project\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\noticeBoard\\";
+//	private static final String DOWNLOAD_DIR = "E:\\Sam\\project\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\noticeBoard\\";
+	private static final String DOWNLOAD_DIR = "/home/ubuntu/app/resources/notice/";
 	
 	
 	// noticeList 공지사항 게시글 list
@@ -124,7 +125,8 @@ public class NoticeBoardContoller {
 			
 			// 1. 배포 전, 배포 후 물리적 위치 저장
 //			String realPath = "E:\\Sam\\project\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\noticeBoard\\";
-			String realPath = "E:\\Sam\\project\\Sports-complex\\sports-complex\\public\\img\\";
+//			String realPath = "E:\\Sam\\project\\Sports-complex\\sports-complex\\public\\img\\";
+			String realPath = "/home/ubuntu/app/resources/notice/";
 			
 			
 			// 솔직히 무슨 기준으로 배포 전, 후 를 나눠야할지 모르겠음 일단 같은 폴더로 지정했음
@@ -182,10 +184,10 @@ public class NoticeBoardContoller {
 						
 						
 			// 솔직히 무슨 기준으로 배포 전, 후 를 나눠야할지 모르겠음 일단 같은 폴더로 지정했음
-			if(realPath.contains(".project."))
+			if(realPath.contains(".Sam."))
 				realPath = "E:\\Sam\\project\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\noticeBoard\\";
 			else 
-				realPath = "E:\\Sam\\project\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\noticeBoard\\";
+				realPath = "/home/ubuntu/app/resources/notice/";
 						
 						
 			// 1.1. 해당 위치에 폴더가 존재하지 않다면 만들기

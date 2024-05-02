@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { apiCall } from '../apiService/apiService'
 
 // 수강 신청
-export default function PlaceRentalContent({ getUserName, getUserID}) {
+export default function PlaceRentalContent({ getUserName, getUserID, token }) {
 
     const navigate = useNavigate();
 
@@ -57,11 +57,11 @@ export default function PlaceRentalContent({ getUserName, getUserID}) {
     }
 
     // 해당 날짜, 시간 신청list 가져오기 ============================================================================
-    let token = null
+    // let token = null
     let sprDate = rentDate + ' ' + rentTime;
     const [spacelist, setSpaceList] = useState([]);
     useEffect(() => {
-        token = (sessionStorage.getItem('userData') && JSON.parse(sessionStorage.getItem('userData')).token);
+        // token = (sessionStorage.getItem('userData') && JSON.parse(sessionStorage.getItem('userData')).token);
         let url = '/spaceRentApp/spaceRentApplist';
         let requestData = {
             sprDate: sprDate,
@@ -95,10 +95,10 @@ export default function PlaceRentalContent({ getUserName, getUserID}) {
         if (sessionStorage.getItem('userData') !== null) {
             stfcheck = JSON.parse(sessionStorage.getItem('userData')).stfid;
         }
-
         if (stfcheck) {
             alert("유저 아이디로만 허가 신청이 가능합니다.");
         } else {
+            
             apiCall(url, 'post', getUserID, token)
                 .then((response) => {
                     url = '/spaceRentApp/spaceRentApplication';
@@ -107,14 +107,15 @@ export default function PlaceRentalContent({ getUserName, getUserID}) {
                             alert(response);
                             window.location.reload();
                         }).catch((error) => {
+                            
                             alert("대관 신청에 실패하였습니다. 관리자에게 문의하세요.");
                             console.log("spaceRentApplication error occured = " + error);
                         })
                 }).catch((error) => {
+                    
                     alert("이미 신청한 내역이 있습니다.");
                 })
         }
-
     }
     // 대관신청 ====================================================================================================
 
