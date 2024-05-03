@@ -171,7 +171,7 @@ public class EventController {
 //		String realPath = "C:\\jgj\\TeamSSJ\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\eventBoard\\";
 		// String realPath = "E:\\Sam\\project\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\eventBanner\\\\";
 		
-		FileSystemResource resource = new FileSystemResource(realPath + "\\" + img);
+		FileSystemResource resource = new FileSystemResource(realPath + img);
 		
 		return new ResponseEntity<>(resource, HttpStatus.OK);
 	} //getImagePath
@@ -213,7 +213,7 @@ public class EventController {
 			
 			entity.setEventuploadfile(eventfilef.getOriginalFilename());
 			
-			String realPath = "/home/ubuntu/app/resources/banner/";
+			String realPath = "/home/ubuntu/app/resources/event/";
 			
 			if(realPath.contains(".TeamSSJ."))
 				realPath = "C:\\jgj\\TeamSSJ\\Sports-complex\\sports-complex-back\\src\\main\\webapp\\images\\eventBoard\\";
