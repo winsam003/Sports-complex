@@ -114,10 +114,10 @@ export default function Login({ setLogincheck, loginCheck }) {
                                 <input type="button" value={"초기화"} onClick={loginRefresh} />
                                 <KakaoLogin />
                             </div>
-                            <div className="login_Box_div">
+                            {/* <div className="login_Box_div">
                                 <input type="checkbox" id="rememberMe" name="rememberMe" />
                                 <label htmlFor="rememberMe">아이디 저장</label>
-                            </div>
+                            </div> */}
                             <div className="login_joinandfind">
                                 <Link to="/JoinPage1">회원가입</Link>
                                 <Link to="/FindIDPage">아이디 찾기</Link>
@@ -152,10 +152,10 @@ export default function Login({ setLogincheck, loginCheck }) {
                                 <input type="button" onClick={ManagerRequestLogin} value={"로그인"} /> &nbsp;&nbsp;
                                 <input type="button" value={"초기화"} onClick={loginRefresh} />
                             </div>
-                            <div className="login_Box_div">
+                            {/* <div className="login_Box_div">
                                 <input type="checkbox" id="rememberMe" name="rememberMe" />
                                 <label htmlFor="rememberMe">아이디 저장</label>
-                            </div>
+                            </div> */}
                             <div className="login_joinandfind">
                                 <Link to="/JoinPage1">회원가입</Link>
                                 <Link to="/FindIDPage">아이디 찾기</Link>
