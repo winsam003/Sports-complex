@@ -218,6 +218,14 @@ public class NoticeBoardContoller {
 	public ResponseEntity<ByteArrayResource> downloadFile(@RequestParam String fileName) throws IOException{
 		
 	    Path filePath = Paths.get(DOWNLOAD_DIR, fileName);
+	    
+	    
+	    // 파일 확장자를 추출하여 MIME 타입 결정
+	    String mimeType = Files.probeContentType(filePath);
+	    if (mimeType == null) {
+	        mimeType = MediaType.APPLICATION_OCTET_STREAM_VALUE; // MIME 타입을 알 수 없는 경우 기본값 설정
+	    }
+	    
 	        // 파일의 내용을 바이트 배열로 읽어옴
 	    byte[] data = Files.readAllBytes(filePath);
 	        // 바이트 배열을 ByteArrayResource 객체로 변환
@@ -227,7 +235,7 @@ public class NoticeBoardContoller {
 		
 		return ResponseEntity.ok()
                 // 파일의 MIME 타입 설정		// MIME(Multipurpose Internet Mail Extensions) => 파일의 형식을 식별 (이미지, 텍스트 ...)
-				.contentType(MediaType.IMAGE_PNG) // 이미지 파일인 경우
+				.contentType(MediaType.parseMediaType(mimeType)) // 모든타입 파일형식 허용
                 // 다운로드 시 파일명 지정
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + fileName)
                 // 응답에 파일의 내용을 담은 ByteArrayResource 추가
