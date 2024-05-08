@@ -54,14 +54,7 @@ public class ClassesRepositoryImpl implements ClassesRepository {
 		em.createQuery("delete from Classes c where c.clnum = :clnum").setParameter("clnum", clnum).executeUpdate();
 	}
 
-	// 강의 현황 변경
-	@Override
-	public void updateClassesType(Integer clnum, String cltype) {
-		em.createQuery("update Classes c set c.cltype = :cltype where c.clnum = :clnum").setParameter("cltype", cltype)
-				.setParameter("clnum", clnum).executeUpdate();
-	}
-
-	// 신청 가능 상태로 변경
+	// 신청 가능 변경 대상 조회
 	@Override
 	public List<Classes> findByCltypeAndClrequest(String cltype, LocalDate clrequest) {
 		return em
@@ -70,7 +63,7 @@ public class ClassesRepositoryImpl implements ClassesRepository {
 				.setParameter("cltype", cltype).setParameter("clrequest", clrequest).getResultList();
 	}
 
-	// 접수 마감 상태로 변경
+	// 접수 마감 변경 대상 조회
 	@Override
 	public List<Classes> findByCltypeAndClrequestendIn(String cltype1, String cltype2, String cltype3,
 			LocalDate clrequestend) {
@@ -78,6 +71,13 @@ public class ClassesRepositoryImpl implements ClassesRepository {
 				"select c from Classes c where c.cltype in (:cltype1, :cltype2, :cltype3) and c.clrequestend = :clrequestend",
 				Classes.class).setParameter("cltype1", cltype1).setParameter("cltype2", cltype2)
 				.setParameter("cltype3", cltype3).setParameter("clrequestend", clrequestend).getResultList();
+	}
+
+	// 강의 현황 변경
+	@Override
+	public void updateClassesType(Integer clnum, String cltype) {
+		em.createQuery("update Classes c set c.cltype = :cltype where c.clnum = :clnum").setParameter("cltype", cltype)
+				.setParameter("clnum", clnum).executeUpdate();
 	}
 
 	// 강좌의 cltype 가져오기, classApp에서 사용

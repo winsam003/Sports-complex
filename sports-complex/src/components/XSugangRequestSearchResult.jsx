@@ -96,8 +96,7 @@ export default function XSugangRequestSearchResult({ clnum, classcode, clname, c
             }
 
             apiCall(url, 'post', classAppData, userData.token)
-                .then((response) => {
-                    // alert(`${cltype} 성공`);
+                .then(() => {
                     alert(`${cltype === "신청" ? "수강 신청 성공" : "대기 신청 성공"}`);
                     setClassAppStatusCounts(prevCounts => ({
                         ...prevCounts,
