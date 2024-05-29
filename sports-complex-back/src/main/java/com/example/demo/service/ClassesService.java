@@ -15,7 +15,7 @@ public interface ClassesService {
 	// 강의 삭제
 	void classesDelete(Integer clnum);
 
-	// 강의 상태 접수가능 업데이트
+	// 강의 상태 신청가능 업데이트
 	void updateClassesStatusMorning();
 
 	// 강의 상태 접수마감 업데이트
