@@ -153,7 +153,7 @@ public class QnaController {
 				// (이미지, 텍스트 ...)
 				.contentType(MediaType.IMAGE_PNG) // 이미지 파일인 경우
 				// 다운로드 시 파일명 지정
-				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + fileName)
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + fileName)
 				// 응답에 파일의 내용을 담은 ByteArrayResource 추가
 				.body(resource);
 	}
