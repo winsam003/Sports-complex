@@ -72,6 +72,7 @@ import Footer from './components/Footer';
 import Xheader from './components/Xheader';
 import Header from './components/Header';
 import XEventDetailPage from './components/Pages/XEventDetailPage';
+import Modal from 'react-modal';
 
 function App() {
 
@@ -109,7 +110,7 @@ function App() {
 
   const [isAdminPage, setIsAdminPage] = useState(window.location.pathname.includes('X'));
   const checkAdminPage = (e) => {
-    if (!(roleList && roleList.length > 0 && roleList.some(item => item === "ADMIN" || item === "MANAGER"))){
+    if (!(roleList && roleList.length > 0 && roleList.some(item => item === "ADMIN" || item === "MANAGER"))) {
       console.log("TEST");
       alert("관리자 계정으로 로그인이 되어야 이용 가능합니다.");
       e.preventDefault();
@@ -120,9 +121,64 @@ function App() {
     }
   }
 
+
+  // const ModalExample = () => {
+    const [modalIsOpen, setModalIsOpen] = useState(true);
+
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
+  const customModalStyles = {
+    overlay: {
+      backgroundColor: "rgba(0, 0, 0, 0.4)",
+      width: "100%",
+      height: "100vh",
+      zIndex: 10,
+      position: "fixed",
+      top: 0,
+      left: 0,
+    },
+    content: {
+      width: "360px",
+      height: "370px",
+      zIndex: 150,
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+      borderRadius: "10px",
+      boxShadow: "2px 2px 2px rgba(0, 0, 0, 0.25)",
+      backgroundColor: "white",
+      justifyContent: "center",
+      overflow: "auto",
+    },
+  };
+
   return (
     <div>
 
+      <Modal isOpen={modalIsOpen} onRequestClose={closeModal} style={customModalStyles}>
+        <h2>🤾‍♀ 피트네스트 로그인 🤾‍♂</h2>
+        <pre>
+          📌유저 로그인<br />
+          user123<br />
+          user123!!<br />
+          <br />
+          📌관리자 로그인<br />
+          manager123<br />
+          manager123!!<br />
+          <br />
+          관리자 로그인 후 상단에 있는 '관리자 페이지 전환' 클릭✔<br />
+        </pre>
+        <div className='Modal_button'>
+          <button onClick={closeModal}>닫기</button>
+        </div>
+      </Modal>
 
       {window.location.pathname.includes('X') ?
         <Xheader checkAdminPage={checkAdminPage} logout={logout} getUserName={getUserName} roleList={roleList} />
@@ -152,12 +208,12 @@ function App() {
         <Route path='/Sugang' element={<Sugang />} />
         <Route path='/ClassSchedulePage' element={<ClassSchedulePage />} />
         <Route path='/PasswordChangePage' element={<PasswordChangePage getUserID={getUserID} />} />
-        <Route path='/PasswordChangePage2' element={<PasswordChangePage2 token={token}/>} />
+        <Route path='/PasswordChangePage2' element={<PasswordChangePage2 token={token} />} />
         <Route path='/ModifyMemberPage' element={<ModifyMemberPage getUserID={getUserID} roleList={roleList} token={token} />} />
         <Route path='/QRCodePage' element={<QRCodePage getUserID={getUserID} />} />
         <Route path='/PlaceRentalInfo' element={<PlaceRentalInfo roleList={roleList} />} />
         <Route path='/PlaceRental' element={<PlaceRental getUserName={getUserName} getUserID={getUserID} token={token} />} />
-        <Route path='/ParkingRequest' element={<ParkingRequest getUserName={getUserName} getUserID = {getUserID}  />} />
+        <Route path='/ParkingRequest' element={<ParkingRequest getUserName={getUserName} getUserID={getUserID} />} />
         <Route path='/ApplicationDetailsPage' element={<ApplicationDetailsPage token={token} getUserID={getUserID} />} />
         <Route path='/InfoHandlingPolicyPage' element={<InfoHandlingPolicyPage />} />
         <Route path='/VideoHandlePage' element={<VideoHandlePage />} />
@@ -209,5 +265,6 @@ function App() {
     </div>
   );
 }
+// }
 
 export default App;
